@@ -1,0 +1,27 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name OpenAPIURLSession -package-name swift_openapi_urlsession
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Darwin
+import DequeModule
+import Foundation
+import HTTPTypes
+import OpenAPIRuntime
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct URLSessionTransport : OpenAPIRuntime.ClientTransport {
+  public struct Configuration : Swift.Sendable {
+    public var session: Foundation.URLSession
+    public init(session: Foundation.URLSession = .shared, httpBodyProcessingMode: OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode = .platformDefault)
+    public init(session: Foundation.URLSession = .shared)
+    public struct HTTPBodyProcessingMode : Swift.Sendable {
+      public static let buffered: OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode
+      public static let platformDefault: OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode
+    }
+  }
+  public var configuration: OpenAPIURLSession.URLSessionTransport.Configuration
+  public init(configuration: OpenAPIURLSession.URLSessionTransport.Configuration = .init())
+  public func send(_ request: HTTPTypes.HTTPRequest, body requestBody: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+}

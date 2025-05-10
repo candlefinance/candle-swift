@@ -1,5 +1,0 @@
-framework module CandleTarget2 {
-    header "CandleTarget2-Swift.h"
-    export *
-    link framework "CandleTarget1"
-}

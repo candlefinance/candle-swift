@@ -1,0 +1,523 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOPosix -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Atomics
+@_exported import Darwin.C
+import CNIODarwin
+import CNIOLinux
+@_exported import Darwin
+import DequeModule
+import Dispatch
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import NIOConcurrencyHelpers
+import NIOCore
+import Swift
+import _Concurrency
+import _NIODataStructures
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension NIOCore.NIOBSDSocket {
+  public struct ProtocolSubtype : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
+    public typealias RawValue = Swift.CInt
+    public var rawValue: NIOCore.NIOBSDSocket.ProtocolSubtype.RawValue
+    public init(rawValue: NIOCore.NIOBSDSocket.ProtocolSubtype.RawValue)
+  }
+}
+extension NIOCore.NIOBSDSocket.ProtocolSubtype {
+  public static let `default`: NIOCore.NIOBSDSocket.ProtocolSubtype
+  public static var mptcp: NIOCore.NIOBSDSocket.ProtocolSubtype? {
+    get
+  }
+}
+extension NIOCore.NIOBSDSocket.ProtocolSubtype {
+  public init(_ protocol: NIOCore.NIOIPProtocol)
+}
+public struct UnixDomainSocketPathWrongType : Swift.Error {
+}
+final public class ServerBootstrap {
+  convenience public init(group: any NIOCore.EventLoopGroup)
+  convenience public init(group: any NIOCore.EventLoopGroup, childGroup: any NIOCore.EventLoopGroup)
+  public init?(validatingGroup group: any NIOCore.EventLoopGroup, childGroup: (any NIOCore.EventLoopGroup)? = nil)
+  @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func serverChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func childChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func bindTimeout(_ timeout: NIOCore.TimeAmount) -> Self
+  final public func enableMPTCP(_ value: Swift.Bool) -> Self
+  final public func bind(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(to address: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String, cleanupExistingSocketFile: Swift.Bool) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(to vsockAddress: NIOPosix.VsockAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @available(*, deprecated, renamed: "withBoundSocket(_:)")
+  final public func withBoundSocket(descriptor: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func withBoundSocket(_ socket: NIOCore.NIOBSDSocket.Handle) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @objc deinit
+}
+extension NIOPosix.ServerBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(host: Swift.String, port: Swift.Int, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(to address: NIOCore.SocketAddress, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(unixDomainSocketPath: Swift.String, cleanupExistingSocketFile: Swift.Bool = false, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(to vsockAddress: NIOPosix.VsockAddress, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(_ socket: NIOCore.NIOBSDSocket.Handle, cleanupExistingSocketFile: Swift.Bool = false, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+}
+@available(*, unavailable)
+extension NIOPosix.ServerBootstrap : Swift.Sendable {
+}
+final public class ClientBootstrap : NIOCore.NIOClientTCPBootstrapProtocol {
+  convenience public init(group: any NIOCore.EventLoopGroup)
+  public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  @preconcurrency final public func protocolHandlers(_ handlers: @escaping @Sendable () -> [any NIOCore.ChannelHandler]) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func connectTimeout(_ timeout: NIOCore.TimeAmount) -> Self
+  @preconcurrency final public func resolver(_ resolver: (any NIOPosix.Resolver & Swift.Sendable)?) -> Self
+  final public func enableMPTCP(_ value: Swift.Bool) -> Self
+  final public func bind(to address: NIOCore.SocketAddress) -> NIOPosix.ClientBootstrap
+  final public func connect(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(to address: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(unixDomainSocketPath: Swift.String) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(to address: NIOPosix.VsockAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @available(*, deprecated, renamed: "withConnectedSocket(_:)")
+  final public func withConnectedSocket(descriptor: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func withConnectedSocket(_ socket: NIOCore.NIOBSDSocket.Handle) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @objc deinit
+}
+extension NIOPosix.ClientBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(host: Swift.String, port: Swift.Int, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(to address: NIOCore.SocketAddress, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(unixDomainSocketPath: Swift.String, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(to address: NIOPosix.VsockAddress, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func withConnectedSocket<Output>(_ socket: NIOCore.NIOBSDSocket.Handle, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+}
+@available(*, unavailable)
+extension NIOPosix.ClientBootstrap : Swift.Sendable {
+}
+final public class DatagramBootstrap {
+  convenience public init(group: any NIOCore.EventLoopGroup)
+  public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func protocolSubtype(_ subtype: NIOCore.NIOBSDSocket.ProtocolSubtype) -> Self
+  @available(*, deprecated, renamed: "withBoundSocket(_:)")
+  final public func withBoundSocket(descriptor: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func withBoundSocket(_ socket: NIOCore.NIOBSDSocket.Handle) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(to address: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String, cleanupExistingSocketFile: Swift.Bool) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(to address: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(unixDomainSocketPath: Swift.String) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @objc deinit
+}
+extension NIOPosix.DatagramBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func withBoundSocket<Output>(_ socket: NIOCore.NIOBSDSocket.Handle, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(host: Swift.String, port: Swift.Int, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(to address: NIOCore.SocketAddress, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(unixDomainSocketPath: Swift.String, cleanupExistingSocketFile: Swift.Bool = false, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(host: Swift.String, port: Swift.Int, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(to address: NIOCore.SocketAddress, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(unixDomainSocketPath: Swift.String, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+}
+@available(*, unavailable)
+extension NIOPosix.DatagramBootstrap : Swift.Sendable {
+}
+@_hasMissingDesignatedInitializers final public class NIOPipeBootstrap {
+  convenience public init(group: any NIOCore.EventLoopGroup)
+  public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func takingOwnershipOfDescriptor(inputOutput: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func takingOwnershipOfDescriptors(input: Swift.CInt, output: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func takingOwnershipOfDescriptor(input: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func takingOwnershipOfDescriptor(output: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @available(*, deprecated, renamed: "takingOwnershipOfDescriptor(inputOutput:)")
+  final public func withInputOutputDescriptor(_ fileDescriptor: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @available(*, deprecated, renamed: "takingOwnershipOfDescriptors(input:output:)")
+  final public func withPipes(inputDescriptor: Swift.CInt, outputDescriptor: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @objc deinit
+}
+extension NIOPosix.NIOPipeBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func takingOwnershipOfDescriptor<Output>(inputOutput: Swift.CInt, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func takingOwnershipOfDescriptors<Output>(input: Swift.CInt, output: Swift.CInt, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func takingOwnershipOfDescriptor<Output>(input: Swift.CInt, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func takingOwnershipOfDescriptor<Output>(output: Swift.CInt, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+}
+@available(*, unavailable)
+extension NIOPosix.NIOPipeBootstrap : Swift.Sendable {
+}
+public struct SingleConnectionFailure : Swift.Sendable {
+  public let target: NIOCore.SocketAddress
+  public let error: any Swift.Error
+}
+public struct NIOConnectionError : Swift.Error {
+  public let host: Swift.String
+  public let port: Swift.Int
+  public var dnsAError: (any Swift.Error)? {
+    get
+  }
+  public var dnsAAAAError: (any Swift.Error)? {
+    get
+  }
+  public var connectionErrors: [NIOPosix.SingleConnectionFailure] {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class MultiThreadedEventLoopGroup : NIOCore.EventLoopGroup {
+  convenience public init(numberOfThreads: Swift.Int)
+  convenience public init(numberOfThreads: Swift.Int, metricsDelegate: any NIOPosix.NIOEventLoopMetricsDelegate)
+  public static func _makePerpetualGroup(threadNamePrefix: Swift.String, numberOfThreads: Swift.Int) -> NIOPosix.MultiThreadedEventLoopGroup
+  @objc deinit
+  public static var currentEventLoop: (any NIOCore.EventLoop)? {
+    get
+  }
+  final public func makeIterator() -> NIOCore.EventLoopIterator
+  final public func next() -> any NIOCore.EventLoop
+  final public func any() -> any NIOCore.EventLoop
+  @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ handler: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  public static func withCurrentThreadAsEventLoop(_ callback: @escaping (any NIOCore.EventLoop) -> Swift.Void)
+  final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
+}
+extension NIOPosix.MultiThreadedEventLoopGroup : @unchecked Swift.Sendable {
+}
+extension NIOPosix.MultiThreadedEventLoopGroup : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+public enum NIOThreadPoolError : Swift.Sendable {
+  public struct ThreadPoolInactive : Swift.Error {
+    public init()
+  }
+  public struct UnsupportedOperation : Swift.Error {
+    public init()
+  }
+}
+@_hasMissingDesignatedInitializers final public class NIOThreadPool {
+  public enum WorkItemState : Swift.Sendable {
+    case active
+    case cancelled
+    public static func == (a: NIOPosix.NIOThreadPool.WorkItemState, b: NIOPosix.NIOThreadPool.WorkItemState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public typealias WorkItem = @Sendable (NIOPosix.NIOThreadPool.WorkItemState) -> Swift.Void
+  final public let numberOfThreads: Swift.Int
+  @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  @preconcurrency final public func submit(_ body: @escaping NIOPosix.NIOThreadPool.WorkItem)
+  convenience public init(numberOfThreads: Swift.Int)
+  public static func _makePerpetualStartedPool(numberOfThreads: Swift.Int, threadNamePrefix: Swift.String) -> NIOPosix.NIOThreadPool
+  final public func start()
+  final public func _start(threadNamePrefix: Swift.String)
+  @objc deinit
+}
+extension NIOPosix.NIOThreadPool : @unchecked Swift.Sendable {
+}
+extension NIOPosix.NIOThreadPool {
+  @preconcurrency final public func runIfActive<T>(eventLoop: any NIOCore.EventLoop, _ body: @escaping @Sendable () throws -> T) -> NIOCore.EventLoopFuture<T> where T : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func runIfActive<T>(_ body: @escaping @Sendable () throws -> T) async throws -> T where T : Swift.Sendable
+}
+extension NIOPosix.NIOThreadPool {
+  @preconcurrency final public func shutdownGracefully(_ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func shutdownGracefully() async throws
+  @available(*, noasync, renamed: "shutdownGracefully()", message: "this can end up blocking the calling thread")
+  final public func syncShutdownGracefully() throws
+}
+public struct NonBlockingFileIO : Swift.Sendable {
+  public static let defaultThreadPoolSize: Swift.Int
+  public static let defaultChunkSize: Swift.Int
+  public enum Error : Swift.Error {
+    case descriptorSetToNonBlocking
+    public static func == (a: NIOPosix.NonBlockingFileIO.Error, b: NIOPosix.NonBlockingFileIO.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(threadPool: NIOPosix.NIOThreadPool)
+  @preconcurrency public func readChunked(fileRegion: NIOCore.FileRegion, chunkSize: Swift.Int = NonBlockingFileIO.defaultChunkSize, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop, chunkHandler: @escaping @Sendable (NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.EventLoopFuture<Swift.Void>
+  @preconcurrency public func readChunked(fileHandle: NIOCore.NIOFileHandle, byteCount: Swift.Int, chunkSize: Swift.Int = NonBlockingFileIO.defaultChunkSize, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop, chunkHandler: @escaping @Sendable (NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.EventLoopFuture<Swift.Void>
+  @preconcurrency public func readChunked(fileHandle: NIOCore.NIOFileHandle, fromOffset fileOffset: Swift.Int64, byteCount: Swift.Int, chunkSize: Swift.Int = NonBlockingFileIO.defaultChunkSize, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop, chunkHandler: @escaping @Sendable (NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func read(fileRegion: NIOCore.FileRegion, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<NIOCore.ByteBuffer>
+  public func read(fileHandle: NIOCore.NIOFileHandle, byteCount: Swift.Int, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<NIOCore.ByteBuffer>
+  public func read(fileHandle: NIOCore.NIOFileHandle, fromOffset fileOffset: Swift.Int64, byteCount: Swift.Int, allocator: NIOCore.ByteBufferAllocator, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<NIOCore.ByteBuffer>
+  public func changeFileSize(fileHandle: NIOCore.NIOFileHandle, size: Swift.Int64, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<()>
+  public func readFileSize(fileHandle: NIOCore.NIOFileHandle, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Int64>
+  public func write(fileHandle: NIOCore.NIOFileHandle, buffer: NIOCore.ByteBuffer, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<()>
+  public func write(fileHandle: NIOCore.NIOFileHandle, toOffset: Swift.Int64, buffer: NIOCore.ByteBuffer, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<()>
+  @available(*, deprecated, message: "Avoid using NIOFileHandle. The type is difficult to hold correctly, use NIOFileSystem as a replacement API.")
+  public func openFile(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<(NIOCore.NIOFileHandle, NIOCore.FileRegion)>
+  public func openFile(_deprecatedPath path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<(NIOCore.NIOFileHandle, NIOCore.FileRegion)>
+  @available(*, deprecated, message: "Avoid using NonBlockingFileIO. The type is difficult to hold correctly, use NIOFileSystem as a replacement API.")
+  public func openFile(path: Swift.String, mode: NIOCore.NIOFileHandle.Mode, flags: NIOCore.NIOFileHandle.Flags = .default, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<NIOCore.NIOFileHandle>
+  public func openFile(_deprecatedPath path: Swift.String, mode: NIOCore.NIOFileHandle.Mode, flags: NIOCore.NIOFileHandle.Flags = .default, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<NIOCore.NIOFileHandle>
+  public func lstat(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Darwin.stat>
+  public func symlink(path: Swift.String, to destination: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func readlink(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.String>
+  public func unlink(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func createDirectory(path: Swift.String, withIntermediateDirectories createIntermediates: Swift.Bool = false, mode: NIOCore.NIOPOSIXFileMode, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func listDirectory(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<[NIOPosix.NIODirectoryEntry]>
+  public func rename(path: Swift.String, newName: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func remove(path: Swift.String, eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
+}
+public struct NIODirectoryEntry : Swift.Hashable, Swift.Sendable {
+  public var ino: Swift.UInt64
+  public var type: Swift.UInt8
+  public var name: Swift.String
+  public init(ino: Swift.UInt64, type: Swift.UInt8, name: Swift.String)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: NIOPosix.NIODirectoryEntry, b: NIOPosix.NIODirectoryEntry) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOPosix.NonBlockingFileIO {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func read(fileRegion: NIOCore.FileRegion, allocator: NIOCore.ByteBufferAllocator) async throws -> NIOCore.ByteBuffer
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func read(fileHandle: NIOCore.NIOFileHandle, byteCount: Swift.Int, allocator: NIOCore.ByteBufferAllocator) async throws -> NIOCore.ByteBuffer
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func read(fileHandle: NIOCore.NIOFileHandle, fromOffset fileOffset: Swift.Int64, byteCount: Swift.Int, allocator: NIOCore.ByteBufferAllocator) async throws -> NIOCore.ByteBuffer
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func changeFileSize(fileHandle: NIOCore.NIOFileHandle, size: Swift.Int64) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func readFileSize(fileHandle: NIOCore.NIOFileHandle) async throws -> Swift.Int64
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func write(fileHandle: NIOCore.NIOFileHandle, buffer: NIOCore.ByteBuffer) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func write(fileHandle: NIOCore.NIOFileHandle, toOffset: Swift.Int64, buffer: NIOCore.ByteBuffer) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  @available(*, deprecated, message: "Avoid using NonBlockingFileIO. The API is difficult to hold correctly, use NIOFileSystem as a replacement API.")
+  public func withFileRegion<Result>(path: Swift.String, _ body: (_ fileRegion: NIOCore.FileRegion) async throws -> Result) async throws -> Result
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func withFileRegion<Result>(_deprecatedPath path: Swift.String, _ body: (_ fileRegion: NIOCore.FileRegion) async throws -> Result) async throws -> Result
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  @available(*, deprecated, message: "Avoid using NonBlockingFileIO. The API is difficult to hold correctly, use NIOFileSystem as a replacement API.")
+  public func withFileHandle<Result>(path: Swift.String, mode: NIOCore.NIOFileHandle.Mode, flags: NIOCore.NIOFileHandle.Flags = .default, _ body: (NIOCore.NIOFileHandle) async throws -> Result) async throws -> Result
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func withFileHandle<Result>(_deprecatedPath path: Swift.String, mode: NIOCore.NIOFileHandle.Mode, flags: NIOCore.NIOFileHandle.Flags = .default, _ body: (NIOCore.NIOFileHandle) async throws -> Result) async throws -> Result
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func lstat(path: Swift.String) async throws -> Darwin.stat
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func symlink(path: Swift.String, to destination: Swift.String) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func readlink(path: Swift.String) async throws -> Swift.String
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func unlink(path: Swift.String) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func createDirectory(path: Swift.String, withIntermediateDirectories createIntermediates: Swift.Bool = false, mode: NIOCore.NIOPOSIXFileMode) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func listDirectory(path: Swift.String) async throws -> [NIOPosix.NIODirectoryEntry]
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func rename(path: Swift.String, newName: Swift.String) async throws
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func remove(path: Swift.String) async throws
+}
+extension NIOCore.NIOSingletons {
+  @discardableResult
+  public static func unsafeTryInstallSingletonPosixEventLoopGroupAsConcurrencyGlobalExecutor() -> Swift.Bool
+}
+extension NIOCore.NIOSingletons {
+  public static var posixEventLoopGroup: NIOPosix.MultiThreadedEventLoopGroup {
+    get
+  }
+  public static var posixBlockingThreadPool: NIOPosix.NIOThreadPool {
+    get
+  }
+}
+extension NIOPosix.MultiThreadedEventLoopGroup {
+  public static var singleton: NIOPosix.MultiThreadedEventLoopGroup {
+    get
+  }
+}
+extension NIOCore.EventLoopGroup where Self == NIOPosix.MultiThreadedEventLoopGroup {
+  public static var singletonMultiThreadedEventLoopGroup: NIOPosix.MultiThreadedEventLoopGroup {
+    get
+  }
+}
+extension NIOPosix.NIOThreadPool {
+  public static var singleton: NIOPosix.NIOThreadPool {
+    get
+  }
+}
+final public class NIORawSocketBootstrap {
+  convenience public init(group: any NIOCore.EventLoopGroup)
+  public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
+  final public func bind(host: Swift.String, ipProtocol: NIOCore.NIOIPProtocol) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  final public func connect(host: Swift.String, ipProtocol: NIOCore.NIOIPProtocol) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  @objc deinit
+}
+extension NIOPosix.NIORawSocketBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(host: Swift.String, ipProtocol: NIOCore.NIOIPProtocol, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(host: Swift.String, ipProtocol: NIOCore.NIOIPProtocol, channelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+}
+@available(*, unavailable)
+extension NIOPosix.NIORawSocketBootstrap : Swift.Sendable {
+}
+public protocol Resolver {
+  func initiateAQuery(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<[NIOCore.SocketAddress]>
+  func initiateAAAAQuery(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<[NIOCore.SocketAddress]>
+  func cancelQueries()
+}
+public struct NIOEventLoopTickInfo : Swift.Sendable, Swift.Hashable {
+  public var eventLoopID: Swift.ObjectIdentifier
+  public var numberOfTasks: Swift.Int
+  public var startTime: NIOCore.NIODeadline
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: NIOPosix.NIOEventLoopTickInfo, b: NIOPosix.NIOEventLoopTickInfo) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol NIOEventLoopMetricsDelegate : Swift.Sendable {
+  func processedTick(info: NIOPosix.NIOEventLoopTickInfo)
+}
+public func isUnacceptableErrnoOnClose(_ code: Swift.CInt) -> Swift.Bool
+public struct NIOFcntlFailedError : Swift.Error {
+}
+@available(*, deprecated, renamed: "NIOFcntlFailedError")
+public struct NIOFailedToSetSocketNonBlockingError : Swift.Error {
+}
+final public class ThreadSpecificVariable<Value> where Value : AnyObject {
+  public init()
+  convenience public init(value: Value)
+  @available(*, noasync, message: "threads can change between suspension points and therefore the thread specific value too")
+  final public var currentValue: Value? {
+    get
+    set
+  }
+  @objc deinit
+}
+extension NIOPosix.ThreadSpecificVariable : @unchecked Swift.Sendable where Value : Swift.Sendable {
+}
+public struct VsockAddress : Swift.Hashable, Swift.Sendable {
+  public var cid: NIOPosix.VsockAddress.ContextID
+  public var port: NIOPosix.VsockAddress.Port
+  public init(cid: NIOPosix.VsockAddress.ContextID, port: NIOPosix.VsockAddress.Port)
+  public struct ContextID : Swift.RawRepresentable, Swift.ExpressibleByIntegerLiteral, Swift.Hashable, Swift.Sendable {
+    public var rawValue: Swift.UInt32
+    public init(rawValue: Swift.UInt32)
+    public init(integerLiteral value: Swift.UInt32)
+    public init(_ value: Swift.Int)
+    public static let any: NIOPosix.VsockAddress.ContextID
+    public static let hypervisor: NIOPosix.VsockAddress.ContextID
+    public static let host: NIOPosix.VsockAddress.ContextID
+    public static let local: NIOPosix.VsockAddress.ContextID
+    public typealias IntegerLiteralType = Swift.UInt32
+    public typealias RawValue = Swift.UInt32
+  }
+  public struct Port : Swift.RawRepresentable, Swift.ExpressibleByIntegerLiteral, Swift.Hashable, Swift.Sendable {
+    public var rawValue: Swift.UInt32
+    public init(rawValue: Swift.UInt32)
+    public init(integerLiteral value: Swift.UInt32)
+    public init(_ value: Swift.Int)
+    public static let any: NIOPosix.VsockAddress.Port
+    public typealias IntegerLiteralType = Swift.UInt32
+    public typealias RawValue = Swift.UInt32
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: NIOPosix.VsockAddress, b: NIOPosix.VsockAddress) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOPosix.VsockAddress.ContextID : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension NIOPosix.VsockAddress.Port : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension NIOPosix.VsockAddress : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension NIOCore.ChannelOptions {
+  public static let localVsockContextID: NIOCore.ChannelOptions.Types.LocalVsockContextID
+}
+extension NIOCore.ChannelOption where Self == NIOCore.ChannelOptions.Types.LocalVsockContextID {
+  public static var localVsockContextID: NIOCore.ChannelOptions.Types.LocalVsockContextID {
+    get
+  }
+}
+extension NIOCore.ChannelOptions.Types {
+  public struct LocalVsockContextID : NIOCore.ChannelOption, Swift.Sendable {
+    public typealias Value = NIOPosix.VsockAddress.ContextID
+    public init()
+    public static func == (a: NIOCore.ChannelOptions.Types.LocalVsockContextID, b: NIOCore.ChannelOptions.Types.LocalVsockContextID) -> Swift.Bool
+  }
+}
+extension NIOCore.NIOBSDSocket.AddressFamily {
+  public static var vsock: NIOCore.NIOBSDSocket.AddressFamily {
+    get
+  }
+}
+extension NIOCore.NIOBSDSocket.ProtocolFamily {
+  public static var vsock: NIOCore.NIOBSDSocket.ProtocolFamily {
+    get
+  }
+}
+extension NIOPosix.VsockAddress {
+  public func withSockAddr<T>(_ body: (Swift.UnsafePointer<Darwin.sockaddr>, Swift.Int) throws -> T) rethrows -> T
+}
+public enum VsockChannelEvents {
+  public struct BindToAddress : Swift.Hashable, Swift.Sendable {
+    public var address: NIOPosix.VsockAddress
+    public init(_ address: NIOPosix.VsockAddress)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: NIOPosix.VsockChannelEvents.BindToAddress, b: NIOPosix.VsockChannelEvents.BindToAddress) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct ConnectToAddress : Swift.Hashable, Swift.Sendable {
+    public var address: NIOPosix.VsockAddress
+    public init(_ address: NIOPosix.VsockAddress)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: NIOPosix.VsockChannelEvents.ConnectToAddress, b: NIOPosix.VsockChannelEvents.ConnectToAddress) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension NIOPosix.NIOThreadPool.WorkItemState : Swift.Equatable {}
+extension NIOPosix.NIOThreadPool.WorkItemState : Swift.Hashable {}
+extension NIOPosix.NonBlockingFileIO.Error : Swift.Equatable {}
+extension NIOPosix.NonBlockingFileIO.Error : Swift.Hashable {}

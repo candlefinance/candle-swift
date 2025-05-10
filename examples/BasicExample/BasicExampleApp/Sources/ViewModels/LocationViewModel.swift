@@ -41,6 +41,7 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
 }
 
+// FIXME: Get rid of this warning
 extension CLLocationCoordinate2D: Equatable {}
 
 public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {

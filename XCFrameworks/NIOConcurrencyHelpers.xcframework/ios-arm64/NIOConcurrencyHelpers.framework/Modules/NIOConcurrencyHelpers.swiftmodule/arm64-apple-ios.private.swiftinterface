@@ -1,0 +1,361 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOConcurrencyHelpers -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import CNIOAtomics
+import Darwin
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@preconcurrency public protocol NIOAtomicPrimitive {
+  associatedtype AtomicWrapper
+  static var nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self) -> Swift.Void { get }
+  static var nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self, Self) -> Swift.Bool { get }
+  static var nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self) -> Self { get }
+  static var nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self) -> Self { get }
+  static var nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self) -> Self { get }
+  static var nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>) -> Self { get }
+  static var nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<Self.AtomicWrapper>, Self) -> Swift.Void { get }
+}
+extension Swift.Bool : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic__Bool
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool, Swift.Bool) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool) -> Swift.Bool
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool) -> Swift.Bool
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool) -> Swift.Bool
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>) -> Swift.Bool
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic__Bool>, Swift.Bool) -> Swift.Void
+}
+extension Swift.Int8 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_int_least8_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t, _stdint.int_least8_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>) -> _stdint.int_least8_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least8_t>, _stdint.int_least8_t) -> Swift.Void
+}
+extension Swift.UInt8 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_uint_least8_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t, _stdint.uint_least8_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>) -> _stdint.uint_least8_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least8_t>, _stdint.uint_least8_t) -> Swift.Void
+}
+extension Swift.Int16 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_int_least16_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t, _stdint.int_least16_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>) -> _stdint.int_least16_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least16_t>, _stdint.int_least16_t) -> Swift.Void
+}
+extension Swift.UInt16 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_uint_least16_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t, _stdint.uint_least16_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>) -> _stdint.uint_least16_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least16_t>, _stdint.uint_least16_t) -> Swift.Void
+}
+extension Swift.Int32 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_int_least32_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t, _stdint.int_least32_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>) -> _stdint.int_least32_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_int_least32_t>, _stdint.int_least32_t) -> Swift.Void
+}
+extension Swift.UInt32 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_uint_least32_t
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t, _stdint.uint_least32_t) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>) -> _stdint.uint_least32_t
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_uint_least32_t>, _stdint.uint_least32_t) -> Swift.Void
+}
+extension Swift.Int64 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_long_long
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64, Swift.Int64) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64) -> Swift.Int64
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64) -> Swift.Int64
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64) -> Swift.Int64
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>) -> Swift.Int64
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long_long>, Swift.Int64) -> Swift.Void
+}
+extension Swift.UInt64 : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_unsigned_long_long
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64, Swift.UInt64) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64) -> Swift.UInt64
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64) -> Swift.UInt64
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64) -> Swift.UInt64
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>) -> Swift.UInt64
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long_long>, Swift.UInt64) -> Swift.Void
+}
+extension Swift.Int : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_long
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int, Swift.Int) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int) -> Swift.Int
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int) -> Swift.Int
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int) -> Swift.Int
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>) -> Swift.Int
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_long>, Swift.Int) -> Swift.Void
+}
+extension Swift.UInt : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public typealias AtomicWrapper = CNIOAtomics.catmc_nio_atomic_unsigned_long
+  public static let nio_atomic_create_with_existing_storage: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt) -> Swift.Void
+  public static let nio_atomic_compare_and_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt, Swift.UInt) -> Swift.Bool
+  public static let nio_atomic_add: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt) -> Swift.UInt
+  public static let nio_atomic_sub: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt) -> Swift.UInt
+  public static let nio_atomic_exchange: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt) -> Swift.UInt
+  public static let nio_atomic_load: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>) -> Swift.UInt
+  public static let nio_atomic_store: @Sendable (Swift.UnsafeMutablePointer<CNIOAtomics.catmc_nio_atomic_unsigned_long>, Swift.UInt) -> Swift.Void
+}
+@_hasMissingDesignatedInitializers @available(*, deprecated, message: "please use ManagedAtomic from https://github.com/apple/swift-atomics instead")
+final public class NIOAtomic<T> where T : NIOConcurrencyHelpers.NIOAtomicPrimitive {
+  public static func makeAtomic(value: T) -> NIOConcurrencyHelpers.NIOAtomic<T>
+  final public func compareAndExchange(expected: T, desired: T) -> Swift.Bool
+  @discardableResult
+  final public func add(_ rhs: T) -> T
+  @discardableResult
+  final public func sub(_ rhs: T) -> T
+  final public func exchange(with value: T) -> T
+  final public func load() -> T
+  final public func store(_ value: T)
+  @objc deinit
+}
+@available(*, deprecated)
+extension NIOConcurrencyHelpers.NIOAtomic : Swift.Sendable {
+}
+public struct NIOLock {
+  public init()
+  public func lock()
+  public func unlock()
+}
+extension NIOConcurrencyHelpers.NIOLock {
+  public func withLock<T>(_ body: () throws -> T) rethrows -> T
+  public func withLockVoid(_ body: () throws -> Swift.Void) rethrows
+}
+extension NIOConcurrencyHelpers.NIOLock : @unchecked Swift.Sendable {
+}
+public struct NIOLockedValueBox<Value> {
+  public init(_ value: Value)
+  public func withLockedValue<T>(_ mutate: (inout Value) throws -> T) rethrows -> T
+  public var unsafe: NIOConcurrencyHelpers.NIOLockedValueBox<Value>.Unsafe {
+    get
+  }
+  public struct Unsafe {
+    public func lock()
+    public func unlock()
+    public func withValueAssumingLockIsAcquired<Result>(_ mutate: (_ value: inout Value) throws -> Result) rethrows -> Result
+  }
+}
+extension NIOConcurrencyHelpers.NIOLockedValueBox : @unchecked Swift.Sendable where Value : Swift.Sendable {
+}
+@available(*, deprecated, message: "please use UnsafeAtomic from https://github.com/apple/swift-atomics instead")
+public struct UnsafeEmbeddedAtomic<T> where T : NIOConcurrencyHelpers.AtomicPrimitive {
+  public init(value: T)
+  public func compareAndExchange(expected: T, desired: T) -> Swift.Bool
+  @discardableResult
+  public func add(_ rhs: T) -> T
+  @discardableResult
+  public func sub(_ rhs: T) -> T
+  public func exchange(with value: T) -> T
+  public func load() -> T
+  public func store(_ value: T)
+  public func destroy()
+}
+@available(*, deprecated)
+extension NIOConcurrencyHelpers.UnsafeEmbeddedAtomic : @unchecked Swift.Sendable where T : Swift.Sendable {
+}
+@available(*, deprecated, message: "please use ManagedAtomic from https://github.com/apple/swift-atomics instead")
+final public class Atomic<T> where T : NIOConcurrencyHelpers.AtomicPrimitive {
+  public init(value: T)
+  final public func compareAndExchange(expected: T, desired: T) -> Swift.Bool
+  @discardableResult
+  final public func add(_ rhs: T) -> T
+  @discardableResult
+  final public func sub(_ rhs: T) -> T
+  final public func exchange(with value: T) -> T
+  final public func load() -> T
+  final public func store(_ value: T)
+  @objc deinit
+}
+@available(*, deprecated)
+extension NIOConcurrencyHelpers.Atomic : @unchecked Swift.Sendable where T : Swift.Sendable {
+}
+@preconcurrency public protocol AtomicPrimitive {
+  static var atomic_create: @Sendable (Self) -> Swift.OpaquePointer { get }
+  static var atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void { get }
+  static var atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Self, Self) -> Swift.Bool { get }
+  static var atomic_add: @Sendable (Swift.OpaquePointer, Self) -> Self { get }
+  static var atomic_sub: @Sendable (Swift.OpaquePointer, Self) -> Self { get }
+  static var atomic_exchange: @Sendable (Swift.OpaquePointer, Self) -> Self { get }
+  static var atomic_load: @Sendable (Swift.OpaquePointer) -> Self { get }
+  static var atomic_store: @Sendable (Swift.OpaquePointer, Self) -> Swift.Void { get }
+}
+extension Swift.Bool : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (Swift.Bool) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Swift.Bool, Swift.Bool) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, Swift.Bool) -> Swift.Bool
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, Swift.Bool) -> Swift.Bool
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, Swift.Bool) -> Swift.Bool
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> Swift.Bool
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, Swift.Bool) -> Swift.Void
+}
+extension Swift.Int8 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.int_least8_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least8_t, _stdint.int_least8_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least8_t) -> _stdint.int_least8_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.int_least8_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.int_least8_t) -> Swift.Void
+}
+extension Swift.UInt8 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.uint_least8_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least8_t, _stdint.uint_least8_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least8_t) -> _stdint.uint_least8_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.uint_least8_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.uint_least8_t) -> Swift.Void
+}
+extension Swift.Int16 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.int_least16_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least16_t, _stdint.int_least16_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least16_t) -> _stdint.int_least16_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.int_least16_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.int_least16_t) -> Swift.Void
+}
+extension Swift.UInt16 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.uint_least16_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least16_t, _stdint.uint_least16_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least16_t) -> _stdint.uint_least16_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.uint_least16_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.uint_least16_t) -> Swift.Void
+}
+extension Swift.Int32 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.int_least32_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least32_t, _stdint.int_least32_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.int_least32_t) -> _stdint.int_least32_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.int_least32_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.int_least32_t) -> Swift.Void
+}
+extension Swift.UInt32 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (_stdint.uint_least32_t) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least32_t, _stdint.uint_least32_t) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, _stdint.uint_least32_t) -> _stdint.uint_least32_t
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> _stdint.uint_least32_t
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, _stdint.uint_least32_t) -> Swift.Void
+}
+extension Swift.Int64 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (Swift.Int64) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Swift.Int64, Swift.Int64) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, Swift.Int64) -> Swift.Int64
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, Swift.Int64) -> Swift.Int64
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, Swift.Int64) -> Swift.Int64
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> Swift.Int64
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, Swift.Int64) -> Swift.Void
+}
+extension Swift.UInt64 : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (Swift.UInt64) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Swift.UInt64, Swift.UInt64) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, Swift.UInt64) -> Swift.UInt64
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, Swift.UInt64) -> Swift.UInt64
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, Swift.UInt64) -> Swift.UInt64
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> Swift.UInt64
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, Swift.UInt64) -> Swift.Void
+}
+extension Swift.Int : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (Swift.Int) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Swift.Int, Swift.Int) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, Swift.Int) -> Swift.Int
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, Swift.Int) -> Swift.Int
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, Swift.Int) -> Swift.Int
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> Swift.Int
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, Swift.Int) -> Swift.Void
+}
+extension Swift.UInt : NIOConcurrencyHelpers.AtomicPrimitive {
+  public static let atomic_create: @Sendable (Swift.UInt) -> Swift.OpaquePointer
+  public static let atomic_destroy: @Sendable (Swift.OpaquePointer) -> Swift.Void
+  public static let atomic_compare_and_exchange: @Sendable (Swift.OpaquePointer, Swift.UInt, Swift.UInt) -> Swift.Bool
+  public static let atomic_add: @Sendable (Swift.OpaquePointer, Swift.UInt) -> Swift.UInt
+  public static let atomic_sub: @Sendable (Swift.OpaquePointer, Swift.UInt) -> Swift.UInt
+  public static let atomic_exchange: @Sendable (Swift.OpaquePointer, Swift.UInt) -> Swift.UInt
+  public static let atomic_load: @Sendable (Swift.OpaquePointer) -> Swift.UInt
+  public static let atomic_store: @Sendable (Swift.OpaquePointer, Swift.UInt) -> Swift.Void
+}
+@available(*, deprecated, message: "AtomicBox is deprecated without replacement because the original implementation doesn't work.")
+final public class AtomicBox<T> where T : AnyObject {
+  public init(value: T)
+  @objc deinit
+  final public func compareAndExchange(expected: T, desired: T) -> Swift.Bool
+  final public func exchange(with value: T) -> T
+  final public func load() -> T
+  final public func store(_ value: T)
+}
+@available(*, deprecated)
+extension NIOConcurrencyHelpers.AtomicBox : @unchecked Swift.Sendable where T : Swift.Sendable {
+}
+@available(*, deprecated, renamed: "NIOLock")
+final public class Lock {
+  public init()
+  @objc deinit
+  final public func lock()
+  final public func unlock()
+  final public func withLock<T>(_ body: () throws -> T) rethrows -> T
+  final public func withLockVoid(_ body: () throws -> Swift.Void) rethrows
+}
+final public class ConditionLock<T> where T : Swift.Equatable {
+  public init(value: T)
+  @objc deinit
+  final public func lock()
+  final public func unlock()
+  final public var value: T {
+    get
+  }
+  final public func lock(whenValue wantedValue: T)
+  final public func lock(whenValue wantedValue: T, timeoutSeconds: Swift.Double) -> Swift.Bool
+  final public func unlock(withValue newValue: T)
+}
+@available(*, deprecated)
+extension NIOConcurrencyHelpers.Lock : @unchecked Swift.Sendable {
+}
+extension NIOConcurrencyHelpers.ConditionLock : @unchecked Swift.Sendable {
+}

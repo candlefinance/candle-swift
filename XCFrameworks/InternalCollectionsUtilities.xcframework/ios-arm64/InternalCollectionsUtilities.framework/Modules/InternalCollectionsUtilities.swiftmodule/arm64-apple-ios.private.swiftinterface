@@ -1,0 +1,309 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name InternalCollectionsUtilities
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.UnsafeMutableBufferPointer {
+  public func initialize<C>(fromContentsOf source: C) -> Swift.UnsafeMutableBufferPointer<Element>.Index where Element == C.Element, C : Swift.Collection
+}
+#else
+extension Swift.UnsafeMutableBufferPointer {
+  public func initialize<C>(fromContentsOf source: C) -> Swift.UnsafeMutableBufferPointer<Element>.Index where Element == C.Element, C : Swift.Collection
+}
+#endif
+extension Swift.FixedWidthInteger {
+  public func _roundUpToPowerOfTwo() -> Self
+}
+extension Swift.FixedWidthInteger {
+  @inline(__always) public func _rank(ofBit bit: Swift.UInt) -> Swift.Int
+}
+extension Swift.UInt {
+  @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+}
+extension Swift.UInt32 {
+  @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+}
+extension Swift.UInt16 {
+  @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+}
+extension Swift.UInt {
+  @inline(__always) public var _firstSetBit: Swift.UInt? {
+    get
+  }
+  @inline(__always) public var _lastSetBit: Swift.UInt? {
+    get
+  }
+}
+extension Swift.UInt {
+  public var _reversed: Swift.UInt {
+    get
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet {
+  public struct Index : Swift.Comparable, Swift.Hashable {
+    public var value: Swift.UInt
+    public init(_ value: Swift.UInt)
+    public init(_ value: Swift.Int)
+    public init(word: Swift.Int, bit: Swift.UInt)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet.Index {
+  public var word: Swift.Int {
+    get
+  }
+  public var bit: Swift.UInt {
+    get
+  }
+  public var split: (word: Swift.Int, bit: Swift.UInt) {
+    get
+  }
+  public var endSplit: (word: Swift.Int, bit: Swift.UInt) {
+    get
+  }
+  public static func == (left: InternalCollectionsUtilities._UnsafeBitSet.Index, right: InternalCollectionsUtilities._UnsafeBitSet.Index) -> Swift.Bool
+  public static func < (left: InternalCollectionsUtilities._UnsafeBitSet.Index, right: InternalCollectionsUtilities._UnsafeBitSet.Index) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension InternalCollectionsUtilities._UnsafeBitSet {
+  public struct _Word {
+    public var value: Swift.UInt
+    @inline(__always) public init(_ value: Swift.UInt)
+    @inline(__always) public init(upTo bit: Swift.UInt)
+    @inline(__always) public init(from start: Swift.UInt, to end: Swift.UInt)
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word {
+  @inline(__always) public static func wordCount(forBitCount count: Swift.UInt) -> Swift.Int
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word {
+  @inline(__always) public static var capacity: Swift.Int {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var isFull: Swift.Bool {
+    get
+  }
+  @inline(__always) public func contains(_ bit: Swift.UInt) -> Swift.Bool
+  @inline(__always) public var firstMember: Swift.UInt? {
+    get
+  }
+  @inline(__always) public var lastMember: Swift.UInt? {
+    get
+  }
+  @discardableResult
+  @inline(__always) public mutating func insert(_ bit: Swift.UInt) -> Swift.Bool
+  @discardableResult
+  @inline(__always) public mutating func remove(_ bit: Swift.UInt) -> Swift.Bool
+  @inline(__always) public mutating func update(_ bit: Swift.UInt, to value: Swift.Bool)
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word {
+  @inline(__always) public static var empty: InternalCollectionsUtilities._UnsafeBitSet._Word {
+    get
+  }
+  @inline(__always) public static var allBits: InternalCollectionsUtilities._UnsafeBitSet._Word {
+    get
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word : Swift.Sequence, Swift.IteratorProtocol {
+  @inline(__always) public var underestimatedCount: Swift.Int {
+    get
+  }
+  public mutating func next() -> Swift.UInt?
+  public typealias Element = Swift.UInt
+  public typealias Iterator = InternalCollectionsUtilities._UnsafeBitSet._Word
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word : Swift.Equatable {
+  public static func == (left: InternalCollectionsUtilities._UnsafeBitSet._Word, right: InternalCollectionsUtilities._UnsafeBitSet._Word) -> Swift.Bool
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word {
+  @inline(__always) public func complement() -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public mutating func formComplement()
+  @inline(__always) public func union(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public mutating func formUnion(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word)
+  @inline(__always) public func intersection(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public mutating func formIntersection(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word)
+  @inline(__always) public func symmetricDifference(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public mutating func formSymmetricDifference(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word)
+  @inline(__always) public func subtracting(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public mutating func subtract(_ other: InternalCollectionsUtilities._UnsafeBitSet._Word)
+}
+extension InternalCollectionsUtilities._UnsafeBitSet._Word {
+  @inline(__always) public func shiftedDown(by shift: Swift.UInt) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+  @inline(__always) public func shiftedUp(by shift: Swift.UInt) -> InternalCollectionsUtilities._UnsafeBitSet._Word
+}
+public struct _UnsafeBitSet {
+  public let _words: Swift.UnsafeBufferPointer<InternalCollectionsUtilities._UnsafeBitSet._Word>
+  @inline(__always) public func ensureMutable()
+  @inline(__always) public var _mutableWords: Swift.UnsafeMutableBufferPointer<InternalCollectionsUtilities._UnsafeBitSet._Word> {
+    get
+  }
+  @inline(__always) public init(words: Swift.UnsafeBufferPointer<InternalCollectionsUtilities._UnsafeBitSet._Word>, mutable: Swift.Bool)
+  @inline(__always) public init(words: Swift.UnsafeMutableBufferPointer<InternalCollectionsUtilities._UnsafeBitSet._Word>, mutable: Swift.Bool)
+}
+extension InternalCollectionsUtilities._UnsafeBitSet {
+  @inline(__always) public var wordCount: Swift.Int {
+    get
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet {
+  @inline(__always) public static func withTemporaryBitSet<R>(capacity: Swift.Int, run body: (inout InternalCollectionsUtilities._UnsafeBitSet) throws -> R) rethrows -> R
+  @inline(__always) public static func withTemporaryBitSet<R>(wordCount: Swift.Int, run body: (inout InternalCollectionsUtilities._UnsafeBitSet) throws -> R) rethrows -> R
+}
+extension InternalCollectionsUtilities._UnsafeBitSet {
+  @_effects(readnone) @inline(__always) public static func wordCount(forCapacity capacity: Swift.UInt) -> Swift.Int
+  @inline(__always) public var capacity: Swift.UInt {
+    get
+  }
+  @_effects(releasenone) @inline(__always) public func contains(_ element: Swift.UInt) -> Swift.Bool
+  @discardableResult
+  @_effects(releasenone) public mutating func insert(_ element: Swift.UInt) -> Swift.Bool
+  @discardableResult
+  @_effects(releasenone) public mutating func remove(_ element: Swift.UInt) -> Swift.Bool
+  @_effects(releasenone) public mutating func update(_ member: Swift.UInt, to newValue: Swift.Bool) -> Swift.Bool
+  @_effects(releasenone) public mutating func insertAll(upTo max: Swift.UInt)
+  @discardableResult
+  @inline(__always) public mutating func insert(_ element: Swift.Int) -> Swift.Bool
+  @discardableResult
+  @inline(__always) public mutating func remove(_ element: Swift.Int) -> Swift.Bool
+  @inline(__always) public mutating func insertAll(upTo max: Swift.Int)
+}
+extension InternalCollectionsUtilities._UnsafeBitSet : Swift.Sequence {
+  public typealias Element = Swift.UInt
+  @inline(__always) public var underestimatedCount: Swift.Int {
+    get
+  }
+  @inline(__always) public func makeIterator() -> InternalCollectionsUtilities._UnsafeBitSet.Iterator
+  public struct Iterator : Swift.IteratorProtocol {
+    @_effects(releasenone) public mutating func next() -> Swift.UInt?
+    public typealias Element = Swift.UInt
+  }
+}
+extension InternalCollectionsUtilities._UnsafeBitSet : Swift.BidirectionalCollection {
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  public var startIndex: InternalCollectionsUtilities._UnsafeBitSet.Index {
+    get
+  }
+  public var endIndex: InternalCollectionsUtilities._UnsafeBitSet.Index {
+    get
+  }
+  public subscript(position: InternalCollectionsUtilities._UnsafeBitSet.Index) -> Swift.UInt {
+    get
+  }
+  @_effects(releasenone) public func index(after index: InternalCollectionsUtilities._UnsafeBitSet.Index) -> InternalCollectionsUtilities._UnsafeBitSet.Index
+  @_effects(releasenone) public func index(before index: InternalCollectionsUtilities._UnsafeBitSet.Index) -> InternalCollectionsUtilities._UnsafeBitSet.Index
+  @_effects(releasenone) public func distance(from start: InternalCollectionsUtilities._UnsafeBitSet.Index, to end: InternalCollectionsUtilities._UnsafeBitSet.Index) -> Swift.Int
+  @_effects(releasenone) public func index(_ i: InternalCollectionsUtilities._UnsafeBitSet.Index, offsetBy distance: Swift.Int) -> InternalCollectionsUtilities._UnsafeBitSet.Index
+  @_effects(releasenone) public func index(_ i: InternalCollectionsUtilities._UnsafeBitSet.Index, offsetBy distance: Swift.Int, limitedBy limit: InternalCollectionsUtilities._UnsafeBitSet.Index) -> InternalCollectionsUtilities._UnsafeBitSet.Index?
+  public typealias Indices = Swift.DefaultIndices<InternalCollectionsUtilities._UnsafeBitSet>
+  public typealias SubSequence = Swift.Slice<InternalCollectionsUtilities._UnsafeBitSet>
+}
+public protocol _SortedCollection {
+}
+extension Swift.Slice : InternalCollectionsUtilities._SortedCollection where Base : InternalCollectionsUtilities._SortedCollection {
+}
+public protocol _UniqueCollection {
+}
+extension Swift.Set : InternalCollectionsUtilities._UniqueCollection {
+}
+extension Swift.Dictionary.Keys : InternalCollectionsUtilities._UniqueCollection {
+}
+extension Swift.Slice : InternalCollectionsUtilities._UniqueCollection where Base : InternalCollectionsUtilities._UniqueCollection {
+}
+@inline(__always) public var _isCollectionsInternalCheckingEnabled: Swift.Bool {
+  get
+}
+public func _addressString(for pointer: Swift.UnsafeRawPointer) -> Swift.String
+public func _addressString(for object: Swift.AnyObject) -> Swift.String
+public func _addressString<T>(for object: Swift.Unmanaged<T>) -> Swift.String where T : AnyObject
+public func _arrayDescription<C>(for elements: C) -> Swift.String where C : Swift.Collection
+public func _dictionaryDescription<Key, Value, C>(for elements: C) -> Swift.String where C : Swift.Collection, C.Element == (key: Key, value: Value)
+extension Swift.RandomAccessCollection {
+  @inline(__always) public func _index(at offset: Swift.Int) -> Self.Index
+  @inline(__always) public func _offset(of index: Self.Index) -> Swift.Int
+  @inline(__always) public subscript(_offset offset: Swift.Int) -> Self.Element {
+    get
+  }
+}
+@_transparent public func _specialize<T, U>(_ x: T, for: U.Type) -> U? {
+   
+  guard T.self == U.self else {
+    return nil
+  }
+  return _identityCast(x, to: U.self)
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.UnsafeBufferPointer {
+  @inline(__always) public func _ptr(at index: Swift.Int) -> Swift.UnsafePointer<Element>
+}
+#else
+extension Swift.UnsafeBufferPointer {
+  @inline(__always) public func _ptr(at index: Swift.Int) -> Swift.UnsafePointer<Element>
+}
+#endif
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.UnsafeMutableBufferPointer {
+  public func initialize(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
+  public func initialize(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
+}
+#else
+extension Swift.UnsafeMutableBufferPointer {
+  public func initialize(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
+  public func initialize(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
+}
+#endif
+extension Swift.Slice {
+  @inline(__always) public func initialize<Element>(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.Slice<Base>.Index where Base == Swift.UnsafeMutableBufferPointer<Element>
+  @inline(__always) public func initialize<Element>(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.Slice<Base>.Index where Base == Swift.UnsafeMutableBufferPointer<Element>
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.UnsafeMutableBufferPointer {
+  @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Element == C.Element, C : Swift.Collection
+  @inline(__always) public func initializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
+  @inline(__always) public func initializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
+  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
+  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
+}
+#else
+extension Swift.UnsafeMutableBufferPointer {
+  @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Element == C.Element, C : Swift.Collection
+  @inline(__always) public func initializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
+  @inline(__always) public func initializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
+  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
+  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
+}
+#endif
+extension Swift.Slice {
+  @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Base == Swift.UnsafeMutableBufferPointer<C.Element>, C : Swift.Collection
+  @inline(__always) public func initializeAll<Element>(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) where Base == Swift.UnsafeMutableBufferPointer<Element>
+  @inline(__always) public func initializeAll<Element>(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) where Base == Swift.UnsafeMutableBufferPointer<Element>
+  @inline(__always) public func moveInitializeAll<Element>(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) where Base == Swift.UnsafeMutableBufferPointer<Element>
+  @inline(__always) public func moveInitializeAll<Element>(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) where Base == Swift.UnsafeMutableBufferPointer<Element>
+}

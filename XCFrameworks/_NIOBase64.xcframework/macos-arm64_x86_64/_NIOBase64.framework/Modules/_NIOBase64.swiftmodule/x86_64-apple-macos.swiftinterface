@@ -1,0 +1,27 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name _NIOBase64 -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension Swift.String {
+  @available(*, deprecated, message: "This API was unintentionally made public.")
+  public init<Buffer>(base64Encoding bytes: Buffer) where Buffer : Swift.Collection, Buffer.Element == Swift.UInt8
+  @available(*, deprecated, message: "This API was unintentionally made public.")
+  public func base64Decoded() throws -> [Swift.UInt8]
+  public init<Buffer>(_base64Encoding bytes: Buffer) where Buffer : Swift.Collection, Buffer.Element == Swift.UInt8
+  public func _base64Decoded() throws -> [Swift.UInt8]
+}
+public enum Base64Error : Swift.Error {
+  case invalidLength
+  case invalidCharacter
+  public static func == (a: _NIOBase64.Base64Error, b: _NIOBase64.Base64Error) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension _NIOBase64.Base64Error : Swift.Equatable {}
+extension _NIOBase64.Base64Error : Swift.Hashable {}

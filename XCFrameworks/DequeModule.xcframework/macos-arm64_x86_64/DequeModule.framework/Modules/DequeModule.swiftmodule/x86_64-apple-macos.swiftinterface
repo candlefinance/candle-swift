@@ -1,0 +1,133 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name DequeModule
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import InternalCollectionsUtilities
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension DequeModule.Deque : Swift.Encodable where Element : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension DequeModule.Deque : Swift.Decodable where Element : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension DequeModule.Deque : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    public mutating func next() -> Element?
+  }
+  public func makeIterator() -> DequeModule.Deque<Element>.Iterator
+  public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element>
+  public __consuming func _copyContents(initializing target: Swift.UnsafeMutableBufferPointer<Element>) -> (DequeModule.Deque<Element>.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index)
+  public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R?
+}
+extension DequeModule.Deque.Iterator : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}
+extension DequeModule.Deque : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias SubSequence = Swift.Slice<DequeModule.Deque<Element>>
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var indices: Swift.Range<Swift.Int> {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  public subscript(index: Swift.Int) -> Element {
+    get
+    set
+    @inline(__always) _modify
+  }
+  public subscript(bounds: Swift.Range<Swift.Int>) -> Swift.Slice<DequeModule.Deque<Element>> {
+    get
+    set(source)
+  }
+}
+extension DequeModule.Deque : Swift.MutableCollection {
+  public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int)
+  public mutating func withContiguousMutableStorageIfAvailable<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R?
+  public mutating func _withUnsafeMutableBufferPointerIfSupported<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R?
+}
+extension DequeModule.Deque : Swift.RangeReplaceableCollection {
+  public init()
+  public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
+  public mutating func replaceSubrange(_ subrange: Swift.Range<Swift.Int>, with newElements: __owned some Collection<Element>)
+  public init(repeating repeatedValue: Element, count: Swift.Int)
+  public init(_ elements: some Sequence<Element>)
+  public init(_ elements: some Collection<Element>)
+  public mutating func append(_ newElement: Element)
+  public mutating func append(contentsOf newElements: some Sequence<Element>)
+  public mutating func append(contentsOf newElements: some Collection<Element>)
+  public mutating func insert(_ newElement: Element, at index: Swift.Int)
+  public mutating func insert(contentsOf newElements: __owned some Collection<Element>, at index: Swift.Int)
+  @discardableResult
+  public mutating func remove(at index: Swift.Int) -> Element
+  public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>)
+  public mutating func _customRemoveLast() -> Element?
+  public mutating func _customRemoveLast(_ n: Swift.Int) -> Swift.Bool
+  @discardableResult
+  public mutating func removeFirst() -> Element
+  public mutating func removeFirst(_ n: Swift.Int)
+  public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false)
+}
+extension DequeModule.Deque : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension DequeModule.Deque : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension DequeModule.Deque : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension DequeModule.Deque : Swift.Equatable where Element : Swift.Equatable {
+  public static func == (left: DequeModule.Deque<Element>, right: DequeModule.Deque<Element>) -> Swift.Bool
+}
+extension DequeModule.Deque : Swift.ExpressibleByArrayLiteral {
+  @inline(__always) public init(arrayLiteral elements: Element...)
+  public typealias ArrayLiteralElement = Element
+}
+extension DequeModule.Deque {
+  public init(unsafeUninitializedCapacity capacity: Swift.Int, initializingWith initializer: (inout Swift.UnsafeMutableBufferPointer<Element>, inout Swift.Int) throws -> Swift.Void) rethrows
+}
+extension DequeModule.Deque {
+  public mutating func popFirst() -> Element?
+  public mutating func prepend(_ newElement: Element)
+  public mutating func prepend(contentsOf newElements: some Collection<Element>)
+  public mutating func prepend(contentsOf newElements: some Sequence<Element>)
+}
+extension DequeModule.Deque : Swift.Hashable where Element : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension DequeModule.Deque {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+}
+public struct Deque<Element> {
+  public init(minimumCapacity: Swift.Int)
+}
+extension DequeModule.Deque : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}

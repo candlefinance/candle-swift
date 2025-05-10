@@ -1,9 +1,1343 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "NO_MODULE",
-    "printedName": "NO_MODULE",
+    "name": "_NIOBase64",
+    "printedName": "_NIOBase64",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "Base64Error",
+        "printedName": "Base64Error",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "invalidLength",
+            "printedName": "invalidLength",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(_NIOBase64.Base64Error.Type) -> _NIOBase64.Base64Error",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Base64Error",
+                    "printedName": "_NIOBase64.Base64Error",
+                    "usr": "s:10_NIOBase6411Base64ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "_NIOBase64.Base64Error.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Base64Error",
+                        "printedName": "_NIOBase64.Base64Error",
+                        "usr": "s:10_NIOBase6411Base64ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10_NIOBase6411Base64ErrorO13invalidLengthyA2CmF",
+            "mangledName": "$s10_NIOBase6411Base64ErrorO13invalidLengthyA2CmF",
+            "moduleName": "_NIOBase64"
+          },
+          {
+            "kind": "Var",
+            "name": "invalidCharacter",
+            "printedName": "invalidCharacter",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(_NIOBase64.Base64Error.Type) -> _NIOBase64.Base64Error",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Base64Error",
+                    "printedName": "_NIOBase64.Base64Error",
+                    "usr": "s:10_NIOBase6411Base64ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "_NIOBase64.Base64Error.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Base64Error",
+                        "printedName": "_NIOBase64.Base64Error",
+                        "usr": "s:10_NIOBase6411Base64ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10_NIOBase6411Base64ErrorO16invalidCharacteryA2CmF",
+            "mangledName": "$s10_NIOBase6411Base64ErrorO16invalidCharacteryA2CmF",
+            "moduleName": "_NIOBase64"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Base64Error",
+                "printedName": "_NIOBase64.Base64Error",
+                "usr": "s:10_NIOBase6411Base64ErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Base64Error",
+                "printedName": "_NIOBase64.Base64Error",
+                "usr": "s:10_NIOBase6411Base64ErrorO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10_NIOBase6411Base64ErrorO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s10_NIOBase6411Base64ErrorO2eeoiySbAC_ACtFZ",
+            "moduleName": "_NIOBase64",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10_NIOBase6411Base64ErrorO9hashValueSivp",
+            "mangledName": "$s10_NIOBase6411Base64ErrorO9hashValueSivp",
+            "moduleName": "_NIOBase64",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10_NIOBase6411Base64ErrorO9hashValueSivg",
+                "mangledName": "$s10_NIOBase6411Base64ErrorO9hashValueSivg",
+                "moduleName": "_NIOBase64",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10_NIOBase6411Base64ErrorO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s10_NIOBase6411Base64ErrorO4hash4intoys6HasherVz_tF",
+            "moduleName": "_NIOBase64",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:10_NIOBase6411Base64ErrorO",
+        "mangledName": "$s10_NIOBase6411Base64ErrorO",
+        "moduleName": "_NIOBase64",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "String",
+        "printedName": "String",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(base64Encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:SS10_NIOBase64E14base64EncodingSSx_tcSlRzs5UInt8V7ElementRtzlufc",
+            "mangledName": "$sSS10_NIOBase64E14base64EncodingSSx_tcSlRzs5UInt8V7ElementRtzlufc",
+            "moduleName": "_NIOBase64",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Collection, τ_0_0.Element == Swift.UInt8>",
+            "sugared_genericSig": "<Buffer where Buffer : Swift.Collection, Buffer.Element == Swift.UInt8>",
+            "deprecated": true,
+            "declAttributes": [
+              "AccessControl",
+              "Available",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "base64Decoded",
+            "printedName": "base64Decoded()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:SS10_NIOBase64E13base64DecodedSays5UInt8VGyKF",
+            "mangledName": "$sSS10_NIOBase64E13base64DecodedSays5UInt8VGyKF",
+            "moduleName": "_NIOBase64",
+            "deprecated": true,
+            "declAttributes": [
+              "AccessControl",
+              "Available"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_base64Encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:SS10_NIOBase64E15_base64EncodingSSx_tcSlRzs5UInt8V7ElementRtzlufc",
+            "mangledName": "$sSS10_NIOBase64E15_base64EncodingSSx_tcSlRzs5UInt8V7ElementRtzlufc",
+            "moduleName": "_NIOBase64",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Collection, τ_0_0.Element == Swift.UInt8>",
+            "sugared_genericSig": "<Buffer where Buffer : Swift.Collection, Buffer.Element == Swift.UInt8>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "_base64Decoded",
+            "printedName": "_base64Decoded()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:SS10_NIOBase64E14_base64DecodedSays5UInt8VGyKF",
+            "mangledName": "$sSS10_NIOBase64E14_base64DecodedSays5UInt8VGyKF",
+            "moduleName": "_NIOBase64",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:SS",
+        "mangledName": "$sSS",
+        "moduleName": "Swift",
+        "declAttributes": [
+          "EagerMove",
+          "Frozen"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CodingKeyRepresentable",
+            "printedName": "CodingKeyRepresentable",
+            "usr": "s:s22CodingKeyRepresentableP",
+            "mangledName": "$ss22CodingKeyRepresentableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_HasContiguousBytes",
+            "printedName": "_HasContiguousBytes",
+            "usr": "s:s19_HasContiguousBytesP",
+            "mangledName": "$ss19_HasContiguousBytesP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomReflectable",
+            "printedName": "CustomReflectable",
+            "usr": "s:s17CustomReflectableP",
+            "mangledName": "$ss17CustomReflectableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_CustomPlaygroundQuickLookable",
+            "printedName": "_CustomPlaygroundQuickLookable",
+            "usr": "s:s30_CustomPlaygroundQuickLookableP",
+            "mangledName": "$ss30_CustomPlaygroundQuickLookableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TextOutputStream",
+            "printedName": "TextOutputStream",
+            "usr": "s:s16TextOutputStreamP",
+            "mangledName": "$ss16TextOutputStreamP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TextOutputStreamable",
+            "printedName": "TextOutputStreamable",
+            "usr": "s:s20TextOutputStreamableP",
+            "mangledName": "$ss20TextOutputStreamableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ExpressibleByBuiltinUnicodeScalarLiteral",
+            "printedName": "_ExpressibleByBuiltinUnicodeScalarLiteral",
+            "usr": "s:s41_ExpressibleByBuiltinUnicodeScalarLiteralP",
+            "mangledName": "$ss41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ExpressibleByBuiltinExtendedGraphemeClusterLiteral",
+            "printedName": "_ExpressibleByBuiltinExtendedGraphemeClusterLiteral",
+            "usr": "s:s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP",
+            "mangledName": "$ss51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ExpressibleByBuiltinStringLiteral",
+            "printedName": "_ExpressibleByBuiltinStringLiteral",
+            "usr": "s:s34_ExpressibleByBuiltinStringLiteralP",
+            "mangledName": "$ss34_ExpressibleByBuiltinStringLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByStringLiteral",
+            "printedName": "ExpressibleByStringLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "StringLiteralType",
+                "printedName": "StringLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s26ExpressibleByStringLiteralP",
+            "mangledName": "$ss26ExpressibleByStringLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByExtendedGraphemeClusterLiteral",
+            "printedName": "ExpressibleByExtendedGraphemeClusterLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ExtendedGraphemeClusterLiteralType",
+                "printedName": "ExtendedGraphemeClusterLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+            "mangledName": "$ss43ExpressibleByExtendedGraphemeClusterLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByUnicodeScalarLiteral",
+            "printedName": "ExpressibleByUnicodeScalarLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "UnicodeScalarLiteralType",
+                "printedName": "UnicodeScalarLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s33ExpressibleByUnicodeScalarLiteralP",
+            "mangledName": "$ss33ExpressibleByUnicodeScalarLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BidirectionalCollection",
+            "printedName": "BidirectionalCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Character",
+                    "printedName": "Swift.Character",
+                    "usr": "s:SJ"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Index",
+                    "printedName": "Swift.String.Index",
+                    "usr": "s:SS5IndexV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Substring",
+                    "printedName": "Swift.Substring",
+                    "usr": "s:Ss"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DefaultIndices",
+                    "printedName": "Swift.DefaultIndices<Swift.String>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SI"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SK",
+            "mangledName": "$sSK"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Collection",
+            "printedName": "Collection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Character",
+                    "printedName": "Swift.Character",
+                    "usr": "s:SJ"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Index",
+                    "printedName": "Swift.String.Index",
+                    "usr": "s:SS5IndexV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Iterator",
+                    "printedName": "Swift.String.Iterator",
+                    "usr": "s:SS8IteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Substring",
+                    "printedName": "Swift.Substring",
+                    "usr": "s:Ss"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DefaultIndices",
+                    "printedName": "Swift.DefaultIndices<Swift.String>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SI"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sl",
+            "mangledName": "$sSl"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sequence",
+            "printedName": "Sequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Character",
+                    "printedName": "Swift.Character",
+                    "usr": "s:SJ"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Iterator",
+                    "printedName": "Swift.String.Iterator",
+                    "usr": "s:SS8IteratorV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:ST",
+            "mangledName": "$sST"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Comparable",
+            "printedName": "Comparable",
+            "usr": "s:SL",
+            "mangledName": "$sSL"
+          },
+          {
+            "kind": "Conformance",
+            "name": "StringProtocol",
+            "printedName": "StringProtocol",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "UTF8View",
+                "printedName": "UTF8View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UTF8View",
+                    "printedName": "Swift.String.UTF8View",
+                    "usr": "s:SS8UTF8ViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "UTF16View",
+                "printedName": "UTF16View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UTF16View",
+                    "printedName": "Swift.String.UTF16View",
+                    "usr": "s:SS9UTF16ViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "UnicodeScalarView",
+                "printedName": "UnicodeScalarView",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnicodeScalarView",
+                    "printedName": "Swift.String.UnicodeScalarView",
+                    "usr": "s:SS17UnicodeScalarViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Substring",
+                    "printedName": "Swift.Substring",
+                    "usr": "s:Ss"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sy",
+            "mangledName": "$sSy"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByStringInterpolation",
+            "printedName": "ExpressibleByStringInterpolation",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "StringInterpolation",
+                "printedName": "StringInterpolation",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DefaultStringInterpolation",
+                    "printedName": "Swift.DefaultStringInterpolation",
+                    "usr": "s:s26DefaultStringInterpolationV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s32ExpressibleByStringInterpolationP",
+            "mangledName": "$ss32ExpressibleByStringInterpolationP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LosslessStringConvertible",
+            "printedName": "LosslessStringConvertible",
+            "usr": "s:s25LosslessStringConvertibleP",
+            "mangledName": "$ss25LosslessStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RangeReplaceableCollection",
+            "printedName": "RangeReplaceableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Substring",
+                    "printedName": "Swift.Substring",
+                    "usr": "s:Ss"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sm",
+            "mangledName": "$sSm"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MirrorPath",
+            "printedName": "MirrorPath",
+            "usr": "s:s10MirrorPathP",
+            "mangledName": "$ss10MirrorPathP"
+          }
+        ]
+      }
+    ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4877,
+      "length": 3,
+      "value": "\"A\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4896,
+      "length": 3,
+      "value": "\"B\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4915,
+      "length": 3,
+      "value": "\"C\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4934,
+      "length": 3,
+      "value": "\"D\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4961,
+      "length": 3,
+      "value": "\"E\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4980,
+      "length": 3,
+      "value": "\"F\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 4999,
+      "length": 3,
+      "value": "\"G\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5018,
+      "length": 3,
+      "value": "\"H\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5045,
+      "length": 3,
+      "value": "\"I\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5064,
+      "length": 3,
+      "value": "\"J\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5083,
+      "length": 3,
+      "value": "\"K\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5102,
+      "length": 3,
+      "value": "\"L\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5129,
+      "length": 3,
+      "value": "\"M\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5148,
+      "length": 3,
+      "value": "\"N\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5167,
+      "length": 3,
+      "value": "\"O\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5186,
+      "length": 3,
+      "value": "\"P\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5213,
+      "length": 3,
+      "value": "\"Q\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5232,
+      "length": 3,
+      "value": "\"R\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5251,
+      "length": 3,
+      "value": "\"S\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5270,
+      "length": 3,
+      "value": "\"T\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5297,
+      "length": 3,
+      "value": "\"U\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5316,
+      "length": 3,
+      "value": "\"V\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5335,
+      "length": 3,
+      "value": "\"W\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5354,
+      "length": 3,
+      "value": "\"X\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5381,
+      "length": 3,
+      "value": "\"Y\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5400,
+      "length": 3,
+      "value": "\"Z\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5419,
+      "length": 3,
+      "value": "\"a\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5438,
+      "length": 3,
+      "value": "\"b\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5465,
+      "length": 3,
+      "value": "\"c\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5484,
+      "length": 3,
+      "value": "\"d\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5503,
+      "length": 3,
+      "value": "\"e\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5522,
+      "length": 3,
+      "value": "\"f\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5549,
+      "length": 3,
+      "value": "\"g\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5568,
+      "length": 3,
+      "value": "\"h\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5587,
+      "length": 3,
+      "value": "\"i\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5606,
+      "length": 3,
+      "value": "\"j\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5633,
+      "length": 3,
+      "value": "\"k\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5652,
+      "length": 3,
+      "value": "\"l\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5671,
+      "length": 3,
+      "value": "\"m\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5690,
+      "length": 3,
+      "value": "\"n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5717,
+      "length": 3,
+      "value": "\"o\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5736,
+      "length": 3,
+      "value": "\"p\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5755,
+      "length": 3,
+      "value": "\"q\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5774,
+      "length": 3,
+      "value": "\"r\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5801,
+      "length": 3,
+      "value": "\"s\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5820,
+      "length": 3,
+      "value": "\"t\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5839,
+      "length": 3,
+      "value": "\"u\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5858,
+      "length": 3,
+      "value": "\"v\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5885,
+      "length": 3,
+      "value": "\"w\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5904,
+      "length": 3,
+      "value": "\"x\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5923,
+      "length": 3,
+      "value": "\"y\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5942,
+      "length": 3,
+      "value": "\"z\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5969,
+      "length": 3,
+      "value": "\"0\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 5988,
+      "length": 3,
+      "value": "\"1\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6007,
+      "length": 3,
+      "value": "\"2\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6026,
+      "length": 3,
+      "value": "\"3\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6053,
+      "length": 3,
+      "value": "\"4\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6072,
+      "length": 3,
+      "value": "\"5\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6091,
+      "length": 3,
+      "value": "\"6\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6110,
+      "length": 3,
+      "value": "\"7\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6137,
+      "length": 3,
+      "value": "\"8\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6156,
+      "length": 3,
+      "value": "\"9\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6175,
+      "length": 3,
+      "value": "\"+\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6194,
+      "length": 3,
+      "value": "\"\/\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/_NIOBase64\/Base64.swift",
+      "kind": "StringLiteral",
+      "offset": 6266,
+      "length": 3,
+      "value": "\"=\""
+    }
+  ]
 }

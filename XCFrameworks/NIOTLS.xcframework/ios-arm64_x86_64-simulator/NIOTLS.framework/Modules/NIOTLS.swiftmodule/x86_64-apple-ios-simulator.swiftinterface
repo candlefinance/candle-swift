@@ -1,0 +1,70 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOTLS -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import DequeModule
+import NIOCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum ALPNResult : Swift.Equatable, Swift.Sendable {
+  case negotiated(Swift.String)
+  case fallback
+  public static func == (a: NIOTLS.ALPNResult, b: NIOTLS.ALPNResult) -> Swift.Bool
+}
+final public class ApplicationProtocolNegotiationHandler : NIOCore.ChannelInboundHandler, NIOCore.RemovableChannelHandler {
+  public typealias InboundIn = Any
+  public typealias InboundOut = Any
+  public init(alpnCompleteHandler: @escaping (NIOTLS.ALPNResult, any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)
+  convenience public init(alpnCompleteHandler: @escaping (NIOTLS.ALPNResult) -> NIOCore.EventLoopFuture<Swift.Void>)
+  final public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOTLS.ApplicationProtocolNegotiationHandler : Swift.Sendable {
+}
+@preconcurrency final public class NIOTypedApplicationProtocolNegotiationHandler<NegotiationResult> : NIOCore.ChannelInboundHandler, NIOCore.RemovableChannelHandler where NegotiationResult : Swift.Sendable {
+  public typealias InboundIn = Any
+  public typealias InboundOut = Any
+  final public var protocolNegotiationResult: NIOCore.EventLoopFuture<NegotiationResult> {
+    get
+  }
+  public init(alpnCompleteHandler: @escaping (NIOTLS.ALPNResult, any NIOCore.Channel) -> NIOCore.EventLoopFuture<NegotiationResult>)
+  convenience public init(alpnCompleteHandler: @escaping (NIOTLS.ALPNResult) -> NIOCore.EventLoopFuture<NegotiationResult>)
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  final public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOTLS.NIOTypedApplicationProtocolNegotiationHandler : Swift.Sendable {
+}
+public enum SNIResult : Swift.Equatable, Swift.Sendable {
+  case fallback
+  case hostname(Swift.String)
+  public static func == (a: NIOTLS.SNIResult, b: NIOTLS.SNIResult) -> Swift.Bool
+}
+final public class SNIHandler : NIOCore.ByteToMessageDecoder {
+  final public var cumulationBuffer: Swift.Optional<NIOCore.ByteBuffer>
+  public typealias InboundIn = NIOCore.ByteBuffer
+  public typealias InboundOut = NIOCore.ByteBuffer
+  public init(sniCompleteHandler: @escaping (NIOTLS.SNIResult) -> NIOCore.EventLoopFuture<Swift.Void>)
+  final public func decodeLast(context: NIOCore.ChannelHandlerContext, buffer: inout NIOCore.ByteBuffer, seenEOF: Swift.Bool) throws -> NIOCore.DecodingState
+  final public func decode(context: NIOCore.ChannelHandlerContext, buffer: inout NIOCore.ByteBuffer) -> NIOCore.DecodingState
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOTLS.SNIHandler : Swift.Sendable {
+}
+public enum TLSUserEvent : Swift.Equatable, Swift.Sendable {
+  case handshakeCompleted(negotiatedProtocol: Swift.String?)
+  case shutdownCompleted
+  public static func == (a: NIOTLS.TLSUserEvent, b: NIOTLS.TLSUserEvent) -> Swift.Bool
+}

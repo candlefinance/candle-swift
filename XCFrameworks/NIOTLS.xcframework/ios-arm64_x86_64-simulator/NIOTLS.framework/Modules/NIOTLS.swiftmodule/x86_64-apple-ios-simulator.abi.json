@@ -1,9 +1,1707 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "NO_MODULE",
-    "printedName": "NO_MODULE",
+    "name": "NIOTLS",
+    "printedName": "NIOTLS",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "NIOCore",
+        "printedName": "NIOCore",
+        "declKind": "Import",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ALPNResult",
+        "printedName": "ALPNResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "negotiated",
+            "printedName": "negotiated",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult.Type) -> (Swift.String) -> NIOTLS.ALPNResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> NIOTLS.ALPNResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "NIOTLS.ALPNResult",
+                        "usr": "s:6NIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.ALPNResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "NIOTLS.ALPNResult",
+                        "usr": "s:6NIOTLS10ALPNResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS10ALPNResultO10negotiatedyACSScACmF",
+            "mangledName": "$s6NIOTLS10ALPNResultO10negotiatedyACSScACmF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fallback",
+            "printedName": "fallback",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult.Type) -> NIOTLS.ALPNResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "NIOTLS.ALPNResult",
+                    "usr": "s:6NIOTLS10ALPNResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.ALPNResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "NIOTLS.ALPNResult",
+                        "usr": "s:6NIOTLS10ALPNResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS10ALPNResultO8fallbackyA2CmF",
+            "mangledName": "$s6NIOTLS10ALPNResultO8fallbackyA2CmF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ALPNResult",
+                "printedName": "NIOTLS.ALPNResult",
+                "usr": "s:6NIOTLS10ALPNResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ALPNResult",
+                "printedName": "NIOTLS.ALPNResult",
+                "usr": "s:6NIOTLS10ALPNResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS10ALPNResultO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s6NIOTLS10ALPNResultO2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:6NIOTLS10ALPNResultO",
+        "mangledName": "$s6NIOTLS10ALPNResultO",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplicationProtocolNegotiationHandler",
+        "printedName": "ApplicationProtocolNegotiationHandler",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplicationProtocolNegotiationHandler",
+                "printedName": "NIOTLS.ApplicationProtocolNegotiationHandler",
+                "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult, any NIOCore.Channel) -> NIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(NIOTLS.ALPNResult, any NIOCore.Channel)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "NIOTLS.ALPNResult",
+                        "usr": "s:6NIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Channel",
+                        "printedName": "any NIOCore.Channel",
+                        "usr": "s:7NIOCore7ChannelP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteE0AC7NIOCore15EventLoopFutureCyytGAA10ALPNResultO_AE7Channel_ptc_tcfc",
+            "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteE0AC7NIOCore15EventLoopFutureCyytGAA10ALPNResultO_AE7Channel_ptc_tcfc",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplicationProtocolNegotiationHandler",
+                "printedName": "NIOTLS.ApplicationProtocolNegotiationHandler",
+                "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult) -> NIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "NIOTLS.ALPNResult",
+                    "usr": "s:6NIOTLS10ALPNResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteE0AC7NIOCore15EventLoopFutureCyytGAA10ALPNResultOc_tcfc",
+            "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteE0AC7NIOCore15EventLoopFutureCyytGAA10ALPNResultOc_tcfc",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "userInboundEventTriggered",
+            "printedName": "userInboundEventTriggered(context:event:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy7NIOCore07ChannelE7ContextC_yptF",
+            "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy7NIOCore07ChannelE7ContextC_yptF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC11channelRead7context4datay7NIOCore07ChannelE7ContextC_AG6NIOAnyVtF",
+            "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC11channelRead7context4datay7NIOCore07ChannelE7ContextC_AG6NIOAnyVtF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelInactive",
+            "printedName": "channelInactive(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC15channelInactive7contexty7NIOCore07ChannelE7ContextC_tF",
+            "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC15channelInactive7contexty7NIOCore07ChannelE7ContextC_tF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:6NIOTLS37ApplicationProtocolNegotiationHandlerC",
+        "mangledName": "$s6NIOTLS37ApplicationProtocolNegotiationHandlerC",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7NIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s7NIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:7NIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s7NIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:7NIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s7NIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7NIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s7NIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:7NIOCore14ChannelHandlerP",
+            "mangledName": "$s7NIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "NIOCore",
+        "printedName": "NIOCore",
+        "declKind": "Import",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOTypedApplicationProtocolNegotiationHandler",
+        "printedName": "NIOTypedApplicationProtocolNegotiationHandler",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "protocolNegotiationResult",
+            "printedName": "protocolNegotiationResult",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoopFuture",
+                "printedName": "NIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:7NIOCore15EventLoopFutureC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolE6Result7NIOCore15EventLoopFutureCyxGvp",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolE6Result7NIOCore15EventLoopFutureCyxGvp",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolE6Result7NIOCore15EventLoopFutureCyxGvg",
+                "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolE6Result7NIOCore15EventLoopFutureCyxGvg",
+                "moduleName": "NIOTLS",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+                "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOTypedApplicationProtocolNegotiationHandler",
+                "printedName": "NIOTLS.NIOTypedApplicationProtocolNegotiationHandler<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult, any NIOCore.Channel) -> NIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(NIOTLS.ALPNResult, any NIOCore.Channel)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "NIOTLS.ALPNResult",
+                        "usr": "s:6NIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Channel",
+                        "printedName": "any NIOCore.Channel",
+                        "usr": "s:7NIOCore7ChannelP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteF0ACyxG7NIOCore15EventLoopFutureCyxGAA10ALPNResultO_AF7Channel_ptc_tcfc",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteF0ACyxG7NIOCore15EventLoopFutureCyxGAA10ALPNResultO_AF7Channel_ptc_tcfc",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOTypedApplicationProtocolNegotiationHandler",
+                "printedName": "NIOTLS.NIOTypedApplicationProtocolNegotiationHandler<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.ALPNResult) -> NIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "NIOTLS.ALPNResult",
+                    "usr": "s:6NIOTLS10ALPNResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteF0ACyxG7NIOCore15EventLoopFutureCyxGAA10ALPNResultOc_tcfc",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteF0ACyxG7NIOCore15EventLoopFutureCyxGAA10ALPNResultOc_tcfc",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerAdded",
+            "printedName": "handlerAdded(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC12handlerAdded7contexty7NIOCore07ChannelF7ContextC_tF",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC12handlerAdded7contexty7NIOCore07ChannelF7ContextC_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerRemoved",
+            "printedName": "handlerRemoved(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC14handlerRemoved7contexty7NIOCore07ChannelF7ContextC_tF",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC14handlerRemoved7contexty7NIOCore07ChannelF7ContextC_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "userInboundEventTriggered",
+            "printedName": "userInboundEventTriggered(context:event:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy7NIOCore07ChannelF7ContextC_yptF",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy7NIOCore07ChannelF7ContextC_yptF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC11channelRead7context4datay7NIOCore07ChannelF7ContextC_AG6NIOAnyVtF",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC11channelRead7context4datay7NIOCore07ChannelF7ContextC_AG6NIOAnyVtF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelInactive",
+            "printedName": "channelInactive(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC15channelInactive7contexty7NIOCore07ChannelF7ContextC_tF",
+            "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC15channelInactive7contexty7NIOCore07ChannelF7ContextC_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC",
+        "mangledName": "$s6NIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC",
+        "moduleName": "NIOTLS",
+        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+        "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "Preconcurrency",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7NIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s7NIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:7NIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s7NIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:7NIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s7NIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7NIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s7NIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:7NIOCore14ChannelHandlerP",
+            "mangledName": "$s7NIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "DequeModule",
+        "printedName": "DequeModule",
+        "declKind": "Import",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "NIOCore",
+        "printedName": "NIOCore",
+        "declKind": "Import",
+        "moduleName": "NIOTLS"
+      },
+      {
+        "kind": "Import",
+        "name": "NIOCore",
+        "printedName": "NIOCore",
+        "declKind": "Import",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SNIResult",
+        "printedName": "SNIResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "fallback",
+            "printedName": "fallback",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.SNIResult.Type) -> NIOTLS.SNIResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SNIResult",
+                    "printedName": "NIOTLS.SNIResult",
+                    "usr": "s:6NIOTLS9SNIResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.SNIResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "NIOTLS.SNIResult",
+                        "usr": "s:6NIOTLS9SNIResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS9SNIResultO8fallbackyA2CmF",
+            "mangledName": "$s6NIOTLS9SNIResultO8fallbackyA2CmF",
+            "moduleName": "NIOTLS"
+          },
+          {
+            "kind": "Var",
+            "name": "hostname",
+            "printedName": "hostname",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.SNIResult.Type) -> (Swift.String) -> NIOTLS.SNIResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> NIOTLS.SNIResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "NIOTLS.SNIResult",
+                        "usr": "s:6NIOTLS9SNIResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.SNIResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "NIOTLS.SNIResult",
+                        "usr": "s:6NIOTLS9SNIResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS9SNIResultO8hostnameyACSScACmF",
+            "mangledName": "$s6NIOTLS9SNIResultO8hostnameyACSScACmF",
+            "moduleName": "NIOTLS"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SNIResult",
+                "printedName": "NIOTLS.SNIResult",
+                "usr": "s:6NIOTLS9SNIResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SNIResult",
+                "printedName": "NIOTLS.SNIResult",
+                "usr": "s:6NIOTLS9SNIResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS9SNIResultO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s6NIOTLS9SNIResultO2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:6NIOTLS9SNIResultO",
+        "mangledName": "$s6NIOTLS9SNIResultO",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SNIHandler",
+        "printedName": "SNIHandler",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "cumulationBuffer",
+            "printedName": "cumulationBuffer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.ByteBuffer?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBuffer",
+                    "printedName": "NIOCore.ByteBuffer",
+                    "usr": "s:7NIOCore10ByteBufferV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvp",
+            "mangledName": "$s6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvp",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.ByteBuffer?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "NIOCore.ByteBuffer",
+                        "usr": "s:7NIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvg",
+                "mangledName": "$s6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvg",
+                "moduleName": "NIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.ByteBuffer?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "NIOCore.ByteBuffer",
+                        "usr": "s:7NIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvs",
+                "mangledName": "$s6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvs",
+                "moduleName": "NIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvM",
+                "mangledName": "$s6NIOTLS10SNIHandlerC16cumulationBuffer7NIOCore04ByteD0VSgvM",
+                "moduleName": "NIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(sniCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SNIHandler",
+                "printedName": "NIOTLS.SNIHandler",
+                "usr": "s:6NIOTLS10SNIHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.SNIResult) -> NIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "NIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SNIResult",
+                    "printedName": "NIOTLS.SNIResult",
+                    "usr": "s:6NIOTLS9SNIResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS10SNIHandlerC18sniCompleteHandlerAC7NIOCore15EventLoopFutureCyytGAA9SNIResultOc_tcfc",
+            "mangledName": "$s6NIOTLS10SNIHandlerC18sniCompleteHandlerAC7NIOCore15EventLoopFutureCyytGAA9SNIResultOc_tcfc",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "decodeLast",
+            "printedName": "decodeLast(context:buffer:seenEOF:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DecodingState",
+                "printedName": "NIOCore.DecodingState",
+                "usr": "s:7NIOCore13DecodingStateO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "NIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:7NIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS10SNIHandlerC10decodeLast7context6buffer7seenEOF7NIOCore13DecodingStateOAH21ChannelHandlerContextC_AH10ByteBufferVzSbtKF",
+            "mangledName": "$s6NIOTLS10SNIHandlerC10decodeLast7context6buffer7seenEOF7NIOCore13DecodingStateOAH21ChannelHandlerContextC_AH10ByteBufferVzSbtKF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "decode",
+            "printedName": "decode(context:buffer:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DecodingState",
+                "printedName": "NIOCore.DecodingState",
+                "usr": "s:7NIOCore13DecodingStateO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "NIOCore.ChannelHandlerContext",
+                "usr": "s:7NIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "NIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:7NIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS10SNIHandlerC6decode7context6buffer7NIOCore13DecodingStateOAG21ChannelHandlerContextC_AG10ByteBufferVztF",
+            "mangledName": "$s6NIOTLS10SNIHandlerC6decode7context6buffer7NIOCore13DecodingStateOAG21ChannelHandlerContextC_AG10ByteBufferVztF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:6NIOTLS10SNIHandlerC",
+        "mangledName": "$s6NIOTLS10SNIHandlerC",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ByteToMessageDecoder",
+            "printedName": "ByteToMessageDecoder",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBuffer",
+                    "printedName": "NIOCore.ByteBuffer",
+                    "usr": "s:7NIOCore10ByteBufferV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7NIOCore20ByteToMessageDecoderP",
+            "mangledName": "$s7NIOCore20ByteToMessageDecoderP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "NIOCore",
+        "printedName": "NIOCore",
+        "declKind": "Import",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "TLSUserEvent",
+        "printedName": "TLSUserEvent",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "handshakeCompleted",
+            "printedName": "handshakeCompleted",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.TLSUserEvent.Type) -> (Swift.String?) -> NIOTLS.TLSUserEvent",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?) -> NIOTLS.TLSUserEvent",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "NIOTLS.TLSUserEvent",
+                        "usr": "s:6NIOTLS12TLSUserEventO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(negotiatedProtocol: Swift.String?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.TLSUserEvent.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "NIOTLS.TLSUserEvent",
+                        "usr": "s:6NIOTLS12TLSUserEventO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS12TLSUserEventO18handshakeCompletedyACSSSg_tcACmF",
+            "mangledName": "$s6NIOTLS12TLSUserEventO18handshakeCompletedyACSSSg_tcACmF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "shutdownCompleted",
+            "printedName": "shutdownCompleted",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOTLS.TLSUserEvent.Type) -> NIOTLS.TLSUserEvent",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TLSUserEvent",
+                    "printedName": "NIOTLS.TLSUserEvent",
+                    "usr": "s:6NIOTLS12TLSUserEventO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOTLS.TLSUserEvent.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "NIOTLS.TLSUserEvent",
+                        "usr": "s:6NIOTLS12TLSUserEventO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:6NIOTLS12TLSUserEventO17shutdownCompletedyA2CmF",
+            "mangledName": "$s6NIOTLS12TLSUserEventO17shutdownCompletedyA2CmF",
+            "moduleName": "NIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "TLSUserEvent",
+                "printedName": "NIOTLS.TLSUserEvent",
+                "usr": "s:6NIOTLS12TLSUserEventO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "TLSUserEvent",
+                "printedName": "NIOTLS.TLSUserEvent",
+                "usr": "s:6NIOTLS12TLSUserEventO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS12TLSUserEventO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s6NIOTLS12TLSUserEventO2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:6NIOTLS12TLSUserEventO",
+        "mangledName": "$s6NIOTLS12TLSUserEventO",
+        "moduleName": "NIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      }
+    ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/NIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 600,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/NIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 708,
+      "length": 2,
+      "value": "22"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/NIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 817,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/NIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 905,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio\/Sources\/NIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 989,
+      "length": 1,
+      "value": "0"
+    }
+  ]
 }

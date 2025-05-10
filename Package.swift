@@ -16,7 +16,7 @@ let package = Package(
             dependencies: [
                 "Atomics", "CNIOAtomics", "CNIOBoringSSL", "CNIOBoringSSLShims", "CNIODarwin",
                 "CNIOLLHTTP", "CNIOLinux", "CNIOSHA1", "CNIOWASI", "CNIOWindows", "Candle",
-                "CandleTarget0", "HTTPTypes", "CandleTarget1", "NIO",
+                "DequeModule", "HTTPTypes", "InternalCollectionsUtilities", "NIO",
                 "NIOConcurrencyHelpers", "NIOCore", "NIOEmbedded", "NIOFoundationCompat",
                 "NIOHTTP1", "NIOPosix", "NIOSSL", "NIOTLS", "NIOTransportServices", "NIOWebSocket",
                 "OpenAPIRuntime", "OpenAPIURLSession", "SwiftSecurity", "_AtomicsShims",
@@ -38,11 +38,11 @@ let package = Package(
         .binaryTarget(name: "CNIOWASI", path: "./XCFrameworks/CNIOWASI.xcframework"),
         .binaryTarget(name: "CNIOWindows", path: "./XCFrameworks/CNIOWindows.xcframework"),
         .binaryTarget(name: "Candle", path: "./XCFrameworks/Candle.xcframework"),
-        .binaryTarget(name: "CandleTarget0", path: "./XCFrameworks/CandleTarget0.xcframework"),
+        .binaryTarget(name: "DequeModule", path: "./XCFrameworks/DequeModule.xcframework"),
         .binaryTarget(name: "HTTPTypes", path: "./XCFrameworks/HTTPTypes.xcframework"),
         .binaryTarget(
-            name: "CandleTarget1",
-            path: "./XCFrameworks/CandleTarget1.xcframework"),
+            name: "InternalCollectionsUtilities",
+            path: "./XCFrameworks/InternalCollectionsUtilities.xcframework"),
         .binaryTarget(name: "NIO", path: "./XCFrameworks/NIO.xcframework"),
         .binaryTarget(
             name: "NIOConcurrencyHelpers", path: "./XCFrameworks/NIOConcurrencyHelpers.xcframework"),

@@ -1,0 +1,5 @@
+framework module DequeModule {
+    header "DequeModule-Swift.h"
+    export *
+    link framework "InternalCollectionsUtilities"
+}

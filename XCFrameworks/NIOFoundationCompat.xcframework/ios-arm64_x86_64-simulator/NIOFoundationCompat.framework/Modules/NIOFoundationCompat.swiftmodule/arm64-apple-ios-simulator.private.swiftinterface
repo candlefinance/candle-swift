@@ -1,0 +1,103 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOFoundationCompat -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Atomics
+import Foundation
+import NIOConcurrencyHelpers
+import NIOCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum ByteBufferFoundationError : Swift.Error {
+  case failedToEncodeString
+  public static func == (a: NIOFoundationCompat.ByteBufferFoundationError, b: NIOFoundationCompat.ByteBufferFoundationError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOCore.ByteBuffer {
+  public enum ByteTransferStrategy : Swift.Sendable {
+    case copy
+    case noCopy
+    case automatic
+    public static func == (a: NIOCore.ByteBuffer.ByteTransferStrategy, b: NIOCore.ByteBuffer.ByteTransferStrategy) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public mutating func readData(length: Swift.Int) -> Foundation.Data?
+  public mutating func readData(length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  public func getData(at index: Swift.Int, length: Swift.Int) -> Foundation.Data?
+  public func getData(at index: Swift.Int, length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  public func peekData(length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  public func getString(at index: Swift.Int, length: Swift.Int, encoding: Swift.String.Encoding) -> Swift.String?
+  public mutating func readString(length: Swift.Int, encoding: Swift.String.Encoding) -> Swift.String?
+  @discardableResult
+  public mutating func writeString(_ string: Swift.String, encoding: Swift.String.Encoding) throws -> Swift.Int
+  @discardableResult
+  public mutating func setString(_ string: Swift.String, encoding: Swift.String.Encoding, at index: Swift.Int) throws -> Swift.Int
+  public init(data: Foundation.Data)
+  @discardableResult
+  public mutating func writeContiguousBytes<Bytes>(_ bytes: Bytes) -> Swift.Int where Bytes : Foundation.ContiguousBytes
+  @discardableResult
+  public mutating func setContiguousBytes<Bytes>(_ bytes: Bytes, at index: Swift.Int) -> Swift.Int where Bytes : Foundation.ContiguousBytes
+  @discardableResult
+  public mutating func writeData<D>(_ data: D) -> Swift.Int where D : Foundation.DataProtocol
+  @discardableResult
+  public mutating func setData<D>(_ data: D, at index: Swift.Int) -> Swift.Int where D : Foundation.DataProtocol
+  public func getUUIDBytes(at index: Swift.Int) -> Foundation.UUID?
+  @discardableResult
+  public mutating func setUUIDBytes(_ uuid: Foundation.UUID, at index: Swift.Int) -> Swift.Int
+  public mutating func readUUIDBytes() -> Foundation.UUID?
+  @discardableResult
+  public mutating func writeUUIDBytes(_ uuid: Foundation.UUID) -> Swift.Int
+  public func peekUUIDBytes() -> Foundation.UUID?
+}
+extension NIOCore.ByteBufferAllocator {
+  public func buffer(data: Foundation.Data) -> NIOCore.ByteBuffer
+}
+extension NIOCore.ByteBufferView : Foundation.ContiguousBytes {
+}
+extension NIOCore.ByteBufferView : Foundation.DataProtocol {
+}
+extension NIOCore.ByteBufferView : Foundation.MutableDataProtocol {
+}
+extension NIOCore.ByteBufferView {
+  public typealias Regions = Swift.CollectionOfOne<NIOCore.ByteBufferView>
+  public var regions: Swift.CollectionOfOne<NIOCore.ByteBufferView> {
+    get
+  }
+}
+extension Foundation.Data {
+  public init(buffer: NIOCore.ByteBuffer, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy = .automatic)
+}
+extension NIOCore.ByteBuffer {
+  public func getJSONDecodable<T>(_ type: T.Type, decoder: Foundation.JSONDecoder = JSONDecoder(), at index: Swift.Int, length: Swift.Int) throws -> T? where T : Swift.Decodable
+  public mutating func readJSONDecodable<T>(_ type: T.Type, decoder: Foundation.JSONDecoder = JSONDecoder(), length: Swift.Int) throws -> T? where T : Swift.Decodable
+  @discardableResult
+  public mutating func setJSONEncodable<T>(_ value: T, encoder: Foundation.JSONEncoder = JSONEncoder(), at index: Swift.Int) throws -> Swift.Int where T : Swift.Encodable
+  @discardableResult
+  public mutating func writeJSONEncodable<T>(_ value: T, encoder: Foundation.JSONEncoder = JSONEncoder()) throws -> Swift.Int where T : Swift.Encodable
+}
+extension Foundation.JSONDecoder {
+  public func decode<T>(_ type: T.Type, from buffer: NIOCore.ByteBuffer) throws -> T where T : Swift.Decodable
+}
+extension Foundation.JSONEncoder {
+  public func encode<T>(_ value: T, into buffer: inout NIOCore.ByteBuffer) throws where T : Swift.Encodable
+  public func encodeAsByteBuffer<T>(_ value: T, allocator: NIOCore.ByteBufferAllocator) throws -> NIOCore.ByteBuffer where T : Swift.Encodable
+}
+extension Foundation.JSONSerialization {
+  public static func jsonObject(with buffer: NIOCore.ByteBuffer, options: Foundation.JSONSerialization.ReadingOptions = []) throws -> Any
+}
+extension NIOCore.EventLoopFuture {
+  @available(*, noasync, renamed: "get()", message: "waitSpinningRunLoop() can block indefinitely, prefer get()")
+  final public func waitSpinningRunLoop(inMode mode: Foundation.RunLoop.Mode = .default, file: Swift.StaticString = #file, line: Swift.UInt = #line) throws -> Value where Value : Swift.Sendable
+}
+extension NIOFoundationCompat.ByteBufferFoundationError : Swift.Equatable {}
+extension NIOFoundationCompat.ByteBufferFoundationError : Swift.Hashable {}
+extension NIOCore.ByteBuffer.ByteTransferStrategy : Swift.Equatable {}
+extension NIOCore.ByteBuffer.ByteTransferStrategy : Swift.Hashable {}

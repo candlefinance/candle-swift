@@ -1,9 +1,726 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "NO_MODULE",
-    "printedName": "NO_MODULE",
+    "name": "OpenAPIURLSession",
+    "printedName": "OpenAPIURLSession",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "DequeModule",
+        "printedName": "DequeModule",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenAPIRuntime",
+        "printedName": "OpenAPIRuntime",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HTTPTypes",
+        "printedName": "HTTPTypes",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenAPIRuntime",
+        "printedName": "OpenAPIRuntime",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HTTPTypes",
+        "printedName": "HTTPTypes",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenAPIRuntime",
+        "printedName": "OpenAPIRuntime",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HTTPTypes",
+        "printedName": "HTTPTypes",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenAPIRuntime",
+        "printedName": "OpenAPIRuntime",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HTTPTypes",
+        "printedName": "HTTPTypes",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OpenAPIURLSession"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "URLSessionTransport",
+        "printedName": "URLSessionTransport",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "Configuration",
+            "printedName": "Configuration",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "session",
+                "printedName": "session",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLSession",
+                    "printedName": "Foundation.URLSession",
+                    "usr": "c:objc(cs)NSURLSession"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvp",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvp",
+                "moduleName": "OpenAPIURLSession",
+                "declAttributes": [
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLSession",
+                        "printedName": "Foundation.URLSession",
+                        "usr": "c:objc(cs)NSURLSession"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvg",
+                    "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvg",
+                    "moduleName": "OpenAPIURLSession",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLSession",
+                        "printedName": "Foundation.URLSession",
+                        "usr": "c:objc(cs)NSURLSession"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvs",
+                    "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvs",
+                    "moduleName": "OpenAPIURLSession",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvM",
+                    "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionSo12NSURLSessionCvM",
+                    "moduleName": "OpenAPIURLSession",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(session:httpBodyProcessingMode:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Configuration",
+                    "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLSession",
+                    "printedName": "Foundation.URLSession",
+                    "hasDefaultArg": true,
+                    "usr": "c:objc(cs)NSURLSession"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPBodyProcessingMode",
+                    "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode",
+                    "hasDefaultArg": true,
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7session22httpBodyProcessingModeAESo12NSURLSessionC_AE08HTTPBodyiJ0Vtcfc",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7session22httpBodyProcessingModeAESo12NSURLSessionC_AE08HTTPBodyiJ0Vtcfc",
+                "moduleName": "OpenAPIURLSession",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(session:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Configuration",
+                    "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLSession",
+                    "printedName": "Foundation.URLSession",
+                    "hasDefaultArg": true,
+                    "usr": "c:objc(cs)NSURLSession"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionAESo12NSURLSessionC_tcfc",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV7sessionAESo12NSURLSessionC_tcfc",
+                "moduleName": "OpenAPIURLSession",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "TypeDecl",
+                "name": "HTTPBodyProcessingMode",
+                "printedName": "HTTPBodyProcessingMode",
+                "children": [
+                  {
+                    "kind": "Var",
+                    "name": "buffered",
+                    "printedName": "buffered",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPBodyProcessingMode",
+                        "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode",
+                        "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV8bufferedAGvpZ",
+                    "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV8bufferedAGvpZ",
+                    "moduleName": "OpenAPIURLSession",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "HTTPBodyProcessingMode",
+                            "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode",
+                            "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV8bufferedAGvgZ",
+                        "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV8bufferedAGvgZ",
+                        "moduleName": "OpenAPIURLSession",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "platformDefault",
+                    "printedName": "platformDefault",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPBodyProcessingMode",
+                        "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode",
+                        "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV15platformDefaultAGvpZ",
+                    "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV15platformDefaultAGvpZ",
+                    "moduleName": "OpenAPIURLSession",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "HTTPBodyProcessingMode",
+                            "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration.HTTPBodyProcessingMode",
+                            "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV15platformDefaultAGvgZ",
+                        "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV15platformDefaultAGvgZ",
+                        "moduleName": "OpenAPIURLSession",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Struct",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV22HTTPBodyProcessingModeV",
+                "moduleName": "OpenAPIURLSession",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "conformances": [
+                  {
+                    "kind": "Conformance",
+                    "name": "Copyable",
+                    "printedName": "Copyable",
+                    "usr": "s:s8CopyableP",
+                    "mangledName": "$ss8CopyableP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Escapable",
+                    "printedName": "Escapable",
+                    "usr": "s:s9EscapableP",
+                    "mangledName": "$ss9EscapableP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Sendable",
+                    "printedName": "Sendable",
+                    "usr": "s:s8SendableP",
+                    "mangledName": "$ss8SendableP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV",
+            "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13ConfigurationV",
+            "moduleName": "OpenAPIURLSession",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "configuration",
+            "printedName": "configuration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Configuration",
+                "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvp",
+            "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvp",
+            "moduleName": "OpenAPIURLSession",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Configuration",
+                    "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvg",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvg",
+                "moduleName": "OpenAPIURLSession",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Configuration",
+                    "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                    "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvs",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvs",
+                "moduleName": "OpenAPIURLSession",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvM",
+                "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13configurationAC13ConfigurationVvM",
+                "moduleName": "OpenAPIURLSession",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(configuration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionTransport",
+                "printedName": "OpenAPIURLSession.URLSessionTransport",
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Configuration",
+                "printedName": "OpenAPIURLSession.URLSessionTransport.Configuration",
+                "hasDefaultArg": true,
+                "usr": "s:17OpenAPIURLSession19URLSessionTransportV13ConfigurationV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17OpenAPIURLSession19URLSessionTransportV13configurationA2C13ConfigurationV_tcfc",
+            "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV13configurationA2C13ConfigurationV_tcfc",
+            "moduleName": "OpenAPIURLSession",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "send",
+            "printedName": "send(_:body:baseURL:operationID:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPResponse",
+                    "printedName": "HTTPTypes.HTTPResponse",
+                    "usr": "s:9HTTPTypes12HTTPResponseV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "OpenAPIRuntime.HTTPBody?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPBody",
+                        "printedName": "OpenAPIRuntime.HTTPBody",
+                        "usr": "s:14OpenAPIRuntime8HTTPBodyC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "HTTPRequest",
+                "printedName": "HTTPTypes.HTTPRequest",
+                "usr": "s:9HTTPTypes11HTTPRequestV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "OpenAPIRuntime.HTTPBody?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPBody",
+                    "printedName": "OpenAPIRuntime.HTTPBody",
+                    "usr": "s:14OpenAPIRuntime8HTTPBodyC"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17OpenAPIURLSession19URLSessionTransportV4send_4body7baseURL11operationID9HTTPTypes12HTTPResponseV_0A10APIRuntime8HTTPBodyCSgtAH11HTTPRequestV_AN10Foundation0H0VSStYaKF",
+            "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV4send_4body7baseURL11operationID9HTTPTypes12HTTPResponseV_0A10APIRuntime8HTTPBodyCSgtAH11HTTPRequestV_AN10Foundation0H0VSStYaKF",
+            "moduleName": "OpenAPIURLSession",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:17OpenAPIURLSession19URLSessionTransportV",
+        "mangledName": "$s17OpenAPIURLSession19URLSessionTransportV",
+        "moduleName": "OpenAPIURLSession",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ClientTransport",
+            "printedName": "ClientTransport",
+            "usr": "s:14OpenAPIRuntime15ClientTransportP",
+            "mangledName": "$s14OpenAPIRuntime15ClientTransportP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      }
+    ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/BufferedStream\/BufferedStream.swift",
+      "kind": "IntegerLiteral",
+      "offset": 42292,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "kind": "StringLiteral",
+      "offset": 728,
+      "length": 24,
+      "value": "\"HTTPBodyStreamDelegate\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "kind": "StringLiteral",
+      "offset": 909,
+      "length": 66,
+      "value": "\"Output stream delegate state transition: \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "kind": "StringLiteral",
+      "offset": 962,
+      "length": 2,
+      "value": "\" -> \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "kind": "StringLiteral",
+      "offset": 974,
+      "length": 4,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionTransport.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12420,
+      "length": 5,
+      "value": "false"
+    }
+  ]
 }

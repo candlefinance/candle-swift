@@ -1,0 +1,703 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name HTTPTypes
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Darwin
+import Swift
+import Synchronization
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct HTTPField : Swift.Sendable, Swift.Hashable {
+  public struct DynamicTableIndexingStrategy : Swift.Sendable, Swift.Hashable {
+    public static var automatic: HTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var prefer: HTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var avoid: HTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var disallow: HTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: HTTPTypes.HTTPField.DynamicTableIndexingStrategy, b: HTTPTypes.HTTPField.DynamicTableIndexingStrategy) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(name: HTTPTypes.HTTPField.Name, value: Swift.String)
+  public init(name: HTTPTypes.HTTPField.Name, value: some Collection<UInt8>)
+  public init(name: HTTPTypes.HTTPField.Name, lenientValue: some Collection<UInt8>)
+  public var name: HTTPTypes.HTTPField.Name
+  public var value: Swift.String {
+    get
+    set
+  }
+  public func withUnsafeBytesOfValue<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result
+  public var indexingStrategy: HTTPTypes.HTTPField.DynamicTableIndexingStrategy
+  public static func isValidValue(_ value: Swift.String) -> Swift.Bool
+  public static func isValidValue(_ value: some Collection<UInt8>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: HTTPTypes.HTTPField, b: HTTPTypes.HTTPField) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPField : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension HTTPTypes.HTTPField : Swift.CustomPlaygroundDisplayConvertible {
+  public var playgroundDescription: Any {
+    get
+  }
+}
+extension HTTPTypes.HTTPField : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPField {
+  public struct Name : Swift.Sendable {
+    public let rawName: Swift.String
+    public let canonicalName: Swift.String
+    public init?(_ name: Swift.String)
+    public init?(parsed name: Swift.String)
+  }
+}
+extension HTTPTypes.HTTPField.Name : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: HTTPTypes.HTTPField.Name, rhs: HTTPTypes.HTTPField.Name) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPField.Name : Swift.LosslessStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension HTTPTypes.HTTPField.Name : Swift.CustomPlaygroundDisplayConvertible {
+  public var playgroundDescription: Any {
+    get
+  }
+}
+extension HTTPTypes.HTTPField.Name : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPField.Name {
+  public static var accept: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptEncoding: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptLanguage: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptRanges: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowCredentials: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowHeaders: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowMethods: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowOrigin: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlExposeHeaders: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlMaxAge: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlRequestHeaders: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlRequestMethod: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var age: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var allow: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var authenticationInfo: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var authorization: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var cacheControl: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var connection: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentDisposition: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentEncoding: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLanguage: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLength: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLocation: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentRange: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentSecurityPolicy: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentSecurityPolicyReportOnly: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentType: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var cookie: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var crossOriginResourcePolicy: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var date: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var earlyData: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var eTag: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var expect: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var expires: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var from: HTTPTypes.HTTPField.Name {
+    get
+  }
+  @available(*, unavailable, message: "Use HTTPRequest.authority instead")
+  public static var host: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifMatch: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifModifiedSince: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifNoneMatch: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifRange: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifUnmodifiedSince: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var lastModified: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var location: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var maxForwards: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var origin: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var priority: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthenticate: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthenticationInfo: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthorization: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyStatus: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var range: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var referer: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var retryAfter: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secPurpose: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketAccept: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketExtensions: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketKey: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketProtocol: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketVersion: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var server: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var setCookie: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var strictTransportSecurity: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var te: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var trailer: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var transferEncoding: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var upgrade: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var userAgent: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var vary: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var via: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var wwwAuthenticate: HTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var xContentTypeOptions: HTTPTypes.HTTPField.Name {
+    get
+  }
+}
+public struct HTTPFields : Swift.Sendable, Swift.Hashable {
+  public init()
+  public subscript(name: HTTPTypes.HTTPField.Name) -> Swift.String? {
+    get
+    set
+  }
+  public subscript(values name: HTTPTypes.HTTPField.Name) -> [Swift.String] {
+    get
+    set
+  }
+  public subscript(fields name: HTTPTypes.HTTPField.Name) -> [HTTPTypes.HTTPField] {
+    get
+    set
+  }
+  public func contains(_ name: HTTPTypes.HTTPField.Name) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: HTTPTypes.HTTPFields, b: HTTPTypes.HTTPFields) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPFields : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (HTTPTypes.HTTPField.Name, Swift.String)...)
+  public typealias Key = HTTPTypes.HTTPField.Name
+  public typealias Value = Swift.String
+}
+extension HTTPTypes.HTTPFields : Swift.RangeReplaceableCollection, Swift.RandomAccessCollection, Swift.MutableCollection {
+  public typealias Element = HTTPTypes.HTTPField
+  public typealias Index = Swift.Int
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public subscript(position: Swift.Int) -> HTTPTypes.HTTPField {
+    get
+    set
+  }
+  public mutating func replaceSubrange<C>(_ subrange: Swift.Range<Swift.Int>, with newElements: C) where C : Swift.Collection, C.Element == HTTPTypes.HTTPField
+  public mutating func reserveCapacity(_ capacity: Swift.Int)
+  public typealias Indices = Swift.Range<HTTPTypes.HTTPFields.Index>
+  public typealias Iterator = Swift.IndexingIterator<HTTPTypes.HTTPFields>
+  public typealias SubSequence = Swift.Slice<HTTPTypes.HTTPFields>
+}
+extension HTTPTypes.HTTPFields : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension HTTPTypes.HTTPFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPRequest {
+  public init(parsed fields: [HTTPTypes.HTTPField]) throws
+}
+extension HTTPTypes.HTTPResponse {
+  public init(parsed fields: [HTTPTypes.HTTPField]) throws
+}
+extension HTTPTypes.HTTPFields {
+  public init(parsedTrailerFields fields: [HTTPTypes.HTTPField]) throws
+}
+public struct HTTPRequest : Swift.Sendable, Swift.Hashable {
+  public struct Method : Swift.Sendable, Swift.Hashable, Swift.RawRepresentable, Swift.LosslessStringConvertible {
+    public let rawValue: Swift.String
+    public init?(_ method: Swift.String)
+    public init?(rawValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+    public typealias RawValue = Swift.String
+  }
+  public var method: HTTPTypes.HTTPRequest.Method {
+    get
+    set
+  }
+  public var scheme: Swift.String? {
+    get
+    set
+  }
+  public var authority: Swift.String? {
+    get
+    set
+  }
+  public var path: Swift.String? {
+    get
+    set
+  }
+  public var extendedConnectProtocol: Swift.String? {
+    get
+    set
+  }
+  public struct PseudoHeaderFields : Swift.Sendable, Swift.Hashable {
+    public var method: HTTPTypes.HTTPField {
+      get
+      set
+    }
+    public var scheme: HTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var authority: HTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var path: HTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var extendedConnectProtocol: HTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: HTTPTypes.HTTPRequest.PseudoHeaderFields, b: HTTPTypes.HTTPRequest.PseudoHeaderFields) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var pseudoHeaderFields: HTTPTypes.HTTPRequest.PseudoHeaderFields
+  public var headerFields: HTTPTypes.HTTPFields
+  public init(method: HTTPTypes.HTTPRequest.Method, scheme: Swift.String?, authority: Swift.String?, path: Swift.String?, headerFields: HTTPTypes.HTTPFields = [:])
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: HTTPTypes.HTTPRequest, b: HTTPTypes.HTTPRequest) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPRequest : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension HTTPTypes.HTTPRequest.PseudoHeaderFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPRequest : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPRequest.Method {
+  public static var get: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var head: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var post: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var put: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var delete: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var connect: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var options: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var trace: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var patch: HTTPTypes.HTTPRequest.Method {
+    get
+  }
+}
+public struct HTTPResponse : Swift.Sendable, Swift.Hashable {
+  public struct Status : Swift.Sendable, Swift.Hashable, Swift.ExpressibleByIntegerLiteral, Swift.CustomStringConvertible {
+    public let code: Swift.Int
+    public let reasonPhrase: Swift.String
+    public init(code: Swift.Int, reasonPhrase: Swift.String = "")
+    public init(integerLiteral value: Swift.Int)
+    @frozen public enum Kind {
+      case invalid
+      case informational
+      case successful
+      case redirection
+      case clientError
+      case serverError
+      public static func == (a: HTTPTypes.HTTPResponse.Status.Kind, b: HTTPTypes.HTTPResponse.Status.Kind) -> Swift.Bool
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public var kind: HTTPTypes.HTTPResponse.Status.Kind {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (lhs: HTTPTypes.HTTPResponse.Status, rhs: HTTPTypes.HTTPResponse.Status) -> Swift.Bool
+    public var description: Swift.String {
+      get
+    }
+    public typealias IntegerLiteralType = Swift.Int
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var status: HTTPTypes.HTTPResponse.Status {
+    get
+    set
+  }
+  public struct PseudoHeaderFields : Swift.Sendable, Swift.Hashable {
+    public var status: HTTPTypes.HTTPField {
+      get
+      set
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: HTTPTypes.HTTPResponse.PseudoHeaderFields, b: HTTPTypes.HTTPResponse.PseudoHeaderFields) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var pseudoHeaderFields: HTTPTypes.HTTPResponse.PseudoHeaderFields
+  public var headerFields: HTTPTypes.HTTPFields
+  public init(status: HTTPTypes.HTTPResponse.Status, headerFields: HTTPTypes.HTTPFields = [:])
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: HTTPTypes.HTTPResponse, rhs: HTTPTypes.HTTPResponse) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPResponse : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension HTTPTypes.HTTPResponse.PseudoHeaderFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPResponse : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension HTTPTypes.HTTPResponse.Status {
+  public static var `continue`: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var switchingProtocols: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var earlyHints: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var ok: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var created: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var accepted: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var nonAuthoritativeInformation: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var noContent: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var resetContent: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var partialContent: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var multipleChoices: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var movedPermanently: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var found: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var seeOther: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notModified: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var temporaryRedirect: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var permanentRedirect: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var badRequest: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unauthorized: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var forbidden: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notFound: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var methodNotAllowed: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notAcceptable: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var proxyAuthenticationRequired: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var requestTimeout: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var conflict: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var gone: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var lengthRequired: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var preconditionFailed: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var contentTooLarge: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var uriTooLong: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unsupportedMediaType: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var rangeNotSatisfiable: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var expectationFailed: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var misdirectedRequest: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unprocessableContent: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var tooEarly: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var upgradeRequired: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var preconditionRequired: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var tooManyRequests: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var requestHeaderFieldsTooLarge: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unavailableForLegalReasons: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var internalServerError: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notImplemented: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var badGateway: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var serviceUnavailable: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var gatewayTimeout: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var httpVersionNotSupported: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var networkAuthenticationRequired: HTTPTypes.HTTPResponse.Status {
+    get
+  }
+}
+extension HTTPTypes.HTTPResponse.Status.Kind : Swift.Equatable {}
+extension HTTPTypes.HTTPResponse.Status.Kind : Swift.Hashable {}
+extension HTTPTypes.HTTPResponse.Status.Kind : Swift.Sendable {}
+extension HTTPTypes.HTTPResponse.Status.Kind : Swift.BitwiseCopyable {}

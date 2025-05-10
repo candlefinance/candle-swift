@@ -1,0 +1,294 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOEmbedded -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Atomics
+import Darwin
+import DequeModule
+import Dispatch
+import NIOConcurrencyHelpers
+import NIOCore
+import Swift
+import _Concurrency
+import _NIODataStructures
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+final public class NIOAsyncTestingChannel : NIOCore.Channel {
+  public enum LeftOverState {
+    case clean
+    case leftOvers(inbound: NIOCore.CircularBuffer<NIOCore.NIOAny>, outbound: NIOCore.CircularBuffer<NIOCore.NIOAny>, pendingOutbound: [NIOCore.NIOAny])
+    public var isClean: Swift.Bool {
+      get
+    }
+    public var hasLeftOvers: Swift.Bool {
+      get
+    }
+  }
+  public enum BufferState {
+    case empty
+    case full(NIOCore.CircularBuffer<NIOCore.NIOAny>)
+    public var isEmpty: Swift.Bool {
+      get
+    }
+    public var isFull: Swift.Bool {
+      get
+    }
+  }
+  public struct WrongTypeError : Swift.Error, Swift.Equatable {
+    public let expected: any Any.Type
+    public let actual: any Any.Type
+    public init(expected: any Any.Type, actual: any Any.Type)
+    public static func == (lhs: NIOEmbedded.NIOAsyncTestingChannel.WrongTypeError, rhs: NIOEmbedded.NIOAsyncTestingChannel.WrongTypeError) -> Swift.Bool
+  }
+  final public var isActive: Swift.Bool {
+    get
+  }
+  final public var allowRemoteHalfClosure: Swift.Bool {
+    get
+    set
+  }
+  final public var closeFuture: NIOCore.EventLoopFuture<Swift.Void> {
+    get
+  }
+  final public let allocator: NIOCore.ByteBufferAllocator
+  final public var eventLoop: any NIOCore.EventLoop {
+    get
+  }
+  final public let testingEventLoop: NIOEmbedded.NIOAsyncTestingEventLoop
+  final public let parent: (any NIOCore.Channel)?
+  final public var _channelCore: any NIOCore.ChannelCore {
+    get
+  }
+  final public var pipeline: NIOCore.ChannelPipeline {
+    get
+  }
+  final public var isWritable: Swift.Bool {
+    get
+    set
+  }
+  final public var localAddress: NIOCore.SocketAddress? {
+    get
+    set
+  }
+  final public var remoteAddress: NIOCore.SocketAddress? {
+    get
+    set
+  }
+  public init(loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop())
+  @preconcurrency convenience public init(handler: any NIOCore.ChannelHandler & Swift.Sendable, loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop()) async
+  @preconcurrency convenience public init(handlers: [any NIOCore.ChannelHandler & Swift.Sendable], loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop()) async
+  convenience public init(loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop(), channelInitializer: @escaping @Sendable (NIOEmbedded.NIOAsyncTestingChannel) throws -> Swift.Void) async throws
+  final public func finish(acceptAlreadyClosed: Swift.Bool) async throws -> NIOEmbedded.NIOAsyncTestingChannel.LeftOverState
+  final public func finish() async throws -> NIOEmbedded.NIOAsyncTestingChannel.LeftOverState
+  final public func readOutbound<T>(as type: T.Type = T.self) async throws -> T? where T : Swift.Sendable
+  final public func waitForOutboundWrite<T>(as type: T.Type = T.self) async throws -> T where T : Swift.Sendable
+  final public func readInbound<T>(as type: T.Type = T.self) async throws -> T? where T : Swift.Sendable
+  final public func waitForInboundWrite<T>(as type: T.Type = T.self) async throws -> T where T : Swift.Sendable
+  @discardableResult
+  final public func writeInbound<T>(_ data: T) async throws -> NIOEmbedded.NIOAsyncTestingChannel.BufferState where T : Swift.Sendable
+  @discardableResult
+  final public func writeOutbound<T>(_ data: T) async throws -> NIOEmbedded.NIOAsyncTestingChannel.BufferState where T : Swift.Sendable
+  final public func throwIfErrorCaught() async throws
+  final public func setOption<Option>(_ option: Option, value: Option.Value) -> NIOCore.EventLoopFuture<Swift.Void> where Option : NIOCore.ChannelOption
+  final public func getOption<Option>(_ option: Option) -> NIOCore.EventLoopFuture<Option.Value> where Option : NIOCore.ChannelOption
+  final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  public struct SynchronousOptions : NIOCore.NIOSynchronousChannelOptions {
+    public func setOption<Option>(_ option: Option, value: Option.Value) throws where Option : NIOCore.ChannelOption
+    public func getOption<Option>(_ option: Option) throws -> Option.Value where Option : NIOCore.ChannelOption
+  }
+  final public var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? {
+    get
+  }
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension NIOEmbedded.NIOAsyncTestingChannel.LeftOverState : @unchecked Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension NIOEmbedded.NIOAsyncTestingChannel.BufferState : @unchecked Swift.Sendable {
+}
+@available(*, unavailable)
+extension NIOEmbedded.NIOAsyncTestingChannel.SynchronousOptions : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+final public class NIOAsyncTestingEventLoop : NIOCore.EventLoop, @unchecked Swift.Sendable {
+  final public var now: NIOCore.NIODeadline {
+    get
+  }
+  final public var inEventLoop: Swift.Bool {
+    get
+  }
+  public init()
+  @discardableResult
+  @preconcurrency final public func scheduleTask<T>(deadline: NIOCore.NIODeadline, _ task: @escaping @Sendable () throws -> T) -> NIOCore.Scheduled<T>
+  @discardableResult
+  @preconcurrency final public func scheduleTask<T>(in: NIOCore.TimeAmount, _ task: @escaping @Sendable () throws -> T) -> NIOCore.Scheduled<T>
+  @preconcurrency final public func scheduleCallback(at deadline: NIOCore.NIODeadline, handler: some (NIOScheduledCallbackHandler & Sendable)) throws -> NIOCore.NIOScheduledCallback
+  @discardableResult
+  @preconcurrency final public func scheduleCallback(in amount: NIOCore.TimeAmount, handler: some (NIOScheduledCallbackHandler & Sendable)) throws -> NIOCore.NIOScheduledCallback
+  @preconcurrency final public func execute(_ task: @escaping @Sendable () -> Swift.Void)
+  final public func run() async
+  final public func advanceTime(by increment: NIOCore.TimeAmount) async
+  final public func advanceTime(to deadline: NIOCore.NIODeadline) async
+  final public func executeInContext<ReturnType>(_ task: @escaping @Sendable () throws -> ReturnType) async throws -> ReturnType where ReturnType : Swift.Sendable
+  @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  final public func shutdownGracefully() async
+  final public func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
+  final public func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  final public func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
+  final public func _executeIsolatedUnsafeUnchecked(_ task: @escaping () -> Swift.Void)
+  final public func _submitIsolatedUnsafeUnchecked<T>(_ task: @escaping () throws -> T) -> NIOCore.EventLoopFuture<T>
+  @discardableResult
+  final public func _scheduleTaskIsolatedUnsafeUnchecked<T>(deadline: NIOCore.NIODeadline, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  @discardableResult
+  final public func _scheduleTaskIsolatedUnsafeUnchecked<T>(in delay: NIOCore.TimeAmount, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  final public func preconditionInEventLoop(file: Swift.StaticString, line: Swift.UInt)
+  final public func preconditionNotInEventLoop(file: Swift.StaticString, line: Swift.UInt)
+  @objc deinit
+}
+@available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+extension NIOEmbedded.NIOAsyncTestingEventLoop : NIOCore.NIOSerialEventLoopExecutor {
+}
+final public class EmbeddedEventLoop : NIOCore.EventLoop, Swift.CustomStringConvertible {
+  final public var now: NIOCore.NIODeadline {
+    get
+  }
+  final public let description: Swift.String
+  final public var inEventLoop: Swift.Bool {
+    get
+  }
+  final public func checkCorrectThread()
+  public init()
+  @discardableResult
+  final public func scheduleTask<T>(deadline: NIOCore.NIODeadline, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  @discardableResult
+  final public func scheduleTask<T>(in: NIOCore.TimeAmount, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  @discardableResult
+  @preconcurrency final public func scheduleCallback(in amount: NIOCore.TimeAmount, handler: some (NIOScheduledCallbackHandler & Sendable)) -> NIOCore.NIOScheduledCallback
+  final public func execute(_ task: @escaping () -> Swift.Void)
+  final public func run()
+  final public func advanceTime(by increment: NIOCore.TimeAmount)
+  final public func advanceTime(to deadline: NIOCore.NIODeadline)
+  final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping ((any Swift.Error)?) -> Swift.Void)
+  final public func preconditionInEventLoop(file: Swift.StaticString, line: Swift.UInt)
+  final public func preconditionNotInEventLoop(file: Swift.StaticString, line: Swift.UInt)
+  final public func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
+  final public func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  final public func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
+  final public func _executeIsolatedUnsafeUnchecked(_ task: @escaping () -> Swift.Void)
+  final public func _submitIsolatedUnsafeUnchecked<T>(_ task: @escaping () throws -> T) -> NIOCore.EventLoopFuture<T>
+  @discardableResult
+  final public func _scheduleTaskIsolatedUnsafeUnchecked<T>(deadline: NIOCore.NIODeadline, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  @discardableResult
+  final public func _scheduleTaskIsolatedUnsafeUnchecked<T>(in delay: NIOCore.TimeAmount, _ task: @escaping () throws -> T) -> NIOCore.Scheduled<T>
+  @objc deinit
+  @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+  final public var executor: any _Concurrency.SerialExecutor {
+    get
+  }
+}
+extension NIOEmbedded.EmbeddedEventLoop : @unchecked Swift.Sendable {
+}
+final public class EmbeddedChannel : NIOCore.Channel {
+  public enum LeftOverState {
+    case clean
+    case leftOvers(inbound: [NIOCore.NIOAny], outbound: [NIOCore.NIOAny], pendingOutbound: [NIOCore.NIOAny])
+    public var isClean: Swift.Bool {
+      get
+    }
+    public var hasLeftOvers: Swift.Bool {
+      get
+    }
+  }
+  public enum BufferState {
+    case empty
+    case full([NIOCore.NIOAny])
+    public var isEmpty: Swift.Bool {
+      get
+    }
+    public var isFull: Swift.Bool {
+      get
+    }
+  }
+  public struct WrongTypeError : Swift.Error, Swift.Equatable {
+    public let expected: any Any.Type
+    public let actual: any Any.Type
+    public init(expected: any Any.Type, actual: any Any.Type)
+    public static func == (lhs: NIOEmbedded.EmbeddedChannel.WrongTypeError, rhs: NIOEmbedded.EmbeddedChannel.WrongTypeError) -> Swift.Bool
+  }
+  final public var isActive: Swift.Bool {
+    get
+  }
+  final public var allowRemoteHalfClosure: Swift.Bool {
+    get
+    set
+  }
+  final public var closeFuture: NIOCore.EventLoopFuture<Swift.Void> {
+    get
+  }
+  final public var _channelCore: any NIOCore.ChannelCore {
+    get
+  }
+  final public var pipeline: NIOCore.ChannelPipeline {
+    get
+  }
+  final public var isWritable: Swift.Bool
+  final public func finish(acceptAlreadyClosed: Swift.Bool) throws -> NIOEmbedded.EmbeddedChannel.LeftOverState
+  final public func finish() throws -> NIOEmbedded.EmbeddedChannel.LeftOverState
+  final public var allocator: NIOCore.ByteBufferAllocator
+  final public var eventLoop: any NIOCore.EventLoop {
+    get
+  }
+  final public var embeddedEventLoop: NIOEmbedded.EmbeddedEventLoop
+  final public var localAddress: NIOCore.SocketAddress? {
+    get
+    set
+  }
+  final public var remoteAddress: NIOCore.SocketAddress? {
+    get
+    set
+  }
+  final public let parent: (any NIOCore.Channel)?
+  final public func readOutbound<T>(as type: T.Type = T.self) throws -> T?
+  final public func readInbound<T>(as type: T.Type = T.self) throws -> T?
+  @discardableResult
+  final public func writeInbound<T>(_ data: T) throws -> NIOEmbedded.EmbeddedChannel.BufferState
+  @discardableResult
+  final public func writeOutbound<T>(_ data: T) throws -> NIOEmbedded.EmbeddedChannel.BufferState
+  final public func throwIfErrorCaught() throws
+  convenience public init(handler: (any NIOCore.ChannelHandler)? = nil, loop: NIOEmbedded.EmbeddedEventLoop = EmbeddedEventLoop())
+  public init(handlers: [any NIOCore.ChannelHandler], loop: NIOEmbedded.EmbeddedEventLoop = EmbeddedEventLoop())
+  final public func setOption<Option>(_ option: Option, value: Option.Value) -> NIOCore.EventLoopFuture<Swift.Void> where Option : NIOCore.ChannelOption
+  final public func getOption<Option>(_ option: Option) -> NIOCore.EventLoopFuture<Option.Value> where Option : NIOCore.ChannelOption
+  final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  final public func write<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  final public func write<T>(_ data: T) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func writeAndFlush<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  final public func writeAndFlush<T>(_ data: T) -> NIOCore.EventLoopFuture<Swift.Void>
+  @objc deinit
+}
+extension NIOEmbedded.EmbeddedChannel {
+  public struct SynchronousOptions : NIOCore.NIOSynchronousChannelOptions {
+    public func setOption<Option>(_ option: Option, value: Option.Value) throws where Option : NIOCore.ChannelOption
+    public func getOption<Option>(_ option: Option) throws -> Option.Value where Option : NIOCore.ChannelOption
+  }
+  final public var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? {
+    get
+  }
+}
+extension NIOEmbedded.EmbeddedChannel : @unchecked Swift.Sendable {
+}
+@available(*, unavailable)
+extension NIOEmbedded.EmbeddedChannel.LeftOverState : @unchecked Swift.Sendable {
+}
+@available(*, unavailable)
+extension NIOEmbedded.EmbeddedChannel.BufferState : @unchecked Swift.Sendable {
+}
+@available(*, unavailable)
+extension NIOEmbedded.EmbeddedChannel.SynchronousOptions : Swift.Sendable {
+}

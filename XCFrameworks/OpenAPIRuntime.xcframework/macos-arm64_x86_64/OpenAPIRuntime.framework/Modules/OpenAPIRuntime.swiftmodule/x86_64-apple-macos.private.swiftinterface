@@ -1,0 +1,1123 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-macos10.15 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name OpenAPIRuntime -package-name swift_openapi_runtime
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import CoreFoundation
+import Foundation
+import Foundation/*.Data*/
+import Foundation/*.JSONDecoder*/
+import Foundation/*.JSONEncoder*/
+import Foundation/*.LocalizedError*/
+import Foundation/*.NSLock*/
+import Foundation/*.NSNull*/
+import Foundation/*.NSNumber*/
+import Foundation/*.URL*/
+import Foundation/*.URLComponents*/
+import HTTPTypes
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol AcceptableProtocol : Swift.CaseIterable, Swift.Hashable, Swift.RawRepresentable, Swift.Sendable where Self.RawValue == Swift.String {
+}
+public struct QualityValue : Swift.Sendable, Swift.Hashable {
+  public var isDefault: Swift.Bool {
+    get
+  }
+  public init(doubleValue: Swift.Double)
+  public var doubleValue: Swift.Double {
+    get
+  }
+}
+extension OpenAPIRuntime.QualityValue : Swift.RawRepresentable {
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension OpenAPIRuntime.QualityValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.UInt16)
+  public typealias IntegerLiteralType = Swift.UInt16
+}
+extension OpenAPIRuntime.QualityValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension Swift.Array {
+  public static func defaultValues<T>() -> [OpenAPIRuntime.AcceptHeaderContentType<T>] where Element == OpenAPIRuntime.AcceptHeaderContentType<T>, T : OpenAPIRuntime.AcceptableProtocol
+}
+public struct AcceptHeaderContentType<ContentType> : Swift.Sendable, Swift.Hashable where ContentType : OpenAPIRuntime.AcceptableProtocol {
+  public var contentType: ContentType
+  public var quality: OpenAPIRuntime.QualityValue
+  public init(contentType: ContentType, quality: OpenAPIRuntime.QualityValue = 1.0)
+  public static var defaultValues: [OpenAPIRuntime.AcceptHeaderContentType<ContentType>] {
+    get
+  }
+}
+extension OpenAPIRuntime.AcceptHeaderContentType : Swift.RawRepresentable {
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension Swift.Array {
+  public func sortedByQuality<T>() -> [OpenAPIRuntime.AcceptHeaderContentType<T>] where Element == OpenAPIRuntime.AcceptHeaderContentType<T>, T : OpenAPIRuntime.AcceptableProtocol
+}
+public struct Base64EncodedData : Swift.Sendable, Swift.Hashable {
+  public var data: Swift.ArraySlice<Swift.UInt8>
+  public init(_ data: Swift.ArraySlice<Swift.UInt8>)
+  public init(_ data: some Sequence<UInt8>)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.Base64EncodedData, b: OpenAPIRuntime.Base64EncodedData) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OpenAPIRuntime.Base64EncodedData : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Swift.UInt8...)
+  public typealias ArrayLiteralElement = Swift.UInt8
+}
+extension OpenAPIRuntime.Base64EncodedData : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_spi(Generated) public struct CopyOnWriteBox<Wrapped> {
+  @_spi(Generated) @usableFromInline
+  final internal class Storage {
+    @_spi(Generated) @usableFromInline
+    final internal var value: Wrapped
+    @_spi(Generated) @usableFromInline
+    internal init(value: Wrapped)
+    @_spi(Generated) @objc @usableFromInline
+    deinit
+  }
+  @_spi(Generated) @usableFromInline
+  internal var storage: OpenAPIRuntime.CopyOnWriteBox<Wrapped>.Storage
+  @_spi(Generated) public init(value: Wrapped)
+  @_spi(Generated) @inlinable public var value: Wrapped {
+    @_spi(Generated) get { storage.value }
+    @_spi(Generated) _modify {
+            if !isKnownUniquelyReferenced(&storage) { storage = Storage(value: storage.value) }
+            yield &storage.value
+        }
+  }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.Encodable where Wrapped : Swift.Encodable {
+  @_spi(Generated) @inlinable public func encode(to encoder: any Swift.Encoder) throws { try value.encode(to: encoder) }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.Decodable where Wrapped : Swift.Decodable {
+  @_spi(Generated) @inlinable public init(from decoder: any Swift.Decoder) throws {
+        let value = try Wrapped(from: decoder)
+        self.init(value: value)
+    }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.Equatable where Wrapped : Swift.Equatable {
+  @_spi(Generated) @inlinable public static func == (lhs: OpenAPIRuntime.CopyOnWriteBox<Wrapped>, rhs: OpenAPIRuntime.CopyOnWriteBox<Wrapped>) -> Swift.Bool {
+        lhs.value == rhs.value
+    }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.Hashable where Wrapped : Swift.Hashable {
+  @_spi(Generated) @inlinable public func hash(into hasher: inout Swift.Hasher) { hasher.combine(value) }
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.CustomStringConvertible where Wrapped : Swift.CustomStringConvertible {
+  @_spi(Generated) @inlinable public var description: Swift.String {
+    @_spi(Generated) get { value.description }
+  }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : Swift.CustomDebugStringConvertible where Wrapped : Swift.CustomDebugStringConvertible {
+  @_spi(Generated) @inlinable public var debugDescription: Swift.String {
+    @_spi(Generated) get { value.debugDescription }
+  }
+}
+@_spi(Generated) extension OpenAPIRuntime.CopyOnWriteBox : @unchecked Swift.Sendable where Wrapped : Swift.Sendable {
+}
+@_spi(Generated) public struct OpenAPIMIMEType : Swift.Equatable, Swift.Sendable {
+  @_spi(Generated) public static let xml: OpenAPIRuntime.OpenAPIMIMEType
+  @_spi(Generated) public enum Kind : Swift.Equatable, Swift.Sendable {
+    @_spi(Generated) case any
+    @_spi(Generated) case anySubtype(type: Swift.String)
+    @_spi(Generated) case concrete(type: Swift.String, subtype: Swift.String)
+    @_spi(Generated) public static func == (lhs: OpenAPIRuntime.OpenAPIMIMEType.Kind, rhs: OpenAPIRuntime.OpenAPIMIMEType.Kind) -> Swift.Bool
+  }
+  @_spi(Generated) public var kind: OpenAPIRuntime.OpenAPIMIMEType.Kind
+  @_spi(Generated) public var parameters: [Swift.String : Swift.String]
+  @_spi(Generated) public init(kind: OpenAPIRuntime.OpenAPIMIMEType.Kind, parameters: [Swift.String : Swift.String] = [:])
+  @_spi(Generated) public static func == (lhs: OpenAPIRuntime.OpenAPIMIMEType, rhs: OpenAPIRuntime.OpenAPIMIMEType) -> Swift.Bool
+}
+@_spi(Generated) extension OpenAPIRuntime.OpenAPIMIMEType.Kind : Swift.LosslessStringConvertible {
+  @_spi(Generated) public init?(_ description: Swift.String)
+  @_spi(Generated) public var description: Swift.String {
+    @_spi(Generated) get
+  }
+}
+@_spi(Generated) extension OpenAPIRuntime.OpenAPIMIMEType : Swift.LosslessStringConvertible {
+  @_spi(Generated) public init?(_ description: Swift.String)
+  @_spi(Generated) public var description: Swift.String {
+    @_spi(Generated) get
+  }
+}
+public struct OpenAPIValueContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: (any Swift.Sendable)?
+  public init(unvalidatedValue: (any Swift.Sendable)? = nil) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: OpenAPIRuntime.OpenAPIValueContainer, rhs: OpenAPIRuntime.OpenAPIValueContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.BooleanLiteralType)
+  public typealias BooleanLiteralType = Swift.BooleanLiteralType
+}
+extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByNilLiteral {
+  public init(nilLiteral: ())
+}
+extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+public struct OpenAPIObjectContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: [Swift.String : (any Swift.Sendable)?]
+  public init()
+  public init(unvalidatedValue: [Swift.String : (any Swift.Sendable)?]) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: OpenAPIRuntime.OpenAPIObjectContainer, rhs: OpenAPIRuntime.OpenAPIObjectContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OpenAPIArrayContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: [(any Swift.Sendable)?]
+  public init()
+  public init(unvalidatedValue: [(any Swift.Sendable)?]) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: OpenAPIRuntime.OpenAPIArrayContainer, rhs: OpenAPIRuntime.OpenAPIArrayContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct UndocumentedPayload : Swift.Sendable, Swift.Hashable {
+  public var headerFields: HTTPTypes.HTTPFields
+  public var body: OpenAPIRuntime.HTTPBody?
+  public init(headerFields: HTTPTypes.HTTPFields = [:], body: OpenAPIRuntime.HTTPBody? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.UndocumentedPayload, b: OpenAPIRuntime.UndocumentedPayload) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_spi(Generated) @inline(__always) public func suppressMutabilityWarning<T>(_ value: inout T)
+@_spi(Generated) @inline(__always) public func suppressUnusedWarning<T>(_ value: T)
+@_spi(Generated) extension Swift.Decoder {
+  @_spi(Generated) public func ensureNoAdditionalProperties(knownKeys: Swift.Set<Swift.String>) throws
+  @_spi(Generated) public func decodeAdditionalProperties(knownKeys: Swift.Set<Swift.String>) throws -> OpenAPIRuntime.OpenAPIObjectContainer
+  @_spi(Generated) public func decodeAdditionalProperties<T>(knownKeys: Swift.Set<Swift.String>) throws -> [Swift.String : T] where T : Swift.Decodable
+  @_spi(Generated) public func decodeFromSingleValueContainer<T>(_ type: T.Type = T.self) throws -> T where T : Swift.Decodable
+}
+@_spi(Generated) extension Swift.Encoder {
+  @_spi(Generated) public func encodeAdditionalProperties(_ additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer) throws
+  @_spi(Generated) public func encodeAdditionalProperties<T>(_ additionalProperties: [Swift.String : T]) throws where T : Swift.Encodable
+  @_spi(Generated) public func encodeToSingleValueContainer<T>(_ value: T) throws where T : Swift.Encodable
+  @_spi(Generated) public func encodeFirstNonNilValueToSingleValueContainer(_ values: [(any Swift.Encodable)?]) throws
+}
+public protocol DateTranscoder : Swift.Sendable {
+  func encode(_: Foundation.Date) throws -> Swift.String
+  func decode(_: Swift.String) throws -> Foundation.Date
+}
+public struct ISO8601DateTranscoder : OpenAPIRuntime.DateTranscoder, @unchecked Swift.Sendable {
+  public init(options: Foundation.ISO8601DateFormatter.Options? = nil)
+  public func encode(_ date: Foundation.Date) throws -> Swift.String
+  public func decode(_ dateString: Swift.String) throws -> Foundation.Date
+}
+extension OpenAPIRuntime.DateTranscoder where Self == OpenAPIRuntime.ISO8601DateTranscoder {
+  public static var iso8601: OpenAPIRuntime.ISO8601DateTranscoder {
+    get
+  }
+  public static var iso8601WithFractionalSeconds: OpenAPIRuntime.ISO8601DateTranscoder {
+    get
+  }
+}
+public protocol CustomCoder : Swift.Sendable {
+  func customEncode<T>(_ value: T) throws -> Foundation.Data where T : Swift.Encodable
+  func customDecode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+}
+public struct JSONEncodingOptions : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.UInt
+  public init(rawValue: Swift.UInt)
+  public static let prettyPrinted: OpenAPIRuntime.JSONEncodingOptions
+  public static let sortedKeys: OpenAPIRuntime.JSONEncodingOptions
+  public static let withoutEscapingSlashes: OpenAPIRuntime.JSONEncodingOptions
+  public typealias ArrayLiteralElement = OpenAPIRuntime.JSONEncodingOptions
+  public typealias Element = OpenAPIRuntime.JSONEncodingOptions
+  public typealias RawValue = Swift.UInt
+}
+public struct Configuration : Swift.Sendable {
+  public var dateTranscoder: any OpenAPIRuntime.DateTranscoder
+  public var jsonEncodingOptions: OpenAPIRuntime.JSONEncodingOptions
+  public var multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator
+  public var xmlCoder: (any OpenAPIRuntime.CustomCoder)?
+  public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, jsonEncodingOptions: OpenAPIRuntime.JSONEncodingOptions = [.sortedKeys, .prettyPrinted], multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any OpenAPIRuntime.CustomCoder)? = nil)
+}
+@_spi(Generated) extension OpenAPIRuntime.Converter {
+  @_spi(Generated) public func setAcceptHeader<T>(in headerFields: inout HTTPTypes.HTTPFields, contentTypes: [OpenAPIRuntime.AcceptHeaderContentType<T>]) where T : OpenAPIRuntime.AcceptableProtocol
+  @_spi(Generated) public func renderedPath(template: Swift.String, parameters: [any Swift.Encodable]) throws -> Swift.String
+  @_spi(Generated) public func setQueryItemAsURI<T>(in request: inout HTTPTypes.HTTPRequest, style: OpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  @_spi(Generated) public func setOptionalRequestBodyAsJSON<T>(_ value: T?, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  @_spi(Generated) public func setRequiredRequestBodyAsJSON<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setOptionalRequestBodyAsXML<T>(_ value: T?, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  @_spi(Generated) public func setRequiredRequestBodyAsXML<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setOptionalRequestBodyAsBinary(_ value: OpenAPIRuntime.HTTPBody?, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody?
+  @_spi(Generated) public func setRequiredRequestBodyAsBinary(_ value: OpenAPIRuntime.HTTPBody, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody
+  @_spi(Generated) public func setOptionalRequestBodyAsURLEncodedForm<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  @_spi(Generated) public func setRequiredRequestBodyAsURLEncodedForm<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setRequiredRequestBodyAsMultipart<Part>(_ value: OpenAPIRuntime.MultipartBody<Part>, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, encoding encode: @escaping @Sendable (Part) throws -> OpenAPIRuntime.MultipartRawPart) throws -> OpenAPIRuntime.HTTPBody where Part : Swift.Sendable
+  @_spi(Generated) public func getResponseBodyAsJSON<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  @_spi(Generated) public func getResponseBodyAsXML<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  @_spi(Generated) public func getResponseBodyAsBinary<C>(_ type: OpenAPIRuntime.HTTPBody.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (OpenAPIRuntime.HTTPBody) -> C) throws -> C
+  @_spi(Generated) public func getResponseBodyAsMultipart<C, Part>(_ type: OpenAPIRuntime.MultipartBody<Part>.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: @escaping @Sendable (OpenAPIRuntime.MultipartBody<Part>) throws -> C, boundary: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, decoding decoder: @escaping @Sendable (OpenAPIRuntime.MultipartRawPart) async throws -> Part) throws -> C where Part : Swift.Sendable
+}
+@_spi(Generated) extension OpenAPIRuntime.Converter {
+  @_spi(Generated) public func extractContentTypeIfPresent(in headerFields: HTTPTypes.HTTPFields) -> OpenAPIRuntime.OpenAPIMIMEType?
+  @_spi(Generated) public func bestContentType(received: OpenAPIRuntime.OpenAPIMIMEType?, options: [Swift.String]) throws -> Swift.String
+  @_spi(Generated) public func verifyContentTypeIfPresent(in headerFields: HTTPTypes.HTTPFields, matches match: Swift.String) throws
+  @_spi(Generated) public func extractContentDispositionNameAndFilename(in headerFields: HTTPTypes.HTTPFields) throws -> (name: Swift.String?, filename: Swift.String?)
+  @_spi(Generated) public func setHeaderFieldAsURI<T>(in headerFields: inout HTTPTypes.HTTPFields, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  @_spi(Generated) public func setHeaderFieldAsJSON<T>(in headerFields: inout HTTPTypes.HTTPFields, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  @_spi(Generated) public func getOptionalHeaderFieldAsURI<T>(in headerFields: HTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredHeaderFieldAsURI<T>(in headerFields: HTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  @_spi(Generated) public func getOptionalHeaderFieldAsJSON<T>(in headerFields: HTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredHeaderFieldAsJSON<T>(in headerFields: HTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+}
+@_spi(Generated) extension OpenAPIRuntime.Converter {
+  @_spi(Generated) public func extractAcceptHeaderIfPresent<T>(in headerFields: HTTPTypes.HTTPFields) throws -> [OpenAPIRuntime.AcceptHeaderContentType<T>] where T : OpenAPIRuntime.AcceptableProtocol
+  @_spi(Generated) public func validateAcceptIfPresent(_ substring: Swift.String, in headerFields: HTTPTypes.HTTPFields) throws
+  @_spi(Generated) public func getPathParameterAsURI<T>(in pathParameters: [Swift.String : Swift.Substring], name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  @_spi(Generated) public func getOptionalQueryItemAsURI<T>(in query: Swift.Substring?, style: OpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredQueryItemAsURI<T>(in query: Swift.Substring?, style: OpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  @_spi(Generated) public func getOptionalRequestBodyAsJSON<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredRequestBodyAsJSON<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  @_spi(Generated) public func getOptionalRequestBodyAsXML<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredRequestBodyAsXML<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  @_spi(Generated) public func getOptionalRequestBodyAsBinary<C>(_ type: OpenAPIRuntime.HTTPBody.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (OpenAPIRuntime.HTTPBody) -> C) throws -> C?
+  @_spi(Generated) public func getRequiredRequestBodyAsBinary<C>(_ type: OpenAPIRuntime.HTTPBody.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (OpenAPIRuntime.HTTPBody) -> C) throws -> C
+  @_spi(Generated) public func getOptionalRequestBodyAsURLEncodedForm<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredRequestBodyAsURLEncodedForm<T, C>(_ type: T.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  @_spi(Generated) public func getRequiredRequestBodyAsMultipart<C, Part>(_ type: OpenAPIRuntime.MultipartBody<Part>.Type, from data: OpenAPIRuntime.HTTPBody?, transforming transform: @escaping @Sendable (OpenAPIRuntime.MultipartBody<Part>) throws -> C, boundary: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, decoding decoder: @escaping @Sendable (OpenAPIRuntime.MultipartRawPart) async throws -> Part) throws -> C where Part : Swift.Sendable
+  @_spi(Generated) public func setResponseBodyAsJSON<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setResponseBodyAsXML<T>(_ value: T, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setResponseBodyAsBinary(_ value: OpenAPIRuntime.HTTPBody, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String) throws -> OpenAPIRuntime.HTTPBody
+  @_spi(Generated) public func setResponseBodyAsMultipart<Part>(_ value: OpenAPIRuntime.MultipartBody<Part>, headerFields: inout HTTPTypes.HTTPFields, contentType: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, encoding encode: @escaping @Sendable (Part) throws -> OpenAPIRuntime.MultipartRawPart) throws -> OpenAPIRuntime.HTTPBody where Part : Swift.Sendable
+}
+@_spi(Generated) public struct Converter : Swift.Sendable {
+  @_spi(Generated) public let configuration: OpenAPIRuntime.Configuration
+  @_spi(Generated) public init(configuration: OpenAPIRuntime.Configuration)
+}
+extension Swift.DecodingError {
+  @_spi(Generated) public static func failedToDecodeOneOfSchema(type: any Any.Type, codingPath: [any Swift.CodingKey], errors: [any Swift.Error]) -> Swift.DecodingError
+  @_spi(Generated) public static func unknownOneOfDiscriminator(discriminatorKey: any Swift.CodingKey, discriminatorValue: Swift.String, codingPath: [any Swift.CodingKey]) -> Swift.DecodingError
+  @_spi(Generated) public static func verifyAtLeastOneSchemaIsNotNil(_ values: [Any?], type: any Any.Type, codingPath: [any Swift.CodingKey], errors: [any Swift.Error]) throws
+}
+@_spi(Generated) public enum ParameterStyle : Swift.Sendable {
+  @_spi(Generated) case form
+  @_spi(Generated) case simple
+  @_spi(Generated) case deepObject
+  @_spi(Generated) public static func == (a: OpenAPIRuntime.ParameterStyle, b: OpenAPIRuntime.ParameterStyle) -> Swift.Bool
+  @_spi(Generated) public func hash(into hasher: inout Swift.Hasher)
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+extension Foundation.URL {
+  @_spi(Generated) public init(validatingOpenAPIServerURL string: Swift.String, variables: [OpenAPIRuntime.ServerVariable]) throws
+}
+@_spi(Generated) public struct ServerVariable : Swift.Sendable, Swift.Hashable {
+  @_spi(Generated) public var name: Swift.String
+  @_spi(Generated) public var value: Swift.String
+  @_spi(Generated) public var allowedValues: [Swift.String]?
+  @_spi(Generated) public init(name: Swift.String, value: Swift.String, allowedValues: [Swift.String]? = nil)
+  @_spi(Generated) public func hash(into hasher: inout Swift.Hasher)
+  @_spi(Generated) public static func == (a: OpenAPIRuntime.ServerVariable, b: OpenAPIRuntime.ServerVariable) -> Swift.Bool
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+extension Foundation.URL {
+  public static let defaultOpenAPIServerURL: Foundation.URL
+  public init(validatingOpenAPIServerURL string: Swift.String) throws
+}
+extension OpenAPIRuntime.UndocumentedPayload {
+  @available(*, deprecated, renamed: "init(headerFields:body:)")
+  @_disfavoredOverload public init()
+}
+extension OpenAPIRuntime.Configuration {
+  @available(*, deprecated, renamed: "init(dateTranscoder:multipartBoundaryGenerator:xmlCoder:)")
+  @_disfavoredOverload public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random)
+  @available(*, deprecated, renamed: "init(dateTranscoder:jsonEncodingOptions:multipartBoundaryGenerator:xmlCoder:)")
+  @_disfavoredOverload public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any OpenAPIRuntime.CustomCoder)? = nil)
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  @available(*, deprecated, renamed: "asDecodedServerSentEvents(while:)")
+  @_disfavoredOverload public func asDecodedServerSentEvents() -> OpenAPIRuntime.ServerSentEventsDeserializationSequence<OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>
+  @available(*, deprecated, renamed: "asDecodedServerSentEventsWithJSONData(of:decoder:while:)")
+  @_disfavoredOverload public func asDecodedServerSentEventsWithJSONData<JSONDataType>(of dataType: JSONDataType.Type = JSONDataType.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.ServerSentEventsDeserializationSequence<OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>, OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>> where JSONDataType : Swift.Decodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable
+}
+extension OpenAPIRuntime.ServerSentEventsDeserializationSequence {
+  @available(*, deprecated, renamed: "init(upstream:while:)")
+  @_disfavoredOverload public init(upstream: Upstream)
+}
+public struct ClientError : Swift.Error {
+  public var operationID: Swift.String
+  public var operationInput: any Swift.Sendable
+  public var request: HTTPTypes.HTTPRequest?
+  public var requestBody: OpenAPIRuntime.HTTPBody?
+  public var baseURL: Foundation.URL?
+  public var response: HTTPTypes.HTTPResponse?
+  public var responseBody: OpenAPIRuntime.HTTPBody?
+  public var causeDescription: Swift.String
+  public var underlyingError: any Swift.Error
+  public init(operationID: Swift.String, operationInput: any Swift.Sendable, request: HTTPTypes.HTTPRequest? = nil, requestBody: OpenAPIRuntime.HTTPBody? = nil, baseURL: Foundation.URL? = nil, response: HTTPTypes.HTTPResponse? = nil, responseBody: OpenAPIRuntime.HTTPBody? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+}
+extension OpenAPIRuntime.ClientError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OpenAPIRuntime.ClientError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@_spi(Generated) public func throwUnexpectedResponseStatus(expectedStatus: Swift.String, response: any Swift.Sendable) throws -> Swift.Never
+@_spi(Generated) public func throwUnexpectedResponseBody(expectedContent: Swift.String, body: any Swift.Sendable) throws -> Swift.Never
+public struct ServerError : Swift.Error {
+  public var operationID: Swift.String
+  public var request: HTTPTypes.HTTPRequest
+  public var requestBody: OpenAPIRuntime.HTTPBody?
+  public var requestMetadata: OpenAPIRuntime.ServerRequestMetadata
+  public var operationInput: (any Swift.Sendable)?
+  public var operationOutput: (any Swift.Sendable)?
+  public var causeDescription: Swift.String
+  public var underlyingError: any Swift.Error
+  public init(operationID: Swift.String, request: HTTPTypes.HTTPRequest, requestBody: OpenAPIRuntime.HTTPBody?, requestMetadata: OpenAPIRuntime.ServerRequestMetadata, operationInput: (any Swift.Sendable)? = nil, operationOutput: (any Swift.Sendable)? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+}
+extension OpenAPIRuntime.ServerError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OpenAPIRuntime.ServerError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct JSONLinesDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.JSONLinesDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedJSONLines<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.JSONLinesDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
+}
+public struct JSONLinesSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.JSONLinesSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
+  public func asEncodedJSONLines(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> OpenAPIRuntime.JSONLinesSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, Swift.ArraySlice<Swift.UInt8>>>
+}
+public struct JSONSequenceDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.JSONSequenceDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedJSONSequence<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.JSONSequenceDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
+}
+public struct JSONSequenceSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.JSONSequenceSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
+  public func asEncodedJSONSequence(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> OpenAPIRuntime.JSONSequenceSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, Swift.ArraySlice<Swift.UInt8>>>
+}
+public struct ServerSentEventWithJSONData<JSONDataType> : Swift.Sendable, Swift.Hashable where JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable {
+  public var event: Swift.String?
+  public var data: JSONDataType?
+  public var id: Swift.String?
+  public var retry: Swift.Int64?
+  public init(event: Swift.String? = nil, data: JSONDataType? = nil, id: Swift.String? = nil, retry: Swift.Int64? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>, b: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ServerSentEvent : Swift.Sendable, Swift.Hashable {
+  public var id: Swift.String?
+  public var event: Swift.String?
+  public var data: Swift.String?
+  public var retry: Swift.Int64?
+  public init(id: Swift.String? = nil, event: Swift.String? = nil, data: Swift.String? = nil, retry: Swift.Int64? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.ServerSentEvent, b: OpenAPIRuntime.ServerSentEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ServerSentEventsDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream, while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool)
+}
+extension OpenAPIRuntime.ServerSentEventsDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = OpenAPIRuntime.ServerSentEvent
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> OpenAPIRuntime.ServerSentEvent?
+    public typealias Element = OpenAPIRuntime.ServerSentEvent
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedServerSentEvents(while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool = { _ in true }) -> OpenAPIRuntime.ServerSentEventsDeserializationSequence<OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>
+  public func asDecodedServerSentEventsWithJSONData<JSONDataType>(of dataType: JSONDataType.Type = JSONDataType.self, decoder: Foundation.JSONDecoder = .init(), while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool = { _ in true }) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.ServerSentEventsDeserializationSequence<OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>, OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>> where JSONDataType : Swift.Decodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable
+}
+public struct ServerSentEventsLineDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.ServerSentEventsLineDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+public struct ServerSentEventsSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == OpenAPIRuntime.ServerSentEvent {
+  public init(upstream: Upstream)
+}
+extension OpenAPIRuntime.ServerSentEventsSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == OpenAPIRuntime.ServerSentEvent {
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension _Concurrency.AsyncSequence {
+  public func asEncodedServerSentEvents() -> OpenAPIRuntime.ServerSentEventsSerializationSequence<Self> where Self : Swift.Sendable, Self.Element == OpenAPIRuntime.ServerSentEvent
+  public func asEncodedServerSentEventsWithJSONData<JSONDataType>(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> OpenAPIRuntime.ServerSentEventsSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, OpenAPIRuntime.ServerSentEvent>> where Self : Swift.Sendable, JSONDataType : Swift.Encodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable, Self.Element == OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>
+}
+public enum IterationBehavior : Swift.Sendable {
+  case single
+  case multiple
+  public static func == (a: OpenAPIRuntime.IterationBehavior, b: OpenAPIRuntime.IterationBehavior) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@usableFromInline
+internal struct AnyIterator<Element> : _Concurrency.AsyncIteratorProtocol where Element : Swift.Sendable {
+  @usableFromInline
+  internal init<Iterator>(_ iterator: Iterator) where Element == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+  public mutating func next() async throws -> Element?
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  #endif
+}
+@usableFromInline
+internal struct AnySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = OpenAPIRuntime.AnyIterator<Element>
+  @usableFromInline
+  internal let produceIterator: @Sendable () -> OpenAPIRuntime.AnySequence<Element>.AsyncIterator
+  @usableFromInline
+  internal init<Upstream>(_ sequence: Upstream) where Element == Upstream.Element, Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence
+  @usableFromInline
+  internal func makeAsyncIterator() -> OpenAPIRuntime.AnySequence<Element>.AsyncIterator
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  internal typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+@usableFromInline
+internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swift.Sendable where Upstream : Swift.Sendable, Upstream : Swift.Sequence, Upstream.Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = OpenAPIRuntime.WrappedSyncSequence<Upstream>.Iterator<OpenAPIRuntime.WrappedSyncSequence<Upstream>.Element>
+  @usableFromInline
+  internal typealias Element = Upstream.Element
+  @usableFromInline
+  internal struct Iterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
+    @usableFromInline
+    internal typealias Element = IteratorElement
+    @usableFromInline
+    internal mutating func next() async throws -> IteratorElement?
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  @usableFromInline
+  internal let sequence: Upstream
+  @usableFromInline
+  internal init(sequence: Upstream)
+  @usableFromInline
+  internal func makeAsyncIterator() -> OpenAPIRuntime.WrappedSyncSequence<Upstream>.AsyncIterator
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  internal typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+@usableFromInline
+internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = OpenAPIRuntime.EmptySequence<Element>.EmptyIterator<Element>
+  @usableFromInline
+  internal struct EmptyIterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
+    @usableFromInline
+    internal mutating func next() async throws -> IteratorElement?
+    @usableFromInline
+    internal typealias Element = IteratorElement
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+  @usableFromInline
+  internal init()
+  @usableFromInline
+  internal func makeAsyncIterator() -> OpenAPIRuntime.EmptySequence<Element>.AsyncIterator
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  internal typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+public protocol ClientTransport : Swift.Sendable {
+  func send(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+}
+public protocol ClientMiddleware : Swift.Sendable {
+  func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, Foundation.URL) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+}
+public struct ServerRequestMetadata : Swift.Hashable, Swift.Sendable {
+  public var pathParameters: [Swift.String : Swift.Substring]
+  public init(pathParameters: [Swift.String : Swift.Substring] = [:])
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.ServerRequestMetadata, b: OpenAPIRuntime.ServerRequestMetadata) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HTTPTypes.HTTPRequest {
+  @_spi(Generated) public init(soar_path path: Swift.String, method: HTTPTypes.HTTPRequest.Method, headerFields: HTTPTypes.HTTPFields = .init())
+  @_spi(Generated) public var soar_query: Swift.Substring? {
+    get
+  }
+  @_spi(Generated) public var soar_pathOnly: Swift.Substring {
+    get
+  }
+}
+extension HTTPTypes.HTTPResponse {
+  @_spi(Generated) public init(soar_statusCode statusCode: Swift.Int)
+}
+extension OpenAPIRuntime.ServerRequestMetadata : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct ErrorHandlingMiddleware : OpenAPIRuntime.ServerMiddleware {
+  public init()
+  public func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, metadata: OpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+}
+public protocol HTTPResponseConvertible {
+  var httpStatus: HTTPTypes.HTTPResponse.Status { get }
+  var httpHeaderFields: HTTPTypes.HTTPFields { get }
+  var httpBody: OpenAPIRuntime.HTTPBody? { get }
+}
+extension OpenAPIRuntime.HTTPResponseConvertible {
+  public var httpHeaderFields: HTTPTypes.HTTPFields {
+    get
+  }
+  public var httpBody: OpenAPIRuntime.HTTPBody? {
+    get
+  }
+}
+final public class HTTPBody : @unchecked Swift.Sendable {
+  public typealias ByteChunk = Swift.ArraySlice<Swift.UInt8>
+  final public let iterationBehavior: OpenAPIRuntime.IterationBehavior
+  public enum Length : Swift.Sendable, Swift.Equatable {
+    case unknown
+    case known(Swift.Int64)
+    public static func == (a: OpenAPIRuntime.HTTPBody.Length, b: OpenAPIRuntime.HTTPBody.Length) -> Swift.Bool
+  }
+  final public let length: OpenAPIRuntime.HTTPBody.Length
+  @usableFromInline
+  internal init(_ sequence: OpenAPIRuntime.AnySequence<OpenAPIRuntime.HTTPBody.ByteChunk>, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior)
+  @usableFromInline
+  convenience internal init(_ byteChunks: some Sequence<ByteChunk> & Sendable, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior)
+  @objc deinit
+}
+extension OpenAPIRuntime.HTTPBody : Swift.Equatable {
+  public static func == (lhs: OpenAPIRuntime.HTTPBody, rhs: OpenAPIRuntime.HTTPBody) -> Swift.Bool
+}
+extension OpenAPIRuntime.HTTPBody : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init() {
+        self.init(.init(EmptySequence()), length: .known(0), iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: OpenAPIRuntime.HTTPBody.ByteChunk, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init([bytes], length: length, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: OpenAPIRuntime.HTTPBody.ByteChunk) {
+        self.init([bytes], length: .known(Int64(bytes.count)), iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: some Sequence<UInt8> & Sendable, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior) { self.init([ArraySlice(bytes)], length: length, iterationBehavior: iterationBehavior) }
+  @inlinable convenience public init(_ bytes: some Collection<UInt8> & Sendable, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init(ArraySlice(bytes), length: length, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: some Collection<UInt8> & Sendable) {
+        self.init(bytes, length: .known(Int64(bytes.count)))
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<OpenAPIRuntime.HTTPBody.ByteChunk, any Swift.Error>, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<OpenAPIRuntime.HTTPBody.ByteChunk>, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init<Bytes>(_ sequence: Bytes, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior) where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element == Swift.ArraySlice<Swift.UInt8> {
+        self.init(.init(sequence), length: length, iterationBehavior: iterationBehavior)
+    }
+  @inlinable convenience public init<Bytes>(_ sequence: Bytes, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior) where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element : Swift.Sendable, Bytes.Element : Swift.Sequence, Bytes.Element.Element == Swift.UInt8 {
+        self.init(sequence.map { ArraySlice($0) }, length: length, iterationBehavior: iterationBehavior)
+    }
+}
+extension OpenAPIRuntime.HTTPBody : _Concurrency.AsyncSequence {
+  public typealias Element = OpenAPIRuntime.HTTPBody.ByteChunk
+  public typealias AsyncIterator = OpenAPIRuntime.HTTPBody.Iterator
+  final public func makeAsyncIterator() -> OpenAPIRuntime.HTTPBody.AsyncIterator
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension Swift.ArraySlice where Element == Swift.UInt8 {
+  public init(collecting body: OpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension Swift.Array where Element == Swift.UInt8 {
+  public init(collecting body: OpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension OpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init(_ string: some StringProtocol & Sendable, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init(ByteChunk(string), length: length)
+    }
+  @inlinable convenience public init(_ string: some StringProtocol & Sendable) { self.init(ByteChunk(string)) }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<some StringProtocol & Sendable, any Swift.Error>, length: OpenAPIRuntime.HTTPBody.Length) { self.init(.init(stream.map { ByteChunk.init($0) }), length: length, iterationBehavior: .single) }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<some StringProtocol & Sendable>, length: OpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream.map { ByteChunk.init($0) }), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init<Strings>(_ sequence: Strings, length: OpenAPIRuntime.HTTPBody.Length, iterationBehavior: OpenAPIRuntime.IterationBehavior) where Strings : Swift.Sendable, Strings : _Concurrency.AsyncSequence, Strings.Element : Swift.Sendable, Strings.Element : Swift.StringProtocol {
+        self.init(.init(sequence.map { ByteChunk.init($0) }), length: length, iterationBehavior: iterationBehavior)
+    }
+}
+extension Swift.ArraySlice where Element == Swift.UInt8 {
+  @inlinable internal init(_ string: some StringProtocol & Sendable) { self = Array(string.utf8)[...] }
+}
+extension Swift.String {
+  public init(collecting body: OpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension OpenAPIRuntime.HTTPBody : Swift.ExpressibleByStringLiteral {
+  convenience public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension OpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init(_ bytes: [Swift.UInt8]) { self.init(bytes[...]) }
+}
+extension OpenAPIRuntime.HTTPBody : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = Swift.UInt8
+  convenience public init(arrayLiteral elements: Swift.UInt8...)
+}
+extension OpenAPIRuntime.HTTPBody {
+  convenience public init(_ data: Foundation.Data)
+}
+extension Foundation.Data {
+  public init(collecting body: OpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension OpenAPIRuntime.HTTPBody {
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    public typealias Element = OpenAPIRuntime.HTTPBody.ByteChunk
+    @usableFromInline
+    internal init<Iterator>(_ iterator: Iterator) where Iterator : _Concurrency.AsyncIteratorProtocol, Iterator.Element == Swift.ArraySlice<Swift.UInt8>
+    public mutating func next() async throws -> OpenAPIRuntime.HTTPBody.Iterator.Element?
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+}
+public protocol ServerTransport {
+  func register(_ handler: @escaping @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?), method: HTTPTypes.HTTPRequest.Method, path: Swift.String) throws
+}
+public protocol ServerMiddleware : Swift.Sendable {
+  func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, metadata: OpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+}
+@_spi(Generated) public struct UniversalClient : Swift.Sendable {
+  @_spi(Generated) public let serverURL: Foundation.URL
+  @_spi(Generated) public let converter: OpenAPIRuntime.Converter
+  @_spi(Generated) public var transport: any OpenAPIRuntime.ClientTransport
+  @_spi(Generated) public var middlewares: [any OpenAPIRuntime.ClientMiddleware]
+  @_spi(Generated) public init(serverURL: Foundation.URL = .defaultOpenAPIServerURL, configuration: OpenAPIRuntime.Configuration = .init(), transport: any OpenAPIRuntime.ClientTransport, middlewares: [any OpenAPIRuntime.ClientMiddleware] = [])
+  @_spi(Generated) public func send<OperationInput, OperationOutput>(input: OperationInput, forOperation operationID: Swift.String, serializer: @Sendable (OperationInput) throws -> (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?), deserializer: @Sendable (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?) async throws -> OperationOutput) async throws -> OperationOutput where OperationInput : Swift.Sendable, OperationOutput : Swift.Sendable
+}
+@_spi(Generated) public struct UniversalServer<APIHandler> : Swift.Sendable where APIHandler : Swift.Sendable {
+  @_spi(Generated) public var serverURL: Foundation.URL
+  @_spi(Generated) public var converter: OpenAPIRuntime.Converter
+  @_spi(Generated) public var handler: APIHandler
+  @_spi(Generated) public var middlewares: [any OpenAPIRuntime.ServerMiddleware]
+  @_spi(Generated) public init(serverURL: Foundation.URL = .defaultOpenAPIServerURL, handler: APIHandler, configuration: OpenAPIRuntime.Configuration = .init(), middlewares: [any OpenAPIRuntime.ServerMiddleware] = [])
+  @_spi(Generated) public func handle<OperationInput, OperationOutput>(request: HTTPTypes.HTTPRequest, requestBody: OpenAPIRuntime.HTTPBody?, metadata: OpenAPIRuntime.ServerRequestMetadata, forOperation operationID: Swift.String, using handlerMethod: @escaping @Sendable (APIHandler) -> ((OperationInput) async throws -> OperationOutput), deserializer: @escaping @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> OperationInput, serializer: @escaping @Sendable (OperationOutput, HTTPTypes.HTTPRequest) throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?) where OperationInput : Swift.Sendable, OperationOutput : Swift.Sendable
+  @_spi(Generated) public func apiPathComponentsWithServerPrefix(_ path: Swift.String) throws -> Swift.String
+}
+public protocol MultipartBoundaryGenerator : Swift.Sendable {
+  func makeBoundary() -> Swift.String
+}
+extension OpenAPIRuntime.MultipartBoundaryGenerator where Self == OpenAPIRuntime.ConstantMultipartBoundaryGenerator {
+  public static var constant: OpenAPIRuntime.ConstantMultipartBoundaryGenerator {
+    get
+  }
+}
+extension OpenAPIRuntime.MultipartBoundaryGenerator where Self == OpenAPIRuntime.RandomMultipartBoundaryGenerator {
+  public static var random: OpenAPIRuntime.RandomMultipartBoundaryGenerator {
+    get
+  }
+}
+public struct ConstantMultipartBoundaryGenerator : OpenAPIRuntime.MultipartBoundaryGenerator {
+  public let boundary: Swift.String
+  public init(boundary: Swift.String = "__X_SWIFT_OPENAPI_GENERATOR_BOUNDARY__")
+  public func makeBoundary() -> Swift.String
+}
+public struct RandomMultipartBoundaryGenerator : OpenAPIRuntime.MultipartBoundaryGenerator {
+  public let boundaryPrefix: Swift.String
+  public let randomNumberSuffixLength: Swift.Int
+  public init(boundaryPrefix: Swift.String = "__X_SWIFT_OPENAPI_", randomNumberSuffixLength: Swift.Int = 20)
+  public func makeBoundary() -> Swift.String
+}
+public struct MultipartRawPart : Swift.Sendable, Swift.Hashable {
+  public var headerFields: HTTPTypes.HTTPFields
+  public var body: OpenAPIRuntime.HTTPBody
+  public init(headerFields: HTTPTypes.HTTPFields, body: OpenAPIRuntime.HTTPBody)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.MultipartRawPart, b: OpenAPIRuntime.MultipartRawPart) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct MultipartPart<Payload> : Swift.Sendable, Swift.Hashable where Payload : Swift.Hashable, Payload : Swift.Sendable {
+  public var payload: Payload
+  public var filename: Swift.String?
+  public init(payload: Payload, filename: Swift.String? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.MultipartPart<Payload>, b: OpenAPIRuntime.MultipartPart<Payload>) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct MultipartDynamicallyNamedPart<Payload> : Swift.Sendable, Swift.Hashable where Payload : Swift.Hashable, Payload : Swift.Sendable {
+  public var payload: Payload
+  public var filename: Swift.String?
+  public var name: Swift.String?
+  public init(payload: Payload, filename: Swift.String? = nil, name: Swift.String? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>, b: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class MultipartBody<Part> : @unchecked Swift.Sendable where Part : Swift.Sendable {
+  final public let iterationBehavior: OpenAPIRuntime.IterationBehavior
+  @usableFromInline
+  internal init(_ sequence: OpenAPIRuntime.AnySequence<Part>, iterationBehavior: OpenAPIRuntime.IterationBehavior)
+  @objc deinit
+}
+extension OpenAPIRuntime.MultipartBody : Swift.Equatable {
+  public static func == (lhs: OpenAPIRuntime.MultipartBody<Part>, rhs: OpenAPIRuntime.MultipartBody<Part>) -> Swift.Bool
+}
+extension OpenAPIRuntime.MultipartBody : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OpenAPIRuntime.MultipartBody {
+  @inlinable convenience public init<Input>(_ sequence: Input, iterationBehavior: OpenAPIRuntime.IterationBehavior) where Part == Input.Element, Input : Swift.Sendable, Input : _Concurrency.AsyncSequence { self.init(.init(sequence), iterationBehavior: iterationBehavior) }
+  @usableFromInline
+  convenience internal init(_ elements: some Sequence<Element> & Sendable, iterationBehavior: OpenAPIRuntime.IterationBehavior)
+  @inlinable convenience public init(_ elements: some Collection<Element> & Sendable) {
+        self.init(elements, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<OpenAPIRuntime.MultipartBody<Part>.Element, any Swift.Error>) {
+        self.init(.init(stream), iterationBehavior: .single)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<OpenAPIRuntime.MultipartBody<Part>.Element>) {
+        self.init(.init(stream), iterationBehavior: .single)
+    }
+}
+extension OpenAPIRuntime.MultipartBody : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = OpenAPIRuntime.MultipartBody<Part>.Element
+  convenience public init(arrayLiteral elements: OpenAPIRuntime.MultipartBody<Part>.Element...)
+}
+extension OpenAPIRuntime.MultipartBody : _Concurrency.AsyncSequence {
+  public typealias Element = Part
+  public typealias AsyncIterator = OpenAPIRuntime.MultipartBody<Part>.Iterator
+  final public func makeAsyncIterator() -> OpenAPIRuntime.MultipartBody<Part>.AsyncIterator
+  #if compiler(>=5.3) && $AssociatedTypeImplements
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  #else
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  public typealias __AsyncSequence_Failure = any Swift.Error
+  #endif
+}
+extension OpenAPIRuntime.MultipartBody {
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal init<Iterator>(_ iterator: Iterator) where Part == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+    public mutating func next() async throws -> OpenAPIRuntime.MultipartBody<Part>.Element?
+    public typealias Element = OpenAPIRuntime.MultipartBody<Part>.Element
+    #if compiler(>=5.3) && $AssociatedTypeImplements
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #else
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    #endif
+  }
+}
+extension OpenAPIRuntime.MultipartRawPart {
+  public init(name: Swift.String?, filename: Swift.String? = nil, headerFields: HTTPTypes.HTTPFields, body: OpenAPIRuntime.HTTPBody)
+  public var name: Swift.String? {
+    get
+    set
+  }
+  public var filename: Swift.String? {
+    get
+    set
+  }
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+@_spi(Generated) extension Swift.Optional where Wrapped == OpenAPIRuntime.OpenAPIMIMEType {
+  @_spi(Generated) public func requiredBoundary() throws -> Swift.String
+}
+#else
+@_spi(Generated) extension Swift.Optional where Wrapped == OpenAPIRuntime.OpenAPIMIMEType {
+  @_spi(Generated) public func requiredBoundary() throws -> Swift.String
+}
+#endif
+@_spi(Generated) extension OpenAPIRuntime.ParameterStyle : Swift.Equatable {}
+@_spi(Generated) extension OpenAPIRuntime.ParameterStyle : Swift.Hashable {}
+extension OpenAPIRuntime.IterationBehavior : Swift.Equatable {}
+extension OpenAPIRuntime.IterationBehavior : Swift.Hashable {}
