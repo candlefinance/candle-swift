@@ -1376,6 +1376,29 @@
         "moduleName": "NIOWebSocket"
       },
       {
+        "kind": "Var",
+        "name": "magicWebSocketGUID",
+        "printedName": "magicWebSocketGUID",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
+          }
+        ],
+        "declKind": "Var",
+        "usr": "s:12NIOWebSocket08magicWebB4GUIDSSvp",
+        "mangledName": "$s12NIOWebSocket08magicWebB4GUIDSSvp",
+        "moduleName": "NIOWebSocket",
+        "declAttributes": [
+          "HasInitialValue",
+          "HasStorage"
+        ],
+        "isLet": true,
+        "hasStorage": true
+      },
+      {
         "kind": "TypeDecl",
         "name": "NIOWebSocketUpgradeError",
         "printedName": "NIOWebSocketUpgradeError",
@@ -2467,6 +2490,181 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "SHA1",
+        "printedName": "SHA1",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "sha1Ctx",
+            "printedName": "sha1Ctx",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "sha1_ctxt",
+                "printedName": "CNIOSHA1.sha1_ctxt",
+                "usr": "c:@S@sha1_ctxt"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12NIOWebSocket4SHA1V7sha1Ctx33_3C117EF2BDE2A5DD8B1974F0AB37662DLLSo0D5_ctxtVvp",
+            "mangledName": "$s12NIOWebSocket4SHA1V7sha1Ctx33_3C117EF2BDE2A5DD8B1974F0AB37662DLLSo0D5_ctxtVvp",
+            "moduleName": "NIOWebSocket",
+            "isInternal": true,
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SHA1",
+                "printedName": "NIOWebSocket.SHA1",
+                "usr": "s:12NIOWebSocket4SHA1V"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket4SHA1VACycfc",
+            "mangledName": "$s12NIOWebSocket4SHA1VACycfc",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "update",
+            "printedName": "update(string:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12NIOWebSocket4SHA1V6update6stringySS_tF",
+            "mangledName": "$s12NIOWebSocket4SHA1V6update6stringySS_tF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Mutating",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "update",
+            "printedName": "update(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeBufferPointer",
+                "printedName": "Swift.UnsafeBufferPointer<Swift.UInt8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:SR"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12NIOWebSocket4SHA1V6updateyySRys5UInt8VGF",
+            "mangledName": "$s12NIOWebSocket4SHA1V6updateyySRys5UInt8VGF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Mutating",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "finish",
+            "printedName": "finish()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12NIOWebSocket4SHA1V6finishSays5UInt8VGyF",
+            "mangledName": "$s12NIOWebSocket4SHA1V6finishSays5UInt8VGyF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Mutating",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "Mutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:12NIOWebSocket4SHA1V",
+        "mangledName": "$s12NIOWebSocket4SHA1V",
+        "moduleName": "NIOWebSocket",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "NIOCore",
         "printedName": "NIOCore",
@@ -2897,6 +3095,34 @@
           {
             "kind": "Constructor",
             "name": "init",
+            "printedName": "init(networkInteger:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WebSocketErrorCode",
+                "printedName": "NIOWebSocket.WebSocketErrorCode",
+                "usr": "s:12NIOWebSocket03WebB9ErrorCodeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt16",
+                "printedName": "Swift.UInt16",
+                "usr": "s:s6UInt16V"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket03WebB9ErrorCodeO14networkIntegerACs6UInt16V_tcfc",
+            "mangledName": "$s12NIOWebSocket03WebB9ErrorCodeO14networkIntegerACs6UInt16V_tcfc",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
             "printedName": "init(codeNumber:)",
             "children": [
               {
@@ -2954,6 +3180,31 @@
             "implicit": true,
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WebSocketErrorCode",
+                "printedName": "NIOWebSocket.WebSocketErrorCode",
+                "usr": "s:12NIOWebSocket03WebB9ErrorCodeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOWebSocketError",
+                "printedName": "NIOWebSocket.NIOWebSocketError",
+                "usr": "s:12NIOWebSocket0aB5ErrorO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket03WebB9ErrorCodeOyAcA0abD0Ocfc",
+            "mangledName": "$s12NIOWebSocket03WebB9ErrorCodeOyAcA0abD0Ocfc",
+            "moduleName": "NIOWebSocket",
+            "isFromExtension": true,
+            "init_kind": "Designated"
           }
         ],
         "declKind": "Enum",
@@ -3011,6 +3262,100 @@
         "printedName": "WebSocketMaskingKey",
         "children": [
           {
+            "kind": "Var",
+            "name": "_key",
+            "printedName": "_key",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12NIOWebSocket03WebB10MaskingKeyV4_keys5UInt8V_A3Ftvp",
+            "mangledName": "$s12NIOWebSocket03WebB10MaskingKeyV4_keys5UInt8V_A3Ftvp",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket03WebB10MaskingKeyV4_keys5UInt8V_A3Ftvg",
+                "mangledName": "$s12NIOWebSocket03WebB10MaskingKeyV4_keys5UInt8V_A3Ftvg",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(_:)",
@@ -3043,6 +3388,34 @@
             "sugared_genericSig": "<T where T : Swift.Collection, T.Element == Swift.UInt8>",
             "declAttributes": [
               "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(networkRepresentation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WebSocketMaskingKey",
+                "printedName": "NIOWebSocket.WebSocketMaskingKey",
+                "usr": "s:12NIOWebSocket03WebB10MaskingKeyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt32",
+                "printedName": "Swift.UInt32",
+                "usr": "s:s6UInt32V"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket03WebB10MaskingKeyV21networkRepresentationACs6UInt32V_tcfc",
+            "mangledName": "$s12NIOWebSocket03WebB10MaskingKeyV21networkRepresentationACs6UInt32V_tcfc",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           },
@@ -3714,6 +4087,93 @@
                 "declKind": "Accessor",
                 "usr": "s:12NIOWebSocket03WebB5FrameV7maskKeyAA0cb7MaskingF0VSgvM",
                 "mangledName": "$s12NIOWebSocket03WebB5FrameV7maskKeyAA0cb7MaskingF0VSgvM",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "firstByte",
+            "printedName": "firstByte",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UInt8",
+                "printedName": "Swift.UInt8",
+                "usr": "s:s5UInt8V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvp",
+            "mangledName": "$s12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvp",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvg",
+                "mangledName": "$s12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvg",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvs",
+                "mangledName": "$s12NIOWebSocket03WebB5FrameV9firstBytes5UInt8Vvs",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket03WebB5FrameV9firstBytes5UInt8VvM",
+                "mangledName": "$s12NIOWebSocket03WebB5FrameV9firstBytes5UInt8VvM",
                 "moduleName": "NIOWebSocket",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -4571,6 +5031,54 @@
             "declKind": "Constructor",
             "usr": "s:12NIOWebSocket03WebB5FrameV3fin4rsv14rsv24rsv36opcode7maskKey4data13extensionDataACSb_S3bAA0cB6OpcodeVAA0cb7MaskingK0VSg7NIOCore10ByteBufferVASSgtcfc",
             "mangledName": "$s12NIOWebSocket03WebB5FrameV3fin4rsv14rsv24rsv36opcode7maskKey4data13extensionDataACSb_S3bAA0cB6OpcodeVAA0cb7MaskingK0VSg7NIOCore10ByteBufferVASSgtcfc",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(firstByte:maskKey:applicationData:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WebSocketFrame",
+                "printedName": "NIOWebSocket.WebSocketFrame",
+                "usr": "s:12NIOWebSocket03WebB5FrameV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt8",
+                "printedName": "Swift.UInt8",
+                "usr": "s:s5UInt8V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOWebSocket.WebSocketMaskingKey?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WebSocketMaskingKey",
+                    "printedName": "NIOWebSocket.WebSocketMaskingKey",
+                    "usr": "s:12NIOWebSocket03WebB10MaskingKeyV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "NIOCore.ByteBuffer",
+                "usr": "s:7NIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket03WebB5FrameV9firstByte7maskKey15applicationDataACs5UInt8V_AA0cb7MaskingH0VSg7NIOCore0F6BufferVtcfc",
+            "mangledName": "$s12NIOWebSocket03WebB5FrameV9firstByte7maskKey15applicationDataACs5UInt8V_AA0cb7MaskingH0VSg7NIOCore0F6BufferVtcfc",
             "moduleName": "NIOWebSocket",
             "declAttributes": [
               "AccessControl",
@@ -5537,9 +6045,874 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "DecoderState",
+        "printedName": "DecoderState",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "idle",
+            "printedName": "idle",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecoderState",
+                    "printedName": "NIOWebSocket.DecoderState",
+                    "usr": "s:12NIOWebSocket12DecoderStateO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO4idleyA2CmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO4idleyA2CmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "firstByteReceived",
+            "printedName": "firstByteReceived",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> (Swift.UInt8) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UInt8) -> NIOWebSocket.DecoderState",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(firstByte: Swift.UInt8)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UInt8",
+                            "printedName": "Swift.UInt8",
+                            "usr": "s:s5UInt8V"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO17firstByteReceivedyACs5UInt8V_tcACmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO17firstByteReceivedyACs5UInt8V_tcACmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "waitingForLengthWord",
+            "printedName": "waitingForLengthWord",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> (Swift.UInt8, Swift.Bool) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UInt8, Swift.Bool) -> NIOWebSocket.DecoderState",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(firstByte: Swift.UInt8, masked: Swift.Bool)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UInt8",
+                            "printedName": "Swift.UInt8",
+                            "usr": "s:s5UInt8V"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO20waitingForLengthWordyACs5UInt8V_SbtcACmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO20waitingForLengthWordyACs5UInt8V_SbtcACmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Var",
+            "name": "waitingForLengthQWord",
+            "printedName": "waitingForLengthQWord",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> (Swift.UInt8, Swift.Bool) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UInt8, Swift.Bool) -> NIOWebSocket.DecoderState",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(firstByte: Swift.UInt8, masked: Swift.Bool)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UInt8",
+                            "printedName": "Swift.UInt8",
+                            "usr": "s:s5UInt8V"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO21waitingForLengthQWordyACs5UInt8V_SbtcACmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO21waitingForLengthQWordyACs5UInt8V_SbtcACmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 3
+          },
+          {
+            "kind": "Var",
+            "name": "waitingForMask",
+            "printedName": "waitingForMask",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> (Swift.UInt8, Swift.Int) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UInt8, Swift.Int) -> NIOWebSocket.DecoderState",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(firstByte: Swift.UInt8, length: Swift.Int)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UInt8",
+                            "printedName": "Swift.UInt8",
+                            "usr": "s:s5UInt8V"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO14waitingForMaskyACs5UInt8V_SitcACmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO14waitingForMaskyACs5UInt8V_SitcACmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 4
+          },
+          {
+            "kind": "Var",
+            "name": "waitingForData",
+            "printedName": "waitingForData",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.DecoderState.Type) -> (Swift.UInt8, Swift.Int, NIOWebSocket.WebSocketMaskingKey?) -> NIOWebSocket.DecoderState",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UInt8, Swift.Int, NIOWebSocket.WebSocketMaskingKey?) -> NIOWebSocket.DecoderState",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(firstByte: Swift.UInt8, length: Swift.Int, maskingKey: NIOWebSocket.WebSocketMaskingKey?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UInt8",
+                            "printedName": "Swift.UInt8",
+                            "usr": "s:s5UInt8V"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "NIOWebSocket.WebSocketMaskingKey?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "WebSocketMaskingKey",
+                                "printedName": "NIOWebSocket.WebSocketMaskingKey",
+                                "usr": "s:12NIOWebSocket03WebB10MaskingKeyV"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.DecoderState.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecoderState",
+                        "printedName": "NIOWebSocket.DecoderState",
+                        "usr": "s:12NIOWebSocket12DecoderStateO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket12DecoderStateO14waitingForDatayACs5UInt8V_SiAA03WebB10MaskingKeyVSgtcACmF",
+            "mangledName": "$s12NIOWebSocket12DecoderStateO14waitingForDatayACs5UInt8V_SiAA03WebB10MaskingKeyVSgtcACmF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 5
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12NIOWebSocket12DecoderStateO",
+        "mangledName": "$s12NIOWebSocket12DecoderStateO",
+        "moduleName": "NIOWebSocket",
+        "declAttributes": [
+          "RawDocComment"
+        ],
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ParseResult",
+        "printedName": "ParseResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "insufficientData",
+            "printedName": "insufficientData",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.ParseResult.Type) -> NIOWebSocket.ParseResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ParseResult",
+                    "printedName": "NIOWebSocket.ParseResult",
+                    "usr": "s:12NIOWebSocket11ParseResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.ParseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ParseResult",
+                        "printedName": "NIOWebSocket.ParseResult",
+                        "usr": "s:12NIOWebSocket11ParseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket11ParseResultO16insufficientDatayA2CmF",
+            "mangledName": "$s12NIOWebSocket11ParseResultO16insufficientDatayA2CmF",
+            "moduleName": "NIOWebSocket",
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "continueParsing",
+            "printedName": "continueParsing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.ParseResult.Type) -> NIOWebSocket.ParseResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ParseResult",
+                    "printedName": "NIOWebSocket.ParseResult",
+                    "usr": "s:12NIOWebSocket11ParseResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.ParseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ParseResult",
+                        "printedName": "NIOWebSocket.ParseResult",
+                        "usr": "s:12NIOWebSocket11ParseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket11ParseResultO15continueParsingyA2CmF",
+            "mangledName": "$s12NIOWebSocket11ParseResultO15continueParsingyA2CmF",
+            "moduleName": "NIOWebSocket",
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "result",
+            "printedName": "result",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(NIOWebSocket.ParseResult.Type) -> (NIOWebSocket.WebSocketFrame) -> NIOWebSocket.ParseResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(NIOWebSocket.WebSocketFrame) -> NIOWebSocket.ParseResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ParseResult",
+                        "printedName": "NIOWebSocket.ParseResult",
+                        "usr": "s:12NIOWebSocket11ParseResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WebSocketFrame",
+                        "printedName": "NIOWebSocket.WebSocketFrame",
+                        "usr": "s:12NIOWebSocket03WebB5FrameV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "NIOWebSocket.ParseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ParseResult",
+                        "printedName": "NIOWebSocket.ParseResult",
+                        "usr": "s:12NIOWebSocket11ParseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12NIOWebSocket11ParseResultO6resultyAcA03WebB5FrameVcACmF",
+            "mangledName": "$s12NIOWebSocket11ParseResultO6resultyAcA03WebB5FrameVcACmF",
+            "moduleName": "NIOWebSocket",
+            "fixedbinaryorder": 2
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12NIOWebSocket11ParseResultO",
+        "mangledName": "$s12NIOWebSocket11ParseResultO",
+        "moduleName": "NIOWebSocket",
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "WSParser",
+        "printedName": "WSParser",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "state",
+            "printedName": "state",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DecoderState",
+                "printedName": "NIOWebSocket.DecoderState",
+                "usr": "s:12NIOWebSocket12DecoderStateO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12NIOWebSocket8WSParserV5stateAA12DecoderStateOvp",
+            "mangledName": "$s12NIOWebSocket8WSParserV5stateAA12DecoderStateOvp",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecoderState",
+                    "printedName": "NIOWebSocket.DecoderState",
+                    "usr": "s:12NIOWebSocket12DecoderStateO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket8WSParserV5stateAA12DecoderStateOvg",
+                "mangledName": "$s12NIOWebSocket8WSParserV5stateAA12DecoderStateOvg",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecoderState",
+                    "printedName": "NIOWebSocket.DecoderState",
+                    "usr": "s:12NIOWebSocket12DecoderStateO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket8WSParserV5stateAA12DecoderStateOvs",
+                "mangledName": "$s12NIOWebSocket8WSParserV5stateAA12DecoderStateOvs",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket8WSParserV5stateAA12DecoderStateOvM",
+                "mangledName": "$s12NIOWebSocket8WSParserV5stateAA12DecoderStateOvM",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "parseStep",
+            "printedName": "parseStep(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ParseResult",
+                "printedName": "NIOWebSocket.ParseResult",
+                "usr": "s:12NIOWebSocket11ParseResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "NIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:7NIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12NIOWebSocket8WSParserV9parseStepyAA11ParseResultO7NIOCore10ByteBufferVzF",
+            "mangledName": "$s12NIOWebSocket8WSParserV9parseStepyAA11ParseResultO7NIOCore10ByteBufferVzF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "validateState",
+            "printedName": "validateState(maxFrameSize:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12NIOWebSocket8WSParserV13validateState12maxFrameSizeySi_tKF",
+            "mangledName": "$s12NIOWebSocket8WSParserV13validateState12maxFrameSizeySi_tKF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(state:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WSParser",
+                "printedName": "NIOWebSocket.WSParser",
+                "usr": "s:12NIOWebSocket8WSParserV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DecoderState",
+                "printedName": "NIOWebSocket.DecoderState",
+                "hasDefaultArg": true,
+                "usr": "s:12NIOWebSocket12DecoderStateO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket8WSParserV5stateAcA12DecoderStateO_tcfc",
+            "mangledName": "$s12NIOWebSocket8WSParserV5stateAcA12DecoderStateO_tcfc",
+            "moduleName": "NIOWebSocket",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WSParser",
+                "printedName": "NIOWebSocket.WSParser",
+                "usr": "s:12NIOWebSocket8WSParserV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12NIOWebSocket8WSParserVACycfc",
+            "mangledName": "$s12NIOWebSocket8WSParserVACycfc",
+            "moduleName": "NIOWebSocket",
+            "implicit": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:12NIOWebSocket8WSParserV",
+        "mangledName": "$s12NIOWebSocket8WSParserV",
+        "moduleName": "NIOWebSocket",
+        "declAttributes": [
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "WebSocketFrameDecoder",
         "printedName": "WebSocketFrameDecoder",
         "children": [
+          {
+            "kind": "Var",
+            "name": "maxFrameSize",
+            "printedName": "maxFrameSize",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12NIOWebSocket03WebB12FrameDecoderC03maxD4SizeSivp",
+            "mangledName": "$s12NIOWebSocket03WebB12FrameDecoderC03maxD4SizeSivp",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12NIOWebSocket03WebB12FrameDecoderC03maxD4SizeSivg",
+                "mangledName": "$s12NIOWebSocket03WebB12FrameDecoderC03maxD4SizeSivg",
+                "moduleName": "NIOWebSocket",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
           {
             "kind": "Constructor",
             "name": "init",
@@ -7535,6 +8908,68 @@
         "name": "UInt8",
         "printedName": "UInt8",
         "children": [
+          {
+            "kind": "Function",
+            "name": "isAnyBitSetInMask",
+            "printedName": "isAnyBitSetInMask(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt8",
+                "printedName": "Swift.UInt8",
+                "usr": "s:s5UInt8V"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:s5UInt8V12NIOWebSocketE17isAnyBitSetInMaskySbABF",
+            "mangledName": "$ss5UInt8V12NIOWebSocketE17isAnyBitSetInMaskySbABF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "changingBitsInMask",
+            "printedName": "changingBitsInMask(_:to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt8",
+                "printedName": "Swift.UInt8",
+                "usr": "s:s5UInt8V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:s5UInt8V12NIOWebSocketE18changingBitsInMask_2toyAB_SbtF",
+            "mangledName": "$ss5UInt8V12NIOWebSocketE18changingBitsInMask_2toyAB_SbtF",
+            "moduleName": "NIOWebSocket",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
           {
             "kind": "Constructor",
             "name": "init",

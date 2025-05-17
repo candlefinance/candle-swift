@@ -1004,6 +1004,34 @@
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAtomic",
+                "printedName": "NIOConcurrencyHelpers.NIOAtomic<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:21NIOConcurrencyHelpers9NIOAtomicC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21NIOConcurrencyHelpers9NIOAtomicCACyxGycfc",
+            "mangledName": "$s21NIOConcurrencyHelpers9NIOAtomicCACyxGycfc",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOConcurrencyHelpers.NIOAtomicPrimitive>",
+            "sugared_genericSig": "<T where T : NIOConcurrencyHelpers.NIOAtomicPrimitive>",
+            "implicit": true,
+            "init_kind": "Designated"
           }
         ],
         "declKind": "Class",
@@ -1053,9 +1081,448 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "LockOperations",
+        "printedName": "LockOperations",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "create",
+            "printedName": "create(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "_opaque_pthread_mutex_t",
+                    "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                    "usr": "c:@S@_opaque_pthread_mutex_t"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers14LockOperationsO6createyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "mangledName": "$s21NIOConcurrencyHelpers14LockOperationsO6createyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "moduleName": "NIOConcurrencyHelpers",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "destroy",
+            "printedName": "destroy(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "_opaque_pthread_mutex_t",
+                    "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                    "usr": "c:@S@_opaque_pthread_mutex_t"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers14LockOperationsO7destroyyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "mangledName": "$s21NIOConcurrencyHelpers14LockOperationsO7destroyyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "moduleName": "NIOConcurrencyHelpers",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "lock",
+            "printedName": "lock(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "_opaque_pthread_mutex_t",
+                    "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                    "usr": "c:@S@_opaque_pthread_mutex_t"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers14LockOperationsO4lockyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "mangledName": "$s21NIOConcurrencyHelpers14LockOperationsO4lockyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "moduleName": "NIOConcurrencyHelpers",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unlock",
+            "printedName": "unlock(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "_opaque_pthread_mutex_t",
+                    "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                    "usr": "c:@S@_opaque_pthread_mutex_t"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers14LockOperationsO6unlockyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "mangledName": "$s21NIOConcurrencyHelpers14LockOperationsO6unlockyySpySo23_opaque_pthread_mutex_tVGFZ",
+            "moduleName": "NIOConcurrencyHelpers",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:21NIOConcurrencyHelpers14LockOperationsO",
+        "mangledName": "$s21NIOConcurrencyHelpers14LockOperationsO",
+        "moduleName": "NIOConcurrencyHelpers",
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LockStorage",
+        "printedName": "LockStorage",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "create",
+            "printedName": "create(value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DynamicSelf",
+                "printedName": "Self"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers11LockStorageC6create5valueACyxGXDx_tFZ",
+            "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC6create5valueACyxGXDx_tFZ",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Value>",
+            "static": true,
+            "declAttributes": [
+              "Final"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "lock",
+            "printedName": "lock()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers11LockStorageC4lockyyF",
+            "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC4lockyyF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Value>",
+            "declAttributes": [
+              "Final"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unlock",
+            "printedName": "unlock()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers11LockStorageC6unlockyyF",
+            "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC6unlockyyF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Value>",
+            "declAttributes": [
+              "Final"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withLockPrimitive",
+            "printedName": "withLockPrimitive(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>) throws -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeMutablePointer",
+                    "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_opaque_pthread_mutex_t",
+                        "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                        "usr": "c:@S@_opaque_pthread_mutex_t"
+                      }
+                    ],
+                    "usr": "s:Sp"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers11LockStorageC04withC9Primitiveyqd__qd__SpySo23_opaque_pthread_mutex_tVGKXEKlF",
+            "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC04withC9Primitiveyqd__qd__SpySo23_opaque_pthread_mutex_tVGKXEKlF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0, τ_1_0>",
+            "sugared_genericSig": "<Value, T>",
+            "declAttributes": [
+              "Final",
+              "Rethrows"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withLockedValue",
+            "printedName": "withLockedValue(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(inout τ_0_0) throws -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers11LockStorageC15withLockedValueyqd__qd__xzKXEKlF",
+            "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC15withLockedValueyqd__qd__xzKXEKlF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0, τ_1_0>",
+            "sugared_genericSig": "<Value, T>",
+            "declAttributes": [
+              "Final",
+              "Rethrows"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:21NIOConcurrencyHelpers11LockStorageC",
+        "mangledName": "$s21NIOConcurrencyHelpers11LockStorageC",
+        "moduleName": "NIOConcurrencyHelpers",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Value>",
+        "declAttributes": [
+          "Final",
+          "RawDocComment"
+        ],
+        "superclassUsr": "s:s13ManagedBufferC",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "Swift.ManagedBuffer<τ_0_0, DarwinFoundation._opaque_pthread_mutex_t>"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "NIOLock",
         "printedName": "NIOLock",
         "children": [
+          {
+            "kind": "Var",
+            "name": "_storage",
+            "printedName": "_storage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LockStorage",
+                "printedName": "NIOConcurrencyHelpers.LockStorage<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21NIOConcurrencyHelpers7NIOLockV8_storageAA11LockStorageCyytGvp",
+            "mangledName": "$s21NIOConcurrencyHelpers7NIOLockV8_storageAA11LockStorageCyytGvp",
+            "moduleName": "NIOConcurrencyHelpers",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LockStorage",
+                    "printedName": "NIOConcurrencyHelpers.LockStorage<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21NIOConcurrencyHelpers7NIOLockV8_storageAA11LockStorageCyytGvg",
+                "mangledName": "$s21NIOConcurrencyHelpers7NIOLockV8_storageAA11LockStorageCyytGvg",
+                "moduleName": "NIOConcurrencyHelpers",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
           {
             "kind": "Constructor",
             "name": "init",
@@ -1118,6 +1585,59 @@
               "AccessControl",
               "RawDocComment"
             ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withLockPrimitive",
+            "printedName": "withLockPrimitive(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>) throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeMutablePointer",
+                    "printedName": "Swift.UnsafeMutablePointer<DarwinFoundation._opaque_pthread_mutex_t>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "_opaque_pthread_mutex_t",
+                        "printedName": "DarwinFoundation._opaque_pthread_mutex_t",
+                        "usr": "c:@S@_opaque_pthread_mutex_t"
+                      }
+                    ],
+                    "usr": "s:Sp"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21NIOConcurrencyHelpers7NIOLockV17withLockPrimitiveyxxSpySo23_opaque_pthread_mutex_tVGKXEKlF",
+            "mangledName": "$s21NIOConcurrencyHelpers7NIOLockV17withLockPrimitiveyxxSpySo23_opaque_pthread_mutex_tVGKXEKlF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl"
+            ],
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -1248,6 +1768,66 @@
         "printedName": "NIOLockedValueBox",
         "children": [
           {
+            "kind": "Var",
+            "name": "_storage",
+            "printedName": "_storage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LockStorage",
+                "printedName": "NIOConcurrencyHelpers.LockStorage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV8_storageAA11LockStorageCyxGvp",
+            "mangledName": "$s21NIOConcurrencyHelpers17NIOLockedValueBoxV8_storageAA11LockStorageCyxGvp",
+            "moduleName": "NIOConcurrencyHelpers",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LockStorage",
+                    "printedName": "NIOConcurrencyHelpers.LockStorage<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV8_storageAA11LockStorageCyxGvg",
+                "mangledName": "$s21NIOConcurrencyHelpers17NIOLockedValueBoxV8_storageAA11LockStorageCyxGvg",
+                "moduleName": "NIOConcurrencyHelpers",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Value>",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(_:)",
@@ -1377,6 +1957,65 @@
             "printedName": "Unsafe",
             "children": [
               {
+                "kind": "Var",
+                "name": "_storage",
+                "printedName": "_storage",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LockStorage",
+                    "printedName": "NIOConcurrencyHelpers.LockStorage<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAA11LockStorageCyxGvp",
+                "mangledName": "$s21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAA11LockStorageCyxGvp",
+                "moduleName": "NIOConcurrencyHelpers",
+                "declAttributes": [
+                  "HasStorage"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LockStorage",
+                        "printedName": "NIOConcurrencyHelpers.LockStorage<τ_0_0>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ],
+                        "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAA11LockStorageCyxGvg",
+                    "mangledName": "$s21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAA11LockStorageCyxGvg",
+                    "moduleName": "NIOConcurrencyHelpers",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Value>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
                 "kind": "Function",
                 "name": "lock",
                 "printedName": "lock()",
@@ -1466,6 +2105,40 @@
                 ],
                 "throwing": true,
                 "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(_storage:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Unsafe",
+                    "printedName": "NIOConcurrencyHelpers.NIOLockedValueBox<τ_0_0>.Unsafe",
+                    "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LockStorage",
+                    "printedName": "NIOConcurrencyHelpers.LockStorage<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:21NIOConcurrencyHelpers11LockStorageC"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAEyx_GAA11LockStorageCyxG_tcfc",
+                "mangledName": "$s21NIOConcurrencyHelpers17NIOLockedValueBoxV6UnsafeV8_storageAEyx_GAA11LockStorageCyxG_tcfc",
+                "moduleName": "NIOConcurrencyHelpers",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Value>",
+                "implicit": true,
+                "init_kind": "Designated"
               }
             ],
             "declKind": "Struct",
@@ -1552,6 +2225,52 @@
         "name": "UnsafeEmbeddedAtomic",
         "printedName": "UnsafeEmbeddedAtomic",
         "children": [
+          {
+            "kind": "Var",
+            "name": "value",
+            "printedName": "value",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaquePointer",
+                "printedName": "Swift.OpaquePointer",
+                "usr": "s:s13OpaquePointerV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV5values13OpaquePointerVvp",
+            "mangledName": "$s21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV5values13OpaquePointerVvp",
+            "moduleName": "NIOConcurrencyHelpers",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaquePointer",
+                    "printedName": "Swift.OpaquePointer",
+                    "usr": "s:s13OpaquePointerV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV5values13OpaquePointerVvg",
+                "mangledName": "$s21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV5values13OpaquePointerVvg",
+                "moduleName": "NIOConcurrencyHelpers",
+                "genericSig": "<τ_0_0 where τ_0_0 : NIOConcurrencyHelpers.AtomicPrimitive>",
+                "sugared_genericSig": "<T where T : NIOConcurrencyHelpers.AtomicPrimitive>",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
           {
             "kind": "Constructor",
             "name": "init",
@@ -1824,6 +2543,70 @@
         "name": "Atomic",
         "printedName": "Atomic",
         "children": [
+          {
+            "kind": "Var",
+            "name": "embedded",
+            "printedName": "embedded",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeEmbeddedAtomic",
+                "printedName": "NIOConcurrencyHelpers.UnsafeEmbeddedAtomic<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21NIOConcurrencyHelpers6AtomicC8embeddedAA014UnsafeEmbeddedC0VyxGvp",
+            "mangledName": "$s21NIOConcurrencyHelpers6AtomicC8embeddedAA014UnsafeEmbeddedC0VyxGvp",
+            "moduleName": "NIOConcurrencyHelpers",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeEmbeddedAtomic",
+                    "printedName": "NIOConcurrencyHelpers.UnsafeEmbeddedAtomic<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:21NIOConcurrencyHelpers20UnsafeEmbeddedAtomicV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21NIOConcurrencyHelpers6AtomicC8embeddedAA014UnsafeEmbeddedC0VyxGvg",
+                "mangledName": "$s21NIOConcurrencyHelpers6AtomicC8embeddedAA014UnsafeEmbeddedC0VyxGvg",
+                "moduleName": "NIOConcurrencyHelpers",
+                "genericSig": "<τ_0_0 where τ_0_0 : NIOConcurrencyHelpers.AtomicPrimitive>",
+                "sugared_genericSig": "<T where T : NIOConcurrencyHelpers.AtomicPrimitive>",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
           {
             "kind": "Constructor",
             "name": "init",
@@ -3444,6 +4227,47 @@
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "Function",
+        "name": "debugOnly",
+        "printedName": "debugOnly(_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "() -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "typeAttributes": [
+              "noescape"
+            ]
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:21NIOConcurrencyHelpers9debugOnlyyyyyXEF",
+        "mangledName": "$s21NIOConcurrencyHelpers9debugOnlyyyyyXEF",
+        "moduleName": "NIOConcurrencyHelpers",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "funcSelfKind": "NonMutating"
       },
       {
         "kind": "TypeDecl",
@@ -24284,6 +25108,165 @@
             "printedName": "BitwiseCopyable",
             "usr": "s:s15BitwiseCopyableP",
             "mangledName": "$ss15BitwiseCopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnsafeMutablePointer",
+        "printedName": "UnsafeMutablePointer",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "assertValidAlignment",
+            "printedName": "assertValidAlignment()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:Sp21NIOConcurrencyHelpersE20assertValidAlignmentyyF",
+            "mangledName": "$sSp21NIOConcurrencyHelpersE20assertValidAlignmentyyF",
+            "moduleName": "NIOConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Pointee>",
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:Sp",
+        "mangledName": "$sSp",
+        "moduleName": "Swift",
+        "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
+        "sugared_genericSig": "<Pointee where Pointee : ~Copyable>",
+        "declAttributes": [
+          "Frozen"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_Pointer",
+            "printedName": "_Pointer",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Pointee",
+                "printedName": "Pointee",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s8_PointerP",
+            "mangledName": "$ss8_PointerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Comparable",
+            "printedName": "Comparable",
+            "usr": "s:SL",
+            "mangledName": "$sSL"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Strideable",
+            "printedName": "Strideable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Stride",
+                "printedName": "Stride",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sx",
+            "mangledName": "$sSx"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomReflectable",
+            "printedName": "CustomReflectable",
+            "usr": "s:s17CustomReflectableP",
+            "mangledName": "$ss17CustomReflectableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_CustomPlaygroundQuickLookable",
+            "printedName": "_CustomPlaygroundQuickLookable",
+            "usr": "s:s30_CustomPlaygroundQuickLookableP",
+            "mangledName": "$ss30_CustomPlaygroundQuickLookableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
           }
         ]
       }

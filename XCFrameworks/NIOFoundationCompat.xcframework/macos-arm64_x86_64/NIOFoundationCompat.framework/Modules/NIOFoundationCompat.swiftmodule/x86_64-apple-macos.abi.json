@@ -2726,6 +2726,7 @@
             "moduleName": "NIOFoundationCompat",
             "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable>",
             "sugared_genericSig": "<T where T : Swift.Decodable>",
+            "isOpen": true,
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
@@ -2831,6 +2832,7 @@
             "moduleName": "NIOFoundationCompat",
             "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
             "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "isOpen": true,
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
@@ -2868,6 +2870,7 @@
             "moduleName": "NIOFoundationCompat",
             "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
             "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "isOpen": true,
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
@@ -3115,6 +3118,49 @@
               "AccessControl",
               "Available",
               "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_blockingWaitForFutureCompletion",
+            "printedName": "_blockingWaitForFutureCompletion(mode:file:line:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Mode",
+                "printedName": "Foundation.RunLoop.Mode",
+                "usr": "c:@T@NSRunLoopMode"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StaticString",
+                "printedName": "Swift.StaticString",
+                "usr": "s:s12StaticStringV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt",
+                "printedName": "Swift.UInt",
+                "usr": "s:Su"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7NIOCore15EventLoopFutureC19NIOFoundationCompatE016_blockingWaitForD10Completion4mode4file4linexSo05NSRunC4Modea_s12StaticStringVSutKs8SendableRzlF",
+            "mangledName": "$s7NIOCore15EventLoopFutureC19NIOFoundationCompatE016_blockingWaitForD10Completion4mode4file4linexSo05NSRunC4Modea_s12StaticStringVSutKs8SendableRzlF",
+            "moduleName": "NIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<Value where Value : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "Inline"
             ],
             "isFromExtension": true,
             "throwing": true,

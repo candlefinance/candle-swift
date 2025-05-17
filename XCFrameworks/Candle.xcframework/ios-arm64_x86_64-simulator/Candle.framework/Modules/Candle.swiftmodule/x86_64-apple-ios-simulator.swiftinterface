@@ -444,6 +444,34 @@ public enum Components {
     public typealias AppID = Swift.String
     public typealias AppAuthorizationToken = Swift.String
     public typealias AppUserID = Swift.String
+    public struct UserAuthorizationBody : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      public var bearer: Candle.Components.Schemas.QualifiedUserAuthorizationToken
+      public init(bearer: Candle.Components.Schemas.QualifiedUserAuthorizationToken)
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case bearer
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public static func == (a: Candle.Components.Schemas.UserAuthorizationBody, b: Candle.Components.Schemas.UserAuthorizationBody) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public typealias QualifiedUserAuthorizationToken = Swift.String
     public struct LinkedAccount : Swift.Codable, Swift.Hashable, Swift.Sendable {
       public var linkedAccountID: Candle.Components.Schemas.LinkedAccountID
       public var service: Candle.Components.Schemas.Service
@@ -2783,17 +2811,19 @@ public enum Operations {
     }
     @frozen public enum Output : Swift.Sendable, Swift.Hashable {
       public struct Created : Swift.Sendable, Swift.Hashable {
-        public struct Headers : Swift.Sendable, Swift.Hashable {
-          public var authorization: Swift.String
-          public init(authorization: Swift.String)
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.UserAuthorizationBody)
+          public var json: Candle.Components.Schemas.UserAuthorizationBody {
+            get throws
+          }
           public func hash(into hasher: inout Swift.Hasher)
-          public static func == (a: Candle.Operations.PostUsers.Output.Created.Headers, b: Candle.Operations.PostUsers.Output.Created.Headers) -> Swift.Bool
+          public static func == (a: Candle.Operations.PostUsers.Output.Created.Body, b: Candle.Operations.PostUsers.Output.Created.Body) -> Swift.Bool
           public var hashValue: Swift.Int {
             get
           }
         }
-        public var headers: Candle.Operations.PostUsers.Output.Created.Headers
-        public init(headers: Candle.Operations.PostUsers.Output.Created.Headers)
+        public var body: Candle.Operations.PostUsers.Output.Created.Body
+        public init(body: Candle.Operations.PostUsers.Output.Created.Body)
         public func hash(into hasher: inout Swift.Hasher)
         public static func == (a: Candle.Operations.PostUsers.Output.Created, b: Candle.Operations.PostUsers.Output.Created) -> Swift.Bool
         public var hashValue: Swift.Int {
@@ -9568,6 +9598,7 @@ public protocol ToolCallRequest : Swift.Decodable, Swift.Encodable {
   @available(iOS 17.0, macOS 14.0, *)
   public typealias Body = @_opaqueReturnTypeOf("$s6Candle11ActionSheetV4bodyQrvp", 0) __
 }
+
 @available(macOS 14, iOS 17.0, *)
 public enum PresentationStyle {
   case fullScreen
@@ -9596,6 +9627,19 @@ extension SwiftUICore.View {
   @_Concurrency.MainActor @preconcurrency public func candleLinkSheet(isPresented: SwiftUICore.Binding<Swift.Bool>, service: Candle.Models.Service?, customerName: Swift.String? = nil, cornerRadius: CoreFoundation.CGFloat = 24, showDynamicLoading: Swift.Bool = true, presentationStyle: Candle.PresentationStyle = .sheet, presentationBackground: SwiftUICore.AnyShapeStyle? = nil, action: @escaping Candle.CandleLinkedAccountAction) -> some SwiftUICore.View
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 @available(macOS 14, iOS 17.0, *)
 extension Candle.CandleClient : Swift.Sendable {}
 extension Candle.Components.Schemas.Service : Swift.RawRepresentable {}
@@ -9603,6 +9647,9 @@ extension Candle.Components.Schemas.Service : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.UserAuthorizationBody.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.UserAuthorizationBody.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.UserAuthorizationBody.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.RawRepresentable {}

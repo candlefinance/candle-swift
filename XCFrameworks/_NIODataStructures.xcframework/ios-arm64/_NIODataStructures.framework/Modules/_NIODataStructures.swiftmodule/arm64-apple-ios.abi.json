@@ -13,9 +13,1231 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "Heap",
+        "printedName": "Heap",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "storage",
+            "printedName": "storage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[τ_0_0]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV7storageSayxGvp",
+            "mangledName": "$s18_NIODataStructures4HeapV7storageSayxGvp",
+            "moduleName": "_NIODataStructures",
+            "declAttributes": [
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[τ_0_0]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV7storageSayxGvg",
+                "mangledName": "$s18_NIODataStructures4HeapV7storageSayxGvg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Heap",
+                "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures4HeapV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:18_NIODataStructures4HeapVACyxGycfc",
+            "mangledName": "$s18_NIODataStructures4HeapVACyxGycfc",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "comparator",
+            "printedName": "comparator(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV10comparatorySbx_xtF",
+            "mangledName": "$s18_NIODataStructures4HeapV10comparatorySbx_xtF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "parentIndex",
+            "printedName": "parentIndex(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV11parentIndexyS2iF",
+            "mangledName": "$s18_NIODataStructures4HeapV11parentIndexyS2iF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "leftIndex",
+            "printedName": "leftIndex(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV9leftIndexyS2iF",
+            "mangledName": "$s18_NIODataStructures4HeapV9leftIndexyS2iF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "rightIndex",
+            "printedName": "rightIndex(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV10rightIndexyS2iF",
+            "mangledName": "$s18_NIODataStructures4HeapV10rightIndexyS2iF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_heapify",
+            "printedName": "_heapify(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV8_heapifyyySiF",
+            "mangledName": "$s18_NIODataStructures4HeapV8_heapifyyySiF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_heapRootify",
+            "printedName": "_heapRootify(index:key:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV12_heapRootify5index3keyySi_xtF",
+            "mangledName": "$s18_NIODataStructures4HeapV12_heapRootify5index3keyySi_xtF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "append",
+            "printedName": "append(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV6appendyyxF",
+            "mangledName": "$s18_NIODataStructures4HeapV6appendyyxF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "removeRoot",
+            "printedName": "removeRoot()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV10removeRootxSgyF",
+            "mangledName": "$s18_NIODataStructures4HeapV10removeRootxSgyF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "remove",
+            "printedName": "remove(value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV6remove5valueSbx_tF",
+            "mangledName": "$s18_NIODataStructures4HeapV6remove5valueSbx_tF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "removeFirst",
+            "printedName": "removeFirst(where:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(τ_0_0) throws -> Swift.Bool",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV11removeFirst5wherexSgSbxKXE_tKF",
+            "mangledName": "$s18_NIODataStructures4HeapV11removeFirst5wherexSgSbxKXE_tKF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Rethrows",
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult"
+            ],
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_remove",
+            "printedName": "_remove(index:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV7_remove5indexxSgSi_tF",
+            "mangledName": "$s18_NIODataStructures4HeapV7_remove5indexxSgSi_tF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating",
+              "DiscardableResult"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Var",
+            "name": "debugDescription",
+            "printedName": "debugDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV16debugDescriptionSSvp",
+            "mangledName": "$s18_NIODataStructures4HeapV16debugDescriptionSSvp",
+            "moduleName": "_NIODataStructures",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV16debugDescriptionSSvg",
+                "mangledName": "$s18_NIODataStructures4HeapV16debugDescriptionSSvg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "startIndex",
+            "printedName": "startIndex",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV10startIndexSivp",
+            "mangledName": "$s18_NIODataStructures4HeapV10startIndexSivp",
+            "moduleName": "_NIODataStructures",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV10startIndexSivg",
+                "mangledName": "$s18_NIODataStructures4HeapV10startIndexSivg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "endIndex",
+            "printedName": "endIndex",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV8endIndexSivp",
+            "mangledName": "$s18_NIODataStructures4HeapV8endIndexSivp",
+            "moduleName": "_NIODataStructures",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV8endIndexSivg",
+                "mangledName": "$s18_NIODataStructures4HeapV8endIndexSivg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "underestimatedCount",
+            "printedName": "underestimatedCount",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV19underestimatedCountSivp",
+            "mangledName": "$s18_NIODataStructures4HeapV19underestimatedCountSivp",
+            "moduleName": "_NIODataStructures",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV19underestimatedCountSivg",
+                "mangledName": "$s18_NIODataStructures4HeapV19underestimatedCountSivg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "makeIterator",
+            "printedName": "makeIterator()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HeapIterator",
+                "printedName": "_NIODataStructures.HeapIterator<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures12HeapIteratorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV12makeIteratorAA0cE0VyxGyF",
+            "mangledName": "$s18_NIODataStructures4HeapV12makeIteratorAA0cE0VyxGyF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Subscript",
+            "name": "subscript",
+            "printedName": "subscript(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Subscript",
+            "usr": "s:18_NIODataStructures4HeapVyxSicip",
+            "mangledName": "$s18_NIODataStructures4HeapVyxSicip",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapVyxSicig",
+                "mangledName": "$s18_NIODataStructures4HeapVyxSicig",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "index",
+            "printedName": "index(after:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures4HeapV5index5afterS2i_tF",
+            "mangledName": "$s18_NIODataStructures4HeapV5index5afterS2i_tF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "count",
+            "printedName": "count",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures4HeapV5countSivp",
+            "mangledName": "$s18_NIODataStructures4HeapV5countSivp",
+            "moduleName": "_NIODataStructures",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures4HeapV5countSivg",
+                "mangledName": "$s18_NIODataStructures4HeapV5countSivg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:18_NIODataStructures4HeapV",
+        "mangledName": "$s18_NIODataStructures4HeapV",
+        "moduleName": "_NIODataStructures",
+        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+        "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sequence",
+            "printedName": "Sequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HeapIterator",
+                    "printedName": "_NIODataStructures.HeapIterator<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures12HeapIteratorV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:ST",
+            "mangledName": "$sST"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "HeapIterator",
+        "printedName": "HeapIterator",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "_heap",
+            "printedName": "_heap",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Heap",
+                "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures4HeapV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvp",
+            "mangledName": "$s18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvp",
+            "moduleName": "_NIODataStructures",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Heap",
+                    "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures4HeapV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvg",
+                "mangledName": "$s18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Heap",
+                    "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures4HeapV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvs",
+                "mangledName": "$s18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvs",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvM",
+                "mangledName": "$s18_NIODataStructures12HeapIteratorV5_heapAA0C0VyxGvM",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(heap:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HeapIterator",
+                "printedName": "_NIODataStructures.HeapIterator<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures12HeapIteratorV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Heap",
+                "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures4HeapV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:18_NIODataStructures12HeapIteratorV4heapACyxGAA0C0VyxG_tcfc",
+            "mangledName": "$s18_NIODataStructures12HeapIteratorV4heapACyxGAA0C0VyxG_tcfc",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "next",
+            "printedName": "next()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:18_NIODataStructures12HeapIteratorV4nextxSgyF",
+            "mangledName": "$s18_NIODataStructures12HeapIteratorV4nextxSgyF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+            "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:18_NIODataStructures12HeapIteratorV",
+        "mangledName": "$s18_NIODataStructures12HeapIteratorV",
+        "moduleName": "_NIODataStructures",
+        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+        "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "IteratorProtocol",
+            "printedName": "IteratorProtocol",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:St",
+            "mangledName": "$sSt"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "PriorityQueue",
         "printedName": "PriorityQueue",
         "children": [
+          {
+            "kind": "Var",
+            "name": "_heap",
+            "printedName": "_heap",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Heap",
+                "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures4HeapV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvp",
+            "mangledName": "$s18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvp",
+            "moduleName": "_NIODataStructures",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Heap",
+                    "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures4HeapV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvg",
+                "mangledName": "$s18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Heap",
+                    "printedName": "_NIODataStructures.Heap<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures4HeapV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvs",
+                "mangledName": "$s18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvs",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvM",
+                "mangledName": "$s18_NIODataStructures13PriorityQueueV5_heapAA4HeapVyxGvM",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
           {
             "kind": "Constructor",
             "name": "init",
@@ -341,6 +1563,117 @@
             "printedName": "Iterator",
             "children": [
               {
+                "kind": "Var",
+                "name": "_queue",
+                "printedName": "_queue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PriorityQueue",
+                    "printedName": "_NIODataStructures.PriorityQueue<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:18_NIODataStructures13PriorityQueueV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvp",
+                "mangledName": "$s18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvp",
+                "moduleName": "_NIODataStructures",
+                "declAttributes": [
+                  "HasStorage"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PriorityQueue",
+                        "printedName": "_NIODataStructures.PriorityQueue<τ_0_0>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ],
+                        "usr": "s:18_NIODataStructures13PriorityQueueV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvg",
+                    "mangledName": "$s18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                    "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PriorityQueue",
+                        "printedName": "_NIODataStructures.PriorityQueue<τ_0_0>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ],
+                        "usr": "s:18_NIODataStructures13PriorityQueueV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvs",
+                    "mangledName": "$s18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvs",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                    "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvM",
+                    "mangledName": "$s18_NIODataStructures13PriorityQueueV8IteratorV6_queueACyxGvM",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0 where τ_0_0 : Swift.Comparable>",
+                    "sugared_genericSig": "<Element where Element : Swift.Comparable>",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
                 "kind": "Constructor",
                 "name": "init",
                 "printedName": "init(queue:)",
@@ -664,6 +1997,1083 @@
         "printedName": "_TinyArray",
         "children": [
           {
+            "kind": "TypeDecl",
+            "name": "Storage",
+            "printedName": "Storage",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "one",
+                "printedName": "one",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (_NIODataStructures._TinyArray<τ_0_0>.Storage.Type) -> (τ_0_0) -> _NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(τ_0_0) -> _NIODataStructures._TinyArray<τ_0_0>.Storage",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO3oneyAEyx_GxcAGmlF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO3oneyAEyx_GxcAGmlF",
+                "moduleName": "_NIODataStructures",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "arbitrary",
+                "printedName": "arbitrary",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (_NIODataStructures._TinyArray<τ_0_0>.Storage.Type) -> ([τ_0_0]) -> _NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "([τ_0_0]) -> _NIODataStructures._TinyArray<τ_0_0>.Storage",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Array",
+                            "printedName": "[τ_0_0]",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:Sa"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO9arbitraryyAEyx_GSayxGcAGmlF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO9arbitraryyAEyx_GSayxGcAGmlF",
+                "moduleName": "_NIODataStructures",
+                "fixedbinaryorder": 1
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOAASQRzlE2eeoiySbAEyx_G_AGtFZ",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOAASQRzlE2eeoiySbAEyx_G_AGtFZ",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Equatable>",
+                "sugared_genericSig": "<Element where Element : Swift.Equatable>",
+                "static": true,
+                "isFromExtension": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE4hash4intoys6HasherVz_tF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE4hash4intoys6HasherVz_tF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Hashable>",
+                "sugared_genericSig": "<Element where Element : Swift.Hashable>",
+                "isFromExtension": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivp",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivp",
+                "moduleName": "_NIODataStructures",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivg",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0 where τ_0_0 : Swift.Hashable>",
+                    "sugared_genericSig": "<Element where Element : Swift.Hashable>",
+                    "implicit": true,
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Subscript",
+                "name": "subscript",
+                "printedName": "subscript(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Subscript",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOyxSicip",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOyxSicip",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOyxSicig",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOyxSicig",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "startIndex",
+                "printedName": "startIndex",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO10startIndexSivp",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO10startIndexSivp",
+                "moduleName": "_NIODataStructures",
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO10startIndexSivg",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO10startIndexSivg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "endIndex",
+                "printedName": "endIndex",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO8endIndexSivp",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO8endIndexSivp",
+                "moduleName": "_NIODataStructures",
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO8endIndexSivg",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO8endIndexSivg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOyAEyx_Gqd__c7ElementQyd__RszSTRd__lufc",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOyAEyx_Gqd__c7ElementQyd__RszSTRd__lufc",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 == τ_1_0.Element, τ_1_0 : Swift.Sequence>",
+                "sugared_genericSig": "<Element>",
+                "isFromExtension": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOyAEyx_Gqd__KcSTRd__s5ErrorRd_0_s6ResultOyxqd_0_G7ElementRtd__r0_lufc",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOyAEyx_Gqd__KcSTRd__s5ErrorRd_0_s6ResultOyxqd_0_G7ElementRtd__r0_lufc",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0, τ_1_0, τ_1_1 where τ_1_0 : Swift.Sequence, τ_1_1 : Swift.Error, τ_1_0.Element == Swift.Result<τ_0_0, τ_1_1>>",
+                "sugared_genericSig": "<Element>",
+                "isFromExtension": true,
+                "throwing": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageOAEyx_Gycfc",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageOAEyx_Gycfc",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "isFromExtension": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Function",
+                "name": "append",
+                "printedName": "append(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO6appendyyxF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO6appendyyxF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Mutating"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "Mutating"
+              },
+              {
+                "kind": "Function",
+                "name": "append",
+                "printedName": "append(contentsOf:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO6append10contentsOfyqd___t7ElementQyd__RszSTRd__lF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO6append10contentsOfyqd___t7ElementQyd__RszSTRd__lF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 == τ_1_0.Element, τ_1_0 : Swift.Sequence>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Mutating"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "Mutating"
+              },
+              {
+                "kind": "Function",
+                "name": "remove",
+                "printedName": "remove(at:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO6remove2atxSi_tF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO6remove2atxSi_tF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Mutating",
+                  "DiscardableResult"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "Mutating"
+              },
+              {
+                "kind": "Function",
+                "name": "removeAll",
+                "printedName": "removeAll(where:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(τ_0_0) throws -> Swift.Bool",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "typeAttributes": [
+                      "noescape"
+                    ]
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO9removeAll5whereySbxKXE_tKF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO9removeAll5whereySbxKXE_tKF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Rethrows",
+                  "Mutating"
+                ],
+                "isFromExtension": true,
+                "throwing": true,
+                "funcSelfKind": "Mutating"
+              },
+              {
+                "kind": "Function",
+                "name": "sort",
+                "printedName": "sort(by:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(τ_0_0, τ_0_0) throws -> Swift.Bool",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(τ_0_0, τ_0_0)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ]
+                      }
+                    ],
+                    "typeAttributes": [
+                      "noescape"
+                    ]
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO4sort2byySbx_xtKXE_tKF",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO4sort2byySbx_xtKXE_tKF",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "Rethrows",
+                  "Mutating"
+                ],
+                "isFromExtension": true,
+                "throwing": true,
+                "funcSelfKind": "Mutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO",
+            "mangledName": "$s18_NIODataStructures10_TinyArrayV7StorageO",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "RandomAccessCollection",
+                "printedName": "RandomAccessCollection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sk",
+                "mangledName": "$sSk"
+              },
+              {
+                "kind": "Conformance",
+                "name": "BidirectionalCollection",
+                "printedName": "BidirectionalCollection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:SK",
+                "mangledName": "$sSK"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Collection",
+                "printedName": "Collection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Iterator",
+                    "printedName": "Iterator",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IndexingIterator",
+                        "printedName": "Swift.IndexingIterator<_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s16IndexingIteratorV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sl",
+                "mangledName": "$sSl"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sequence",
+                "printedName": "Sequence",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Iterator",
+                    "printedName": "Iterator",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IndexingIterator",
+                        "printedName": "Swift.IndexingIterator<_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s16IndexingIteratorV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:ST",
+                "mangledName": "$sST"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "storage",
+            "printedName": "storage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Storage",
+                "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvp",
+            "mangledName": "$s18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvp",
+            "moduleName": "_NIODataStructures",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvg",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvg",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvs",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_Gvs",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_GvM",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV7storageAC7StorageOyx_GvM",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(storage:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "_TinyArray",
+                "printedName": "_NIODataStructures._TinyArray<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:18_NIODataStructures10_TinyArrayV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Storage",
+                "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:18_NIODataStructures10_TinyArrayV7storageACyxGAC7StorageOyx_G_tcfc",
+            "mangledName": "$s18_NIODataStructures10_TinyArrayV7storageACyxGAC7StorageOyx_G_tcfc",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -812,6 +3222,167 @@
             "name": "Iterator",
             "printedName": "Iterator",
             "children": [
+              {
+                "kind": "Var",
+                "name": "_storage",
+                "printedName": "_storage",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV8_storageAC7StorageOyx_Gvp",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV8_storageAC7StorageOyx_Gvp",
+                "moduleName": "_NIODataStructures",
+                "declAttributes": [
+                  "HasStorage"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Storage",
+                        "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                        "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV8_storageAC7StorageOyx_Gvg",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV8_storageAC7StorageOyx_Gvg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "_index",
+                "printedName": "_index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivp",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivp",
+                "moduleName": "_NIODataStructures",
+                "declAttributes": [
+                  "HasStorage"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivg",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivg",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivs",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivs",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivM",
+                    "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV6_indexSivM",
+                    "moduleName": "_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(storage:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Iterator",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Iterator",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:18_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:18_NIODataStructures10_TinyArrayV8IteratorV7storageAEyx_GAC7StorageOyx_G_tcfc",
+                "mangledName": "$s18_NIODataStructures10_TinyArrayV8IteratorV7storageAEyx_GAC7StorageOyx_G_tcfc",
+                "moduleName": "_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "init_kind": "Designated"
+              },
               {
                 "kind": "Function",
                 "name": "next",
@@ -1684,6 +4255,581 @@
             ],
             "usr": "s:ST",
             "mangledName": "$sST"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Array",
+        "printedName": "Array",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "appendRemainingElements",
+            "printedName": "appendRemainingElements(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0",
+                "paramValueOwnership": "InOut"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:Sa18_NIODataStructuresE23appendRemainingElements4fromyqd__z_t7ElementQyd__RszStRd__lF",
+            "mangledName": "$sSa18_NIODataStructuresE23appendRemainingElements4fromyqd__z_t7ElementQyd__RszStRd__lF",
+            "moduleName": "_NIODataStructures",
+            "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 == τ_1_0.Element, τ_1_0 : Swift.IteratorProtocol>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:Sa",
+        "mangledName": "$sSa",
+        "moduleName": "Swift",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Element>",
+        "declAttributes": [
+          "EagerMove",
+          "Frozen"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "_DestructorSafeContainer",
+            "printedName": "_DestructorSafeContainer",
+            "usr": "s:s24_DestructorSafeContainerP",
+            "mangledName": "$ss24_DestructorSafeContainerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ArrayProtocol",
+            "printedName": "_ArrayProtocol",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "_Buffer",
+                "printedName": "_Buffer",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "_ArrayBuffer",
+                    "printedName": "Swift._ArrayBuffer<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s12_ArrayBufferV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s14_ArrayProtocolP",
+            "mangledName": "$ss14_ArrayProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RandomAccessCollection",
+            "printedName": "RandomAccessCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ArraySlice",
+                    "printedName": "Swift.ArraySlice<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s10ArraySliceV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sk",
+            "mangledName": "$sSk"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MutableCollection",
+            "printedName": "MutableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ArraySlice",
+                    "printedName": "Swift.ArraySlice<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s10ArraySliceV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SM",
+            "mangledName": "$sSM"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BidirectionalCollection",
+            "printedName": "BidirectionalCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ArraySlice",
+                    "printedName": "Swift.ArraySlice<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s10ArraySliceV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SK",
+            "mangledName": "$sSK"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Collection",
+            "printedName": "Collection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IndexingIterator",
+                    "printedName": "Swift.IndexingIterator<[τ_0_0]>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[τ_0_0]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:s16IndexingIteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ArraySlice",
+                    "printedName": "Swift.ArraySlice<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s10ArraySliceV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sl",
+            "mangledName": "$sSl"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sequence",
+            "printedName": "Sequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IndexingIterator",
+                    "printedName": "Swift.IndexingIterator<[τ_0_0]>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[τ_0_0]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:s16IndexingIteratorV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:ST",
+            "mangledName": "$sST"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByArrayLiteral",
+            "printedName": "ExpressibleByArrayLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ArrayLiteralElement",
+                "printedName": "ArrayLiteralElement",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s25ExpressibleByArrayLiteralP",
+            "mangledName": "$ss25ExpressibleByArrayLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RangeReplaceableCollection",
+            "printedName": "RangeReplaceableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ArraySlice",
+                    "printedName": "Swift.ArraySlice<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:s10ArraySliceV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sm",
+            "mangledName": "$sSm"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomReflectable",
+            "printedName": "CustomReflectable",
+            "usr": "s:s17CustomReflectableP",
+            "mangledName": "$ss17CustomReflectableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_HasCustomAnyHashableRepresentation",
+            "printedName": "_HasCustomAnyHashableRepresentation",
+            "usr": "s:s35_HasCustomAnyHashableRepresentationP",
+            "mangledName": "$ss35_HasCustomAnyHashableRepresentationP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_HasContiguousBytes",
+            "printedName": "_HasContiguousBytes",
+            "usr": "s:s19_HasContiguousBytesP",
+            "mangledName": "$ss19_HasContiguousBytesP"
           }
         ]
       }

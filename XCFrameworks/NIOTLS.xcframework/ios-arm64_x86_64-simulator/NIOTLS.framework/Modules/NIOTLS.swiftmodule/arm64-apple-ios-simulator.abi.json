@@ -113,6 +113,38 @@
             ]
           },
           {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(negotiated:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ALPNResult",
+                "printedName": "NIOTLS.ALPNResult",
+                "usr": "s:6NIOTLS10ALPNResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS10ALPNResultO10negotiatedACSSSg_tcfc",
+            "mangledName": "$s6NIOTLS10ALPNResultO10negotiatedACSSSg_tcfc",
+            "moduleName": "NIOTLS",
+            "init_kind": "Designated"
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -989,6 +1021,1402 @@
         "printedName": "NIOCore",
         "declKind": "Import",
         "moduleName": "NIOTLS"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ProtocolNegotiationHandlerStateMachine",
+        "printedName": "ProtocolNegotiationHandlerStateMachine",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "State",
+            "printedName": "State",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "initial",
+                "printedName": "initial",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "State",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O7initialyAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O7initialyAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "declAttributes": [
+                  "RawDocComment"
+                ],
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "waitingForUser",
+                "printedName": "waitingForUser",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type) -> (DequeModule.Deque<NIOCore.NIOAny>) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(DequeModule.Deque<NIOCore.NIOAny>) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(buffer: DequeModule.Deque<NIOCore.NIOAny>)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Deque",
+                                "printedName": "DequeModule.Deque<NIOCore.NIOAny>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "NIOAny",
+                                    "printedName": "NIOCore.NIOAny",
+                                    "usr": "s:7NIOCore6NIOAnyV"
+                                  }
+                                ],
+                                "usr": "s:11DequeModule0A0V"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O14waitingForUseryAEyx_G11DequeModule0J0Vy7NIOCore6NIOAnyVG_tcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O14waitingForUseryAEyx_G11DequeModule0J0Vy7NIOCore6NIOAnyVG_tcAGmlF",
+                "moduleName": "NIOTLS",
+                "declAttributes": [
+                  "RawDocComment"
+                ],
+                "fixedbinaryorder": 1
+              },
+              {
+                "kind": "Var",
+                "name": "unbuffering",
+                "printedName": "unbuffering",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type) -> (DequeModule.Deque<NIOCore.NIOAny>) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(DequeModule.Deque<NIOCore.NIOAny>) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(buffer: DequeModule.Deque<NIOCore.NIOAny>)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Deque",
+                                "printedName": "DequeModule.Deque<NIOCore.NIOAny>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "NIOAny",
+                                    "printedName": "NIOCore.NIOAny",
+                                    "usr": "s:7NIOCore6NIOAnyV"
+                                  }
+                                ],
+                                "usr": "s:11DequeModule0A0V"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O11unbufferingyAEyx_G11DequeModule0H0Vy7NIOCore6NIOAnyVG_tcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O11unbufferingyAEyx_G11DequeModule0H0Vy7NIOCore6NIOAnyVG_tcAGmlF",
+                "moduleName": "NIOTLS",
+                "declAttributes": [
+                  "RawDocComment"
+                ],
+                "fixedbinaryorder": 2
+              },
+              {
+                "kind": "Var",
+                "name": "finished",
+                "printedName": "finished",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "State",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "State",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O8finishedyAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O8finishedyAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "declAttributes": [
+                  "RawDocComment"
+                ],
+                "fixedbinaryorder": 3
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "state",
+            "printedName": "state",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "State",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.State",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0E0O"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV5state33_09F101513D2370F5F169CB9FA2C309C7LLAC0E0Oyx_Gvp",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV5state33_09F101513D2370F5F169CB9FA2C309C7LLAC0E0Oyx_Gvp",
+            "moduleName": "NIOTLS",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "HandlerRemovedAction",
+            "printedName": "HandlerRemovedAction",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "failPromise",
+                "printedName": "failPromise",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HandlerRemovedAction",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "HandlerRemovedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO11failPromiseyAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO11failPromiseyAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HandlerRemovedAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HandlerRemovedAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO2eeoiySbAEyx_G_AGtFZ",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO2eeoiySbAEyx_G_AGtFZ",
+                "moduleName": "NIOTLS",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<NegotiationResult>",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO9hashValueSivp",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO9hashValueSivp",
+                "moduleName": "NIOTLS",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO9hashValueSivg",
+                    "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO9hashValueSivg",
+                    "moduleName": "NIOTLS",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<NegotiationResult>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO4hash4intoys6HasherVz_tF",
+                "moduleName": "NIOTLS",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<NegotiationResult>",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "BitwiseCopyable",
+                "printedName": "BitwiseCopyable",
+                "usr": "s:s15BitwiseCopyableP",
+                "mangledName": "$ss15BitwiseCopyableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "handlerRemoved",
+            "printedName": "handlerRemoved()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HandlerRemovedAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.HandlerRemovedAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV0D13RemovedActionO"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14handlerRemovedAC0dH6ActionOyx_GSgyF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV14handlerRemovedAC0dH6ActionOyx_GSgyF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "UserInboundEventTriggeredAction",
+            "printedName": "UserInboundEventTriggeredAction",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "fireUserInboundEventTriggered",
+                "printedName": "fireUserInboundEventTriggered",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UserInboundEventTriggeredAction",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserInboundEventTriggeredAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO04fireghiJ0yAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO04fireghiJ0yAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "invokeUserClosure",
+                "printedName": "invokeUserClosure",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction.Type) -> (NIOTLS.ALPNResult) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOTLS.ALPNResult) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserInboundEventTriggeredAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ALPNResult",
+                            "printedName": "NIOTLS.ALPNResult",
+                            "usr": "s:6NIOTLS10ALPNResultO"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserInboundEventTriggeredAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO06invokeG7ClosureyAEyx_GAA10ALPNResultOcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO06invokeG7ClosureyAEyx_GAA10ALPNResultOcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 1
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "userInboundEventTriggered",
+            "printedName": "userInboundEventTriggered(event:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UserInboundEventTriggeredAction",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserInboundEventTriggeredAction",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV31UserInboundEventTriggeredActionO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25userInboundEventTriggered5eventAC04UserhiJ6ActionOyx_Gyp_tF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25userInboundEventTriggered5eventAC04UserhiJ6ActionOyx_Gyp_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "ChannelReadAction",
+            "printedName": "ChannelReadAction",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "fireChannelRead",
+                "printedName": "fireChannelRead",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ChannelReadAction",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ChannelReadAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO04firegH0yAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO04firegH0yAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ChannelReadAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ChannelReadAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO2eeoiySbAEyx_G_AGtFZ",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO2eeoiySbAEyx_G_AGtFZ",
+                "moduleName": "NIOTLS",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<NegotiationResult>",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO9hashValueSivp",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO9hashValueSivp",
+                "moduleName": "NIOTLS",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO9hashValueSivg",
+                    "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO9hashValueSivg",
+                    "moduleName": "NIOTLS",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<NegotiationResult>",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO4hash4intoys6HasherVz_tF",
+                "moduleName": "NIOTLS",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<NegotiationResult>",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "BitwiseCopyable",
+                "printedName": "BitwiseCopyable",
+                "usr": "s:s15BitwiseCopyableP",
+                "mangledName": "$ss15BitwiseCopyableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ChannelReadAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.ChannelReadAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV17ChannelReadActionO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV11channelRead4dataAC07ChannelH6ActionOyx_GSg7NIOCore6NIOAnyV_tF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV11channelRead4dataAC07ChannelH6ActionOyx_GSg7NIOCore6NIOAnyV_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "UserFutureCompletedAction",
+            "printedName": "UserFutureCompletedAction",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "fireErrorCaughtAndRemoveHandler",
+                "printedName": "fireErrorCaughtAndRemoveHandler",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type) -> (any Swift.Error) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(any Swift.Error) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO024fireErrorCaughtAndRemoveD0yAEyx_Gs0L0_pcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO024fireErrorCaughtAndRemoveD0yAEyx_Gs0L0_pcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "fireErrorCaughtAndStartUnbuffering",
+                "printedName": "fireErrorCaughtAndStartUnbuffering",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type) -> (any Swift.Error) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(any Swift.Error) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO34fireErrorCaughtAndStartUnbufferingyAEyx_Gs0L0_pcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO34fireErrorCaughtAndStartUnbufferingyAEyx_Gs0L0_pcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 1
+              },
+              {
+                "kind": "Var",
+                "name": "startUnbuffering",
+                "printedName": "startUnbuffering",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type) -> (τ_0_0) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(τ_0_0) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO16startUnbufferingyAEyx_GxcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO16startUnbufferingyAEyx_GxcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 2
+              },
+              {
+                "kind": "Var",
+                "name": "removeHandler",
+                "printedName": "removeHandler",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type) -> (τ_0_0) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(τ_0_0) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UserFutureCompletedAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO06removeD0yAEyx_GxcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO06removeD0yAEyx_GxcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 3
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "userFutureCompleted",
+            "printedName": "userFutureCompleted(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UserFutureCompletedAction",
+                    "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UserFutureCompletedAction",
+                    "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV25UserFutureCompletedActionO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Result",
+                "printedName": "Swift.Result<τ_0_0, any Swift.Error>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:s6ResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV19userFutureCompleted4withAC04UserhI6ActionOyx_GSgs6ResultOyxs5Error_pG_tF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV19userFutureCompleted4withAC04UserhI6ActionOyx_GSgs6ResultOyxs5Error_pG_tF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "UnbufferAction",
+            "printedName": "UnbufferAction",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "fireChannelRead",
+                "printedName": "fireChannelRead",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction.Type) -> (NIOCore.NIOAny) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.NIOAny) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnbufferAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnbufferAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO15fireChannelReadyAEyx_G7NIOCore6NIOAnyVcAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO15fireChannelReadyAEyx_G7NIOCore6NIOAnyVcAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "fireChannelReadCompleteAndRemoveHandler",
+                "printedName": "fireChannelReadCompleteAndRemoveHandler",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction.Type) -> NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UnbufferAction",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnbufferAction",
+                            "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO032fireChannelReadCompleteAndRemoveD0yAEyx_GAGmlF",
+                "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO032fireChannelReadCompleteAndRemoveD0yAEyx_GAGmlF",
+                "moduleName": "NIOTLS",
+                "fixedbinaryorder": 1
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "unbuffer",
+            "printedName": "unbuffer()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnbufferAction",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>.UnbufferAction",
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV14UnbufferActionO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV8unbufferAC14UnbufferActionOyx_GyF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV8unbufferAC14UnbufferActionOyx_GyF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelInactive",
+            "printedName": "channelInactive()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV15channelInactiveyyF",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV15channelInactiveyyF",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolNegotiationHandlerStateMachine",
+                "printedName": "NIOTLS.ProtocolNegotiationHandlerStateMachine<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineVACyxGycfc",
+            "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineVACyxGycfc",
+            "moduleName": "NIOTLS",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<NegotiationResult>",
+            "implicit": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:6NIOTLS38ProtocolNegotiationHandlerStateMachineV",
+        "mangledName": "$s6NIOTLS38ProtocolNegotiationHandlerStateMachineV",
+        "moduleName": "NIOTLS",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<NegotiationResult>",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",

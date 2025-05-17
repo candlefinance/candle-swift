@@ -1161,6 +1161,134 @@
           },
           {
             "kind": "Var",
+            "name": "channelcore",
+            "printedName": "channelcore",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "NIOEmbedded.EmbeddedChannelCore?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EmbeddedChannelCore",
+                    "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                    "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvp",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "Nonisolated"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "NIOEmbedded.EmbeddedChannelCore?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EmbeddedChannelCore",
+                        "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                        "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvg",
+                "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "NIOEmbedded.EmbeddedChannelCore?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EmbeddedChannelCore",
+                        "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                        "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvs",
+                "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvM",
+                "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC11channelcoreAA08EmbeddedD4CoreCSgvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "intro_Macosx": "10.15",
+                "intro_iOS": "13.0",
+                "intro_tvOS": "13.0",
+                "intro_watchOS": "6.0",
+                "declAttributes": [
+                  "Final",
+                  "Available",
+                  "Available",
+                  "Available",
+                  "Available"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "_channelCore",
             "printedName": "_channelCore",
             "children": [
@@ -2066,6 +2194,115 @@
           },
           {
             "kind": "Function",
+            "name": "_throwIfErrorCaught",
+            "printedName": "_throwIfErrorCaught()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC19_throwIfErrorCaughtyyKF",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC19_throwIfErrorCaughtyyKF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_readFromBuffer",
+            "printedName": "_readFromBuffer(buffer:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CircularBuffer",
+                "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOAny",
+                    "printedName": "NIOCore.NIOAny",
+                    "usr": "s:7NIOCore6NIOAnyV"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:7NIOCore14CircularBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC15_readFromBuffer6bufferxSg7NIOCore08CircularG0VyAG6NIOAnyVGz_tKlF",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC15_readFromBuffer6bufferxSg7NIOCore08CircularG0VyAG6NIOAnyVGz_tKlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Final"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_cast",
+            "printedName": "_cast(_:to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_0_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "hasDefaultArg": true
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC5_cast_2tox7NIOCore6NIOAnyV_xmtKlF",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC5_cast_2tox7NIOCore6NIOAnyV_xmtKlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Final"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "setOption",
             "printedName": "setOption(_:value:)",
             "children": [
@@ -2108,6 +2345,39 @@
           },
           {
             "kind": "Function",
+            "name": "setOptionSync",
+            "printedName": "setOptionSync(_:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Value"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC13setOptionSync_5valueyx_5ValueQzt7NIOCore0dF0RzlF",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC13setOptionSync_5valueyx_5ValueQzt7NIOCore0dF0RzlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOCore.ChannelOption>",
+            "sugared_genericSig": "<Option where Option : NIOCore.ChannelOption>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "getOption",
             "printedName": "getOption(_:)",
             "children": [
@@ -2140,6 +2410,34 @@
               "Final",
               "AccessControl",
               "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getOptionSync",
+            "printedName": "getOptionSync(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Value"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC13getOptionSyncy5ValueQzx7NIOCore0dF0RzlF",
+            "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC13getOptionSyncy5ValueQzx7NIOCore0dF0RzlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOCore.ChannelOption>",
+            "sugared_genericSig": "<Option where Option : NIOCore.ChannelOption>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -2246,6 +2544,50 @@
             "name": "SynchronousOptions",
             "printedName": "SynchronousOptions",
             "children": [
+              {
+                "kind": "Var",
+                "name": "channel",
+                "printedName": "channel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOAsyncTestingChannel",
+                    "printedName": "NIOEmbedded.NIOAsyncTestingChannel",
+                    "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC18SynchronousOptionsV7channelACvp",
+                "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC18SynchronousOptionsV7channelACvp",
+                "moduleName": "NIOEmbedded",
+                "declAttributes": [
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAsyncTestingChannel",
+                        "printedName": "NIOEmbedded.NIOAsyncTestingChannel",
+                        "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11NIOEmbedded22NIOAsyncTestingChannelC18SynchronousOptionsV7channelACvg",
+                    "mangledName": "$s11NIOEmbedded22NIOAsyncTestingChannelC18SynchronousOptionsV7channelACvg",
+                    "moduleName": "NIOEmbedded",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
               {
                 "kind": "Function",
                 "name": "setOption",
@@ -2928,6 +3270,54 @@
           },
           {
             "kind": "Function",
+            "name": "_advanceTime",
+            "printedName": "_advanceTime(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIODeadline",
+                "printedName": "NIOCore.NIODeadline",
+                "usr": "s:7NIOCore11NIODeadlineV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC12_advanceTime2toy7NIOCore11NIODeadlineV_tF",
+            "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC12_advanceTime2toy7NIOCore11NIODeadlineV_tF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_run",
+            "printedName": "_run()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC4_runyyF",
+            "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC4_runyyF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "executeInContext",
             "printedName": "executeInContext(_:)",
             "children": [
@@ -2966,6 +3356,48 @@
               "RawDocComment"
             ],
             "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_cancelRemainingScheduledTasks",
+            "printedName": "_cancelRemainingScheduledTasks()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC30_cancelRemainingScheduledTasksyyF",
+            "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC30_cancelRemainingScheduledTasksyyF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "drainScheduledTasksByRunningAllCurrentlyScheduledTasks",
+            "printedName": "drainScheduledTasksByRunningAllCurrentlyScheduledTasks()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC040drainScheduledTasksByRunningAllCurrentlygH0yyF",
+            "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC040drainScheduledTasksByRunningAllCurrentlygH0yyF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
             "funcSelfKind": "NonMutating"
           },
           {
@@ -3460,6 +3892,213 @@
               "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "ScheduleCreationResult",
+            "printedName": "ScheduleCreationResult",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "doSchedule",
+                "printedName": "doSchedule",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>.Type) -> (Swift.UInt64, NIOCore.EventLoopPromise<τ_0_0>, NIOCore.Scheduled<τ_0_0>) -> NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UInt64, NIOCore.EventLoopPromise<τ_0_0>, NIOCore.Scheduled<τ_0_0>) -> NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ScheduleCreationResult",
+                            "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(taskID: Swift.UInt64, promise: NIOCore.EventLoopPromise<τ_0_0>, scheduled: NIOCore.Scheduled<τ_0_0>)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UInt64",
+                                "printedName": "Swift.UInt64",
+                                "usr": "s:s6UInt64V"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "EventLoopPromise",
+                                "printedName": "NIOCore.EventLoopPromise<τ_0_0>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "GenericTypeParam",
+                                    "printedName": "τ_0_0"
+                                  }
+                                ],
+                                "usr": "s:7NIOCore16EventLoopPromiseV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Scheduled",
+                                "printedName": "NIOCore.Scheduled<τ_0_0>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "GenericTypeParam",
+                                    "printedName": "τ_0_0"
+                                  }
+                                ],
+                                "usr": "s:7NIOCore9ScheduledV"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ScheduleCreationResult",
+                            "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO02doF0yAEy_xGs6UInt64V_7NIOCore0dE7PromiseVyxGAJ9ScheduledVyxGtcAGmlF",
+                "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO02doF0yAEy_xGs6UInt64V_7NIOCore0dE7PromiseVyxGAJ9ScheduledVyxGtcAGmlF",
+                "moduleName": "NIOEmbedded",
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "returnImmediately",
+                "printedName": "returnImmediately",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>.Type) -> (NIOCore.Scheduled<τ_0_0>) -> NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.Scheduled<τ_0_0>) -> NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ScheduleCreationResult",
+                            "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Scheduled",
+                            "printedName": "NIOCore.Scheduled<τ_0_0>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:7NIOCore9ScheduledV"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ScheduleCreationResult",
+                            "printedName": "NIOEmbedded.NIOAsyncTestingEventLoop.ScheduleCreationResult<τ_0_0>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO17returnImmediatelyyAEy_xG7NIOCore9ScheduledVyxGcAGmlF",
+                "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO17returnImmediatelyyAEy_xG7NIOCore9ScheduledVyxGcAGmlF",
+                "moduleName": "NIOEmbedded",
+                "fixedbinaryorder": 1
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO",
+            "mangledName": "$s11NIOEmbedded24NIOAsyncTestingEventLoopC22ScheduleCreationResultO",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<TaskReturnType>",
+            "isEnumExhaustive": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              }
+            ]
           }
         ],
         "declKind": "Class",
@@ -3599,6 +4238,489 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "EmbeddedScheduledTask",
+        "printedName": "EmbeddedScheduledTask",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV2ids6UInt64Vvp",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV2ids6UInt64Vvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 0,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt64",
+                    "printedName": "Swift.UInt64",
+                    "usr": "s:s6UInt64V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV2ids6UInt64Vvg",
+                "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV2ids6UInt64Vvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "task",
+            "printedName": "task",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV4taskyycvp",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV4taskyycvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 1,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "() -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV4taskyycvg",
+                "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV4taskyycvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "failFn",
+            "printedName": "failFn",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(any Swift.Error) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV6failFnyys5Error_pcvp",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV6failFnyys5Error_pcvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 2,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV6failFnyys5Error_pcvg",
+                "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV6failFnyys5Error_pcvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "readyTime",
+            "printedName": "readyTime",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIODeadline",
+                "printedName": "NIOCore.NIODeadline",
+                "usr": "s:7NIOCore11NIODeadlineV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV9readyTime7NIOCore11NIODeadlineVvp",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV9readyTime7NIOCore11NIODeadlineVvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 3,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIODeadline",
+                    "printedName": "NIOCore.NIODeadline",
+                    "usr": "s:7NIOCore11NIODeadlineV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV9readyTime7NIOCore11NIODeadlineVvg",
+                "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV9readyTime7NIOCore11NIODeadlineVvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "insertOrder",
+            "printedName": "insertOrder",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV11insertOrders6UInt64Vvp",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV11insertOrders6UInt64Vvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 4,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt64",
+                    "printedName": "Swift.UInt64",
+                    "usr": "s:s6UInt64V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV11insertOrders6UInt64Vvg",
+                "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV11insertOrders6UInt64Vvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(id:readyTime:insertOrder:task:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedScheduledTask",
+                "printedName": "NIOEmbedded.EmbeddedScheduledTask",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIODeadline",
+                "printedName": "NIOCore.NIODeadline",
+                "usr": "s:7NIOCore11NIODeadlineV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(any Swift.Error) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV2id9readyTime11insertOrder4task_ACs6UInt64V_7NIOCore11NIODeadlineVAIyycys5Error_pctcfc",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV2id9readyTime11insertOrder4task_ACs6UInt64V_7NIOCore11NIODeadlineVAIyycys5Error_pctcfc",
+            "moduleName": "NIOEmbedded",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "fail",
+            "printedName": "fail(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Error",
+                "printedName": "any Swift.Error",
+                "usr": "s:s5ErrorP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV4failyys5Error_pF",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV4failyys5Error_pF",
+            "moduleName": "NIOEmbedded",
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "<",
+            "printedName": "<(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedScheduledTask",
+                "printedName": "NIOEmbedded.EmbeddedScheduledTask",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedScheduledTask",
+                "printedName": "NIOEmbedded.EmbeddedScheduledTask",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV1loiySbAC_ACtFZ",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV1loiySbAC_ACtFZ",
+            "moduleName": "NIOEmbedded",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedScheduledTask",
+                "printedName": "NIOEmbedded.EmbeddedScheduledTask",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedScheduledTask",
+                "printedName": "NIOEmbedded.EmbeddedScheduledTask",
+                "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOEmbedded",
+            "static": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11NIOEmbedded21EmbeddedScheduledTaskV",
+        "mangledName": "$s11NIOEmbedded21EmbeddedScheduledTaskV",
+        "moduleName": "NIOEmbedded",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Comparable",
+            "printedName": "Comparable",
+            "usr": "s:SL",
+            "mangledName": "$sSL"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "EmbeddedEventLoop",
         "printedName": "EmbeddedEventLoop",
         "children": [
@@ -3695,6 +4817,27 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Function",
+            "name": "isCorrectThread",
+            "printedName": "isCorrectThread()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded17EmbeddedEventLoopC15isCorrectThreadSbyF",
+            "mangledName": "$s11NIOEmbedded17EmbeddedEventLoopC15isCorrectThreadSbyF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final"
+            ],
+            "funcSelfKind": "NonMutating"
           },
           {
             "kind": "Var",
@@ -4046,6 +5189,27 @@
               "Final",
               "AccessControl",
               "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "cancelRemainingScheduledTasks",
+            "printedName": "cancelRemainingScheduledTasks()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded17EmbeddedEventLoopC29cancelRemainingScheduledTasksyyF",
+            "mangledName": "$s11NIOEmbedded17EmbeddedEventLoopC29cancelRemainingScheduledTasksyyF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -4570,6 +5734,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Var",
+            "name": "strictModeEnabled",
+            "printedName": "strictModeEnabled",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded17EmbeddedEventLoopC17strictModeEnabledSbvpZ",
+            "mangledName": "$s11NIOEmbedded17EmbeddedEventLoopC17strictModeEnabledSbvpZ",
+            "moduleName": "NIOEmbedded",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded17EmbeddedEventLoopC17strictModeEnabledSbvgZ",
+                "mangledName": "$s11NIOEmbedded17EmbeddedEventLoopC17strictModeEnabledSbvgZ",
+                "moduleName": "NIOEmbedded",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Class",
@@ -4623,6 +5838,2158 @@
             "printedName": "_NIOPreconcurrencySendable",
             "usr": "s:7NIOCore26_NIOPreconcurrencySendableP",
             "mangledName": "$s7NIOCore26_NIOPreconcurrencySendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EmbeddedChannelCore",
+        "printedName": "EmbeddedChannelCore",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "isOpen",
+            "printedName": "isOpen",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvg",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvs",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6isOpenSbvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isActive",
+            "printedName": "isActive",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvg",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvs",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8isActiveSbvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "allowRemoteHalfClosure",
+            "printedName": "allowRemoteHalfClosure",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvg",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvs",
+                "moduleName": "NIOEmbedded",
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22allowRemoteHalfClosureSbvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "_isOpen",
+            "printedName": "_isOpen",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ManagedAtomic",
+                "printedName": "Atomics.ManagedAtomic<Swift.Bool>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:7Atomics13ManagedAtomicC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC7_isOpen33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC7_isOpen33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "moduleName": "NIOEmbedded",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "_isActive",
+            "printedName": "_isActive",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ManagedAtomic",
+                "printedName": "Atomics.ManagedAtomic<Swift.Bool>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:7Atomics13ManagedAtomicC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC9_isActive33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC9_isActive33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "moduleName": "NIOEmbedded",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 1,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "_allowRemoteHalfClosure",
+            "printedName": "_allowRemoteHalfClosure",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ManagedAtomic",
+                "printedName": "Atomics.ManagedAtomic<Swift.Bool>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:7Atomics13ManagedAtomicC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC23_allowRemoteHalfClosure33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC23_allowRemoteHalfClosure33_4899816D607790E12A1069FDBCFBA13ELL7Atomics13ManagedAtomicCySbGvp",
+            "moduleName": "NIOEmbedded",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 2,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "eventLoop",
+            "printedName": "eventLoop",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoop",
+                "printedName": "any NIOCore.EventLoop",
+                "usr": "s:7NIOCore9EventLoopP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC9eventLoop7NIOCore05EventF0_pvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC9eventLoop7NIOCore05EventF0_pvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 3,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoop",
+                    "printedName": "any NIOCore.EventLoop",
+                    "usr": "s:7NIOCore9EventLoopP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC9eventLoop7NIOCore05EventF0_pvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC9eventLoop7NIOCore05EventF0_pvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "closePromise",
+            "printedName": "closePromise",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoopPromise",
+                "printedName": "NIOCore.EventLoopPromise<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "usr": "s:7NIOCore16EventLoopPromiseV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12closePromise7NIOCore09EventLoopF0VyytGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12closePromise7NIOCore09EventLoopF0VyytGvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 4,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12closePromise7NIOCore09EventLoopF0VyytGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12closePromise7NIOCore09EventLoopF0VyytGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "error",
+            "printedName": "error",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 5,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any Swift.Error)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any Swift.Error)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5errors5Error_pSgvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pipeline",
+            "printedName": "pipeline",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelPipeline",
+                "printedName": "NIOCore.ChannelPipeline",
+                "usr": "s:7NIOCore15ChannelPipelineC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8pipeline33_4899816D607790E12A1069FDBCFBA13ELL7NIOCore0C8PipelineCvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8pipeline33_4899816D607790E12A1069FDBCFBA13ELL7NIOCore0C8PipelineCvp",
+            "moduleName": "NIOEmbedded",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 6,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(pipeline:eventLoop:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedChannelCore",
+                "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelPipeline",
+                "printedName": "NIOCore.ChannelPipeline",
+                "usr": "s:7NIOCore15ChannelPipelineC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoop",
+                "printedName": "any NIOCore.EventLoop",
+                "usr": "s:7NIOCore9EventLoopP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8pipeline9eventLoopAC7NIOCore0C8PipelineC_AF05EventG0_ptcfc",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8pipeline9eventLoopAC7NIOCore0C8PipelineC_AF05EventG0_ptcfc",
+            "moduleName": "NIOEmbedded",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "outboundBuffer",
+            "printedName": "outboundBuffer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CircularBuffer",
+                "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOAny",
+                    "printedName": "NIOCore.NIOAny",
+                    "usr": "s:7NIOCore6NIOAnyV"
+                  }
+                ],
+                "usr": "s:7NIOCore14CircularBufferV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 7,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CircularBuffer",
+                    "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ],
+                    "usr": "s:7NIOCore14CircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CircularBuffer",
+                    "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ],
+                    "usr": "s:7NIOCore14CircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC14outboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "outboundBufferConsumer",
+            "printedName": "outboundBufferConsumer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Deque",
+                "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(NIOCore.NIOAny) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:11DequeModule0A0V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 8,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Deque",
+                    "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.NIOAny) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:11DequeModule0A0V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Deque",
+                    "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.NIOAny) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:11DequeModule0A0V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC22outboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pendingOutboundBuffer",
+            "printedName": "pendingOutboundBuffer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MarkedCircularBuffer",
+                "printedName": "NIOCore.MarkedCircularBuffer<(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "NIOCore.EventLoopPromise<()>?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "EventLoopPromise",
+                            "printedName": "NIOCore.EventLoopPromise<()>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Void",
+                                "printedName": "()"
+                              }
+                            ],
+                            "usr": "s:7NIOCore16EventLoopPromiseV"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:7NIOCore20MarkedCircularBufferV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 9,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MarkedCircularBuffer",
+                    "printedName": "NIOCore.MarkedCircularBuffer<(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "NIOCore.EventLoopPromise<()>?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "EventLoopPromise",
+                                "printedName": "NIOCore.EventLoopPromise<()>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Void",
+                                    "printedName": "()"
+                                  }
+                                ],
+                                "usr": "s:7NIOCore16EventLoopPromiseV"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:7NIOCore20MarkedCircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MarkedCircularBuffer",
+                    "printedName": "NIOCore.MarkedCircularBuffer<(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(NIOCore.NIOAny, NIOCore.EventLoopPromise<()>?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "NIOCore.EventLoopPromise<()>?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "EventLoopPromise",
+                                "printedName": "NIOCore.EventLoopPromise<()>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Void",
+                                    "printedName": "()"
+                                  }
+                                ],
+                                "usr": "s:7NIOCore16EventLoopPromiseV"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:7NIOCore20MarkedCircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21pendingOutboundBuffer7NIOCore014MarkedCircularG0VyAE6NIOAnyV_AE16EventLoopPromiseVyytGSgtGvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "inboundBuffer",
+            "printedName": "inboundBuffer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CircularBuffer",
+                "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOAny",
+                    "printedName": "NIOCore.NIOAny",
+                    "usr": "s:7NIOCore6NIOAnyV"
+                  }
+                ],
+                "usr": "s:7NIOCore14CircularBufferV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 10,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CircularBuffer",
+                    "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ],
+                    "usr": "s:7NIOCore14CircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CircularBuffer",
+                    "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ],
+                    "usr": "s:7NIOCore14CircularBufferV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13inboundBuffer7NIOCore08CircularF0VyAE6NIOAnyVGvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "inboundBufferConsumer",
+            "printedName": "inboundBufferConsumer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Deque",
+                "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(NIOCore.NIOAny) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOAny",
+                        "printedName": "NIOCore.NIOAny",
+                        "usr": "s:7NIOCore6NIOAnyV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:11DequeModule0A0V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "fixedbinaryorder": 11,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Deque",
+                    "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.NIOAny) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:11DequeModule0A0V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Deque",
+                    "printedName": "DequeModule.Deque<(NIOCore.NIOAny) -> ()>",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(NIOCore.NIOAny) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NIOAny",
+                            "printedName": "NIOCore.NIOAny",
+                            "usr": "s:7NIOCore6NIOAnyV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:11DequeModule0A0V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC21inboundBufferConsumer11DequeModule0H0Vyy7NIOCore6NIOAnyVcGvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "localAddress",
+            "printedName": "localAddress",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.SocketAddress?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SocketAddress",
+                    "printedName": "NIOCore.SocketAddress",
+                    "usr": "s:7NIOCore13SocketAddressO"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 12,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.SocketAddress?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SocketAddress",
+                        "printedName": "NIOCore.SocketAddress",
+                        "usr": "s:7NIOCore13SocketAddressO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.SocketAddress?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SocketAddress",
+                        "printedName": "NIOCore.SocketAddress",
+                        "usr": "s:7NIOCore13SocketAddressO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12localAddress7NIOCore06SocketF0OSgvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "remoteAddress",
+            "printedName": "remoteAddress",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.SocketAddress?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SocketAddress",
+                    "printedName": "NIOCore.SocketAddress",
+                    "usr": "s:7NIOCore13SocketAddressO"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvp",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvp",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 13,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.SocketAddress?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SocketAddress",
+                        "printedName": "NIOCore.SocketAddress",
+                        "usr": "s:7NIOCore13SocketAddressO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvg",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOCore.SocketAddress?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SocketAddress",
+                        "printedName": "NIOCore.SocketAddress",
+                        "usr": "s:7NIOCore13SocketAddressO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvs",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvM",
+                "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13remoteAddress7NIOCore06SocketF0OSgvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "localAddress0",
+            "printedName": "localAddress0()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SocketAddress",
+                "printedName": "NIOCore.SocketAddress",
+                "usr": "s:7NIOCore13SocketAddressO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC13localAddress07NIOCore13SocketAddressOyKF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC13localAddress07NIOCore13SocketAddressOyKF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "remoteAddress0",
+            "printedName": "remoteAddress0()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SocketAddress",
+                "printedName": "NIOCore.SocketAddress",
+                "usr": "s:7NIOCore13SocketAddressO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC14remoteAddress07NIOCore13SocketAddressOyKF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC14remoteAddress07NIOCore13SocketAddressOyKF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "close0",
+            "printedName": "close0(error:mode:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Error",
+                "printedName": "any Swift.Error",
+                "usr": "s:s5ErrorP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CloseMode",
+                "printedName": "NIOCore.CloseMode",
+                "usr": "s:7NIOCore9CloseModeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6close05error4mode7promiseys5Error_p_7NIOCore9CloseModeOAI16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6close05error4mode7promiseys5Error_p_7NIOCore9CloseModeOAI16EventLoopPromiseVyytGSgtF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "bind0",
+            "printedName": "bind0(to:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SocketAddress",
+                "printedName": "NIOCore.SocketAddress",
+                "usr": "s:7NIOCore13SocketAddressO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5bind02to7promisey7NIOCore13SocketAddressO_AG16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5bind02to7promisey7NIOCore13SocketAddressO_AG16EventLoopPromiseVyytGSgtF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "connect0",
+            "printedName": "connect0(to:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SocketAddress",
+                "printedName": "NIOCore.SocketAddress",
+                "usr": "s:7NIOCore13SocketAddressO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC8connect02to7promisey7NIOCore13SocketAddressO_AG16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC8connect02to7promisey7NIOCore13SocketAddressO_AG16EventLoopPromiseVyytGSgtF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "register0",
+            "printedName": "register0(promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC9register07promisey7NIOCore16EventLoopPromiseVyytGSg_tF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC9register07promisey7NIOCore16EventLoopPromiseVyytGSg_tF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "registerAlreadyConfigured0",
+            "printedName": "registerAlreadyConfigured0(promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC26registerAlreadyConfigured07promisey7NIOCore16EventLoopPromiseVyytGSg_tF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC26registerAlreadyConfigured07promisey7NIOCore16EventLoopPromiseVyytGSg_tF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "write0",
+            "printedName": "write0(_:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6write0_7promisey7NIOCore6NIOAnyV_AF16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6write0_7promisey7NIOCore6NIOAnyV_AF16EventLoopPromiseVyytGSgtF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "flush0",
+            "printedName": "flush0()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC6flush0yyF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC6flush0yyF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "read0",
+            "printedName": "read0()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC5read0yyF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC5read0yyF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "triggerUserOutboundEvent0",
+            "printedName": "triggerUserOutboundEvent0(_:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "NIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:7NIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC25triggerUserOutboundEvent0_7promiseyyp_7NIOCore16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC25triggerUserOutboundEvent0_7promiseyyp_7NIOCore16EventLoopPromiseVyytGSgtF",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead0",
+            "printedName": "channelRead0(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "NIOCore.NIOAny",
+                "usr": "s:7NIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12channelRead0yy7NIOCore6NIOAnyVF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12channelRead0yy7NIOCore6NIOAnyVF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "errorCaught0",
+            "printedName": "errorCaught0(error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Error",
+                "printedName": "any Swift.Error",
+                "usr": "s:s5ErrorP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC12errorCaught00E0ys5Error_p_tF",
+            "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC12errorCaught00E0ys5Error_p_tF",
+            "moduleName": "NIOEmbedded",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC",
+        "mangledName": "$s11NIOEmbedded19EmbeddedChannelCoreC",
+        "moduleName": "NIOEmbedded",
+        "isOpen": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelCore",
+            "printedName": "ChannelCore",
+            "usr": "s:7NIOCore11ChannelCoreP",
+            "mangledName": "$s7NIOCore11ChannelCoreP"
           },
           {
             "kind": "Conformance",
@@ -5553,6 +8920,99 @@
                   "Final"
                 ],
                 "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "channelcore",
+            "printedName": "channelcore",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EmbeddedChannelCore",
+                "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvp",
+            "mangledName": "$s11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvp",
+            "moduleName": "NIOEmbedded",
+            "declAttributes": [
+              "Final",
+              "Lazy"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EmbeddedChannelCore",
+                    "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                    "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvg",
+                "mangledName": "$s11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvg",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EmbeddedChannelCore",
+                    "printedName": "NIOEmbedded.EmbeddedChannelCore",
+                    "usr": "s:11NIOEmbedded19EmbeddedChannelCoreC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvs",
+                "mangledName": "$s11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvs",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvM",
+                "mangledName": "$s11NIOEmbedded15EmbeddedChannelC11channelcoreAA0bC4CoreCvM",
+                "moduleName": "NIOEmbedded",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
               }
             ]
           },
@@ -6514,6 +9974,52 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "_readFromBuffer",
+            "printedName": "_readFromBuffer(buffer:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CircularBuffer",
+                "printedName": "NIOCore.CircularBuffer<NIOCore.NIOAny>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOAny",
+                    "printedName": "NIOCore.NIOAny",
+                    "usr": "s:7NIOCore6NIOAnyV"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:7NIOCore14CircularBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded15EmbeddedChannelC15_readFromBuffer6bufferxSg7NIOCore08CircularF0VyAG6NIOAnyVGz_tKlF",
+            "mangledName": "$s11NIOEmbedded15EmbeddedChannelC15_readFromBuffer6bufferxSg7NIOCore08CircularF0VyAG6NIOAnyVGz_tKlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Final"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(handler:loop:)",
@@ -6645,6 +10151,39 @@
           },
           {
             "kind": "Function",
+            "name": "setOptionSync",
+            "printedName": "setOptionSync(_:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Value"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded15EmbeddedChannelC13setOptionSync_5valueyx_5ValueQzt7NIOCore0cE0RzlF",
+            "mangledName": "$s11NIOEmbedded15EmbeddedChannelC13setOptionSync_5valueyx_5ValueQzt7NIOCore0cE0RzlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOCore.ChannelOption>",
+            "sugared_genericSig": "<Option where Option : NIOCore.ChannelOption>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "getOption",
             "printedName": "getOption(_:)",
             "children": [
@@ -6677,6 +10216,34 @@
               "Final",
               "AccessControl",
               "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getOptionSync",
+            "printedName": "getOptionSync(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Value"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11NIOEmbedded15EmbeddedChannelC13getOptionSyncy5ValueQzx7NIOCore0cE0RzlF",
+            "mangledName": "$s11NIOEmbedded15EmbeddedChannelC13getOptionSyncy5ValueQzx7NIOCore0cE0RzlF",
+            "moduleName": "NIOEmbedded",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOCore.ChannelOption>",
+            "sugared_genericSig": "<Option where Option : NIOCore.ChannelOption>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6957,6 +10524,50 @@
             "name": "SynchronousOptions",
             "printedName": "SynchronousOptions",
             "children": [
+              {
+                "kind": "Var",
+                "name": "channel",
+                "printedName": "channel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EmbeddedChannel",
+                    "printedName": "NIOEmbedded.EmbeddedChannel",
+                    "usr": "s:11NIOEmbedded15EmbeddedChannelC"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:11NIOEmbedded15EmbeddedChannelC18SynchronousOptionsV7channelACvp",
+                "mangledName": "$s11NIOEmbedded15EmbeddedChannelC18SynchronousOptionsV7channelACvp",
+                "moduleName": "NIOEmbedded",
+                "declAttributes": [
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EmbeddedChannel",
+                        "printedName": "NIOEmbedded.EmbeddedChannel",
+                        "usr": "s:11NIOEmbedded15EmbeddedChannelC"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11NIOEmbedded15EmbeddedChannelC18SynchronousOptionsV7channelACvg",
+                    "mangledName": "$s11NIOEmbedded15EmbeddedChannelC18SynchronousOptionsV7channelACvg",
+                    "moduleName": "NIOEmbedded",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
               {
                 "kind": "Function",
                 "name": "setOption",
