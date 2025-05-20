@@ -1608,91 +1608,6 @@
         "printedName": "_AtomicReferenceStorage",
         "children": [
           {
-            "kind": "Var",
-            "name": "_storage",
-            "printedName": "_storage",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "AtomicRepresentation",
-                "printedName": "Atomics.DoubleWord.AtomicRepresentation",
-                "usr": "s:7Atomics10DoubleWordV20AtomicRepresentationV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvp",
-            "mangledName": "$s7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvp",
-            "moduleName": "Atomics",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AtomicRepresentation",
-                    "printedName": "Atomics.DoubleWord.AtomicRepresentation",
-                    "usr": "s:7Atomics10DoubleWordV20AtomicRepresentationV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvg",
-                "mangledName": "$s7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvg",
-                "moduleName": "Atomics",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AtomicRepresentation",
-                    "printedName": "Atomics.DoubleWord.AtomicRepresentation",
-                    "usr": "s:7Atomics10DoubleWordV20AtomicRepresentationV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvs",
-                "mangledName": "$s7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvs",
-                "moduleName": "Atomics",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvM",
-                "mangledName": "$s7Atomics23_AtomicReferenceStorageV8_storageAA10DoubleWordV0B14RepresentationVvM",
-                "moduleName": "Atomics",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(_:)",
@@ -4942,7 +4857,6 @@
             "usr": "s:7Atomics13ManagedAtomicC9__storage0C14RepresentationQzvp",
             "mangledName": "$s7Atomics13ManagedAtomicC9__storage0C14RepresentationQzvp",
             "moduleName": "Atomics",
-            "isOpen": true,
             "declAttributes": [
               "HasStorage",
               "AccessControl",
@@ -4970,7 +4884,6 @@
                 "genericSig": "<τ_0_0 where τ_0_0 : Atomics.AtomicValue, τ_0_0 == τ_0_0.AtomicRepresentation.Value>",
                 "sugared_genericSig": "<Value where Value : Atomics.AtomicValue, Value == Value.AtomicRepresentation.Value>",
                 "implicit": true,
-                "isOpen": true,
                 "declAttributes": [
                   "Transparent"
                 ],
@@ -4999,7 +4912,6 @@
                 "genericSig": "<τ_0_0 where τ_0_0 : Atomics.AtomicValue, τ_0_0 == τ_0_0.AtomicRepresentation.Value>",
                 "sugared_genericSig": "<Value where Value : Atomics.AtomicValue, Value == Value.AtomicRepresentation.Value>",
                 "implicit": true,
-                "isOpen": true,
                 "declAttributes": [
                   "Transparent"
                 ],
@@ -5023,7 +4935,6 @@
                 "genericSig": "<τ_0_0 where τ_0_0 : Atomics.AtomicValue, τ_0_0 == τ_0_0.AtomicRepresentation.Value>",
                 "sugared_genericSig": "<Value where Value : Atomics.AtomicValue, Value == Value.AtomicRepresentation.Value>",
                 "implicit": true,
-                "isOpen": true,
                 "declAttributes": [
                   "Transparent"
                 ],
@@ -5038,7 +4949,6 @@
         "moduleName": "Atomics",
         "genericSig": "<τ_0_0 where τ_0_0 : Atomics.AtomicValue, τ_0_0 == τ_0_0.AtomicRepresentation.Value>",
         "sugared_genericSig": "<Value where Value : Atomics.AtomicValue, Value == Value.AtomicRepresentation.Value>",
-        "isOpen": true,
         "declAttributes": [
           "AccessControl",
           "FixedLayout",
@@ -5182,7 +5092,6 @@
             "moduleName": "Atomics",
             "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
             "sugared_genericSig": "<Instance where Instance : AnyObject>",
-            "isOpen": true,
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
@@ -5215,7 +5124,6 @@
             "moduleName": "Atomics",
             "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
             "sugared_genericSig": "<Instance where Instance : AnyObject>",
-            "isOpen": true,
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
@@ -5230,7 +5138,6 @@
         "moduleName": "Atomics",
         "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
         "sugared_genericSig": "<Instance where Instance : AnyObject>",
-        "isOpen": true,
         "declAttributes": [
           "AccessControl",
           "FixedLayout",
@@ -13833,119 +13740,6 @@
                 "mangledName": "$s7Atomics13AtomicStorageP"
               }
             ]
-          },
-          {
-            "kind": "Function",
-            "name": "retain",
-            "printedName": "retain(by:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:s9UnmanagedV7AtomicsE6retain2byySi_tF",
-            "mangledName": "$ss9UnmanagedV7AtomicsE6retain2byySi_tF",
-            "moduleName": "Atomics",
-            "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
-            "sugared_genericSig": "<Instance where Instance : AnyObject>",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "release",
-            "printedName": "release(by:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:s9UnmanagedV7AtomicsE7release2byySi_tF",
-            "mangledName": "$ss9UnmanagedV7AtomicsE7release2byySi_tF",
-            "moduleName": "Atomics",
-            "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
-            "sugared_genericSig": "<Instance where Instance : AnyObject>",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "passRetained",
-            "printedName": "passRetained(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.Unmanaged<τ_0_0>?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Unmanaged",
-                    "printedName": "Swift.Unmanaged<τ_0_0>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "GenericTypeParam",
-                        "printedName": "τ_0_0"
-                      }
-                    ],
-                    "usr": "s:s9UnmanagedV"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "τ_0_0?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "GenericTypeParam",
-                    "printedName": "τ_0_0"
-                  }
-                ],
-                "paramValueOwnership": "Owned",
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:s9UnmanagedV7AtomicsE12passRetainedyAByxGSgxSgnFZ",
-            "mangledName": "$ss9UnmanagedV7AtomicsE12passRetainedyAByxGSgxSgnFZ",
-            "moduleName": "Atomics",
-            "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
-            "sugared_genericSig": "<Instance where Instance : AnyObject>",
-            "static": true,
-            "declAttributes": [
-              "AccessControl",
-              "Inline"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Struct",

@@ -9598,7 +9598,6 @@ public protocol ToolCallRequest : Swift.Decodable, Swift.Encodable {
   @available(iOS 17.0, macOS 14.0, *)
   public typealias Body = @_opaqueReturnTypeOf("$s6Candle11ActionSheetV4bodyQrvp", 0) __
 }
-
 @available(macOS 14, iOS 17.0, *)
 public enum PresentationStyle {
   case fullScreen
@@ -9627,19 +9626,6 @@ extension SwiftUICore.View {
   @_Concurrency.MainActor @preconcurrency public func candleLinkSheet(isPresented: SwiftUICore.Binding<Swift.Bool>, service: Candle.Models.Service?, customerName: Swift.String? = nil, cornerRadius: CoreFoundation.CGFloat = 24, showDynamicLoading: Swift.Bool = true, presentationStyle: Candle.PresentationStyle = .sheet, presentationBackground: SwiftUICore.AnyShapeStyle? = nil, action: @escaping Candle.CandleLinkedAccountAction) -> some SwiftUICore.View
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 @available(macOS 14, iOS 17.0, *)
 extension Candle.CandleClient : Swift.Sendable {}
 extension Candle.Components.Schemas.Service : Swift.RawRepresentable {}
