@@ -1,0 +1,6 @@
+framework module CryptoBoringWrapper {
+    header "CryptoBoringWrapper-Swift.h"
+    export *
+    link framework "CCryptoBoringSSL"
+    link framework "CCryptoBoringSSLShims"
+}

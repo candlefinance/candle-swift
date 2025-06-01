@@ -1,0 +1,7 @@
+framework module Crypto {
+    header "Crypto-Swift.h"
+    export *
+    link framework "CCryptoBoringSSL"
+    link framework "CCryptoBoringSSLShims"
+    link framework "CryptoBoringWrapper"
+}

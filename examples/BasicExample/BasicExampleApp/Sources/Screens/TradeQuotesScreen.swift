@@ -20,6 +20,7 @@ struct TradeQuotesScreen: View {
     @State private var textInput2: String = "-122.40188454602102"
     @State private var textInput3: String = "37.78407609709455"
     @State private var textInput4: String = "-122.40862257776425"
+    @State private var executedTrade: Models.Trade?
 
     // FIXME: Add these back
     //    @State private var lostAssetQuoteRequest: Models.TradeAssetQuoteRequest = .FiatAssetQuoteRequest(.init(assetKind: .fiat))
@@ -133,11 +134,15 @@ struct TradeQuotesScreen: View {
                 }
             }
         }
+        .navigationDestination(item: $executedTrade) { executedTrade in
+            ItemScreen(viewModel: TradeViewModel(client: client, trade: executedTrade))
+        }
         .candleTradeExecutionSheet(item: $selectedTradeQuote) { result in
             switch result {
             case .success(let trade):
-                print("success", trade)
+                executedTrade = trade
             case .failure(let error):
+                // FIXME: Why are we returning this error anyway?
                 print("error", error)
             }
         }

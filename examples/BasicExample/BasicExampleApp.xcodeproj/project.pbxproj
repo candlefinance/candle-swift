@@ -11,7 +11,6 @@
 		0E9C9429E58C8560D707ACE2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4719413741CE0EA8806F20FA /* Preview Assets.xcassets */; };
 		181A6959902358015A5D0F58 /* TradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DA3523C679969855469B6 /* TradeViewModel.swift */; };
 		216AB2217466111C01B5C9CB /* String++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65430C4FC03AE1651BF9B425 /* String++.swift */; };
-		2632DA97C68E553CC8581E5A /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488C0D103A6CE044A6DB240 /* Pasteboard.swift */; };
 		2A36B1FCA73941ED06982E92 /* DetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643AFAD9A7D9B6DED656D1F8 /* DetailRow.swift */; };
 		2B6522DFE12A2449C04C7336 /* ItemPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDF1E6D6C6960E9AC328358 /* ItemPhoto.swift */; };
 		3F4732050D50C355EC0DFBBE /* TradeQuotesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4C33E33BC21D53CA76CC5 /* TradeQuotesScreen.swift */; };
@@ -83,7 +82,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0488C0D103A6CE044A6DB240 /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		0D1DCEAF3560F15BDCDAB822 /* LinkedAccountsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedAccountsScreen.swift; sourceTree = "<group>"; };
 		1462E00250AFC2EAED019384 /* TradeAssetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeAssetViewModel.swift; sourceTree = "<group>"; };
 		16756FED00B842BAC5FE0EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				E879DD84758D5EF7AA560C05 /* DetailItem.swift */,
-				0488C0D103A6CE044A6DB240 /* Pasteboard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,7 +468,6 @@
 				93D8F76D9DF5A24B70FC4597 /* EnumMenu.swift in Sources */,
 				D9CDBB75A60C65044A236E18 /* LinkedAccountsMenu.swift in Sources */,
 				C190A0F6FF8CBAFEAB00E643 /* DetailItem.swift in Sources */,
-				2632DA97C68E553CC8581E5A /* Pasteboard.swift in Sources */,
 				A64BCF617FDDE3E0558B0238 /* CandlePrimaryButtonModifier.swift in Sources */,
 				73C8934D72DBBCB11C06B44E /* CandleSecondaryButtonModifier.swift in Sources */,
 				2A36B1FCA73941ED06982E92 /* DetailRow.swift in Sources */,

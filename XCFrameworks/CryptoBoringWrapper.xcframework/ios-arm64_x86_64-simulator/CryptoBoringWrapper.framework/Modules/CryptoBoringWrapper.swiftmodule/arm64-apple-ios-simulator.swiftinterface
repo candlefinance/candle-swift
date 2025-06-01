@@ -1,0 +1,507 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name CryptoBoringWrapper -package-name swift_crypto
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ContiguousBytes*/
+import Foundation/*.Data*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+public enum BoringSSLAEAD {
+  case aes128gcm
+  case aes192gcm
+  case aes256gcm
+  case aes128gcmsiv
+  case aes256gcmsiv
+  case chacha20
+  public static func == (a: CryptoBoringWrapper.BoringSSLAEAD, b: CryptoBoringWrapper.BoringSSLAEAD) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLAEAD {
+  @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+  public class AEADContext {
+    public init<Key>(cipher: CryptoBoringWrapper.BoringSSLAEAD, key: Key) throws where Key : Foundation.ContiguousBytes
+    @objc deinit
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLAEAD.AEADContext {
+  public func seal<Plaintext, Nonce, AuthenticatedData>(message: Plaintext, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> (ciphertext: Foundation.Data, tag: Foundation.Data) where Plaintext : Foundation.DataProtocol, Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol
+  @inlinable internal func _sealContiguous<Plaintext, Nonce, AuthenticatedData>(message: Plaintext, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> (ciphertext: Foundation.Data, tag: Foundation.Data) where Plaintext : Foundation.ContiguousBytes, Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.ContiguousBytes {
+        try message.withUnsafeBytes { messagePointer in
+            try nonce.withUnsafeBytes { noncePointer in
+                try authenticatedData.withUnsafeBytes { authenticatedDataPointer in
+                    try self._sealContiguous(
+                        plaintext: messagePointer,
+                        noncePointer: noncePointer,
+                        authenticatedData: authenticatedDataPointer
+                    )
+                }
+            }
+        }
+    }
+  @usableFromInline
+  internal func _sealContiguous(plaintext: Swift.UnsafeRawBufferPointer, noncePointer: Swift.UnsafeRawBufferPointer, authenticatedData: Swift.UnsafeRawBufferPointer) throws -> (ciphertext: Foundation.Data, tag: Foundation.Data)
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLAEAD.AEADContext {
+  @inlinable public func open<Nonce, AuthenticatedData>(ciphertext: Foundation.Data, nonce: Nonce, tag: Foundation.Data, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol {
+         
+         
+         
+         
+         
+         
+        if authenticatedData.regions.count == 1 {
+             
+            return try self._openContiguous(
+                ciphertext: ciphertext,
+                nonce: nonce,
+                tag: tag,
+                authenticatedData: authenticatedData.regions.first!
+            )
+        } else {
+            let contiguousAD = Array(authenticatedData)
+            return try self._openContiguous(
+                ciphertext: ciphertext,
+                nonce: nonce,
+                tag: tag,
+                authenticatedData: contiguousAD
+            )
+        }
+    }
+  @inlinable internal func _openContiguous<Nonce, AuthenticatedData>(ciphertext: Foundation.Data, nonce: Nonce, tag: Foundation.Data, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.ContiguousBytes {
+        try ciphertext.withUnsafeBytes { ciphertextPointer in
+            try nonce.withUnsafeBytes { nonceBytes in
+                try tag.withUnsafeBytes { tagBytes in
+                    try authenticatedData.withUnsafeBytes { authenticatedDataBytes in
+                        try self._openContiguous(
+                            ciphertext: ciphertextPointer,
+                            nonceBytes: nonceBytes,
+                            tagBytes: tagBytes,
+                            authenticatedData: authenticatedDataBytes
+                        )
+                    }
+                }
+            }
+        }
+    }
+  @usableFromInline
+  internal func _openContiguous(ciphertext: Swift.UnsafeRawBufferPointer, nonceBytes: Swift.UnsafeRawBufferPointer, tagBytes: Swift.UnsafeRawBufferPointer, authenticatedData: Swift.UnsafeRawBufferPointer) throws -> Foundation.Data
+  @inlinable public func open<Nonce, AuthenticatedData>(combinedCiphertextAndTag: Foundation.Data, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol {
+         
+         
+         
+         
+         
+         
+        if authenticatedData.regions.count == 1 {
+             
+            return try self._openContiguous(
+                combinedCiphertextAndTag: combinedCiphertextAndTag,
+                nonce: nonce,
+                authenticatedData: authenticatedData.regions.first!
+            )
+        } else {
+            let contiguousAD = Array(authenticatedData)
+            return try self._openContiguous(
+                combinedCiphertextAndTag: combinedCiphertextAndTag,
+                nonce: nonce,
+                authenticatedData: contiguousAD
+            )
+        }
+    }
+  @inlinable internal func _openContiguous<Nonce, AuthenticatedData>(combinedCiphertextAndTag: Foundation.Data, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.ContiguousBytes {
+        try combinedCiphertextAndTag.withUnsafeBytes { combinedCiphertextAndTagPointer in
+            try nonce.withUnsafeBytes { nonceBytes in
+                try authenticatedData.withUnsafeBytes { authenticatedDataBytes in
+                    try self._openContiguous(
+                        combinedCiphertextAndTag: combinedCiphertextAndTagPointer,
+                        nonceBytes: nonceBytes,
+                        authenticatedData: authenticatedDataBytes
+                    )
+                }
+            }
+        }
+    }
+  @usableFromInline
+  internal func _openContiguous(combinedCiphertextAndTag: Swift.UnsafeRawBufferPointer, nonceBytes: Swift.UnsafeRawBufferPointer, authenticatedData: Swift.UnsafeRawBufferPointer) throws -> Foundation.Data
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+public enum CryptoBoringWrapperError : Swift.Error {
+  case incorrectKeySize
+  case incorrectParameterSize
+  case authenticationFailure
+  case underlyingCoreCryptoError(error: Swift.Int32)
+  case wrapFailure
+  case unwrapFailure
+  case invalidParameter
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.CryptoBoringWrapperError {
+  @usableFromInline
+  package static func internalBoringSSLError() -> CryptoBoringWrapper.CryptoBoringWrapperError
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@usableFromInline
+final package class BoringSSLEllipticCurveGroup {
+  @usableFromInline
+  final internal var _group: Swift.OpaquePointer
+  @usableFromInline
+  package init(_ curve: CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName) throws
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup {
+  @usableFromInline
+  final package var coordinateByteCount: Swift.Int {
+    get
+  }
+  @usableFromInline
+  final package func makeUnsafeOwnedECKey() throws -> Swift.OpaquePointer
+  @usableFromInline
+  final package func makeUnsafeOwnedECPoint() throws -> Swift.OpaquePointer
+  @inlinable final package func withUnsafeGroupPointer<T>(_ body: (Swift.OpaquePointer) throws -> T) rethrows -> T {
+        try body(self._group)
+    }
+  @usableFromInline
+  final package var order: CryptoBoringWrapper.ArbitraryPrecisionInteger {
+    get
+  }
+  @usableFromInline
+  final package var generator: CryptoBoringWrapper.EllipticCurvePoint {
+    get throws
+  }
+  @usableFromInline
+  final package var weierstrassCoefficients: (field: CryptoBoringWrapper.ArbitraryPrecisionInteger, a: CryptoBoringWrapper.ArbitraryPrecisionInteger, b: CryptoBoringWrapper.ArbitraryPrecisionInteger) {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup {
+  @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+  @usableFromInline
+  package enum CurveName {
+    case p256
+    case p384
+    case p521
+    @usableFromInline
+    package static func == (a: CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName, b: CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName) -> Swift.Bool
+    @usableFromInline
+    package func hash(into hasher: inout Swift.Hasher)
+    @usableFromInline
+    package var hashValue: Swift.Int {
+      @usableFromInline
+      get
+    }
+  }
+  @usableFromInline
+  final internal var curveName: CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName? {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName {
+  @usableFromInline
+  internal var baseNID: Swift.CInt {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@usableFromInline
+final package class EllipticCurvePoint {
+  @usableFromInline
+  final internal var _basePoint: Swift.OpaquePointer
+  @usableFromInline
+  package init(copying pointer: Swift.OpaquePointer, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(copying other: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  package init(_pointAtInfinityOn group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(multiplying scalar: CryptoBoringWrapper.ArbitraryPrecisionInteger, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @objc deinit
+  @usableFromInline
+  final package func multiply(by rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(multiplying lhs: CryptoBoringWrapper.EllipticCurvePoint, by rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  final package func multiplying(by rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  package static func multiplying(_ lhs: CryptoBoringWrapper.EllipticCurvePoint, by rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  final package func add(_ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(adding lhs: CryptoBoringWrapper.EllipticCurvePoint, _ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  final package func adding(_ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  package static func adding(_ lhs: CryptoBoringWrapper.EllipticCurvePoint, _ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  final package func invert(on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(inverting point: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  final package func inverting(on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  package static func inverting(_ point: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  final package func subtract(_ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  convenience package init(subtracting rhs: CryptoBoringWrapper.EllipticCurvePoint, from lhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws
+  @usableFromInline
+  final package func subtracting(_ rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  package static func subtracting(_ rhs: CryptoBoringWrapper.EllipticCurvePoint, from lhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> CryptoBoringWrapper.EllipticCurvePoint
+  @usableFromInline
+  convenience package init<MessageBytes, DSTBytes>(hashing msg: MessageBytes, to group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup, domainSeparationTag: DSTBytes) throws where MessageBytes : Foundation.ContiguousBytes, DSTBytes : Foundation.ContiguousBytes
+  @usableFromInline
+  final package func isEqual(to rhs: CryptoBoringWrapper.EllipticCurvePoint, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) -> Swift.Bool
+  @usableFromInline
+  convenience package init<Bytes>(x962Representation bytes: Bytes, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws where Bytes : Foundation.ContiguousBytes
+  @usableFromInline
+  final package func x962RepresentationByteCount(compressed: Swift.Bool, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> Swift.Int
+  @usableFromInline
+  final package func x962Representation(compressed: Swift.Bool, on group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> Foundation.Data
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.EllipticCurvePoint {
+  @inlinable final package func withPointPointer<T>(_ body: (Swift.OpaquePointer) throws -> T) rethrows -> T {
+        try body(self._basePoint)
+    }
+  @usableFromInline
+  final package func affineCoordinates(group: CryptoBoringWrapper.BoringSSLEllipticCurveGroup) throws -> (x: CryptoBoringWrapper.ArbitraryPrecisionInteger, y: CryptoBoringWrapper.ArbitraryPrecisionInteger)
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@usableFromInline
+package struct ArbitraryPrecisionInteger {
+  @usableFromInline
+  package init()
+  @usableFromInline
+  package init(_ original: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws
+  @usableFromInline
+  package init(integerLiteral value: Swift.Int64)
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
+  @usableFromInline
+  package init<Bytes>(bytes: Bytes) throws where Bytes : Foundation.ContiguousBytes
+  @usableFromInline
+  package init(hexString: Swift.String) throws
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
+  @usableFromInline
+  internal static func _compare(lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.CInt
+  @usableFromInline
+  internal var _positive: Swift.Bool {
+    get
+  }
+  @usableFromInline
+  package func squared() -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func positiveSquareRoot() throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package var byteCount: Swift.Int {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.Equatable {
+  @inlinable package static func == (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.Bool {
+        self._compare(lhs: lhs, rhs: rhs) == 0
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.Comparable {
+  @inlinable package static func < (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.Bool {
+        self._compare(lhs: lhs, rhs: rhs) < 0
+    }
+  @inlinable package static func <= (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.Bool {
+        self._compare(lhs: lhs, rhs: rhs) <= 0
+    }
+  @inlinable package static func > (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.Bool {
+        self._compare(lhs: lhs, rhs: rhs) > 0
+    }
+  @inlinable package static func >= (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> Swift.Bool {
+        self._compare(lhs: lhs, rhs: rhs) >= 0
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.ExpressibleByIntegerLiteral {
+  @available(iOS 13, tvOS 13, watchOS 6, visionOS 1.0, macOS 10.15, macCatalyst 13, *)
+  @usableFromInline
+  package typealias IntegerLiteralType = Swift.Int64
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.AdditiveArithmetic {
+  @inlinable package static var zero: CryptoBoringWrapper.ArbitraryPrecisionInteger {
+    get {
+        0
+    }
+  }
+  @usableFromInline
+  package static func + (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func += (lhs: inout CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger)
+  @usableFromInline
+  package static func - (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func -= (lhs: inout CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger)
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.Numeric {
+  @usableFromInline
+  package typealias Magnitude = CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package var magnitude: CryptoBoringWrapper.ArbitraryPrecisionInteger.Magnitude {
+    get
+  }
+  @usableFromInline
+  package static func * (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func *= (lhs: inout CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger)
+  @inlinable package init?<T>(exactly integer: T) where T : Swift.BinaryInteger {
+        fatalError("Not currently implemented")
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
+  @usableFromInline
+  package func modulo(_ mod: CryptoBoringWrapper.ArbitraryPrecisionInteger, nonNegative: Swift.Bool = false) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func inverse(modulo mod: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func inverse(lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo mod: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func add(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func sub(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func mul(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.SignedNumeric {
+  @usableFromInline
+  package mutating func negate()
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
+  @usableFromInline
+  package var trailingZeroBitCount: Swift.Int32 {
+    get
+  }
+  @usableFromInline
+  package static func gcd(_ a: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ b: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func isCoprime(with other: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> Swift.Bool
+  @usableFromInline
+  package static func random(inclusiveMin: Swift.UInt, exclusiveMax: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func >> (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: Swift.Int32) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package static func / (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package var isEven: Swift.Bool {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension Foundation.Data {
+  @usableFromInline
+  package mutating func append(bytesOf integer: CryptoBoringWrapper.ArbitraryPrecisionInteger, paddedToSize paddingSize: Swift.Int) throws
+  @usableFromInline
+  package init(bytesOf integer: CryptoBoringWrapper.ArbitraryPrecisionInteger, paddedToSize paddingSize: Swift.Int) throws
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.CustomDebugStringConvertible {
+  @usableFromInline
+  package var debugDescription: Swift.String {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@usableFromInline
+package class FiniteFieldArithmeticContext {
+  @usableFromInline
+  package init(fieldSize: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.FiniteFieldArithmeticContext {
+  @usableFromInline
+  package func residue(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func square(_ input: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func multiply(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ y: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func add(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ y: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func subtract(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, from y: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func positiveSquareRoot(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func inverse(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger?
+  @usableFromInline
+  package func pow(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ p: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func pow(secret x: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ p: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  @usableFromInline
+  package func pow(secret x: CryptoBoringWrapper.ArbitraryPrecisionInteger, secret p: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension Swift.UnsafeMutableRawBufferPointer {
+  @inlinable package func initializeWithRandomBytes(count: Swift.Int) {
+        guard count > 0 else {
+            return
+        }
+
+        var rng = SystemRandomNumberGenerator()
+        precondition(count <= self.count)
+
+         
+        var targetPtr = self
+        while targetPtr.count > 8 {
+            targetPtr.storeBytes(of: rng.next(), as: UInt64.self)
+            targetPtr = UnsafeMutableRawBufferPointer(rebasing: targetPtr[8...])
+        }
+
+         
+         
+        var remainingWord: UInt64 = rng.next()
+        while targetPtr.count > 0 {
+            targetPtr.storeBytes(of: UInt8(remainingWord & 0xFF), as: UInt8.self)
+            remainingWord >>= 8
+            targetPtr = UnsafeMutableRawBufferPointer(rebasing: targetPtr[1...])
+        }
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension Swift.SystemRandomNumberGenerator {
+  @inlinable package static func randomBytes(count: Swift.Int) -> [Swift.UInt8] {
+        Array(unsafeUninitializedCapacity: count) { buffer, initializedCount in
+            UnsafeMutableRawBufferPointer(start: buffer.baseAddress, count: buffer.count)
+                .initializeWithRandomBytes(count: count)
+            initializedCount = count
+        }
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLAEAD : Swift.Equatable {}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLAEAD : Swift.Hashable {}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName : Swift.Equatable {}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName : Swift.Hashable {}

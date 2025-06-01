@@ -1,0 +1,29 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name Crypto -package-name swift_crypto
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+@_exported import CryptoKit
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@inlinable internal func openSSLSafeCompare<LHS, RHS>(_ lhs: LHS, _ rhs: RHS) -> Swift.Bool where LHS : Foundation.ContiguousBytes, RHS : Foundation.ContiguousBytes {
+    lhs.withUnsafeBytes { lhsPtr in
+        rhs.withUnsafeBytes { rhsPtr in
+            constantTimeCompare(lhsPtr, rhsPtr)
+        }
+    }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+@inlinable internal func constantTimeCompare<LHS, RHS>(_ lhs: LHS, _ rhs: RHS) -> Swift.Bool where LHS : Swift.Collection, RHS : Swift.Collection, LHS.Element == Swift.UInt8, RHS.Element == Swift.UInt8 {
+    guard lhs.count == rhs.count else {
+        return false
+    }
+
+    return zip(lhs, rhs).reduce(into: 0) { $0 |= $1.0 ^ $1.1 } == 0
+}
