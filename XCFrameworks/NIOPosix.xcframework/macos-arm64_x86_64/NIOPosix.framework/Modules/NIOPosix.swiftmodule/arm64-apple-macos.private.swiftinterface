@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOPosix -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOPosix -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Atomics
 @_exported import Darwin.C
 import CNIODarwin
@@ -294,8 +294,8 @@ public struct NIODirectoryEntry : Swift.Hashable, Swift.Sendable {
   public var type: Swift.UInt8
   public var name: Swift.String
   public init(ino: Swift.UInt64, type: Swift.UInt8, name: Swift.String)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOPosix.NIODirectoryEntry, b: NIOPosix.NIODirectoryEntry) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -396,8 +396,8 @@ public struct NIOEventLoopTickInfo : Swift.Sendable, Swift.Hashable {
   public var eventLoopID: Swift.ObjectIdentifier
   public var numberOfTasks: Swift.Int
   public var startTime: NIOCore.NIODeadline
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOPosix.NIOEventLoopTickInfo, b: NIOPosix.NIOEventLoopTickInfo) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -448,8 +448,8 @@ public struct VsockAddress : Swift.Hashable, Swift.Sendable {
     public typealias IntegerLiteralType = Swift.UInt32
     public typealias RawValue = Swift.UInt32
   }
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOPosix.VsockAddress, b: NIOPosix.VsockAddress) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -501,8 +501,8 @@ public enum VsockChannelEvents {
   public struct BindToAddress : Swift.Hashable, Swift.Sendable {
     public var address: NIOPosix.VsockAddress
     public init(_ address: NIOPosix.VsockAddress)
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOPosix.VsockChannelEvents.BindToAddress, b: NIOPosix.VsockChannelEvents.BindToAddress) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -510,8 +510,8 @@ public enum VsockChannelEvents {
   public struct ConnectToAddress : Swift.Hashable, Swift.Sendable {
     public var address: NIOPosix.VsockAddress
     public init(_ address: NIOPosix.VsockAddress)
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOPosix.VsockChannelEvents.ConnectToAddress, b: NIOPosix.VsockChannelEvents.ConnectToAddress) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-macos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-bare-slash-regex -module-name SwiftSecurity -package-name swift_security
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-macos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SwiftSecurity -package-name swift_security
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import CryptoKit
 import Foundation
 import LocalAuthentication
@@ -69,15 +69,9 @@ extension Swift.String : SwiftSecurity.SecDataConvertible {
     get
   }
 }
-#if compiler(>=5.3) && $PrimaryAssociatedTypes2
 public protocol SecIdentityConvertible<Certificate> : SwiftSecurity.SecIdentityRepresentable {
   associatedtype Certificate : SwiftSecurity.SecCertificateConvertible
 }
-#else
-public protocol SecIdentityConvertible : SwiftSecurity.SecIdentityRepresentable {
-  associatedtype Certificate : SwiftSecurity.SecCertificateConvertible
-}
-#endif
 extension SwiftSecurity.DigitalIdentity : SwiftSecurity.SecIdentityConvertible {
   public typealias Certificate = SwiftSecurity.Certificate
 }
@@ -181,9 +175,9 @@ public enum AccessGroup : Swift.Hashable, Swift.Codable, Swift.Sendable {
   @available(macOS, unavailable, message: "Use `keychainGroup(teamID:nameID:)`")
   case appGroupID(_: Swift.String)
   case token
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: SwiftSecurity.AccessGroup, b: SwiftSecurity.AccessGroup) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -196,9 +190,9 @@ extension SwiftSecurity.AccessGroup {
 }
 public struct Keychain : Swift.Hashable, Swift.Codable, Swift.Sendable {
   public init(accessGroup: SwiftSecurity.AccessGroup)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: SwiftSecurity.Keychain, b: SwiftSecurity.Keychain) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }

@@ -1,20 +1,14 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name InternalCollectionsUtilities
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name InternalCollectionsUtilities
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutableBufferPointer {
   public func initialize<C>(fromContentsOf source: C) -> Swift.UnsafeMutableBufferPointer<Element>.Index where Element == C.Element, C : Swift.Collection
 }
-#else
-extension Swift.UnsafeMutableBufferPointer {
-  public func initialize<C>(fromContentsOf source: C) -> Swift.UnsafeMutableBufferPointer<Element>.Index where Element == C.Element, C : Swift.Collection
-}
-#endif
 extension Swift.FixedWidthInteger {
   public func _roundUpToPowerOfTwo() -> Self
 }
@@ -259,31 +253,17 @@ extension Swift.RandomAccessCollection {
   }
   return _identityCast(x, to: U.self)
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeBufferPointer {
   @inline(__always) public func _ptr(at index: Swift.Int) -> Swift.UnsafePointer<Element>
 }
-#else
-extension Swift.UnsafeBufferPointer {
-  @inline(__always) public func _ptr(at index: Swift.Int) -> Swift.UnsafePointer<Element>
-}
-#endif
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutableBufferPointer {
   public func initialize(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
   public func initialize(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
 }
-#else
-extension Swift.UnsafeMutableBufferPointer {
-  public func initialize(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
-  public func initialize(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.UnsafeMutableBufferPointer<Element>.Index
-}
-#endif
 extension Swift.Slice {
   @inline(__always) public func initialize<Element>(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) -> Swift.Slice<Base>.Index where Base == Swift.UnsafeMutableBufferPointer<Element>
   @inline(__always) public func initialize<Element>(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>) -> Swift.Slice<Base>.Index where Base == Swift.UnsafeMutableBufferPointer<Element>
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutableBufferPointer {
   @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Element == C.Element, C : Swift.Collection
   @inline(__always) public func initializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
@@ -291,15 +271,6 @@ extension Swift.UnsafeMutableBufferPointer {
   @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
   @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
 }
-#else
-extension Swift.UnsafeMutableBufferPointer {
-  @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Element == C.Element, C : Swift.Collection
-  @inline(__always) public func initializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
-  @inline(__always) public func initializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
-  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>)
-  @inline(__always) public func moveInitializeAll(fromContentsOf source: Swift.Slice<Swift.UnsafeMutableBufferPointer<Element>>)
-}
-#endif
 extension Swift.Slice {
   @inline(__always) public func initializeAll<C>(fromContentsOf source: C) where Base == Swift.UnsafeMutableBufferPointer<C.Element>, C : Swift.Collection
   @inline(__always) public func initializeAll<Element>(fromContentsOf source: Swift.UnsafeMutableBufferPointer<Element>) where Base == Swift.UnsafeMutableBufferPointer<Element>

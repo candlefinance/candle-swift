@@ -2,7 +2,6 @@ import Candle
 import SwiftUI
 
 struct TradeQuotesScreen: View {
-
     @Environment(\.dismiss) var dismiss
 
     private enum TradeQuoteAssetKind: String, Codable, Hashable, Sendable, CaseIterable {
@@ -16,10 +15,10 @@ struct TradeQuotesScreen: View {
     @State private var tradeQuoteViewModels = [TradeQuoteViewModel]()
     @State private var selectedTradeQuote: Models.TradeQuote?
     @State private var isLoading = false
-    @State private var textInput1: String = "37.78987530841216"
-    @State private var textInput2: String = "-122.40188454602102"
-    @State private var textInput3: String = "37.78407609709455"
-    @State private var textInput4: String = "-122.40862257776425"
+    @State private var textInput1: String = "40.748237"
+    @State private var textInput2: String = "-73.984753"
+    @State private var textInput3: String = "40.750298"
+    @State private var textInput4: String = "-73.993324"
     @State private var executedTrade: Models.Trade?
 
     // FIXME: Add these back
@@ -27,7 +26,7 @@ struct TradeQuotesScreen: View {
     @State private var gainedAssetKind: TradeQuoteAssetKind? = nil
     //    @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
-    @State private var selectedLinkedAccounts: [Models.LinkedAccount] = []
+    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
 
     let linkedAccounts: [Models.LinkedAccount]
 
@@ -64,8 +63,8 @@ struct TradeQuotesScreen: View {
 
     var tradeQuoteRequest: Models.TradeQuoteRequest {
         .init(
-            linkedAccountIDs: selectedLinkedAccounts.isEmpty
-                ? nil : selectedLinkedAccounts.map { $0.id }.joined(separator: ","),
+            linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
+                ? nil : selectedLinkedAccountIDs.joined(separator: ","),
             gained: gainedAssetQuoteRequest
         )
     }
@@ -120,7 +119,7 @@ struct TradeQuotesScreen: View {
                             //                                name: "Counterparty Kind", selectedCase: $counterpartyKind)
                             LinkedAccountsMenu(
                                 linkedAccounts: linkedAccounts,
-                                selectedLinkedAccounts: $selectedLinkedAccounts
+                                selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                             )
                         } label: {
                             Label("Filters", systemImage: "line.horizontal.3.decrease.circle")

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOTransportServices
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOTransportServices
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Atomics
 import Darwin
 import Dispatch
@@ -231,16 +231,16 @@ extension NIOTransportServices.NIOTSConnectionBootstrap : NIOCore.NIOClientTCPBo
 }
 public struct NIOTSConnectionNotInitialized : Swift.Error, Swift.Hashable {
   public init()
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOTransportServices.NIOTSConnectionNotInitialized, b: NIOTransportServices.NIOTSConnectionNotInitialized) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
 public struct NIOTSChannelIsNotANIOTSConnectionChannel : Swift.Error, Swift.Hashable {
   public init()
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOTransportServices.NIOTSChannelIsNotANIOTSConnectionChannel, b: NIOTransportServices.NIOTSChannelIsNotANIOTSConnectionChannel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }

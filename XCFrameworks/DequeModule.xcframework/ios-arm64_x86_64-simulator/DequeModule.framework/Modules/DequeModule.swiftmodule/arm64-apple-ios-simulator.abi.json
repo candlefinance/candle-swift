@@ -2551,6 +2551,9 @@
                 "genericSig": "<τ_0_0>",
                 "sugared_genericSig": "<Element>",
                 "isFromExtension": true,
+                "spi_group_names": [
+                  "Testing"
+                ],
                 "accessorKind": "get"
               }
             ]
@@ -2600,6 +2603,9 @@
                 "genericSig": "<τ_0_0>",
                 "sugared_genericSig": "<Element>",
                 "isFromExtension": true,
+                "spi_group_names": [
+                  "Testing"
+                ],
                 "accessorKind": "get"
               }
             ]

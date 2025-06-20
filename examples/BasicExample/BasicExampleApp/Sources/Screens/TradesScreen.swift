@@ -41,15 +41,15 @@ struct TradesScreen: View {
     @State private var gainedAssetKind: Models.GetTrades.Input.Query.GainedAssetKindPayload? = nil
     @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
-    @State private var selectedLinkedAccounts: [Models.LinkedAccount] = []
+    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
     @State private var searchText = ""
 
     let linkedAccounts: [Models.LinkedAccount]
 
     var tradesQuery: Models.GetTrades.Input.Query {
         .init(
-            linkedAccountIDs: selectedLinkedAccounts.isEmpty
-                ? nil : selectedLinkedAccounts.map { $0.id }.joined(separator: ","),
+            linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
+                ? nil : selectedLinkedAccountIDs.joined(separator: ","),
             dateTimeSpan: dateTimeSpan?.rawValue,
             gainedAssetKind: gainedAssetKind,
             lostAssetKind: lostAssetKind,
@@ -102,7 +102,7 @@ struct TradesScreen: View {
                                 name: "Counterparty Kind", selectedCase: $counterpartyKind)
                             LinkedAccountsMenu(
                                 linkedAccounts: linkedAccounts,
-                                selectedLinkedAccounts: $selectedLinkedAccounts
+                                selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                             )
                         } label: {
                             Label("Filters", systemImage: "line.horizontal.3.decrease.circle")

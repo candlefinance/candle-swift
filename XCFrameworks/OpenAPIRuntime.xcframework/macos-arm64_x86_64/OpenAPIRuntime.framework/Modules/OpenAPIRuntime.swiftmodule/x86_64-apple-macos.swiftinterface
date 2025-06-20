@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-macos10.15 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name OpenAPIRuntime -package-name swift_openapi_runtime
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-macos10.15 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name OpenAPIRuntime -package-name swift_openapi_runtime
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import CoreFoundation
 import Foundation
 import Foundation/*.Data*/
@@ -69,8 +69,8 @@ public struct Base64EncodedData : Swift.Sendable, Swift.Hashable {
   public var data: Swift.ArraySlice<Swift.UInt8>
   public init(_ data: Swift.ArraySlice<Swift.UInt8>)
   public init(_ data: some Sequence<UInt8>)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.Base64EncodedData, b: OpenAPIRuntime.Base64EncodedData) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -143,8 +143,8 @@ public struct UndocumentedPayload : Swift.Sendable, Swift.Hashable {
   public var headerFields: HTTPTypes.HTTPFields
   public var body: OpenAPIRuntime.HTTPBody?
   public init(headerFields: HTTPTypes.HTTPFields = [:], body: OpenAPIRuntime.HTTPBody? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.UndocumentedPayload, b: OpenAPIRuntime.UndocumentedPayload) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -262,23 +262,13 @@ extension OpenAPIRuntime.JSONLinesDeserializationSequence : _Concurrency.AsyncSe
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
   public func asDecodedJSONLines<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.JSONLinesDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
@@ -291,23 +281,13 @@ extension OpenAPIRuntime.JSONLinesSerializationSequence : _Concurrency.AsyncSequ
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
   public func asEncodedJSONLines(encoder: Foundation.JSONEncoder = {
@@ -324,23 +304,13 @@ extension OpenAPIRuntime.JSONSequenceDeserializationSequence : _Concurrency.Asyn
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
   public func asDecodedJSONSequence<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<OpenAPIRuntime.JSONSequenceDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
@@ -353,23 +323,13 @@ extension OpenAPIRuntime.JSONSequenceSerializationSequence : _Concurrency.AsyncS
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
   public func asEncodedJSONSequence(encoder: Foundation.JSONEncoder = {
@@ -384,8 +344,8 @@ public struct ServerSentEventWithJSONData<JSONDataType> : Swift.Sendable, Swift.
   public var id: Swift.String?
   public var retry: Swift.Int64?
   public init(event: Swift.String? = nil, data: JSONDataType? = nil, id: Swift.String? = nil, retry: Swift.Int64? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>, b: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -396,8 +356,8 @@ public struct ServerSentEvent : Swift.Sendable, Swift.Hashable {
   public var data: Swift.String?
   public var retry: Swift.Int64?
   public init(id: Swift.String? = nil, event: Swift.String? = nil, data: Swift.String? = nil, retry: Swift.Int64? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.ServerSentEvent, b: OpenAPIRuntime.ServerSentEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -410,23 +370,13 @@ extension OpenAPIRuntime.ServerSentEventsDeserializationSequence : _Concurrency.
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> OpenAPIRuntime.ServerSentEvent?
     public typealias Element = OpenAPIRuntime.ServerSentEvent
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
   public func asDecodedServerSentEvents(while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool = { _ in true }) -> OpenAPIRuntime.ServerSentEventsDeserializationSequence<OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>
@@ -440,23 +390,13 @@ extension OpenAPIRuntime.ServerSentEventsLineDeserializationSequence : _Concurre
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 public struct ServerSentEventsSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == OpenAPIRuntime.ServerSentEvent {
   public init(upstream: Upstream)
@@ -466,23 +406,13 @@ extension OpenAPIRuntime.ServerSentEventsSerializationSequence : _Concurrency.As
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == OpenAPIRuntime.ServerSentEvent {
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> OpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
   public typealias AsyncIterator = OpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension _Concurrency.AsyncSequence {
   public func asEncodedServerSentEvents() -> OpenAPIRuntime.ServerSentEventsSerializationSequence<Self> where Self : Swift.Sendable, Self.Element == OpenAPIRuntime.ServerSentEvent
@@ -506,15 +436,9 @@ internal struct AnyIterator<Element> : _Concurrency.AsyncIteratorProtocol where 
   @usableFromInline
   internal init<Iterator>(_ iterator: Iterator) where Element == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
   public mutating func next() async throws -> Element?
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @usableFromInline
   @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  @usableFromInline
-  internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-  #endif
 }
 @usableFromInline
 internal struct AnySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
@@ -526,15 +450,9 @@ internal struct AnySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendabl
   internal init<Upstream>(_ sequence: Upstream) where Element == Upstream.Element, Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence
   @usableFromInline
   internal func makeAsyncIterator() -> OpenAPIRuntime.AnySequence<Element>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @usableFromInline
   @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  @usableFromInline
-  internal typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 @usableFromInline
 internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swift.Sendable where Upstream : Swift.Sendable, Upstream : Swift.Sequence, Upstream.Element : Swift.Sendable {
@@ -548,15 +466,9 @@ internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swif
     internal typealias Element = IteratorElement
     @usableFromInline
     internal mutating func next() async throws -> IteratorElement?
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @usableFromInline
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    @usableFromInline
-    internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   @usableFromInline
   internal let sequence: Upstream
@@ -564,15 +476,9 @@ internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swif
   internal init(sequence: Upstream)
   @usableFromInline
   internal func makeAsyncIterator() -> OpenAPIRuntime.WrappedSyncSequence<Upstream>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @usableFromInline
   @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  @usableFromInline
-  internal typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 @usableFromInline
 internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
@@ -584,29 +490,17 @@ internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Senda
     internal mutating func next() async throws -> IteratorElement?
     @usableFromInline
     internal typealias Element = IteratorElement
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @usableFromInline
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    @usableFromInline
-    internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   @usableFromInline
   internal init()
   @usableFromInline
   internal func makeAsyncIterator() -> OpenAPIRuntime.EmptySequence<Element>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @usableFromInline
   @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  @usableFromInline
-  internal typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 public protocol ClientTransport : Swift.Sendable {
   func send(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
@@ -617,8 +511,8 @@ public protocol ClientMiddleware : Swift.Sendable {
 public struct ServerRequestMetadata : Swift.Hashable, Swift.Sendable {
   public var pathParameters: [Swift.String : Swift.Substring]
   public init(pathParameters: [Swift.String : Swift.Substring] = [:])
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.ServerRequestMetadata, b: OpenAPIRuntime.ServerRequestMetadata) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -703,13 +597,8 @@ extension OpenAPIRuntime.HTTPBody : _Concurrency.AsyncSequence {
   public typealias Element = OpenAPIRuntime.HTTPBody.ByteChunk
   public typealias AsyncIterator = OpenAPIRuntime.HTTPBody.Iterator
   final public func makeAsyncIterator() -> OpenAPIRuntime.HTTPBody.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension Swift.ArraySlice where Element == Swift.UInt8 {
   public init(collecting body: OpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
@@ -761,13 +650,8 @@ extension OpenAPIRuntime.HTTPBody {
     @usableFromInline
     internal init<Iterator>(_ iterator: Iterator) where Iterator : _Concurrency.AsyncIteratorProtocol, Iterator.Element == Swift.ArraySlice<Swift.UInt8>
     public mutating func next() async throws -> OpenAPIRuntime.HTTPBody.Iterator.Element?
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
 }
 public protocol ServerTransport {
@@ -804,8 +688,8 @@ public struct MultipartRawPart : Swift.Sendable, Swift.Hashable {
   public var headerFields: HTTPTypes.HTTPFields
   public var body: OpenAPIRuntime.HTTPBody
   public init(headerFields: HTTPTypes.HTTPFields, body: OpenAPIRuntime.HTTPBody)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.MultipartRawPart, b: OpenAPIRuntime.MultipartRawPart) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -814,8 +698,8 @@ public struct MultipartPart<Payload> : Swift.Sendable, Swift.Hashable where Payl
   public var payload: Payload
   public var filename: Swift.String?
   public init(payload: Payload, filename: Swift.String? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.MultipartPart<Payload>, b: OpenAPIRuntime.MultipartPart<Payload>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -825,8 +709,8 @@ public struct MultipartDynamicallyNamedPart<Payload> : Swift.Sendable, Swift.Has
   public var filename: Swift.String?
   public var name: Swift.String?
   public init(payload: Payload, filename: Swift.String? = nil, name: Swift.String? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>, b: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -868,13 +752,8 @@ extension OpenAPIRuntime.MultipartBody : _Concurrency.AsyncSequence {
   public typealias Element = Part
   public typealias AsyncIterator = OpenAPIRuntime.MultipartBody<Part>.Iterator
   final public func makeAsyncIterator() -> OpenAPIRuntime.MultipartBody<Part>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 extension OpenAPIRuntime.MultipartBody {
   public struct Iterator : _Concurrency.AsyncIteratorProtocol {
@@ -882,13 +761,8 @@ extension OpenAPIRuntime.MultipartBody {
     internal init<Iterator>(_ iterator: Iterator) where Part == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
     public mutating func next() async throws -> OpenAPIRuntime.MultipartBody<Part>.Element?
     public typealias Element = OpenAPIRuntime.MultipartBody<Part>.Element
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
 }
 extension OpenAPIRuntime.MultipartRawPart {

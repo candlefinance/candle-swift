@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature BuiltinModule -enable-bare-slash-regex -module-name Atomics -package-name swift_atomics
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature BuiltinModule -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Atomics -package-name swift_atomics
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Builtin
 import Swift
 import _Concurrency
@@ -161,7 +161,6 @@ extension Atomics._AtomicInt8Storage {
   }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Bool.AtomicRepresentation {
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Bool.AtomicRepresentation._Storage> {
@@ -172,18 +171,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Bool.AtomicRepresent
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Bool.AtomicRepresentation {
-  @usableFromInline
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Bool.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Bool.AtomicRepresentation : Atomics.AtomicStorage {
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.Bool.AtomicRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.Bool {
     pointer._extract._atomicLoad(ordering: ordering)._decodeBool
@@ -339,7 +326,6 @@ extension Swift.Int8 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Int8.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int8.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -349,17 +335,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Int8.AtomicRepresent
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Int8.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int8.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Int8.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Int8.AtomicRepresentation._Storage) -> Swift.Int8.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -457,7 +432,6 @@ extension Swift.Int16 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Int16.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int16.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -467,17 +441,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Int16.AtomicRepresen
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Int16.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int16.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Int16.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Int16.AtomicRepresentation._Storage) -> Swift.Int16.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -575,7 +538,6 @@ extension Swift.Int32 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Int32.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int32.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -585,17 +547,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Int32.AtomicRepresen
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Int32.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int32.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Int32.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Int32.AtomicRepresentation._Storage) -> Swift.Int32.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -693,7 +644,6 @@ extension Swift.Int64 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Int64.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int64.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -703,17 +653,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Int64.AtomicRepresen
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Int64.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int64.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Int64.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Int64.AtomicRepresentation._Storage) -> Swift.Int64.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -811,7 +750,6 @@ extension Swift.UInt8 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt8.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt8.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -821,17 +759,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt8.AtomicRepresen
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt8.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt8.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.UInt8.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UInt8.AtomicRepresentation._Storage) -> Swift.UInt8.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -929,7 +856,6 @@ extension Swift.UInt16 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt16.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt16.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -939,17 +865,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt16.AtomicReprese
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt16.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt16.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.UInt16.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UInt16.AtomicRepresentation._Storage) -> Swift.UInt16.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1047,7 +962,6 @@ extension Swift.UInt32 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt32.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt32.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -1057,17 +971,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt32.AtomicReprese
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt32.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt32.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.UInt32.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UInt32.AtomicRepresentation._Storage) -> Swift.UInt32.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1165,7 +1068,6 @@ extension Swift.UInt64 : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt64.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt64.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -1175,17 +1077,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt64.AtomicReprese
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt64.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt64.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.UInt64.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UInt64.AtomicRepresentation._Storage) -> Swift.UInt64.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1283,7 +1174,6 @@ extension Swift.Int : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.Int.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -1293,17 +1183,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.Int.AtomicRepresenta
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.Int.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.Int.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.Int.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Int.AtomicRepresentation._Storage) -> Swift.Int.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1401,7 +1280,6 @@ extension Swift.UInt : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -1411,17 +1289,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt.AtomicRepresent
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Swift.UInt.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Swift.UInt.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Swift.UInt.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UInt.AtomicRepresentation._Storage) -> Swift.UInt.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1519,7 +1386,6 @@ extension Atomics.DoubleWord : Atomics.AtomicValue {
     }
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics.DoubleWord.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Atomics.DoubleWord.AtomicRepresentation._Storage> {
     @_transparent get {
@@ -1529,17 +1395,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics.DoubleWord.AtomicR
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics.DoubleWord.AtomicRepresentation {
-  @_transparent @_alwaysEmitIntoClient internal var _extract: Swift.UnsafeMutablePointer<Atomics.DoubleWord.AtomicRepresentation._Storage> {
-    @_transparent get {
-     
-     
-    UnsafeMutableRawPointer(self).assumingMemoryBound(to: Pointee._Storage.self)
-  }
-  }
-}
-#endif
 extension Atomics.DoubleWord.AtomicRepresentation {
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Atomics.DoubleWord.AtomicRepresentation._Storage) -> Atomics.DoubleWord.AtomicRepresentation.Value {
     return Value(storage._value)
@@ -1726,7 +1581,6 @@ extension Swift.UnsafeMutableRawPointer.AtomicRepresentation : Atomics.AtomicSto
     return (exchanged, _decode(original))
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafePointer : Atomics.AtomicValue {
   @frozen public struct AtomicRepresentation {
     public typealias Value = Swift.UnsafePointer<Pointee>
@@ -1742,23 +1596,6 @@ extension Swift.UnsafePointer : Atomics.AtomicValue {
     }
   }
 }
-#else
-extension Swift.UnsafePointer : Atomics.AtomicValue {
-  @frozen public struct AtomicRepresentation {
-    public typealias Value = Swift.UnsafePointer<Pointee>
-    @usableFromInline
-    internal typealias _Storage = Atomics._AtomicIntStorage
-    @usableFromInline
-    internal let _storage: Swift.UnsafePointer<Pointee>.AtomicRepresentation._Storage
-    @_transparent @_alwaysEmitIntoClient public init(_ value: Swift.UnsafePointer<Pointee>.AtomicRepresentation.Value) {
-      _storage = Self._encode(value)
-    }
-    @_transparent @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafePointer<Pointee>.AtomicRepresentation.Value {
-      return Self._decode(_storage)
-    }
-  }
-}
-#endif
 extension Swift.UnsafePointer.AtomicRepresentation {
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicRepresentation>) -> Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicRepresentation._Storage> {
@@ -1813,7 +1650,6 @@ extension Swift.UnsafePointer.AtomicRepresentation : Atomics.AtomicStorage {
     return (exchanged, _decode(original))
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer : Atomics.AtomicValue {
   @frozen public struct AtomicRepresentation {
     public typealias Value = Swift.UnsafeMutablePointer<Pointee>
@@ -1829,23 +1665,6 @@ extension Swift.UnsafeMutablePointer : Atomics.AtomicValue {
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer : Atomics.AtomicValue {
-  @frozen public struct AtomicRepresentation {
-    public typealias Value = Swift.UnsafeMutablePointer<Pointee>
-    @usableFromInline
-    internal typealias _Storage = Atomics._AtomicIntStorage
-    @usableFromInline
-    internal let _storage: Swift.UnsafeMutablePointer<Pointee>.AtomicRepresentation._Storage
-    @_transparent @_alwaysEmitIntoClient public init(_ value: Swift.UnsafeMutablePointer<Pointee>.AtomicRepresentation.Value) {
-      _storage = Self._encode(value)
-    }
-    @_transparent @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafeMutablePointer<Pointee>.AtomicRepresentation.Value {
-      return Self._decode(_storage)
-    }
-  }
-}
-#endif
 extension Swift.UnsafeMutablePointer.AtomicRepresentation {
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicRepresentation>) -> Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicRepresentation._Storage> {
@@ -2103,7 +1922,6 @@ extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation : Atomics.A
     return (exchanged, _decode(original))
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafePointer : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
     public typealias Value = Swift.UnsafePointer<Pointee>?
@@ -2119,23 +1937,6 @@ extension Swift.UnsafePointer : Atomics.AtomicOptionalWrappable {
     }
   }
 }
-#else
-extension Swift.UnsafePointer : Atomics.AtomicOptionalWrappable {
-  @frozen public struct AtomicOptionalRepresentation {
-    public typealias Value = Swift.UnsafePointer<Pointee>?
-    @usableFromInline
-    internal typealias _Storage = Atomics._AtomicIntStorage
-    @usableFromInline
-    internal let _storage: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation._Storage
-    @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) {
-      _storage = Self._encode(value)
-    }
-    @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value {
-      Self._decode(_storage)
-    }
-  }
-}
-#endif
 extension Swift.UnsafePointer.AtomicOptionalRepresentation {
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>) -> Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation._Storage> {
@@ -2188,7 +1989,6 @@ extension Swift.UnsafePointer.AtomicOptionalRepresentation : Atomics.AtomicStora
     return (exchanged, _decode(original))
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
     public typealias Value = Swift.UnsafeMutablePointer<Pointee>?
@@ -2204,23 +2004,6 @@ extension Swift.UnsafeMutablePointer : Atomics.AtomicOptionalWrappable {
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer : Atomics.AtomicOptionalWrappable {
-  @frozen public struct AtomicOptionalRepresentation {
-    public typealias Value = Swift.UnsafeMutablePointer<Pointee>?
-    @usableFromInline
-    internal typealias _Storage = Atomics._AtomicIntStorage
-    @usableFromInline
-    internal let _storage: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation._Storage
-    @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) {
-      _storage = Self._encode(value)
-    }
-    @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value {
-      Self._decode(_storage)
-    }
-  }
-}
-#endif
 extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation {
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>) -> Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation._Storage> {
@@ -2367,7 +2150,6 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation : Atomics.AtomicStorage {
     self._value = value
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt8Storage {
   @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt8Storage {
     switch ordering {
@@ -2714,354 +2496,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt8Storage
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt8Storage {
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      return _AtomicInt8Storage(Builtin.atomicload_monotonic_Int8(_rawValue))
-    case .acquiring:
-      return _AtomicInt8Storage(Builtin.atomicload_acquire_Int8(_rawValue))
-    case .sequentiallyConsistent:
-      return _AtomicInt8Storage(Builtin.atomicload_seqcst_Int8(_rawValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicStore(_ desired: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicStoreOrdering) {
-    switch ordering {
-    case .relaxed:
-      Builtin.atomicstore_monotonic_Int8(_rawValue, desired._value)
-    case .releasing:
-      Builtin.atomicstore_release_Int8(_rawValue, desired._value)
-    case .sequentiallyConsistent:
-      Builtin.atomicstore_seqcst_Int8(_rawValue, desired._value)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicExchange(_ desired: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let oldValue = Builtin.atomicrmw_xchg_monotonic_Int8(
-        _rawValue, desired._value)
-      return _AtomicInt8Storage(oldValue)
-    case .acquiring:
-      let oldValue = Builtin.atomicrmw_xchg_acquire_Int8(
-        _rawValue, desired._value)
-      return _AtomicInt8Storage(oldValue)
-    case .releasing:
-      let oldValue = Builtin.atomicrmw_xchg_release_Int8(
-        _rawValue, desired._value)
-      return _AtomicInt8Storage(oldValue)
-    case .acquiringAndReleasing:
-      let oldValue = Builtin.atomicrmw_xchg_acqrel_Int8(
-        _rawValue, desired._value)
-      return _AtomicInt8Storage(oldValue)
-    case .sequentiallyConsistent:
-      let oldValue = Builtin.atomicrmw_xchg_seqcst_Int8(
-        _rawValue, desired._value)
-      return _AtomicInt8Storage(oldValue)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt8Storage, desired: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt8Storage) {
-    switch ordering {
-    case .relaxed:
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case .acquiring:
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case .releasing:
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case .acquiringAndReleasing:
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case .sequentiallyConsistent:
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt8Storage, desired: Atomics._AtomicInt8Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt8Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicWeakCompareExchange(expected: Atomics._AtomicInt8Storage, desired: Atomics._AtomicInt8Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt8Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int8(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt8Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingIncrement(by operand: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_add_monotonic_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_add_acquire_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_add_release_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_add_acqrel_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_add_seqcst_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingDecrement(by operand: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_sub_monotonic_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_sub_acquire_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_sub_release_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_sub_acqrel_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_sub_seqcst_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseAnd(with operand: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_and_monotonic_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_and_acquire_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_and_release_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_and_acqrel_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_and_seqcst_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseOr(with operand: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_or_monotonic_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_or_acquire_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_or_release_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_or_acqrel_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_or_seqcst_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseXor(with operand: Atomics._AtomicInt8Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt8Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_xor_monotonic_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_xor_acquire_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_xor_release_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_xor_acqrel_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_xor_seqcst_Int8(
-        _rawValue, operand._value)
-      return _AtomicInt8Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-}
-#endif
 @usableFromInline
 @frozen @_alignment(2) internal struct _AtomicInt16Storage {
   @usableFromInline
@@ -3070,7 +2504,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt8Storage
     self._value = value
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt16Storage {
   @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt16Storage {
     switch ordering {
@@ -3417,354 +2850,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt16Storag
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt16Storage {
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      return _AtomicInt16Storage(Builtin.atomicload_monotonic_Int16(_rawValue))
-    case .acquiring:
-      return _AtomicInt16Storage(Builtin.atomicload_acquire_Int16(_rawValue))
-    case .sequentiallyConsistent:
-      return _AtomicInt16Storage(Builtin.atomicload_seqcst_Int16(_rawValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicStore(_ desired: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicStoreOrdering) {
-    switch ordering {
-    case .relaxed:
-      Builtin.atomicstore_monotonic_Int16(_rawValue, desired._value)
-    case .releasing:
-      Builtin.atomicstore_release_Int16(_rawValue, desired._value)
-    case .sequentiallyConsistent:
-      Builtin.atomicstore_seqcst_Int16(_rawValue, desired._value)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicExchange(_ desired: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let oldValue = Builtin.atomicrmw_xchg_monotonic_Int16(
-        _rawValue, desired._value)
-      return _AtomicInt16Storage(oldValue)
-    case .acquiring:
-      let oldValue = Builtin.atomicrmw_xchg_acquire_Int16(
-        _rawValue, desired._value)
-      return _AtomicInt16Storage(oldValue)
-    case .releasing:
-      let oldValue = Builtin.atomicrmw_xchg_release_Int16(
-        _rawValue, desired._value)
-      return _AtomicInt16Storage(oldValue)
-    case .acquiringAndReleasing:
-      let oldValue = Builtin.atomicrmw_xchg_acqrel_Int16(
-        _rawValue, desired._value)
-      return _AtomicInt16Storage(oldValue)
-    case .sequentiallyConsistent:
-      let oldValue = Builtin.atomicrmw_xchg_seqcst_Int16(
-        _rawValue, desired._value)
-      return _AtomicInt16Storage(oldValue)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt16Storage, desired: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt16Storage) {
-    switch ordering {
-    case .relaxed:
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case .acquiring:
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case .releasing:
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case .acquiringAndReleasing:
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case .sequentiallyConsistent:
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt16Storage, desired: Atomics._AtomicInt16Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt16Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicWeakCompareExchange(expected: Atomics._AtomicInt16Storage, desired: Atomics._AtomicInt16Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt16Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int16(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt16Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingIncrement(by operand: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_add_monotonic_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_add_acquire_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_add_release_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_add_acqrel_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_add_seqcst_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingDecrement(by operand: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_sub_monotonic_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_sub_acquire_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_sub_release_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_sub_acqrel_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_sub_seqcst_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseAnd(with operand: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_and_monotonic_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_and_acquire_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_and_release_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_and_acqrel_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_and_seqcst_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseOr(with operand: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_or_monotonic_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_or_acquire_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_or_release_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_or_acqrel_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_or_seqcst_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseXor(with operand: Atomics._AtomicInt16Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt16Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_xor_monotonic_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_xor_acquire_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_xor_release_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_xor_acqrel_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_xor_seqcst_Int16(
-        _rawValue, operand._value)
-      return _AtomicInt16Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-}
-#endif
 @usableFromInline
 @frozen @_alignment(4) internal struct _AtomicInt32Storage {
   @usableFromInline
@@ -3773,7 +2858,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt16Storag
     self._value = value
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt32Storage {
   @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt32Storage {
     switch ordering {
@@ -4120,354 +3204,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt32Storag
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt32Storage {
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      return _AtomicInt32Storage(Builtin.atomicload_monotonic_Int32(_rawValue))
-    case .acquiring:
-      return _AtomicInt32Storage(Builtin.atomicload_acquire_Int32(_rawValue))
-    case .sequentiallyConsistent:
-      return _AtomicInt32Storage(Builtin.atomicload_seqcst_Int32(_rawValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicStore(_ desired: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicStoreOrdering) {
-    switch ordering {
-    case .relaxed:
-      Builtin.atomicstore_monotonic_Int32(_rawValue, desired._value)
-    case .releasing:
-      Builtin.atomicstore_release_Int32(_rawValue, desired._value)
-    case .sequentiallyConsistent:
-      Builtin.atomicstore_seqcst_Int32(_rawValue, desired._value)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicExchange(_ desired: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let oldValue = Builtin.atomicrmw_xchg_monotonic_Int32(
-        _rawValue, desired._value)
-      return _AtomicInt32Storage(oldValue)
-    case .acquiring:
-      let oldValue = Builtin.atomicrmw_xchg_acquire_Int32(
-        _rawValue, desired._value)
-      return _AtomicInt32Storage(oldValue)
-    case .releasing:
-      let oldValue = Builtin.atomicrmw_xchg_release_Int32(
-        _rawValue, desired._value)
-      return _AtomicInt32Storage(oldValue)
-    case .acquiringAndReleasing:
-      let oldValue = Builtin.atomicrmw_xchg_acqrel_Int32(
-        _rawValue, desired._value)
-      return _AtomicInt32Storage(oldValue)
-    case .sequentiallyConsistent:
-      let oldValue = Builtin.atomicrmw_xchg_seqcst_Int32(
-        _rawValue, desired._value)
-      return _AtomicInt32Storage(oldValue)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt32Storage, desired: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt32Storage) {
-    switch ordering {
-    case .relaxed:
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case .acquiring:
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case .releasing:
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case .acquiringAndReleasing:
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case .sequentiallyConsistent:
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt32Storage, desired: Atomics._AtomicInt32Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt32Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicWeakCompareExchange(expected: Atomics._AtomicInt32Storage, desired: Atomics._AtomicInt32Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt32Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int32(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt32Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingIncrement(by operand: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_add_monotonic_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_add_acquire_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_add_release_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_add_acqrel_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_add_seqcst_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingDecrement(by operand: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_sub_monotonic_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_sub_acquire_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_sub_release_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_sub_acqrel_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_sub_seqcst_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseAnd(with operand: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_and_monotonic_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_and_acquire_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_and_release_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_and_acqrel_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_and_seqcst_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseOr(with operand: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_or_monotonic_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_or_acquire_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_or_release_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_or_acqrel_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_or_seqcst_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseXor(with operand: Atomics._AtomicInt32Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt32Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_xor_monotonic_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_xor_acquire_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_xor_release_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_xor_acqrel_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_xor_seqcst_Int32(
-        _rawValue, operand._value)
-      return _AtomicInt32Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-}
-#endif
 @usableFromInline
 @frozen @_alignment(8) internal struct _AtomicInt64Storage {
   @usableFromInline
@@ -4476,7 +3212,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt32Storag
     self._value = value
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt64Storage {
   @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt64Storage {
     switch ordering {
@@ -4823,354 +3558,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt64Storag
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt64Storage {
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      return _AtomicInt64Storage(Builtin.atomicload_monotonic_Int64(_rawValue))
-    case .acquiring:
-      return _AtomicInt64Storage(Builtin.atomicload_acquire_Int64(_rawValue))
-    case .sequentiallyConsistent:
-      return _AtomicInt64Storage(Builtin.atomicload_seqcst_Int64(_rawValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicStore(_ desired: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicStoreOrdering) {
-    switch ordering {
-    case .relaxed:
-      Builtin.atomicstore_monotonic_Int64(_rawValue, desired._value)
-    case .releasing:
-      Builtin.atomicstore_release_Int64(_rawValue, desired._value)
-    case .sequentiallyConsistent:
-      Builtin.atomicstore_seqcst_Int64(_rawValue, desired._value)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicExchange(_ desired: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let oldValue = Builtin.atomicrmw_xchg_monotonic_Int64(
-        _rawValue, desired._value)
-      return _AtomicInt64Storage(oldValue)
-    case .acquiring:
-      let oldValue = Builtin.atomicrmw_xchg_acquire_Int64(
-        _rawValue, desired._value)
-      return _AtomicInt64Storage(oldValue)
-    case .releasing:
-      let oldValue = Builtin.atomicrmw_xchg_release_Int64(
-        _rawValue, desired._value)
-      return _AtomicInt64Storage(oldValue)
-    case .acquiringAndReleasing:
-      let oldValue = Builtin.atomicrmw_xchg_acqrel_Int64(
-        _rawValue, desired._value)
-      return _AtomicInt64Storage(oldValue)
-    case .sequentiallyConsistent:
-      let oldValue = Builtin.atomicrmw_xchg_seqcst_Int64(
-        _rawValue, desired._value)
-      return _AtomicInt64Storage(oldValue)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt64Storage, desired: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt64Storage) {
-    switch ordering {
-    case .relaxed:
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case .acquiring:
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case .releasing:
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case .acquiringAndReleasing:
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case .sequentiallyConsistent:
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt64Storage, desired: Atomics._AtomicInt64Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt64Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicWeakCompareExchange(expected: Atomics._AtomicInt64Storage, desired: Atomics._AtomicInt64Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt64Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int64(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt64Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingIncrement(by operand: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_add_monotonic_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_add_acquire_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_add_release_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_add_acqrel_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_add_seqcst_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenWrappingDecrement(by operand: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_sub_monotonic_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_sub_acquire_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_sub_release_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_sub_acqrel_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_sub_seqcst_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseAnd(with operand: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_and_monotonic_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_and_acquire_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_and_release_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_and_acqrel_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_and_seqcst_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseOr(with operand: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_or_monotonic_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_or_acquire_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_or_release_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_or_acqrel_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_or_seqcst_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoadThenBitwiseXor(with operand: Atomics._AtomicInt64Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt64Storage {
-    switch ordering {
-    case .relaxed:
-      let value = Builtin.atomicrmw_xor_monotonic_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiring:
-      let value = Builtin.atomicrmw_xor_acquire_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .releasing:
-      let value = Builtin.atomicrmw_xor_release_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .acquiringAndReleasing:
-      let value = Builtin.atomicrmw_xor_acqrel_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    case .sequentiallyConsistent:
-      let value = Builtin.atomicrmw_xor_seqcst_Int64(
-        _rawValue, operand._value)
-      return _AtomicInt64Storage(value)
-    default:
-      preconditionFailure("Unsupported ordering")
-    }
-  }
-}
-#endif
 @usableFromInline
 @frozen @_alignment(16) internal struct _AtomicInt128Storage {
   @usableFromInline
@@ -5179,7 +3566,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt64Storag
     self._value = value
   }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt128Storage {
   @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt128Storage {
     switch ordering {
@@ -5396,224 +3782,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt128Stora
     }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicInt128Storage {
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicLoad(ordering: Atomics.AtomicLoadOrdering) -> Atomics._AtomicInt128Storage {
-    switch ordering {
-    case .relaxed:
-      return _AtomicInt128Storage(Builtin.atomicload_monotonic_Int128(_rawValue))
-    case .acquiring:
-      return _AtomicInt128Storage(Builtin.atomicload_acquire_Int128(_rawValue))
-    case .sequentiallyConsistent:
-      return _AtomicInt128Storage(Builtin.atomicload_seqcst_Int128(_rawValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicStore(_ desired: Atomics._AtomicInt128Storage, ordering: Atomics.AtomicStoreOrdering) {
-    switch ordering {
-    case .relaxed:
-      Builtin.atomicstore_monotonic_Int128(_rawValue, desired._value)
-    case .releasing:
-      Builtin.atomicstore_release_Int128(_rawValue, desired._value)
-    case .sequentiallyConsistent:
-      Builtin.atomicstore_seqcst_Int128(_rawValue, desired._value)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicExchange(_ desired: Atomics._AtomicInt128Storage, ordering: Atomics.AtomicUpdateOrdering) -> Atomics._AtomicInt128Storage {
-    switch ordering {
-    case .relaxed:
-      let oldValue = Builtin.atomicrmw_xchg_monotonic_Int128(
-        _rawValue, desired._value)
-      return _AtomicInt128Storage(oldValue)
-    case .acquiring:
-      let oldValue = Builtin.atomicrmw_xchg_acquire_Int128(
-        _rawValue, desired._value)
-      return _AtomicInt128Storage(oldValue)
-    case .releasing:
-      let oldValue = Builtin.atomicrmw_xchg_release_Int128(
-        _rawValue, desired._value)
-      return _AtomicInt128Storage(oldValue)
-    case .acquiringAndReleasing:
-      let oldValue = Builtin.atomicrmw_xchg_acqrel_Int128(
-        _rawValue, desired._value)
-      return _AtomicInt128Storage(oldValue)
-    case .sequentiallyConsistent:
-      let oldValue = Builtin.atomicrmw_xchg_seqcst_Int128(
-        _rawValue, desired._value)
-      return _AtomicInt128Storage(oldValue)
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt128Storage, desired: Atomics._AtomicInt128Storage, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt128Storage) {
-    switch ordering {
-    case .relaxed:
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case .acquiring:
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case .releasing:
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case .acquiringAndReleasing:
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case .sequentiallyConsistent:
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    default:
-      fatalError("Unsupported ordering")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicCompareExchange(expected: Atomics._AtomicInt128Storage, desired: Atomics._AtomicInt128Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt128Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-  @_semantics("atomics.requires_constant_orderings") @_alwaysEmitIntoClient @_transparent internal func _atomicWeakCompareExchange(expected: Atomics._AtomicInt128Storage, desired: Atomics._AtomicInt128Storage, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Atomics._AtomicInt128Storage) {
-     
-     
-     
-    switch (successOrdering, failureOrdering) {
-    case (.relaxed, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_monotonic_monotonic_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.relaxed, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.relaxed, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_monotonic_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acquire_acquire_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiring, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_release_monotonic_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.releasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_monotonic_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_acqrel_acquire_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.acquiringAndReleasing, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .relaxed):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_monotonic_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .acquiring):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_acquire_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    case (.sequentiallyConsistent, .sequentiallyConsistent):
-      let (oldValue, won) = Builtin.cmpxchg_seqcst_seqcst_weak_Int128(
-        _rawValue, expected._value, desired._value)
-      return (Bool(won), _AtomicInt128Storage(oldValue))
-    default:
-      preconditionFailure("Unsupported orderings")
-    }
-  }
-}
-#endif
 @usableFromInline
 internal typealias _AtomicIntStorage = Atomics._AtomicInt64Storage
 @usableFromInline
@@ -5630,22 +3798,15 @@ public protocol AtomicIntegerStorage : Atomics.AtomicStorage {
 public protocol AtomicOptionalWrappable : Atomics.AtomicValue {
   associatedtype AtomicOptionalRepresentation : Atomics.AtomicStorage where Self.AtomicOptionalRepresentation.Value == Self.AtomicRepresentation.Value?
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.Optional : Atomics.AtomicValue where Wrapped : Atomics.AtomicOptionalWrappable, Wrapped == Wrapped.AtomicRepresentation.Value {
   public typealias AtomicRepresentation = Wrapped.AtomicOptionalRepresentation
 }
-#else
-extension Swift.Optional : Atomics.AtomicValue where Wrapped : Atomics.AtomicOptionalWrappable, Wrapped == Wrapped.AtomicRepresentation.Value {
-  public typealias AtomicRepresentation = Wrapped.AtomicOptionalRepresentation
-}
-#endif
 public protocol AtomicReference : AnyObject, Atomics.AtomicOptionalWrappable {
   associatedtype _AtomicBase : AnyObject = Self where Self.AtomicOptionalRepresentation == Atomics.AtomicOptionalReferenceStorage<Self._AtomicBase>, Self.AtomicRepresentation == Atomics.AtomicReferenceStorage<Self._AtomicBase>
 }
 @inlinable @inline(__always) internal var _concurrencyWindow: Swift.Int {
   get { 20 }
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicReferenceStorage {
   @inlinable @inline(__always) internal var _extract: Swift.UnsafeMutablePointer<Atomics.DoubleWord.AtomicRepresentation> {
     get {
@@ -5654,16 +3815,6 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicReferenceSt
   }
   }
 }
-#else
-extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicReferenceStorage {
-  @inlinable @inline(__always) internal var _extract: Swift.UnsafeMutablePointer<Atomics.DoubleWord.AtomicRepresentation> {
-    get {
-    UnsafeMutableRawPointer(self)
-      .assumingMemoryBound(to: DoubleWord.AtomicRepresentation.self)
-  }
-  }
-}
-#endif
 @usableFromInline
 internal struct _AtomicReferenceStorage {
   @usableFromInline

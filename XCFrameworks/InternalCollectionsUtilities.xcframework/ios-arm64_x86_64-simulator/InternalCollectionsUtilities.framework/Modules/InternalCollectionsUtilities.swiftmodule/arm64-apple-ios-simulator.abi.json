@@ -4063,6 +4063,7 @@
         "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
         "sugared_genericSig": "<Element where Element : ~Copyable>",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,
@@ -7320,6 +7321,7 @@
         "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
         "sugared_genericSig": "<Element where Element : ~Copyable>",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,

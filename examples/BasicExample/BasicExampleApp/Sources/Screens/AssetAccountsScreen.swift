@@ -9,15 +9,15 @@ struct AssetAccountsScreen: View {
     @State var assetAccounts = [AssetAccountViewModel]()
 
     @State private var assetKind: Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
-    @State private var selectedLinkedAccounts: [Models.LinkedAccount] = []
+    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
 
     @State private var errorMessage: String? = nil
     @State private var isLoading = false
 
     var assetAccountsQuery: Models.GetAssetAccounts.Input.Query {
         .init(
-            linkedAccountIDs: selectedLinkedAccounts.isEmpty
-                ? nil : selectedLinkedAccounts.map { $0.id }.joined(separator: ","),
+            linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
+                ? nil : selectedLinkedAccountIDs.joined(separator: ","),
             assetKind: assetKind
         )
     }
@@ -46,7 +46,7 @@ struct AssetAccountsScreen: View {
                             EnumMenu(name: "Asset Kind", selectedCase: $assetKind)
                             LinkedAccountsMenu(
                                 linkedAccounts: linkedAccounts,
-                                selectedLinkedAccounts: $selectedLinkedAccounts
+                                selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                             )
                         } label: {
                             Label("Filters", systemImage: "line.horizontal.3.decrease.circle")

@@ -36,7 +36,6 @@
 		B56C68C8E54DECC0A52F1FAD /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5912105660C065A61A683 /* LocationViewModel.swift */; };
 		BD6585DC0DEFF71D09398756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6DDD7BE742269E96E7FB410 /* LaunchScreen.storyboard */; };
 		C190A0F6FF8CBAFEAB00E643 /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E879DD84758D5EF7AA560C05 /* DetailItem.swift */; };
-		C55FF512F855BDB6F4AFE637 /* LinkedAccount++.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10B3927B5DF4E4910D3F388 /* LinkedAccount++.swift */; };
 		C580E924A2860C34584C95A1 /* TextTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF88CB884650672DBBACF6 /* TextTransition.swift */; };
 		C69A754F627F604A48EE6BF2 /* Candle in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4207EAC4C668B610637734 /* Candle */; };
 		CD6B529F84A7CE4A2F020C12 /* ItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDD1A9331960EC9DF48C05 /* ItemScreen.swift */; };
@@ -118,7 +117,6 @@
 		AD58CA05707E9E877604202F /* TuistAssets+BasicExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+BasicExampleApp.swift"; sourceTree = "<group>"; };
 		B4C5912105660C065A61A683 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B5176FA18CF2FC1E55E6CDE8 /* CandlePrimaryButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandlePrimaryButtonModifier.swift; sourceTree = "<group>"; };
-		C10B3927B5DF4E4910D3F388 /* LinkedAccount++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinkedAccount++.swift"; sourceTree = "<group>"; };
 		C9FF88CB884650672DBBACF6 /* TextTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTransition.swift; sourceTree = "<group>"; };
 		D462D168E2B5A2D0D43B0BD0 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		DAD015669B1935B39AD93044 /* BasicExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,7 +283,6 @@
 			children = (
 				74248B40C03D1C37A49083E3 /* AsyncImageWithPlaceholder.swift */,
 				6DB10B4A8AAE6BC8D56DE607 /* CGFloat++.swift */,
-				C10B3927B5DF4E4910D3F388 /* LinkedAccount++.swift */,
 				65430C4FC03AE1651BF9B425 /* String++.swift */,
 			);
 			path = Extensions;
@@ -462,7 +459,6 @@
 				8C2899D5E6172AA0388E0F1C /* ItemReloadError.swift in Sources */,
 				DB053D4D39F425C1FE2A2282 /* AsyncImageWithPlaceholder.swift in Sources */,
 				93E31923EAE07FC97B277B36 /* CGFloat++.swift in Sources */,
-				C55FF512F855BDB6F4AFE637 /* LinkedAccount++.swift in Sources */,
 				216AB2217466111C01B5C9CB /* String++.swift in Sources */,
 				7E764316D07D3437B247D8A5 /* ContentViewMenu.swift in Sources */,
 				93D8F76D9DF5A24B70FC4597 /* EnumMenu.swift in Sources */,

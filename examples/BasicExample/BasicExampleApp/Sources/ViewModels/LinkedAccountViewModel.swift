@@ -12,7 +12,15 @@ extension LinkedAccountViewModel: ItemViewModel {
     }
 
     var subtitle: String {
-        linkedAccount.activeDetails?.legalName ?? "Inactive"
+        switch linkedAccount.details {
+        case .ActiveLinkedAccountDetails(let activeDetails):
+            return activeDetails.legalName
+        case .InactiveLinkedAccountDetails(let inactiveDetails):
+            switch inactiveDetails.state {
+            case .inactive: return "Inactive"
+            case .unavailable: return "Unavailable"
+            }
+        }
     }
 
     var value: String {

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOCore -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOCore -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Atomics
 import Darwin.C
 import Darwin
@@ -25,8 +25,8 @@ public struct AddressedEnvelope<DataType> {
     public var packetInfo: NIOCore.NIOPacketInfo?
     public init(ecnState: NIOCore.NIOExplicitCongestionNotificationState)
     public init(ecnState: NIOCore.NIOExplicitCongestionNotificationState, packetInfo: NIOCore.NIOPacketInfo?)
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOCore.AddressedEnvelope<DataType>.Metadata, b: NIOCore.AddressedEnvelope<DataType>.Metadata) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -63,8 +63,8 @@ public struct NIOPacketInfo : Swift.Hashable, Swift.Sendable {
   public var destinationAddress: NIOCore.SocketAddress
   public var interfaceIndex: Swift.Int
   public init(destinationAddress: NIOCore.SocketAddress, interfaceIndex: Swift.Int)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOCore.NIOPacketInfo, b: NIOCore.NIOPacketInfo) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -127,7 +127,7 @@ extension NIOCore.ChannelPipeline {
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   @preconcurrency final public func addHandlers(_ handlers: [any NIOCore.ChannelHandler & Swift.Sendable], position: NIOCore.ChannelPipeline.Position = .last) async throws
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-  @preconcurrency final public func addHandlers(_ handlers: (any NIOCore.ChannelHandler & Swift.Sendable)..., position: NIOCore.ChannelPipeline.Position = .last) async throws
+  @preconcurrency final public func addHandlers(_ handlers: any NIOCore.ChannelHandler & Swift.Sendable..., position: NIOCore.ChannelPipeline.Position = .last) async throws
 }
 public struct NIOTooManyBytesError : Swift.Error {
   public var maxBytes: Swift.Int?
@@ -189,23 +189,19 @@ public struct NIOAsyncChannel<Inbound, Outbound> : Swift.Sendable where Inbound 
   public static func _wrapAsyncChannelWithTransformations(synchronouslyWrapping channel: any NIOCore.Channel, backPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, isOutboundHalfClosureEnabled: Swift.Bool = false, channelReadTransformation: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Inbound>) throws -> NIOCore.NIOAsyncChannel<Inbound, Outbound> where Outbound == Swift.Never
   public static func _wrapAsyncChannelWithTransformations(wrappingChannelSynchronously channel: any NIOCore.Channel, backPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, isOutboundHalfClosureEnabled: Swift.Bool = false, channelReadTransformation: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Inbound>) throws -> NIOCore.NIOAsyncChannel<Inbound, Outbound> where Outbound == Swift.Never
   @_disfavoredOverload public func executeThenClose<Result>(_ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> Result) async throws -> Result
-  #if compiler(>=5.3) && $OptionalIsolatedParameters && $ExpressionMacroDefaultArguments
   #if compiler(>=5.3) && $SendingArgsAndResults
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> sending Result) async throws -> sending Result
   #else
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> Result) async throws -> Result
   #endif
-  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncChannel {
   @_disfavoredOverload public func executeThenClose<Result>(_ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> Result) async throws -> Result where Outbound == Swift.Never
-  #if compiler(>=5.3) && $OptionalIsolatedParameters && $ExpressionMacroDefaultArguments
   #if compiler(>=5.3) && $SendingArgsAndResults
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> sending Result) async throws -> sending Result where Outbound == Swift.Never
   #else
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> Result) async throws -> Result where Outbound == Swift.Never
-  #endif
   #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -223,22 +219,12 @@ extension NIOCore.NIOAsyncChannelInboundStream : _Concurrency.AsyncSequence {
     public mutating func next() async throws -> NIOCore.NIOAsyncChannelInboundStream<Inbound>.Element?
     @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
     public typealias Element = NIOCore.NIOAsyncChannelInboundStream<Inbound>.Element
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
   public func makeAsyncIterator() -> NIOCore.NIOAsyncChannelInboundStream<Inbound>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 @available(*, unavailable)
@@ -253,21 +239,11 @@ public struct NIOAsyncChannelOutboundWriter<OutboundOut> : Swift.Sendable where 
       public mutating func next() async -> NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink.Element?
       @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
       public typealias Element = NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink.Element
-      #if compiler(>=5.3) && $AssociatedTypeImplements
       @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
       @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
-      #else
-      @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-      public typealias __AsyncIteratorProtocol_Failure = Swift.Never
-      #endif
     }
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncSequence_Failure = Swift.Never
-    #endif
   }
   public static func makeTestingWriter() -> (NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>, NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink)
   public func write(_ data: OutboundOut) async throws
@@ -301,25 +277,15 @@ public struct NIOAsyncSequenceProducer<Element, Strategy, Delegate> : Swift.Send
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncSequenceProducer : _Concurrency.AsyncSequence {
   public func makeAsyncIterator() -> NIOCore.NIOAsyncSequenceProducer<Element, Strategy, Delegate>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = Swift.Never
-  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncSequenceProducer {
   public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
     public func next() async -> Element?
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = Swift.Never
-    #endif
   }
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -417,25 +383,15 @@ public struct NIOThrowingAsyncSequenceProducer<Element, Failure, Strategy, Deleg
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOThrowingAsyncSequenceProducer : _Concurrency.AsyncSequence {
   public func makeAsyncIterator() -> NIOCore.NIOThrowingAsyncSequenceProducer<Element, Failure, Strategy, Delegate>.AsyncIterator
-  #if compiler(>=5.3) && $AssociatedTypeImplements
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
-  #else
-  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-  public typealias __AsyncSequence_Failure = any Swift.Error
-  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOThrowingAsyncSequenceProducer {
   public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
     public func next() async throws -> Element?
-    #if compiler(>=5.3) && $AssociatedTypeImplements
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #else
-    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
-    public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
-    #endif
   }
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -657,21 +613,12 @@ extension NIOCore.ByteBufferAllocator {
   public func buffer(buffer: NIOCore.ByteBuffer) -> NIOCore.ByteBuffer
   public func buffer(dispatchData: Dispatch.DispatchData) -> NIOCore.ByteBuffer
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.Optional where Wrapped == NIOCore.ByteBuffer {
   @discardableResult
   public mutating func setOrWriteImmutableBuffer(_ buffer: NIOCore.ByteBuffer) -> Swift.Int
   @discardableResult
   public mutating func setOrWriteBuffer(_ buffer: inout NIOCore.ByteBuffer) -> Swift.Int
 }
-#else
-extension Swift.Optional where Wrapped == NIOCore.ByteBuffer {
-  @discardableResult
-  public mutating func setOrWriteImmutableBuffer(_ buffer: NIOCore.ByteBuffer) -> Swift.Int
-  @discardableResult
-  public mutating func setOrWriteBuffer(_ buffer: inout NIOCore.ByteBuffer) -> Swift.Int
-}
-#endif
 extension NIOCore.ByteBuffer {
   @available(macOS 15, iOS 18, tvOS 18, watchOS 11, *)
   public func getUTF8ValidatedString(at index: Swift.Int, length: Swift.Int) throws -> Swift.String?
@@ -798,8 +745,8 @@ extension NIOCore.ByteBuffer {
   }
 }
 extension NIOCore.ByteBuffer.CopyBytesError : Swift.Hashable {
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOCore.ByteBuffer.CopyBytesError, b: NIOCore.ByteBuffer.CopyBytesError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -832,8 +779,8 @@ extension NIOCore.ByteBuffer {
     public static func plain(maxBytes: Swift.Int) -> NIOCore.ByteBuffer.HexDumpFormat
     public static func detailed(maxBytes: Swift.Int) -> NIOCore.ByteBuffer.HexDumpFormat
     public static func compact(maxBytes: Swift.Int) -> NIOCore.ByteBuffer.HexDumpFormat
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOCore.ByteBuffer.HexDumpFormat, b: NIOCore.ByteBuffer.HexDumpFormat) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -3171,8 +3118,8 @@ public enum DatagramChannelError {
 public enum ChannelEvent : Swift.Equatable, Swift.Sendable {
   case inputClosed
   case outputClosed
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOCore.ChannelEvent, b: NIOCore.ChannelEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -3385,7 +3332,7 @@ public typealias AllowRemoteHalfClosureOption = NIOCore.ChannelOptions.Types.All
 extension NIOCore.ChannelOptions {
   public enum Types : Swift.Sendable {
     public struct SocketOption : NIOCore.ChannelOption, Swift.Equatable, Swift.Sendable {
-      public typealias Value = (NIOCore.SocketOptionValue)
+      public typealias Value = NIOCore.SocketOptionValue
       public var optionLevel: NIOCore.NIOBSDSocket.OptionLevel
       public var optionName: NIOCore.NIOBSDSocket.Option
       public var level: NIOCore.SocketOptionLevel {
@@ -3640,7 +3587,7 @@ extension NIOCore.ChannelPipeline : @unchecked Swift.Sendable {
 }
 extension NIOCore.ChannelPipeline {
   @preconcurrency final public func addHandlers(_ handlers: [any NIOCore.ChannelHandler & Swift.Sendable], position: NIOCore.ChannelPipeline.Position = .last) -> NIOCore.EventLoopFuture<Swift.Void>
-  @preconcurrency final public func addHandlers(_ handlers: (any NIOCore.ChannelHandler & Swift.Sendable)..., position: NIOCore.ChannelPipeline.Position = .last) -> NIOCore.EventLoopFuture<Swift.Void>
+  @preconcurrency final public func addHandlers(_ handlers: any NIOCore.ChannelHandler & Swift.Sendable..., position: NIOCore.ChannelPipeline.Position = .last) -> NIOCore.EventLoopFuture<Swift.Void>
 }
 extension NIOCore.ChannelPipeline {
   public struct SynchronousOperations {
@@ -3995,8 +3942,8 @@ extension NIOCore.ChannelOptions.Types.ConvenienceOptionValue where ValueType ==
 }
 extension NIOCore.ChannelOptions {
   public struct TCPConvenienceOption : Swift.Hashable, Swift.Sendable {
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOCore.ChannelOptions.TCPConvenienceOption, b: NIOCore.ChannelOptions.TCPConvenienceOption) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -4013,9 +3960,9 @@ extension NIOCore.ChannelOptions {
     public mutating func consumeAllowLocalEndpointReuse() -> NIOCore.ChannelOptions.Types.ConvenienceOptionValue<Swift.Void>
     public mutating func consumeDisableAutoRead() -> NIOCore.ChannelOptions.Types.ConvenienceOptionValue<Swift.Void>
     public mutating func consumeAllowRemoteHalfClosure() -> NIOCore.ChannelOptions.Types.ConvenienceOptionValue<Swift.Void>
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOCore.ChannelOptions.TCPConvenienceOptions, b: NIOCore.ChannelOptions.TCPConvenienceOptions) -> Swift.Bool
     public typealias ArrayLiteralElement = NIOCore.ChannelOptions.TCPConvenienceOption
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -4139,8 +4086,8 @@ public struct TimeAmount : Swift.Hashable, Swift.Sendable {
   public static func seconds(_ amount: Swift.Int64) -> NIOCore.TimeAmount
   public static func minutes(_ amount: Swift.Int64) -> NIOCore.TimeAmount
   public static func hours(_ amount: Swift.Int64) -> NIOCore.TimeAmount
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOCore.TimeAmount, b: NIOCore.TimeAmount) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -4306,7 +4253,7 @@ extension NIOCore.EventLoopFuture {
     @available(*, noasync)
     public func flatMapErrorThrowing(_ callback: @escaping (any Swift.Error) throws -> Value) -> NIOCore.EventLoopFuture<Value>.Isolated
     @available(*, noasync)
-    public func map<NewValue>(_ callback: @escaping (Value) -> (NewValue)) -> NIOCore.EventLoopFuture<NewValue>.Isolated
+    public func map<NewValue>(_ callback: @escaping (Value) -> NewValue) -> NIOCore.EventLoopFuture<NewValue>.Isolated
     @available(*, noasync)
     public func flatMapError(_ callback: @escaping (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value>.Isolated where Value : Swift.Sendable
     @available(*, noasync)
@@ -4364,7 +4311,7 @@ extension NIOCore.EventLoopFuture {
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
   final public func flatMapErrorThrowing(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (any Swift.Error) throws -> Value) -> NIOCore.EventLoopFuture<Value>
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
-  final public func map<NewValue>(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (Value) -> (NewValue)) -> NIOCore.EventLoopFuture<NewValue>
+  final public func map<NewValue>(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (Value) -> NewValue) -> NIOCore.EventLoopFuture<NewValue>
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
   final public func flatMapError(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value> where Value : Swift.Sendable
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
@@ -4402,7 +4349,7 @@ extension NIOCore.EventLoopFuture {
   @preconcurrency final public func flatMap<NewValue>(_ callback: @escaping @Sendable (Value) -> NIOCore.EventLoopFuture<NewValue>) -> NIOCore.EventLoopFuture<NewValue> where NewValue : Swift.Sendable
   @preconcurrency final public func flatMapThrowing<NewValue>(_ callback: @escaping @Sendable (Value) throws -> NewValue) -> NIOCore.EventLoopFuture<NewValue>
   @preconcurrency final public func flatMapErrorThrowing(_ callback: @escaping @Sendable (any Swift.Error) throws -> Value) -> NIOCore.EventLoopFuture<Value>
-  @preconcurrency final public func map<NewValue>(_ callback: @escaping @Sendable (Value) -> (NewValue)) -> NIOCore.EventLoopFuture<NewValue>
+  @preconcurrency final public func map<NewValue>(_ callback: @escaping @Sendable (Value) -> NewValue) -> NIOCore.EventLoopFuture<NewValue>
   @preconcurrency final public func flatMapError(_ callback: @escaping @Sendable (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value> where Value : Swift.Sendable
   @preconcurrency final public func flatMapResult<NewValue, SomeError>(_ body: @escaping @Sendable (Value) -> Swift.Result<NewValue, SomeError>) -> NIOCore.EventLoopFuture<NewValue> where SomeError : Swift.Error
   @preconcurrency final public func recover(_ callback: @escaping @Sendable (any Swift.Error) -> Value) -> NIOCore.EventLoopFuture<Value>
@@ -4466,8 +4413,8 @@ extension NIOCore.EventLoopFuture {
   final public func preconditionFailure(file: Swift.StaticString = #fileID, line: Swift.UInt = #line) -> NIOCore.EventLoopFuture<Value>
 }
 public struct _NIOEventLoopFutureIdentifier : Swift.Hashable, Swift.Sendable {
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOCore._NIOEventLoopFutureIdentifier, b: NIOCore._NIOEventLoopFutureIdentifier) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -4479,15 +4426,9 @@ extension NIOCore.EventLoopFuture : @unchecked Swift.Sendable {
 extension NIOCore.EventLoopPromise where Value == () {
   public func succeed()
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.Optional {
   @preconcurrency public mutating func setOrCascade<Value>(to promise: NIOCore.EventLoopPromise<Value>?) where Wrapped == NIOCore.EventLoopPromise<Value>, Value : Swift.Sendable
 }
-#else
-extension Swift.Optional {
-  @preconcurrency public mutating func setOrCascade<Value>(to promise: NIOCore.EventLoopPromise<Value>?) where Wrapped == NIOCore.EventLoopPromise<Value>, Value : Swift.Sendable
-}
-#endif
 public protocol FileDescriptor {
   func withUnsafeFileDescriptor<T>(_ body: (Swift.CInt) throws -> T) throws -> T
   var isOpen: Swift.Bool { get }
@@ -4990,8 +4931,8 @@ extension NIOCore.SocketAddressError {
   public struct FailedToParseIPByteBuffer : Swift.Error, Swift.Hashable {
     public var address: NIOCore.ByteBuffer
     public init(address: NIOCore.ByteBuffer)
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOCore.SocketAddressError.FailedToParseIPByteBuffer, b: NIOCore.SocketAddressError.FailedToParseIPByteBuffer) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }

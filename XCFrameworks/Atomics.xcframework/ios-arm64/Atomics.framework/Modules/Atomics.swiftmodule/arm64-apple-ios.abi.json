@@ -6564,6 +6564,7 @@
         "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
         "sugared_genericSig": "<Pointee where Pointee : ~Copyable>",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,
@@ -12444,6 +12445,7 @@
         "mangledName": "$sSV",
         "moduleName": "Swift",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,
@@ -12861,6 +12863,7 @@
         "mangledName": "$sSv",
         "moduleName": "Swift",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,
@@ -13302,6 +13305,7 @@
         "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
         "sugared_genericSig": "<Pointee where Pointee : ~Copyable>",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,
@@ -13749,6 +13753,7 @@
         "genericSig": "<τ_0_0 where τ_0_0 : AnyObject>",
         "sugared_genericSig": "<Instance where Instance : AnyObject>",
         "declAttributes": [
+          "Unsafe",
           "Frozen"
         ],
         "isExternal": true,

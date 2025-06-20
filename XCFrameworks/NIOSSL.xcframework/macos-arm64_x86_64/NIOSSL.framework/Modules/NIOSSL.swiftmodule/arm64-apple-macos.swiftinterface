@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOSSL -package-name swift_nio_ssl
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOSSL -package-name swift_nio_ssl
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Darwin.C
 import CNIOLinux
 import Darwin
@@ -36,8 +36,8 @@ extension NIOSSL.NIOSSLHandler {
   public struct Configuration : Swift.Hashable, Swift.Sendable {
     public var maximumPreservedOutboundBufferCapacity: Swift.Int
     public init()
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOSSL.NIOSSLHandler.Configuration, b: NIOSSL.NIOSSLHandler.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -123,8 +123,8 @@ public struct PSKServerContext : Swift.Sendable, Swift.Hashable {
   public let clientIdentity: Swift.String
   public let maxPSKLength: Swift.Int
   public init(hint: Swift.String?, clientIdentity: Swift.String, maxPSKLength: Swift.Int)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.PSKServerContext, b: NIOSSL.PSKServerContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -133,8 +133,8 @@ public struct PSKClientContext : Swift.Sendable, Swift.Hashable {
   public let hint: Swift.String?
   public let maxPSKLength: Swift.Int
   public init(hint: Swift.String?, maxPSKLength: Swift.Int)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.PSKClientContext, b: NIOSSL.PSKClientContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -151,8 +151,8 @@ public struct PSKClientIdentityResponse : Swift.Sendable {
 public struct NIOSSLClientExtensionValues : Swift.Hashable, Swift.Sendable {
   public var serverHostname: Swift.String?
   public init(serverHostname: Swift.String?)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLClientExtensionValues, b: NIOSSL.NIOSSLClientExtensionValues) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -368,8 +368,8 @@ public struct NIOSSLPKCS12Bundle : Swift.Hashable {
   public init<Bytes>(file: Swift.String, passphrase: Bytes?) throws where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
   public init(file: Swift.String) throws
   public init(buffer: [Swift.UInt8]) throws
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLPKCS12Bundle, b: NIOSSL.NIOSSLPKCS12Bundle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -441,8 +441,8 @@ public struct _SubjectAlternativeName {
     public static let dnsName: NIOSSL._SubjectAlternativeName.NameType
     public static let ipAddress: NIOSSL._SubjectAlternativeName.NameType
     public static let uri: NIOSSL._SubjectAlternativeName.NameType
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOSSL._SubjectAlternativeName.NameType, b: NIOSSL._SubjectAlternativeName.NameType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -525,8 +525,8 @@ public enum NIOSSLCertificateSource : Swift.Hashable, Swift.Sendable {
   @available(*, deprecated, message: "Use 'NIOSSLCertificate.fromPEMFile(_:)' to load the certificate(s) and use the '.certificate(NIOSSLCertificate)' case to provide them as a source")
   case file(Swift.String)
   case certificate(NIOSSL.NIOSSLCertificate)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLCertificateSource, b: NIOSSL.NIOSSLCertificateSource) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -535,8 +535,8 @@ public enum NIOSSLPrivateKeySource : Swift.Hashable {
   @available(*, deprecated, message: "Use 'NIOSSLPrivateKeySource.privateKey(NIOSSLPrivateKey)' to set private key")
   case file(Swift.String)
   case privateKey(NIOSSL.NIOSSLPrivateKey)
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLPrivateKeySource, b: NIOSSL.NIOSSLPrivateKeySource) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -547,8 +547,8 @@ public enum NIOSSLTrustRoots : Swift.Hashable, Swift.Sendable {
   case file(Swift.String)
   case certificates([NIOSSL.NIOSSLCertificate])
   case `default`
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLTrustRoots, b: NIOSSL.NIOSSLTrustRoots) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -556,8 +556,8 @@ public enum NIOSSLTrustRoots : Swift.Hashable, Swift.Sendable {
 public enum NIOSSLAdditionalTrustRoots : Swift.Hashable, Swift.Sendable {
   case file(Swift.String)
   case certificates([NIOSSL.NIOSSLCertificate])
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOSSL.NIOSSLAdditionalTrustRoots, b: NIOSSL.NIOSSLAdditionalTrustRoots) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }

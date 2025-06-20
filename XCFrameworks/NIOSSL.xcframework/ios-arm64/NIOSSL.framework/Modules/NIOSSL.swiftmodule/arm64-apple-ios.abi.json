@@ -42,7 +42,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -69,7 +69,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -894,7 +894,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -2222,7 +2222,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -2232,7 +2232,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -2517,7 +2517,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -4461,7 +4461,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -4471,7 +4471,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6520,7 +6520,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6530,7 +6530,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6550,7 +6550,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6570,7 +6570,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6580,7 +6580,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -6741,7 +6741,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -8961,7 +8961,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -8971,7 +8971,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -9479,7 +9479,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -10038,7 +10038,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -10131,7 +10131,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -10175,7 +10175,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -10185,7 +10185,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -12669,7 +12669,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -12689,7 +12689,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -22170,7 +22170,7 @@
         "declKind": "Import",
         "moduleName": "NIOSSL",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {

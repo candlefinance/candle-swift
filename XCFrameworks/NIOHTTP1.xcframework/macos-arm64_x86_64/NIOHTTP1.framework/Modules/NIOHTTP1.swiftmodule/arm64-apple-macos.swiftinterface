@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-bare-slash-regex -module-name NIOHTTP1 -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOHTTP1 -package-name swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import DequeModule
 import NIOCore
 import Swift
@@ -49,8 +49,8 @@ public enum RemoveAfterUpgradeStrategy : Swift.Sendable {
 public struct NIOInformationalResponseStrategy : Swift.Hashable, Swift.Sendable {
   public static let drop: NIOHTTP1.NIOInformationalResponseStrategy
   public static let forward: NIOHTTP1.NIOInformationalResponseStrategy
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOHTTP1.NIOInformationalResponseStrategy, b: NIOHTTP1.NIOInformationalResponseStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -61,8 +61,8 @@ extension NIOHTTP1.NIOHTTPDecoderError {
   public static let unsolicitedResponse: NIOHTTP1.NIOHTTPDecoderError
 }
 extension NIOHTTP1.NIOHTTPDecoderError : Swift.Hashable {
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOHTTP1.NIOHTTPDecoderError, b: NIOHTTP1.NIOHTTPDecoderError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -78,8 +78,8 @@ final public class HTTPRequestEncoder : NIOCore.ChannelOutboundHandler, NIOCore.
   public struct Configuration : Swift.Sendable, Swift.Hashable {
     public var automaticallySetFramingHeaders: Swift.Bool
     public init()
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOHTTP1.HTTPRequestEncoder.Configuration, b: NIOHTTP1.HTTPRequestEncoder.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -98,8 +98,8 @@ final public class HTTPResponseEncoder : NIOCore.ChannelOutboundHandler, NIOCore
   public struct Configuration : Swift.Sendable, Swift.Hashable {
     public var automaticallySetFramingHeaders: Swift.Bool
     public init()
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: NIOHTTP1.HTTPResponseEncoder.Configuration, b: NIOHTTP1.HTTPResponseEncoder.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -599,8 +599,8 @@ public struct NIOHTTPClientUpgradeError : Swift.Hashable, Swift.Error {
   public static let writingToHandlerAfterUpgradeFailed: NIOHTTP1.NIOHTTPClientUpgradeError
   public static let receivedResponseBeforeRequestSent: NIOHTTP1.NIOHTTPClientUpgradeError
   public static let receivedResponseAfterUpgradeCompleted: NIOHTTP1.NIOHTTPClientUpgradeError
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOHTTP1.NIOHTTPClientUpgradeError, b: NIOHTTP1.NIOHTTPClientUpgradeError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -657,8 +657,8 @@ public struct NIOHTTPObjectAggregatorError : Swift.Error, Swift.Equatable {
 public struct NIOHTTPObjectAggregatorEvent : Swift.Hashable, Swift.Sendable {
   public static let httpExpectationFailed: NIOHTTP1.NIOHTTPObjectAggregatorEvent
   public static let httpFrameTooLong: NIOHTTP1.NIOHTTPObjectAggregatorEvent
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: NIOHTTP1.NIOHTTPObjectAggregatorEvent, b: NIOHTTP1.NIOHTTPObjectAggregatorEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -687,7 +687,6 @@ final public class NIOHTTPClientResponseAggregator : NIOCore.ChannelInboundHandl
 @available(*, unavailable)
 extension NIOHTTP1.NIOHTTPClientResponseAggregator : Swift.Sendable {
 }
-#if compiler(>=5.3) && $PrimaryAssociatedTypes2
 @preconcurrency public protocol NIOTypedHTTPClientProtocolUpgrader<UpgradeResult> : Swift.Sendable {
   associatedtype UpgradeResult : Swift.Sendable
   var supportedProtocol: Swift.String { get }
@@ -696,16 +695,6 @@ extension NIOHTTP1.NIOHTTPClientResponseAggregator : Swift.Sendable {
   func shouldAllowUpgrade(upgradeResponse: NIOHTTP1.HTTPResponseHead) -> Swift.Bool
   func upgrade(channel: any NIOCore.Channel, upgradeResponse: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Self.UpgradeResult>
 }
-#else
-@preconcurrency public protocol NIOTypedHTTPClientProtocolUpgrader : Swift.Sendable {
-  associatedtype UpgradeResult : Swift.Sendable
-  var supportedProtocol: Swift.String { get }
-  var requiredUpgradeHeaders: [Swift.String] { get }
-  func addCustom(upgradeRequestHeaders: inout NIOHTTP1.HTTPHeaders)
-  func shouldAllowUpgrade(upgradeResponse: NIOHTTP1.HTTPResponseHead) -> Swift.Bool
-  func upgrade(channel: any NIOCore.Channel, upgradeResponse: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Self.UpgradeResult>
-}
-#endif
 @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
 public struct NIOTypedHTTPClientUpgradeConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
   public var upgradeRequestHead: NIOHTTP1.HTTPRequestHead
@@ -734,7 +723,6 @@ final public class NIOTypedHTTPClientUpgradeHandler<UpgradeResult> : NIOCore.Cha
 @available(*, unavailable)
 extension NIOHTTP1.NIOTypedHTTPClientUpgradeHandler : Swift.Sendable {
 }
-#if compiler(>=5.3) && $PrimaryAssociatedTypes2
 @preconcurrency public protocol NIOTypedHTTPServerProtocolUpgrader<UpgradeResult> : Swift.Sendable {
   associatedtype UpgradeResult : Swift.Sendable
   var supportedProtocol: Swift.String { get }
@@ -742,15 +730,6 @@ extension NIOHTTP1.NIOTypedHTTPClientUpgradeHandler : Swift.Sendable {
   func buildUpgradeResponse(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead, initialResponseHeaders: NIOHTTP1.HTTPHeaders) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders>
   func upgrade(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<Self.UpgradeResult>
 }
-#else
-@preconcurrency public protocol NIOTypedHTTPServerProtocolUpgrader : Swift.Sendable {
-  associatedtype UpgradeResult : Swift.Sendable
-  var supportedProtocol: Swift.String { get }
-  var requiredUpgradeHeaders: [Swift.String] { get }
-  func buildUpgradeResponse(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead, initialResponseHeaders: NIOHTTP1.HTTPHeaders) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders>
-  func upgrade(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<Self.UpgradeResult>
-}
-#endif
 @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
 public struct NIOTypedHTTPServerUpgradeConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
   public var upgraders: [any NIOHTTP1.NIOTypedHTTPServerProtocolUpgrader<UpgradeResult>]

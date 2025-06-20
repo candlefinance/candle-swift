@@ -31,7 +31,7 @@
         "declKind": "Import",
         "moduleName": "NIOHTTP1",
         "declAttributes": [
-          "ImplementationOnly"
+          "AccessControl"
         ]
       },
       {
@@ -598,23 +598,8 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HTTPPart",
-                    "printedName": "NIOHTTP1.HTTPPart<NIOHTTP1.HTTPRequestHead, NIOCore.IOData>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "HTTPRequestHead",
-                        "printedName": "NIOHTTP1.HTTPRequestHead",
-                        "usr": "s:8NIOHTTP115HTTPRequestHeadV"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "IOData",
-                        "printedName": "NIOCore.IOData",
-                        "usr": "s:7NIOCore6IODataO"
-                      }
-                    ],
-                    "usr": "s:8NIOHTTP18HTTPPartO"
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_1"
                   }
                 ]
               }

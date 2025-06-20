@@ -2,30 +2,29 @@ import Candle
 import SwiftUI
 
 struct LinkedAccountsMenu: View {
+    @Environment(CandleClient.self) private var client
+
     let linkedAccounts: [Models.LinkedAccount]
 
-    @Binding var selectedLinkedAccounts: [Models.LinkedAccount]
+    var linkedAccountViewModels: [LinkedAccountViewModel] {
+        linkedAccounts.map { LinkedAccountViewModel(client: client, linkedAccount: $0) }
+    }
+
+    @Binding var selectedLinkedAccountIDs: [Models.LinkedAccountID]
 
     var body: some View {
         Menu("Linked Accounts") {
-            ForEach(linkedAccounts) { linkedAccount in
+            ForEach(linkedAccountViewModels) { linkedAccount in
                 Button(action: {
-                    if let index = selectedLinkedAccounts.firstIndex(of: linkedAccount) {
-                        selectedLinkedAccounts.remove(at: index)
+                    if let index = selectedLinkedAccountIDs.firstIndex(of: linkedAccount.id) {
+                        selectedLinkedAccountIDs.remove(at: index)
                     } else {
-                        selectedLinkedAccounts.append(linkedAccount)
+                        selectedLinkedAccountIDs.append(linkedAccount.id)
                     }
                 }) {
                     Label(
-                        [
-                            // FIXME: Use LinkedAccountViewModel instead
-                            linkedAccount.service.name,
-                            "("
-                                + (linkedAccount.activeDetails.map { $0.username ?? $0.legalName }
-                                    ?? "inactive")
-                                + ")",
-                        ].joined(separator: " "),
-                        systemImage: selectedLinkedAccounts.contains(linkedAccount)
+                        "\(linkedAccount.title) (\(linkedAccount.subtitle))",
+                        systemImage: selectedLinkedAccountIDs.contains(linkedAccount.id)
                             ? "checkmark" : ""
                     )
                 }
