@@ -27,11 +27,11 @@ import _SwiftConcurrencyShims
   @_Concurrency.MainActor public func unlinkAccount(path: Candle.Operations.DeleteLinkedAccount.Input.Path) async throws(Candle.Models.UnlinkAccount.Error)
   @_Concurrency.MainActor public func getLinkedAccounts() async throws(Candle.Models.GetLinkedAccounts.Error) -> [Candle.Models.LinkedAccount]
   @_Concurrency.MainActor public func getLinkedAccount(ref: Candle.Operations.GetLinkedAccount.Input.Path) async throws(Candle.Models.GetLinkedAccount.Error) -> Candle.Models.LinkedAccount
-  @_Concurrency.MainActor public func getAssetAccounts(query: Candle.Models.GetAssetAccounts.Input.Query = .init()) async throws(Candle.Models.GetAssetAccounts.Error) -> [Candle.Models.AssetAccount]
+  @_Concurrency.MainActor public func getAssetAccounts(query: Candle.Models.GetAssetAccounts.Input.Query = .init()) async throws(Candle.Models.GetAssetAccounts.Error) -> Candle.Models.AssetAccountsResponse
   @_Concurrency.MainActor public func getAssetAccount(ref: Candle.Models.GetAssetAccount.Input.Path) async throws(Candle.Models.GetAssetAccount.Error) -> Candle.Models.AssetAccount
-  @_Concurrency.MainActor public func getTrades(query: Candle.Models.GetTrades.Input.Query = .init()) async throws(Candle.Models.GetTrades.Error) -> [Candle.Models.Trade]
+  @_Concurrency.MainActor public func getTrades(query: Candle.Models.GetTrades.Input.Query = .init()) async throws(Candle.Models.GetTrades.Error) -> Candle.Models.TradesResponse
   @_Concurrency.MainActor public func getTrade(ref: Candle.Models.TradeRef) async throws(Candle.Models.GetTrade.Error) -> Candle.Models.Trade
-  @_Concurrency.MainActor public func getTradeQuotes(request: Candle.Models.TradeQuoteRequest) async throws(Candle.Models.GetTradeQuotes.Error) -> [Candle.Models.TradeQuote]
+  @_Concurrency.MainActor public func getTradeQuotes(request: Candle.Models.TradeQuotesRequest) async throws(Candle.Models.GetTradeQuotes.Error) -> Candle.Models.TradeQuotesResponse
   @_Concurrency.MainActor public func getAvailableTools() -> [[Swift.String : Any]]
   @_Concurrency.MainActor public func executeTool(tool: any Candle.ToolCallRequest) async -> Swift.String
   @objc deinit
@@ -163,6 +163,7 @@ extension Candle.Operations.PostLinkedAccounts {
     case unprocessableContent(Candle.Operations.PostLinkedAccounts.Output.UnprocessableContent.Body.JsonPayload)
     case internalServerError(Candle.Operations.PostLinkedAccounts.Output.InternalServerError.Body.JsonPayload)
     case forbidden(Candle.Operations.PostLinkedAccounts.Output.Forbidden.Body.JsonPayload)
+    case gone(Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload)
     public static func == (a: Candle.Operations.PostLinkedAccounts.Error, b: Candle.Operations.PostLinkedAccounts.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
@@ -290,6 +291,7 @@ extension Candle.Operations.PostLinkedAccountsTrades {
     case notFound(Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPayload)
     case unprocessableContent(Candle.Operations.PostLinkedAccountsTrades.Output.UnprocessableContent.Body.JsonPayload)
     case internalServerError(Candle.Operations.PostLinkedAccountsTrades.Output.InternalServerError.Body.JsonPayload)
+    case gone(Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload)
     public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Error, b: Candle.Operations.PostLinkedAccountsTrades.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
@@ -1480,7 +1482,9 @@ public enum Components {
       case ChallengePasswordRequest(Candle.Components.Schemas.ChallengePasswordRequest)
       case ChallengePasscodeRequest(Candle.Components.Schemas.ChallengePasscodeRequest)
       case ChallengeCardNumberRequest(Candle.Components.Schemas.ChallengeCardNumberRequest)
-      case ChallengeCodeRequest(Candle.Components.Schemas.ChallengeCodeRequest)
+      case ChallengeCodeAppRequest(Candle.Components.Schemas.ChallengeCodeAppRequest)
+      case ChallengeCodeEmailRequest(Candle.Components.Schemas.ChallengeCodeEmailRequest)
+      case ChallengeCodePhoneRequest(Candle.Components.Schemas.ChallengeCodePhoneRequest)
       case ChallengeLinkRequest(Candle.Components.Schemas.ChallengeLinkRequest)
       case ChallengeEmailAddressRequest(Candle.Components.Schemas.ChallengeEmailAddressRequest)
       case ChallengeTermsRequest(Candle.Components.Schemas.ChallengeTermsRequest)
@@ -1614,10 +1618,22 @@ public enum Components {
         get
       }
     }
-    public struct ChallengeCodeRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
-      public var challengeType: Candle.Components.Schemas.ChallengeCodeType
+    public struct ChallengeCodeAppRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      @frozen public enum ChallengeTypePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+        case codeApp
+        public init?(rawValue: Swift.String)
+        public typealias AllCases = [Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload]
+        public typealias RawValue = Swift.String
+        nonisolated public static var allCases: [Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload] {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public var challengeType: Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload
       public var codeLength: Candle.Components.Schemas.PositiveInt
-      public init(challengeType: Candle.Components.Schemas.ChallengeCodeType, codeLength: Candle.Components.Schemas.PositiveInt)
+      public init(challengeType: Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload, codeLength: Candle.Components.Schemas.PositiveInt)
       public enum CodingKeys : Swift.String, Swift.CodingKey {
         case challengeType
         case codeLength
@@ -1636,7 +1652,94 @@ public enum Components {
         }
       }
       public init(from decoder: any Swift.Decoder) throws
-      public static func == (a: Candle.Components.Schemas.ChallengeCodeRequest, b: Candle.Components.Schemas.ChallengeCodeRequest) -> Swift.Bool
+      public static func == (a: Candle.Components.Schemas.ChallengeCodeAppRequest, b: Candle.Components.Schemas.ChallengeCodeAppRequest) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public struct ChallengeCodeEmailRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      @frozen public enum ChallengeTypePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+        case codeEmail
+        public init?(rawValue: Swift.String)
+        public typealias AllCases = [Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload]
+        public typealias RawValue = Swift.String
+        nonisolated public static var allCases: [Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload] {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public var challengeType: Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload
+      public var maskedEmailAddress: Swift.String
+      public var codeLength: Candle.Components.Schemas.PositiveInt
+      public init(challengeType: Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload, maskedEmailAddress: Swift.String, codeLength: Candle.Components.Schemas.PositiveInt)
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case challengeType
+        case maskedEmailAddress
+        case codeLength
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.ChallengeCodeEmailRequest, b: Candle.Components.Schemas.ChallengeCodeEmailRequest) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public struct ChallengeCodePhoneRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      @frozen public enum ChallengeTypePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+        case codeSms
+        case codeCall
+        public init?(rawValue: Swift.String)
+        public typealias AllCases = [Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload]
+        public typealias RawValue = Swift.String
+        nonisolated public static var allCases: [Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload] {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public var challengeType: Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload
+      public var maskedPhoneNumber: Swift.String
+      public var codeLength: Candle.Components.Schemas.PositiveInt
+      public init(challengeType: Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload, maskedPhoneNumber: Swift.String, codeLength: Candle.Components.Schemas.PositiveInt)
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case challengeType
+        case maskedPhoneNumber
+        case codeLength
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.ChallengeCodePhoneRequest, b: Candle.Components.Schemas.ChallengeCodePhoneRequest) -> Swift.Bool
       public func encode(to encoder: any Swift.Encoder) throws
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
@@ -1763,6 +1866,82 @@ public enum Components {
       }
     }
     public typealias Url = Swift.String
+    public struct AssetAccountsResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      public var linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef]
+      public var assetAccounts: [Candle.Components.Schemas.AssetAccount]
+      public init(linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef], assetAccounts: [Candle.Components.Schemas.AssetAccount])
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case linkedAccounts
+        case assetAccounts
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.AssetAccountsResponse, b: Candle.Components.Schemas.AssetAccountsResponse) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public struct LinkedAccountStatusRef : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      public var linkedAccountID: Candle.Components.Schemas.LinkedAccountID
+      public var service: Candle.Components.Schemas.Service
+      public var serviceUserID: Candle.Components.Schemas.ServiceUserID
+      @frozen public enum StatePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+        case active
+        case inactive
+        case unavailable
+        public init?(rawValue: Swift.String)
+        public typealias AllCases = [Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload]
+        public typealias RawValue = Swift.String
+        nonisolated public static var allCases: [Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload] {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public var state: Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload
+      public init(linkedAccountID: Candle.Components.Schemas.LinkedAccountID, service: Candle.Components.Schemas.Service, serviceUserID: Candle.Components.Schemas.ServiceUserID, state: Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload)
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case linkedAccountID
+        case service
+        case serviceUserID
+        case state
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.LinkedAccountStatusRef, b: Candle.Components.Schemas.LinkedAccountStatusRef) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
     public struct AssetAccount : Swift.Codable, Swift.Hashable, Swift.Sendable {
       public var legalAccountKind: Candle.Components.Schemas.LegalAccountKind
       public var nickname: Swift.String
@@ -1987,6 +2166,35 @@ public enum Components {
       }
       public init(from decoder: any Swift.Decoder) throws
       public static func == (a: Candle.Components.Schemas.MarketAccountDetails, b: Candle.Components.Schemas.MarketAccountDetails) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public struct TradesResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      public var linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef]
+      public var trades: [Candle.Components.Schemas.Trade]
+      public init(linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef], trades: [Candle.Components.Schemas.Trade])
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case linkedAccounts
+        case trades
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.TradesResponse, b: Candle.Components.Schemas.TradesResponse) -> Swift.Bool
       public func encode(to encoder: any Swift.Encoder) throws
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
@@ -2367,9 +2575,11 @@ public enum Components {
       public var destinationCoordinates: Candle.Components.Schemas.Coordinates
       public var destinationAddress: Candle.Components.Schemas.Address
       public var seats: Swift.Double
+      public var departureDateTime: Swift.String
+      public var arrivalDateTime: Swift.String
       public var linkedAccountID: Candle.Components.Schemas.LinkedAccountID
       public var service: Candle.Components.Schemas.Service
-      public init(assetKind: Candle.Components.Schemas.TransportAsset.AssetKindPayload, serviceTradeID: Candle.Components.Schemas.ServiceTradeID, serviceAssetID: Candle.Components.Schemas.ServiceAssetID, name: Swift.String, description: Swift.String, imageURL: Candle.Components.Schemas.Url, originCoordinates: Candle.Components.Schemas.Coordinates, originAddress: Candle.Components.Schemas.Address, destinationCoordinates: Candle.Components.Schemas.Coordinates, destinationAddress: Candle.Components.Schemas.Address, seats: Swift.Double, linkedAccountID: Candle.Components.Schemas.LinkedAccountID, service: Candle.Components.Schemas.Service)
+      public init(assetKind: Candle.Components.Schemas.TransportAsset.AssetKindPayload, serviceTradeID: Candle.Components.Schemas.ServiceTradeID, serviceAssetID: Candle.Components.Schemas.ServiceAssetID, name: Swift.String, description: Swift.String, imageURL: Candle.Components.Schemas.Url, originCoordinates: Candle.Components.Schemas.Coordinates, originAddress: Candle.Components.Schemas.Address, destinationCoordinates: Candle.Components.Schemas.Coordinates, destinationAddress: Candle.Components.Schemas.Address, seats: Swift.Double, departureDateTime: Swift.String, arrivalDateTime: Swift.String, linkedAccountID: Candle.Components.Schemas.LinkedAccountID, service: Candle.Components.Schemas.Service)
       public enum CodingKeys : Swift.String, Swift.CodingKey {
         case assetKind
         case serviceTradeID
@@ -2382,6 +2592,8 @@ public enum Components {
         case destinationCoordinates
         case destinationAddress
         case seats
+        case departureDateTime
+        case arrivalDateTime
         case linkedAccountID
         case service
         public init?(rawValue: Swift.String)
@@ -2744,7 +2956,7 @@ public enum Components {
         get
       }
     }
-    public struct TradeQuoteRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
+    public struct TradeQuotesRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
       public var linkedAccountIDs: Swift.String?
       public var gained: Candle.Components.Schemas.TradeAssetQuoteRequest
       public init(linkedAccountIDs: Swift.String? = nil, gained: Candle.Components.Schemas.TradeAssetQuoteRequest)
@@ -2766,7 +2978,7 @@ public enum Components {
         }
       }
       public init(from decoder: any Swift.Decoder) throws
-      public static func == (a: Candle.Components.Schemas.TradeQuoteRequest, b: Candle.Components.Schemas.TradeQuoteRequest) -> Swift.Bool
+      public static func == (a: Candle.Components.Schemas.TradeQuotesRequest, b: Candle.Components.Schemas.TradeQuotesRequest) -> Swift.Bool
       public func encode(to encoder: any Swift.Encoder) throws
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
@@ -2969,15 +3181,46 @@ public enum Components {
         get
       }
     }
+    public struct TradeQuotesResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      public var linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef]
+      public var tradeQuotes: [Candle.Components.Schemas.TradeQuote]
+      public init(linkedAccounts: [Candle.Components.Schemas.LinkedAccountStatusRef], tradeQuotes: [Candle.Components.Schemas.TradeQuote])
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case linkedAccounts
+        case tradeQuotes
+        public init?(rawValue: Swift.String)
+        public init?(stringValue: Swift.String)
+        public init?(intValue: Swift.Int)
+        public typealias RawValue = Swift.String
+        public var intValue: Swift.Int? {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.TradeQuotesResponse, b: Candle.Components.Schemas.TradeQuotesResponse) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
     public struct TradeQuote : Swift.Codable, Swift.Hashable, Swift.Sendable {
       public var lost: Candle.Components.Schemas.TradeAsset
       public var gained: Candle.Components.Schemas.TradeAsset
       public var context: Swift.String
-      public init(lost: Candle.Components.Schemas.TradeAsset, gained: Candle.Components.Schemas.TradeAsset, context: Swift.String)
+      public var expirationDateTime: Swift.String
+      public init(lost: Candle.Components.Schemas.TradeAsset, gained: Candle.Components.Schemas.TradeAsset, context: Swift.String, expirationDateTime: Swift.String)
       public enum CodingKeys : Swift.String, Swift.CodingKey {
         case lost
         case gained
         case context
+        case expirationDateTime
         public init?(rawValue: Swift.String)
         public init?(stringValue: Swift.String)
         public init?(intValue: Swift.Int)
@@ -5301,7 +5544,6 @@ public enum Operations {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case badAuthorization_accountLocked
               case badAuthorization_challengeUnsupported
-              case badAuthorization_challengeExpired
               case badAuthorization_challengeResponseIncorrect
               case badAuthorization_user
               public init?(rawValue: Swift.String)
@@ -5633,6 +5875,95 @@ public enum Operations {
       }
       case conflict(Candle.Operations.PostLinkedAccounts.Output.Conflict)
       public var conflict: Candle.Operations.PostLinkedAccounts.Output.Conflict {
+        get throws
+      }
+      public struct Gone : Swift.Sendable, Swift.Hashable {
+        public struct Headers : Swift.Sendable, Swift.Hashable {
+          @frozen public enum ContentTypePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+            case applicationJson
+            public init?(rawValue: Swift.String)
+            public typealias AllCases = [Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload]
+            public typealias RawValue = Swift.String
+            nonisolated public static var allCases: [Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload] {
+              get
+            }
+            public var rawValue: Swift.String {
+              get
+            }
+          }
+          public var contentType: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload?
+          public init(contentType: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload? = nil)
+          public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers, b: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var headers: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
+            @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+              case expired_challenge
+              public init?(rawValue: Swift.String)
+              public typealias AllCases = [Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload]
+              public typealias RawValue = Swift.String
+              nonisolated public static var allCases: [Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload] {
+                get
+              }
+              public var rawValue: Swift.String {
+                get
+              }
+            }
+            public var kind: Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload
+            public var message: Swift.String
+            public var details: Swift.String?
+            public init(kind: Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload, message: Swift.String, details: Swift.String? = nil)
+            public enum CodingKeys : Swift.String, Swift.CodingKey {
+              case kind
+              case message
+              case details
+              public init?(rawValue: Swift.String)
+              public init?(stringValue: Swift.String)
+              public init?(intValue: Swift.Int)
+              public typealias RawValue = Swift.String
+              public var intValue: Swift.Int? {
+                get
+              }
+              public var rawValue: Swift.String {
+                get
+              }
+              public var stringValue: Swift.String {
+                get
+              }
+            }
+            public init(from decoder: any Swift.Decoder) throws
+            public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload, b: Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload) -> Swift.Bool
+            public func encode(to encoder: any Swift.Encoder) throws
+            public func hash(into hasher: inout Swift.Hasher)
+            public var hashValue: Swift.Int {
+              get
+            }
+          }
+          case json(Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload)
+          public var json: Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Gone.Body, b: Candle.Operations.PostLinkedAccounts.Output.Gone.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostLinkedAccounts.Output.Gone.Body
+        public init(headers: Candle.Operations.PostLinkedAccounts.Output.Gone.Headers = .init(), body: Candle.Operations.PostLinkedAccounts.Output.Gone.Body)
+        public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Gone, b: Candle.Operations.PostLinkedAccounts.Output.Gone) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case gone(Candle.Operations.PostLinkedAccounts.Output.Gone)
+      public var gone: Candle.Operations.PostLinkedAccounts.Output.Gone {
         get throws
       }
       public struct UnprocessableContent : Swift.Sendable, Swift.Hashable {
@@ -6979,8 +7310,8 @@ public enum Operations {
         }
         public var headers: Candle.Operations.GetLinkedAccountsAssetAccounts.Output.Ok.Headers
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-          case json([Candle.Components.Schemas.AssetAccount])
-          public var json: [Candle.Components.Schemas.AssetAccount] {
+          case json(Candle.Components.Schemas.AssetAccountsResponse)
+          public var json: Candle.Components.Schemas.AssetAccountsResponse {
             get throws
           }
           public static func == (a: Candle.Operations.GetLinkedAccountsAssetAccounts.Output.Ok.Body, b: Candle.Operations.GetLinkedAccountsAssetAccounts.Output.Ok.Body) -> Swift.Bool
@@ -7117,6 +7448,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountsAssetAccounts.Output.NotFound.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -7512,6 +7844,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case badAuthorization_user
+              case badAuthorization_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountAssetAccount.Output.Unauthorized.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -7601,6 +7934,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               case notFound_assetAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountAssetAccount.Output.NotFound.Body.JsonPayload.KindPayload]
@@ -7984,8 +8318,8 @@ public enum Operations {
         }
         public var headers: Candle.Operations.GetLinkedAccountsTrades.Output.Ok.Headers
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-          case json([Candle.Components.Schemas.Trade])
-          public var json: [Candle.Components.Schemas.Trade] {
+          case json(Candle.Components.Schemas.TradesResponse)
+          public var json: Candle.Components.Schemas.TradesResponse {
             get throws
           }
           public static func == (a: Candle.Operations.GetLinkedAccountsTrades.Output.Ok.Body, b: Candle.Operations.GetLinkedAccountsTrades.Output.Ok.Body) -> Swift.Bool
@@ -8122,6 +8456,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountsTrades.Output.NotFound.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -8500,6 +8835,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case badAuthorization_user
+              case badAuthorization_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.PostLinkedAccountsTrades.Output.Unauthorized.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -8589,6 +8925,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -8649,6 +8986,95 @@ public enum Operations {
       }
       case notFound(Candle.Operations.PostLinkedAccountsTrades.Output.NotFound)
       public var notFound: Candle.Operations.PostLinkedAccountsTrades.Output.NotFound {
+        get throws
+      }
+      public struct Gone : Swift.Sendable, Swift.Hashable {
+        public struct Headers : Swift.Sendable, Swift.Hashable {
+          @frozen public enum ContentTypePayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+            case applicationJson
+            public init?(rawValue: Swift.String)
+            public typealias AllCases = [Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload]
+            public typealias RawValue = Swift.String
+            nonisolated public static var allCases: [Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload] {
+              get
+            }
+            public var rawValue: Swift.String {
+              get
+            }
+          }
+          public var contentType: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload?
+          public init(contentType: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload? = nil)
+          public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers, b: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var headers: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
+            @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+              case expired_tradeQuote
+              public init?(rawValue: Swift.String)
+              public typealias AllCases = [Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload]
+              public typealias RawValue = Swift.String
+              nonisolated public static var allCases: [Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload] {
+                get
+              }
+              public var rawValue: Swift.String {
+                get
+              }
+            }
+            public var kind: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload
+            public var message: Swift.String
+            public var details: Swift.String?
+            public init(kind: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload, message: Swift.String, details: Swift.String? = nil)
+            public enum CodingKeys : Swift.String, Swift.CodingKey {
+              case kind
+              case message
+              case details
+              public init?(rawValue: Swift.String)
+              public init?(stringValue: Swift.String)
+              public init?(intValue: Swift.Int)
+              public typealias RawValue = Swift.String
+              public var intValue: Swift.Int? {
+                get
+              }
+              public var rawValue: Swift.String {
+                get
+              }
+              public var stringValue: Swift.String {
+                get
+              }
+            }
+            public init(from decoder: any Swift.Decoder) throws
+            public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload, b: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload) -> Swift.Bool
+            public func encode(to encoder: any Swift.Encoder) throws
+            public func hash(into hasher: inout Swift.Hasher)
+            public var hashValue: Swift.Int {
+              get
+            }
+          }
+          case json(Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload)
+          public var json: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body, b: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body
+        public init(headers: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers = .init(), body: Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body)
+        public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Gone, b: Candle.Operations.PostLinkedAccountsTrades.Output.Gone) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case gone(Candle.Operations.PostLinkedAccountsTrades.Output.Gone)
+      public var gone: Candle.Operations.PostLinkedAccountsTrades.Output.Gone {
         get throws
       }
       public struct UnprocessableContent : Swift.Sendable, Swift.Hashable {
@@ -8967,6 +9393,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case badAuthorization_user
+              case badAuthorization_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountsTrade.Output.Unauthorized.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -9056,6 +9483,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               case notFound_trade
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.GetLinkedAccountsTrade.Output.NotFound.Body.JsonPayload.KindPayload]
@@ -9333,7 +9761,7 @@ public enum Operations {
       }
       public var headers: Candle.Operations.PostLinkedAccountsTradesQuotes.Input.Headers
       @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-        case json(Candle.Components.Schemas.TradeQuoteRequest)
+        case json(Candle.Components.Schemas.TradeQuotesRequest)
         public static func == (a: Candle.Operations.PostLinkedAccountsTradesQuotes.Input.Body, b: Candle.Operations.PostLinkedAccountsTradesQuotes.Input.Body) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -9386,8 +9814,8 @@ public enum Operations {
         }
         public var headers: Candle.Operations.PostLinkedAccountsTradesQuotes.Output.Ok.Headers
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-          case json([Candle.Components.Schemas.TradeQuote])
-          public var json: [Candle.Components.Schemas.TradeQuote] {
+          case json(Candle.Components.Schemas.TradeQuotesResponse)
+          public var json: Candle.Components.Schemas.TradeQuotesResponse {
             get throws
           }
           public static func == (a: Candle.Operations.PostLinkedAccountsTradesQuotes.Output.Ok.Body, b: Candle.Operations.PostLinkedAccountsTradesQuotes.Output.Ok.Body) -> Swift.Bool
@@ -9524,6 +9952,7 @@ public enum Operations {
           public struct JsonPayload : Swift.Codable, Swift.Hashable, Swift.Sendable {
             @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
               case notFound_user
+              case notFound_linkedAccount
               public init?(rawValue: Swift.String)
               public typealias AllCases = [Candle.Operations.PostLinkedAccountsTradesQuotes.Output.NotFound.Body.JsonPayload.KindPayload]
               public typealias RawValue = Swift.String
@@ -9832,6 +10261,8 @@ extension SwiftUICore.View {
 extension Candle.CandleClient : Swift.Sendable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ChallengeCodeType : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeType : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.Service : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.Service : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.Equatable {}
@@ -9899,8 +10330,6 @@ extension Candle.Components.Schemas.ChallengeCardNumberResponse.CodingKeys : Swi
 extension Candle.Components.Schemas.ChallengeCodeResponse.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ChallengeCodeResponse.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ChallengeCodeResponse.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ChallengeCodeType : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ChallengeCodeType : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ChallengeLinkResponse.ChallengeTypePayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeLinkResponse.ChallengeTypePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ChallengeLinkResponse.CodingKeys : Swift.Equatable {}
@@ -9939,9 +10368,21 @@ extension Candle.Components.Schemas.ChallengeCardNumberRequest.ChallengeTypePayl
 extension Candle.Components.Schemas.ChallengeCardNumberRequest.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ChallengeCardNumberRequest.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ChallengeCardNumberRequest.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ChallengeCodeRequest.CodingKeys : Swift.Equatable {}
-extension Candle.Components.Schemas.ChallengeCodeRequest.CodingKeys : Swift.Hashable {}
-extension Candle.Components.Schemas.ChallengeCodeRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeAppRequest.ChallengeTypePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ChallengeCodeAppRequest.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.ChallengeCodeAppRequest.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.ChallengeCodeAppRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeEmailRequest.ChallengeTypePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ChallengeCodeEmailRequest.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.ChallengeCodeEmailRequest.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.ChallengeCodeEmailRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodePhoneRequest.ChallengeTypePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ChallengeCodePhoneRequest.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.ChallengeCodePhoneRequest.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.ChallengeCodePhoneRequest.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeLinkRequest.ChallengeTypePayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeLinkRequest.ChallengeTypePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ChallengeLinkRequest.CodingKeys : Swift.Equatable {}
@@ -9957,6 +10398,14 @@ extension Candle.Components.Schemas.ChallengeTermsRequest.ChallengeTypePayload :
 extension Candle.Components.Schemas.ChallengeTermsRequest.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ChallengeTermsRequest.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ChallengeTermsRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.AssetAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.AssetAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.AssetAccount.CodingKeys : Swift.RawRepresentable {}
@@ -9980,6 +10429,9 @@ extension Candle.Components.Schemas.MarketAccountDetails.AssetKindPayload : Swif
 extension Candle.Components.Schemas.MarketAccountDetails.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.MarketAccountDetails.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.MarketAccountDetails.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.Trade.StatePayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.Trade.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.Trade.CodingKeys : Swift.Equatable {}
@@ -10055,9 +10507,9 @@ extension Candle.Components.Schemas.TransportAssetRef.AssetKindPayload : Swift.B
 extension Candle.Components.Schemas.TransportAssetRef.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.TransportAssetRef.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.TransportAssetRef.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TradeQuoteRequest.CodingKeys : Swift.Equatable {}
-extension Candle.Components.Schemas.TradeQuoteRequest.CodingKeys : Swift.Hashable {}
-extension Candle.Components.Schemas.TradeQuoteRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TradeQuotesRequest.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.TradeQuotesRequest.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.TradeQuotesRequest.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.FiatAssetQuoteRequest.AssetKindPayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.FiatAssetQuoteRequest.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.FiatAssetQuoteRequest.CodingKeys : Swift.Equatable {}
@@ -10078,6 +10530,9 @@ extension Candle.Components.Schemas.NothingAssetQuoteRequest.AssetKindPayload : 
 extension Candle.Components.Schemas.NothingAssetQuoteRequest.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.NothingAssetQuoteRequest.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.NothingAssetQuoteRequest.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TradeQuotesResponse.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.TradeQuotesResponse.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.TradeQuotesResponse.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.TradeQuote.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.TradeQuote.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.TradeQuote.CodingKeys : Swift.RawRepresentable {}
@@ -10262,6 +10717,13 @@ extension Candle.Operations.PostLinkedAccounts.Output.Conflict.Body.JsonPayload.
 extension Candle.Operations.PostLinkedAccounts.Output.Conflict.Body.JsonPayload.CodingKeys : Swift.Equatable {}
 extension Candle.Operations.PostLinkedAccounts.Output.Conflict.Body.JsonPayload.CodingKeys : Swift.Hashable {}
 extension Candle.Operations.PostLinkedAccounts.Output.Conflict.Body.JsonPayload.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Headers.ContentTypePayload : Swift.BitwiseCopyable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.KindPayload : Swift.BitwiseCopyable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.CodingKeys : Swift.Equatable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.CodingKeys : Swift.Hashable {}
+extension Candle.Operations.PostLinkedAccounts.Output.Gone.Body.JsonPayload.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Operations.PostLinkedAccounts.Output.UnprocessableContent.Headers.ContentTypePayload : Swift.RawRepresentable {}
 extension Candle.Operations.PostLinkedAccounts.Output.UnprocessableContent.Headers.ContentTypePayload : Swift.BitwiseCopyable {}
 extension Candle.Operations.PostLinkedAccounts.Output.UnprocessableContent.Body.JsonPayload.KindPayload : Swift.RawRepresentable {}
@@ -10473,6 +10935,13 @@ extension Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPa
 extension Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPayload.CodingKeys : Swift.Equatable {}
 extension Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPayload.CodingKeys : Swift.Hashable {}
 extension Candle.Operations.PostLinkedAccountsTrades.Output.NotFound.Body.JsonPayload.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Headers.ContentTypePayload : Swift.BitwiseCopyable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload : Swift.RawRepresentable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.KindPayload : Swift.BitwiseCopyable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.CodingKeys : Swift.Equatable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.CodingKeys : Swift.Hashable {}
+extension Candle.Operations.PostLinkedAccountsTrades.Output.Gone.Body.JsonPayload.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Operations.PostLinkedAccountsTrades.Output.UnprocessableContent.Headers.ContentTypePayload : Swift.RawRepresentable {}
 extension Candle.Operations.PostLinkedAccountsTrades.Output.UnprocessableContent.Headers.ContentTypePayload : Swift.BitwiseCopyable {}
 extension Candle.Operations.PostLinkedAccountsTrades.Output.UnprocessableContent.Body.JsonPayload.KindPayload : Swift.RawRepresentable {}

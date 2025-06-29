@@ -33,8 +33,10 @@ struct TradesScreen: View {
     @Environment(CandleClient.self) private var client
 
     @State private var errorMessage: String? = nil
-    @State private var trades = [TradeViewModel]()
     @State private var isLoading = false
+
+    @State private var linkedAccountStatusRefViewModels = [LinkedAccountStatusRefViewModel]()
+    @State private var tradeViewModels = [TradeViewModel]()
 
     @State private var dateTimeSpan: SupportedSpan? = nil
     @State private var lostAssetKind: Models.GetTrades.Input.Query.LostAssetKindPayload? = nil
@@ -58,9 +60,9 @@ struct TradesScreen: View {
     }
 
     var filteredTrades: [TradeViewModel] {
-        guard !searchText.isEmpty else { return trades }
+        guard !searchText.isEmpty else { return tradeViewModels }
 
-        return trades.filter {
+        return tradeViewModels.filter {
             $0.searchTokens.contains { $0.localizedCaseInsensitiveContains(searchText) }
         }
     }
@@ -75,15 +77,22 @@ struct TradesScreen: View {
                 Spacer()
             } else {
                 List {
-                    ForEach(filteredTrades) { trade in
-                        NavigationLink(destination: ItemScreen(viewModel: trade)) {
-                            ItemRow(viewModel: trade)
+                    Section(header: Text("Linked Accounts")) {
+                        ForEach(linkedAccountStatusRefViewModels) {
+                            linkedAccountStatusRefViewModel in
+                            ItemRow(viewModel: linkedAccountStatusRefViewModel)
                         }
                     }
-                }
-                .overlay {
-                    if filteredTrades.isEmpty {
-                        ContentUnavailableView.search(text: searchText)
+                    Section(header: Text("Trades")) {
+                        ForEach(filteredTrades) { trade in
+                            NavigationLink(destination: ItemScreen(viewModel: trade)) {
+                                ItemRow(viewModel: trade)
+                            }
+                        }
+                    }.overlay {
+                        if filteredTrades.isEmpty {
+                            ContentUnavailableView.search(text: searchText)
+                        }
                     }
                 }
                 .searchable(text: $searchText, prompt: Text("Search by asset or counterparty"))
@@ -131,8 +140,12 @@ struct TradesScreen: View {
         isLoading = showLoading
         defer { isLoading = false }
         do {
-            trades = try await client.getTrades(query: query).map {
+            let tradesResponse = try await client.getTrades(query: query)
+            tradeViewModels = tradesResponse.trades.map {
                 TradeViewModel(client: client, trade: $0)
+            }
+            linkedAccountStatusRefViewModels = tradesResponse.linkedAccounts.map {
+                LinkedAccountStatusRefViewModel(linkedAccountStatusRef: $0)
             }
         } catch {
             errorMessage = String(describing: error)

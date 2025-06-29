@@ -174,6 +174,8 @@ extension AssetAccountViewModel: ItemViewModel {
                 switch payload.kind {
                 case .notFound_user:
                     throw .init(title: "User Not Found", description: payload.message)
+                case .notFound_linkedAccount:
+                    throw .init(title: "Linked Account Not Found", description: payload.message)
                 case .notFound_assetAccount:
                     throw .init(title: "Asset Account Not Found", description: payload.message)
                 }
@@ -186,6 +188,9 @@ extension AssetAccountViewModel: ItemViewModel {
                 switch payload.kind {
                 case .badAuthorization_user:
                     throw .init(title: "Bad User Authorization", description: payload.message)
+                case .badAuthorization_linkedAccount:
+                    throw .init(
+                        title: "Bad Linked Account Authorization", description: payload.message)
                 }
             case .internalServerError(let payload):
                 switch payload.kind {

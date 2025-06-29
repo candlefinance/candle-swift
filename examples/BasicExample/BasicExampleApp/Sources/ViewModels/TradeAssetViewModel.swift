@@ -170,6 +170,16 @@ struct TradeAssetViewModel {
                     value: transportAsset.destinationCoordinates.longitude.formatted(),
                     iconName: "number"
                 ),
+                Detail(
+                    label: "Departure Date Time",
+                    value: transportAsset.departureDateTime,
+                    iconName: "number"
+                ),
+                Detail(
+                    label: "Arrival Date Time",
+                    value: transportAsset.arrivalDateTime,
+                    iconName: "number"
+                ),
             ]
         case .NothingAsset(let nothingAsset):
             return [

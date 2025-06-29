@@ -12,7 +12,10 @@ struct TradeQuotesScreen: View {
 
     @State private var locationViewModel = LocationViewModel()
     @State private var errorMessage: String? = nil
+
+    @State private var linkedAccountStatusRefViewModels = [LinkedAccountStatusRefViewModel]()
     @State private var tradeQuoteViewModels = [TradeQuoteViewModel]()
+
     @State private var selectedTradeQuote: Models.TradeQuote?
     @State private var isLoading = false
     @State private var textInput1: String = "40.748237"
@@ -61,7 +64,7 @@ struct TradeQuotesScreen: View {
         }
     }
 
-    var tradeQuoteRequest: Models.TradeQuoteRequest {
+    var tradeQuotesRequest: Models.TradeQuotesRequest {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
@@ -84,29 +87,38 @@ struct TradeQuotesScreen: View {
                 TextField("Destination Latitude", text: $textInput3)
                 TextField("Destination Longitude", text: $textInput4)
                 List {
-                    ForEach(tradeQuoteViewModels) { tradeQuoteViewModel in
-                        NavigationLink(destination: ItemScreen(viewModel: tradeQuoteViewModel)) {
-                            ItemRow(viewModel: tradeQuoteViewModel)
-                        }.swipeActions {
-                            Button("Execute") {
-                                selectedTradeQuote = tradeQuoteViewModel.tradeQuote
-                            }
-                            .tint(.green)
+                    Section(header: Text("Linked Accounts")) {
+                        ForEach(linkedAccountStatusRefViewModels) {
+                            linkedAccountStatusRefViewModel in
+                            ItemRow(viewModel: linkedAccountStatusRefViewModel)
                         }
                     }
-                }
-                .overlay {
-                    if tradeQuoteViewModels.isEmpty {
-                        ContentUnavailableView(
-                            "No Trade Quotes",
-                            systemImage: "exclamationmark.magnifyingglass",
-                            description: Text("Try changing your request or linking more accounts.")
-                        )
+                    Section(header: Text("Trade Quotes")) {
+                        ForEach(tradeQuoteViewModels) { tradeQuoteViewModel in
+                            NavigationLink(destination: ItemScreen(viewModel: tradeQuoteViewModel))
+                            {
+                                ItemRow(viewModel: tradeQuoteViewModel)
+                            }.swipeActions {
+                                Button("Execute") {
+                                    selectedTradeQuote = tradeQuoteViewModel.tradeQuote
+                                }
+                                .tint(.green)
+                            }
+                        }
+                    }.overlay {
+                        if tradeQuoteViewModels.isEmpty {
+                            ContentUnavailableView(
+                                "No Trade Quotes",
+                                systemImage: "exclamationmark.magnifyingglass",
+                                description: Text(
+                                    "Try changing your request or linking more accounts.")
+                            )
+                        }
                     }
                 }
                 .navigationTitle("Trade Quotes")
                 .refreshable {
-                    await loadTradeQuotes(request: tradeQuoteRequest, showLoading: false)
+                    await loadTradeQuotes(request: tradeQuotesRequest, showLoading: false)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -167,13 +179,17 @@ struct TradeQuotesScreen: View {
     }
 
     private func loadTradeQuotes(
-        request: Models.TradeQuoteRequest, showLoading: Bool = true
+        request: Models.TradeQuotesRequest, showLoading: Bool = true
     ) async {
         guard !isLoading else { return }
         isLoading = showLoading
         defer { isLoading = false }
         do {
-            tradeQuoteViewModels = try await client.getTradeQuotes(request: request).map {
+            let tradeQuotesResponse = try await client.getTradeQuotes(request: request)
+            linkedAccountStatusRefViewModels = tradeQuotesResponse.linkedAccounts.map {
+                LinkedAccountStatusRefViewModel(linkedAccountStatusRef: $0)
+            }
+            tradeQuoteViewModels = tradeQuotesResponse.tradeQuotes.map {
                 TradeQuoteViewModel(tradeQuote: $0)
             }
         } catch {

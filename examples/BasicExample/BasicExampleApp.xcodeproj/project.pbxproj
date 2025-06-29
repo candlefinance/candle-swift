@@ -15,6 +15,7 @@
 		2B6522DFE12A2449C04C7336 /* ItemPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDF1E6D6C6960E9AC328358 /* ItemPhoto.swift */; };
 		3F4732050D50C355EC0DFBBE /* TradeQuotesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4C33E33BC21D53CA76CC5 /* TradeQuotesScreen.swift */; };
 		4B498D4DB811A0EBB536AF3A /* LinkedAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1129AFC8235650CC5316AF5 /* LinkedAccountViewModel.swift */; };
+		4E0B830D0F3D8CC21656DBB7 /* LinkAccountStatusRefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069C733C4525D3955748AAEA /* LinkAccountStatusRefViewModel.swift */; };
 		62B5CD9B78D883BAE89C5E5E /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462D168E2B5A2D0D43B0BD0 /* ItemViewModel.swift */; };
 		686DB51CABD28D11A3422BB7 /* TradeAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462E00250AFC2EAED019384 /* TradeAssetViewModel.swift */; };
 		6ABACC9EBFE5DEFCCE63AEFE /* AssetAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8306F6D930F412366E153C /* AssetAccountViewModel.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		069C733C4525D3955748AAEA /* LinkAccountStatusRefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountStatusRefViewModel.swift; sourceTree = "<group>"; };
 		0D1DCEAF3560F15BDCDAB822 /* LinkedAccountsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedAccountsScreen.swift; sourceTree = "<group>"; };
 		1462E00250AFC2EAED019384 /* TradeAssetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeAssetViewModel.swift; sourceTree = "<group>"; };
 		16756FED00B842BAC5FE0EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				3A8306F6D930F412366E153C /* AssetAccountViewModel.swift */,
 				4859CE56563283ED2890F403 /* DetailViewModel.swift */,
 				D462D168E2B5A2D0D43B0BD0 /* ItemViewModel.swift */,
+				069C733C4525D3955748AAEA /* LinkAccountStatusRefViewModel.swift */,
 				A1129AFC8235650CC5316AF5 /* LinkedAccountViewModel.swift */,
 				B4C5912105660C065A61A683 /* LocationViewModel.swift */,
 				1462E00250AFC2EAED019384 /* TradeAssetViewModel.swift */,
@@ -480,6 +483,7 @@
 				6ABACC9EBFE5DEFCCE63AEFE /* AssetAccountViewModel.swift in Sources */,
 				95B61DAA4BE378EB6742BA05 /* DetailViewModel.swift in Sources */,
 				62B5CD9B78D883BAE89C5E5E /* ItemViewModel.swift in Sources */,
+				4E0B830D0F3D8CC21656DBB7 /* LinkAccountStatusRefViewModel.swift in Sources */,
 				4B498D4DB811A0EBB536AF3A /* LinkedAccountViewModel.swift in Sources */,
 				B56C68C8E54DECC0A52F1FAD /* LocationViewModel.swift in Sources */,
 				686DB51CABD28D11A3422BB7 /* TradeAssetViewModel.swift in Sources */,

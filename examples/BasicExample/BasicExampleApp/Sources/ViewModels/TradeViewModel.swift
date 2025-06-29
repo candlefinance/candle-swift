@@ -329,6 +329,8 @@ extension TradeViewModel: ItemViewModel {
                 switch payload.kind {
                 case .notFound_user:
                     throw .init(title: "User Not Found", description: payload.message)
+                case .notFound_linkedAccount:
+                    throw .init(title: "Linked Account Not Found", description: payload.message)
                 case .notFound_trade:
                     throw .init(title: "Trade Not Found", description: payload.message)
                 }
@@ -341,6 +343,9 @@ extension TradeViewModel: ItemViewModel {
                 switch payload.kind {
                 case .badAuthorization_user:
                     throw .init(title: "Bad User Authorization", description: payload.message)
+                case .badAuthorization_linkedAccount:
+                    throw .init(
+                        title: "Bad Linked Account Authorization", description: payload.message)
                 }
             case .internalServerError(let payload):
                 switch payload.kind {

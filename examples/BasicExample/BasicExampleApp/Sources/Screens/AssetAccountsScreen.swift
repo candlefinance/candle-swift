@@ -6,7 +6,8 @@ import SwiftUI
 struct AssetAccountsScreen: View {
     @Environment(CandleClient.self) private var client
 
-    @State var assetAccounts = [AssetAccountViewModel]()
+    @State private var linkedAccountStatusRefViewModels = [LinkedAccountStatusRefViewModel]()
+    @State var assetAccountViewModels = [AssetAccountViewModel]()
 
     @State private var assetKind: Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
     @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
@@ -34,9 +35,27 @@ struct AssetAccountsScreen: View {
                 Spacer()
             } else {
                 List {
-                    ForEach(assetAccounts) { assetAccount in
-                        NavigationLink(destination: ItemScreen(viewModel: assetAccount)) {
-                            ItemRow(viewModel: assetAccount)
+                    Section(header: Text("Linked Accounts")) {
+                        ForEach(linkedAccountStatusRefViewModels) {
+                            linkedAccountStatusRefViewModel in
+                            ItemRow(viewModel: linkedAccountStatusRefViewModel)
+                        }
+                    }
+                    Section(header: Text("Asset Accounts")) {
+                        ForEach(assetAccountViewModels) { assetAccount in
+                            NavigationLink(destination: ItemScreen(viewModel: assetAccount)) {
+                                ItemRow(viewModel: assetAccount)
+                            }
+                        }
+                    }.overlay {
+                        if assetAccountViewModels.isEmpty {
+                            ContentUnavailableView(
+                                "No Asset Accounts",
+                                systemImage: "exclamationmark.magnifyingglass",
+                                description: Text(
+                                    "Try changing your filters or linking more accounts."
+                                )
+                            )
                         }
                     }
                 }
@@ -53,17 +72,7 @@ struct AssetAccountsScreen: View {
                         }
                     }
                 }
-                .overlay {
-                    if assetAccounts.isEmpty {
-                        ContentUnavailableView(
-                            "No Asset Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more accounts."
-                            )
-                        )
-                    }
-                }
+
                 .navigationTitle("Asset Accounts")
             }
         }
@@ -84,8 +93,12 @@ struct AssetAccountsScreen: View {
         defer { isLoading = false }
         do {
             isLoading = true
-            assetAccounts = try await client.getAssetAccounts(query: query).map {
+            let assetAccountsResponse = try await client.getAssetAccounts(query: query)
+            assetAccountViewModels = assetAccountsResponse.assetAccounts.map {
                 AssetAccountViewModel(client: client, assetAccount: $0)
+            }
+            linkedAccountStatusRefViewModels = assetAccountsResponse.linkedAccounts.map {
+                LinkedAccountStatusRefViewModel(linkedAccountStatusRef: $0)
             }
         } catch {
             errorMessage = String(describing: error)

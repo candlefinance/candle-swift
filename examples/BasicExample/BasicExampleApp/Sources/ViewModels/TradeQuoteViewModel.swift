@@ -107,7 +107,13 @@ extension TradeQuoteViewModel: ItemViewModel {
         }
             + TradeAssetViewModel(tradeAsset: tradeQuote.gained).details.map {
                 Detail(label: "Gained: " + $0.label, value: $0.value, iconName: $0.iconName)
-            }
+            } + [
+                Detail(
+                    label: "Expires At",
+                    value: tradeQuote.expirationDateTime,
+                    iconName: "number"
+                )
+            ]
     }
 
     func reload() async throws(ItemReloadError) {
