@@ -11,7 +11,6 @@ import Foundation/*.Data*/
 import Foundation/*.Date*/
 import Foundation/*.URL*/
 import HTTPTypes
-import LocalAuthentication
 @_spi(Generated) import OpenAPIRuntime
 import OpenAPIURLSession
 import Swift
@@ -22,7 +21,6 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 @_hasMissingDesignatedInitializers @available(macOS 14, iOS 17.0, *)
 @_Concurrency.MainActor public class CandleClient {
-  @_Concurrency.MainActor convenience public init(appUser: Candle.Models.AppUser)
   @_Concurrency.MainActor public func deleteUser() async throws(Candle.Models.DeleteUser.Error)
   @_Concurrency.MainActor public func unlinkAccount(path: Candle.Operations.DeleteLinkedAccount.Input.Path) async throws(Candle.Models.UnlinkAccount.Error)
   @_Concurrency.MainActor public func getLinkedAccounts() async throws(Candle.Models.GetLinkedAccounts.Error) -> [Candle.Models.LinkedAccount]
