@@ -2957,10 +2957,12 @@ public enum Components {
     public struct TradeQuotesRequest : Swift.Codable, Swift.Hashable, Swift.Sendable {
       public var linkedAccountIDs: Swift.String?
       public var gained: Candle.Components.Schemas.TradeAssetQuoteRequest
-      public init(linkedAccountIDs: Swift.String? = nil, gained: Candle.Components.Schemas.TradeAssetQuoteRequest)
+      public var lost: Candle.Components.Schemas.TradeAssetQuoteRequest
+      public init(linkedAccountIDs: Swift.String? = nil, gained: Candle.Components.Schemas.TradeAssetQuoteRequest, lost: Candle.Components.Schemas.TradeAssetQuoteRequest)
       public enum CodingKeys : Swift.String, Swift.CodingKey {
         case linkedAccountIDs
         case gained
+        case lost
         public init?(rawValue: Swift.String)
         public init?(stringValue: Swift.String)
         public init?(intValue: Swift.Int)

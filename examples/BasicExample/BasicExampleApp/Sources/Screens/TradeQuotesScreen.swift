@@ -18,15 +18,125 @@ struct TradeQuotesScreen: View {
 
     @State private var selectedTradeQuote: Models.TradeQuote?
     @State private var isLoading = false
-    @State private var textInput1: String = "40.748237"
-    @State private var textInput2: String = "-73.984753"
-    @State private var textInput3: String = "40.750298"
-    @State private var textInput4: String = "-73.993324"
     @State private var executedTrade: Models.Trade?
 
-    // FIXME: Add these back
-    //    @State private var lostAssetQuoteRequest: Models.TradeAssetQuoteRequest = .FiatAssetQuoteRequest(.init(assetKind: .fiat))
+    @State private var gainedTextInput1: String = "40.748237"
+    @State private var gainedTextInput2: String = "-73.984753"
+    @State private var gainedTextInput3: String = "40.750298"
+    @State private var gainedTextInput4: String = "-73.993324"
+
+    @State private var lostTextInput1: String = ""
+    @State private var lostTextInput2: String = ""
+    @State private var lostTextInput3: String = ""
+    @State private var lostTextInput4: String = ""
+
     @State private var gainedAssetKind: TradeQuoteAssetKind? = nil
+    @State private var lostAssetKind: TradeQuoteAssetKind? = nil
+
+    private var gainedTextInput1Placeholder: String {
+        guard let gainedAssetKind else {
+            return "Please Select Gained Asset Kind"
+        }
+        switch gainedAssetKind {
+        case .fiat:
+            return "Currency Code"
+        case .stock:
+            return "Stock Symbol"
+        case .crypto:
+            return "Crypto Symbol"
+        case .transport:
+            return "Origin Latitude"
+        }
+    }
+
+    private var gainedTextInput2Placeholder: String {
+        guard let gainedAssetKind else {
+            return "Please Select Gained Asset Kind"
+        }
+        switch gainedAssetKind {
+        case .fiat, .stock, .crypto:
+            return "Amount"
+        case .transport:
+            return "Origin Longitude"
+        }
+    }
+
+    private var gainedTextInput3Placeholder: String {
+        guard let gainedAssetKind else {
+            return "Please Select Gained Asset Kind"
+        }
+        switch gainedAssetKind {
+        case .fiat, .stock, .crypto:
+            return "Service Account ID"
+        case .transport:
+            return "Destination Latitude"
+        }
+    }
+
+    private var gainedTextInput4Placeholder: String? {
+        guard let gainedAssetKind else {
+            return "Please Select Gained Asset Kind"
+        }
+        switch gainedAssetKind {
+        case .fiat, .stock, .crypto:
+            return nil
+        case .transport:
+            return "Destination Longitude"
+        }
+    }
+
+    private var lostTextInput1Placeholder: String {
+        guard let lostAssetKind else {
+            return "Please Select Lost Asset Kind"
+        }
+        switch lostAssetKind {
+        case .fiat:
+            return "Currency Code"
+        case .stock:
+            return "Stock Symbol"
+        case .crypto:
+            return "Crypto Symbol"
+        case .transport:
+            return "Origin Latitude"
+        }
+    }
+
+    private var lostTextInput2Placeholder: String {
+        guard let lostAssetKind else {
+            return "Please Select Lost Asset Kind"
+        }
+        switch lostAssetKind {
+        case .fiat, .stock, .crypto:
+            return "Amount"
+        case .transport:
+            return "Origin Longitude"
+        }
+    }
+
+    private var lostTextInput3Placeholder: String {
+        guard let lostAssetKind else {
+            return "Please Select Lost Asset Kind"
+        }
+        switch lostAssetKind {
+        case .fiat, .stock, .crypto:
+            return "Service Account ID"
+        case .transport:
+            return "Destination Latitude"
+        }
+    }
+
+    private var lostTextInput4Placeholder: String? {
+        guard let lostAssetKind else {
+            return "Please Select Lost Asset Kind"
+        }
+        switch lostAssetKind {
+        case .fiat, .stock, .crypto:
+            return nil
+        case .transport:
+            return "Destination Longitude"
+        }
+    }
+    // FIXME: Add this back
     //    @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
     @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
@@ -39,26 +149,69 @@ struct TradeQuotesScreen: View {
             return .TransportAssetQuoteRequest(
                 .init(
                     assetKind: .transport,
-                    originCoordinates: Double(textInput1).flatMap { latitude in
-                        Double(textInput2).map { longitude in
+                    originCoordinates: Double(gainedTextInput1).flatMap { latitude in
+                        Double(gainedTextInput2).map { longitude in
                             Models.Coordinates(latitude: latitude, longitude: longitude)
                         }
                     },
-                    destinationCoordinates: Double(textInput3).flatMap { latitude in
-                        Double(textInput4).map { longitude in
+                    destinationCoordinates: Double(gainedTextInput3).flatMap { latitude in
+                        Double(gainedTextInput4).map { longitude in
                             Models.Coordinates(latitude: latitude, longitude: longitude)
                         }
                     }
                 ))
         case .fiat:
+            let currencyCode = gainedTextInput1.isEmpty ? nil : gainedTextInput1
+            let serviceAccountID = gainedTextInput3.isEmpty ? nil : gainedTextInput3
             return .FiatAssetQuoteRequest(
-                .init(assetKind: .fiat, currencyCode: textInput1, amount: Double(textInput2)))
+                .init(
+                    assetKind: .fiat, serviceAccountID: serviceAccountID,
+                    currencyCode: currencyCode, amount: Double(gainedTextInput2)))
         case .stock:
+            let symbol = gainedTextInput1.isEmpty ? nil : gainedTextInput1
             return .MarketAssetQuoteRequest(
-                .init(assetKind: .stock, symbol: textInput1, amount: Double(textInput2)))
+                .init(assetKind: .stock, symbol: symbol, amount: Double(gainedTextInput2)))
         case .crypto:
+            let symbol = gainedTextInput1.isEmpty ? nil : gainedTextInput1
             return .MarketAssetQuoteRequest(
-                .init(assetKind: .crypto, symbol: textInput1, amount: Double(textInput2)))
+                .init(assetKind: .crypto, symbol: symbol, amount: Double(gainedTextInput2)))
+        case .none:
+            return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
+        }
+    }
+
+    var lostAssetQuoteRequest: Models.TradeAssetQuoteRequest {
+        switch lostAssetKind {
+        case .transport:
+            return .TransportAssetQuoteRequest(
+                .init(
+                    assetKind: .transport,
+                    originCoordinates: Double(lostTextInput1).flatMap { latitude in
+                        Double(lostTextInput2).map { longitude in
+                            Models.Coordinates(latitude: latitude, longitude: longitude)
+                        }
+                    },
+                    destinationCoordinates: Double(lostTextInput3).flatMap { latitude in
+                        Double(lostTextInput4).map { longitude in
+                            Models.Coordinates(latitude: latitude, longitude: longitude)
+                        }
+                    }
+                ))
+        case .fiat:
+            let currencyCode = lostTextInput1.isEmpty ? nil : lostTextInput1
+            let serviceAccountID = lostTextInput3.isEmpty ? nil : lostTextInput3
+            return .FiatAssetQuoteRequest(
+                .init(
+                    assetKind: .fiat, serviceAccountID: serviceAccountID,
+                    currencyCode: currencyCode, amount: Double(lostTextInput2)))
+        case .stock:
+            let symbol = lostTextInput1.isEmpty ? nil : lostTextInput1
+            return .MarketAssetQuoteRequest(
+                .init(assetKind: .stock, symbol: symbol, amount: Double(lostTextInput2)))
+        case .crypto:
+            let symbol = lostTextInput1.isEmpty ? nil : lostTextInput1
+            return .MarketAssetQuoteRequest(
+                .init(assetKind: .crypto, symbol: symbol, amount: Double(lostTextInput2)))
         case .none:
             return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
         }
@@ -68,7 +221,8 @@ struct TradeQuotesScreen: View {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
-            gained: gainedAssetQuoteRequest
+            gained: gainedAssetQuoteRequest,
+            lost: lostAssetQuoteRequest,
         )
     }
 
@@ -82,10 +236,20 @@ struct TradeQuotesScreen: View {
                 Spacer()
             } else {
                 // FIXME: Set placeholder dynamically based on selected asset kinds
-                TextField("Origin Latitude/Currency Code/Symbol", text: $textInput1)
-                TextField("Origin Longitude/Amount", text: $textInput2)
-                TextField("Destination Latitude", text: $textInput3)
-                TextField("Destination Longitude", text: $textInput4)
+                Text("Gained:").frame(maxWidth: .infinity, alignment: .leading)
+                TextField(gainedTextInput1Placeholder, text: $gainedTextInput1)
+                TextField(gainedTextInput2Placeholder, text: $gainedTextInput2)
+                TextField(gainedTextInput3Placeholder, text: $gainedTextInput3)
+                gainedTextInput4Placeholder.map {
+                    TextField($0, text: $gainedTextInput4)
+                }
+                Text("Gained:").frame(maxWidth: .infinity, alignment: .leading)
+                TextField(lostTextInput1Placeholder, text: $lostTextInput1)
+                TextField(lostTextInput2Placeholder, text: $lostTextInput2)
+                TextField(lostTextInput3Placeholder, text: $lostTextInput3)
+                lostTextInput4Placeholder.map {
+                    TextField($0, text: $lostTextInput4)
+                }
                 List {
                     Section(header: Text("Linked Accounts")) {
                         ForEach(linkedAccountStatusRefViewModels) {
@@ -124,9 +288,8 @@ struct TradeQuotesScreen: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
                             // FIXME: Add these back
-                            //                            EnumMenu(name: "Lost Asset Kind", selectedCase: $lostAssetKind)
-                            EnumMenu(
-                                name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
+                            EnumMenu(name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
+                            EnumMenu(name: "Lost Asset Kind", selectedCase: $lostAssetKind)
                             //                            EnumMenu(
                             //                                name: "Counterparty Kind", selectedCase: $counterpartyKind)
                             LinkedAccountsMenu(
@@ -172,8 +335,8 @@ struct TradeQuotesScreen: View {
         .onAppear { locationViewModel.requestLocation() }
         .onChange(of: locationViewModel.coordinate) { _, coordinate in
             if let coordinate {
-                textInput1 = "\(coordinate.latitude)"
-                textInput2 = "\(coordinate.longitude)"
+                gainedTextInput1 = "\(coordinate.latitude)"
+                gainedTextInput2 = "\(coordinate.longitude)"
             }
         }
     }
