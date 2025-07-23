@@ -24,11 +24,13 @@ struct TradeQuotesScreen: View {
     @State private var gainedTextInput2: String = "-73.984753"
     @State private var gainedTextInput3: String = "40.750298"
     @State private var gainedTextInput4: String = "-73.993324"
+    @State private var gainedTextInput5: String = ""
 
     @State private var lostTextInput1: String = ""
     @State private var lostTextInput2: String = ""
     @State private var lostTextInput3: String = ""
     @State private var lostTextInput4: String = ""
+    @State private var lostTextInput5: String = ""
 
     @State private var gainedAssetKind: TradeQuoteAssetKind? = nil
     @State private var lostAssetKind: TradeQuoteAssetKind? = nil
@@ -85,6 +87,18 @@ struct TradeQuotesScreen: View {
         }
     }
 
+    private var gainedTextInput5Placeholder: String? {
+        guard let gainedAssetKind else {
+            return "Please Select Gained Asset Kind"
+        }
+        switch gainedAssetKind {
+        case .fiat, .stock, .crypto:
+            return nil
+        case .transport:
+            return "Service Account ID"
+        }
+    }
+
     private var lostTextInput1Placeholder: String {
         guard let lostAssetKind else {
             return "Please Select Lost Asset Kind"
@@ -136,6 +150,18 @@ struct TradeQuotesScreen: View {
             return "Destination Longitude"
         }
     }
+
+    private var lostTextInput5Placeholder: String? {
+        guard let lostAssetKind else {
+            return "Please Select Lost Asset Kind"
+        }
+        switch lostAssetKind {
+        case .fiat, .stock, .crypto:
+            return nil
+        case .transport:
+            return "Service Account ID"
+        }
+    }
     // FIXME: Add this back
     //    @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
@@ -158,7 +184,8 @@ struct TradeQuotesScreen: View {
                         Double(gainedTextInput4).map { longitude in
                             Models.Coordinates(latitude: latitude, longitude: longitude)
                         }
-                    }
+                    },
+                    serviceAccountID: gainedTextInput5
                 ))
         case .fiat:
             let currencyCode = gainedTextInput1.isEmpty ? nil : gainedTextInput1
@@ -195,7 +222,8 @@ struct TradeQuotesScreen: View {
                         Double(lostTextInput4).map { longitude in
                             Models.Coordinates(latitude: latitude, longitude: longitude)
                         }
-                    }
+                    },
+                    serviceAccountID: lostTextInput5
                 ))
         case .fiat:
             let currencyCode = lostTextInput1.isEmpty ? nil : lostTextInput1
@@ -236,19 +264,25 @@ struct TradeQuotesScreen: View {
                 Spacer()
             } else {
                 // FIXME: Set placeholder dynamically based on selected asset kinds
-                Text("Gained:").frame(maxWidth: .infinity, alignment: .leading)
+                Text("GAINED:").frame(maxWidth: .infinity, alignment: .leading)
                 TextField(gainedTextInput1Placeholder, text: $gainedTextInput1)
                 TextField(gainedTextInput2Placeholder, text: $gainedTextInput2)
                 TextField(gainedTextInput3Placeholder, text: $gainedTextInput3)
                 gainedTextInput4Placeholder.map {
                     TextField($0, text: $gainedTextInput4)
                 }
-                Text("Gained:").frame(maxWidth: .infinity, alignment: .leading)
+                gainedTextInput5Placeholder.map {
+                    TextField($0, text: $gainedTextInput5)
+                }
+                Text("LOST:").frame(maxWidth: .infinity, alignment: .leading)
                 TextField(lostTextInput1Placeholder, text: $lostTextInput1)
                 TextField(lostTextInput2Placeholder, text: $lostTextInput2)
                 TextField(lostTextInput3Placeholder, text: $lostTextInput3)
                 lostTextInput4Placeholder.map {
                     TextField($0, text: $lostTextInput4)
+                }
+                lostTextInput5Placeholder.map {
+                    TextField($0, text: $lostTextInput5)
                 }
                 List {
                     Section(header: Text("Linked Accounts")) {

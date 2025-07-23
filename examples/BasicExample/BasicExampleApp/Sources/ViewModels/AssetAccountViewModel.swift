@@ -12,40 +12,58 @@ extension AssetAccountViewModel: ItemViewModel {
     }
 
     var subtitle: String {
-        switch assetAccount.details {
-        case .FiatAccountDetails(let fiatAccountDetails):
-            return fiatAccountDetails.service.name
-        case .MarketAccountDetails(let marketAccountDetails):
-            return marketAccountDetails.service.name
+        switch assetAccount {
+        case .FiatAccount(let fiatAccount):
+            return fiatAccount.service.name
+        case .MarketAccount(let marketAccount):
+            return marketAccount.service.name
+        case .TransportAccount(let transportAccount):
+            return transportAccount.service.name
         }
     }
 
     var value: String {
-        switch assetAccount.details {
-        case .FiatAccountDetails(let fiatAccountDetails):
-            fiatAccountDetails.balance?.formatted(.currency(code: fiatAccountDetails.currencyCode))
+        switch assetAccount {
+        case .FiatAccount(let fiatAccount):
+            fiatAccount.balance?.formatted(.currency(code: fiatAccount.currencyCode))
                 ?? "N/A"
-        case .MarketAccountDetails(let marketAccountDetails):
+        case .MarketAccount(let marketAccount):
             // FIXME: Expose other information
-            marketAccountDetails.assetKind.rawValue
+            marketAccount.assetKind.rawValue
+        case .TransportAccount(let transportAccount):
+            // FIXME: Expose other information
+            transportAccount.assetKind.rawValue
         }
     }
 
     var logoURL: URL? {
-        switch assetAccount.details {
-        case .FiatAccountDetails(let fiatAccountDetails):
-            return fiatAccountDetails.service.logoURL
-        case .MarketAccountDetails(let marketAccountDetails):
-            return marketAccountDetails.service.logoURL
+        switch assetAccount {
+        case .FiatAccount(let fiatAccount):
+            return fiatAccount.service.logoURL
+        case .MarketAccount(let marketAccount):
+            return marketAccount.service.logoURL
+        case .TransportAccount(let transportAccount):
+            return transportAccount.service.logoURL
+        }
+    }
+
+    var accountKind: String {
+        switch assetAccount {
+        case .FiatAccount(let fiatAccount):
+            fiatAccount.accountKind.rawValue
+        case .MarketAccount(let marketAccount):
+            marketAccount.accountKind.rawValue
+        case .TransportAccount(let transportAccount):
+            transportAccount.accountKind.rawValue
         }
     }
 
     var details: [Detail] {
         let detailsItems: [Detail]
-        switch assetAccount.details {
-        case .FiatAccountDetails(let fiatAccountDetails):
+        switch assetAccount {
+        case .FiatAccount(let fiatAccount):
             let wireItems =
-                fiatAccountDetails.wire.map { wire -> [Detail] in
+                fiatAccount.wire.map { wire -> [Detail] in
                     [
                         .init(
                             label: "Routing Number",
@@ -61,7 +79,7 @@ extension AssetAccountViewModel: ItemViewModel {
                 } ?? []
 
             let achItems =
-                fiatAccountDetails.ach.map { ach -> [Detail] in
+                fiatAccount.ach.map { ach -> [Detail] in
                     [
                         .init(
                             label: "Account Kind",
@@ -85,31 +103,31 @@ extension AssetAccountViewModel: ItemViewModel {
                 [
                     .init(
                         label: "Asset Kind",
-                        value: fiatAccountDetails.assetKind.rawValue,
+                        value: fiatAccount.assetKind.rawValue,
                         iconName: "info.circle"
                     ),
                     .init(
                         label: "Service Account ID",
-                        value: fiatAccountDetails.serviceAccountID,
+                        value: fiatAccount.serviceAccountID,
                         iconName: "barcode"
                     ),
                     // FIXME: Display currencyCode regardless (or don't return it?)
-                    fiatAccountDetails.balance.map {
+                    fiatAccount.balance.map {
                         .init(
                             label: "Balance",
                             value: $0.formatted(
-                                .currency(code: fiatAccountDetails.currencyCode)),
+                                .currency(code: fiatAccount.currencyCode)),
                             iconName: "info.circle"
                         )
                     },
                     .init(
                         label: "Linked Account ID",
-                        value: fiatAccountDetails.linkedAccountID,
+                        value: fiatAccount.linkedAccountID,
                         iconName: "info.circle"
                     ),
                     .init(
                         label: "Service",
-                        value: fiatAccountDetails.service.rawValue,
+                        value: fiatAccount.service.rawValue,
                         iconName: "info.circle"
                     ),
                     //                .init(
@@ -128,21 +146,36 @@ extension AssetAccountViewModel: ItemViewModel {
                     Detail(
                         label: "ACH: " + $0.label, value: $0.value, iconName: $0.iconName)
                 }
-        case .MarketAccountDetails(let marketAccountDetails):
+        case .MarketAccount(let marketAccount):
             detailsItems = [
                 .init(
                     label: "Asset Kind",
-                    value: marketAccountDetails.assetKind.rawValue,
+                    value: marketAccount.assetKind.rawValue,
                     iconName: "info.circle"
                 ),
                 .init(
                     label: "Service Account ID",
-                    value: marketAccountDetails.serviceAccountID,
+                    value: marketAccount.serviceAccountID,
                     iconName: "barcode"
                 ),
                 .init(
                     label: "Linked Account ID",
-                    value: marketAccountDetails.linkedAccountID,
+                    value: marketAccount.linkedAccountID,
+                    iconName: "info.circle"
+                ),
+            ]
+        case .TransportAccount(let transportAccount):
+            detailsItems = [
+                .init(
+                    label: "Asset Kind", value: transportAccount.assetKind.rawValue,
+                    iconName: "icon.circle"
+                ),
+                .init(
+                    label: "Service Account ID", value: transportAccount.serviceAccountID,
+                    iconName: "barcode"
+                ),
+                .init(
+                    label: "Linked Account ID", value: transportAccount.linkedAccountID,
                     iconName: "info.circle"
                 ),
             ]
@@ -155,7 +188,7 @@ extension AssetAccountViewModel: ItemViewModel {
             ),
             .init(
                 label: "Legal Account Kind",
-                value: assetAccount.legalAccountKind.rawValue,
+                value: accountKind,
                 iconName: "info.circle"
             ),
         ]
