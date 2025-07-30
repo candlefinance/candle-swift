@@ -172,6 +172,7 @@ struct TradeQuotesScreen: View {
     var gainedAssetQuoteRequest: Models.TradeAssetQuoteRequest {
         switch gainedAssetKind {
         case .transport:
+            let serviceAccountID = gainedTextInput5.isEmpty ? nil : gainedTextInput5
             return .TransportAssetQuoteRequest(
                 .init(
                     assetKind: .transport,
@@ -185,7 +186,7 @@ struct TradeQuotesScreen: View {
                             Models.Coordinates(latitude: latitude, longitude: longitude)
                         }
                     },
-                    serviceAccountID: gainedTextInput5
+                    serviceAccountID: serviceAccountID
                 ))
         case .fiat:
             let currencyCode = gainedTextInput1.isEmpty ? nil : gainedTextInput1

@@ -180,6 +180,11 @@ struct TradeAssetViewModel {
                     value: transportAsset.arrivalDateTime,
                     iconName: "number"
                 ),
+                Detail(
+                    label: "Service Account ID",
+                    value: transportAsset.serviceAccountID,
+                    iconName: "number"
+                ),
             ]
         case .NothingAsset(let nothingAsset):
             return [

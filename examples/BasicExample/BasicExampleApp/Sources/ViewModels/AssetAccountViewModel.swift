@@ -26,7 +26,7 @@ extension AssetAccountViewModel: ItemViewModel {
         switch assetAccount {
         case .FiatAccount(let fiatAccount):
             fiatAccount.balance?.formatted(.currency(code: fiatAccount.currencyCode))
-                ?? "N/A"
+                ?? "Fiat"
         case .MarketAccount(let marketAccount):
             // FIXME: Expose other information
             marketAccount.assetKind.rawValue
