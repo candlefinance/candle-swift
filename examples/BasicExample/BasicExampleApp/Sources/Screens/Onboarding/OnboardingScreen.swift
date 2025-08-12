@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct OnboardingScreen: View {
-    private let imageWidth: CGFloat = 219
-    private let spacing: CGFloat = 30
+
+    @Environment(\.dismiss) private var dismiss
+
+    @Binding var error: (title: String, message: String)?
 
     @State private var prVisible: Bool = false
     @State private var ctaVisible: Bool = false
@@ -16,7 +18,9 @@ struct OnboardingScreen: View {
     let product: String
     let caption: String
     let ctaText: String
-    let ctaAction: () -> Void
+
+    private let imageWidth: CGFloat = 219
+    private let spacing: CGFloat = 30
 
     var currentIndex: Int {
         let totalWidth = imageWidth + spacing
@@ -164,7 +168,9 @@ struct OnboardingScreen: View {
                     captionText
                 }
                 Spacer(minLength: .extraLarge)
-                Button(action: ctaAction) {
+                Button(action: {
+                    dismiss()
+                }) {
                     Text(ctaText)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                         .padding([.vertical], .medium)
@@ -192,6 +198,7 @@ struct OnboardingScreen: View {
 
 #Preview {
     OnboardingScreen(
+        error: .constant(nil),
         photos: [
             .init(resource: .link1),
             .init(resource: .link2),
@@ -203,6 +210,5 @@ struct OnboardingScreen: View {
         product: "Candle",
         caption: "This example app lets you explore the SDK functionality.",
         ctaText: "Get Started"
-    ) {
-    }
+    )
 }

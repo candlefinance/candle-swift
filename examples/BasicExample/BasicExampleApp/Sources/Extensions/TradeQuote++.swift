@@ -1,20 +1,16 @@
 import Candle
 import Foundation
 
-struct TradeQuoteViewModel {
-    let tradeQuote: Models.TradeQuote
-}
-
-extension TradeQuoteViewModel: ItemViewModel {
-    var title: String {
-        switch tradeQuote.gained {
+extension Models.TradeQuote {
+    var formattedTitle: String {
+        switch gained {
         case .TransportAsset(let transportAsset):
             return transportAsset.name
         case .MarketTradeAsset(let marketAsset):
             return marketAsset.name
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
-            switch tradeQuote.lost {
+            switch lost {
             case .TransportAsset(let transportAsset):
                 return transportAsset.name
             case .MarketTradeAsset(let marketAsset):
@@ -27,19 +23,19 @@ extension TradeQuoteViewModel: ItemViewModel {
     }
 
     // FIXME: Display counterparty (service) name instead?
-    var subtitle: String {
-        switch tradeQuote.gained {
+    var formattedSubtitle: String {
+        switch gained {
         case .TransportAsset(let transportAsset):
-            return transportAsset.service.name
+            return transportAsset.service.description
         case .MarketTradeAsset(let marketAsset):
-            return marketAsset.service.name
+            return marketAsset.service.description
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
-            switch tradeQuote.lost {
+            switch lost {
             case .TransportAsset(let transportAsset):
-                return transportAsset.service.name
+                return transportAsset.service.description
             case .MarketTradeAsset(let marketAsset):
-                return marketAsset.service.name
+                return marketAsset.service.description
 
             case .FiatAsset, .NothingAsset, .OtherAsset:
                 return "—"  // FIXME: Display something in these cases
@@ -47,10 +43,10 @@ extension TradeQuoteViewModel: ItemViewModel {
         }
     }
 
-    var value: String {
-        if case .FiatAsset(let fiatAsset) = tradeQuote.gained {
+    var formattedValue: String {
+        if case .FiatAsset(let fiatAsset) = gained {
             return fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode))
-        } else if case .FiatAsset(let fiatAsset) = tradeQuote.lost {
+        } else if case .FiatAsset(let fiatAsset) = lost {
             return (-fiatAsset.amount).formatted(.currency(code: fiatAsset.currencyCode))
         } else {
             return "—"
@@ -59,14 +55,14 @@ extension TradeQuoteViewModel: ItemViewModel {
 
     var logoURL: URL? {
         // FIXME: Log if URLs don't decode (or decode them earlier)
-        switch tradeQuote.gained {
+        switch gained {
         case .TransportAsset(let transportAsset):
             return URL(string: transportAsset.imageURL)
         case .MarketTradeAsset(let marketAsset):
             return URL(string: marketAsset.logoURL)
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
-            switch tradeQuote.lost {
+            switch lost {
             case .TransportAsset(let transportAsset):
                 return URL(string: transportAsset.imageURL)
             case .MarketTradeAsset(let marketAsset):
@@ -78,16 +74,16 @@ extension TradeQuoteViewModel: ItemViewModel {
         }
     }
 
-    var context: Models.TradeQuoteContext {
+    var _context: Models.TradeQuoteContext {
         let linkedAccountID: String
-        switch tradeQuote.gained {
+        switch gained {
         case .TransportAsset(let transportAsset):
             linkedAccountID = transportAsset.linkedAccountID
         case .MarketTradeAsset(let marketAsset):
             linkedAccountID = marketAsset.linkedAccountID
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
-            switch tradeQuote.lost {
+            switch lost {
             case .TransportAsset(let transportAsset):
                 linkedAccountID = transportAsset.linkedAccountID
             case .MarketTradeAsset(let marketAsset):
@@ -98,29 +94,6 @@ extension TradeQuoteViewModel: ItemViewModel {
             }
         }
 
-        return .init(linkedAccountID: linkedAccountID, context: tradeQuote.context)
+        return .init(linkedAccountID: linkedAccountID, context: context)
     }
-
-    var details: [Detail] {
-        return TradeAssetViewModel(tradeAsset: tradeQuote.lost).details.map {
-            Detail(label: "Lost: " + $0.label, value: $0.value, iconName: $0.iconName)
-        }
-            + TradeAssetViewModel(tradeAsset: tradeQuote.gained).details.map {
-                Detail(label: "Gained: " + $0.label, value: $0.value, iconName: $0.iconName)
-            } + [
-                Detail(
-                    label: "Expires At",
-                    value: tradeQuote.expirationDateTime,
-                    iconName: "number"
-                )
-            ]
-    }
-
-    func reload() async throws(ItemReloadError) {
-        // FIXME: Implement this or throw error somehow
-    }
-}
-
-extension TradeQuoteViewModel: Identifiable {
-    var id: String { tradeQuote.id }
 }

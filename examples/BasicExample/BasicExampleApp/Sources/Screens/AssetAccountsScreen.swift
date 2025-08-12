@@ -1,19 +1,22 @@
 import Candle
 import SwiftUI
 
-// FIXME: Support refreshing on this screen as well
-// FIXME: Show navigation bar even when loading
 struct AssetAccountsScreen: View {
+    private enum _State {
+        case initial
+        case loading
+        case normal(Models.AssetAccountsResponse)
+    }
+
     @Environment(CandleClient.self) private var client
 
-    @State private var linkedAccountStatusRefViewModels = [LinkedAccountStatusRefViewModel]()
-    @State var assetAccountViewModels = [AssetAccountViewModel]()
+    @Binding var error: (title: String, message: String)?
 
+    @State private var state: _State = .initial
     @State private var assetKind: Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
     @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
 
-    @State private var errorMessage: String? = nil
-    @State private var isLoading = false
+    let linkedAccounts: [Models.LinkedAccount]
 
     var assetAccountsQuery: Models.GetAssetAccounts.Input.Query {
         .init(
@@ -23,89 +26,168 @@ struct AssetAccountsScreen: View {
         )
     }
 
-    let linkedAccounts: [Models.LinkedAccount]
-
     var body: some View {
-        NavigationStack {
-            if isLoading {
-                Spacer()
-                ProgressView {
-                    Text("Loading...")
-                }
-                Spacer()
-            } else {
-                List {
-                    Section(header: Text("Linked Accounts")) {
-                        ForEach(linkedAccountStatusRefViewModels) {
-                            linkedAccountStatusRefViewModel in
-                            ItemRow(viewModel: linkedAccountStatusRefViewModel)
+        List {
+            Section(header: Text("Linked Accounts")) {
+                switch state {
+                case .initial, .loading:
+                    ProgressView {
+                        Text("Loading...")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 12)
+                case .normal(let assetAccountsResponse):
+                    if assetAccountsResponse.linkedAccounts.isEmpty {
+                        ContentUnavailableView(
+                            "No Linked Accounts",
+                            systemImage: "exclamationmark.magnifyingglass",
+                            description: Text(
+                                "Try changing your filters or linking more services.")
+                        )
+                    } else {
+                        ForEach(assetAccountsResponse.linkedAccounts) {
+                            linkedAccountStatusRef in
+                            // FIXME: Show linkedAccountID too
+                            ItemRow(
+                                title: linkedAccountStatusRef.service.description,
+                                subtitle: linkedAccountStatusRef.serviceUserID,
+                                value: linkedAccountStatusRef.state.description,
+                                logoURL: linkedAccountStatusRef.service.logoURL)
                         }
                     }
-                    Section(header: Text("Asset Accounts")) {
-                        ForEach(assetAccountViewModels) { assetAccount in
-                            NavigationLink(destination: ItemScreen(viewModel: assetAccount)) {
-                                ItemRow(viewModel: assetAccount)
+                }
+            }
+            Section(header: Text("Asset Accounts")) {
+                switch state {
+                case .initial: Spacer()
+                case .loading:
+                    ProgressView {
+                        Text("Loading...")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 12)
+                case .normal(let assetAccountsResponse):
+                    if assetAccountsResponse.assetAccounts.isEmpty {
+                        ContentUnavailableView(
+                            "No Asset Accounts",
+                            systemImage: "exclamationmark.magnifyingglass",
+                            description: Text(
+                                "Try changing your filters or linking more services."
+                            )
+                        )
+                    } else {
+                        ForEach(assetAccountsResponse.assetAccounts) { assetAccount in
+                            NavigationLink(
+                                destination: AssetAccountScreen(
+                                    error: $error, assetAccount: assetAccount)
+                            ) {
+                                switch assetAccount {
+                                case .FiatAccount(let fiatAccount):
+                                    ItemRow(
+                                        title: fiatAccount.nickname,
+                                        subtitle: fiatAccount.service.description,
+                                        value: fiatAccount.balance?.formatted(
+                                            .currency(code: fiatAccount.currencyCode))
+                                            ?? fiatAccount.currencyCode,
+                                        logoURL: fiatAccount.service.logoURL)
+                                case .MarketAccount(let marketAccount):
+                                    ItemRow(
+                                        title: marketAccount.nickname,
+                                        subtitle: marketAccount.service.description,
+                                        value: marketAccount.assetKind.description,
+                                        logoURL: marketAccount.service.logoURL)
+                                case .TransportAccount(let transportAccount):
+                                    ItemRow(
+                                        title: transportAccount.nickname,
+                                        subtitle: transportAccount.service.description,
+                                        value: transportAccount.assetKind.description,
+                                        logoURL: transportAccount.service.logoURL)
+                                }
                             }
                         }
-                    }.overlay {
-                        if assetAccountViewModels.isEmpty {
-                            ContentUnavailableView(
-                                "No Asset Accounts",
-                                systemImage: "exclamationmark.magnifyingglass",
-                                description: Text(
-                                    "Try changing your filters or linking more accounts."
-                                )
-                            )
-                        }
                     }
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            EnumMenu(name: "Asset Kind", selectedCase: $assetKind)
-                            LinkedAccountsMenu(
-                                linkedAccounts: linkedAccounts,
-                                selectedLinkedAccountIDs: $selectedLinkedAccountIDs
-                            )
-                        } label: {
-                            Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
-                        }
-                    }
-                }
-
-                .navigationTitle("Asset Accounts")
             }
         }
-        .sensoryFeedback(.error, trigger: errorMessage) { $1 != nil }
-        .alert(isPresented: .constant(errorMessage != nil)) {
-            Alert(
-                title: Text("Error"), message: Text(errorMessage ?? "No Message"),
-                dismissButton: .cancel(Text("OK"), action: { errorMessage = nil }))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    EnumMenu(name: "Asset Kind", selectedCase: $assetKind)
+                    LinkedAccountsMenu(
+                        linkedAccounts: linkedAccounts,
+                        selectedLinkedAccountIDs: $selectedLinkedAccountIDs
+                    )
+                } label: {
+                    Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
+                }
+            }
         }
-        .task(id: assetAccountsQuery) {
-            await loadAssetAccounts(query: assetAccountsQuery)
+        .navigationTitle("Accounts")
+        .task { if case .initial = state { await getAssetAccounts() } }
+        .onChange(of: assetKind) { Task { await getAssetAccounts() } }
+        .onChange(of: selectedLinkedAccountIDs) { Task { await getAssetAccounts() } }
+        .onChange(of: linkedAccounts) {
+            selectedLinkedAccountIDs = []
+            Task { await getAssetAccounts() }
         }
-        .presentationDragIndicator(.visible)
-        .presentationCornerRadius(.extraLarge)
+        .refreshable {
+            await getAssetAccounts(showLoading: false)
+        }
     }
 
-    private func loadAssetAccounts(query: Models.GetAssetAccounts.Input.Query) async {
-        defer { isLoading = false }
+    private func getAssetAccounts(showLoading: Bool = true) async {
+        if showLoading {
+            state = .loading
+        }
+
         do {
-            isLoading = true
-            let assetAccountsResponse = try await client.getAssetAccounts(query: query)
-            assetAccountViewModels = assetAccountsResponse.assetAccounts.map {
-                AssetAccountViewModel(client: client, assetAccount: $0)
-            }
-            linkedAccountStatusRefViewModels = assetAccountsResponse.linkedAccounts.map {
-                LinkedAccountStatusRefViewModel(linkedAccountStatusRef: $0)
-            }
+            let assetAccountsResponse = try await client.getAssetAccounts(query: assetAccountsQuery)
+            state = .normal(assetAccountsResponse)
         } catch {
-            errorMessage = String(describing: error)
+            if showLoading {
+                state = .initial
+            }
+
+            switch error {
+            case .notFound(let payload):
+                switch payload.kind {
+                case .notFound_user:
+                    self.error = (title: "User Not Found", message: payload.message)
+                case .notFound_linkedAccount:
+                    self.error = (title: "Linked Account Not Found", message: payload.message)
+                }
+            case .unprocessableContent(let payload):
+                switch payload.kind {
+                case .schemaInvalid_request:
+                    self.error = (title: "Request Schema Invalid", message: payload.message)
+                }
+            case .unauthorized(let payload):
+                switch payload.kind {
+                case .badAuthorization_user:
+                    self.error = (title: "Bad User Authorization", message: payload.message)
+                }
+            case .internalServerError(let payload):
+                switch payload.kind {
+                case .unexpected:
+                    self.error = (title: "Internal Server Error", message: payload.message)
+                }
+            case .unexpectedStatusCode(let statusCode):
+                self.error = (
+                    title: "Unexpected Status Code",
+                    message: "Received \(statusCode) response"
+                )
+            case .sessionError(let sessionError):
+                self.error = sessionError.formatted
+            case .networkError(let errorDescription):
+                self.error = (title: "Network Error", message: errorDescription)
+            }
         }
     }
 }
 
 #Preview {
-    AssetAccountsScreen(linkedAccounts: [])
+    AssetAccountsScreen(
+        error: .constant(nil),
+        linkedAccounts: [],
+    )
 }

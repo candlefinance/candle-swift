@@ -3,6 +3,12 @@ import SwiftUI
 
 struct TradesScreen: View {
 
+    private enum _State {
+        case initial
+        case loading
+        case normal(Models.TradesResponse)
+    }
+
     // FIXME: Support dynamic span values like the SDK
     private enum SupportedSpan: String, CaseIterable, Identifiable {
         case pt3h = "PT3H"
@@ -32,19 +38,19 @@ struct TradesScreen: View {
 
     @Environment(CandleClient.self) private var client
 
-    @State private var errorMessage: String? = nil
-    @State private var isLoading = false
+    @Binding var error: (title: String, message: String)?
 
-    @State private var linkedAccountStatusRefViewModels = [LinkedAccountStatusRefViewModel]()
-    @State private var tradeViewModels = [TradeViewModel]()
-
+    @State private var state: _State = .initial
     @State private var dateTimeSpan: SupportedSpan? = nil
     @State private var lostAssetKind: Models.GetTrades.Input.Query.LostAssetKindPayload? = nil
     @State private var gainedAssetKind: Models.GetTrades.Input.Query.GainedAssetKindPayload? = nil
     @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
-
     @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
+
     @State private var searchText = ""
+    @State private var showTradeQuotes: Bool = false
+    @State private var tradeQuoteToExecute: Models.TradeQuote? = nil
+    @State private var newTrade: Models.Trade? = nil
 
     let linkedAccounts: [Models.LinkedAccount]
 
@@ -59,102 +65,189 @@ struct TradesScreen: View {
         )
     }
 
-    var filteredTrades: [TradeViewModel] {
-        guard !searchText.isEmpty else { return tradeViewModels }
-
-        return tradeViewModels.filter {
-            $0.searchTokens.contains { $0.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
-
     var body: some View {
-        NavigationStack {
-            if isLoading {
-                Spacer()
-                ProgressView {
-                    Text("Loading...")
-                }
-                Spacer()
-            } else {
-                List {
-                    Section(header: Text("Linked Accounts")) {
-                        ForEach(linkedAccountStatusRefViewModels) {
-                            linkedAccountStatusRefViewModel in
-                            ItemRow(viewModel: linkedAccountStatusRefViewModel)
+        List {
+            Section(header: Text("Linked Accounts")) {
+                switch state {
+                case .initial, .loading:
+                    ProgressView {
+                        Text("Loading...")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 12)
+                case .normal(let tradesResponse):
+                    if tradesResponse.linkedAccounts.isEmpty {
+                        ContentUnavailableView(
+                            "No Linked Accounts",
+                            systemImage: "exclamationmark.magnifyingglass",
+                            description: Text(
+                                "Try changing your filters or linking more services.")
+                        )
+                    } else {
+                        ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
+                            // FIXME: Show linkedAccountID too
+                            ItemRow(
+                                title: linkedAccountStatusRef.service.description,
+                                subtitle: linkedAccountStatusRef.serviceUserID,
+                                value: linkedAccountStatusRef.state.description,
+                                logoURL: linkedAccountStatusRef.service.logoURL)
                         }
                     }
-                    Section(header: Text("Trades")) {
+                }
+            }
+            Section(header: Text("Trades")) {
+                switch state {
+                case .initial, .loading:
+                    ProgressView {
+                        Text("Loading...")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 12)
+                case .normal(let tradesResponse):
+                    if tradesResponse.trades.isEmpty {
+                        ContentUnavailableView.search(text: searchText)
+                    } else {
+                        let filteredTrades =
+                            searchText.isEmpty
+                            ? tradesResponse.trades
+                            : tradesResponse.trades.filter {
+                                $0.searchTokens.contains {
+                                    $0.localizedCaseInsensitiveContains(searchText)
+                                }
+                            }
                         ForEach(filteredTrades) { trade in
-                            NavigationLink(destination: ItemScreen(viewModel: trade)) {
-                                ItemRow(viewModel: trade)
+                            NavigationLink(destination: TradeScreen(error: $error, trade: trade)) {
+                                ItemRow(
+                                    title: trade.formattedTitle,
+                                    subtitle: trade.formattedSubtitle,
+                                    value: trade.formattedValue,
+                                    logoURL: trade.logoURL)
                             }
                         }
-                    }.overlay {
-                        if filteredTrades.isEmpty {
-                            ContentUnavailableView.search(text: searchText)
-                        }
-                    }
-                }
-                .searchable(text: $searchText, prompt: Text("Search by asset or counterparty"))
-                .navigationTitle("Trades")
-                .refreshable {
-                    await loadTrades(query: tradesQuery, showLoading: false)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            EnumMenu(name: "Date/Time Span", selectedCase: $dateTimeSpan)
-                            EnumMenu(name: "Lost Asset Kind", selectedCase: $lostAssetKind)
-                            EnumMenu(
-                                name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
-                            EnumMenu(
-                                name: "Counterparty Kind", selectedCase: $counterpartyKind)
-                            LinkedAccountsMenu(
-                                linkedAccounts: linkedAccounts,
-                                selectedLinkedAccountIDs: $selectedLinkedAccountIDs
-                            )
-                        } label: {
-                            Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
-                        }
                     }
                 }
             }
         }
-        .alert(isPresented: .constant(errorMessage != nil)) {
-            Alert(
-                title: Text("Error"), message: Text(errorMessage ?? "No Message"),
-                dismissButton: .cancel(Text("OK"), action: { errorMessage = nil }))
+        .searchable(text: $searchText, prompt: Text("Search by asset or counterparty"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    EnumMenu(name: "Date/Time Span", selectedCase: $dateTimeSpan)
+                    EnumMenu(name: "Lost Asset Kind", selectedCase: $lostAssetKind)
+                    EnumMenu(
+                        name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
+                    EnumMenu(
+                        name: "Counterparty Kind", selectedCase: $counterpartyKind)
+                    LinkedAccountsMenu(
+                        linkedAccounts: linkedAccounts,
+                        selectedLinkedAccountIDs: $selectedLinkedAccountIDs
+                    )
+                } label: {
+                    Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showTradeQuotes = true
+                }) {
+                    Label("Link", systemImage: "plus.circle.fill")
+                }
+            }
         }
-        .task(id: tradesQuery) {
-            await loadTrades(query: tradesQuery)
+        .navigationTitle("Trades")
+        .navigationDestination(item: $newTrade) { newTrade in
+            TradeScreen(
+                error: $error,
+                trade: newTrade
+            )
         }
-        .sensoryFeedback(.error, trigger: errorMessage) { $1 != nil }
-        .presentationDragIndicator(.visible)
-        .presentationCornerRadius(.extraLarge)
+        .task { if case .initial = state { await getTrades() } }
+        .onChange(of: dateTimeSpan) { Task { await getTrades() } }
+        .onChange(of: lostAssetKind) { Task { await getTrades() } }
+        .onChange(of: gainedAssetKind) { Task { await getTrades() } }
+        .onChange(of: counterpartyKind) { Task { await getTrades() } }
+        .onChange(of: selectedLinkedAccountIDs) { Task { await getTrades() } }
+        .onChange(of: linkedAccounts) {
+            selectedLinkedAccountIDs = []
+            Task { await getTrades() }
+        }
+        .refreshable {
+            await getTrades(showLoading: false)
+        }
+        .sheet(isPresented: $showTradeQuotes) {
+            NavigationStack {
+                TradeQuotesRequestScreen(
+                    error: $error, tradeQuoteToExecute: $tradeQuoteToExecute,
+                    linkedAccounts: linkedAccounts)
+            }
+            .candleTradeExecutionSheet(item: $tradeQuoteToExecute) { result in
+                switch result {
+                case .success(let trade):
+                    newTrade = trade
+                    showTradeQuotes = false
+
+                case .failure:
+                    break
+                // FIXME: Show error in snackbar?
+                }
+            }
+        }
     }
 
-    private func loadTrades(
-        query: Models.GetTrades.Input.Query, showLoading: Bool = true
-    ) async {
-        guard !isLoading else { return }
-        isLoading = showLoading
-        defer { isLoading = false }
+    private func getTrades(showLoading: Bool = true) async {
+        if showLoading {
+            state = .loading
+        }
+
         do {
-            let tradesResponse = try await client.getTrades(query: query)
-            tradeViewModels = tradesResponse.trades.map {
-                TradeViewModel(client: client, trade: $0)
-            }
-            linkedAccountStatusRefViewModels = tradesResponse.linkedAccounts.map {
-                LinkedAccountStatusRefViewModel(linkedAccountStatusRef: $0)
-            }
+            let tradesResponse = try await client.getTrades(query: tradesQuery)
+            state = .normal(tradesResponse)
         } catch {
-            errorMessage = String(describing: error)
+            if showLoading {
+                state = .initial
+            }
+
+            switch error {
+            case .notFound(let payload):
+                switch payload.kind {
+                case .notFound_user:
+                    self.error = (title: "User Not Found", message: payload.message)
+                case .notFound_linkedAccount:
+                    self.error = (title: "Linked Account Not Found", message: payload.message)
+                }
+            case .unprocessableContent(let payload):
+                switch payload.kind {
+                case .schemaInvalid_request:
+                    self.error = (title: "Request Schema Invalid", message: payload.message)
+                }
+            case .unauthorized(let payload):
+                switch payload.kind {
+                case .badAuthorization_user:
+                    self.error = (title: "Bad User Authorization", message: payload.message)
+                }
+            case .internalServerError(let payload):
+                switch payload.kind {
+                case .unexpected:
+                    self.error = (title: "Internal Server Error", message: payload.message)
+                }
+            case .unexpectedStatusCode(let statusCode):
+                self.error = (
+                    title: "Unexpected Status Code",
+                    message: "Received \(statusCode) response"
+                )
+            case .sessionError(let sessionError):
+                self.error = sessionError.formatted
+            case .networkError(let errorDescription):
+                self.error = (title: "Network Error", message: errorDescription)
+            }
         }
     }
 }
 
 #Preview {
-    TradesScreen(linkedAccounts: [])
-        .environment(
-            CandleClient(appUser: .init(appKey: "DEBUG_APP_KEY", appSecret: "DEBUG_APP_SECRET")))
+    TradesScreen(
+        error: .constant(nil), linkedAccounts: []
+    )
+    .environment(
+        CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

@@ -6,24 +6,22 @@ struct LinkedAccountsMenu: View {
 
     let linkedAccounts: [Models.LinkedAccount]
 
-    var linkedAccountViewModels: [LinkedAccountViewModel] {
-        linkedAccounts.map { LinkedAccountViewModel(client: client, linkedAccount: $0) }
-    }
-
     @Binding var selectedLinkedAccountIDs: [Models.LinkedAccountID]
 
     var body: some View {
         Menu("Linked Accounts") {
-            ForEach(linkedAccountViewModels) { linkedAccount in
+            ForEach(linkedAccounts) { (linkedAccount: Models.LinkedAccount) in
                 Button(action: {
-                    if let index = selectedLinkedAccountIDs.firstIndex(of: linkedAccount.id) {
+                    if let index = selectedLinkedAccountIDs.firstIndex(
+                        of: linkedAccount.linkedAccountID)
+                    {
                         selectedLinkedAccountIDs.remove(at: index)
                     } else {
-                        selectedLinkedAccountIDs.append(linkedAccount.id)
+                        selectedLinkedAccountIDs.append(linkedAccount.linkedAccountID)
                     }
                 }) {
                     Label(
-                        "\(linkedAccount.title) (\(linkedAccount.subtitle))",
+                        "\(linkedAccount.service.description) (\(linkedAccount.formattedSubtitle))",
                         systemImage: selectedLinkedAccountIDs.contains(linkedAccount.id)
                             ? "checkmark" : ""
                     )

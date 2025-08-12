@@ -19,25 +19,6 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_hasMissingDesignatedInitializers @available(macOS 14, iOS 17.0, *)
-@_Concurrency.MainActor public class CandleClient {
-  @_Concurrency.MainActor public func deleteUser() async throws(Candle.Models.DeleteUser.Error)
-  @_Concurrency.MainActor public func unlinkAccount(path: Candle.Operations.DeleteLinkedAccount.Input.Path) async throws(Candle.Models.UnlinkAccount.Error)
-  @_Concurrency.MainActor public func getLinkedAccounts() async throws(Candle.Models.GetLinkedAccounts.Error) -> [Candle.Models.LinkedAccount]
-  @_Concurrency.MainActor public func getLinkedAccount(ref: Candle.Operations.GetLinkedAccount.Input.Path) async throws(Candle.Models.GetLinkedAccount.Error) -> Candle.Models.LinkedAccount
-  @_Concurrency.MainActor public func getAssetAccounts(query: Candle.Models.GetAssetAccounts.Input.Query = .init()) async throws(Candle.Models.GetAssetAccounts.Error) -> Candle.Models.AssetAccountsResponse
-  @_Concurrency.MainActor public func getAssetAccount(ref: Candle.Models.GetAssetAccount.Input.Path) async throws(Candle.Models.GetAssetAccount.Error) -> Candle.Models.AssetAccount
-  @_Concurrency.MainActor public func getTrades(query: Candle.Models.GetTrades.Input.Query = .init()) async throws(Candle.Models.GetTrades.Error) -> Candle.Models.TradesResponse
-  @_Concurrency.MainActor public func getTrade(ref: Candle.Models.TradeRef) async throws(Candle.Models.GetTrade.Error) -> Candle.Models.Trade
-  @_Concurrency.MainActor public func getTradeQuotes(request: Candle.Models.TradeQuotesRequest) async throws(Candle.Models.GetTradeQuotes.Error) -> Candle.Models.TradeQuotesResponse
-  @_Concurrency.MainActor public func getAvailableTools() -> [[Swift.String : Any]]
-  @_Concurrency.MainActor public func executeTool(tool: any Candle.ToolCallRequest) async -> Swift.String
-  @objc deinit
-}
-@available(macOS 14, iOS 17.0, *)
-extension Candle.CandleClient : Observation.Observable {
-}
-public typealias Models = Candle.Components.Schemas
 extension Candle.Components.Schemas {
   public typealias CreateUser = Candle.Operations.PostUsers
   public typealias UpdateUser = Candle.Operations.PutUsers
@@ -62,45 +43,10 @@ extension Candle.Components.Schemas {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension Candle.Components.Schemas.AssetAccount : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public var nickname: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
-}
-extension Candle.Components.Schemas.Trade : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
-}
-extension Candle.Components.Schemas.TradeQuote : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
-}
-extension Candle.Components.Schemas.TradeAsset : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
-}
-extension Candle.Components.Schemas.LinkedAccount : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
-}
 extension Candle.Operations.PostUsers {
   public enum Error : Swift.Error, Swift.Equatable, Swift.Codable {
     case networkError(Swift.String)
     case unexpectedStatusCode(Swift.Int)
-    case missingAuthorizationToken
-    case keychainError
     case unauthorized(Candle.Operations.PostUsers.Output.Unauthorized.Body.JsonPayload)
     case forbidden(Candle.Operations.PostUsers.Output.Forbidden.Body.JsonPayload)
     case notFound(Candle.Operations.PostUsers.Output.NotFound.Body.JsonPayload)
@@ -292,6 +238,169 @@ extension Candle.Operations.PostLinkedAccountsTrades {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
+@_hasMissingDesignatedInitializers @available(macOS 14, iOS 17.0, *)
+@_Concurrency.MainActor public class CandleClient {
+  @_Concurrency.MainActor public func deleteUser() async throws(Candle.Models.DeleteUser.Error)
+  @_Concurrency.MainActor public func unlinkAccount(path: Candle.Operations.DeleteLinkedAccount.Input.Path) async throws(Candle.Models.UnlinkAccount.Error)
+  @_Concurrency.MainActor public func getLinkedAccounts() async throws(Candle.Models.GetLinkedAccounts.Error) -> [Candle.Models.LinkedAccount]
+  @_Concurrency.MainActor public func getLinkedAccount(ref: Candle.Operations.GetLinkedAccount.Input.Path) async throws(Candle.Models.GetLinkedAccount.Error) -> Candle.Models.LinkedAccount
+  @_Concurrency.MainActor public func getAssetAccounts(query: Candle.Models.GetAssetAccounts.Input.Query = .init()) async throws(Candle.Models.GetAssetAccounts.Error) -> Candle.Models.AssetAccountsResponse
+  @_Concurrency.MainActor public func getAssetAccount(ref: Candle.Models.GetAssetAccount.Input.Path) async throws(Candle.Models.GetAssetAccount.Error) -> Candle.Models.AssetAccount
+  @_Concurrency.MainActor public func getTrades(query: Candle.Models.GetTrades.Input.Query = .init()) async throws(Candle.Models.GetTrades.Error) -> Candle.Models.TradesResponse
+  @_Concurrency.MainActor public func getTrade(ref: Candle.Models.TradeRef) async throws(Candle.Models.GetTrade.Error) -> Candle.Models.Trade
+  @_Concurrency.MainActor public func getTradeQuotes(request: Candle.Models.TradeQuotesRequest) async throws(Candle.Models.GetTradeQuotes.Error) -> Candle.Models.TradeQuotesResponse
+  @_Concurrency.MainActor public func getAvailableTools() -> [[Swift.String : Any]]
+  @_Concurrency.MainActor public func executeTool(tool: any Candle.ToolCallRequest) async -> Swift.String
+  @objc deinit
+}
+@available(macOS 14, iOS 17.0, *)
+extension Candle.CandleClient : Observation.Observable {
+}
+extension Candle.Components.Schemas.ActiveLinkedAccountDetails.StatePayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.InactiveLinkedAccountDetails.StatePayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.ChallengeType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.Service : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.FiatMarketAccountKind : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.TransportAccountKind : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.MarketAccount.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.TransportAccount.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.FiatAccount.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.ACHAccountKind : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.FiatAsset.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.TransportAsset.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.OtherAsset.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.NothingAsset.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.MarketTradeAsset.AssetKindPayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.Trade.StatePayload : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Candle.Components.Schemas.LinkedAccount : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.LinkedAccountStatusRef : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.ChallengeType : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.Service : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.AssetAccount : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.Trade : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.TradeQuote : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension Candle.Components.Schemas.TradeAsset : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+public typealias Models = Candle.Components.Schemas
+extension Candle.Components.Schemas.AssetAccount {
+  public var nickname: Swift.String {
+    get
+  }
+  public var service: Candle.Models.Service {
+    get
+  }
+  public var ref: Candle.Models.GetAssetAccount.Input.Path {
+    get
+  }
+}
 extension Candle.Components.Schemas.ServiceCredentialsRequest {
   public init(credentials: Candle.Models.ServiceCredentials)
 }
@@ -330,11 +439,6 @@ extension Candle.Components.Schemas.LinkedAccount {
     get
   }
 }
-extension Candle.Components.Schemas.AssetAccount {
-  public var ref: Candle.Models.GetAssetAccount.Input.Path {
-    get
-  }
-}
 extension Candle.Components.Schemas.TradeAsset {
   public var ref: Candle.Models.TradeAssetRef {
     get
@@ -350,26 +454,22 @@ extension Candle.Components.Schemas.ChallengeRequest {
     get
   }
 }
-extension Candle.Components.Schemas.ChallengeType : Swift.Identifiable {
-  public var id: Swift.String {
-    get
-  }
-  public var name: Swift.String {
-    get
-  }
-  public typealias ID = Swift.String
+extension Candle.Components.Schemas.ChallengeCodeType {
+  public init(challengeType: Candle.Models.ChallengeCodeAppRequest.ChallengeTypePayload)
+  public init(challengeType: Candle.Models.ChallengeCodeEmailRequest.ChallengeTypePayload)
+  public init(challengeType: Candle.Models.ChallengeCodePhoneRequest.ChallengeTypePayload)
 }
-extension Candle.Components.Schemas.Service : Swift.Identifiable {
-  public var id: Swift.String {
-    get
+extension Candle.Components.Schemas.Service {
+  public enum AuthenticationService {
+    case local(Candle.Models.LocalService)
+    case remote(Candle.Models.RemoteService)
   }
   public var logoURL: Foundation.URL {
     get
   }
-  public var name: Swift.String {
+  public var authenticationService: Candle.Components.Schemas.Service.AuthenticationService {
     get
   }
-  public typealias ID = Swift.String
 }
 public protocol APIProtocol : Swift.Sendable {
   func postUsers(_ input: Candle.Operations.PostUsers.Input) async throws -> Candle.Operations.PostUsers.Output
@@ -10304,12 +10404,42 @@ extension SwiftUICore.View {
 }
 @available(macOS 14, iOS 17.0, *)
 extension Candle.CandleClient : Swift.Sendable {}
+extension Candle.Components.Schemas.ActiveLinkedAccountDetails.StatePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ActiveLinkedAccountDetails.StatePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.InactiveLinkedAccountDetails.StatePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.InactiveLinkedAccountDetails.StatePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.BitwiseCopyable {}
-extension Candle.Components.Schemas.ChallengeCodeType : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ChallengeCodeType : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.Service : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.Service : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.FiatMarketAccountKind : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.FiatMarketAccountKind : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.TransportAccountKind : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TransportAccountKind : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.MarketAccount.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.MarketAccount.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.TransportAccount.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TransportAccount.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.FiatAccount.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.FiatAccount.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ACHAccountKind : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ACHAccountKind : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.FiatAsset.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.FiatAsset.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.TransportAsset.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.TransportAsset.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.OtherAsset.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.OtherAsset.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.NothingAsset.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.NothingAsset.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.MarketTradeAsset.AssetKindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.MarketTradeAsset.AssetKindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.Trade.StatePayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.Trade.StatePayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.ChallengeCodeType : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.ChallengeCodeType : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.AppUser.CodingKeys : Swift.RawRepresentable {}
@@ -10327,13 +10457,9 @@ extension Candle.Components.Schemas.MigrationUser.CodingKeys : Swift.RawRepresen
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.LinkedAccount.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.InactiveLinkedAccountDetails.StatePayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.InactiveLinkedAccountDetails.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.InactiveLinkedAccountDetails.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.InactiveLinkedAccountDetails.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.InactiveLinkedAccountDetails.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ActiveLinkedAccountDetails.StatePayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ActiveLinkedAccountDetails.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ActiveLinkedAccountDetails.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ActiveLinkedAccountDetails.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ActiveLinkedAccountDetails.CodingKeys : Swift.RawRepresentable {}
@@ -10446,43 +10572,27 @@ extension Candle.Components.Schemas.ChallengeTermsRequest.CodingKeys : Swift.Raw
 extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.AssetAccountsResponse.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.LinkedAccountStatusRef.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatAccount.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatAccount.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.FiatAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.FiatAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.FiatAccount.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatMarketAccountKind : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatMarketAccountKind : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ACHDetails.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ACHDetails.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ACHDetails.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ACHAccountKind : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.ACHAccountKind : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.WireDetails.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.WireDetails.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.WireDetails.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.MarketAccount.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.MarketAccount.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.MarketAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.MarketAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.MarketAccount.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAccount.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAccount.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.TransportAccount.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.TransportAccount.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.TransportAccount.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAccountKind : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAccountKind : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.TradesResponse.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.Trade.StatePayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.Trade.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.Trade.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.Trade.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.Trade.CodingKeys : Swift.RawRepresentable {}
@@ -10504,18 +10614,12 @@ extension Candle.Components.Schemas.ServiceCounterparty.KindPayload : Swift.Bitw
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatAsset.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.FiatAsset.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.FiatAsset.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.FiatAsset.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.FiatAsset.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.MarketTradeAsset.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.MarketTradeAsset.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.MarketTradeAsset.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.MarketTradeAsset.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.MarketTradeAsset.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAsset.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.TransportAsset.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.TransportAsset.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.TransportAsset.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.TransportAsset.CodingKeys : Swift.RawRepresentable {}
@@ -10525,13 +10629,9 @@ extension Candle.Components.Schemas.Coordinates.CodingKeys : Swift.RawRepresenta
 extension Candle.Components.Schemas.Address.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.Address.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.Address.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.OtherAsset.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.OtherAsset.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.OtherAsset.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.OtherAsset.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.OtherAsset.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.NothingAsset.AssetKindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.NothingAsset.AssetKindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.NothingAsset.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.NothingAsset.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.NothingAsset.CodingKeys : Swift.RawRepresentable {}
