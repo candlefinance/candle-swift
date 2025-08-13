@@ -84,7 +84,8 @@ struct LinkedAccountScreen: View {
                             InfoRow(
                                 systemImage: "calendar",
                                 title: "Account Opened",
-                                value: accountOpenedDate?.formatted(.dateTime) ?? accountOpened
+                                value: accountOpenedDate?.formatted(
+                                    date: .complete, time: .complete) ?? accountOpened
                             )
                         }
                     }

@@ -105,7 +105,7 @@ struct TradeAssetGroup: View {
                     )
                 }
 
-                // FIXME: Show logoURL and origin/destination details
+                // FIXME: Show logoURL and origin/destination coordinates
                 Section(header: Text("Details").bold()) {
                     let arrivalDate = ISO8601DateFormatter.candle.date(
                         from: transportAsset.arrivalDateTime)
@@ -128,6 +128,16 @@ struct TradeAssetGroup: View {
                         title: "Arrival Date/Time",
                         value: arrivalDate?.formatted(date: .complete, time: .complete)
                             ?? transportAsset.arrivalDateTime
+                    )
+                    InfoRow(
+                        systemImage: "sunrise",
+                        title: "Origin Address",
+                        value: transportAsset.originAddress.value
+                    )
+                    InfoRow(
+                        systemImage: "sunset",
+                        title: "Destination Address",
+                        value: transportAsset.destinationAddress.value
                     )
                     InfoRow(
                         systemImage: "figure.seated.seatbelt",

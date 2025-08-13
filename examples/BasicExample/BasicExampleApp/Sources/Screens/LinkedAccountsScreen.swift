@@ -11,7 +11,8 @@ struct LinkedAccountsScreen: View {
     @Environment(CandleClient.self) private var client
     @Environment(\.colorScheme) private var colorScheme
 
-    @AppStorage("com.trycandle.candle.show_onboarding", store: .standard) private var showOnboarding = true
+    @AppStorage("com.trycandle.candle.show_onboarding", store: .standard) private
+        var showOnboarding = true
 
     @Binding var linkedAccounts: [Models.LinkedAccount]
     @Binding var error: (title: String, message: String)?
@@ -39,7 +40,14 @@ struct LinkedAccountsScreen: View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading…")
                     }

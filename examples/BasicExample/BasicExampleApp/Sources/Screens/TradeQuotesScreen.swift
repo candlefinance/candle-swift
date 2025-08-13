@@ -27,7 +27,14 @@ struct TradeQuotesScreen: View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading...")
                     }
@@ -56,7 +63,14 @@ struct TradeQuotesScreen: View {
             }
             Section(header: Text("Trade Quotes")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading...")
                     }

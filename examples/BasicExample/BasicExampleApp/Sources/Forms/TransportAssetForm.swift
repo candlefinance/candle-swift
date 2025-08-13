@@ -52,14 +52,11 @@ struct TransportAssetFormViewModel: Observable {
 struct TransportAssetForm: View {
 
     @Binding var viewModel: TransportAssetFormViewModel
+    @State var locationProvider = LocationViewModel()
     @State private var originCamera: MapCameraPosition = .region(
-        .init(
-            center: .init(),
-            span: .init(latitudeDelta: 10, longitudeDelta: 10)))
+        .init(center: .init(), latitudinalMeters: 100_000_000, longitudinalMeters: 100_000_000))
     @State private var destinationCamera: MapCameraPosition = .region(
-        .init(
-            center: .init(),
-            span: .init(latitudeDelta: 10, longitudeDelta: 10)))
+        .init(center: .init(), latitudinalMeters: 100_000_000, longitudinalMeters: 100_000_000))
 
     var body: some View {
         // FIXME: Accept input for asset ID, seats, and addresses
@@ -68,6 +65,9 @@ struct TransportAssetForm: View {
         FormRow(
             value: $viewModel.serviceAccountID, title: "Service Account ID", placeholder: "optional"
         )
+        .onAppear {
+            locationProvider.requestLocation()
+        }
 
         VStack {
             HStack {
@@ -82,6 +82,12 @@ struct TransportAssetForm: View {
                 viewModel.originCoordinates = context.region.center
             }.frame(height: 200).cornerRadius(10)
         }
+        .onChange(of: locationProvider.coordinate) { oldValue, newValue in
+            guard let newValue else { return }
+            viewModel.originCoordinates = newValue
+            originCamera = .region(
+                .init(center: newValue, latitudinalMeters: 2_000, longitudinalMeters: 2_000))
+        }
 
         VStack {
             HStack {
@@ -95,6 +101,12 @@ struct TransportAssetForm: View {
             }.onMapCameraChange(frequency: .continuous) { context in
                 viewModel.destinationCoordinates = context.region.center
             }.frame(height: 200).cornerRadius(10)
+        }
+        .onChange(of: locationProvider.coordinate) { oldValue, newValue in
+            guard let newValue else { return }
+            viewModel.destinationCoordinates = newValue
+            destinationCamera = .region(
+                .init(center: newValue, latitudinalMeters: 10_000, longitudinalMeters: 10_000))
         }
     }
 }

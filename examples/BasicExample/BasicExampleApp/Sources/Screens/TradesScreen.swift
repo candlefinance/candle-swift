@@ -69,7 +69,14 @@ struct TradesScreen: View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading...")
                     }
@@ -97,7 +104,14 @@ struct TradesScreen: View {
             }
             Section(header: Text("Trades")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading...")
                     }

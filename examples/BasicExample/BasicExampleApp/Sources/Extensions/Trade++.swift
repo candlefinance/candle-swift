@@ -46,7 +46,7 @@ extension Models.Trade {
     var formattedSubtitle: String {
         let tradeDate = ISO8601DateFormatter.candle.date(from: dateTime)
 
-        return tradeDate?.formatted(.dateTime) ?? dateTime
+        return tradeDate?.formatted(date: .complete, time: .complete) ?? dateTime
     }
 
     var formattedValue: String {

@@ -30,7 +30,14 @@ struct AssetAccountsScreen: View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
-                case .initial, .loading:
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
+                case .loading:
                     ProgressView {
                         Text("Loading...")
                     }
@@ -59,7 +66,13 @@ struct AssetAccountsScreen: View {
             }
             Section(header: Text("Asset Accounts")) {
                 switch state {
-                case .initial: Spacer()
+                case .initial:
+                    ContentUnavailableView(
+                        "Connection Error",
+                        systemImage: "network.slash",
+                        description: Text(
+                            "Check your connection and pull to refresh.")
+                    )
                 case .loading:
                     ProgressView {
                         Text("Loading...")
