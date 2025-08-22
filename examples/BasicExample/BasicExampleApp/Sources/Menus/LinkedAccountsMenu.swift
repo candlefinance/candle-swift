@@ -13,8 +13,8 @@ struct LinkedAccountsMenu: View {
             ForEach(linkedAccounts) { (linkedAccount: Models.LinkedAccount) in
                 Button(action: {
                     if let index = selectedLinkedAccountIDs.firstIndex(
-                        of: linkedAccount.linkedAccountID)
-                    {
+                        of: linkedAccount.linkedAccountID
+                    ) {
                         selectedLinkedAccountIDs.remove(at: index)
                     } else {
                         selectedLinkedAccountIDs.append(linkedAccount.linkedAccountID)

@@ -7,9 +7,7 @@ struct AppearanceEffectRenderer: TextRenderer, Animatable {
     let totalDuration: TimeInterval
     var elapsedTime: TimeInterval
 
-    var spring: Spring {
-        .snappy(duration: elementDuration - 0.05, extraBounce: 0.4)
-    }
+    var spring: Spring { .snappy(duration: elementDuration - 0.05, extraBounce: 0.4) }
 
     var animatableData: Double {
         get { elapsedTime }
@@ -44,7 +42,9 @@ struct AppearanceEffectRenderer: TextRenderer, Animatable {
     }
 
     func draw(
-        _ slice: Text.Layout.RunSlice, at time: TimeInterval, in context: inout GraphicsContext
+        _ slice: Text.Layout.RunSlice,
+        at time: TimeInterval,
+        in context: inout GraphicsContext
     ) {
         let progress = time / elementDuration
 
@@ -57,7 +57,8 @@ struct AppearanceEffectRenderer: TextRenderer, Animatable {
             fromValue: slice.typographicBounds.descent,
             toValue: 0,
             initialVelocity: 0,
-            time: time)
+            time: time
+        )
 
         context.translateBy(x: 0, y: translationY)
         context.addFilter(.blur(radius: blurRadius))
@@ -75,9 +76,7 @@ struct AppearanceEffectRenderer: TextRenderer, Animatable {
 
 extension Text.Layout {
     var flattenedRuns: some RandomAccessCollection<Text.Layout.Run> {
-        self.flatMap { line in
-            line
-        }
+        self.flatMap { line in line }
     }
 
     var flattenedRunSlices: some RandomAccessCollection<Text.Layout.RunSlice> {

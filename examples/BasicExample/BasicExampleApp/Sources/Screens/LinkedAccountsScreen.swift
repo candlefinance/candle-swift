@@ -11,7 +11,7 @@ struct LinkedAccountsScreen: View {
     @Environment(CandleClient.self) private var client
     @Environment(\.colorScheme) private var colorScheme
 
-    @AppStorage("com.trycandle.candle.show_onboarding", store: .standard) private
+    @AppStorage("com.trycandle.candle.show_onboarding.2", store: .standard) private
         var showOnboarding = true
 
     @Binding var linkedAccounts: [Models.LinkedAccount]
@@ -29,9 +29,7 @@ struct LinkedAccountsScreen: View {
     var sdkVersion: String {
         // FIXME: Get the version of the SDK dependency itself
         guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        else {
-            return "Unknown"
-        }
+        else { return "Unknown" }
 
         return appVersion
     }
@@ -44,15 +42,11 @@ struct LinkedAccountsScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading…")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading…") }.frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 12)
                 case .normal:
                     if linkedAccounts.isEmpty {
                         ContentUnavailableView(
@@ -60,46 +54,44 @@ struct LinkedAccountsScreen: View {
                             systemImage: "exclamationmark.magnifyingglass",
                             description: Text("Link a service to get started")
                         )
-                        .onTapGesture {
-                            showLinkSheet = true
-                        }
+                        .onTapGesture { showLinkSheet = true }
                     } else {
                         ForEach(linkedAccounts) { linkedAccount in
                             NavigationLink(
                                 destination: LinkedAccountScreen(
-                                    error: $error, linkedAccount: linkedAccount)
+                                    showLinkSheet: $showLinkSheet,
+                                    error: $error,
+                                    linkedAccount: linkedAccount
+                                )
                             ) {
                                 ItemRow(
                                     title: linkedAccount.service.description,
                                     subtitle: linkedAccount.formattedSubtitle,
                                     value: "",
-                                    logoURL: linkedAccount.service.logoURL)
-                            }.swipeActions {
-                                Button("Unlink") {
-                                    accountToUnlink = linkedAccount
+                                    logoURL: linkedAccount.service.logoURL
+                                )
+                            }
+                            .swipeActions {
+                                if case .InactiveLinkedAccountDetails = linkedAccount.details {
+                                    Button("Re-Link") { showLinkSheet = true }.tint(.green)
                                 }
-                                .tint(.red)
+                                Button("Unlink") { accountToUnlink = linkedAccount }.tint(.red)
                             }
                         }
                     }
                 }
             }
         }
-        .task { if case .initial = state { await getLinkedAccounts() } }
-        .refreshable {
-            await getLinkedAccounts(showLoading: false)
+        .task(id: showOnboarding) {
+            if case .initial = state, !showOnboarding { await getLinkedAccounts() }
         }
+        .refreshable { await getLinkedAccounts(showLoading: false) }
         .confirmationDialog(
             "Are You Sure?",
             isPresented: .constant(accountToUnlink != nil),
             titleVisibility: .visible
         ) {
-            Button(
-                "Unlink Account",
-                role: .destructive,
-                action: {
-                    Task { await unlinkAccount() }
-                })
+            Button("Unlink Account", role: .destructive, action: { Task { await unlinkAccount() } })
             Button("Cancel", role: .cancel) { accountToUnlink = nil }
         } message: {
             Text(
@@ -116,21 +108,22 @@ struct LinkedAccountsScreen: View {
                 )
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    showLinkSheet = true
-                }) {
+                Button(action: { showLinkSheet = true }) {
                     Label("Link", systemImage: "plus.circle.fill")
                 }
             }
         }
         .navigationDestination(item: $newLinkedAccount) { newLinkedAccount in
             LinkedAccountScreen(
+                showLinkSheet: $showLinkSheet,
                 error: $error,
                 linkedAccount: newLinkedAccount
             )
         }
         .confirmationDialog(
-            "Delete User?", isPresented: $showDeleteConfirmation, titleVisibility: .visible
+            "Delete User?",
+            isPresented: $showDeleteConfirmation,
+            titleVisibility: .visible
         ) {
             Button("Delete User", role: .destructive, action: { Task { await deleteUser() } })
             Button("Cancel", role: .cancel) {}
@@ -141,18 +134,15 @@ struct LinkedAccountsScreen: View {
             Alert(
                 title: Text("Candle SDK Version"),
                 message: Text(sdkVersion),
-                dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false }))
+                dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
+            )
         }
         .fullScreenCover(isPresented: $showOnboarding) {
             OnboardingScreen(
                 error: $error,
                 photos: [
-                    .init(resource: .link1),
-                    .init(resource: .link7),
-                    .init(resource: .link2),
-                    .init(resource: .link6),
-                    .init(resource: .link3),
-                    .init(resource: .link4),
+                    .init(resource: .link1), .init(resource: .link7), .init(resource: .link2),
+                    .init(resource: .link6), .init(resource: .link3), .init(resource: .link4),
                     .init(resource: .link5),
                 ],
                 title: "Welcome to",
@@ -175,17 +165,13 @@ struct LinkedAccountsScreen: View {
     }
 
     private func getLinkedAccounts(showLoading: Bool = true) async {
-        if showLoading {
-            state = .loading
-        }
+        if showLoading { state = .loading }
 
         do {
             linkedAccounts = try await client.getLinkedAccounts()
             state = .normal
         } catch {
-            if showLoading {
-                state = .initial
-            }
+            if showLoading { state = .initial }
 
             switch error {
             case .notFound(let payload):
@@ -210,11 +196,9 @@ struct LinkedAccountsScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -268,11 +252,9 @@ struct LinkedAccountsScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -293,8 +275,7 @@ struct LinkedAccountsScreen: View {
                 switch payload.kind {
                 case .notFound_user:
                     self.error = (title: "User Not Found", message: payload.message)
-                case .notFound_app:
-                    self.error = (title: "App Not Found", message: payload.message)
+                case .notFound_app: self.error = (title: "App Not Found", message: payload.message)
                 }
             case .unprocessableContent(let payload):
                 switch payload.kind {
@@ -320,11 +301,9 @@ struct LinkedAccountsScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -333,10 +312,6 @@ struct LinkedAccountsScreen: View {
 }
 
 #Preview {
-    LinkedAccountsScreen(
-        linkedAccounts: .constant([]),
-        error: .constant(nil)
-    )
-    .environment(
-        CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    LinkedAccountsScreen(linkedAccounts: .constant([]), error: .constant(nil))
+        .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

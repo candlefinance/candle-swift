@@ -10,8 +10,7 @@ struct FormRow: View {
         HStack {
             Text(title).fontWeight(.bold)
             Spacer()
-            TextField(placeholder, text: $value).multilineTextAlignment(
-                .trailing)
+            TextField(placeholder, text: $value).multilineTextAlignment(.trailing)
         }
     }
 }

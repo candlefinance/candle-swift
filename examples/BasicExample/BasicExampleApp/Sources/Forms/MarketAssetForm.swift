@@ -29,7 +29,9 @@ struct MarketAssetForm: View {
 
         // FIXME: Show drop-down menu of known accounts
         FormRow(
-            value: $viewModel.serviceAccountID, title: "Service Account ID", placeholder: "optional"
+            value: $viewModel.serviceAccountID,
+            title: "Service Account ID",
+            placeholder: "optional"
         )
 
         // FIXME: Show drop-down menu of known currencies

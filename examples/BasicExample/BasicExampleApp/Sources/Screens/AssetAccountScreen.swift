@@ -31,8 +31,11 @@ struct AssetAccountScreen: View {
     var body: some View {
         List {
             InfoHeader(
-                logoURL: assetAccount.service.logoURL, title: assetAccount.nickname,
-                badgeText: badgeText, badgeColor: badgeColor)
+                logoURL: assetAccount.service.logoURL,
+                title: assetAccount.nickname,
+                badgeText: badgeText,
+                badgeColor: badgeColor
+            )
 
             switch assetAccount {
             case .FiatAccount(let fiatAccount):
@@ -59,8 +62,7 @@ struct AssetAccountScreen: View {
                         InfoRow(
                             systemImage: "banknote",
                             title: "Balance",
-                            value: balance.formatted(
-                                .currency(code: fiatAccount.currencyCode)),
+                            value: balance.formatted(.currency(code: fiatAccount.currencyCode)),
                         )
                     } else {
                         InfoRow(
@@ -147,15 +149,11 @@ struct AssetAccountScreen: View {
                 }
             }
         }
-        .refreshable {
-            await getAssetAccount()
-        }
+        .refreshable { await getAssetAccount() }
     }
 
     private func getAssetAccount() async {
-        do {
-            assetAccount = try await client.getAssetAccount(ref: assetAccount.ref)
-        } catch {
+        do { assetAccount = try await client.getAssetAccount(ref: assetAccount.ref) } catch {
             switch error {
             case .notFound(let payload):
                 switch payload.kind {
@@ -187,48 +185,12 @@ struct AssetAccountScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
         }
     }
-}
-
-#Preview {
-    LinkedAccountScreen(
-        error: .constant(nil),
-        linkedAccount: .init(
-            linkedAccountID: "00000000-0000-0000-0000-000000000000",
-            service: .sandbox,
-            serviceUserID: "1234567890",
-            details: .ActiveLinkedAccountDetails(
-                .init(
-                    state: .active,
-                    accountOpened: "2016-02-01T08:34:20+08:00",
-                    username: "johnny",
-                    emailAddress: "john@apple.com",
-                    legalName: "John Appleseed",
-                ))
-        ),
-    )
-}
-
-#Preview {
-    LinkedAccountScreen(
-        error: .constant(nil),
-        linkedAccount: .init(
-            linkedAccountID: "00000000-0000-0000-0000-000000000000",
-            service: .sandbox,
-            serviceUserID: "1234567890",
-            details: .InactiveLinkedAccountDetails(
-                .init(
-                    state: .inactive,
-                ))
-        )
-    )
 }

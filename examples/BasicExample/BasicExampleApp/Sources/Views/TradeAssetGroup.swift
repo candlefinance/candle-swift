@@ -33,8 +33,7 @@ struct TradeAssetGroup: View {
                     InfoRow(
                         systemImage: "banknote",
                         title: "Amount",
-                        value: fiatAsset.amount.formatted(
-                            .currency(code: fiatAsset.currencyCode)),
+                        value: fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode)),
                     )
                 }
 
@@ -64,11 +63,7 @@ struct TradeAssetGroup: View {
 
                 // FIXME: Show color + logoURL
                 Section(header: Text("Asset").bold()) {
-                    InfoRow(
-                        systemImage: "info.circle",
-                        title: "Name",
-                        value: marketAsset.name,
-                    )
+                    InfoRow(systemImage: "info.circle", title: "Name", value: marketAsset.name, )
                     InfoRow(
                         systemImage: "chart.line.uptrend.xyaxis",
                         title: "Symbol",
@@ -108,9 +103,11 @@ struct TradeAssetGroup: View {
                 // FIXME: Show logoURL and origin/destination coordinates
                 Section(header: Text("Details").bold()) {
                     let arrivalDate = ISO8601DateFormatter.candle.date(
-                        from: transportAsset.arrivalDateTime)
+                        from: transportAsset.arrivalDateTime
+                    )
                     let departureDate = ISO8601DateFormatter.candle.date(
-                        from: transportAsset.departureDateTime)
+                        from: transportAsset.departureDateTime
+                    )
 
                     InfoRow(
                         systemImage: "info.circle",
@@ -153,25 +150,40 @@ struct TradeAssetGroup: View {
             switch tradeAsset {
             case .FiatAsset(let fiatAsset):
                 InfoHeader(
-                    logoURL: fiatAsset.service.logoURL, title: fiatAsset.currencyCode,
-                    badgeText: fiatAsset.assetKind.description, badgeColor: .green)
+                    logoURL: fiatAsset.service.logoURL,
+                    title: fiatAsset.currencyCode,
+                    badgeText: fiatAsset.assetKind.description,
+                    badgeColor: .green
+                )
             case .MarketTradeAsset(let marketAsset):
                 let badgeColor = marketAsset.assetKind == .crypto ? Color.orange : .indigo
                 InfoHeader(
-                    logoURL: marketAsset.service.logoURL, title: marketAsset.name,
-                    badgeText: marketAsset.assetKind.description, badgeColor: badgeColor)
+                    logoURL: marketAsset.service.logoURL,
+                    title: marketAsset.name,
+                    badgeText: marketAsset.assetKind.description,
+                    badgeColor: badgeColor
+                )
             case .TransportAsset(let transportAsset):
                 InfoHeader(
-                    logoURL: transportAsset.service.logoURL, title: transportAsset.name,
-                    badgeText: transportAsset.assetKind.description, badgeColor: .black)
+                    logoURL: transportAsset.service.logoURL,
+                    title: transportAsset.name,
+                    badgeText: transportAsset.assetKind.description,
+                    badgeColor: .black
+                )
             case .OtherAsset(let otherAsset):
                 InfoHeader(
-                    logoURL: URL(string: "")!, title: nil,  // TODO
-                    badgeText: otherAsset.assetKind.description, badgeColor: .gray)
+                    logoURL: URL(string: "")!,
+                    title: nil,  // TODO
+                    badgeText: otherAsset.assetKind.description,
+                    badgeColor: .gray
+                )
             case .NothingAsset(let nothingAsset):
                 InfoHeader(
-                    logoURL: URL(string: "")!, title: nil,  // TODO
-                    badgeText: nothingAsset.assetKind.description, badgeColor: .red)
+                    logoURL: URL(string: "")!,
+                    title: nil,  // TODO
+                    badgeText: nothingAsset.assetKind.description,
+                    badgeColor: .red
+                )
 
             }
         }

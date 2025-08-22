@@ -30,34 +30,26 @@ struct OnboardingScreen: View {
 
     var body: some View {
         ZStack {
-            Image(photos[currentIndex].resource)
-                .resizable()
-                .ignoresSafeArea(.all)
-                .blur(radius: 10)
+            Image(photos[currentIndex].resource).resizable().ignoresSafeArea(.all).blur(radius: 10)
             VStack {
-                pagingRotation
-                    .transition(.move(edge: .top))
+                pagingRotation.transition(.move(edge: .top))
                     .animation(.easeInOut(duration: 1), value: prVisible)
                 cta
                 Spacer()
             }
-            .background(.black.opacity(0.65))
-            .background(.ultraThinMaterial)
+            .background(.black.opacity(0.65)).background(.ultraThinMaterial)
             .sensoryFeedback(.selection, trigger: isDragging ? currentIndex : nil)
         }
     }
 
-    @ViewBuilder
-    var pagingRotation: some View {
+    @ViewBuilder var pagingRotation: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
                     ForEach(Array(photos.enumerated()), id: \.offset) { index, photo in
-                        ItemPhoto(photo: photo)
-                            .frame(width: imageWidth)
+                        ItemPhoto(photo: photo).frame(width: imageWidth)
                             .scrollTransition(axis: .horizontal) { content, phase in
-                                content
-                                    .rotationEffect(.degrees(phase.value * 2.5))
+                                content.rotationEffect(.degrees(phase.value * 2.5))
                                     .scaleEffect(1 - abs(phase.value) * 0.025)
                                     .opacity(1 - abs(phase.value) * 0.8)
                             }
@@ -79,7 +71,9 @@ struct OnboardingScreen: View {
                             let predictedIndex = Int(
                                 round(
                                     -(scrollOffset + value.predictedEndTranslation.width)
-                                        / imageWidth))
+                                        / imageWidth
+                                )
+                            )
                             withAnimation(.easeOut) {
                                 scrollOffset = -CGFloat(predictedIndex) * imageWidth
                             }
@@ -91,9 +85,7 @@ struct OnboardingScreen: View {
                             }
                         }
                 )
-                .onAppear {
-                    startAutoScroll(geometry.size.width)
-                }
+                .onAppear { startAutoScroll(geometry.size.width) }
                 .onDisappear {
                     timer?.invalidate()
                     prVisible = false
@@ -101,17 +93,13 @@ struct OnboardingScreen: View {
                 }
                 .onChange(of: currentIndex) { _, newIndex in
                     withAnimation(nil) {
-                        if newIndex >= photos.count - 3 {
-                            self.photos.append(contentsOf: photos)
-                        }
+                        if newIndex >= photos.count - 3 { self.photos.append(contentsOf: photos) }
                     }
                 }
             }
-            .contentMargins(.extraLarge)
-            .frame(height: UIScreen.main.bounds.height * 0.55)
+            .contentMargins(.extraLarge).frame(height: UIScreen.main.bounds.height * 0.55)
         }
-        .frame(height: UIScreen.main.bounds.height * 0.55)
-        .padding(.vertical, .extraLarge)
+        .frame(height: UIScreen.main.bounds.height * 0.55).padding(.vertical, .extraLarge)
     }
 
     func startAutoScroll(_ viewWidth: CGFloat) {
@@ -119,51 +107,41 @@ struct OnboardingScreen: View {
             Task { @MainActor in
                 withAnimation {
                     scrollOffset -= 1
-                    if scrollOffset <= -viewWidth * CGFloat(photos.count - 1) {
-                        scrollOffset = 0
-                    }
+                    if scrollOffset <= -viewWidth * CGFloat(photos.count - 1) { scrollOffset = 0 }
                 }
             }
         }
     }
 
     private var titleText: some View {
-        Text(title)
-            .font(.system(size: .large, weight: .bold, design: .default))
+        Text(title).font(.system(size: .large, weight: .bold, design: .default))
             .foregroundStyle(.secondary)
     }
 
     private var productText: some View {
-        Text(product)
-            .font(.system(size: .extraHuge, weight: .bold, design: .default))
-            .customAttribute(EmphasisAttribute())
-            .padding(.bottom, 5)
+        Text(product).font(.system(size: .extraHuge, weight: .bold, design: .default))
+            .customAttribute(EmphasisAttribute()).padding(.bottom, 5)
     }
 
     private var captionText: some View {
-        Text(caption)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
+        Text(caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
     }
 
     var cta: some View {
         VStack {
             if ctaVisible {
                 if #available(iOS 18.0, *) {
-                    titleText
-                        .transition(TextTransition())
+                    titleText.transition(TextTransition())
                 } else {
                     titleText
                 }
                 if #available(iOS 18.0, *) {
-                    productText
-                        .transition(TextTransition())
+                    productText.transition(TextTransition())
                 } else {
                     productText
                 }
                 if #available(iOS 18.0, *) {
-                    captionText
-                        .transition(TextTransition())
+                    captionText.transition(TextTransition())
                 } else {
                     captionText
                 }
@@ -171,26 +149,18 @@ struct OnboardingScreen: View {
                 Button(action: {
                     dismiss()
                 }) {
-                    Text(ctaText)
-                        .font(.system(size: 15, weight: .semibold, design: .default))
-                        .padding([.vertical], .medium)
-                        .padding([.horizontal], .large)
+                    Text(ctaText).font(.system(size: 15, weight: .semibold, design: .default))
+                        .padding([.vertical], .medium).padding([.horizontal], .large)
                 }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .tint(.white)
-                .foregroundStyle(.black)
-                .padding(.extraLarge)
+                .buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(.white)
+                .foregroundStyle(.black).padding(.extraLarge)
             }
         }
-        .foregroundStyle(.white)
-        .padding()
+        .foregroundStyle(.white).padding()
         .onAppear {
             withAnimation(.bouncy(duration: 0.5)) {
                 prVisible = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    ctaVisible = true
-                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { ctaVisible = true }
             }
         }
     }
@@ -200,11 +170,8 @@ struct OnboardingScreen: View {
     OnboardingScreen(
         error: .constant(nil),
         photos: [
-            .init(resource: .link1),
-            .init(resource: .link2),
-            .init(resource: .link3),
-            .init(resource: .link4),
-            .init(resource: .link5),
+            .init(resource: .link1), .init(resource: .link2), .init(resource: .link3),
+            .init(resource: .link4), .init(resource: .link5),
         ],
         title: "Welcome to",
         product: "Candle",

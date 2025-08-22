@@ -4,20 +4,15 @@ import Foundation
 extension Models.TradeQuote {
     var formattedTitle: String {
         switch gained {
-        case .TransportAsset(let transportAsset):
-            return transportAsset.name
-        case .MarketTradeAsset(let marketAsset):
-            return marketAsset.name
+        case .TransportAsset(let transportAsset): return transportAsset.name
+        case .MarketTradeAsset(let marketAsset): return marketAsset.name
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
             switch lost {
-            case .TransportAsset(let transportAsset):
-                return transportAsset.name
-            case .MarketTradeAsset(let marketAsset):
-                return marketAsset.name
-
-            case .FiatAsset, .NothingAsset, .OtherAsset:
-                return "—"  // FIXME: Display something in these cases
+            case .TransportAsset(let transportAsset): return transportAsset.name
+            case .MarketTradeAsset(let marketAsset): return marketAsset.name
+            // FIXME: Display something in these cases
+            case .FiatAsset, .NothingAsset, .OtherAsset: return "—"
             }
         }
     }
@@ -25,20 +20,15 @@ extension Models.TradeQuote {
     // FIXME: Display counterparty (service) name instead?
     var formattedSubtitle: String {
         switch gained {
-        case .TransportAsset(let transportAsset):
-            return transportAsset.service.description
-        case .MarketTradeAsset(let marketAsset):
-            return marketAsset.service.description
+        case .TransportAsset(let transportAsset): return transportAsset.service.description
+        case .MarketTradeAsset(let marketAsset): return marketAsset.service.description
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
             switch lost {
-            case .TransportAsset(let transportAsset):
-                return transportAsset.service.description
-            case .MarketTradeAsset(let marketAsset):
-                return marketAsset.service.description
-
-            case .FiatAsset, .NothingAsset, .OtherAsset:
-                return "—"  // FIXME: Display something in these cases
+            case .TransportAsset(let transportAsset): return transportAsset.service.description
+            case .MarketTradeAsset(let marketAsset): return marketAsset.service.description
+            // FIXME: Display something in these cases
+            case .FiatAsset, .NothingAsset, .OtherAsset: return "—"
             }
         }
     }
@@ -56,20 +46,15 @@ extension Models.TradeQuote {
     var logoURL: URL? {
         // FIXME: Log if URLs don't decode (or decode them earlier)
         switch gained {
-        case .TransportAsset(let transportAsset):
-            return URL(string: transportAsset.imageURL)
-        case .MarketTradeAsset(let marketAsset):
-            return URL(string: marketAsset.logoURL)
+        case .TransportAsset(let transportAsset): return URL(string: transportAsset.imageURL)
+        case .MarketTradeAsset(let marketAsset): return URL(string: marketAsset.logoURL)
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
             switch lost {
-            case .TransportAsset(let transportAsset):
-                return URL(string: transportAsset.imageURL)
-            case .MarketTradeAsset(let marketAsset):
-                return URL(string: marketAsset.logoURL)
-
-            case .FiatAsset, .NothingAsset, .OtherAsset:
-                return nil  // FIXME: Display something in these cases
+            case .TransportAsset(let transportAsset): return URL(string: transportAsset.imageURL)
+            case .MarketTradeAsset(let marketAsset): return URL(string: marketAsset.logoURL)
+            // FIXME: Display something in these cases
+            case .FiatAsset, .NothingAsset, .OtherAsset: return nil
             }
         }
     }
@@ -77,20 +62,16 @@ extension Models.TradeQuote {
     var _context: Models.TradeQuoteContext {
         let linkedAccountID: String
         switch gained {
-        case .TransportAsset(let transportAsset):
-            linkedAccountID = transportAsset.linkedAccountID
-        case .MarketTradeAsset(let marketAsset):
-            linkedAccountID = marketAsset.linkedAccountID
+        case .TransportAsset(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
+        case .MarketTradeAsset(let marketAsset): linkedAccountID = marketAsset.linkedAccountID
 
         case .FiatAsset, .NothingAsset, .OtherAsset:
             switch lost {
             case .TransportAsset(let transportAsset):
                 linkedAccountID = transportAsset.linkedAccountID
-            case .MarketTradeAsset(let marketAsset):
-                linkedAccountID = marketAsset.linkedAccountID
-
-            case .FiatAsset, .NothingAsset, .OtherAsset:
-                linkedAccountID = "FIXME"  // FIXME: Do something in these cases
+            case .MarketTradeAsset(let marketAsset): linkedAccountID = marketAsset.linkedAccountID
+            // FIXME: Do something in these cases
+            case .FiatAsset, .NothingAsset, .OtherAsset: linkedAccountID = "FIXME"
             }
         }
 

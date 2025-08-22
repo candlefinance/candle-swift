@@ -36,32 +36,24 @@ struct ContentView: View {
                 NavigationStack {
                     switch tab {
                     case .services:
-                        LinkedAccountsScreen(
-                            linkedAccounts: $linkedAccounts,
-                            error: $error)
+                        LinkedAccountsScreen(linkedAccounts: $linkedAccounts, error: $error)
                     case .accounts:
                         AssetAccountsScreen(error: $error, linkedAccounts: linkedAccounts)
-                    case .trades:
-                        TradesScreen(error: $error, linkedAccounts: linkedAccounts, )
+                    case .trades: TradesScreen(error: $error, linkedAccounts: linkedAccounts, )
                     }
                 }
-                .tabItem {
-                    Label(tab.title, systemImage: tab.systemImage)
-                }
-                .tag(tab)
+                .tabItem { Label(tab.title, systemImage: tab.systemImage) }.tag(tab)
             }
         }
         .toolbarBackground(.ultraThinMaterial, for: .tabBar)
         .alert(isPresented: .constant(error != nil)) {
             Alert(
-                title: Text(error!.title), message: Text(error!.message),
-                dismissButton: .cancel(Text("OK"), action: { error = nil }))
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .environment(
-            CandleClient(appUser: .init(appKey: "", appSecret: "")))
-}
+#Preview { ContentView().environment(CandleClient(appUser: .init(appKey: "", appSecret: ""))) }

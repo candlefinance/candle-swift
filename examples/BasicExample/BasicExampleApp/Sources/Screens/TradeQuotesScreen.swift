@@ -31,23 +31,18 @@ struct TradeQuotesScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
 
                 case .normal(let tradeQuotesResponse):
                     if tradeQuotesResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
                             systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more services.")
+                            description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
                         ForEach(tradeQuotesResponse.linkedAccounts) { linkedAccountStatusRef in
@@ -56,7 +51,8 @@ struct TradeQuotesScreen: View {
                                 title: linkedAccountStatusRef.service.description,
                                 subtitle: linkedAccountStatusRef.serviceUserID,
                                 value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL)
+                                logoURL: linkedAccountStatusRef.service.logoURL
+                            )
                         }
                     }
                 }
@@ -67,56 +63,45 @@ struct TradeQuotesScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
 
                 case .normal(let tradeQuotesResponse):
                     if tradeQuotesResponse.tradeQuotes.isEmpty {
                         ContentUnavailableView(
                             "No Trade Quotes",
                             systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more services.")
+                            description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
                         ForEach(tradeQuotesResponse.tradeQuotes) { tradeQuote in
                             NavigationLink(
                                 destination: TradeQuoteScreen(
-                                    error: $error, tradeQuoteToExecute: $tradeQuoteToExecute,
-                                    tradeQuote: tradeQuote)
+                                    error: $error,
+                                    tradeQuoteToExecute: $tradeQuoteToExecute,
+                                    tradeQuote: tradeQuote
+                                )
                             ) {
                                 ItemRow(
                                     title: tradeQuote.formattedTitle,
                                     subtitle: tradeQuote.formattedSubtitle,
                                     value: tradeQuote.formattedValue,
-                                    logoURL: tradeQuote.logoURL!)  // TODO
-                            }.swipeActions {
-                                Button("Execute") {
-                                    tradeQuoteToExecute = tradeQuote
-                                }
-                                .tint(.green)
+                                    logoURL: tradeQuote.logoURL!
+                                )  // TODO
+                            }
+                            .swipeActions {
+                                Button("Execute") { tradeQuoteToExecute = tradeQuote }.tint(.green)
                             }
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Trade Quotes")
-        .refreshable {
-            await getTradeQuotes(showLoading: false)
-        }
-        .task {
-            if case .initial = state {
-                await getTradeQuotes()
-            }
-        }
+        .navigationTitle("Trade Quotes").refreshable { await getTradeQuotes(showLoading: false) }
+        .task { if case .initial = state { await getTradeQuotes() } }
         //        .onAppear { locationViewModel.requestLocation() }
         //        //        .onChange(of: locationViewModel.coordinate) { _, coordinate in
         //        //            if let coordinate {
@@ -126,20 +111,14 @@ struct TradeQuotesScreen: View {
         //        //        }
     }
 
-    private func getTradeQuotes(
-        showLoading: Bool = true
-    ) async {
-        if showLoading {
-            state = .loading
-        }
+    private func getTradeQuotes(showLoading: Bool = true) async {
+        if showLoading { state = .loading }
 
         do {
             let tradeQuotesResponse = try await client.getTradeQuotes(request: tradeQuotesRequest)
             state = .normal(tradeQuotesResponse)
         } catch {
-            if showLoading {
-                state = .initial
-            }
+            if showLoading { state = .initial }
 
             switch error {
             case .notFound(let payload):
@@ -166,11 +145,9 @@ struct TradeQuotesScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -184,8 +161,8 @@ struct TradeQuotesScreen: View {
         tradeQuoteToExecute: .constant(nil),
         tradeQuotesRequest: .init(
             gained: .FiatAssetQuoteRequest(.init(assetKind: .fiat)),
-            lost: .FiatAssetQuoteRequest(.init(assetKind: .fiat)))
+            lost: .FiatAssetQuoteRequest(.init(assetKind: .fiat))
+        )
     )
-    .environment(
-        CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

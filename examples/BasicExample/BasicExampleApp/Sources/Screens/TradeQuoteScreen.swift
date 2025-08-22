@@ -2,9 +2,7 @@ import Candle
 import SwiftUI
 
 struct TradeQuoteScreen: View {
-    enum Side {
-        case lost, gained
-    }
+    enum Side { case lost, gained }
 
     @Environment(CandleClient.self) private var client
 
@@ -14,16 +12,11 @@ struct TradeQuoteScreen: View {
     @State private(set) var tradeQuote: Models.TradeQuote
     @State private var selectedSide: Side = .lost
 
-    private var badgeText: String {
-        "Quote"
-    }
+    private var badgeText: String { "Quote" }
 
-    private var badgeColor: Color {
-        return .blue
-    }
+    private var badgeColor: Color { return .blue }
 
-    @ViewBuilder
-    private func logoURLView(asset: Models.TradeAsset) -> some View {
+    @ViewBuilder private func logoURLView(asset: Models.TradeAsset) -> some View {
         switch asset {
         case .FiatAsset(let fiatAsset):
             AsyncImageWithPlaceholder(
@@ -48,27 +41,22 @@ struct TradeQuoteScreen: View {
     var body: some View {
         List {
             HStack(alignment: .center, spacing: 16) {
-                logoURLView(asset: tradeQuote.lost)
-                    .clipShape(Circle())
-                    .shadow(radius: 4)
+                logoURLView(asset: tradeQuote.lost).clipShape(Circle()).shadow(radius: 4)
 
                 VStack(alignment: .center, spacing: 6) {
                     Image(systemName: "chevron.right").frame(minWidth: 16)
-                    Text(badgeText)
-                        .font(.footnote.weight(.semibold))
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .foregroundStyle(.white)
+                    Text(badgeText).font(.footnote.weight(.semibold)).padding(.vertical, 2)
+                        .padding(.horizontal, 8).foregroundStyle(.white)
                         .background(badgeColor, in: Capsule())
-                }.frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
 
-                logoURLView(asset: tradeQuote.gained)
-                    .clipShape(Circle())
-                    .shadow(radius: 4)
+                logoURLView(asset: tradeQuote.gained).clipShape(Circle()).shadow(radius: 4)
             }
 
             let expirationDate = ISO8601DateFormatter.candle.date(
-                from: tradeQuote.expirationDateTime)
+                from: tradeQuote.expirationDateTime
+            )
             Section(header: Text("Details")) {
                 InfoRow(
                     systemImage: "clock",
@@ -78,19 +66,11 @@ struct TradeQuoteScreen: View {
                 )
             }
 
-            Section(header: Text("Lost Asset")) {
-                TradeAssetGroup(tradeAsset: tradeQuote.lost)
-            }
+            Section(header: Text("Lost Asset")) { TradeAssetGroup(tradeAsset: tradeQuote.lost) }
 
-            Section(header: Text("Gained Asset")) {
-                TradeAssetGroup(tradeAsset: tradeQuote.gained)
-            }
+            Section(header: Text("Gained Asset")) { TradeAssetGroup(tradeAsset: tradeQuote.gained) }
         }
         .listStyle(.insetGrouped)
-        .toolbar {
-            Button("Request") {
-                tradeQuoteToExecute = tradeQuote
-            }.bold()
-        }
+        .toolbar { Button("Request") { tradeQuoteToExecute = tradeQuote }.bold() }
     }
 }

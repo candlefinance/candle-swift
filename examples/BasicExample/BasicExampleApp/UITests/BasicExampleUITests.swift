@@ -1,11 +1,11 @@
 import Candle
 import XCTest
 
-@MainActor
-class MyTest: XCTestCase {
+@MainActor class MyTest: XCTestCase {
 
     private func testLogin(
-        application: XCUIApplication, username: String,
+        application: XCUIApplication,
+        username: String,
         challenge: (placeholder: String, value: String)?,
         userID: String
     ) async {
@@ -77,17 +77,20 @@ class MyTest: XCTestCase {
             application: application,
             username: "Antonette",
             challenge: nil,
-            userID: "user_2")
+            userID: "user_2"
+        )
         await testLogin(
             application: application,
             username: "Kamren",
             challenge: (placeholder: "Login Code (from app)", value: "625342"),
-            userID: "user_5")
+            userID: "user_5"
+        )
         await testLogin(
             application: application,
             username: "Delphine",
             challenge: (placeholder: "Magic Link (copy from sms/email)", value: "conrad.com"),
-            userID: "user_9")
+            userID: "user_9"
+        )
     }
 
     func testLaunch() async {

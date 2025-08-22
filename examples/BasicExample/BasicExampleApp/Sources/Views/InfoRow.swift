@@ -7,18 +7,12 @@ struct InfoRow: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            Image(systemName: systemImage)
-                .frame(width: 24)
-                .foregroundColor(.accentColor)
+            Image(systemName: systemImage).frame(width: 24).foregroundColor(.accentColor)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                Text(title).font(.subheadline).foregroundStyle(.secondary)
 
-                Text(value)
-                    .font(.body.weight(.medium))
-                    .textSelection(.enabled)
+                Text(value).font(.body.weight(.medium)).textSelection(.enabled)
             }
 
             Spacer()
@@ -28,8 +22,7 @@ struct InfoRow: View {
             } label: {
                 Image(systemName: "doc.on.doc")
             }
-            .buttonStyle(.borderless)
-            .foregroundStyle(.secondary)
+            .buttonStyle(.borderless).foregroundStyle(.secondary)
         }
     }
 }

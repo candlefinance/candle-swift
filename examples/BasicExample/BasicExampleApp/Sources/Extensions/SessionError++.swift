@@ -93,9 +93,7 @@ extension Models.SessionError {
             case .conflict(let payload):
                 switch payload.kind {
                 case .different_app:
-                    return (
-                        title: "Update User Error: Different App", message: payload.message
-                    )
+                    return (title: "Update User Error: Different App", message: payload.message)
                 case .different_appUser:
                     return (
                         title: "Update User Error: Different App User", message: payload.message
@@ -119,10 +117,7 @@ extension Models.SessionError {
         case .openSessionError:
             return (title: "Open Session Error", message: "Check your VPN/proxy configuration")
         case .keychainError:
-            return (
-                title: "Keychain Error",
-                message: "Check your access group entitlements"
-            )
+            return (title: "Keychain Error", message: "Check your access group entitlements")
         }
     }
 }

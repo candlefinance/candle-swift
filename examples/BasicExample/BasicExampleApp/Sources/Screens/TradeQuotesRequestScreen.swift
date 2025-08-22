@@ -14,23 +14,31 @@ struct TradeQuotesRequestScreen: View {
 
     @State private var gainedAssetKind: TradeQuoteAssetKind? = .transport
     @State private var gainedFiatAsset: FiatAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .fiat))
+        quoteRequest: .init(assetKind: .fiat)
+    )
     @State private var gainedStockAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .stock))
+        quoteRequest: .init(assetKind: .stock)
+    )
     @State private var gainedCryptoAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .crypto))
+        quoteRequest: .init(assetKind: .crypto)
+    )
     @State private var gainedTransportAsset: TransportAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .transport))
+        quoteRequest: .init(assetKind: .transport)
+    )
 
     @State private var lostAssetKind: TradeQuoteAssetKind? = .fiat
     @State private var lostFiatAsset: FiatAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .fiat))
+        quoteRequest: .init(assetKind: .fiat)
+    )
     @State private var lostStockAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .stock))
+        quoteRequest: .init(assetKind: .stock)
+    )
     @State private var lostCryptoAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .crypto))
+        quoteRequest: .init(assetKind: .crypto)
+    )
     @State private var lostTransportAsset: TransportAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .transport))
+        quoteRequest: .init(assetKind: .transport)
+    )
 
     @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
     @State private var locationViewModel = LocationViewModel()
@@ -42,31 +50,21 @@ struct TradeQuotesRequestScreen: View {
 
     var gainedAssetQuoteRequest: Models.TradeAssetQuoteRequest {
         switch gainedAssetKind {
-        case .transport:
-            return .TransportAssetQuoteRequest(gainedTransportAsset.quoteRequest)
-        case .fiat:
-            return .FiatAssetQuoteRequest(gainedFiatAsset.quoteRequest)
-        case .stock:
-            return .MarketAssetQuoteRequest(gainedStockAsset.quoteRequest)
-        case .crypto:
-            return .MarketAssetQuoteRequest(gainedCryptoAsset.quoteRequest)
-        case .none:
-            return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
+        case .transport: return .TransportAssetQuoteRequest(gainedTransportAsset.quoteRequest)
+        case .fiat: return .FiatAssetQuoteRequest(gainedFiatAsset.quoteRequest)
+        case .stock: return .MarketAssetQuoteRequest(gainedStockAsset.quoteRequest)
+        case .crypto: return .MarketAssetQuoteRequest(gainedCryptoAsset.quoteRequest)
+        case .none: return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
         }
     }
 
     var lostAssetQuoteRequest: Models.TradeAssetQuoteRequest {
         switch lostAssetKind {
-        case .transport:
-            return .TransportAssetQuoteRequest(lostTransportAsset.quoteRequest)
-        case .fiat:
-            return .FiatAssetQuoteRequest(lostFiatAsset.quoteRequest)
-        case .stock:
-            return .MarketAssetQuoteRequest(lostStockAsset.quoteRequest)
-        case .crypto:
-            return .MarketAssetQuoteRequest(lostCryptoAsset.quoteRequest)
-        case .none:
-            return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
+        case .transport: return .TransportAssetQuoteRequest(lostTransportAsset.quoteRequest)
+        case .fiat: return .FiatAssetQuoteRequest(lostFiatAsset.quoteRequest)
+        case .stock: return .MarketAssetQuoteRequest(lostStockAsset.quoteRequest)
+        case .crypto: return .MarketAssetQuoteRequest(lostCryptoAsset.quoteRequest)
+        case .none: return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
         }
     }
 
@@ -89,15 +87,13 @@ struct TradeQuotesRequestScreen: View {
                         Text("Crypto").tag(TradeQuoteAssetKind.crypto)
                         Text("Transport").tag(TradeQuoteAssetKind.transport)
                         Text("Nothing").tag(Optional<TradeQuoteAssetKind>.none)
-                    }.pickerStyle(.segmented)
+                    }
+                    .pickerStyle(.segmented)
                     switch lostAssetKind {
                     case .fiat: FiatAssetForm(viewModel: $lostFiatAsset)
-                    case .crypto:
-                        MarketAssetForm(viewModel: $lostCryptoAsset)
-                    case .stock:
-                        MarketAssetForm(viewModel: $lostStockAsset)
-                    case .transport:
-                        TransportAssetForm(viewModel: $lostTransportAsset)
+                    case .crypto: MarketAssetForm(viewModel: $lostCryptoAsset)
+                    case .stock: MarketAssetForm(viewModel: $lostStockAsset)
+                    case .transport: TransportAssetForm(viewModel: $lostTransportAsset)
                     case nil: NothingAssetForm()
                     }
                 }
@@ -108,27 +104,20 @@ struct TradeQuotesRequestScreen: View {
                         Text("Crypto").tag(TradeQuoteAssetKind.crypto)
                         Text("Transport").tag(TradeQuoteAssetKind.transport)
                         Text("Nothing").tag(Optional<TradeQuoteAssetKind>.none)
-                    }.pickerStyle(.segmented)
+                    }
+                    .pickerStyle(.segmented)
                     switch gainedAssetKind {
                     case .fiat: FiatAssetForm(viewModel: $gainedFiatAsset)
-                    case .crypto:
-                        MarketAssetForm(viewModel: $gainedCryptoAsset)
-                    case .stock:
-                        MarketAssetForm(viewModel: $gainedStockAsset)
-                    case .transport:
-                        TransportAssetForm(
-                            viewModel: $gainedTransportAsset)
+                    case .crypto: MarketAssetForm(viewModel: $gainedCryptoAsset)
+                    case .stock: MarketAssetForm(viewModel: $gainedStockAsset)
+                    case .transport: TransportAssetForm(viewModel: $gainedTransportAsset)
                     case nil: NothingAssetForm()
                     }
                 }
             }
             .navigationTitle("Trade Quotes")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
+                ToolbarItem(placement: .navigationBarLeading) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         // FIXME: Add this back
@@ -142,15 +131,15 @@ struct TradeQuotesRequestScreen: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Request") {
-                        areRequested = true
-                    }.bold()
+                    Button("Request") { areRequested = true }.bold()
                 }
             }
             .navigationDestination(isPresented: $areRequested) {
                 TradeQuotesScreen(
-                    error: $error, tradeQuoteToExecute: $tradeQuoteToExecute,
-                    tradeQuotesRequest: tradeQuotesRequest)
+                    error: $error,
+                    tradeQuoteToExecute: $tradeQuoteToExecute,
+                    tradeQuotesRequest: tradeQuotesRequest
+                )
             }
         }
     }
@@ -158,8 +147,9 @@ struct TradeQuotesRequestScreen: View {
 
 #Preview {
     TradeQuotesRequestScreen(
-        error: .constant(nil), tradeQuoteToExecute: .constant(nil), linkedAccounts: []
+        error: .constant(nil),
+        tradeQuoteToExecute: .constant(nil),
+        linkedAccounts: []
     )
-    .environment(
-        CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

@@ -10,11 +10,10 @@ struct AsyncImageWithPlaceholder: View {
             if let image = phase.image {
                 image.resizable().scaledToFit()
             } else if phase.error != nil {
-                Image(systemName: "photo.badge.exclamationmark")
-                    .font(.system(size: .extraLarge))
+                Image(systemName: "photo.badge.exclamationmark").font(.system(size: .extraLarge))
                     .background(
-                        Circle().fill(.gray.opacity(0.3)).frame(
-                            width: size.width, height: size.height)
+                        Circle().fill(.gray.opacity(0.3))
+                            .frame(width: size.width, height: size.height)
                     )
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(.red, colorScheme == .dark ? .white : .black)
@@ -22,7 +21,6 @@ struct AsyncImageWithPlaceholder: View {
                 ProgressView()
             }
         }
-        .frame(width: size.width, height: size.height)
-        .clipShape(Circle())
+        .frame(width: size.width, height: size.height).clipShape(Circle())
     }
 }

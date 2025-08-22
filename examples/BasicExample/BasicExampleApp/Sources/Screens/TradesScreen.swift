@@ -73,22 +73,17 @@ struct TradesScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
                 case .normal(let tradesResponse):
                     if tradesResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
                             systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more services.")
+                            description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
                         ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
@@ -97,7 +92,8 @@ struct TradesScreen: View {
                                 title: linkedAccountStatusRef.service.description,
                                 subtitle: linkedAccountStatusRef.serviceUserID,
                                 value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL)
+                                logoURL: linkedAccountStatusRef.service.logoURL
+                            )
                         }
                     }
                 }
@@ -108,15 +104,11 @@ struct TradesScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
                 case .normal(let tradesResponse):
                     if tradesResponse.trades.isEmpty {
                         ContentUnavailableView.search(text: searchText)
@@ -135,7 +127,8 @@ struct TradesScreen: View {
                                     title: trade.formattedTitle,
                                     subtitle: trade.formattedSubtitle,
                                     value: trade.formattedValue,
-                                    logoURL: trade.logoURL)
+                                    logoURL: trade.logoURL
+                                )
                             }
                         }
                     }
@@ -148,10 +141,8 @@ struct TradesScreen: View {
                 Menu {
                     EnumMenu(name: "Date/Time Span", selectedCase: $dateTimeSpan)
                     EnumMenu(name: "Lost Asset Kind", selectedCase: $lostAssetKind)
-                    EnumMenu(
-                        name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
-                    EnumMenu(
-                        name: "Counterparty Kind", selectedCase: $counterpartyKind)
+                    EnumMenu(name: "Gained Asset Kind", selectedCase: $gainedAssetKind)
+                    EnumMenu(name: "Counterparty Kind", selectedCase: $counterpartyKind)
                     LinkedAccountsMenu(
                         linkedAccounts: linkedAccounts,
                         selectedLinkedAccountIDs: $selectedLinkedAccountIDs
@@ -161,19 +152,14 @@ struct TradesScreen: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    showTradeQuotes = true
-                }) {
+                Button(action: { showTradeQuotes = true }) {
                     Label("Link", systemImage: "plus.circle.fill")
                 }
             }
         }
         .navigationTitle("Trades")
         .navigationDestination(item: $newTrade) { newTrade in
-            TradeScreen(
-                error: $error,
-                trade: newTrade
-            )
+            TradeScreen(error: $error, trade: newTrade)
         }
         .task { if case .initial = state { await getTrades() } }
         .onChange(of: dateTimeSpan) { Task { await getTrades() } }
@@ -185,14 +171,14 @@ struct TradesScreen: View {
             selectedLinkedAccountIDs = []
             Task { await getTrades() }
         }
-        .refreshable {
-            await getTrades(showLoading: false)
-        }
+        .refreshable { await getTrades(showLoading: false) }
         .sheet(isPresented: $showTradeQuotes) {
             NavigationStack {
                 TradeQuotesRequestScreen(
-                    error: $error, tradeQuoteToExecute: $tradeQuoteToExecute,
-                    linkedAccounts: linkedAccounts)
+                    error: $error,
+                    tradeQuoteToExecute: $tradeQuoteToExecute,
+                    linkedAccounts: linkedAccounts
+                )
             }
             .candleTradeExecutionSheet(item: $tradeQuoteToExecute) { result in
                 switch result {
@@ -200,8 +186,7 @@ struct TradesScreen: View {
                     newTrade = trade
                     showTradeQuotes = false
 
-                case .failure:
-                    break
+                case .failure: break
                 // FIXME: Show error in snackbar?
                 }
             }
@@ -209,17 +194,13 @@ struct TradesScreen: View {
     }
 
     private func getTrades(showLoading: Bool = true) async {
-        if showLoading {
-            state = .loading
-        }
+        if showLoading { state = .loading }
 
         do {
             let tradesResponse = try await client.getTrades(query: tradesQuery)
             state = .normal(tradesResponse)
         } catch {
-            if showLoading {
-                state = .initial
-            }
+            if showLoading { state = .initial }
 
             switch error {
             case .notFound(let payload):
@@ -246,11 +227,9 @@ struct TradesScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -259,9 +238,6 @@ struct TradesScreen: View {
 }
 
 #Preview {
-    TradesScreen(
-        error: .constant(nil), linkedAccounts: []
-    )
-    .environment(
-        CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    TradesScreen(error: .constant(nil), linkedAccounts: [])
+        .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

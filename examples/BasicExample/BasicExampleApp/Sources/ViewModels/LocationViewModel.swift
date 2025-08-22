@@ -1,7 +1,6 @@
 import CoreLocation
 
-@Observable
-final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+@Observable final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var coordinate: CLLocationCoordinate2D?
 
     private let manager = CLLocationManager()
@@ -14,17 +13,15 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
     func requestLocation() {
         switch manager.authorizationStatus {
-        case .notDetermined:
-            manager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse, .authorizedAlways:
-            manager.requestLocation()
-        default:
-            break
+        case .notDetermined: manager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse, .authorizedAlways: manager.requestLocation()
+        default: break
         }
     }
 
     func locationManager(
-        _ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
     ) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             manager.requestLocation()

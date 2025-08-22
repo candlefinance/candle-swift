@@ -34,32 +34,27 @@ struct AssetAccountsScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
                 case .normal(let assetAccountsResponse):
                     if assetAccountsResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
                             systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more services.")
+                            description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
-                        ForEach(assetAccountsResponse.linkedAccounts) {
-                            linkedAccountStatusRef in
+                        ForEach(assetAccountsResponse.linkedAccounts) { linkedAccountStatusRef in
                             // FIXME: Show linkedAccountID too
                             ItemRow(
                                 title: linkedAccountStatusRef.service.description,
                                 subtitle: linkedAccountStatusRef.serviceUserID,
                                 value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL)
+                                logoURL: linkedAccountStatusRef.service.logoURL
+                            )
                         }
                     }
                 }
@@ -70,51 +65,50 @@ struct AssetAccountsScreen: View {
                     ContentUnavailableView(
                         "Connection Error",
                         systemImage: "network.slash",
-                        description: Text(
-                            "Check your connection and pull to refresh.")
+                        description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
-                    ProgressView {
-                        Text("Loading...")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 12)
+                    ProgressView { Text("Loading...") }
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
                 case .normal(let assetAccountsResponse):
                     if assetAccountsResponse.assetAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Asset Accounts",
                             systemImage: "exclamationmark.magnifyingglass",
-                            description: Text(
-                                "Try changing your filters or linking more services."
-                            )
+                            description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
                         ForEach(assetAccountsResponse.assetAccounts) { assetAccount in
                             NavigationLink(
                                 destination: AssetAccountScreen(
-                                    error: $error, assetAccount: assetAccount)
+                                    error: $error,
+                                    assetAccount: assetAccount
+                                )
                             ) {
                                 switch assetAccount {
                                 case .FiatAccount(let fiatAccount):
                                     ItemRow(
                                         title: fiatAccount.nickname,
                                         subtitle: fiatAccount.service.description,
-                                        value: fiatAccount.balance?.formatted(
-                                            .currency(code: fiatAccount.currencyCode))
+                                        value: fiatAccount.balance?
+                                            .formatted(.currency(code: fiatAccount.currencyCode))
                                             ?? fiatAccount.currencyCode,
-                                        logoURL: fiatAccount.service.logoURL)
+                                        logoURL: fiatAccount.service.logoURL
+                                    )
                                 case .MarketAccount(let marketAccount):
                                     ItemRow(
                                         title: marketAccount.nickname,
                                         subtitle: marketAccount.service.description,
                                         value: marketAccount.assetKind.description,
-                                        logoURL: marketAccount.service.logoURL)
+                                        logoURL: marketAccount.service.logoURL
+                                    )
                                 case .TransportAccount(let transportAccount):
                                     ItemRow(
                                         title: transportAccount.nickname,
                                         subtitle: transportAccount.service.description,
                                         value: transportAccount.assetKind.description,
-                                        logoURL: transportAccount.service.logoURL)
+                                        logoURL: transportAccount.service.logoURL
+                                    )
                                 }
                             }
                         }
@@ -135,31 +129,24 @@ struct AssetAccountsScreen: View {
                 }
             }
         }
-        .navigationTitle("Accounts")
-        .task { if case .initial = state { await getAssetAccounts() } }
+        .navigationTitle("Accounts").task { if case .initial = state { await getAssetAccounts() } }
         .onChange(of: assetKind) { Task { await getAssetAccounts() } }
         .onChange(of: selectedLinkedAccountIDs) { Task { await getAssetAccounts() } }
         .onChange(of: linkedAccounts) {
             selectedLinkedAccountIDs = []
             Task { await getAssetAccounts() }
         }
-        .refreshable {
-            await getAssetAccounts(showLoading: false)
-        }
+        .refreshable { await getAssetAccounts(showLoading: false) }
     }
 
     private func getAssetAccounts(showLoading: Bool = true) async {
-        if showLoading {
-            state = .loading
-        }
+        if showLoading { state = .loading }
 
         do {
             let assetAccountsResponse = try await client.getAssetAccounts(query: assetAccountsQuery)
             state = .normal(assetAccountsResponse)
         } catch {
-            if showLoading {
-                state = .initial
-            }
+            if showLoading { state = .initial }
 
             switch error {
             case .notFound(let payload):
@@ -186,11 +173,9 @@ struct AssetAccountsScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -198,9 +183,4 @@ struct AssetAccountsScreen: View {
     }
 }
 
-#Preview {
-    AssetAccountsScreen(
-        error: .constant(nil),
-        linkedAccounts: [],
-    )
-}
+#Preview { AssetAccountsScreen(error: .constant(nil), linkedAccounts: [], ) }

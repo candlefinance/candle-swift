@@ -21,7 +21,8 @@ where
                 }) {
                     Label(
                         enumCase.rawValue,
-                        systemImage: selectedCase == enumCase ? "checkmark" : "")
+                        systemImage: selectedCase == enumCase ? "checkmark" : ""
+                    )
                 }
             }
         }

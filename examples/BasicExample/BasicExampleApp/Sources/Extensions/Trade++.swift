@@ -7,26 +7,23 @@ extension Models.Trade {
         switch counterparty {
         case .MerchantCounterparty(let merchantCounterparty):
             counterpartyNames = [merchantCounterparty.name]
-        case .ServiceCounterparty:
-            counterpartyNames = []
+        case .ServiceCounterparty: counterpartyNames = []
         case .UserCounterparty(let userCounterparty):
             counterpartyNames = [userCounterparty.username, userCounterparty.legalName]
         }
 
         let lostAssetNames: [String]
         switch lost {
-        case .MarketTradeAsset(let marketTradeAsset):
-            lostAssetNames = [marketTradeAsset.symbol]  // FIXME: Add name
-        case .FiatAsset, .TransportAsset, .OtherAsset, .NothingAsset:
-            lostAssetNames = []
+        // FIXME: Add name
+        case .MarketTradeAsset(let marketTradeAsset): lostAssetNames = [marketTradeAsset.symbol]
+        case .FiatAsset, .TransportAsset, .OtherAsset, .NothingAsset: lostAssetNames = []
         }
 
         let gainedAssetNames: [String]
         switch gained {
-        case .MarketTradeAsset(let marketTradeAsset):
-            gainedAssetNames = [marketTradeAsset.symbol]  // FIXME: Add name
-        case .FiatAsset, .TransportAsset, .OtherAsset, .NothingAsset:
-            gainedAssetNames = []
+        // FIXME: Add name
+        case .MarketTradeAsset(let marketTradeAsset): gainedAssetNames = [marketTradeAsset.symbol]
+        case .FiatAsset, .TransportAsset, .OtherAsset, .NothingAsset: gainedAssetNames = []
         }
 
         return counterpartyNames + lostAssetNames + gainedAssetNames
@@ -34,10 +31,8 @@ extension Models.Trade {
 
     var formattedTitle: String {
         switch counterparty {
-        case .MerchantCounterparty(let merchantCounterparty):
-            return merchantCounterparty.name
-        case .UserCounterparty(let userCounterparty):
-            return userCounterparty.legalName
+        case .MerchantCounterparty(let merchantCounterparty): return merchantCounterparty.name
+        case .UserCounterparty(let userCounterparty): return userCounterparty.legalName
         case .ServiceCounterparty(let serviceCounterparty):
             return serviceCounterparty.service.description
         }

@@ -4,14 +4,14 @@ import SwiftUI
 struct LinkedAccountScreen: View {
     @Environment(CandleClient.self) private var client
 
+    @Binding var showLinkSheet: Bool
     @Binding var error: (title: String, message: String)?
 
     @State private(set) var linkedAccount: Models.LinkedAccount
 
     private var badgeText: String {
         switch linkedAccount.details {
-        case .ActiveLinkedAccountDetails(let activeDetails):
-            return activeDetails.state.description
+        case .ActiveLinkedAccountDetails(let activeDetails): return activeDetails.state.description
         case .InactiveLinkedAccountDetails(let inactiveDetails):
             return inactiveDetails.state.description
         }
@@ -29,9 +29,7 @@ struct LinkedAccountScreen: View {
     }
 
     private var headerTitle: String? {
-        if case .ActiveLinkedAccountDetails(let activeDetails) = linkedAccount
-            .details
-        {
+        if case .ActiveLinkedAccountDetails(let activeDetails) = linkedAccount.details {
             return activeDetails.legalName
         } else {
             return nil
@@ -44,7 +42,8 @@ struct LinkedAccountScreen: View {
                 logoURL: linkedAccount.service.logoURL,
                 title: headerTitle,
                 badgeText: badgeText,
-                badgeColor: badgeColor)
+                badgeColor: badgeColor
+            )
 
             Section(header: Text("Metadata")) {
                 InfoRow(
@@ -65,11 +64,7 @@ struct LinkedAccountScreen: View {
                 {
                     Section(header: Text("Details")) {
                         if let username = activeDetails.username {
-                            InfoRow(
-                                systemImage: "person",
-                                title: "Username",
-                                value: username
-                            )
+                            InfoRow(systemImage: "person", title: "Username", value: username)
                         }
                         if let emailAddress = activeDetails.emailAddress {
                             InfoRow(
@@ -80,27 +75,31 @@ struct LinkedAccountScreen: View {
                         }
                         if let accountOpened = activeDetails.accountOpened {
                             let accountOpenedDate = ISO8601DateFormatter.candle.date(
-                                from: accountOpened)
+                                from: accountOpened
+                            )
                             InfoRow(
                                 systemImage: "calendar",
                                 title: "Account Opened",
-                                value: accountOpenedDate?.formatted(
-                                    date: .complete, time: .complete) ?? accountOpened
+                                value: accountOpenedDate?
+                                    .formatted(date: .complete, time: .complete) ?? accountOpened
                             )
                         }
                     }
                 }
             }
         }
-        .refreshable {
-            await getLinkedAccount()
+        .toolbar {
+            if case .InactiveLinkedAccountDetails = linkedAccount.details {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Re-Link") { showLinkSheet = true }
+                }
+            }
         }
+        .refreshable { await getLinkedAccount() }
     }
 
     private func getLinkedAccount() async {
-        do {
-            linkedAccount = try await client.getLinkedAccount(ref: linkedAccount.ref)
-        } catch {
+        do { linkedAccount = try await client.getLinkedAccount(ref: linkedAccount.ref) } catch {
             switch error {
             case .notFound(let payload):
                 switch payload.kind {
@@ -126,11 +125,9 @@ struct LinkedAccountScreen: View {
                 }
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
-                    title: "Unexpected Status Code",
-                    message: "Received \(statusCode) response"
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError):
-                self.error = sessionError.formatted
+            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -140,6 +137,7 @@ struct LinkedAccountScreen: View {
 
 #Preview {
     LinkedAccountScreen(
+        showLinkSheet: .constant(false),
         error: .constant(nil),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
@@ -152,22 +150,23 @@ struct LinkedAccountScreen: View {
                     username: "johnny",
                     emailAddress: "john@apple.com",
                     legalName: "John Appleseed",
-                ))
+                )
+            )
         ),
-    ).environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    )
+    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }
 
 #Preview {
     LinkedAccountScreen(
+        showLinkSheet: .constant(false),
         error: .constant(nil),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
             service: .sandbox,
             serviceUserID: "1234567890",
-            details: .InactiveLinkedAccountDetails(
-                .init(
-                    state: .inactive,
-                ))
+            details: .InactiveLinkedAccountDetails(.init(state: .inactive, ))
         )
-    ).environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
+    )
+    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

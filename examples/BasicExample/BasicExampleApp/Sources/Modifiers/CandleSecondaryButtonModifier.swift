@@ -1,7 +1,6 @@
 import SwiftUI
 
-@available(macOS 14, iOS 17.0, *)
-struct CandleSecondaryButtonModifier: ViewModifier {
+@available(macOS 14, iOS 17.0, *) struct CandleSecondaryButtonModifier: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
 
     let color: Color?
@@ -16,25 +15,20 @@ struct CandleSecondaryButtonModifier: ViewModifier {
             content
             Spacer()
         }
-        .foregroundColor(color ?? defaultColor)
-        .frame(height: size)
+        .foregroundColor(color ?? defaultColor).frame(height: size)
         .background(
-            RoundedRectangle(
-                cornerRadius: size / 2,
-                style: .continuous
-            )
-            .stroke(color ?? defaultColor, lineWidth: .xSmall)
+            RoundedRectangle(cornerRadius: size / 2, style: .continuous)
+                .stroke(color ?? defaultColor, lineWidth: .xSmall)
         )
-        .font(.system(size: fontSize))
-        .fontDesign(.rounded)
-        .bold()
+        .font(.system(size: fontSize)).fontDesign(.rounded).bold()
     }
 }
 
 extension View {
-    @available(macOS 14, iOS 17.0, *)
-    func candleSecondaryButtonStyle(
-        color: Color? = nil, size: CGFloat = 48, fontSize: CGFloat = 19
+    @available(macOS 14, iOS 17.0, *) func candleSecondaryButtonStyle(
+        color: Color? = nil,
+        size: CGFloat = 48,
+        fontSize: CGFloat = 19
     ) -> some View {
         modifier(CandleSecondaryButtonModifier(color: color, size: size, fontSize: fontSize))
     }

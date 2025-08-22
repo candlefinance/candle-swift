@@ -13,6 +13,4 @@ struct Detail {
 }
 
 // FIXME: Model [Detail] as [String: Omit<Detail, 'label'>] so that the compiler guarantees this is a unique ID
-extension Detail: Identifiable {
-    var id: String { label }
-}
+extension Detail: Identifiable { var id: String { label } }
