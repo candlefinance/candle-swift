@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOCore -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Atomics
 import Darwin.C
 import Darwin
@@ -19,12 +19,16 @@ public struct AddressedEnvelope<DataType> {
   public var data: DataType
   public var metadata: NIOCore.AddressedEnvelope<DataType>.Metadata?
   public init(remoteAddress: NIOCore.SocketAddress, data: DataType)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(remoteAddress: NIOCore.SocketAddress, data: DataType, metadata: NIOCore.AddressedEnvelope<DataType>.Metadata?)
+  #endif
   public struct Metadata : Swift.Hashable, Swift.Sendable {
     public var ecnState: NIOCore.NIOExplicitCongestionNotificationState
     public var packetInfo: NIOCore.NIOPacketInfo?
     public init(ecnState: NIOCore.NIOExplicitCongestionNotificationState)
+    #if compiler(>=5.3) && $NonescapableTypes
     public init(ecnState: NIOCore.NIOExplicitCongestionNotificationState, packetInfo: NIOCore.NIOPacketInfo?)
+    #endif
     public static func == (a: NIOCore.AddressedEnvelope<DataType>.Metadata, b: NIOCore.AddressedEnvelope<DataType>.Metadata) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
@@ -106,8 +110,10 @@ extension NIOCore.ChannelOutboundInvoker {
   @preconcurrency public func triggerUserOutboundEvent(_ event: any Swift.Sendable, file: Swift.StaticString = #fileID, line: Swift.UInt = #line) async throws
 }
 extension NIOCore.ChannelPipeline {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   @preconcurrency final public func addHandler(_ handler: any NIOCore.ChannelHandler & Swift.Sendable, name: Swift.String? = nil, position: NIOCore.ChannelPipeline.Position = .last) async throws
+  #endif
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   @preconcurrency final public func removeHandler(_ handler: any NIOCore.RemovableChannelHandler & Swift.Sendable) async throws
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -185,30 +191,40 @@ public struct NIOAsyncChannel<Inbound, Outbound> : Swift.Sendable where Inbound 
   public init(synchronouslyWrapping channel: any NIOCore.Channel, configuration: NIOCore.NIOAsyncChannel<Inbound, Outbound>.Configuration = .init()) throws
   @available(*, deprecated, renamed: "init(wrappingChannelSynchronously:configuration:)", message: "This method has been deprecated since it defaults to deinit based resource teardown")
   public init(synchronouslyWrapping channel: any NIOCore.Channel, configuration: NIOCore.NIOAsyncChannel<Inbound, Outbound>.Configuration = .init()) throws where Outbound == Swift.Never
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "This method has been deprecated since it defaults to deinit based resource teardown")
   public static func _wrapAsyncChannelWithTransformations(synchronouslyWrapping channel: any NIOCore.Channel, backPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, isOutboundHalfClosureEnabled: Swift.Bool = false, channelReadTransformation: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Inbound>) throws -> NIOCore.NIOAsyncChannel<Inbound, Outbound> where Outbound == Swift.Never
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _wrapAsyncChannelWithTransformations(wrappingChannelSynchronously channel: any NIOCore.Channel, backPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, isOutboundHalfClosureEnabled: Swift.Bool = false, channelReadTransformation: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Inbound>) throws -> NIOCore.NIOAsyncChannel<Inbound, Outbound> where Outbound == Swift.Never
+  #endif
   @_disfavoredOverload public func executeThenClose<Result>(_ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> Result) async throws -> Result
+  #if compiler(>=5.3) && $NonescapableTypes
   #if compiler(>=5.3) && $SendingArgsAndResults
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> sending Result) async throws -> sending Result
   #else
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>, _ outbound: NIOCore.NIOAsyncChannelOutboundWriter<Outbound>) async throws -> Result) async throws -> Result
   #endif
+  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncChannel {
   @_disfavoredOverload public func executeThenClose<Result>(_ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> Result) async throws -> Result where Outbound == Swift.Never
+  #if compiler(>=5.3) && $NonescapableTypes
   #if compiler(>=5.3) && $SendingArgsAndResults
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> sending Result) async throws -> sending Result where Outbound == Swift.Never
   #else
   public func executeThenClose<Result>(isolation actor: isolated (any _Concurrency.Actor)? = #isolation, _ body: (_ inbound: NIOCore.NIOAsyncChannelInboundStream<Inbound>) async throws -> Result) async throws -> Result where Outbound == Swift.Never
+  #endif
   #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 public struct NIOAsyncChannelInboundStream<Inbound> : Swift.Sendable where Inbound : Swift.Sendable {
   public struct TestSource {
     public func yield(_ element: Inbound)
+    #if compiler(>=5.3) && $NonescapableTypes
     public func finish(throwing error: (any Swift.Error)? = nil)
+    #endif
   }
   public static func makeTestingStream() -> (NIOCore.NIOAsyncChannelInboundStream<Inbound>, NIOCore.NIOAsyncChannelInboundStream<Inbound>.TestSource)
 }
@@ -216,7 +232,9 @@ public struct NIOAsyncChannelInboundStream<Inbound> : Swift.Sendable where Inbou
 extension NIOCore.NIOAsyncChannelInboundStream : _Concurrency.AsyncSequence {
   public typealias Element = Inbound
   public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> NIOCore.NIOAsyncChannelInboundStream<Inbound>.Element?
+    #endif
     @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
     public typealias Element = NIOCore.NIOAsyncChannelInboundStream<Inbound>.Element
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
@@ -236,7 +254,9 @@ public struct NIOAsyncChannelOutboundWriter<OutboundOut> : Swift.Sendable where 
     public typealias Element = OutboundOut
     public func makeAsyncIterator() -> NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink.AsyncIterator
     public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+      #if compiler(>=5.3) && $NonescapableTypes
       public mutating func next() async -> NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink.Element?
+      #endif
       @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
       public typealias Element = NIOCore.NIOAsyncChannelOutboundWriter<OutboundOut>.TestSink.Element
       @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
@@ -283,7 +303,9 @@ extension NIOCore.NIOAsyncSequenceProducer : _Concurrency.AsyncSequence {
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncSequenceProducer {
   public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
     public func next() async -> Element?
+    #endif
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
   }
@@ -326,7 +348,9 @@ public protocol NIOAsyncWriterSinkDelegate : Swift.Sendable {
   associatedtype Element : Swift.Sendable
   func didYield(contentsOf sequence: DequeModule.Deque<Self.Element>)
   func didYield(_ element: Self.Element)
+  #if compiler(>=5.3) && $NonescapableTypes
   func didTerminate(error: (any Swift.Error)?)
+  #endif
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOAsyncWriterSinkDelegate {
@@ -389,7 +413,9 @@ extension NIOCore.NIOThrowingAsyncSequenceProducer : _Concurrency.AsyncSequence 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOCore.NIOThrowingAsyncSequenceProducer {
   public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
     public func next() async throws -> Element?
+    #endif
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
   }
@@ -527,9 +553,15 @@ extension NIOCore.NIOBSDSocket.Option {
   public static let so_timestamp: NIOCore.NIOBSDSocket.Option
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getBytes(at index: Swift.Int, length: Swift.Int) -> [Swift.UInt8]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readBytes(length: Swift.Int) -> [Swift.UInt8]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekBytes(length: Swift.Int) -> [Swift.UInt8]?
+  #endif
   @discardableResult
   public mutating func writeStaticString(_ string: Swift.StaticString) -> Swift.Int
   public mutating func setStaticString(_ string: Swift.StaticString, at index: Swift.Int) -> Swift.Int
@@ -542,23 +574,41 @@ extension NIOCore.ByteBuffer {
   @discardableResult
   public mutating func setString(_ string: Swift.String, at index: Swift.Int) -> Swift.Int
   public mutating func setNullTerminatedString(_ string: Swift.String, at index: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getString(at index: Swift.Int, length: Swift.Int) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getNullTerminatedString(at index: Swift.Int) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readString(length: Swift.Int) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readNullTerminatedString() -> Swift.String?
+  #endif
   @discardableResult
   public mutating func writeSubstring(_ substring: Swift.Substring) -> Swift.Int
   @discardableResult
   public mutating func setSubstring(_ substring: Swift.Substring, at index: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekString(length: Swift.Int) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekNullTerminatedString() -> Swift.String?
+  #endif
   @discardableResult
   public mutating func writeDispatchData(_ dispatchData: Dispatch.DispatchData) -> Swift.Int
   @discardableResult
   public mutating func setDispatchData(_ dispatchData: Dispatch.DispatchData, at index: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getDispatchData(at index: Swift.Int, length: Swift.Int) -> Dispatch.DispatchData?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readDispatchData(length: Swift.Int) -> Dispatch.DispatchData?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekDispatchData(length: Swift.Int) -> Dispatch.DispatchData?
+  #endif
   @discardableResult
   public mutating func readWithUnsafeReadableBytes(_ body: (Swift.UnsafeRawBufferPointer) throws -> Swift.Int) rethrows -> Swift.Int
   @discardableResult
@@ -579,7 +629,9 @@ extension NIOCore.ByteBuffer {
   @discardableResult
   public mutating func setRepeatingByte(_ byte: Swift.UInt8, count: Swift.Int, at index: Swift.Int) -> Swift.Int
   public func slice() -> NIOCore.ByteBuffer
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readSlice(length: Swift.Int) -> NIOCore.ByteBuffer?
+  #endif
   @discardableResult
   public mutating func writeImmutableBuffer(_ buffer: NIOCore.ByteBuffer) -> Swift.Int
 }
@@ -613,26 +665,36 @@ extension NIOCore.ByteBufferAllocator {
   public func buffer(buffer: NIOCore.ByteBuffer) -> NIOCore.ByteBuffer
   public func buffer(dispatchData: Dispatch.DispatchData) -> NIOCore.ByteBuffer
 }
+#if compiler(>=5.3) && $NonescapableTypes
 extension Swift.Optional where Wrapped == NIOCore.ByteBuffer {
   @discardableResult
   public mutating func setOrWriteImmutableBuffer(_ buffer: NIOCore.ByteBuffer) -> Swift.Int
   @discardableResult
   public mutating func setOrWriteBuffer(_ buffer: inout NIOCore.ByteBuffer) -> Swift.Int
 }
+#endif
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 15, iOS 18, tvOS 18, watchOS 11, *)
   public func getUTF8ValidatedString(at index: Swift.Int, length: Swift.Int) throws -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 15, iOS 18, tvOS 18, watchOS 11, *)
   public mutating func readUTF8ValidatedString(length: Swift.Int) throws -> Swift.String?
+  #endif
   public struct ReadUTF8ValidationError : Swift.Error, Swift.Equatable {
     public static let invalidUTF8: NIOCore.ByteBuffer.ReadUTF8ValidationError
     public static func == (a: NIOCore.ByteBuffer.ReadUTF8ValidationError, b: NIOCore.ByteBuffer.ReadUTF8ValidationError) -> Swift.Bool
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 15, iOS 18, tvOS 18, watchOS 11, *)
   public func peekUTF8ValidatedString(length: Swift.Int) throws -> Swift.String?
+  #endif
 }
 public protocol NIOBinaryIntegerEncodingStrategy {
+  #if compiler(>=5.3) && $NonescapableTypes
   func readInteger<IntegerType>(as: IntegerType.Type, from buffer: inout NIOCore.ByteBuffer) -> IntegerType? where IntegerType : Swift.FixedWidthInteger
+  #endif
   func writeInteger<IntegerType>(_ integer: IntegerType, to buffer: inout NIOCore.ByteBuffer) -> Swift.Int where IntegerType : Swift.FixedWidthInteger
   var requiredBytesHint: Swift.Int { get }
   func writeInteger(_ integer: Swift.Int, reservedCapacity: Swift.Int, to buffer: inout NIOCore.ByteBuffer) -> Swift.Int
@@ -644,12 +706,16 @@ extension NIOCore.NIOBinaryIntegerEncodingStrategy {
   public func writeInteger<IntegerType>(_ integer: IntegerType, reservedCapacity: Swift.Int, to buffer: inout NIOCore.ByteBuffer) -> Swift.Int where IntegerType : Swift.FixedWidthInteger
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readEncodedInteger<Strategy, Integer>(as: Integer.Type = Integer.self, strategy: Strategy) -> Integer? where Strategy : NIOCore.NIOBinaryIntegerEncodingStrategy, Integer : Swift.FixedWidthInteger
+  #endif
   @discardableResult
   public mutating func writeEncodedInteger<Integer, Strategy>(_ value: Integer, strategy: Strategy) -> Swift.Int where Integer : Swift.FixedWidthInteger, Strategy : NIOCore.NIOBinaryIntegerEncodingStrategy
   @discardableResult
   public mutating func writeLengthPrefixed<Strategy>(strategy: Strategy, writeData: (_ buffer: inout NIOCore.ByteBuffer) throws -> Swift.Int) rethrows -> Swift.Int where Strategy : NIOCore.NIOBinaryIntegerEncodingStrategy
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readLengthPrefixedSlice<Strategy>(strategy: Strategy) -> NIOCore.ByteBuffer? where Strategy : NIOCore.NIOBinaryIntegerEncodingStrategy
+  #endif
 }
 extension NIOCore.ByteBuffer {
   @discardableResult
@@ -701,8 +767,12 @@ public struct ByteBuffer {
   public func withUnsafeReadableBytes<T>(_ body: (Swift.UnsafeRawBufferPointer) throws -> T) rethrows -> T
   public func withUnsafeReadableBytesWithStorageManagement<T>(_ body: (Swift.UnsafeRawBufferPointer, Swift.Unmanaged<Swift.AnyObject>) throws -> T) rethrows -> T
   public func withVeryUnsafeBytesWithStorageManagement<T>(_ body: (Swift.UnsafeRawBufferPointer, Swift.Unmanaged<Swift.AnyObject>) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getSlice(at index: Swift.Int, length: Swift.Int) -> NIOCore.ByteBuffer?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekSlice(length: Swift.Int) -> NIOCore.ByteBuffer?
+  #endif
   @discardableResult
   public mutating func discardReadBytes() -> Swift.Bool
   @discardableResult
@@ -768,7 +838,9 @@ extension NIOCore.ByteBuffer : Swift.Hashable {
 extension NIOCore.ByteBuffer : @unchecked Swift.Sendable {
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func modifyIfUniquelyOwned<T>(_ body: (inout NIOCore.ByteBuffer) throws -> T) rethrows -> T?
+  #endif
 }
 extension NIOCore.ByteBuffer {
   public init(plainHexEncodedBytes string: Swift.String) throws
@@ -793,16 +865,24 @@ extension NIOCore.ByteBuffer {
   }
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readInteger<T>(endianness: NIOCore.Endianness = .big, as: T.Type = T.self) -> T? where T : Swift.FixedWidthInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getInteger<T>(at index: Swift.Int, endianness: NIOCore.Endianness = Endianness.big, as: T.Type = T.self) -> T? where T : Swift.FixedWidthInteger
+  #endif
   @discardableResult
   public mutating func writeInteger<T>(_ integer: T, endianness: NIOCore.Endianness = .big, as: T.Type = T.self) -> Swift.Int where T : Swift.FixedWidthInteger
   @discardableResult
   public mutating func setInteger<T>(_ integer: T, at index: Swift.Int, endianness: NIOCore.Endianness = .big, as: T.Type = T.self) -> Swift.Int where T : Swift.FixedWidthInteger
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekInteger<T>(endianness: NIOCore.Endianness = .big, as: T.Type = T.self) -> T? where T : Swift.FixedWidthInteger
+  #endif
 }
 extension Swift.FixedWidthInteger {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(buffer: NIOCore.ByteBuffer, endianness: NIOCore.Endianness = .host)
+  #endif
 }
 public enum Endianness : Swift.Sendable {
   public static let host: NIOCore.Endianness
@@ -825,12 +905,21 @@ extension NIOCore.ByteBuffer {
   public mutating func writeLengthPrefixed<Integer>(endianness: NIOCore.Endianness = .big, as integer: Integer.Type, writeMessage: (inout NIOCore.ByteBuffer) throws -> Swift.Int) throws -> Swift.Int where Integer : Swift.FixedWidthInteger
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readLengthPrefixed<Integer, Result>(endianness: NIOCore.Endianness = .big, as integer: Integer.Type, readMessage: (NIOCore.ByteBuffer) throws -> Result?) throws -> Result? where Integer : Swift.FixedWidthInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readLengthPrefixedSlice<Integer>(endianness: NIOCore.Endianness = .big, as integer: Integer.Type) -> NIOCore.ByteBuffer? where Integer : Swift.FixedWidthInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLengthPrefixedSlice<Integer>(at index: Swift.Int, endianness: NIOCore.Endianness = .big, as integer: Integer.Type) -> NIOCore.ByteBuffer? where Integer : Swift.FixedWidthInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekLengthPrefixedSlice<Integer>(endianness: NIOCore.Endianness = .big, as integer: Integer.Type) -> NIOCore.ByteBuffer? where Integer : Swift.FixedWidthInteger
+  #endif
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2>(endianness: NIOCore.Endianness = .big, as: (T1, T2).Type = (T1, T2).self) -> (T1, T2)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -863,10 +952,13 @@ extension NIOCore.ByteBuffer {
             return (T1(littleEndian: v1), T2(littleEndian: v2))
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2>(endianness: NIOCore.Endianness = .big, as: (T1, T2).Type = (T1, T2).self) -> (T1, T2)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2>(_ value1: T1, _ value2: T2, endianness: NIOCore.Endianness = .big, as: (T1, T2).Type = (T1, T2).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger {
         var v1: T1
@@ -895,6 +987,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3).Type = (T1, T2, T3).self) -> (T1, T2, T3)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -933,10 +1026,13 @@ extension NIOCore.ByteBuffer {
             return (T1(littleEndian: v1), T2(littleEndian: v2), T3(littleEndian: v3))
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3).Type = (T1, T2, T3).self) -> (T1, T2, T3)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3>(_ value1: T1, _ value2: T2, _ value3: T3, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3).Type = (T1, T2, T3).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger {
         var v1: T1
@@ -971,6 +1067,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4).Type = (T1, T2, T3, T4).self) -> (T1, T2, T3, T4)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1015,10 +1112,13 @@ extension NIOCore.ByteBuffer {
             return (T1(littleEndian: v1), T2(littleEndian: v2), T3(littleEndian: v3), T4(littleEndian: v4))
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4).Type = (T1, T2, T3, T4).self) -> (T1, T2, T3, T4)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4).Type = (T1, T2, T3, T4).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1059,6 +1159,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5).Type = (T1, T2, T3, T4, T5).self) -> (T1, T2, T3, T4, T5)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1112,10 +1213,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5).Type = (T1, T2, T3, T4, T5).self) -> (T1, T2, T3, T4, T5)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5).Type = (T1, T2, T3, T4, T5).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1162,6 +1266,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6).Type = (T1, T2, T3, T4, T5, T6).self) -> (T1, T2, T3, T4, T5, T6)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1224,10 +1329,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6).Type = (T1, T2, T3, T4, T5, T6).self) -> (T1, T2, T3, T4, T5, T6)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6).Type = (T1, T2, T3, T4, T5, T6).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1280,6 +1388,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7).Type = (T1, T2, T3, T4, T5, T6, T7).self) -> (T1, T2, T3, T4, T5, T6, T7)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1348,10 +1457,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7).Type = (T1, T2, T3, T4, T5, T6, T7).self) -> (T1, T2, T3, T4, T5, T6, T7)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7).Type = (T1, T2, T3, T4, T5, T6, T7).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1410,6 +1522,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8).Type = (T1, T2, T3, T4, T5, T6, T7, T8).self) -> (T1, T2, T3, T4, T5, T6, T7, T8)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1484,10 +1597,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8).Type = (T1, T2, T3, T4, T5, T6, T7, T8).self) -> (T1, T2, T3, T4, T5, T6, T7, T8)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8).Type = (T1, T2, T3, T4, T5, T6, T7, T8).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1552,6 +1668,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1633,10 +1750,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1707,6 +1827,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1794,10 +1915,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger {
         var v1: T1
@@ -1874,6 +1998,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger {
         var bytesRequired: Int = MemoryLayout<T1>.size
         bytesRequired &+= MemoryLayout<T2>.size
@@ -1968,10 +2093,13 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, _ value11: T11, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).Type = (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11).self) -> Swift.Int where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger {
         var v1: T1
@@ -2054,6 +2182,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger {
@@ -2156,12 +2285,15 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, _ value11: T11, _ value12: T12, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12
@@ -2252,6 +2384,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger {
@@ -2361,12 +2494,15 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, _ value11: T11, _ value12: T12, _ value13: T13, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13
@@ -2463,6 +2599,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger, T14 : Swift.FixedWidthInteger {
@@ -2578,12 +2715,15 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger, T14 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, _ value11: T11, _ value12: T12, _ value13: T13, _ value14: T14, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14
@@ -2686,6 +2826,7 @@ extension NIOCore.ByteBuffer {
             return offset
         }
     }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public mutating func readMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger, T14 : Swift.FixedWidthInteger, T15 : Swift.FixedWidthInteger {
@@ -2807,12 +2948,15 @@ extension NIOCore.ByteBuffer {
             )
         }
     }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_alwaysEmitIntoClient public func peekMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15
         ).self) -> (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)? where T1 : Swift.FixedWidthInteger, T2 : Swift.FixedWidthInteger, T3 : Swift.FixedWidthInteger, T4 : Swift.FixedWidthInteger, T5 : Swift.FixedWidthInteger, T6 : Swift.FixedWidthInteger, T7 : Swift.FixedWidthInteger, T8 : Swift.FixedWidthInteger, T9 : Swift.FixedWidthInteger, T10 : Swift.FixedWidthInteger, T11 : Swift.FixedWidthInteger, T12 : Swift.FixedWidthInteger, T13 : Swift.FixedWidthInteger, T14 : Swift.FixedWidthInteger, T15 : Swift.FixedWidthInteger {
         var copy = self
         return copy.readMultipleIntegers(endianness: endianness, as: `as`)
     }
+  #endif
   @discardableResult
   @_alwaysEmitIntoClient public mutating func writeMultipleIntegers<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(_ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4, _ value5: T5, _ value6: T6, _ value7: T7, _ value8: T8, _ value9: T9, _ value10: T10, _ value11: T11, _ value12: T12, _ value13: T13, _ value14: T14, _ value15: T15, endianness: NIOCore.Endianness = .big, as: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15).Type = (
             T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15
@@ -2929,7 +3073,9 @@ extension NIOCore.ByteBuffer {
       case two
       case four
       case eight
+      #if compiler(>=5.3) && $NonescapableTypes
       public init?(rawValue: Swift.Int)
+      #endif
       public typealias RawValue = Swift.Int
       public var rawValue: Swift.Int {
         get
@@ -2937,7 +3083,9 @@ extension NIOCore.ByteBuffer {
     }
     public var requiredBytesHint: Swift.Int
     public init(requiredBytesHint: NIOCore.ByteBuffer.QUICBinaryEncodingStrategy.IntegerLength)
+    #if compiler(>=5.3) && $NonescapableTypes
     public func readInteger<IntegerType>(as: IntegerType.Type, from buffer: inout NIOCore.ByteBuffer) -> IntegerType? where IntegerType : Swift.FixedWidthInteger
+    #endif
     public static func bytesNeededForInteger<IntegerType>(_ integer: IntegerType) -> Swift.Int where IntegerType : Swift.FixedWidthInteger
     public func writeInteger<IntegerType>(_ integer: IntegerType, to buffer: inout NIOCore.ByteBuffer) -> Swift.Int where IntegerType : Swift.FixedWidthInteger
     public func writeInteger<IntegerType>(_ integer: IntegerType, reservedCapacity: Swift.Int, to buffer: inout NIOCore.ByteBuffer) -> Swift.Int where IntegerType : Swift.FixedWidthInteger
@@ -2973,10 +3121,18 @@ public struct ByteBufferView : Swift.RandomAccessCollection, Swift.Sendable {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> R) rethrows -> R?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func _customIndexOfEquatableElement(_ element: NIOCore.ByteBufferView.Element) -> NIOCore.ByteBufferView.Index??
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func _customLastIndexOfEquatableElement(_ element: NIOCore.ByteBufferView.Element) -> NIOCore.ByteBufferView.Index??
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func _customContainsEquatableElement(_ element: NIOCore.ByteBufferView.Element) -> Swift.Bool?
+  #endif
   public func _copyContents(initializing ptr: Swift.UnsafeMutableBufferPointer<Swift.UInt8>) -> (Swift.IndexingIterator<NIOCore.ByteBufferView>, Swift.UnsafeMutableBufferPointer<Swift.UInt8>.Index)
   public func _failEarlyRangeCheck(_ index: NIOCore.ByteBufferView.Index, bounds: Swift.Range<NIOCore.ByteBufferView.Index>)
   public func _failEarlyRangeCheck(_ index: NIOCore.ByteBufferView.Index, bounds: Swift.ClosedRange<NIOCore.ByteBufferView.Index>)
@@ -2997,7 +3153,9 @@ extension NIOCore.ByteBuffer {
   public var readableBytesView: NIOCore.ByteBufferView {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func viewBytes(at index: Swift.Int, length: Swift.Int) -> NIOCore.ByteBufferView?
+  #endif
   public init(_ view: NIOCore.ByteBufferView)
 }
 extension NIOCore.ByteBufferView : Swift.Equatable {
@@ -3016,15 +3174,29 @@ extension NIOCore.ByteBufferView : Swift.ExpressibleByArrayLiteral {
 public protocol ChannelCore : AnyObject {
   func localAddress0() throws -> NIOCore.SocketAddress
   func remoteAddress0() throws -> NIOCore.SocketAddress
+  #if compiler(>=5.3) && $NonescapableTypes
   func register0(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func registerAlreadyConfigured0(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func bind0(to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func connect0(to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func write0(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   func flush0()
   func read0()
+  #if compiler(>=5.3) && $NonescapableTypes
   func close0(error: any Swift.Error, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func triggerUserOutboundEvent0(_ event: Any, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   func channelRead0(_ data: NIOCore.NIOAny)
   func errorCaught0(error: any Swift.Error)
 }
@@ -3032,44 +3204,78 @@ public protocol Channel : AnyObject, NIOCore.ChannelOutboundInvoker, NIOCore._NI
   var allocator: NIOCore.ByteBufferAllocator { get }
   var closeFuture: NIOCore.EventLoopFuture<Swift.Void> { get }
   var pipeline: NIOCore.ChannelPipeline { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var localAddress: NIOCore.SocketAddress? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var remoteAddress: NIOCore.SocketAddress? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var parent: (any NIOCore.Channel)? { get }
+  #endif
   func setOption<Option>(_ option: Option, value: Option.Value) -> NIOCore.EventLoopFuture<Swift.Void> where Option : NIOCore.ChannelOption
   func getOption<Option>(_ option: Option) -> NIOCore.EventLoopFuture<Option.Value> where Option : NIOCore.ChannelOption
   var isWritable: Swift.Bool { get }
   var isActive: Swift.Bool { get }
   var _channelCore: any NIOCore.ChannelCore { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? { get }
+  #endif
   @preconcurrency func write<T>(_ any: T) -> NIOCore.EventLoopFuture<Swift.Void> where T : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency func write<T>(_ any: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
   @preconcurrency func writeAndFlush<T>(_ any: T) -> NIOCore.EventLoopFuture<Swift.Void> where T : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency func writeAndFlush<T>(_ any: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
 }
 extension NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? {
     get
   }
+  #endif
 }
 public protocol NIOSynchronousChannelOptions {
   func setOption<Option>(_ option: Option, value: Option.Value) throws where Option : NIOCore.ChannelOption
   func getOption<Option>(_ option: Option) throws -> Option.Value where Option : NIOCore.ChannelOption
 }
 extension NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   public func write(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func write<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
   public func flush()
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   public func writeAndFlush(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func writeAndFlush<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
   public func read()
+  #if compiler(>=5.3) && $NonescapableTypes
   public func close(mode: NIOCore.CloseMode = .all, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func register(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func registerAlreadyConfigured0(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public func triggerUserOutboundEvent(_ event: any Swift.Sendable, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 extension NIOCore.Channel {
   @preconcurrency public func write<T>(_ any: T) -> NIOCore.EventLoopFuture<Swift.Void> where T : Swift.Sendable
@@ -3077,7 +3283,9 @@ extension NIOCore.Channel {
 }
 extension NIOCore.ChannelCore {
   public func unwrapData<T>(_ data: NIOCore.NIOAny, as: T.Type = T.self) -> T
+  #if compiler(>=5.3) && $NonescapableTypes
   public func tryUnwrapData<T>(_ data: NIOCore.NIOAny, as: T.Type = T.self) -> T?
+  #endif
   @available(*, deprecated, renamed: "removeHandlers(pipeline:)")
   public func removeHandlers(channel: any NIOCore.Channel)
   public func removeHandlers(pipeline: NIOCore.ChannelPipeline)
@@ -3132,14 +3340,26 @@ public protocol ChannelHandler : AnyObject {
   func handlerRemoved(context: NIOCore.ChannelHandlerContext)
 }
 public protocol _ChannelOutboundHandler : NIOCore.ChannelHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   func register(context: NIOCore.ChannelHandlerContext, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func bind(context: NIOCore.ChannelHandlerContext, to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func connect(context: NIOCore.ChannelHandlerContext, to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   func flush(context: NIOCore.ChannelHandlerContext)
   func read(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   func close(context: NIOCore.ChannelHandlerContext, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func triggerUserOutboundEvent(context: NIOCore.ChannelHandlerContext, event: Any, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 public protocol _ChannelInboundHandler : NIOCore.ChannelHandler {
   func channelRegistered(context: NIOCore.ChannelHandlerContext)
@@ -3157,14 +3377,26 @@ extension NIOCore.ChannelHandler {
   public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
 }
 extension NIOCore._ChannelOutboundHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func register(context: NIOCore.ChannelHandlerContext, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func bind(context: NIOCore.ChannelHandlerContext, to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func connect(context: NIOCore.ChannelHandlerContext, to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public func flush(context: NIOCore.ChannelHandlerContext)
   public func read(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func close(context: NIOCore.ChannelHandlerContext, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func triggerUserOutboundEvent(context: NIOCore.ChannelHandlerContext, event: Any, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 extension NIOCore._ChannelInboundHandler {
   public func channelRegistered(context: NIOCore.ChannelHandlerContext)
@@ -3192,9 +3424,15 @@ public protocol NIOInboundByteBufferingChannelHandler {
 final public class AcceptBackoffHandler : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
   public typealias InboundIn = NIOCore.Channel
   public typealias OutboundIn = NIOCore.Channel
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func defaultBackoffProvider(error: NIOCore.IOError) -> NIOCore.TimeAmount?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(backoffProvider: @escaping (NIOCore.IOError) -> NIOCore.TimeAmount? = AcceptBackoffHandler.defaultBackoffProvider)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(shouldForwardIOErrorCaught: Swift.Bool, backoffProvider: @escaping (NIOCore.IOError) -> NIOCore.TimeAmount? = AcceptBackoffHandler.defaultBackoffProvider)
+  #endif
   final public func read(context: NIOCore.ChannelHandlerContext)
   final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
   final public func channelInactive(context: NIOCore.ChannelHandlerContext)
@@ -3238,30 +3476,48 @@ final public class IdleStateHandler : NIOCore.ChannelDuplexHandler, NIOCore.Remo
   final public let readTimeout: NIOCore.TimeAmount?
   final public let writeTimeout: NIOCore.TimeAmount?
   final public let allTimeout: NIOCore.TimeAmount?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(readTimeout: NIOCore.TimeAmount? = nil, writeTimeout: NIOCore.TimeAmount? = nil, allTimeout: NIOCore.TimeAmount? = nil)
+  #endif
   final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
   final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
   final public func channelActive(context: NIOCore.ChannelHandlerContext)
   final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
   final public func channelReadComplete(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
 extension NIOCore.IdleStateHandler : Swift.Sendable {
 }
 public protocol ChannelOutboundInvoker {
+  #if compiler(>=5.3) && $NonescapableTypes
   func register(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func bind(to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func connect(to: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   func write(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   func flush()
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   func writeAndFlush(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   func read()
+  #if compiler(>=5.3) && $NonescapableTypes
   func close(mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency func triggerUserOutboundEvent(_ event: any Swift.Sendable, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   var eventLoop: any NIOCore.EventLoop { get }
 }
 extension NIOCore.ChannelOutboundInvoker {
@@ -3541,15 +3797,23 @@ extension NIOCore.ChannelOptions {
 }
 final public class ChannelPipeline : NIOCore.ChannelInvoker {
   final public let eventLoop: any NIOCore.EventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func addHandler(_ handler: any NIOCore.ChannelHandler & Swift.Sendable, name: Swift.String? = nil, position: NIOCore.ChannelPipeline.Position = .last) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
   @preconcurrency final public func removeHandler(_ handler: any NIOCore.RemovableChannelHandler & Swift.Sendable) -> NIOCore.EventLoopFuture<Swift.Void>
   final public func removeHandler(name: Swift.String) -> NIOCore.EventLoopFuture<Swift.Void>
   @available(*, deprecated, message: "Use .syncOperations.removeHandler(context:) instead, this method is not Sendable-safe.")
   final public func removeHandler(context: NIOCore.ChannelHandlerContext) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func removeHandler(_ handler: any NIOCore.RemovableChannelHandler & Swift.Sendable, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func removeHandler(name: Swift.String, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use .syncOperations.removeHandler(context:) instead, this method is not Sendable-safe.")
   final public func removeHandler(context: NIOCore.ChannelHandlerContext, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @available(*, deprecated, message: "This method is not strict concurrency safe. Prefer .syncOperations.context(handler:)")
   @preconcurrency final public func context(handler: any NIOCore.ChannelHandler & Swift.Sendable) -> NIOCore.EventLoopFuture<NIOCore.ChannelHandlerContext>
   final public func context(name: Swift.String) -> NIOCore.EventLoopFuture<NIOCore.ChannelHandlerContext>
@@ -3567,19 +3831,37 @@ final public class ChannelPipeline : NIOCore.ChannelInvoker {
   final public func fireChannelWritabilityChanged()
   @preconcurrency final public func fireUserInboundEventTriggered(_ event: any Swift.Sendable)
   final public func fireErrorCaught(_ error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func close(mode: NIOCore.CloseMode = .all, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func flush()
   final public func read()
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   final public func write(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "NIOAny is not Sendable. Avoid wrapping the value in NIOAny to silence this warning.")
   final public func writeAndFlush(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func writeAndFlush<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?) where T : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func register(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func triggerUserOutboundEvent(_ event: any Swift.Sendable, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public init(channel: any NIOCore.Channel)
   @objc deinit
 }
@@ -3594,9 +3876,13 @@ extension NIOCore.ChannelPipeline {
     public var eventLoop: any NIOCore.EventLoop {
       get
     }
+    #if compiler(>=5.3) && $NonescapableTypes
     public func addHandler(_ handler: any NIOCore.ChannelHandler, name: Swift.String? = nil, position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
     @_disfavoredOverload public func addHandler(_ handler: any NIOCore.ChannelHandler, name: Swift.String? = nil, position: NIOCore.ChannelPipeline.Position = .last) throws
+    #endif
     public func addHandlers(_ handlers: [any NIOCore.ChannelHandler], position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last) throws
     @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
     @_disfavoredOverload public func addHandlers(_ handlers: [any NIOCore.ChannelHandler], position: NIOCore.ChannelPipeline.Position = .last) throws
@@ -3604,11 +3890,17 @@ extension NIOCore.ChannelPipeline {
     @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
     @_disfavoredOverload public func addHandlers(_ handlers: any NIOCore.ChannelHandler..., position: NIOCore.ChannelPipeline.Position = .last) throws
     public func removeHandler(_ handler: any NIOCore.RemovableChannelHandler) -> NIOCore.EventLoopFuture<Swift.Void>
+    #if compiler(>=5.3) && $NonescapableTypes
     public func removeHandler(_ handler: any NIOCore.RemovableChannelHandler, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func removeHandler(name: Swift.String) -> NIOCore.EventLoopFuture<Swift.Void>
+    #if compiler(>=5.3) && $NonescapableTypes
     public func removeHandler(name: Swift.String, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func removeHandler(context: NIOCore.ChannelHandlerContext) -> NIOCore.EventLoopFuture<Swift.Void>
+    #if compiler(>=5.3) && $NonescapableTypes
     public func removeHandler(context: NIOCore.ChannelHandlerContext, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func context(handler: any NIOCore.ChannelHandler) throws -> NIOCore.ChannelHandlerContext
     public func context(name: Swift.String) throws -> NIOCore.ChannelHandlerContext
     public func context<Handler>(handlerType: Handler.Type) throws -> NIOCore.ChannelHandlerContext where Handler : NIOCore.ChannelHandler
@@ -3622,17 +3914,31 @@ extension NIOCore.ChannelPipeline {
     public func fireChannelWritabilityChanged()
     public func fireUserInboundEventTriggered(_ event: Any)
     public func fireErrorCaught(_ error: any Swift.Error)
+    #if compiler(>=5.3) && $NonescapableTypes
     public func close(mode: NIOCore.CloseMode = .all, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func flush()
     public func read()
+    #if compiler(>=5.3) && $NonescapableTypes
     public func write(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func write(_ data: NIOCore.NIOAny) -> NIOCore.EventLoopFuture<Swift.Void>
+    #if compiler(>=5.3) && $NonescapableTypes
     public func writeAndFlush(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
     public func writeAndFlush(_ data: NIOCore.NIOAny) -> NIOCore.EventLoopFuture<Swift.Void>
+    #if compiler(>=5.3) && $NonescapableTypes
     public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public func register(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public func triggerUserOutboundEvent(_ event: Any, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+    #endif
   }
   final public var syncOperations: NIOCore.ChannelPipeline.SynchronousOperations {
     get
@@ -3679,12 +3985,16 @@ public enum ChannelPipelineError : Swift.Error {
   final public var handler: any NIOCore.ChannelHandler {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var remoteAddress: NIOCore.SocketAddress? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var localAddress: NIOCore.SocketAddress? {
     get
   }
+  #endif
   final public var eventLoop: any NIOCore.EventLoop {
     get
   }
@@ -3700,17 +4010,33 @@ public enum ChannelPipelineError : Swift.Error {
   @available(*, deprecated)
   @_disfavoredOverload final public func fireUserInboundEventTriggered(_ event: any Swift.Sendable)
   final public func fireUserInboundEventTriggered(_ event: Any)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func register(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func flush()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func writeAndFlush(_ data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func read()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func close(mode: NIOCore.CloseMode = .all, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated)
   @_disfavoredOverload final public func triggerUserOutboundEvent(_ event: any Swift.Sendable, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func triggerUserOutboundEvent(_ event: Any, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 extension NIOCore.ChannelHandlerContext {
@@ -3740,9 +4066,13 @@ extension NIOCore.ChannelPipeline {
 }
 extension NIOCore.ChannelPipeline.SynchronousOperations {
   public func outboundBufferedBytes() -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func outboundBufferedBytes(in context: NIOCore.ChannelHandlerContext) -> Swift.Int?
+  #endif
   public func inboundBufferedBytes() -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func inboundBufferedBytes(in context: NIOCore.ChannelHandlerContext) -> Swift.Int?
+  #endif
 }
 public struct CircularBuffer<Element> : Swift.CustomStringConvertible {
   public struct Index : Swift.Comparable, Swift.Sendable {
@@ -3806,8 +4136,12 @@ extension NIOCore.CircularBuffer {
   }
 }
 extension NIOCore.CircularBuffer : Swift.RangeReplaceableCollection {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func popFirst() -> Element?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func popLast() -> Element?
+  #endif
   public mutating func removeLast(_ k: Swift.Int)
   public mutating func removeFirst(_ k: Swift.Int)
   @discardableResult
@@ -3818,9 +4152,11 @@ extension NIOCore.CircularBuffer : Swift.RangeReplaceableCollection {
   public mutating func removeSubrange(_ bounds: Swift.Range<NIOCore.CircularBuffer<Element>.Index>)
   @discardableResult
   public mutating func remove(at position: NIOCore.CircularBuffer<Element>.Index) -> Element
+  #if compiler(>=5.3) && $NonescapableTypes
   public var first: Element? {
     get
   }
+  #endif
   public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
 }
 extension NIOCore.CircularBuffer : Swift.Equatable where Element : Swift.Equatable {
@@ -3880,7 +4216,9 @@ final public class ByteToMessageHandler<Decoder> where Decoder : NIOCore.ByteToM
   public typealias InboundIn = NIOCore.ByteBuffer
   public typealias InboundOut = Decoder.InboundOut
   convenience public init(_ decoder: Decoder)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(_ decoder: Decoder, maximumBufferSize: Swift.Int? = nil)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -3896,7 +4234,9 @@ extension NIOCore.ByteToMessageHandler : NIOCore.ChannelInboundHandler {
 }
 extension NIOCore.ByteToMessageHandler : NIOCore.ChannelOutboundHandler, NIOCore._ChannelOutboundHandler where Decoder : NIOCore.WriteObservingByteToMessageDecoder {
   public typealias OutboundIn = Decoder.OutboundIn
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 public protocol MessageToByteEncoder {
   associatedtype OutboundIn
@@ -3918,7 +4258,9 @@ extension NIOCore.MessageToByteHandler : Swift.Sendable {
 extension NIOCore.MessageToByteHandler {
   final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
   final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func flush(context: NIOCore.ChannelHandlerContext)
 }
 extension NIOCore.NIOClientTCPBootstrapProtocol {
@@ -4002,7 +4344,9 @@ public struct Scheduled<T> {
 extension NIOCore.Scheduled : Swift.Sendable {
 }
 @_hasMissingDesignatedInitializers final public class RepeatedTask {
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func cancel(promise: NIOCore.EventLoopPromise<Swift.Void>? = nil)
+  #endif
   @objc deinit
 }
 extension NIOCore.RepeatedTask : @unchecked Swift.Sendable {
@@ -4010,7 +4354,9 @@ extension NIOCore.RepeatedTask : @unchecked Swift.Sendable {
 public struct EventLoopIterator : Swift.Sequence, Swift.IteratorProtocol {
   public typealias Element = NIOCore.EventLoop
   public init(_ eventLoops: [any NIOCore.EventLoop])
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func next() -> (any NIOCore.EventLoop)?
+  #endif
   public typealias Iterator = NIOCore.EventLoopIterator
 }
 extension NIOCore.EventLoopIterator : Swift.Sendable {
@@ -4033,7 +4379,9 @@ public protocol EventLoop : NIOCore.EventLoopGroup {
   func enqueue(_ job: consuming _Concurrency.ExecutorJob)
   func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
   func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  #if compiler(>=5.3) && $NonescapableTypes
   func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  #endif
   @discardableResult
   @preconcurrency func scheduleCallback(at deadline: NIOCore.NIODeadline, handler: some (NIOScheduledCallbackHandler & Sendable)) throws -> NIOCore.NIOScheduledCallback
   @discardableResult
@@ -4055,7 +4403,9 @@ extension NIOCore.EventLoop {
   public func makeSucceededVoidFuture() -> NIOCore.EventLoopFuture<Swift.Void>
   public func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
   public func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  #endif
   public func _executeIsolatedUnsafeUnchecked(_ task: @escaping () -> Swift.Void)
   public func _submitIsolatedUnsafeUnchecked<T>(_ task: @escaping () throws -> T) -> NIOCore.EventLoopFuture<T>
   @discardableResult
@@ -4154,19 +4504,29 @@ extension NIOCore.EventLoop {
   @preconcurrency public func makeSucceededFuture<Success>(_ value: Success) -> NIOCore.EventLoopFuture<Success> where Success : Swift.Sendable
   @available(*, noasync)
   public func makeSucceededIsolatedFuture<Success>(_ value: Success) -> NIOCore.EventLoopFuture<Success>.Isolated
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public func makeCompletedFuture<Success>(_ result: Swift.Result<Success, any Swift.Error>) -> NIOCore.EventLoopFuture<Success> where Success : Swift.Sendable
+  #endif
   @preconcurrency public func makeCompletedFuture<Success>(withResultOf body: () throws -> Success) -> NIOCore.EventLoopFuture<Success> where Success : Swift.Sendable
   public func next() -> any NIOCore.EventLoop
   public func any() -> any NIOCore.EventLoop
   public func close() throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   @preconcurrency public func scheduleRepeatedTask(initialDelay: NIOCore.TimeAmount, delay: NIOCore.TimeAmount, notifying promise: NIOCore.EventLoopPromise<Swift.Void>? = nil, _ task: @escaping @Sendable (NIOCore.RepeatedTask) throws -> Swift.Void) -> NIOCore.RepeatedTask
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func scheduleRepeatedTask(initialDelay: NIOCore.TimeAmount, delay: NIOCore.TimeAmount, maximumAllowableJitter: NIOCore.TimeAmount, notifying promise: NIOCore.EventLoopPromise<Swift.Void>? = nil, _ task: @escaping @Sendable (NIOCore.RepeatedTask) throws -> Swift.Void) -> NIOCore.RepeatedTask
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   @preconcurrency public func scheduleRepeatedAsyncTask(initialDelay: NIOCore.TimeAmount, delay: NIOCore.TimeAmount, notifying promise: NIOCore.EventLoopPromise<Swift.Void>? = nil, _ task: @escaping @Sendable (NIOCore.RepeatedTask) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.RepeatedTask
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func scheduleRepeatedAsyncTask(initialDelay: NIOCore.TimeAmount, delay: NIOCore.TimeAmount, maximumAllowableJitter: NIOCore.TimeAmount, notifying promise: NIOCore.EventLoopPromise<Swift.Void>? = nil, _ task: @escaping @Sendable (NIOCore.RepeatedTask) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.RepeatedTask
+  #endif
   public func makeIterator() -> NIOCore.EventLoopIterator
   public func assertInEventLoop(file: Swift.StaticString = #fileID, line: Swift.UInt = #line)
   public func assertNotInEventLoop(file: Swift.StaticString = #fileID, line: Swift.UInt = #line)
@@ -4176,7 +4536,9 @@ extension NIOCore.EventLoop {
 public protocol EventLoopGroup : AnyObject, NIOCore._NIOPreconcurrencySendable {
   func next() -> any NIOCore.EventLoop
   func any() -> any NIOCore.EventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   func makeIterator() -> NIOCore.EventLoopIterator
   func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
 }
@@ -4184,7 +4546,9 @@ extension NIOCore.EventLoopGroup {
   public func any() -> any NIOCore.EventLoop
 }
 extension NIOCore.EventLoopGroup {
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public func shutdownGracefully(_ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   @available(*, noasync, renamed: "shutdownGracefully()", message: "this can end up blocking the calling thread")
   public func syncShutdownGracefully() throws
   public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
@@ -4230,8 +4594,10 @@ public struct NIOIsolatedEventLoop {
   public func makeSucceededFuture<Success>(_ value: Success) -> NIOCore.EventLoopFuture<Success>
   @available(*, noasync)
   public func makeFailedFuture<Success>(_ error: any Swift.Error) -> NIOCore.EventLoopFuture<Success>
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, noasync)
   public func makeCompletedFuture<Success>(_ result: Swift.Result<Success, any Swift.Error>) -> NIOCore.EventLoopFuture<Success>
+  #endif
   @available(*, noasync)
   public func makeCompletedFuture<Success>(withResultOf body: () throws -> Success) -> NIOCore.EventLoopFuture<Success>
   public func nonisolated() -> any NIOCore.EventLoop
@@ -4258,22 +4624,32 @@ extension NIOCore.EventLoopFuture {
     public func flatMapError(_ callback: @escaping (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value>.Isolated where Value : Swift.Sendable
     @available(*, noasync)
     public func flatMapError(_ callback: @escaping (any Swift.Error) -> NIOCore.EventLoopFuture<Value>.Isolated) -> NIOCore.EventLoopFuture<Value>.Isolated
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func flatMapResult<NewValue, SomeError>(_ body: @escaping (Value) -> Swift.Result<NewValue, SomeError>) -> NIOCore.EventLoopFuture<NewValue>.Isolated where SomeError : Swift.Error
+    #endif
     @available(*, noasync)
     public func recover(_ callback: @escaping (any Swift.Error) -> Value) -> NIOCore.EventLoopFuture<Value>.Isolated
     @available(*, noasync)
     public func whenSuccess(_ callback: @escaping (Value) -> Swift.Void)
     @available(*, noasync)
     public func whenFailure(_ callback: @escaping (any Swift.Error) -> Swift.Void)
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func whenComplete(_ callback: @escaping (Swift.Result<Value, any Swift.Error>) -> Swift.Void)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func always(_ callback: @escaping (Swift.Result<Value, any Swift.Error>) -> Swift.Void) -> NIOCore.EventLoopFuture<Value>.Isolated
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func unwrap<NewValue>(orReplace replacement: NewValue) -> NIOCore.EventLoopFuture<NewValue>.Isolated where Value == NewValue?
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func unwrap<NewValue>(orElse callback: @escaping () -> NewValue) -> NIOCore.EventLoopFuture<NewValue>.Isolated where Value == NewValue?
+    #endif
     public func nonisolated() -> NIOCore.EventLoopFuture<Value>
   }
   @available(*, noasync)
@@ -4292,8 +4668,10 @@ extension NIOCore.EventLoopPromise {
     }
     @available(*, noasync)
     public func succeed(_ value: Value)
+    #if compiler(>=5.3) && $NonescapableTypes
     @available(*, noasync)
     public func completeWith(_ result: Swift.Result<Value, any Swift.Error>)
+    #endif
     public func nonisolated() -> NIOCore.EventLoopPromise<Value>
   }
   @available(*, noasync)
@@ -4314,8 +4692,10 @@ extension NIOCore.EventLoopFuture {
   final public func map<NewValue>(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (Value) -> NewValue) -> NIOCore.EventLoopFuture<NewValue>
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
   final public func flatMapError(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value> where Value : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
   @preconcurrency final public func flatMapResult<NewValue, SomeError>(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ body: @escaping @Sendable (Value) -> Swift.Result<NewValue, SomeError>) -> NIOCore.EventLoopFuture<NewValue> where SomeError : Swift.Error
+  #endif
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
   @preconcurrency final public func recover(file: Swift.StaticString = #fileID, line: Swift.UInt = #line, _ callback: @escaping @Sendable (any Swift.Error) -> Value) -> NIOCore.EventLoopFuture<Value>
   @available(*, deprecated, message: "Please don't pass file:line:, there's no point.")
@@ -4333,7 +4713,9 @@ public struct EventLoopPromise<Value> {
   @preconcurrency public func succeed(_ value: Value) where Value : Swift.Sendable
   public func fail(_ error: any Swift.Error)
   @preconcurrency public func completeWith(_ future: NIOCore.EventLoopFuture<Value>) where Value : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public func completeWith(_ result: Swift.Result<Value, any Swift.Error>) where Value : Swift.Sendable
+  #endif
 }
 extension NIOCore.EventLoopPromise : Swift.Equatable {
   public static func == (a: NIOCore.EventLoopPromise<Value>, b: NIOCore.EventLoopPromise<Value>) -> Swift.Bool
@@ -4351,20 +4733,30 @@ extension NIOCore.EventLoopFuture {
   @preconcurrency final public func flatMapErrorThrowing(_ callback: @escaping @Sendable (any Swift.Error) throws -> Value) -> NIOCore.EventLoopFuture<Value>
   @preconcurrency final public func map<NewValue>(_ callback: @escaping @Sendable (Value) -> NewValue) -> NIOCore.EventLoopFuture<NewValue>
   @preconcurrency final public func flatMapError(_ callback: @escaping @Sendable (any Swift.Error) -> NIOCore.EventLoopFuture<Value>) -> NIOCore.EventLoopFuture<Value> where Value : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func flatMapResult<NewValue, SomeError>(_ body: @escaping @Sendable (Value) -> Swift.Result<NewValue, SomeError>) -> NIOCore.EventLoopFuture<NewValue> where SomeError : Swift.Error
+  #endif
   @preconcurrency final public func recover(_ callback: @escaping @Sendable (any Swift.Error) -> Value) -> NIOCore.EventLoopFuture<Value>
   @preconcurrency final public func whenSuccess(_ callback: @escaping @Sendable (Value) -> Swift.Void)
   @preconcurrency final public func whenFailure(_ callback: @escaping @Sendable (any Swift.Error) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func whenComplete(_ callback: @escaping @Sendable (Swift.Result<Value, any Swift.Error>) -> Swift.Void)
+  #endif
 }
 extension NIOCore.EventLoopFuture {
   @preconcurrency final public func and<OtherValue>(_ other: NIOCore.EventLoopFuture<OtherValue>) -> NIOCore.EventLoopFuture<(Value, OtherValue)> where OtherValue : Swift.Sendable
   @preconcurrency final public func and<OtherValue>(value: OtherValue) -> NIOCore.EventLoopFuture<(Value, OtherValue)> where OtherValue : Swift.Sendable
 }
 extension NIOCore.EventLoopFuture {
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func cascade(to promise: NIOCore.EventLoopPromise<Value>?) where Value : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func cascadeSuccess(to promise: NIOCore.EventLoopPromise<Value>?) where Value : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func cascadeFailure<NewValue>(to promise: NIOCore.EventLoopPromise<NewValue>?)
+  #endif
 }
 extension NIOCore.EventLoopFuture {
   @available(*, noasync, renamed: "get()", message: "wait() can block indefinitely, prefer get()")
@@ -4386,25 +4778,39 @@ extension NIOCore.EventLoopFuture {
 extension NIOCore.EventLoopFuture {
   public static func andAllComplete(_ futures: [NIOCore.EventLoopFuture<Value>], on eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Swift.Void>
   public static func andAllComplete(_ futures: [NIOCore.EventLoopFuture<Value>], promise: NIOCore.EventLoopPromise<Swift.Void>)
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public static func whenAllComplete(_ futures: [NIOCore.EventLoopFuture<Value>], on eventLoop: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<[Swift.Result<Value, any Swift.Error>]> where Value : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public static func whenAllComplete(_ futures: [NIOCore.EventLoopFuture<Value>], promise: NIOCore.EventLoopPromise<[Swift.Result<Value, any Swift.Error>]>) where Value : Swift.Sendable
+  #endif
 }
 extension NIOCore.EventLoopFuture {
   @preconcurrency final public func hop(to target: any NIOCore.EventLoop) -> NIOCore.EventLoopFuture<Value> where Value : Swift.Sendable
 }
 extension NIOCore.EventLoopFuture {
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func always(_ callback: @escaping @Sendable (Swift.Result<Value, any Swift.Error>) -> Swift.Void) -> NIOCore.EventLoopFuture<Value>
+  #endif
 }
 extension NIOCore.EventLoopFuture {
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func unwrap<NewValue>(orError: any Swift.Error) -> NIOCore.EventLoopFuture<NewValue> where Value == NewValue?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func unwrap<NewValue>(orReplace replacement: NewValue) -> NIOCore.EventLoopFuture<NewValue> where Value == NewValue?, NewValue : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func unwrap<NewValue>(orElse callback: @escaping @Sendable () -> NewValue) -> NIOCore.EventLoopFuture<NewValue> where Value == NewValue?
+  #endif
 }
 extension NIOCore.EventLoopFuture {
   @preconcurrency final public func flatMapBlocking<NewValue>(onto queue: Dispatch.DispatchQueue, _ callbackMayBlock: @escaping @Sendable (Value) throws -> NewValue) -> NIOCore.EventLoopFuture<NewValue> where Value : Swift.Sendable, NewValue : Swift.Sendable
   @preconcurrency final public func whenSuccessBlocking(onto queue: Dispatch.DispatchQueue, _ callbackMayBlock: @escaping @Sendable (Value) -> Swift.Void) where Value : Swift.Sendable
   @preconcurrency final public func whenFailureBlocking(onto queue: Dispatch.DispatchQueue, _ callbackMayBlock: @escaping @Sendable (any Swift.Error) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func whenCompleteBlocking(onto queue: Dispatch.DispatchQueue, _ callbackMayBlock: @escaping @Sendable (Swift.Result<Value, any Swift.Error>) -> Swift.Void) where Value : Swift.Sendable
+  #endif
 }
 extension NIOCore.EventLoopFuture {
   final public func assertSuccess(file: Swift.StaticString = #fileID, line: Swift.UInt = #line) -> NIOCore.EventLoopFuture<Value>
@@ -4426,15 +4832,17 @@ extension NIOCore.EventLoopFuture : @unchecked Swift.Sendable {
 extension NIOCore.EventLoopPromise where Value == () {
   public func succeed()
 }
+#if compiler(>=5.3) && $NonescapableTypes
 extension Swift.Optional {
   @preconcurrency public mutating func setOrCascade<Value>(to promise: NIOCore.EventLoopPromise<Value>?) where Wrapped == NIOCore.EventLoopPromise<Value>, Value : Swift.Sendable
 }
+#endif
 public protocol FileDescriptor {
   func withUnsafeFileDescriptor<T>(_ body: (Swift.CInt) throws -> T) throws -> T
   var isOpen: Swift.Bool { get }
   func close() throws
 }
-public typealias NIOPOSIXFileMode = sys_types.mode_t
+public typealias NIOPOSIXFileMode = _DarwinFoundation2.mode_t
 final public class NIOFileHandle : NIOCore.FileDescriptor & Swift.Sendable {
   final public var isOpen: Swift.Bool {
     get
@@ -4460,7 +4868,7 @@ extension NIOCore.NIOFileHandle {
   }
   public struct Flags : Swift.Sendable {
     public static let `default`: NIOCore.NIOFileHandle.Flags
-    public static let defaultPermissions: sys_types.mode_t
+    public static let defaultPermissions: _DarwinFoundation2.mode_t
     public static func allowFileCreation(posixMode: NIOCore.NIOPOSIXFileMode = defaultPermissions) -> NIOCore.NIOFileHandle.Flags
     public static func posix(flags: Swift.CInt, mode: NIOCore.NIOPOSIXFileMode) -> NIOCore.NIOFileHandle.Flags
   }
@@ -4645,22 +5053,30 @@ public struct NIONetworkDevice {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var address: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var netmask: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var broadcastAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var pointToPointDestinationAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
   public var multicastSupported: Swift.Bool {
     get
     set
@@ -4671,7 +5087,9 @@ public struct NIONetworkDevice {
   }
   @available(*, deprecated, message: "This is a compatibility helper, and will be removed in a future release")
   public init(_ interface: NIOCore.NIONetworkInterface)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(name: Swift.String, address: NIOCore.SocketAddress?, netmask: NIOCore.SocketAddress?, broadcastAddress: NIOCore.SocketAddress?, pointToPointDestinationAddress: NIOCore.SocketAddress, multicastSupported: Swift.Bool, interfaceIndex: Swift.Int)
+  #endif
 }
 extension NIOCore.NIONetworkDevice : @unchecked Swift.Sendable {
 }
@@ -4693,10 +5111,14 @@ public struct MarkedCircularBuffer<Element> : Swift.CustomStringConvertible {
   public init(initialCapacity: Swift.Int)
   public mutating func append(_ value: Element)
   public mutating func removeFirst() -> Element
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func popFirst() -> Element?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var first: Element? {
     get
   }
+  #endif
   public var isEmpty: Swift.Bool {
     get
   }
@@ -4708,12 +5130,16 @@ public struct MarkedCircularBuffer<Element> : Swift.CustomStringConvertible {
   }
   public mutating func mark()
   public func isMarked(index: NIOCore.MarkedCircularBuffer<Element>.Index) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public var markedElementIndex: NIOCore.MarkedCircularBuffer<Element>.Index? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var markedElement: Element? {
     get
   }
+  #endif
   public var hasMark: Swift.Bool {
     get
   }
@@ -4748,30 +5174,58 @@ extension NIOCore.MarkedCircularBuffer : Swift.RandomAccessCollection {
 extension NIOCore.MarkedCircularBuffer : Swift.Sendable where Element : Swift.Sendable {
 }
 public protocol MulticastChannel : NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
   func joinGroup(_ group: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "joinGroup(_:device:promise:)")
   func joinGroup(_ group: NIOCore.SocketAddress, interface: NIOCore.NIONetworkInterface?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func joinGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func leaveGroup(_ group: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "leaveGroup(_:device:promise:)")
   func leaveGroup(_ group: NIOCore.SocketAddress, interface: NIOCore.NIONetworkInterface?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func leaveGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 extension NIOCore.MulticastChannel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func joinGroup(_ group: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public func joinGroup(_ group: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "joinGroup(_:device:)")
   public func joinGroup(_ group: NIOCore.SocketAddress, interface: NIOCore.NIONetworkInterface?) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func joinGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func leaveGroup(_ group: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public func leaveGroup(_ group: NIOCore.SocketAddress) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "leaveGroup(_:device:)")
   public func leaveGroup(_ group: NIOCore.SocketAddress, interface: NIOCore.NIONetworkInterface?) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func leaveGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
 }
 extension NIOCore.MulticastChannel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func joinGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func leaveGroup(_ group: NIOCore.SocketAddress, device: NIOCore.NIONetworkDevice?, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 public struct NIOMulticastNotSupportedError : Swift.Error {
   public var device: NIOCore.NIONetworkDevice
@@ -4823,7 +5277,9 @@ public struct NIOLoopBound<Value> : @unchecked Swift.Sendable {
     get
   }
   convenience public init(_ value: Value, eventLoop: any NIOCore.EventLoop)
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func makeEmptyBox<NonOptionalValue>(valueType: NonOptionalValue.Type = NonOptionalValue.self, eventLoop: any NIOCore.EventLoop) -> NIOCore.NIOLoopBoundBox<Value> where Value == NonOptionalValue?
+  #endif
   public static func makeBoxSendingValue(_ value: Value, as: Value.Type = Value.self, eventLoop: any NIOCore.EventLoop) -> NIOCore.NIOLoopBoundBox<Value> where Value : Swift.Sendable
   #if compiler(>=5.3) && $SendingArgsAndResults
   public static func makeBoxSendingValue(_ value: sending Value, as: Value.Type = Value.self, eventLoop: any NIOCore.EventLoop) -> NIOCore.NIOLoopBoundBox<Value>
@@ -4846,9 +5302,11 @@ extension NIOCore.NIOScheduledCallbackHandler {
 public struct NIOScheduledCallback : Swift.Sendable {
   public init(_ eventLoop: any NIOCore.EventLoop, id: Swift.UInt64)
   public func cancel()
+  #if compiler(>=5.3) && $NonescapableTypes
   public var customCallbackID: Swift.UInt64? {
     get
   }
+  #endif
 }
 extension NIOCore.EventLoop {
   @preconcurrency public func _scheduleCallback(at deadline: NIOCore.NIODeadline, handler: some (NIOScheduledCallbackHandler & Sendable)) -> NIOCore.NIOScheduledCallback
@@ -4866,11 +5324,15 @@ public typealias NIOSendable = Swift.Sendable
 public typealias NIOPreconcurrencySendable = NIOCore._NIOPreconcurrencySendable
 public protocol RecvByteBufferAllocator : NIOCore._NIOPreconcurrencySendable {
   func buffer(allocator: NIOCore.ByteBufferAllocator) -> NIOCore.ByteBuffer
+  #if compiler(>=5.3) && $NonescapableTypes
   func nextBufferSize() -> Swift.Int?
+  #endif
   mutating func record(actualReadBytes: Swift.Int) -> Swift.Bool
 }
 extension NIOCore.RecvByteBufferAllocator {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func nextBufferSize() -> Swift.Int?
+  #endif
 }
 public struct FixedSizeRecvByteBufferAllocator : NIOCore.RecvByteBufferAllocator {
   public let capacity: Swift.Int
@@ -4879,7 +5341,9 @@ public struct FixedSizeRecvByteBufferAllocator : NIOCore.RecvByteBufferAllocator
   public func buffer(allocator: NIOCore.ByteBufferAllocator) -> NIOCore.ByteBuffer
 }
 extension NIOCore.FixedSizeRecvByteBufferAllocator {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func nextBufferSize() -> Swift.Int?
+  #endif
 }
 public struct AdaptiveRecvByteBufferAllocator : NIOCore.RecvByteBufferAllocator {
   public let minimum: Swift.Int
@@ -4891,19 +5355,27 @@ public struct AdaptiveRecvByteBufferAllocator : NIOCore.RecvByteBufferAllocator 
   public mutating func record(actualReadBytes: Swift.Int) -> Swift.Bool
 }
 extension NIOCore.AdaptiveRecvByteBufferAllocator {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func nextBufferSize() -> Swift.Int?
+  #endif
 }
 public protocol NIOSingleStepByteToMessageDecoder : NIOCore.ByteToMessageDecoder {
   associatedtype InboundOut
+  #if compiler(>=5.3) && $NonescapableTypes
   mutating func decode(buffer: inout NIOCore.ByteBuffer) throws -> Self.InboundOut?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   mutating func decodeLast(buffer: inout NIOCore.ByteBuffer, seenEOF: Swift.Bool) throws -> Self.InboundOut?
+  #endif
 }
 extension NIOCore.NIOSingleStepByteToMessageDecoder {
   public mutating func decode(context: NIOCore.ChannelHandlerContext, buffer: inout NIOCore.ByteBuffer) throws -> NIOCore.DecodingState
   public mutating func decodeLast(context: NIOCore.ChannelHandlerContext, buffer: inout NIOCore.ByteBuffer, seenEOF: Swift.Bool) throws -> NIOCore.DecodingState
 }
 final public class NIOSingleStepByteToMessageProcessor<Decoder> where Decoder : NIOCore.NIOSingleStepByteToMessageDecoder {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(_ decoder: Decoder, maximumBufferSize: Swift.Int? = nil)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -4973,16 +5445,22 @@ public enum SocketAddress : Swift.CustomStringConvertible, Swift.Sendable {
   public var `protocol`: NIOCore.NIOBSDSocket.ProtocolFamily {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var ipAddress: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var port: Swift.Int? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var pathname: Swift.String? {
     get
   }
+  #endif
   public func withSockAddr<T>(_ body: (Swift.UnsafePointer<Darwin.sockaddr>, Swift.Int) throws -> T) rethrows -> T
   public init(_ addr: Darwin.sockaddr_in, host: Swift.String)
   public init(_ addr: Darwin.sockaddr_in6, host: Swift.String)
@@ -5115,9 +5593,11 @@ public enum System {
 extension NIOCore.System {
   public static let supportsUDPSegmentationOffload: Swift.Bool
   public static let supportsUDPReceiveOffload: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static var udpMaxSegments: Swift.Int? {
     get
   }
+  #endif
 }
 extension NIOCore.Endianness : Swift.Equatable {}
 extension NIOCore.Endianness : Swift.Hashable {}

@@ -6,7 +6,7 @@ struct TradesScreen: View {
     private enum _State {
         case initial
         case loading
-        case normal(Models.TradesResponse)
+        case normal(Candle.Models.TradesResponse)
     }
 
     // FIXME: Support dynamic span values like the SDK
@@ -36,25 +36,26 @@ struct TradesScreen: View {
         }
     }
 
-    @Environment(CandleClient.self) private var client
-
     @Binding var error: (title: String, message: String)?
 
     @State private var state: _State = .initial
     @State private var dateTimeSpan: SupportedSpan? = nil
-    @State private var lostAssetKind: Models.GetTrades.Input.Query.LostAssetKindPayload? = nil
-    @State private var gainedAssetKind: Models.GetTrades.Input.Query.GainedAssetKindPayload? = nil
-    @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
-    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
+    @State private var lostAssetKind: Candle.Models.GetTrades.Input.Query.LostAssetKindPayload? =
+        nil
+    @State private var gainedAssetKind:
+        Candle.Models.GetTrades.Input.Query.GainedAssetKindPayload? = nil
+    @State private var counterpartyKind:
+        Candle.Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
+    @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
     @State private var searchText = ""
     @State private var showTradeQuotes: Bool = false
-    @State private var tradeQuoteToExecute: Models.TradeQuote? = nil
-    @State private var newTrade: Models.Trade? = nil
+    @State private var tradeQuoteToExecute: Candle.Models.TradeQuote? = nil
+    @State private var newTrade: Candle.Models.Trade? = nil
 
-    let linkedAccounts: [Models.LinkedAccount]
+    let linkedAccounts: [Candle.Models.LinkedAccount]
 
-    var tradesQuery: Models.GetTrades.Input.Query {
+    var tradesQuery: Candle.Models.GetTrades.Input.Query {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
@@ -197,12 +198,16 @@ struct TradesScreen: View {
         if showLoading { state = .loading }
 
         do {
-            let tradesResponse = try await client.getTrades(query: tradesQuery)
+            let tradesResponse = try await Candle.Client.shared.getTrades(query: tradesQuery)
             state = .normal(tradesResponse)
         } catch {
             if showLoading { state = .initial }
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -229,7 +234,6 @@ struct TradesScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -237,7 +241,4 @@ struct TradesScreen: View {
     }
 }
 
-#Preview {
-    TradesScreen(error: .constant(nil), linkedAccounts: [])
-        .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
-}
+#Preview { TradesScreen(error: .constant(nil), linkedAccounts: []) }

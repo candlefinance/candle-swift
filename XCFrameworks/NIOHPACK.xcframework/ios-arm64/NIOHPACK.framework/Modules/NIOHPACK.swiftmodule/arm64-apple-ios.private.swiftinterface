@@ -1,0 +1,261 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOHPACK -package-name swift_nio_http2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import NIOCore
+import NIOHTTP1
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct HPACKDecoder : Swift.Sendable {
+  public static var maxDynamicTableSize: Swift.Int {
+    get
+  }
+  public static var defaultMaxHeaderListSize: Swift.Int {
+    get
+  }
+  public var allowedDynamicTableLength: Swift.Int {
+    get
+  }
+  public var maxHeaderListSize: Swift.Int
+  public var maxDynamicTableLength: Swift.Int {
+    get
+    set
+  }
+  public init(allocator: NIOCore.ByteBufferAllocator, maxDynamicTableSize: Swift.Int = HPACKDecoder.maxDynamicTableSize)
+  public init(allocator: NIOCore.ByteBufferAllocator, maxDynamicTableSize: Swift.Int, maxHeaderListSize: Swift.Int)
+  public mutating func decodeHeaders(from buffer: inout NIOCore.ByteBuffer) throws -> NIOHPACK.HPACKHeaders
+}
+public struct HPACKEncoder {
+  public static var defaultDynamicTableSize: Swift.Int {
+    get
+  }
+  public struct HeaderDefinition : Swift.Sendable {
+  }
+  public let useHuffmanEncoding: Swift.Bool
+  public var dynamicTableSize: Swift.Int {
+    get
+  }
+  public var allowedDynamicTableSize: Swift.Int {
+    get
+  }
+  public var maximumDynamicTableSize: Swift.Int {
+    get
+    @available(*, deprecated, renamed: "setDynamicTableSize(_:)", message: "Setting the dynamic table length on the HPACK encoder doesn't have the intended effect.")
+    set
+  }
+  public mutating func setDynamicTableSize(_ size: Swift.Int) throws
+  public init(allocator: NIOCore.ByteBufferAllocator, useHuffmanEncoding: Swift.Bool = true, maxDynamicTableSize: Swift.Int = HPACKEncoder.defaultDynamicTableSize)
+  public mutating func beginEncoding(allocator: NIOCore.ByteBufferAllocator) throws
+  public mutating func endEncoding() throws -> NIOCore.ByteBuffer
+  public mutating func encode(headers: NIOHPACK.HPACKHeaders, to buffer: inout NIOCore.ByteBuffer) throws
+  public mutating func append<S>(headers: S) throws where S : Swift.Sequence, S.Element == (name: Swift.String, value: Swift.String)
+  public mutating func append<S>(headers: S) throws where S : Swift.Sequence, S.Element == NIOHPACK.HPACKEncoder.HeaderDefinition
+  public mutating func append(headers: NIOHPACK.HPACKHeaders) throws
+  public mutating func append(header name: Swift.String, value: Swift.String) throws
+  public mutating func appendNonIndexed(header: Swift.String, value: Swift.String) throws
+  public mutating func appendNeverIndexed(header: Swift.String, value: Swift.String) throws
+}
+extension NIOHPACK.HPACKEncoder : Swift.Sendable {
+}
+public protocol NIOHPACKError : Swift.Equatable, Swift.Error {
+}
+public enum NIOHPACKErrors : Swift.Sendable {
+  public struct InvalidHeaderIndex : NIOHPACK.NIOHPACKError {
+    public let suppliedIndex: Swift.Int
+    public let availableIndex: Swift.Int
+    public static func == (a: NIOHPACK.NIOHPACKErrors.InvalidHeaderIndex, b: NIOHPACK.NIOHPACKErrors.InvalidHeaderIndex) -> Swift.Bool
+  }
+  public struct IndexedHeaderWithNoValue : NIOHPACK.NIOHPACKError {
+    public let index: Swift.Int
+    public static func == (a: NIOHPACK.NIOHPACKErrors.IndexedHeaderWithNoValue, b: NIOHPACK.NIOHPACKErrors.IndexedHeaderWithNoValue) -> Swift.Bool
+  }
+  public struct StringLengthBeyondPayloadSize : NIOHPACK.NIOHPACKError {
+    public let length: Swift.Int
+    public let available: Swift.Int
+    public static func == (a: NIOHPACK.NIOHPACKErrors.StringLengthBeyondPayloadSize, b: NIOHPACK.NIOHPACKErrors.StringLengthBeyondPayloadSize) -> Swift.Bool
+  }
+  public struct InvalidUTF8Data : NIOHPACK.NIOHPACKError {
+    public let bytes: NIOCore.ByteBuffer
+    public static func == (a: NIOHPACK.NIOHPACKErrors.InvalidUTF8Data, b: NIOHPACK.NIOHPACKErrors.InvalidUTF8Data) -> Swift.Bool
+  }
+  public struct InvalidHeaderStartByte : NIOHPACK.NIOHPACKError {
+    public let byte: Swift.UInt8
+    public static func == (a: NIOHPACK.NIOHPACKErrors.InvalidHeaderStartByte, b: NIOHPACK.NIOHPACKErrors.InvalidHeaderStartByte) -> Swift.Bool
+  }
+  public struct InvalidDynamicTableSize : NIOHPACK.NIOHPACKError {
+    public let requestedSize: Swift.Int
+    public let allowedSize: Swift.Int
+    public static func == (a: NIOHPACK.NIOHPACKErrors.InvalidDynamicTableSize, b: NIOHPACK.NIOHPACKErrors.InvalidDynamicTableSize) -> Swift.Bool
+  }
+  public struct IllegalDynamicTableSizeChange : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.NIOHPACKErrors.IllegalDynamicTableSizeChange, b: NIOHPACK.NIOHPACKErrors.IllegalDynamicTableSizeChange) -> Swift.Bool
+  }
+  public struct FailedToAddIndexedHeader<Name, Value> : NIOHPACK.NIOHPACKError where Name : Swift.Collection, Name : Swift.Sendable, Value : Swift.Collection, Value : Swift.Sendable, Name.Element == Swift.UInt8, Value.Element == Swift.UInt8 {
+    public let bytesNeeded: Swift.Int
+    public let name: Name
+    public let value: Value
+    public static func == (lhs: NIOHPACK.NIOHPACKErrors.FailedToAddIndexedHeader<Name, Value>, rhs: NIOHPACK.NIOHPACKErrors.FailedToAddIndexedHeader<Name, Value>) -> Swift.Bool
+  }
+  public struct InsufficientInput : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.NIOHPACKErrors.InsufficientInput, b: NIOHPACK.NIOHPACKErrors.InsufficientInput) -> Swift.Bool
+  }
+  public struct EncoderAlreadyActive : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.NIOHPACKErrors.EncoderAlreadyActive, b: NIOHPACK.NIOHPACKErrors.EncoderAlreadyActive) -> Swift.Bool
+  }
+  public struct EncoderNotStarted : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.NIOHPACKErrors.EncoderNotStarted, b: NIOHPACK.NIOHPACKErrors.EncoderNotStarted) -> Swift.Bool
+  }
+  public struct ZeroHeaderIndex : NIOHPACK.NIOHPACKError {
+    public init()
+    public static func == (a: NIOHPACK.NIOHPACKErrors.ZeroHeaderIndex, b: NIOHPACK.NIOHPACKErrors.ZeroHeaderIndex) -> Swift.Bool
+  }
+  public struct MaxHeaderListSizeViolation : NIOHPACK.NIOHPACKError {
+    public init()
+    public static func == (a: NIOHPACK.NIOHPACKErrors.MaxHeaderListSizeViolation, b: NIOHPACK.NIOHPACKErrors.MaxHeaderListSizeViolation) -> Swift.Bool
+  }
+  public struct EmptyLiteralHeaderFieldName : NIOHPACK.NIOHPACKError {
+    public init()
+    public static func == (a: NIOHPACK.NIOHPACKErrors.EmptyLiteralHeaderFieldName, b: NIOHPACK.NIOHPACKErrors.EmptyLiteralHeaderFieldName) -> Swift.Bool
+  }
+  public struct UnrepresentableInteger : NIOHPACK.NIOHPACKError {
+    public init()
+    public static func == (a: NIOHPACK.NIOHPACKErrors.UnrepresentableInteger, b: NIOHPACK.NIOHPACKErrors.UnrepresentableInteger) -> Swift.Bool
+  }
+}
+public struct HPACKHeaders : Swift.ExpressibleByDictionaryLiteral, Swift.Sendable {
+  public init(httpHeaders: NIOHTTP1.HTTPHeaders, normalizeHTTPHeaders: Swift.Bool)
+  public init(httpHeaders: NIOHTTP1.HTTPHeaders)
+  public init(_ headers: [(Swift.String, Swift.String)] = [])
+  public init(dictionaryLiteral elements: (Swift.String, Swift.String)...)
+  @available(*, deprecated, renamed: "init(_:)")
+  public init(_ headers: [(Swift.String, Swift.String)] = [], allocator: NIOCore.ByteBufferAllocator)
+  public mutating func add(name: Swift.String, value: Swift.String, indexing: NIOHPACK.HPACKIndexing = .indexable)
+  public mutating func add<S>(contentsOf other: S, indexing: NIOHPACK.HPACKIndexing = .indexable) where S : Swift.Sequence, S.Element == (Swift.String, Swift.String)
+  public mutating func add<S>(contentsOf other: S) where S : Swift.Sequence, S.Element == (name: Swift.String, value: Swift.String, indexable: NIOHPACK.HPACKIndexing)
+  public mutating func replaceOrAdd(name: Swift.String, value: Swift.String, indexing: NIOHPACK.HPACKIndexing = .indexable)
+  public mutating func remove(name nameToRemove: Swift.String)
+  public subscript(name: Swift.String) -> [Swift.String] {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func first(name: Swift.String) -> Swift.String?
+  #endif
+  public func contains(name: Swift.String) -> Swift.Bool
+  public subscript(canonicalForm name: Swift.String) -> [Swift.String] {
+    get
+  }
+  public func values(forHeader name: Swift.String, canonicalForm: Swift.Bool = false) -> NIOHPACK.HPACKHeaders.Values
+  public typealias Key = Swift.String
+  public typealias Value = Swift.String
+}
+extension NIOHPACK.HPACKHeaders {
+  public struct Values : Swift.Sequence {
+    public typealias Element = Swift.Substring
+    public func makeIterator() -> NIOHPACK.HPACKHeaders.Values.Iterator
+  }
+}
+extension NIOHPACK.HPACKHeaders.Values {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Swift.Substring?
+    #endif
+    public typealias Element = Swift.Substring
+  }
+}
+extension NIOHPACK.HPACKHeaders {
+  public var capacity: Swift.Int {
+    get
+  }
+  public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
+  public mutating func removeAll(keepingCapacity: Swift.Bool = false)
+}
+extension NIOHPACK.HPACKHeaders : Swift.RandomAccessCollection {
+  public typealias Element = (name: Swift.String, value: Swift.String, indexable: NIOHPACK.HPACKIndexing)
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: NIOHPACK.HPACKHeaders.Index, rhs: NIOHPACK.HPACKHeaders.Index) -> Swift.Bool
+    public static func == (a: NIOHPACK.HPACKHeaders.Index, b: NIOHPACK.HPACKHeaders.Index) -> Swift.Bool
+  }
+  public var startIndex: NIOHPACK.HPACKHeaders.Index {
+    get
+  }
+  public var endIndex: NIOHPACK.HPACKHeaders.Index {
+    get
+  }
+  public func index(before i: NIOHPACK.HPACKHeaders.Index) -> NIOHPACK.HPACKHeaders.Index
+  public func index(after i: NIOHPACK.HPACKHeaders.Index) -> NIOHPACK.HPACKHeaders.Index
+  public subscript(position: NIOHPACK.HPACKHeaders.Index) -> NIOHPACK.HPACKHeaders.Element {
+    get
+  }
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> NIOHPACK.HPACKHeaders.Element?
+    #endif
+    public typealias Element = NIOHPACK.HPACKHeaders.Element
+  }
+  public func makeIterator() -> NIOHPACK.HPACKHeaders.Iterator
+  public typealias Indices = Swift.DefaultIndices<NIOHPACK.HPACKHeaders>
+  public typealias SubSequence = Swift.Slice<NIOHPACK.HPACKHeaders>
+}
+extension NIOHPACK.HPACKHeaders : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension NIOHPACK.HPACKHeaders : Swift.Equatable {
+  public static func == (lhs: NIOHPACK.HPACKHeaders, rhs: NIOHPACK.HPACKHeaders) -> Swift.Bool
+}
+extension NIOHPACK.HPACKHeaders : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum HPACKIndexing : Swift.CustomStringConvertible, Swift.Sendable {
+  case indexable
+  case nonIndexable
+  case neverIndexed
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: NIOHPACK.HPACKIndexing, b: NIOHPACK.HPACKIndexing) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum HuffmanDecodeError {
+  public struct InvalidState : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.HuffmanDecodeError.InvalidState, b: NIOHPACK.HuffmanDecodeError.InvalidState) -> Swift.Bool
+  }
+  public struct InvalidUTF8 : NIOHPACK.NIOHPACKError {
+    public static func == (a: NIOHPACK.HuffmanDecodeError.InvalidUTF8, b: NIOHPACK.HuffmanDecodeError.InvalidUTF8) -> Swift.Bool
+  }
+}
+public struct IndexedHeaderTable {
+  public func header(at index: Swift.Int) throws -> (name: Swift.String, value: Swift.String)
+  @available(*, deprecated, renamed: "header(at:)")
+  public func headerViews(at index: Swift.Int) throws -> (name: NIOCore.ByteBufferView, value: NIOCore.ByteBufferView)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func firstHeaderMatch(for name: Swift.String, value: Swift.String?) -> (index: Swift.Int, matchesValue: Swift.Bool)?
+  #endif
+  public mutating func add(headerNamed name: Swift.String, value: Swift.String) throws
+  @available(*, deprecated, renamed: "add(headerNamed:value:)")
+  public mutating func add<Name, Value>(headerNamed name: Name, value: Value) throws where Name : Swift.Collection, Value : Swift.Collection, Name.Element == Swift.UInt8, Value.Element == Swift.UInt8
+  public var dynamicTableLength: Swift.Int {
+    get
+  }
+  public var dynamicTableAllowedLength: Swift.Int {
+    get
+    set
+  }
+  public var maxDynamicTableLength: Swift.Int {
+    get
+    set
+  }
+}
+extension NIOHPACK.IndexedHeaderTable : Swift.Sendable {
+}
+extension NIOHPACK.HPACKIndexing : Swift.Equatable {}
+extension NIOHPACK.HPACKIndexing : Swift.Hashable {}

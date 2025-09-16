@@ -1,0 +1,220 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature "AvailabilityMacro=ClockAPI : macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1" -enable-experimental-feature "AvailabilityMacro=gRPCSwift : macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2" -enable-experimental-feature DebugDescriptionMacro -module-name OTel -package-name swift_otel
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+public import CoreMetrics
+public import Logging
+public import ServiceContextModule
+public import ServiceLifecycle
+public import Swift
+public import Tracing
+public import _Concurrency
+public import _StringProcessing
+public import _SwiftConcurrencyShims
+extension OTel.OTel {
+  public static func makeLoggingBackend(configuration: OTel.OTel.Configuration = .default) throws -> (factory: @Sendable (Swift.String) -> any Logging.LogHandler, service: some ServiceLifecycle.Service)
+  
+  public static func makeMetricsBackend(configuration: OTel.OTel.Configuration = .default) throws -> (factory: some CoreMetrics.MetricsFactory, service: some ServiceLifecycle.Service)
+  
+  public static func makeTracingBackend(configuration: OTel.OTel.Configuration = .default) throws -> (factory: some Tracing.Tracer, service: some ServiceLifecycle.Service)
+  
+}
+extension OTel.OTel {
+  public static func bootstrap(configuration: OTel.OTel.Configuration = .default) throws -> some ServiceLifecycle.Service
+  
+}
+extension OTel.OTel {
+  public struct Configuration : Swift.Sendable {
+    public var serviceName: Swift.String
+    public var resourceAttributes: [Swift.String : Swift.String]
+    public var diagnosticLogger: OTel.OTel.Configuration.DiagnosticLoggerSelection
+    public var diagnosticLogLevel: OTel.OTel.Configuration.LogLevel
+    public var propagators: [OTel.OTel.Configuration.Propagator]
+    public var traces: OTel.OTel.Configuration.TracesConfiguration
+    public var metrics: OTel.OTel.Configuration.MetricsConfiguration
+    public var logs: OTel.OTel.Configuration.LogsConfiguration
+    public static let `default`: OTel.OTel.Configuration
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct DiagnosticLoggerSelection : Swift.Sendable {
+    public static let console: OTel.OTel.Configuration.DiagnosticLoggerSelection
+    public static func custom(_ logger: Logging.Logger) -> OTel.OTel.Configuration.DiagnosticLoggerSelection
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct LogLevel : Swift.Sendable {
+    public static let error: OTel.OTel.Configuration.LogLevel
+    public static let warning: OTel.OTel.Configuration.LogLevel
+    public static let info: OTel.OTel.Configuration.LogLevel
+    public static let debug: OTel.OTel.Configuration.LogLevel
+    public static let trace: OTel.OTel.Configuration.LogLevel
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct Propagator : Swift.Sendable {
+    public static let traceContext: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let baggage: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let b3: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let b3Multi: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaeger: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let xray: OTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let otTrace: OTel.OTel.Configuration.Propagator
+    public static let none: OTel.OTel.Configuration.Propagator
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct TracesConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var sampler: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public var batchSpanProcessor: OTel.OTel.Configuration.TracesConfiguration.BatchSpanProcessorConfiguration
+    public var exporter: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    public var otlpExporter: OTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.TracesConfiguration
+  }
+  public struct MetricsConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var exportInterval: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var exporter: OTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    public var otlpExporter: OTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.MetricsConfiguration
+  }
+  public struct LogsConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var level: OTel.OTel.Configuration.LogLevel
+    public var batchLogRecordProcessor: OTel.OTel.Configuration.LogsConfiguration.BatchLogRecordProcessorConfiguration
+    public var exporter: OTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public var otlpExporter: OTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.LogsConfiguration
+  }
+}
+extension OTel.OTel.Configuration.TracesConfiguration {
+  public struct SamplerConfiguration : Swift.Sendable {
+    public static let alwaysOn: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public static let alwaysOff: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func traceIDRatio(ratio: Swift.Double) -> OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration?
+    #endif
+    public static var traceIDRatio: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration {
+      get
+    }
+    public static let parentBasedAlwaysOn: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public static let parentBasedAlwaysOff: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func parentBasedTraceIDRatio(ratio: Swift.Double) -> OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration?
+    #endif
+    public static var parentBasedTraceIDRatio: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration {
+      get
+    }
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let parentBasedJaegerRemote: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaegerRemote: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let xray: OTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+  }
+}
+extension OTel.OTel.Configuration.TracesConfiguration {
+  public struct BatchSpanProcessorConfiguration : Swift.Sendable {
+    public var scheduleDelay: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var maxQueueSize: Swift.Int
+    public var maxExportBatchSize: Swift.Int
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.TracesConfiguration.BatchSpanProcessorConfiguration
+  }
+}
+extension OTel.OTel.Configuration.TracesConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    public static let none: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaeger: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let zipkin: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let console: OTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+  }
+}
+extension OTel.OTel.Configuration.MetricsConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: OTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    public static let none: OTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let prometheus: OTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let console: OTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+  }
+}
+extension OTel.OTel.Configuration.LogsConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: OTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public static let none: OTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public static let console: OTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+  }
+}
+extension OTel.OTel.Configuration.LogsConfiguration {
+  public struct BatchLogRecordProcessorConfiguration : Swift.Sendable {
+    public var scheduleDelay: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var maxQueueSize: Swift.Int
+    public var maxExportBatchSize: Swift.Int
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.LogsConfiguration.BatchLogRecordProcessorConfiguration
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct OTLPExporterConfiguration : Swift.Sendable {
+    public var endpoint: Swift.String {
+      get
+      set
+    }
+    public var insecure: Swift.Bool
+    public var certificateFilePath: Swift.String?
+    public var clientKeyFilePath: Swift.String?
+    public var clientCertificateFilePath: Swift.String?
+    public var headers: [(Swift.String, Swift.String)]
+    public var compression: OTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+    public var timeout: Swift.Duration
+    public var `protocol`: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    @_documentation(visibility: internal) public static let `default`: OTel.OTel.Configuration.OTLPExporterConfiguration
+  }
+}
+extension OTel.OTel.Configuration.OTLPExporterConfiguration {
+  public struct Compression : Swift.Sendable {
+    public static let none: OTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+    public static let gzip: OTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+  }
+  public struct `Protocol` : Swift.Equatable, Swift.Sendable {
+    @available(macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2, *)
+    public static let grpc: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static let httpProtobuf: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static let httpJSON: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static func == (a: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`, b: OTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`) -> Swift.Bool
+  }
+}
+extension OTel.OTel.Configuration {
+  public struct LoggingMetadataProviderConfiguration : Swift.Sendable {
+    public var traceIDKey: Swift.String
+    public var spanIDKey: Swift.String
+    public var traceFlagsKey: Swift.String
+    public static let `default`: OTel.OTel.Configuration.LoggingMetadataProviderConfiguration
+  }
+}
+extension OTel.OTel {
+  public static func makeLoggingMetadataProvider(configuration: OTel.OTel.Configuration.LoggingMetadataProviderConfiguration = .default) -> Logging.Logger.MetadataProvider
+}
+public enum OTel {
+}
+extension ServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var otelTraceID: Swift.String? {
+    get
+  }
+  #endif
+}

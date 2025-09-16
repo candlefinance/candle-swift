@@ -1,0 +1,86 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name ServiceContextModule -package-name swift_service_context
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct ServiceContext : Swift.Sendable {
+}
+extension ServiceContextModule.ServiceContext {
+  public static var topLevel: ServiceContextModule.ServiceContext {
+    get
+  }
+}
+extension ServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func TODO(_ reason: Swift.StaticString? = "", function: Swift.String = #function, file: Swift.String = #file, line: Swift.UInt = #line) -> ServiceContextModule.ServiceContext
+  #endif
+}
+public struct TODOLocation : Swift.Sendable {
+  public let file: Swift.String
+  public let line: Swift.UInt
+}
+extension ServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript<Key>(key: Key.Type) -> Key.Value? where Key : ServiceContextModule.ServiceContextKey {
+    get
+    set
+  }
+  #endif
+}
+extension ServiceContextModule.ServiceContext {
+  public var count: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  @preconcurrency public func forEach(_ body: (ServiceContextModule.AnyServiceContextKey, any Swift.Sendable) throws -> Swift.Void) rethrows
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension ServiceContextModule.ServiceContext {
+  public static let $current: _Concurrency.TaskLocal<ServiceContextModule.ServiceContext?>
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var current: ServiceContextModule.ServiceContext? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func withValue<T>(_ value: ServiceContextModule.ServiceContext?, operation: () throws -> T) rethrows -> T
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func withValue<T>(_ value: ServiceContextModule.ServiceContext?, isolation: isolated (any _Concurrency.Actor)? = #isolation, operation: () async throws -> T) async rethrows -> T
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use the method with the isolation parameter instead.")
+  @_disfavoredOverload public static func withValue<T>(_ value: ServiceContextModule.ServiceContext?, operation: () async throws -> T) async rethrows -> T
+  #endif
+}
+public protocol ServiceContextKey : Swift.Sendable {
+  associatedtype Value : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  static var nameOverride: Swift.String? { get }
+  #endif
+}
+extension ServiceContextModule.ServiceContextKey {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var nameOverride: Swift.String? {
+    get
+  }
+  #endif
+}
+public struct AnyServiceContextKey : Swift.Sendable {
+  public let keyType: any Any.Type
+  public var name: Swift.String {
+    get
+  }
+}
+extension ServiceContextModule.AnyServiceContextKey : Swift.Hashable {
+  public static func == (lhs: ServiceContextModule.AnyServiceContextKey, rhs: ServiceContextModule.AnyServiceContextKey) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}

@@ -4,11 +4,9 @@ import SwiftUI
 struct TradeScreen: View {
     enum Side { case lost, gained }
 
-    @Environment(CandleClient.self) private var client
-
     @Binding var error: (title: String, message: String)?
 
-    @State private(set) var trade: Models.Trade
+    @State private(set) var trade: Candle.Models.Trade
     @State private var selectedSide: Side = .lost
 
     private var badgeText: String { trade.state.description }
@@ -21,7 +19,7 @@ struct TradeScreen: View {
         }
     }
 
-    @ViewBuilder private func logoURLView(asset: Models.TradeAsset) -> some View {
+    @ViewBuilder private func logoURLView(asset: Candle.Models.TradeAsset) -> some View {
         switch asset {
         case .FiatAsset(let fiatAsset):
             AsyncImageWithPlaceholder(
@@ -77,8 +75,12 @@ struct TradeScreen: View {
     }
 
     private func getTrade() async {
-        do { trade = try await client.getTrade(ref: trade.ref) } catch {
+        do { trade = try await Candle.Client.shared.getTrade(ref: trade.ref) } catch {
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -111,7 +113,6 @@ struct TradeScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name HTTPTypes
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Darwin
 import Swift
 import Synchronization
@@ -64,8 +64,12 @@ extension HTTPTypes.HTTPField {
   public struct Name : Swift.Sendable {
     public let rawName: Swift.String
     public let canonicalName: Swift.String
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(_ name: Swift.String)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(parsed name: Swift.String)
+    #endif
   }
 }
 extension HTTPTypes.HTTPField.Name : Swift.Hashable {
@@ -307,10 +311,12 @@ extension HTTPTypes.HTTPField.Name {
 }
 public struct HTTPFields : Swift.Sendable, Swift.Hashable {
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(name: HTTPTypes.HTTPField.Name) -> Swift.String? {
     get
     set
   }
+  #endif
   public subscript(values name: HTTPTypes.HTTPField.Name) -> [Swift.String] {
     get
     set
@@ -374,8 +380,12 @@ extension HTTPTypes.HTTPFields {
 public struct HTTPRequest : Swift.Sendable, Swift.Hashable {
   public struct Method : Swift.Sendable, Swift.Hashable, Swift.RawRepresentable, Swift.LosslessStringConvertible {
     public let rawValue: Swift.String
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(_ method: Swift.String)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public var description: Swift.String {
       get
     }
@@ -385,22 +395,30 @@ public struct HTTPRequest : Swift.Sendable, Swift.Hashable {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var scheme: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var authority: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var path: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var extendedConnectProtocol: Swift.String? {
     get
     set
   }
+  #endif
   public struct PseudoHeaderFields : Swift.Sendable, Swift.Hashable {
     public var method: HTTPTypes.HTTPField {
       get
@@ -430,7 +448,9 @@ public struct HTTPRequest : Swift.Sendable, Swift.Hashable {
   }
   public var pseudoHeaderFields: HTTPTypes.HTTPRequest.PseudoHeaderFields
   public var headerFields: HTTPTypes.HTTPFields
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(method: HTTPTypes.HTTPRequest.Method, scheme: Swift.String?, authority: Swift.String?, path: Swift.String?, headerFields: HTTPTypes.HTTPFields = [:])
+  #endif
   public static func == (a: HTTPTypes.HTTPRequest, b: HTTPTypes.HTTPRequest) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {

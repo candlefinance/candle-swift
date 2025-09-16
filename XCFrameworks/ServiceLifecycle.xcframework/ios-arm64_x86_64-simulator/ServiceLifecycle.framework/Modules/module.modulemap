@@ -1,0 +1,6 @@
+framework module ServiceLifecycle {
+    header "ServiceLifecycle-Swift.h"
+    export *
+    link framework "UnixSignals"
+    link framework "ConcurrencyHelpers"
+}

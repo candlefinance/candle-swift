@@ -8,13 +8,12 @@ struct LinkedAccountsScreen: View {
         case normal
     }
 
-    @Environment(CandleClient.self) private var client
     @Environment(\.colorScheme) private var colorScheme
 
     @AppStorage("com.trycandle.candle.show_onboarding.2", store: .standard) private
         var showOnboarding = true
 
-    @Binding var linkedAccounts: [Models.LinkedAccount]
+    @Binding var linkedAccounts: [Candle.Models.LinkedAccount]
     @Binding var error: (title: String, message: String)?
 
     @State private var state: _State = .initial
@@ -23,8 +22,8 @@ struct LinkedAccountsScreen: View {
     @State private var showLinkSheet = false
     @State private var showSDKVersion = false
 
-    @State private var accountToUnlink: Models.LinkedAccount? = nil
-    @State private var newLinkedAccount: Models.LinkedAccount? = nil
+    @State private var accountToUnlink: Candle.Models.LinkedAccount? = nil
+    @State private var newLinkedAccount: Candle.Models.LinkedAccount? = nil
 
     var sdkVersion: String {
         // FIXME: Get the version of the SDK dependency itself
@@ -102,7 +101,6 @@ struct LinkedAccountsScreen: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 SettingsMenu(
-                    showOnboarding: $showOnboarding,
                     showDeleteConfirmation: $showDeleteConfirmation,
                     showSDKVersion: $showSDKVersion
                 )
@@ -121,14 +119,23 @@ struct LinkedAccountsScreen: View {
             )
         }
         .confirmationDialog(
-            "Delete User?",
+            "Are You Sure?",
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible
         ) {
-            Button("Delete User", role: .destructive, action: { Task { await deleteUser() } })
+            Button(
+                "Delete User",
+                role: .destructive,
+                action: {
+                    Task {
+                        await deleteUser()
+                        showOnboarding = true
+                    }
+                }
+            )
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("Proceed with caution! This action is permanent and cannot be reverted")
+            Text("If you delete the user, you will have to re-link your accounts.")
         }
         .alert(isPresented: $showSDKVersion) {
             Alert(
@@ -168,12 +175,16 @@ struct LinkedAccountsScreen: View {
         if showLoading { state = .loading }
 
         do {
-            linkedAccounts = try await client.getLinkedAccounts()
+            linkedAccounts = try await Candle.Client.shared.getLinkedAccounts()
             state = .normal
         } catch {
             if showLoading { state = .initial }
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -198,7 +209,6 @@ struct LinkedAccountsScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -215,12 +225,18 @@ struct LinkedAccountsScreen: View {
         state = .loading
 
         do {
-            try await client.unlinkAccount(path: .init(linkedAccountID: accountToUnlink.id))
+            try await Candle.Client.shared.unlinkAccount(
+                ref: .init(linkedAccountID: accountToUnlink.id)
+            )
             await getLinkedAccounts()
         } catch {
             state = .initial
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -254,7 +270,6 @@ struct LinkedAccountsScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -265,12 +280,16 @@ struct LinkedAccountsScreen: View {
         state = .loading
 
         do {
-            try await client.deleteUser()
-            await getLinkedAccounts()
+            try await Candle.Client.shared.deleteUser()
+            state = .initial
         } catch {
             state = .initial
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .keychainError:
+                self.error = (title: "Keychain Error", message: "Double-check your access group.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -303,7 +322,6 @@ struct LinkedAccountsScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -311,7 +329,4 @@ struct LinkedAccountsScreen: View {
     }
 }
 
-#Preview {
-    LinkedAccountsScreen(linkedAccounts: .constant([]), error: .constant(nil))
-        .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
-}
+#Preview { LinkedAccountsScreen(linkedAccounts: .constant([]), error: .constant(nil)) }

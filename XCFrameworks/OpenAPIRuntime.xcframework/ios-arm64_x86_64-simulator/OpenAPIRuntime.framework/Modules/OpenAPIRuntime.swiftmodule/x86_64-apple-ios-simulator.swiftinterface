@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name OpenAPIRuntime -package-name swift_openapi_runtime
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CoreFoundation
 import Foundation
 import Foundation/*.Data*/
@@ -30,7 +30,9 @@ public struct QualityValue : Swift.Sendable, Swift.Hashable {
   }
 }
 extension OpenAPIRuntime.QualityValue : Swift.RawRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -56,7 +58,9 @@ public struct AcceptHeaderContentType<ContentType> : Swift.Sendable, Swift.Hasha
   }
 }
 extension OpenAPIRuntime.AcceptHeaderContentType : Swift.RawRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -85,7 +89,9 @@ extension OpenAPIRuntime.Base64EncodedData : Swift.Codable {
 }
 public struct OpenAPIValueContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
   public var value: (any Swift.Sendable)?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(unvalidatedValue: (any Swift.Sendable)? = nil) throws
+  #endif
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
   public static func == (lhs: OpenAPIRuntime.OpenAPIValueContainer, rhs: OpenAPIRuntime.OpenAPIValueContainer) -> Swift.Bool
@@ -118,7 +124,9 @@ extension OpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByFloatLiteral
 public struct OpenAPIObjectContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
   public var value: [Swift.String : (any Swift.Sendable)?]
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(unvalidatedValue: [Swift.String : (any Swift.Sendable)?]) throws
+  #endif
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
   public static func == (lhs: OpenAPIRuntime.OpenAPIObjectContainer, rhs: OpenAPIRuntime.OpenAPIObjectContainer) -> Swift.Bool
@@ -130,7 +138,9 @@ public struct OpenAPIObjectContainer : Swift.Codable, Swift.Hashable, Swift.Send
 public struct OpenAPIArrayContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
   public var value: [(any Swift.Sendable)?]
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(unvalidatedValue: [(any Swift.Sendable)?]) throws
+  #endif
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
   public static func == (lhs: OpenAPIRuntime.OpenAPIArrayContainer, rhs: OpenAPIRuntime.OpenAPIArrayContainer) -> Swift.Bool
@@ -142,7 +152,9 @@ public struct OpenAPIArrayContainer : Swift.Codable, Swift.Hashable, Swift.Senda
 public struct UndocumentedPayload : Swift.Sendable, Swift.Hashable {
   public var headerFields: HTTPTypes.HTTPFields
   public var body: OpenAPIRuntime.HTTPBody?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(headerFields: HTTPTypes.HTTPFields = [:], body: OpenAPIRuntime.HTTPBody? = nil)
+  #endif
   public static func == (a: OpenAPIRuntime.UndocumentedPayload, b: OpenAPIRuntime.UndocumentedPayload) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -154,7 +166,9 @@ public protocol DateTranscoder : Swift.Sendable {
   func decode(_: Swift.String) throws -> Foundation.Date
 }
 public struct ISO8601DateTranscoder : OpenAPIRuntime.DateTranscoder, @unchecked Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(options: Foundation.ISO8601DateFormatter.Options? = nil)
+  #endif
   public func encode(_ date: Foundation.Date) throws -> Swift.String
   public func decode(_ dateString: Swift.String) throws -> Foundation.Date
 }
@@ -185,7 +199,9 @@ public struct Configuration : Swift.Sendable {
   public var jsonEncodingOptions: OpenAPIRuntime.JSONEncodingOptions
   public var multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator
   public var xmlCoder: (any OpenAPIRuntime.CustomCoder)?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, jsonEncodingOptions: OpenAPIRuntime.JSONEncodingOptions = [.sortedKeys, .prettyPrinted], multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any OpenAPIRuntime.CustomCoder)? = nil)
+  #endif
 }
 extension Foundation.URL {
   public static let defaultOpenAPIServerURL: Foundation.URL
@@ -198,8 +214,10 @@ extension OpenAPIRuntime.UndocumentedPayload {
 extension OpenAPIRuntime.Configuration {
   @available(*, deprecated, renamed: "init(dateTranscoder:multipartBoundaryGenerator:xmlCoder:)")
   @_disfavoredOverload public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random)
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "init(dateTranscoder:jsonEncodingOptions:multipartBoundaryGenerator:xmlCoder:)")
   @_disfavoredOverload public init(dateTranscoder: any OpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any OpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any OpenAPIRuntime.CustomCoder)? = nil)
+  #endif
 }
 extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
   @available(*, deprecated, renamed: "asDecodedServerSentEvents(while:)")
@@ -221,7 +239,9 @@ public struct ClientError : Swift.Error {
   public var responseBody: OpenAPIRuntime.HTTPBody?
   public var causeDescription: Swift.String
   public var underlyingError: any Swift.Error
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(operationID: Swift.String, operationInput: any Swift.Sendable, request: HTTPTypes.HTTPRequest? = nil, requestBody: OpenAPIRuntime.HTTPBody? = nil, baseURL: Foundation.URL? = nil, response: HTTPTypes.HTTPResponse? = nil, responseBody: OpenAPIRuntime.HTTPBody? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+  #endif
 }
 extension OpenAPIRuntime.ClientError : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -229,9 +249,11 @@ extension OpenAPIRuntime.ClientError : Swift.CustomStringConvertible {
   }
 }
 extension OpenAPIRuntime.ClientError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 public struct ServerError : Swift.Error {
   public var operationID: Swift.String
@@ -242,7 +264,9 @@ public struct ServerError : Swift.Error {
   public var operationOutput: (any Swift.Sendable)?
   public var causeDescription: Swift.String
   public var underlyingError: any Swift.Error
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(operationID: Swift.String, request: HTTPTypes.HTTPRequest, requestBody: OpenAPIRuntime.HTTPBody?, requestMetadata: OpenAPIRuntime.ServerRequestMetadata, operationInput: (any Swift.Sendable)? = nil, operationOutput: (any Swift.Sendable)? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+  #endif
 }
 extension OpenAPIRuntime.ServerError : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -250,9 +274,11 @@ extension OpenAPIRuntime.ServerError : Swift.CustomStringConvertible {
   }
 }
 extension OpenAPIRuntime.ServerError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 public struct JSONLinesDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
   public init(upstream: Upstream)
@@ -260,7 +286,9 @@ public struct JSONLinesDeserializationSequence<Upstream> : Swift.Sendable where 
 extension OpenAPIRuntime.JSONLinesDeserializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -279,7 +307,9 @@ public struct JSONLinesSerializationSequence<Upstream> : Swift.Sendable where Up
 extension OpenAPIRuntime.JSONLinesSerializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -302,7 +332,9 @@ public struct JSONSequenceDeserializationSequence<Upstream> : Swift.Sendable whe
 extension OpenAPIRuntime.JSONSequenceDeserializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -321,7 +353,9 @@ public struct JSONSequenceSerializationSequence<Upstream> : Swift.Sendable where
 extension OpenAPIRuntime.JSONSequenceSerializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -343,7 +377,9 @@ public struct ServerSentEventWithJSONData<JSONDataType> : Swift.Sendable, Swift.
   public var data: JSONDataType?
   public var id: Swift.String?
   public var retry: Swift.Int64?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(event: Swift.String? = nil, data: JSONDataType? = nil, id: Swift.String? = nil, retry: Swift.Int64? = nil)
+  #endif
   public static func == (a: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>, b: OpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -355,7 +391,9 @@ public struct ServerSentEvent : Swift.Sendable, Swift.Hashable {
   public var event: Swift.String?
   public var data: Swift.String?
   public var retry: Swift.Int64?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(id: Swift.String? = nil, event: Swift.String? = nil, data: Swift.String? = nil, retry: Swift.Int64? = nil)
+  #endif
   public static func == (a: OpenAPIRuntime.ServerSentEvent, b: OpenAPIRuntime.ServerSentEvent) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -368,7 +406,9 @@ public struct ServerSentEventsDeserializationSequence<Upstream> : Swift.Sendable
 extension OpenAPIRuntime.ServerSentEventsDeserializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = OpenAPIRuntime.ServerSentEvent
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> OpenAPIRuntime.ServerSentEvent?
+    #endif
     public typealias Element = OpenAPIRuntime.ServerSentEvent
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -388,7 +428,9 @@ public struct ServerSentEventsLineDeserializationSequence<Upstream> : Swift.Send
 extension OpenAPIRuntime.ServerSentEventsLineDeserializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -404,7 +446,9 @@ public struct ServerSentEventsSerializationSequence<Upstream> : Swift.Sendable w
 extension OpenAPIRuntime.ServerSentEventsSerializationSequence : _Concurrency.AsyncSequence {
   public typealias Element = Swift.ArraySlice<Swift.UInt8>
   public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == OpenAPIRuntime.ServerSentEvent {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
     public typealias Element = Swift.ArraySlice<Swift.UInt8>
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -435,7 +479,9 @@ public enum IterationBehavior : Swift.Sendable {
 internal struct AnyIterator<Element> : _Concurrency.AsyncIteratorProtocol where Element : Swift.Sendable {
   @usableFromInline
   internal init<Iterator>(_ iterator: Iterator) where Element == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func next() async throws -> Element?
+  #endif
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
   @usableFromInline
   @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -464,8 +510,10 @@ internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swif
   internal struct Iterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
     @usableFromInline
     internal typealias Element = IteratorElement
+    #if compiler(>=5.3) && $NonescapableTypes
     @usableFromInline
     internal mutating func next() async throws -> IteratorElement?
+    #endif
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @usableFromInline
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
@@ -486,8 +534,10 @@ internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Senda
   internal typealias AsyncIterator = OpenAPIRuntime.EmptySequence<Element>.EmptyIterator<Element>
   @usableFromInline
   internal struct EmptyIterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
+    #if compiler(>=5.3) && $NonescapableTypes
     @usableFromInline
     internal mutating func next() async throws -> IteratorElement?
+    #endif
     @usableFromInline
     internal typealias Element = IteratorElement
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
@@ -503,10 +553,14 @@ internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Senda
   @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
 }
 public protocol ClientTransport : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
   func send(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+  #endif
 }
 public protocol ClientMiddleware : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
   func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, Foundation.URL) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+  #endif
 }
 public struct ServerRequestMetadata : Swift.Hashable, Swift.Sendable {
   public var pathParameters: [Swift.String : Swift.Substring]
@@ -524,20 +578,26 @@ extension OpenAPIRuntime.ServerRequestMetadata : Swift.CustomStringConvertible {
 }
 public struct ErrorHandlingMiddleware : OpenAPIRuntime.ServerMiddleware {
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, metadata: OpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+  #endif
 }
 public protocol HTTPResponseConvertible {
   var httpStatus: HTTPTypes.HTTPResponse.Status { get }
   var httpHeaderFields: HTTPTypes.HTTPFields { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var httpBody: OpenAPIRuntime.HTTPBody? { get }
+  #endif
 }
 extension OpenAPIRuntime.HTTPResponseConvertible {
   public var httpHeaderFields: HTTPTypes.HTTPFields {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var httpBody: OpenAPIRuntime.HTTPBody? {
     get
   }
+  #endif
 }
 final public class HTTPBody : @unchecked Swift.Sendable {
   public typealias ByteChunk = Swift.ArraySlice<Swift.UInt8>
@@ -649,16 +709,22 @@ extension OpenAPIRuntime.HTTPBody {
     public typealias Element = OpenAPIRuntime.HTTPBody.ByteChunk
     @usableFromInline
     internal init<Iterator>(_ iterator: Iterator) where Iterator : _Concurrency.AsyncIteratorProtocol, Iterator.Element == Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> OpenAPIRuntime.HTTPBody.Iterator.Element?
+    #endif
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
   }
 }
 public protocol ServerTransport {
+  #if compiler(>=5.3) && $NonescapableTypes
   func register(_ handler: @escaping @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?), method: HTTPTypes.HTTPRequest.Method, path: Swift.String) throws
+  #endif
 }
 public protocol ServerMiddleware : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
   func intercept(_ request: HTTPTypes.HTTPRequest, body: OpenAPIRuntime.HTTPBody?, metadata: OpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (HTTPTypes.HTTPRequest, OpenAPIRuntime.HTTPBody?, OpenAPIRuntime.ServerRequestMetadata) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)) async throws -> (HTTPTypes.HTTPResponse, OpenAPIRuntime.HTTPBody?)
+  #endif
 }
 public protocol MultipartBoundaryGenerator : Swift.Sendable {
   func makeBoundary() -> Swift.String
@@ -697,7 +763,9 @@ public struct MultipartRawPart : Swift.Sendable, Swift.Hashable {
 public struct MultipartPart<Payload> : Swift.Sendable, Swift.Hashable where Payload : Swift.Hashable, Payload : Swift.Sendable {
   public var payload: Payload
   public var filename: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(payload: Payload, filename: Swift.String? = nil)
+  #endif
   public static func == (a: OpenAPIRuntime.MultipartPart<Payload>, b: OpenAPIRuntime.MultipartPart<Payload>) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -708,7 +776,9 @@ public struct MultipartDynamicallyNamedPart<Payload> : Swift.Sendable, Swift.Has
   public var payload: Payload
   public var filename: Swift.String?
   public var name: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(payload: Payload, filename: Swift.String? = nil, name: Swift.String? = nil)
+  #endif
   public static func == (a: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>, b: OpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -759,22 +829,30 @@ extension OpenAPIRuntime.MultipartBody {
   public struct Iterator : _Concurrency.AsyncIteratorProtocol {
     @usableFromInline
     internal init<Iterator>(_ iterator: Iterator) where Part == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() async throws -> OpenAPIRuntime.MultipartBody<Part>.Element?
+    #endif
     public typealias Element = OpenAPIRuntime.MultipartBody<Part>.Element
     @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
     @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
   }
 }
 extension OpenAPIRuntime.MultipartRawPart {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(name: Swift.String?, filename: Swift.String? = nil, headerFields: HTTPTypes.HTTPFields, body: OpenAPIRuntime.HTTPBody)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var name: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var filename: Swift.String? {
     get
     set
   }
+  #endif
 }
 extension OpenAPIRuntime.IterationBehavior : Swift.Equatable {}
 extension OpenAPIRuntime.IterationBehavior : Swift.Hashable {}

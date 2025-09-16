@@ -1,0 +1,686 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AsyncHTTPClient -package-name async_http_client
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Algorithms
+import Atomics
+import Darwin.C
+import CAsyncHTTPClient
+import CNIOLinux
+import Darwin
+import Darwin/*.pow*/
+import Dispatch
+import Foundation
+import Foundation/*.URL*/
+import Logging
+import NIO
+import NIOConcurrencyHelpers
+import NIOCore
+import NIOCore/*.SocketAddress*/
+import NIOHTTP1
+import NIOHTTP2
+import NIOHTTPCompression
+import NIOPosix
+import NIOSOCKS
+import NIOSSL
+import NIOTLS
+import NIOTransportServices
+import Network
+import Swift
+import _Concurrency
+import _Darwin_xlocale
+import _StringProcessing
+import _SwiftConcurrencyShims
+import xlocale
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ request: AsyncHTTPClient.HTTPClientRequest, deadline: NIOCore.NIODeadline, logger: Logging.Logger? = nil) async throws -> AsyncHTTPClient.HTTPClientResponse
+  #endif
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ request: AsyncHTTPClient.HTTPClientRequest, timeout: NIOCore.TimeAmount, logger: Logging.Logger? = nil) async throws -> AsyncHTTPClient.HTTPClientResponse
+  #endif
+}
+extension AsyncHTTPClient.HTTPClient {
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  final public func shutdown() async throws
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest {
+  public mutating func setBasicAuth(username: Swift.String, password: Swift.String)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientRequest : Swift.Sendable {
+  public var url: Swift.String
+  public var method: NIOHTTP1.HTTPMethod
+  public var headers: NIOHTTP1.HTTPHeaders
+  public var body: AsyncHTTPClient.HTTPClientRequest.Body?
+  public var tlsConfiguration: NIOSSL.TLSConfiguration?
+  public init(url: Swift.String)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest {
+  public struct Body : Swift.Sendable {
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest.Body {
+  public static func bytes(_ byteBuffer: NIOCore.ByteBuffer) -> AsyncHTTPClient.HTTPClientRequest.Body
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes) -> AsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.RandomAccessCollection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes, length: AsyncHTTPClient.HTTPClientRequest.Body.Length) -> AsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Sendable, Bytes : Swift.Sequence, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes, length: AsyncHTTPClient.HTTPClientRequest.Body.Length) -> AsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Collection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func stream<SequenceOfBytes>(_ sequenceOfBytes: SequenceOfBytes, length: AsyncHTTPClient.HTTPClientRequest.Body.Length) -> AsyncHTTPClient.HTTPClientRequest.Body where SequenceOfBytes : Swift.Sendable, SequenceOfBytes : _Concurrency.AsyncSequence, SequenceOfBytes.Element == NIOCore.ByteBuffer
+  @preconcurrency public static func stream<Bytes>(_ bytes: Bytes, length: AsyncHTTPClient.HTTPClientRequest.Body.Length) -> AsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element == Swift.UInt8
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest.Body {
+  public struct Length : Swift.Sendable {
+    public static let unknown: AsyncHTTPClient.HTTPClientRequest.Body.Length
+    @available(*, deprecated, message: "Use `known(_ count: Int64)` with an explicit Int64 argument instead")
+    public static func known(_ count: Swift.Int) -> AsyncHTTPClient.HTTPClientRequest.Body.Length
+    public static func known(_ count: Swift.Int64) -> AsyncHTTPClient.HTTPClientRequest.Body.Length
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest.Body : _Concurrency.AsyncSequence {
+  public typealias Element = NIOCore.ByteBuffer
+  public func makeAsyncIterator() -> AsyncHTTPClient.HTTPClientRequest.Body.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientRequest.Body {
+  public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> NIOCore.ByteBuffer?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = NIOCore.ByteBuffer
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+}
+@available(*, unavailable)
+extension AsyncHTTPClient.HTTPClientRequest.Body.AsyncIterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientResponse : Swift.Sendable {
+  public var version: NIOHTTP1.HTTPVersion
+  public var status: NIOHTTP1.HTTPResponseStatus
+  public var headers: NIOHTTP1.HTTPHeaders
+  public var body: AsyncHTTPClient.HTTPClientResponse.Body
+  public var history: [AsyncHTTPClient.HTTPClientRequestResponse]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var url: Foundation.URL? {
+    get
+  }
+  #endif
+  public init(version: NIOHTTP1.HTTPVersion = .http1_1, status: NIOHTTP1.HTTPResponseStatus = .ok, headers: NIOHTTP1.HTTPHeaders = [:], body: AsyncHTTPClient.HTTPClientResponse.Body = Body())
+  public init(version: NIOHTTP1.HTTPVersion = .http1_1, status: NIOHTTP1.HTTPResponseStatus = .ok, headers: NIOHTTP1.HTTPHeaders = [:], body: AsyncHTTPClient.HTTPClientResponse.Body = Body(), history: [AsyncHTTPClient.HTTPClientRequestResponse] = [])
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientRequestResponse : Swift.Sendable {
+  public var request: AsyncHTTPClient.HTTPClientRequest
+  public var responseHead: NIOHTTP1.HTTPResponseHead
+  public init(request: AsyncHTTPClient.HTTPClientRequest, responseHead: NIOHTTP1.HTTPResponseHead)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientResponse {
+  public struct Body : _Concurrency.AsyncSequence, Swift.Sendable {
+    public typealias Element = NIOCore.ByteBuffer
+    public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+      #if compiler(>=5.3) && $NonescapableTypes
+      public mutating func next() async throws -> NIOCore.ByteBuffer?
+      #endif
+      @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+      public typealias Element = NIOCore.ByteBuffer
+      @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+      @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    }
+    public func makeAsyncIterator() -> AsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator
+    public func collect(upTo maxBytes: Swift.Int) async throws -> NIOCore.ByteBuffer
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClientResponse.Body {
+  public init()
+  public static func stream<SequenceOfBytes>(_ sequenceOfBytes: SequenceOfBytes) -> AsyncHTTPClient.HTTPClientResponse.Body where SequenceOfBytes : Swift.Sendable, SequenceOfBytes : _Concurrency.AsyncSequence, SequenceOfBytes.Element == NIOCore.ByteBuffer
+  public static func bytes(_ byteBuffer: NIOCore.ByteBuffer) -> AsyncHTTPClient.HTTPClientResponse.Body
+}
+@available(*, unavailable)
+extension AsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator : Swift.Sendable {
+}
+extension AsyncHTTPClient.HTTPClient.Configuration {
+  public static var singletonConfiguration: AsyncHTTPClient.HTTPClient.Configuration {
+    get
+  }
+}
+final public class FileDownloadDelegate : AsyncHTTPClient.HTTPClientResponseDelegate {
+  public struct Progress : Swift.Sendable {
+    public var totalBytes: Swift.Int?
+    public var receivedBytes: Swift.Int
+    public var history: [AsyncHTTPClient.HTTPClient.RequestResponse]
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var url: Foundation.URL? {
+      get
+    }
+    #endif
+    public var head: NIOHTTP1.HTTPResponseHead {
+      get
+      set
+    }
+  }
+  public typealias Response = AsyncHTTPClient.FileDownloadDelegate.Progress
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency public init(path: Swift.String, pool: NIOPosix.NIOThreadPool? = nil, reportHead: (@Sendable (AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Response>, NIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Response>, AsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(path: Swift.String, pool: NIOPosix.NIOThreadPool, reportHead: (@Sendable (NIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (AsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(path: Swift.String, reportHead: (@Sendable (NIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (AsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  final public func didVisitURL(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Progress>, _ request: AsyncHTTPClient.HTTPClient.Request, _ head: NIOHTTP1.HTTPResponseHead)
+  final public func didReceiveHead(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Response>, _ head: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveBodyPart(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Response>, _ buffer: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveError(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Progress>, _ error: any Swift.Error)
+  final public func didFinishRequest(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.FileDownloadDelegate.Response>) throws -> AsyncHTTPClient.FileDownloadDelegate.Response
+  @objc deinit
+}
+extension AsyncHTTPClient.HTTPClient.Cookie {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var expires: Foundation.Date? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(name: Swift.String, value: Swift.String, path: Swift.String = "/", domain: Swift.String? = nil, expires: Foundation.Date? = nil, maxAge: Swift.Int? = nil, httpOnly: Swift.Bool = false, secure: Swift.Bool = false)
+  #endif
+}
+extension AsyncHTTPClient.HTTPClient.Body {
+  public static func data(_ data: Foundation.Data) -> AsyncHTTPClient.HTTPClient.Body
+}
+extension AsyncHTTPClient.HTTPClient {
+  public struct Cookie : Swift.Sendable {
+    public var name: Swift.String
+    public var value: Swift.String
+    public var path: Swift.String
+    public var domain: Swift.String?
+    public var maxAge: Swift.Int?
+    public var httpOnly: Swift.Bool
+    public var secure: Swift.Bool
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(header: Swift.String, defaultDomain: Swift.String)
+    #endif
+  }
+}
+extension AsyncHTTPClient.HTTPClient.Response {
+  public var cookies: [AsyncHTTPClient.HTTPClient.Cookie] {
+    get
+  }
+}
+extension AsyncHTTPClient.HTTPClient.Configuration {
+  public struct Proxy : Swift.Sendable, Swift.Hashable {
+    public var host: Swift.String
+    public var port: Swift.Int
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var authorization: AsyncHTTPClient.HTTPClient.Authorization? {
+      get
+      set
+    }
+    #endif
+    public static func server(host: Swift.String, port: Swift.Int) -> AsyncHTTPClient.HTTPClient.Configuration.Proxy
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func server(host: Swift.String, port: Swift.Int, authorization: AsyncHTTPClient.HTTPClient.Authorization? = nil) -> AsyncHTTPClient.HTTPClient.Configuration.Proxy
+    #endif
+    public static func socksServer(host: Swift.String, port: Swift.Int = 1080) -> AsyncHTTPClient.HTTPClient.Configuration.Proxy
+    public static func == (a: AsyncHTTPClient.HTTPClient.Configuration.Proxy, b: AsyncHTTPClient.HTTPClient.Configuration.Proxy) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func withHTTPClient<Return>(eventLoopGroup: any NIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: AsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: Logging.Logger? = nil, isolation: isolated (any _Concurrency.Actor)? = #isolation, _ body: (AsyncHTTPClient.HTTPClient) async throws -> Return) async throws -> Return
+  #endif
+}
+@_hasMissingDesignatedInitializers final public class HTTPClient : Swift.Sendable {
+  final public let eventLoopGroup: any NIOCore.EventLoopGroup
+  convenience public init(eventLoopGroupProvider: AsyncHTTPClient.HTTPClient.EventLoopGroupProvider, configuration: AsyncHTTPClient.HTTPClient.Configuration = Configuration())
+  convenience public init(eventLoopGroup: any NIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: AsyncHTTPClient.HTTPClient.Configuration = Configuration())
+  convenience public init(eventLoopGroupProvider: AsyncHTTPClient.HTTPClient.EventLoopGroupProvider, configuration: AsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: Logging.Logger)
+  convenience public init(eventLoopGroup: any NIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: AsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: Logging.Logger)
+  @objc deinit
+  @available(*, noasync, renamed: "shutdown()", message: "syncShutdown() can block indefinitely, prefer shutdown()")
+  final public func syncShutdown() throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func shutdown(queue: Dispatch.DispatchQueue = .global(), _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
+  final public func shutdown() -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func get(url: Swift.String, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func get(url: Swift.String, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func post(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func post(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func patch(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func patch(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func put(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func put(url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func delete(url: Swift.String, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func delete(url: Swift.String, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: NIOHTTP1.HTTPMethod = .GET, url: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: NIOHTTP1.HTTPMethod = .GET, socketPath: Swift.String, urlPath: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: NIOHTTP1.HTTPMethod = .GET, secureSocketPath: Swift.String, urlPath: Swift.String, body: AsyncHTTPClient.HTTPClient.Body? = nil, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: AsyncHTTPClient.HTTPClient.Request, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: AsyncHTTPClient.HTTPClient.Request, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: AsyncHTTPClient.HTTPClient.Request, eventLoop: AsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: NIOCore.NIODeadline? = nil) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: AsyncHTTPClient.HTTPClient.Request, eventLoop eventLoopPreference: AsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger?) -> NIOCore.EventLoopFuture<AsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: AsyncHTTPClient.HTTPClient.Request, delegate: Delegate, deadline: NIOCore.NIODeadline? = nil) -> AsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : AsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: AsyncHTTPClient.HTTPClient.Request, delegate: Delegate, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger) -> AsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : AsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: AsyncHTTPClient.HTTPClient.Request, delegate: Delegate, eventLoop eventLoopPreference: AsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: NIOCore.NIODeadline? = nil) -> AsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : AsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: AsyncHTTPClient.HTTPClient.Request, delegate: Delegate, eventLoop eventLoopPreference: AsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: NIOCore.NIODeadline? = nil, logger: Logging.Logger?) -> AsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : AsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  public struct Configuration {
+    public var tlsConfiguration: Swift.Optional<NIOSSL.TLSConfiguration>
+    public var dnsOverride: [Swift.String : Swift.String]
+    public var redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+    public var timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout
+    public var connectionPool: AsyncHTTPClient.HTTPClient.Configuration.ConnectionPool
+    public var proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy?
+    public var decompression: AsyncHTTPClient.HTTPClient.Decompression
+    @available(*, deprecated, message: "AsyncHTTPClient now correctly supports handling unexpected SSL connection drops. This property is ignored")
+    public var ignoreUncleanSSLShutdown: Swift.Bool {
+      get
+      set
+    }
+    public var httpVersion: AsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public var networkFrameworkWaitForConnectivity: Swift.Bool
+    public var maximumUsesPerConnection: Swift.Int? {
+      get
+      set
+    }
+    public var enableMultipath: Swift.Bool
+    public var http1_1ConnectionDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)?
+    public var http2ConnectionDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)?
+    public var http2StreamChannelDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: NIOSSL.TLSConfiguration? = nil, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: AsyncHTTPClient.HTTPClient.Configuration.ConnectionPool = ConnectionPool(), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: NIOSSL.TLSConfiguration? = nil, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: NIOSSL.CertificateVerification, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), maximumAllowedIdleTimeInConnectionPool: NIOCore.TimeAmount = .seconds(60), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: NIOSSL.CertificateVerification, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: NIOCore.TimeAmount = .seconds(60), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled, backgroundActivityLogger: Logging.Logger?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: NIOSSL.CertificateVerification, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: NIOSSL.TLSConfiguration? = nil, redirectConfiguration: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: AsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: AsyncHTTPClient.HTTPClient.Configuration.ConnectionPool = ConnectionPool(), proxy: AsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: AsyncHTTPClient.HTTPClient.Decompression = .disabled, http1_1ConnectionDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)? = nil, http2ConnectionDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)? = nil, http2StreamChannelDebugInitializer: (@Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>)? = nil)
+    #endif
+  }
+  public enum EventLoopGroupProvider {
+    case shared(any NIOCore.EventLoopGroup)
+    @available(*, deprecated, renamed: "singleton", message: "Please use the singleton EventLoopGroup explicitly")
+    case createNew
+  }
+  public struct EventLoopPreference {
+    public static let indifferent: AsyncHTTPClient.HTTPClient.EventLoopPreference
+    public static func delegate(on eventLoop: any NIOCore.EventLoop) -> AsyncHTTPClient.HTTPClient.EventLoopPreference
+    public static func delegateAndChannel(on eventLoop: any NIOCore.EventLoop) -> AsyncHTTPClient.HTTPClient.EventLoopPreference
+  }
+  public enum Decompression : Swift.Sendable {
+    case disabled
+    case enabled(limit: NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  }
+}
+extension AsyncHTTPClient.HTTPClient.EventLoopGroupProvider {
+  public static var singleton: AsyncHTTPClient.HTTPClient.EventLoopGroupProvider {
+    get
+  }
+}
+extension AsyncHTTPClient.HTTPClient {
+  public static var defaultEventLoopGroup: any NIOCore.EventLoopGroup {
+    get
+  }
+}
+extension AsyncHTTPClient.HTTPClient.Configuration : Swift.Sendable {
+}
+extension AsyncHTTPClient.HTTPClient.EventLoopGroupProvider : Swift.Sendable {
+}
+extension AsyncHTTPClient.HTTPClient.EventLoopPreference : Swift.Sendable {
+}
+extension AsyncHTTPClient.HTTPClient.Configuration {
+  public struct Timeout : Swift.Sendable {
+    public var connect: NIOCore.TimeAmount?
+    public var read: NIOCore.TimeAmount?
+    public var write: NIOCore.TimeAmount?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(connect: NIOCore.TimeAmount? = nil, read: NIOCore.TimeAmount? = nil)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(connect: NIOCore.TimeAmount? = nil, read: NIOCore.TimeAmount? = nil, write: NIOCore.TimeAmount)
+    #endif
+  }
+  public struct RedirectConfiguration : Swift.Sendable {
+    public static let disallow: AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+    public static func follow(max: Swift.Int, allowCycles: Swift.Bool) -> AsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+  }
+  public struct ConnectionPool : Swift.Hashable, Swift.Sendable {
+    public var idleTimeout: NIOCore.TimeAmount
+    public var concurrentHTTP1ConnectionsPerHostSoftLimit: Swift.Int
+    public var retryConnectionEstablishment: Swift.Bool
+    public init()
+    public init(idleTimeout: NIOCore.TimeAmount)
+    public init(idleTimeout: NIOCore.TimeAmount, concurrentHTTP1ConnectionsPerHostSoftLimit: Swift.Int)
+    public static func == (a: AsyncHTTPClient.HTTPClient.Configuration.ConnectionPool, b: AsyncHTTPClient.HTTPClient.Configuration.ConnectionPool) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct HTTPVersion : Swift.Sendable, Swift.Hashable {
+    public static let http1Only: AsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public static let automatic: AsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public static func == (a: AsyncHTTPClient.HTTPClient.Configuration.HTTPVersion, b: AsyncHTTPClient.HTTPClient.Configuration.HTTPVersion) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public struct HTTPClientError : Swift.Error, Swift.Equatable, Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var shortDescription: Swift.String {
+    get
+  }
+  public static let invalidURL: AsyncHTTPClient.HTTPClientError
+  public static let emptyHost: AsyncHTTPClient.HTTPClientError
+  public static let missingSocketPath: AsyncHTTPClient.HTTPClientError
+  public static let alreadyShutdown: AsyncHTTPClient.HTTPClientError
+  public static let emptyScheme: AsyncHTTPClient.HTTPClientError
+  public static func unsupportedScheme(_ scheme: Swift.String) -> AsyncHTTPClient.HTTPClientError
+  public static let readTimeout: AsyncHTTPClient.HTTPClientError
+  public static let writeTimeout: AsyncHTTPClient.HTTPClientError
+  public static let remoteConnectionClosed: AsyncHTTPClient.HTTPClientError
+  public static let cancelled: AsyncHTTPClient.HTTPClientError
+  public static let identityCodingIncorrectlyPresent: AsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now silently corrects this invalid header.")
+  public static let chunkedSpecifiedMultipleTimes: AsyncHTTPClient.HTTPClientError
+  public static let invalidProxyResponse: AsyncHTTPClient.HTTPClientError
+  public static let contentLengthMissing: AsyncHTTPClient.HTTPClientError
+  public static let proxyAuthenticationRequired: AsyncHTTPClient.HTTPClientError
+  public static let redirectLimitReached: AsyncHTTPClient.HTTPClientError
+  public static let redirectCycleDetected: AsyncHTTPClient.HTTPClientError
+  public static let uncleanShutdown: AsyncHTTPClient.HTTPClientError
+  public static let traceRequestWithBody: AsyncHTTPClient.HTTPClientError
+  public static func invalidHeaderFieldNames(_ names: [Swift.String]) -> AsyncHTTPClient.HTTPClientError
+  public static func invalidHeaderFieldValues(_ values: [Swift.String]) -> AsyncHTTPClient.HTTPClientError
+  public static let bodyLengthMismatch: AsyncHTTPClient.HTTPClientError
+  public static let writeAfterRequestSent: AsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now silently corrects invalid headers.")
+  public static let incompatibleHeaders: AsyncHTTPClient.HTTPClientError
+  public static let connectTimeout: AsyncHTTPClient.HTTPClientError
+  public static let socksHandshakeTimeout: AsyncHTTPClient.HTTPClientError
+  public static let httpProxyHandshakeTimeout: AsyncHTTPClient.HTTPClientError
+  public static let tlsHandshakeTimeout: AsyncHTTPClient.HTTPClientError
+  public static func serverOfferedUnsupportedApplicationProtocol(_ proto: Swift.String) -> AsyncHTTPClient.HTTPClientError
+  public static var shutdownUnsupported: AsyncHTTPClient.HTTPClientError {
+    get
+  }
+  public static let deadlineExceeded: AsyncHTTPClient.HTTPClientError
+  public static let requestStreamCancelled: AsyncHTTPClient.HTTPClientError
+  public static let getConnectionFromPoolTimeout: AsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now correctly supports informational headers. For this reason `httpEndReceivedAfterHeadWith1xx` will not be thrown anymore.")
+  public static let httpEndReceivedAfterHeadWith1xx: AsyncHTTPClient.HTTPClientError
+  public static func == (a: AsyncHTTPClient.HTTPClientError, b: AsyncHTTPClient.HTTPClientError) -> Swift.Bool
+}
+extension AsyncHTTPClient.HTTPClient {
+  public struct Body : Swift.Sendable {
+    public struct StreamWriter : Swift.Sendable {
+      @preconcurrency public init(closure: @escaping @Sendable (NIOCore.IOData) -> NIOCore.EventLoopFuture<Swift.Void>)
+      public func write(_ data: NIOCore.IOData) -> NIOCore.EventLoopFuture<Swift.Void>
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @available(*, deprecated, renamed: "contentLength")
+    public var length: Swift.Int? {
+      get
+      set
+    }
+    #endif
+    public var contentLength: Swift.Int64?
+    public var stream: @Sendable (AsyncHTTPClient.HTTPClient.Body.StreamWriter) -> NIOCore.EventLoopFuture<Swift.Void>
+    public static func byteBuffer(_ buffer: NIOCore.ByteBuffer) -> AsyncHTTPClient.HTTPClient.Body
+    #if compiler(>=5.3) && $NonescapableTypes
+    @_disfavoredOverload @preconcurrency public static func stream(length: Swift.Int? = nil, _ stream: @escaping @Sendable (AsyncHTTPClient.HTTPClient.Body.StreamWriter) -> NIOCore.EventLoopFuture<Swift.Void>) -> AsyncHTTPClient.HTTPClient.Body
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func stream(contentLength: Swift.Int64? = nil, _ stream: @escaping @Sendable (AsyncHTTPClient.HTTPClient.Body.StreamWriter) -> NIOCore.EventLoopFuture<Swift.Void>) -> AsyncHTTPClient.HTTPClient.Body
+    #endif
+    @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes) -> AsyncHTTPClient.HTTPClient.Body where Bytes : Swift.RandomAccessCollection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+    public static func string(_ string: Swift.String) -> AsyncHTTPClient.HTTPClient.Body
+  }
+  public struct Request : Swift.Sendable {
+    public let method: NIOHTTP1.HTTPMethod
+    public let url: Foundation.URL
+    public var scheme: Swift.String {
+      get
+    }
+    public var headers: NIOHTTP1.HTTPHeaders
+    public var body: AsyncHTTPClient.HTTPClient.Body?
+    public var tlsConfiguration: NIOSSL.TLSConfiguration?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Swift.String, method: NIOHTTP1.HTTPMethod = .GET, headers: NIOHTTP1.HTTPHeaders = HTTPHeaders(), body: AsyncHTTPClient.HTTPClient.Body? = nil) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Swift.String, method: NIOHTTP1.HTTPMethod = .GET, headers: NIOHTTP1.HTTPHeaders = HTTPHeaders(), body: AsyncHTTPClient.HTTPClient.Body? = nil, tlsConfiguration: NIOSSL.TLSConfiguration?) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Foundation.URL, method: NIOHTTP1.HTTPMethod = .GET, headers: NIOHTTP1.HTTPHeaders = HTTPHeaders(), body: AsyncHTTPClient.HTTPClient.Body? = nil) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Foundation.URL, method: NIOHTTP1.HTTPMethod = .GET, headers: NIOHTTP1.HTTPHeaders = HTTPHeaders(), body: AsyncHTTPClient.HTTPClient.Body? = nil, tlsConfiguration: NIOSSL.TLSConfiguration?) throws
+    #endif
+    public var host: Swift.String {
+      get
+    }
+    public var port: Swift.Int {
+      get
+    }
+    public var useTLS: Swift.Bool {
+      get
+    }
+    public mutating func setBasicAuth(username: Swift.String, password: Swift.String)
+  }
+  public struct Response : Swift.Sendable {
+    public var host: Swift.String
+    public var status: NIOHTTP1.HTTPResponseStatus
+    public var version: NIOHTTP1.HTTPVersion
+    public var headers: NIOHTTP1.HTTPHeaders
+    public var body: NIOCore.ByteBuffer?
+    public var history: [AsyncHTTPClient.HTTPClient.RequestResponse]
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var url: Foundation.URL? {
+      get
+    }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @available(*, deprecated, renamed: "init(host:status:version:headers:body:)")
+    public init(host: Swift.String, status: NIOHTTP1.HTTPResponseStatus, headers: NIOHTTP1.HTTPHeaders, body: NIOCore.ByteBuffer?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(host: Swift.String, status: NIOHTTP1.HTTPResponseStatus, version: NIOHTTP1.HTTPVersion, headers: NIOHTTP1.HTTPHeaders, body: NIOCore.ByteBuffer?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(host: Swift.String, status: NIOHTTP1.HTTPResponseStatus, version: NIOHTTP1.HTTPVersion, headers: NIOHTTP1.HTTPHeaders, body: NIOCore.ByteBuffer?, history: [AsyncHTTPClient.HTTPClient.RequestResponse])
+    #endif
+  }
+  public struct Authorization : Swift.Hashable, Swift.Sendable {
+    public static func basic(username: Swift.String, password: Swift.String) -> AsyncHTTPClient.HTTPClient.Authorization
+    public static func basic(credentials: Swift.String) -> AsyncHTTPClient.HTTPClient.Authorization
+    public static func bearer(tokens: Swift.String) -> AsyncHTTPClient.HTTPClient.Authorization
+    public var headerValue: Swift.String {
+      get
+    }
+    public static func == (a: AsyncHTTPClient.HTTPClient.Authorization, b: AsyncHTTPClient.HTTPClient.Authorization) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct RequestResponse : Swift.Sendable {
+    public var request: AsyncHTTPClient.HTTPClient.Request
+    public var responseHead: NIOHTTP1.HTTPResponseHead
+    public init(request: AsyncHTTPClient.HTTPClient.Request, responseHead: NIOHTTP1.HTTPResponseHead)
+  }
+}
+final public class ResponseAccumulator : AsyncHTTPClient.HTTPClientResponseDelegate {
+  public typealias Response = AsyncHTTPClient.HTTPClient.Response
+  public struct ResponseTooBigError : Swift.Error, Swift.CustomStringConvertible {
+    public var maxBodySize: Swift.Int
+    public init(maxBodySize: Swift.Int)
+    public var description: Swift.String {
+      get
+    }
+  }
+  final public let maxBodySize: Swift.Int
+  convenience public init(request: AsyncHTTPClient.HTTPClient.Request)
+  public init(request: AsyncHTTPClient.HTTPClient.Request, maxBodySize: Swift.Int)
+  final public func didVisitURL(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.HTTPClient.Response>, _ request: AsyncHTTPClient.HTTPClient.Request, _ head: NIOHTTP1.HTTPResponseHead)
+  final public func didReceiveHead(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.ResponseAccumulator.Response>, _ head: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveBodyPart(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.ResponseAccumulator.Response>, _ part: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveError(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.ResponseAccumulator.Response>, _ error: any Swift.Error)
+  final public func didFinishRequest(task: AsyncHTTPClient.HTTPClient.Task<AsyncHTTPClient.ResponseAccumulator.Response>) throws -> AsyncHTTPClient.ResponseAccumulator.Response
+  @objc deinit
+}
+@preconcurrency public protocol HTTPClientResponseDelegate : AnyObject, Swift.Sendable {
+  associatedtype Response : Swift.Sendable
+  func didSendRequestHead(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: NIOHTTP1.HTTPRequestHead)
+  func didSendRequestPart(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ part: NIOCore.IOData)
+  func didSendRequest(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>)
+  func didVisitURL(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ request: AsyncHTTPClient.HTTPClient.Request, _ head: NIOHTTP1.HTTPResponseHead)
+  func didReceiveHead(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Swift.Void>
+  func didReceiveBodyPart(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ buffer: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>
+  func didReceiveError(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ error: any Swift.Error)
+  func didFinishRequest(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>) throws -> Self.Response
+}
+extension AsyncHTTPClient.HTTPClientResponseDelegate {
+  public func didSendRequestHead(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: NIOHTTP1.HTTPRequestHead)
+  public func didSendRequestPart(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _ part: NIOCore.IOData)
+  public func didSendRequest(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>)
+  public func didVisitURL(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _: AsyncHTTPClient.HTTPClient.Request, _: NIOHTTP1.HTTPResponseHead)
+  public func didReceiveHead(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _: NIOHTTP1.HTTPResponseHead) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func didReceiveBodyPart(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>
+  public func didReceiveError(task: AsyncHTTPClient.HTTPClient.Task<Self.Response>, _: any Swift.Error)
+}
+extension Foundation.URL {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(httpURLWithSocketPath socketPath: Swift.String, uri: Swift.String = "/")
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(httpsURLWithSocketPath socketPath: Swift.String, uri: Swift.String = "/")
+  #endif
+}
+extension AsyncHTTPClient.HTTPClient {
+  @_hasMissingDesignatedInitializers final public class Task<Response> : Swift.Sendable {
+    final public let eventLoop: any NIOCore.EventLoop
+    final public let logger: Logging.Logger
+    final public var futureResult: NIOCore.EventLoopFuture<Response> {
+      get
+    }
+    @available(*, noasync, renamed: "get()", message: "wait() can block indefinitely, prefer get()")
+    @preconcurrency final public func wait() throws -> Response where Response : Swift.Sendable
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @preconcurrency final public func get() async throws -> Response where Response : Swift.Sendable
+    final public func cancel()
+    final public func fail(reason error: any Swift.Error)
+    @objc deinit
+  }
+}
+extension AsyncHTTPClient.HTTPClient {
+  public struct NWPOSIXError : Swift.Error, Swift.CustomStringConvertible {
+    public let errorCode: _DarwinFoundation1.POSIXErrorCode
+    public init(_ errorCode: _DarwinFoundation1.POSIXErrorCode, reason: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct NWTLSError : Swift.Error, Swift.CustomStringConvertible {
+    public let status: Darwin.OSStatus
+    public init(_ status: Darwin.OSStatus, reason: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+}
+extension AsyncHTTPClient.HTTPClient {
+  public static var shared: AsyncHTTPClient.HTTPClient {
+    get
+  }
+}
+extension AsyncHTTPClient.HTTPClient.EventLoopPreference : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+final public class HTTPClientCopyingDelegate : AsyncHTTPClient.HTTPClientResponseDelegate, Swift.Sendable {
+  public typealias Response = Swift.Void
+  @preconcurrency public init(chunkHandler: @escaping @Sendable (NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>)
+  final public func didReceiveBodyPart(task: AsyncHTTPClient.HTTPClient.Task<Swift.Void>, _ buffer: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<Swift.Void>
+  final public func didFinishRequest(task: AsyncHTTPClient.HTTPClient.Task<Swift.Void>) throws
+  @objc deinit
+}

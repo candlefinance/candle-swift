@@ -1,7 +1,7 @@
 import Candle
 import Foundation
 
-extension Models.Trade {
+extension Candle.Models.Trade {
     var searchTokens: [String] {
         let counterpartyNames: [String]
         switch counterparty {

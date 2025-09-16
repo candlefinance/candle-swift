@@ -1,6 +1,6 @@
 import Candle
 
-extension Models.LinkedAccount {
+extension Candle.Models.LinkedAccount {
     var formattedSubtitle: String {
         switch details {
         case .ActiveLinkedAccountDetails(let activeDetails): return activeDetails.legalName

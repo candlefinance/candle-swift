@@ -1,0 +1,4 @@
+framework module W3CTraceContext {
+    header "W3CTraceContext-Swift.h"
+    export *
+}

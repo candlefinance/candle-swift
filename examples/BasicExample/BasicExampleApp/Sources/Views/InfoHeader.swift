@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct InfoHeader: View {
-    let logoURL: URL
+    let logoURL: URL?
     let title: String?
     let badgeText: String
     let badgeColor: Color

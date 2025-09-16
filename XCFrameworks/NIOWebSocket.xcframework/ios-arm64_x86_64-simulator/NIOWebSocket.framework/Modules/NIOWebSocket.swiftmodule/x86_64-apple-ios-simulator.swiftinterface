@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOWebSocket -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CNIOSHA1
 import NIOCore
 import NIOHTTP1
@@ -71,8 +71,12 @@ public struct NIOWebSocketUpgradeError : Swift.Error, Swift.Equatable {
 @_hasMissingDesignatedInitializers final public class NIOWebSocketServerUpgrader : NIOHTTP1.HTTPServerProtocolUpgrader, Swift.Sendable {
   final public let supportedProtocol: Swift.String
   final public let requiredUpgradeHeaders: [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency convenience public init(automaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<Swift.Void>)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency convenience public init(maxFrameSize: Swift.Int, automaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<Swift.Void>)
+  #endif
   final public func buildUpgradeResponse(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead, initialResponseHeaders: NIOHTTP1.HTTPHeaders) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders>
   final public func upgrade(context: NIOCore.ChannelHandlerContext, upgradeRequest: NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<Swift.Void>
   @objc deinit
@@ -80,7 +84,9 @@ public struct NIOWebSocketUpgradeError : Swift.Error, Swift.Equatable {
 final public class NIOTypedWebSocketServerUpgrader<UpgradeResult> : NIOHTTP1.NIOTypedHTTPServerProtocolUpgrader, Swift.Sendable where UpgradeResult : Swift.Sendable {
   final public let supportedProtocol: Swift.String
   final public let requiredUpgradeHeaders: [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(maxFrameSize: Swift.Int = 1 << 14, enableAutomaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any NIOCore.Channel, NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<UpgradeResult>)
+  #endif
   final public func buildUpgradeResponse(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead, initialResponseHeaders: NIOHTTP1.HTTPHeaders) -> NIOCore.EventLoopFuture<NIOHTTP1.HTTPHeaders>
   final public func upgrade(channel: any NIOCore.Channel, upgradeRequest: NIOHTTP1.HTTPRequestHead) -> NIOCore.EventLoopFuture<UpgradeResult>
   @objc deinit
@@ -102,16 +108,24 @@ extension NIOWebSocket.WebSocketErrorCode : Swift.Equatable {
   public static func == (a: NIOWebSocket.WebSocketErrorCode, b: NIOWebSocket.WebSocketErrorCode) -> Swift.Bool
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readWebSocketErrorCode() -> NIOWebSocket.WebSocketErrorCode?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getWebSocketErrorCode(at index: Swift.Int) -> NIOWebSocket.WebSocketErrorCode?
+  #endif
   public mutating func write(webSocketErrorCode code: NIOWebSocket.WebSocketErrorCode)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekWebSocketErrorCode() -> NIOWebSocket.WebSocketErrorCode?
+  #endif
 }
 extension Swift.UInt16 {
   public init(webSocketErrorCode code: NIOWebSocket.WebSocketErrorCode)
 }
 public struct WebSocketMaskingKey : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?<T>(_ buffer: T) where T : Swift.Collection, T.Element == Swift.UInt8
+  #endif
 }
 extension NIOWebSocket.WebSocketMaskingKey : Swift.ExpressibleByArrayLiteral {
   public typealias ArrayLiteralElement = Swift.UInt8
@@ -137,7 +151,9 @@ extension NIOWebSocket.WebSocketMaskingKey : Swift.Collection {
   public subscript(index: Swift.Int) -> Swift.UInt8 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> R) rethrows -> R?
+  #endif
   public typealias Indices = Swift.DefaultIndices<NIOWebSocket.WebSocketMaskingKey>
   public typealias Iterator = Swift.IndexingIterator<NIOWebSocket.WebSocketMaskingKey>
   public typealias SubSequence = Swift.Slice<NIOWebSocket.WebSocketMaskingKey>
@@ -171,18 +187,24 @@ public struct WebSocketFrame {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var extensionData: NIOCore.ByteBuffer? {
     get
     set
   }
+  #endif
   public var unmaskedData: NIOCore.ByteBuffer {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var unmaskedExtensionData: NIOCore.ByteBuffer? {
     get
   }
+  #endif
   public init(allocator: NIOCore.ByteBufferAllocator)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(fin: Swift.Bool = false, rsv1: Swift.Bool = false, rsv2: Swift.Bool = false, rsv3: Swift.Bool = false, opcode: NIOWebSocket.WebSocketOpcode = .continuation, maskKey: NIOWebSocket.WebSocketMaskingKey? = nil, data: NIOCore.ByteBuffer, extensionData: NIOCore.ByteBuffer? = nil)
+  #endif
 }
 extension NIOWebSocket.WebSocketFrame : @unchecked Swift.Sendable {
 }
@@ -255,7 +277,9 @@ final public class WebSocketFrameEncoder : NIOCore.ChannelOutboundHandler {
   public init()
   final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
   final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -268,7 +292,9 @@ public struct WebSocketOpcode : Swift.Sendable {
   public static let connectionClose: NIOWebSocket.WebSocketOpcode
   public static let ping: NIOWebSocket.WebSocketOpcode
   public static let pong: NIOWebSocket.WebSocketOpcode
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(encodedWebSocketOpcode encoded: Swift.UInt8)
+  #endif
   public var isControlOpcode: Swift.Bool {
     get
   }

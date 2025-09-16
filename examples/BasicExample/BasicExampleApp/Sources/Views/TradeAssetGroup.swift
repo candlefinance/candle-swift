@@ -3,7 +3,7 @@ import SwiftUI
 
 struct TradeAssetGroup: View {
 
-    let tradeAsset: Models.TradeAsset
+    let tradeAsset: Candle.Models.TradeAsset
 
     var body: some View {
         DisclosureGroup {
@@ -172,14 +172,14 @@ struct TradeAssetGroup: View {
                 )
             case .OtherAsset(let otherAsset):
                 InfoHeader(
-                    logoURL: URL(string: "")!,
+                    logoURL: nil,
                     title: nil,  // TODO
                     badgeText: otherAsset.assetKind.description,
                     badgeColor: .gray
                 )
             case .NothingAsset(let nothingAsset):
                 InfoHeader(
-                    logoURL: URL(string: "")!,
+                    logoURL: nil,
                     title: nil,  // TODO
                     badgeText: nothingAsset.assetKind.description,
                     badgeColor: .red

@@ -1,7 +1,7 @@
 import Candle
 import Foundation
 
-extension Models.TradeQuote {
+extension Candle.Models.TradeQuote {
     var formattedTitle: String {
         switch gained {
         case .TransportAsset(let transportAsset): return transportAsset.name
@@ -59,7 +59,7 @@ extension Models.TradeQuote {
         }
     }
 
-    var _context: Models.TradeQuoteContext {
+    var _context: Candle.Models.TradeQuoteContext {
         let linkedAccountID: String
         switch gained {
         case .TransportAsset(let transportAsset): linkedAccountID = transportAsset.linkedAccountID

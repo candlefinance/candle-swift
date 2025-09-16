@@ -2,15 +2,13 @@ import Candle
 import SwiftUI
 
 struct LinkedAccountsMenu: View {
-    @Environment(CandleClient.self) private var client
+    let linkedAccounts: [Candle.Models.LinkedAccount]
 
-    let linkedAccounts: [Models.LinkedAccount]
-
-    @Binding var selectedLinkedAccountIDs: [Models.LinkedAccountID]
+    @Binding var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID]
 
     var body: some View {
         Menu("Linked Accounts") {
-            ForEach(linkedAccounts) { (linkedAccount: Models.LinkedAccount) in
+            ForEach(linkedAccounts) { (linkedAccount: Candle.Models.LinkedAccount) in
                 Button(action: {
                     if let index = selectedLinkedAccountIDs.firstIndex(
                         of: linkedAccount.linkedAccountID

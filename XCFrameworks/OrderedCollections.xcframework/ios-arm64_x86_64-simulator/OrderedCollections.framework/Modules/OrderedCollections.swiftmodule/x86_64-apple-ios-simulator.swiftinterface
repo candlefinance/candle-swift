@@ -1,0 +1,977 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name OrderedCollections
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import InternalCollectionsUtilities
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension OrderedCollections.OrderedDictionary : Swift.Encodable where Key : Swift.Encodable, Value : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension OrderedCollections.OrderedDictionary : Swift.Decodable where Key : Swift.Decodable, Value : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension OrderedCollections.OrderedDictionary : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  @available(*, unavailable, message: "Please use `elements[offset]`")
+  @inline(__always) public subscript(offset offset: Swift.Int) -> OrderedCollections.OrderedDictionary<Key, Value>.Element {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  @available(*, unavailable, renamed: "updateValue(forKey:default:with:)")
+  public mutating func modifyValue<R>(forKey key: Key, default defaultValue: @autoclosure () -> Value, _ body: (inout Value) throws -> R) rethrows -> R
+  @available(*, unavailable, renamed: "updateValue(forKey:insertingDefault:at:with:)")
+  public mutating func modifyValue<R>(forKey key: Key, insertingDefault defaultValue: @autoclosure () -> Value, at index: Swift.Int, _ body: (inout Value) throws -> R) rethrows -> R
+}
+extension OrderedCollections.OrderedDictionary : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  public struct SubSequence {
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence {
+  @inline(__always) public var keys: OrderedCollections.OrderedSet<Key>.SubSequence {
+    get
+  }
+  @inline(__always) public var values: OrderedCollections.OrderedDictionary<Key, Value>.Values.SubSequence {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(forKey key: Key) -> Swift.Int?
+  #endif
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.Sequence {
+  public typealias Element = OrderedCollections.OrderedDictionary<Key, Value>.Element
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element?
+    #endif
+    public typealias Element = OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element
+  }
+  @inline(__always) public func makeIterator() -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Iterator
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence.Iterator : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias SubSequence = OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var indices: Swift.Range<Swift.Int> {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  #endif
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  public subscript(position: Swift.Int) -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element {
+    get
+  }
+  public subscript(bounds: Swift.Range<Swift.Int>) -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.SubSequence {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  public struct Elements {
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary {
+  @inline(__always) public var elements: OrderedCollections.OrderedDictionary<Key, Value>.Elements {
+    get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  @inline(__always) public var keys: OrderedCollections.OrderedSet<Key> {
+    get
+  }
+  @inline(__always) public var values: OrderedCollections.OrderedDictionary<Key, Value>.Values {
+    get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(forKey key: Key) -> Swift.Int?
+  #endif
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.Sequence {
+  public typealias Element = (key: Key, value: Value)
+  public var underestimatedCount: Swift.Int {
+    get
+  }
+  public func makeIterator() -> OrderedCollections.OrderedDictionary<Key, Value>.Iterator
+  public typealias Iterator = OrderedCollections.OrderedDictionary<Key, Value>.Iterator
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  #endif
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  @inline(__always) public subscript(position: Swift.Int) -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element {
+    get
+  }
+  public subscript(bounds: Swift.Range<Swift.Int>) -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>)
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.Equatable where Value : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedDictionary<Key, Value>.Elements, right: OrderedCollections.OrderedDictionary<Key, Value>.Elements) -> Swift.Bool
+}
+extension OrderedCollections.OrderedDictionary.Elements : Swift.Hashable where Value : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  @inline(__always) public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int)
+  @inline(__always) public mutating func partition(by belongsInSecondPartition: (OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows -> Swift.Int
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  @inline(__always) public mutating func sort(by areInIncreasingOrder: (OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element, OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedDictionary.Elements where Key : Swift.Comparable {
+  @inline(__always) public mutating func sort()
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  public mutating func shuffle()
+  public mutating func shuffle(using generator: inout some RandomNumberGenerator)
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  public mutating func reverse()
+}
+extension OrderedCollections.OrderedDictionary.Elements {
+  public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false)
+  @discardableResult
+  public mutating func remove(at index: Swift.Int) -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element
+  public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>)
+  public mutating func removeSubrange(_ bounds: some RangeExpression<Int>)
+  @discardableResult
+  public mutating func removeLast() -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element
+  public mutating func removeLast(_ n: Swift.Int)
+  @discardableResult
+  public mutating func removeFirst() -> OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element
+  public mutating func removeFirst(_ n: Swift.Int)
+  public mutating func removeAll(where shouldBeRemoved: (OrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedDictionary : Swift.Equatable where Value : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedDictionary<Key, Value>, right: OrderedCollections.OrderedDictionary<Key, Value>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedDictionary : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Key, Value)...)
+}
+extension OrderedCollections.OrderedDictionary : Swift.Hashable where Value : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  @inline(__always) public init()
+  @inline(__always) public init(minimumCapacity: Swift.Int, persistent: Swift.Bool = false)
+}
+extension OrderedCollections.OrderedDictionary {
+  @_disfavoredOverload public init(uniqueKeysWithValues keysAndValues: some Sequence<(key: Key, value: Value)>)
+  public init(uniqueKeysWithValues keysAndValues: some Sequence<(Key, Value)>)
+}
+extension OrderedCollections.OrderedDictionary {
+  public init(uniqueKeys keys: some Sequence<Key>, values: some Sequence<Value>)
+}
+extension OrderedCollections.OrderedDictionary {
+  @_disfavoredOverload @inline(__always) public init(_ keysAndValues: some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows
+  @inline(__always) public init(_ keysAndValues: some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows
+}
+extension OrderedCollections.OrderedDictionary {
+  public init<S>(grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value : Swift.RangeReplaceableCollection, S : Swift.Sequence, Value.Element == S.Element
+  public init<S>(grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value == [S.Element], S : Swift.Sequence
+}
+extension OrderedCollections.OrderedDictionary {
+  @_disfavoredOverload public init(uncheckedUniqueKeysWithValues keysAndValues: some Sequence<(key: Key, value: Value)>)
+  public init(uncheckedUniqueKeysWithValues keysAndValues: some Sequence<(Key, Value)>)
+}
+extension OrderedCollections.OrderedDictionary {
+  @inline(__always) public init(uncheckedUniqueKeys keys: some Sequence<Key>, values: some Sequence<Value>)
+}
+extension OrderedCollections.OrderedDictionary {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+  @inline(__always) public func _checkInvariants()
+}
+extension OrderedCollections.OrderedDictionary {
+  public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int)
+  public mutating func partition(by belongsInSecondPartition: (OrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows -> Swift.Int
+}
+extension OrderedCollections.OrderedDictionary {
+  public mutating func sort(by areInIncreasingOrder: (OrderedCollections.OrderedDictionary<Key, Value>.Element, OrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedDictionary where Key : Swift.Comparable {
+  public mutating func sort()
+}
+extension OrderedCollections.OrderedDictionary {
+  public mutating func shuffle()
+  public mutating func shuffle(using generator: inout some RandomNumberGenerator)
+}
+extension OrderedCollections.OrderedDictionary {
+  public mutating func reverse()
+}
+extension OrderedCollections.OrderedDictionary {
+  public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
+  public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false)
+  @discardableResult
+  public mutating func remove(at index: Swift.Int) -> OrderedCollections.OrderedDictionary<Key, Value>.Element
+  public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>)
+  public mutating func removeSubrange(_ bounds: some RangeExpression<Int>)
+  @discardableResult
+  public mutating func removeLast() -> OrderedCollections.OrderedDictionary<Key, Value>.Element
+  public mutating func removeLast(_ n: Swift.Int)
+  @discardableResult
+  public mutating func removeFirst() -> OrderedCollections.OrderedDictionary<Key, Value>.Element
+  public mutating func removeFirst(_ n: Swift.Int)
+  public mutating func removeAll(where shouldBeRemoved: (OrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedDictionary : @unchecked Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary : Swift.Sequence {
+  public typealias Element = (key: Key, value: Value)
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> OrderedCollections.OrderedDictionary<Key, Value>.Element?
+    #endif
+    public typealias Element = OrderedCollections.OrderedDictionary<Key, Value>.Element
+  }
+  @inline(__always) public var underestimatedCount: Swift.Int {
+    get
+  }
+  @inline(__always) public func makeIterator() -> OrderedCollections.OrderedDictionary<Key, Value>.Iterator
+}
+extension OrderedCollections.OrderedDictionary.Iterator : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary {
+  public struct Values {
+  }
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Values {
+  @inline(__always) public var elements: Swift.Array<Value> {
+    get
+  }
+}
+extension OrderedCollections.OrderedDictionary.Values {
+  @inline(__always) public func withUnsafeBufferPointer<R>(_ body: (Swift.UnsafeBufferPointer<OrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R
+  @inline(__always) public mutating func withUnsafeMutableBufferPointer<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<OrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.Sequence {
+  public typealias Element = Value
+  public typealias Iterator = Swift.IndexingIterator<OrderedCollections.OrderedDictionary<Key, Value>.Values>
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  #endif
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Value>) throws -> R) rethrows -> R?
+  #endif
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.MutableCollection {
+  @inline(__always) public subscript(position: Swift.Int) -> Value {
+    get
+    @inline(__always) _modify
+  }
+  @inline(__always) public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int)
+  @inline(__always) public mutating func partition(by belongsInSecondPartition: (Value) throws -> Swift.Bool) rethrows -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public mutating func withContiguousMutableStorageIfAvailable<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<OrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R?
+  #endif
+  public typealias SubSequence = Swift.Slice<OrderedCollections.OrderedDictionary<Key, Value>.Values>
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.Equatable where Value : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedDictionary<Key, Value>.Values, right: OrderedCollections.OrderedDictionary<Key, Value>.Values) -> Swift.Bool
+}
+extension OrderedCollections.OrderedDictionary.Values : Swift.Hashable where Value : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OrderedDictionary<Key, Value> where Key : Swift.Hashable {
+}
+extension OrderedCollections.OrderedDictionary {
+  @inline(__always) public var keys: OrderedCollections.OrderedSet<Key> {
+    get
+  }
+  @inline(__always) public var values: OrderedCollections.OrderedDictionary<Key, Value>.Values {
+    get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  public typealias Index = Swift.Int
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(forKey key: Key) -> Swift.Int?
+  #endif
+}
+extension OrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(key: Key) -> Value? {
+    get
+    set
+    @inline(__always) _modify
+  }
+  #endif
+  public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value {
+    get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func updateValue(_ value: Value, forKey key: Key) -> Value?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func updateValue(_ value: Value, forKey key: Key, insertingAt index: Swift.Int) -> (originalMember: Value?, index: Swift.Int)
+  #endif
+  public mutating func updateValue<R>(forKey key: Key, default defaultValue: @autoclosure () -> Value, with body: (inout Value) throws -> R) rethrows -> R
+  public mutating func updateValue<R>(forKey key: Key, insertingDefault defaultValue: @autoclosure () -> Value, at index: Swift.Int, with body: (inout Value) throws -> R) rethrows -> R
+}
+extension OrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func removeValue(forKey key: Key) -> Value?
+  #endif
+}
+extension OrderedCollections.OrderedDictionary {
+  @_disfavoredOverload public mutating func merge(_ keysAndValues: __owned some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows
+  public mutating func merge(_ keysAndValues: __owned some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows
+  @_disfavoredOverload public __consuming func merging(_ other: __owned some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> OrderedCollections.OrderedDictionary<Key, Value>
+  public __consuming func merging(_ other: __owned some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> OrderedCollections.OrderedDictionary<Key, Value>
+}
+extension OrderedCollections.OrderedDictionary {
+  public func filter(_ isIncluded: (OrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows -> OrderedCollections.OrderedDictionary<Key, Value>
+}
+extension OrderedCollections.OrderedDictionary {
+  public func mapValues<T>(_ transform: (Value) throws -> T) rethrows -> OrderedCollections.OrderedDictionary<Key, T>
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func compactMapValues<T>(_ transform: (Value) throws -> T?) rethrows -> OrderedCollections.OrderedDictionary<Key, T>
+  #endif
+}
+extension OrderedCollections.OrderedSet : Swift.Encodable where Element : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension OrderedCollections.OrderedSet : Swift.Decodable where Element : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension OrderedCollections.OrderedSet : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func difference(from other: OrderedCollections.OrderedSet<Element>) -> Swift.CollectionDifference<Element>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func applying(_ difference: Swift.CollectionDifference<Element>) -> OrderedCollections.OrderedSet<Element>?
+  #endif
+}
+extension OrderedCollections.OrderedSet : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedSet<Element>, right: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Element...)
+  public typealias ArrayLiteralElement = Element
+}
+extension OrderedCollections.OrderedSet : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet {
+  @inline(__always) public init(uncheckedUniqueElements elements: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  public init(_ elements: some Sequence<Element>)
+  public init(_ elements: OrderedCollections.OrderedSet<Element>)
+  public init(_ elements: OrderedCollections.OrderedSet<Element>.SubSequence)
+  public init(_ elements: Swift.Set<Element>)
+  public init<Value>(_ elements: Swift.Dictionary<Element, Value>.Keys)
+  public init(_ elements: some RandomAccessCollection<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  @discardableResult
+  @inline(__always) public mutating func append(_ item: Element) -> (inserted: Swift.Bool, index: Swift.Int)
+  public mutating func append(contentsOf elements: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  @discardableResult
+  public mutating func insert(_ item: Element, at index: Swift.Int) -> (inserted: Swift.Bool, index: Swift.Int)
+}
+extension OrderedCollections.OrderedSet {
+  @discardableResult
+  public mutating func update(_ item: Element, at index: Swift.Int) -> Element
+}
+extension OrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func updateOrAppend(_ item: Element) -> Element?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func updateOrInsert(_ item: Element, at index: Swift.Int) -> (originalMember: Element?, index: Swift.Int)
+  #endif
+}
+extension OrderedCollections.OrderedSet {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+  @inline(__always) public func _checkInvariants()
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int)
+  public mutating func partition(by belongsInSecondPartition: (Element) throws -> Swift.Bool) rethrows -> Swift.Int
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func _partition(by belongsInSecondPartition: (Element) throws -> Swift.Bool, callback: (Swift.Int, Swift.Int) -> Swift.Void) rethrows -> Swift.Int
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func sort(by areInIncreasingOrder: (Element, Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedSet where Element : Swift.Comparable {
+  public mutating func sort()
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func shuffle()
+  public mutating func shuffle(using generator: inout some RandomNumberGenerator)
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func reverse()
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false)
+  @discardableResult
+  public mutating func remove(at index: Swift.Int) -> OrderedCollections.OrderedSet<Element>.Element
+  public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>)
+  public mutating func removeSubrange(_ bounds: some RangeExpression<Int>)
+  @discardableResult
+  public mutating func removeLast() -> Element
+  public mutating func removeLast(_ n: Swift.Int)
+  @discardableResult
+  public mutating func removeFirst() -> Element
+  public mutating func removeFirst(_ n: Swift.Int)
+  public mutating func removeAll(where shouldBeRemoved: (Element) throws -> Swift.Bool) rethrows
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func formIntersection(_ other: OrderedCollections.OrderedSet<Element>)
+  @inline(__always) public mutating func formIntersection(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public mutating func formIntersection(_ other: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func formSymmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>)
+  @inline(__always) public mutating func formSymmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public mutating func formSymmetricDifference(_ other: __owned some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func formUnion(_ other: __owned OrderedCollections.OrderedSet<Element>)
+  @inline(__always) public mutating func formUnion(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public mutating func formUnion(_ other: __owned some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  public __consuming func intersection(_ other: OrderedCollections.OrderedSet<Element>) -> OrderedCollections.OrderedSet<Element>
+  @inline(__always) public __consuming func intersection(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>
+  public __consuming func intersection(_ other: some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>
+}
+extension OrderedCollections.OrderedSet {
+  public func isDisjoint(with other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  @inline(__always) public func isDisjoint(with other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isDisjoint(with other: Swift.Set<Element>) -> Swift.Bool
+  public func isDisjoint(with other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public func isEqualSet(to other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  public func isEqualSet(to other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isEqualSet(to other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public func isStrictSubset(of other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  @inline(__always) public func isStrictSubset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isStrictSubset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isStrictSubset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public func isStrictSuperset(of other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  @inline(__always) public func isStrictSuperset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isStrictSuperset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isStrictSuperset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public func isSubset(of other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  @inline(__always) public func isSubset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isSubset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isSubset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public func isSuperset(of other: OrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  public func isSuperset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isSuperset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isSuperset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  @inline(__always) public mutating func subtract(_ other: OrderedCollections.OrderedSet<Element>)
+  @inline(__always) public mutating func subtract(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  @inline(__always) public mutating func subtract(_ other: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet {
+  @inline(__always) public __consuming func subtracting(_ other: OrderedCollections.OrderedSet<Element>) -> OrderedCollections.OrderedSet<Element>
+  @inline(__always) public __consuming func subtracting(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>
+  @inline(__always) public __consuming func subtracting(_ other: some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>
+}
+extension OrderedCollections.OrderedSet {
+  public __consuming func symmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>) -> OrderedCollections.OrderedSet<Element>
+  @inline(__always) public __consuming func symmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>
+  public __consuming func symmetricDifference(_ other: __owned some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>
+}
+extension OrderedCollections.OrderedSet {
+  public __consuming func union(_ other: __owned OrderedCollections.OrderedSet<Element>) -> OrderedCollections.OrderedSet<Element>
+  @inline(__always) public __consuming func union(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>
+  public __consuming func union(_ other: __owned some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>
+}
+extension OrderedCollections.OrderedSet {
+  public init()
+}
+extension OrderedCollections.OrderedSet {
+  public func contains(_ element: Element) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public mutating func remove(_ member: Element) -> Element?
+  #endif
+}
+extension OrderedCollections.OrderedSet : Swift.Sequence {
+  public typealias Iterator = Swift.IndexingIterator<OrderedCollections.OrderedSet<Element>>
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func _customContainsEquatableElement(_ element: Element) -> Swift.Bool?
+  #endif
+  public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element>
+  public __consuming func _copyContents(initializing ptr: Swift.UnsafeMutableBufferPointer<Element>) -> (OrderedCollections.OrderedSet<Element>.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R?
+  #endif
+}
+extension OrderedCollections.OrderedSet : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var indices: OrderedCollections.OrderedSet<Element>.Indices {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  #endif
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  @inline(__always) public subscript(position: Swift.Int) -> Element {
+    get
+  }
+  public subscript(bounds: Swift.Range<Swift.Int>) -> OrderedCollections.OrderedSet<Element>.SubSequence {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func _customIndexOfEquatableElement(_ element: Element) -> Swift.Int??
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func _customLastIndexOfEquatableElement(_ element: Element) -> Swift.Int??
+  #endif
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>)
+}
+extension OrderedCollections.OrderedSet : InternalCollectionsUtilities._UniqueCollection {
+}
+extension OrderedCollections.OrderedSet {
+  public init(minimumCapacity: Swift.Int, persistent: Swift.Bool = false)
+}
+extension OrderedCollections.OrderedSet {
+  public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
+}
+extension OrderedCollections.OrderedSet : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}
+extension OrderedCollections.OrderedSet {
+  public struct SubSequence {
+  }
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.Sendable where Element : Swift.Sendable {
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.Sequence {
+  public typealias Element = OrderedCollections.OrderedSet<Element>.Element
+  public typealias Iterator = Swift.IndexingIterator<OrderedCollections.OrderedSet<Element>.SubSequence>
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func _customContainsEquatableElement(_ element: Element) -> Swift.Bool?
+  #endif
+  public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element>
+  public __consuming func _copyContents(initializing ptr: Swift.UnsafeMutableBufferPointer<Element>) -> (OrderedCollections.OrderedSet<Element>.SubSequence.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R?
+  #endif
+}
+extension OrderedCollections.OrderedSet.SubSequence : InternalCollectionsUtilities._UniqueCollection {
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Array<Element>.SubSequence.Indices
+  public typealias SubSequence = OrderedCollections.OrderedSet<Element>.SubSequence
+  @inline(__always) public var startIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var endIndex: Swift.Int {
+    get
+  }
+  @inline(__always) public var indices: OrderedCollections.OrderedSet<Element>.SubSequence.Indices {
+    get
+  }
+  @inline(__always) public func index(after i: Swift.Int) -> Swift.Int
+  @inline(__always) public func index(before i: Swift.Int) -> Swift.Int
+  @inline(__always) public func formIndex(after i: inout Swift.Int)
+  @inline(__always) public func formIndex(before i: inout Swift.Int)
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int?
+  #endif
+  @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int
+  @inline(__always) public subscript(position: Swift.Int) -> Element {
+    get
+  }
+  @inline(__always) public subscript(bounds: Swift.Range<Swift.Int>) -> OrderedCollections.OrderedSet<Element>.SubSequence.SubSequence {
+    get
+  }
+  @inline(__always) public var isEmpty: Swift.Bool {
+    get
+  }
+  @inline(__always) public var count: Swift.Int {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func _customIndexOfEquatableElement(_ element: Element) -> Swift.Int??
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func _customLastIndexOfEquatableElement(_ element: Element) -> Swift.Int??
+  #endif
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>)
+  @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>)
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedSet<Element>.SubSequence, right: OrderedCollections.OrderedSet<Element>.SubSequence) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.SubSequence : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet._UnstableInternals {
+  public static var isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet {
+  public struct UnorderedView {
+  }
+  @inline(__always) public init(_ view: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public var unordered: OrderedCollections.OrderedSet<Element>.UnorderedView {
+    @inline(__always) get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.Sendable where Element : Swift.Sendable {
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.Equatable {
+  public static func == (left: OrderedCollections.OrderedSet<Element>.UnorderedView, right: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.ExpressibleByArrayLiteral {
+  @inline(__always) public init(arrayLiteral elements: Element...)
+  public typealias ArrayLiteralElement = Element
+}
+extension OrderedCollections.OrderedSet.UnorderedView : Swift.SetAlgebra {
+  public typealias Element = OrderedCollections.OrderedSet<Element>.Element
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  @inline(__always) public init()
+  @inline(__always) public init(_ elements: some Sequence<Element>)
+  @inline(__always) public init(_ elements: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  @inline(__always) public init(_ elements: Swift.Set<Element>)
+  @inline(__always) public init<Value>(_ elements: Swift.Dictionary<Element, Value>.Keys)
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  @inline(__always) public func contains(_ element: Element) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public mutating func insert(_ newMember: __owned Element) -> (inserted: Swift.Bool, memberAfterInsert: Element)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func update(with newMember: __owned Element) -> Element?
+  #endif
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inline(__always) public mutating func remove(_ member: Element) -> Element?
+  #endif
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  @inline(__always) public mutating func formUnion(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public __consuming func union(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func formUnion(_ other: __owned some Sequence<Element>)
+  public __consuming func union(_ other: __owned some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public __consuming func intersection(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func formIntersection(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public __consuming func intersection(_ other: some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func formIntersection(_ other: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public __consuming func symmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func formSymmetricDifference(_ other: __owned OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public __consuming func symmetricDifference(_ other: __owned some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func formSymmetricDifference(_ other: __owned some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public __consuming func subtracting(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func subtract(_ other: OrderedCollections.OrderedSet<Element>.UnorderedView)
+  public __consuming func subtracting(_ other: some Sequence<Element>) -> OrderedCollections.OrderedSet<Element>.UnorderedView
+  public mutating func subtract(_ other: some Sequence<Element>)
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isEqualSet(to other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isEqualSet(to other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isSubset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isSubset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isSubset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isSuperset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isSuperset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isSuperset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isStrictSubset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isStrictSubset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isStrictSubset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isStrictSuperset(of other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isStrictSuperset(of other: Swift.Set<Element>) -> Swift.Bool
+  public func isStrictSuperset(of other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet.UnorderedView {
+  public func isDisjoint(with other: OrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isDisjoint(with other: Swift.Set<Element>) -> Swift.Bool
+  public func isDisjoint(with other: some Sequence<Element>) -> Swift.Bool
+}
+extension OrderedCollections.OrderedSet {
+  public struct _UnstableInternals {
+  }
+  public var __unstable: OrderedCollections.OrderedSet<Element>._UnstableInternals {
+    @inline(__always) get
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedSet._UnstableInternals : Swift.Sendable where Element : Swift.Sendable {
+}
+public struct OrderedSet<Element> where Element : Swift.Hashable {
+}
+extension OrderedCollections.OrderedSet {
+  public var elements: [Element] {
+    get
+    set
+    @inline(__always) _modify
+  }
+}
+extension OrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func firstIndex(of element: Element) -> Swift.Int?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inline(__always) public func lastIndex(of element: Element) -> Swift.Int?
+  #endif
+}
+extension OrderedCollections.OrderedSet {
+  public func filter(_ isIncluded: (Element) throws -> Swift.Bool) rethrows -> OrderedCollections.OrderedSet<Element>
+}

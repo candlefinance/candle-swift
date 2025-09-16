@@ -1,0 +1,5 @@
+framework module UnixSignals {
+    header "UnixSignals-Swift.h"
+    export *
+    link framework "ConcurrencyHelpers"
+}

@@ -1,0 +1,5 @@
+framework module Metrics {
+    header "Metrics-Swift.h"
+    export *
+    link framework "CoreMetrics"
+}

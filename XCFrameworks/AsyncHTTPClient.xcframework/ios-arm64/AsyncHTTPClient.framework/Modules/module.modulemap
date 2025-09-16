@@ -1,0 +1,5 @@
+framework module AsyncHTTPClient {
+    header "AsyncHTTPClient-Swift.h"
+    export *
+    link framework "CAsyncHTTPClient"
+}

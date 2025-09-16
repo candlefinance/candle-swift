@@ -1,0 +1,245 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOSOCKS -package-name swift_nio_extras
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CNIOLinux
+import Darwin
+import NIOCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+final public class SOCKSClientHandler : NIOCore.ChannelDuplexHandler {
+  public typealias InboundIn = NIOCore.ByteBuffer
+  public typealias InboundOut = NIOCore.ByteBuffer
+  public typealias OutboundIn = NIOCore.ByteBuffer
+  public typealias OutboundOut = NIOCore.ByteBuffer
+  public init(targetAddress: NIOSOCKS.SOCKSAddress)
+  final public func channelActive(context: NIOCore.ChannelHandlerContext)
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: NIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOSOCKS.SOCKSClientHandler : Swift.Sendable {
+}
+extension NIOSOCKS.SOCKSClientHandler : NIOCore.RemovableChannelHandler {
+  final public func removeHandler(context: NIOCore.ChannelHandlerContext, removalToken: NIOCore.ChannelHandlerContext.RemovalToken)
+}
+public struct SOCKSProxyEstablishedEvent : Swift.Sendable {
+  public init()
+}
+final public class SOCKSServerHandshakeHandler : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
+  public typealias InboundIn = NIOCore.ByteBuffer
+  public typealias InboundOut = NIOSOCKS.ClientMessage
+  public typealias OutboundIn = NIOSOCKS.ServerMessage
+  public typealias OutboundOut = NIOCore.ByteBuffer
+  public init()
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOSOCKS.SOCKSServerHandshakeHandler : Swift.Sendable {
+}
+public struct AuthenticationMethod : Swift.Hashable, Swift.Sendable {
+  public static let noneRequired: NIOSOCKS.AuthenticationMethod
+  public static let gssapi: NIOSOCKS.AuthenticationMethod
+  public static let usernamePassword: NIOSOCKS.AuthenticationMethod
+  public static let noneAcceptable: NIOSOCKS.AuthenticationMethod
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: NIOSOCKS.AuthenticationMethod, b: NIOSOCKS.AuthenticationMethod) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ClientGreeting : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var methods: [NIOSOCKS.AuthenticationMethod]
+  public init(methods: [NIOSOCKS.AuthenticationMethod])
+  public static func == (a: NIOSOCKS.ClientGreeting, b: NIOSOCKS.ClientGreeting) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SOCKSError : Swift.Sendable {
+  public struct InvalidClientState : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidClientState, b: NIOSOCKS.SOCKSError.InvalidClientState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidServerState : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidServerState, b: NIOSOCKS.SOCKSError.InvalidServerState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidProtocolVersion : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidProtocolVersion, b: NIOSOCKS.SOCKSError.InvalidProtocolVersion) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidReservedByte : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidReservedByte, b: NIOSOCKS.SOCKSError.InvalidReservedByte) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidAddressType : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidAddressType, b: NIOSOCKS.SOCKSError.InvalidAddressType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidAuthenticationSelection : Swift.Error, Swift.Hashable {
+    public var selection: NIOSOCKS.AuthenticationMethod
+    public init(selection: NIOSOCKS.AuthenticationMethod)
+    public static func == (a: NIOSOCKS.SOCKSError.InvalidAuthenticationSelection, b: NIOSOCKS.SOCKSError.InvalidAuthenticationSelection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct NoValidAuthenticationMethod : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: NIOSOCKS.SOCKSError.NoValidAuthenticationMethod, b: NIOSOCKS.SOCKSError.NoValidAuthenticationMethod) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct ConnectionFailed : Swift.Error, Swift.Hashable {
+    public var reply: NIOSOCKS.SOCKSServerReply
+    public init(reply: NIOSOCKS.SOCKSServerReply)
+    public static func == (a: NIOSOCKS.SOCKSError.ConnectionFailed, b: NIOSOCKS.SOCKSError.ConnectionFailed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct UnexpectedRead : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: NIOSOCKS.SOCKSError.UnexpectedRead, b: NIOSOCKS.SOCKSError.UnexpectedRead) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public enum ClientMessage : Swift.Hashable, Swift.Sendable {
+  case greeting(NIOSOCKS.ClientGreeting)
+  case request(NIOSOCKS.SOCKSRequest)
+  case authenticationData(NIOCore.ByteBuffer)
+  public static func == (a: NIOSOCKS.ClientMessage, b: NIOSOCKS.ClientMessage) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ServerMessage : Swift.Hashable, Swift.Sendable {
+  case selectedAuthenticationMethod(NIOSOCKS.SelectedAuthenticationMethod)
+  case response(NIOSOCKS.SOCKSResponse)
+  case authenticationData(NIOCore.ByteBuffer, complete: Swift.Bool)
+  public static func == (a: NIOSOCKS.ServerMessage, b: NIOSOCKS.ServerMessage) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSRequest : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var command: NIOSOCKS.SOCKSCommand
+  public var addressType: NIOSOCKS.SOCKSAddress
+  public init(command: NIOSOCKS.SOCKSCommand, addressType: NIOSOCKS.SOCKSAddress)
+  public static func == (a: NIOSOCKS.SOCKSRequest, b: NIOSOCKS.SOCKSRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSCommand : Swift.Hashable, Swift.Sendable {
+  public static let connect: NIOSOCKS.SOCKSCommand
+  public static let bind: NIOSOCKS.SOCKSCommand
+  public static let udpAssociate: NIOSOCKS.SOCKSCommand
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: NIOSOCKS.SOCKSCommand, b: NIOSOCKS.SOCKSCommand) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SOCKSAddress : Swift.Hashable, Swift.Sendable {
+  case address(NIOCore.SocketAddress)
+  case domain(Swift.String, port: Swift.Int)
+  public static func == (a: NIOSOCKS.SOCKSAddress, b: NIOSOCKS.SOCKSAddress) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSResponse : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var reply: NIOSOCKS.SOCKSServerReply
+  public var boundAddress: NIOSOCKS.SOCKSAddress
+  public init(reply: NIOSOCKS.SOCKSServerReply, boundAddress: NIOSOCKS.SOCKSAddress)
+  public static func == (a: NIOSOCKS.SOCKSResponse, b: NIOSOCKS.SOCKSResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSServerReply : Swift.Hashable, Swift.Sendable {
+  public static let succeeded: NIOSOCKS.SOCKSServerReply
+  public static let serverFailure: NIOSOCKS.SOCKSServerReply
+  public static let notAllowed: NIOSOCKS.SOCKSServerReply
+  public static let networkUnreachable: NIOSOCKS.SOCKSServerReply
+  public static let hostUnreachable: NIOSOCKS.SOCKSServerReply
+  public static let refused: NIOSOCKS.SOCKSServerReply
+  public static let ttlExpired: NIOSOCKS.SOCKSServerReply
+  public static let commandUnsupported: NIOSOCKS.SOCKSServerReply
+  public static let addressUnsupported: NIOSOCKS.SOCKSServerReply
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: NIOSOCKS.SOCKSServerReply, b: NIOSOCKS.SOCKSServerReply) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SelectedAuthenticationMethod : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var method: NIOSOCKS.AuthenticationMethod
+  public init(method: NIOSOCKS.AuthenticationMethod)
+  public static func == (a: NIOSOCKS.SelectedAuthenticationMethod, b: NIOSOCKS.SelectedAuthenticationMethod) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}

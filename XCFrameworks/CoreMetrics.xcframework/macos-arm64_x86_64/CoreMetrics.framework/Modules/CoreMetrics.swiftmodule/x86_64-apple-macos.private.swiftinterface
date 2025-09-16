@@ -1,0 +1,333 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CoreMetrics -package-name swift_metrics
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+final public class Counter {
+  final public let _handler: any CoreMetrics.CounterHandler
+  @usableFromInline
+  final package let _factory: any CoreMetrics.MetricsFactory
+  final public let label: Swift.String
+  final public let dimensions: [(Swift.String, Swift.String)]
+  public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.CounterHandler, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.CounterHandler)
+  @inlinable final public func increment<DataType>(by amount: DataType) where DataType : Swift.BinaryInteger {
+        self._handler.increment(by: Int64(amount))
+    }
+  @inlinable final public func increment() {
+        self.increment(by: 1)
+    }
+  @inlinable final public func reset() {
+        self._handler.reset()
+    }
+  @objc deinit
+}
+extension CoreMetrics.Counter {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [])
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], factory: any CoreMetrics.MetricsFactory)
+  @inlinable final public func destroy() {
+        self._factory.destroyCounter(self._handler)
+    }
+}
+extension CoreMetrics.Counter : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+final public class FloatingPointCounter {
+  final public let _handler: any CoreMetrics.FloatingPointCounterHandler
+  @usableFromInline
+  final package let _factory: any CoreMetrics.MetricsFactory
+  final public let label: Swift.String
+  final public let dimensions: [(Swift.String, Swift.String)]
+  public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.FloatingPointCounterHandler, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.FloatingPointCounterHandler)
+  @inlinable final public func increment<DataType>(by amount: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self._handler.increment(by: Double(amount))
+    }
+  @inlinable final public func increment() {
+        self.increment(by: 1.0)
+    }
+  @inlinable final public func reset() {
+        self._handler.reset()
+    }
+  @objc deinit
+}
+extension CoreMetrics.FloatingPointCounter {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [])
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], factory: any CoreMetrics.MetricsFactory)
+  @inlinable final public func destroy() {
+        self._factory.destroyFloatingPointCounter(self._handler)
+    }
+}
+extension CoreMetrics.FloatingPointCounter : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+@_inheritsConvenienceInitializers final public class Gauge : CoreMetrics.Recorder, @unchecked Swift.Sendable {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [])
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], factory: any CoreMetrics.MetricsFactory)
+  override public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool, handler: any CoreMetrics.RecorderHandler, factory: any CoreMetrics.MetricsFactory)
+  @objc deinit
+}
+final public class Meter {
+  final public let _handler: any CoreMetrics.MeterHandler
+  @usableFromInline
+  final package let _factory: any CoreMetrics.MetricsFactory
+  final public let label: Swift.String
+  final public let dimensions: [(Swift.String, Swift.String)]
+  public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.MeterHandler, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.MeterHandler)
+  @inlinable final public func set<DataType>(_ value: DataType) where DataType : Swift.BinaryInteger {
+        self._handler.set(Int64(value))
+    }
+  @inlinable final public func set<DataType>(_ value: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self._handler.set(Double(value))
+    }
+  @inlinable final public func increment<DataType>(by amount: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self._handler.increment(by: Double(amount))
+    }
+  @inlinable final public func increment() {
+        self.increment(by: 1.0)
+    }
+  @inlinable final public func decrement<DataType>(by amount: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self._handler.decrement(by: Double(amount))
+    }
+  @inlinable final public func decrement() {
+        self.decrement(by: 1.0)
+    }
+  @objc deinit
+}
+extension CoreMetrics.Meter {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [])
+  @inlinable final public func destroy() {
+        self._factory.destroyMeter(self._handler)
+    }
+}
+extension CoreMetrics.Meter : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+public class Recorder {
+  final public let _handler: any CoreMetrics.RecorderHandler
+  @usableFromInline
+  final package let _factory: any CoreMetrics.MetricsFactory
+  final public let label: Swift.String
+  final public let dimensions: [(Swift.String, Swift.String)]
+  final public let aggregate: Swift.Bool
+  public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool, handler: any CoreMetrics.RecorderHandler, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool, handler: any CoreMetrics.RecorderHandler)
+  @inlinable public func record<DataType>(_ value: DataType) where DataType : Swift.BinaryInteger {
+        self._handler.record(Int64(value))
+    }
+  @inlinable public func record<DataType>(_ value: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self._handler.record(Double(value))
+    }
+  @objc deinit
+}
+extension CoreMetrics.Recorder {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], aggregate: Swift.Bool = true)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], aggregate: Swift.Bool = true, factory: any CoreMetrics.MetricsFactory)
+  @inlinable public func destroy() {
+        self._factory.destroyRecorder(self._handler)
+    }
+}
+extension CoreMetrics.Recorder : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct TimeUnit : Swift.Equatable, Swift.Sendable {
+  public let scaleFromNanoseconds: Swift.UInt64
+  public static let nanoseconds: CoreMetrics.TimeUnit
+  public static let microseconds: CoreMetrics.TimeUnit
+  public static let milliseconds: CoreMetrics.TimeUnit
+  public static let seconds: CoreMetrics.TimeUnit
+  public static let minutes: CoreMetrics.TimeUnit
+  public static let hours: CoreMetrics.TimeUnit
+  public static let days: CoreMetrics.TimeUnit
+  public static func == (a: CoreMetrics.TimeUnit, b: CoreMetrics.TimeUnit) -> Swift.Bool
+}
+final public class Timer {
+  final public let _handler: any CoreMetrics.TimerHandler
+  @usableFromInline
+  final package let _factory: any CoreMetrics.MetricsFactory
+  final public let label: Swift.String
+  final public let dimensions: [(Swift.String, Swift.String)]
+  public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.TimerHandler, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.TimerHandler)
+  @inlinable final public func recordNanoseconds(_ duration: Swift.Int64) {
+        self._handler.recordNanoseconds(duration)
+    }
+  @inlinable final public func recordNanoseconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryInteger {
+        self.recordNanoseconds(duration >= Int64.max ? Int64.max : Int64(duration))
+    }
+  @inlinable final public func recordMicroseconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryInteger {
+        guard duration <= Int64.max else { return self.recordNanoseconds(Int64.max) }
+
+        let result = Int64(duration).multipliedReportingOverflow(by: 1000)
+        if result.overflow {
+            self.recordNanoseconds(Int64.max)
+        } else {
+            self.recordNanoseconds(result.partialValue)
+        }
+    }
+  @inlinable final public func recordMicroseconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self.recordNanoseconds(Double(duration * 1000) < Double(Int64.max) ? Int64(duration * 1000) : Int64.max)
+    }
+  @inlinable final public func recordMilliseconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryInteger {
+        guard duration <= Int64.max else { return self.recordNanoseconds(Int64.max) }
+
+        let result = Int64(duration).multipliedReportingOverflow(by: 1_000_000)
+        if result.overflow {
+            self.recordNanoseconds(Int64.max)
+        } else {
+            self.recordNanoseconds(result.partialValue)
+        }
+    }
+  @inlinable final public func recordMilliseconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self.recordNanoseconds(
+            Double(duration * 1_000_000) < Double(Int64.max) ? Int64(duration * 1_000_000) : Int64.max
+        )
+    }
+  @inlinable final public func recordSeconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryInteger {
+        guard duration <= Int64.max else { return self.recordNanoseconds(Int64.max) }
+
+        let result = Int64(duration).multipliedReportingOverflow(by: 1_000_000_000)
+        if result.overflow {
+            self.recordNanoseconds(Int64.max)
+        } else {
+            self.recordNanoseconds(result.partialValue)
+        }
+    }
+  @inlinable final public func recordSeconds<DataType>(_ duration: DataType) where DataType : Swift.BinaryFloatingPoint {
+        self.recordNanoseconds(
+            Double(duration * 1_000_000_000) < Double(Int64.max) ? Int64(duration * 1_000_000_000) : Int64.max
+        )
+    }
+  @objc deinit
+}
+extension CoreMetrics.Timer {
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [])
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], preferredDisplayUnit displayUnit: CoreMetrics.TimeUnit, factory: any CoreMetrics.MetricsFactory)
+  convenience public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], preferredDisplayUnit displayUnit: CoreMetrics.TimeUnit)
+  @inlinable final public func destroy() {
+        self._factory.destroyTimer(self._handler)
+    }
+}
+extension CoreMetrics.Timer : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+public enum MetricsSystem {
+  public static func bootstrap(_ factory: any CoreMetrics.MetricsFactory)
+  public static var factory: any CoreMetrics.MetricsFactory {
+    get
+  }
+  public static func withWriterLock<T>(_ body: () throws -> T) rethrows -> T
+}
+public protocol MetricsFactory : CoreMetrics._SwiftMetricsSendableProtocol {
+  func makeCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.CounterHandler
+  func makeFloatingPointCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.FloatingPointCounterHandler
+  func makeMeter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.MeterHandler
+  func makeRecorder(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool) -> any CoreMetrics.RecorderHandler
+  func makeTimer(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.TimerHandler
+  func destroyCounter(_ handler: any CoreMetrics.CounterHandler)
+  func destroyMeter(_ handler: any CoreMetrics.MeterHandler)
+  func destroyFloatingPointCounter(_ handler: any CoreMetrics.FloatingPointCounterHandler)
+  func destroyRecorder(_ handler: any CoreMetrics.RecorderHandler)
+  func destroyTimer(_ handler: any CoreMetrics.TimerHandler)
+}
+extension CoreMetrics.MetricsFactory {
+  public func makeFloatingPointCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.FloatingPointCounterHandler
+  public func destroyFloatingPointCounter(_ handler: any CoreMetrics.FloatingPointCounterHandler)
+}
+extension CoreMetrics.MetricsFactory {
+  public func makeMeter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.MeterHandler
+  public func destroyMeter(_ handler: any CoreMetrics.MeterHandler)
+}
+public protocol CounterHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProtocol {
+  func increment(by: Swift.Int64)
+  func reset()
+}
+public protocol FloatingPointCounterHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProtocol {
+  func increment(by: Swift.Double)
+  func reset()
+}
+public protocol RecorderHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProtocol {
+  func record(_ value: Swift.Int64)
+  func record(_ value: Swift.Double)
+}
+public protocol MeterHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProtocol {
+  func set(_ value: Swift.Int64)
+  func set(_ value: Swift.Double)
+  func increment(by: Swift.Double)
+  func decrement(by: Swift.Double)
+}
+public protocol TimerHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProtocol {
+  func recordNanoseconds(_ duration: Swift.Int64)
+  func preferDisplayUnit(_ unit: CoreMetrics.TimeUnit)
+}
+extension CoreMetrics.TimerHandler {
+  public func preferDisplayUnit(_: CoreMetrics.TimeUnit)
+}
+final public class MultiplexMetricsHandler : CoreMetrics.MetricsFactory {
+  public init(factories: [any CoreMetrics.MetricsFactory])
+  final public func makeCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.CounterHandler
+  final public func makeFloatingPointCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.FloatingPointCounterHandler
+  final public func makeMeter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.MeterHandler
+  final public func makeRecorder(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool) -> any CoreMetrics.RecorderHandler
+  final public func makeTimer(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.TimerHandler
+  final public func destroyCounter(_ handler: any CoreMetrics.CounterHandler)
+  final public func destroyFloatingPointCounter(_ handler: any CoreMetrics.FloatingPointCounterHandler)
+  final public func destroyMeter(_ handler: any CoreMetrics.MeterHandler)
+  final public func destroyRecorder(_ handler: any CoreMetrics.RecorderHandler)
+  final public func destroyTimer(_ handler: any CoreMetrics.TimerHandler)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class NOOPMetricsHandler : CoreMetrics.MetricsFactory, CoreMetrics.CounterHandler, CoreMetrics.FloatingPointCounterHandler, CoreMetrics.MeterHandler, CoreMetrics.RecorderHandler, CoreMetrics.TimerHandler {
+  public static let instance: CoreMetrics.NOOPMetricsHandler
+  final public func makeCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.CounterHandler
+  final public func makeFloatingPointCounter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.FloatingPointCounterHandler
+  final public func makeMeter(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.MeterHandler
+  final public func makeRecorder(label: Swift.String, dimensions: [(Swift.String, Swift.String)], aggregate: Swift.Bool) -> any CoreMetrics.RecorderHandler
+  final public func makeTimer(label: Swift.String, dimensions: [(Swift.String, Swift.String)]) -> any CoreMetrics.TimerHandler
+  final public func destroyCounter(_: any CoreMetrics.CounterHandler)
+  final public func destroyFloatingPointCounter(_: any CoreMetrics.FloatingPointCounterHandler)
+  final public func destroyMeter(_: any CoreMetrics.MeterHandler)
+  final public func destroyRecorder(_: any CoreMetrics.RecorderHandler)
+  final public func destroyTimer(_: any CoreMetrics.TimerHandler)
+  final public func increment(by: Swift.Int64)
+  final public func increment(by: Swift.Double)
+  final public func decrement(by: Swift.Double)
+  final public func reset()
+  final public func record(_: Swift.Int64)
+  final public func record(_: Swift.Double)
+  final public func recordNanoseconds(_: Swift.Int64)
+  final public func set(_: Swift.Int64)
+  final public func set(_: Swift.Double)
+  @objc deinit
+}
+extension CoreMetrics.MetricsSystem : Swift.Sendable {
+}
+extension CoreMetrics.Counter : Swift.Sendable {
+}
+extension CoreMetrics.FloatingPointCounter : Swift.Sendable {
+}
+extension CoreMetrics.Recorder : @unchecked Swift.Sendable {
+}
+extension CoreMetrics.Timer : Swift.Sendable {
+}
+extension CoreMetrics.Meter : Swift.Sendable {
+}
+@preconcurrency public protocol _SwiftMetricsSendableProtocol : Swift.Sendable {
+}

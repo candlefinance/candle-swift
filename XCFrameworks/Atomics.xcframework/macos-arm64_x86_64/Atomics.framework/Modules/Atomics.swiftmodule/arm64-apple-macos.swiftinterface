@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature BuiltinModule -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Atomics -package-name swift_atomics
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Builtin
 import Swift
 import _Concurrency
@@ -16,31 +16,42 @@ extension Swift.RawRepresentable where Self : Atomics.AtomicOptionalWrappable, S
   internal typealias _Storage = Wrapped.RawValue.AtomicOptionalRepresentation
   @usableFromInline
   internal var _storage: Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>._Storage
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient public init(_ value: __owned Swift.Optional<Wrapped>) {
     self._storage = _Storage(value?.rawValue)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient public __consuming func dispose() -> Swift.Optional<Wrapped> {
     _storage.dispose().flatMap(Wrapped.init(rawValue:))
   }
+  #endif
   @usableFromInline
   @_transparent @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>) -> Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>._Storage> {
      
     return UnsafeMutableRawPointer(ptr).assumingMemoryBound(to: _Storage.self)
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, ordering: Atomics.AtomicLoadOrdering) -> Swift.Optional<Wrapped> {
     let ro = _Storage.atomicLoad(
       at: _extract(pointer), ordering: ordering)
     return ro.flatMap(Wrapped.init(rawValue:))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: __owned Swift.Optional<Wrapped>, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, ordering: Atomics.AtomicStoreOrdering) {
     _Storage.atomicStore(
       desired?.rawValue, at: _extract(pointer), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: __owned Swift.Optional<Wrapped>, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.Optional<Wrapped> {
     let ro = _Storage.atomicExchange(
       desired?.rawValue, at: _extract(pointer), ordering: ordering)
     return ro.flatMap(Wrapped.init(rawValue:))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.Optional<Wrapped>, desired: __owned Swift.Optional<Wrapped>, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.Optional<Wrapped>) {
     let ro = _Storage.atomicCompareExchange(
       expected: expected?.rawValue,
@@ -49,6 +60,8 @@ extension Swift.RawRepresentable where Self : Atomics.AtomicOptionalWrappable, S
       ordering: ordering)
     return (ro.exchanged, ro.original.flatMap(Wrapped.init(rawValue:)))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.Optional<Wrapped>, desired: __owned Swift.Optional<Wrapped>, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.Optional<Wrapped>) {
     let ro = _Storage.atomicCompareExchange(
       expected: expected?.rawValue,
@@ -58,6 +71,8 @@ extension Swift.RawRepresentable where Self : Atomics.AtomicOptionalWrappable, S
       failureOrdering: failureOrdering)
     return (ro.exchanged, ro.original.flatMap(Wrapped.init(rawValue:)))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.Optional<Wrapped>, desired: __owned Swift.Optional<Wrapped>, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalRawRepresentableStorage<Wrapped>>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.Optional<Wrapped>) {
     let ro = _Storage.atomicWeakCompareExchange(
       expected: expected?.rawValue,
@@ -67,6 +82,7 @@ extension Swift.RawRepresentable where Self : Atomics.AtomicOptionalWrappable, S
       failureOrdering: failureOrdering)
     return (ro.exchanged, ro.original.flatMap(Wrapped.init(rawValue:)))
   }
+  #endif
 }
 extension Swift.RawRepresentable where Self : Atomics.AtomicValue, Self.RawValue : Atomics.AtomicValue, Self.RawValue == Self.RawValue.AtomicRepresentation.Value {
   public typealias AtomicRepresentation = Atomics.AtomicRawRepresentableStorage<Self>
@@ -1795,12 +1811,16 @@ extension Swift.UnsafeRawPointer : Atomics.AtomicOptionalWrappable {
     internal typealias _Storage = Atomics._AtomicIntStorage
     @usableFromInline
     internal let _storage: Swift.UnsafeRawPointer.AtomicOptionalRepresentation._Storage
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value) {
       _storage = Self._encode(value)
     }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value {
       Self._decode(_storage)
     }
+    #endif
   }
 }
 extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation {
@@ -1812,25 +1832,36 @@ extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation {
   }
 }
 extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UnsafeRawPointer.AtomicOptionalRepresentation._Storage) -> Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value {
     let bits = Int(storage._value)
     return UnsafeRawPointer(bitPattern: bits)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _encode(_ value: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value) -> Swift.UnsafeRawPointer.AtomicOptionalRepresentation._Storage {
     let bits = value.map { Int(bitPattern: $0) } ?? 0
     return _Storage(bits._value)
   }
+  #endif
 }
 extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation : Atomics.AtomicStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicLoad(ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicStoreOrdering) {
     _extract(pointer)._atomicStore(_encode(desired), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicExchange(_encode(desired), ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1838,6 +1869,8 @@ extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation : Atomics.AtomicSt
       ordering: ordering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1846,6 +1879,8 @@ extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation : Atomics.AtomicSt
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeRawPointer.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicWeakCompareExchange(
       expected: _encode(expected),
@@ -1854,6 +1889,7 @@ extension Swift.UnsafeRawPointer.AtomicOptionalRepresentation : Atomics.AtomicSt
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
 }
 extension Swift.UnsafeMutableRawPointer : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
@@ -1862,12 +1898,16 @@ extension Swift.UnsafeMutableRawPointer : Atomics.AtomicOptionalWrappable {
     internal typealias _Storage = Atomics._AtomicIntStorage
     @usableFromInline
     internal let _storage: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation._Storage
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value) {
       _storage = Self._encode(value)
     }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value {
       Self._decode(_storage)
     }
+    #endif
   }
 }
 extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation {
@@ -1879,25 +1919,36 @@ extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation {
   }
 }
 extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation._Storage) -> Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value {
     let bits = Int(storage._value)
     return UnsafeMutableRawPointer(bitPattern: bits)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _encode(_ value: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value) -> Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation._Storage {
     let bits = value.map { Int(bitPattern: $0) } ?? 0
     return _Storage(bits._value)
   }
+  #endif
 }
 extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation : Atomics.AtomicStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicLoad(ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicStoreOrdering) {
     _extract(pointer)._atomicStore(_encode(desired), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicExchange(_encode(desired), ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1905,6 +1956,8 @@ extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation : Atomics.A
       ordering: ordering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1913,6 +1966,8 @@ extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation : Atomics.A
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicWeakCompareExchange(
       expected: _encode(expected),
@@ -1921,6 +1976,7 @@ extension Swift.UnsafeMutableRawPointer.AtomicOptionalRepresentation : Atomics.A
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
 }
 extension Swift.UnsafePointer : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
@@ -1929,12 +1985,16 @@ extension Swift.UnsafePointer : Atomics.AtomicOptionalWrappable {
     internal typealias _Storage = Atomics._AtomicIntStorage
     @usableFromInline
     internal let _storage: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation._Storage
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) {
       _storage = Self._encode(value)
     }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value {
       Self._decode(_storage)
     }
+    #endif
   }
 }
 extension Swift.UnsafePointer.AtomicOptionalRepresentation {
@@ -1946,25 +2006,36 @@ extension Swift.UnsafePointer.AtomicOptionalRepresentation {
   }
 }
 extension Swift.UnsafePointer.AtomicOptionalRepresentation {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation._Storage) -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value {
     let bits = Int(storage._value)
     return UnsafePointer(bitPattern: bits)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _encode(_ value: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation._Storage {
     let bits = value.map { Int(bitPattern: $0) } ?? 0
     return _Storage(bits._value)
   }
+  #endif
 }
 extension Swift.UnsafePointer.AtomicOptionalRepresentation : Atomics.AtomicStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicLoad(ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicStoreOrdering) {
     _extract(pointer)._atomicStore(_encode(desired), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicExchange(_encode(desired), ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1972,6 +2043,8 @@ extension Swift.UnsafePointer.AtomicOptionalRepresentation : Atomics.AtomicStora
       ordering: ordering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -1980,6 +2053,8 @@ extension Swift.UnsafePointer.AtomicOptionalRepresentation : Atomics.AtomicStora
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicWeakCompareExchange(
       expected: _encode(expected),
@@ -1988,6 +2063,7 @@ extension Swift.UnsafePointer.AtomicOptionalRepresentation : Atomics.AtomicStora
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
 }
 extension Swift.UnsafeMutablePointer : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
@@ -1996,12 +2072,16 @@ extension Swift.UnsafeMutablePointer : Atomics.AtomicOptionalWrappable {
     internal typealias _Storage = Atomics._AtomicIntStorage
     @usableFromInline
     internal let _storage: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation._Storage
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) {
       _storage = Self._encode(value)
     }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value {
       Self._decode(_storage)
     }
+    #endif
   }
 }
 extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation {
@@ -2013,25 +2093,36 @@ extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation {
   }
 }
 extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation._Storage) -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value {
     let bits = Int(storage._value)
     return UnsafeMutablePointer(bitPattern: bits)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _encode(_ value: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation._Storage {
     let bits = value.map { Int(bitPattern: $0) } ?? 0
     return _Storage(bits._value)
   }
+  #endif
 }
 extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation : Atomics.AtomicStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicLoad(ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicStoreOrdering) {
     _extract(pointer)._atomicStore(_encode(desired), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicExchange(_encode(desired), ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -2039,6 +2130,8 @@ extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation : Atomics.Atom
       ordering: ordering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -2047,6 +2140,8 @@ extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation : Atomics.Atom
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, desired: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.UnsafeMutablePointer<Pointee>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicWeakCompareExchange(
       expected: _encode(expected),
@@ -2055,6 +2150,7 @@ extension Swift.UnsafeMutablePointer.AtomicOptionalRepresentation : Atomics.Atom
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
 }
 extension Swift.Unmanaged : Atomics.AtomicOptionalWrappable {
   @frozen public struct AtomicOptionalRepresentation {
@@ -2063,12 +2159,16 @@ extension Swift.Unmanaged : Atomics.AtomicOptionalWrappable {
     internal typealias _Storage = Atomics._AtomicIntStorage
     @usableFromInline
     internal let _storage: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation._Storage
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public init(_ value: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value) {
       _storage = Self._encode(value)
     }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     @inline(__always) @_alwaysEmitIntoClient public func dispose() -> Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value {
       Self._decode(_storage)
     }
+    #endif
   }
 }
 extension Swift.Unmanaged.AtomicOptionalRepresentation {
@@ -2080,6 +2180,7 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation {
   }
 }
 extension Swift.Unmanaged.AtomicOptionalRepresentation {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _decode(_ storage: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation._Storage) -> Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value {
     let bits = Int(storage._value)
     guard let opaque = UnsafeRawPointer(bitPattern: bits) else {
@@ -2087,21 +2188,31 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation {
     }
     return Unmanaged.fromOpaque(opaque)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_transparent @_alwaysEmitIntoClient internal static func _encode(_ value: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value) -> Swift.Unmanaged<Instance>.AtomicOptionalRepresentation._Storage {
     let bits = value.map { Int(bitPattern: $0.toOpaque())} ?? 0
     return _Storage(bits._value)
   }
+  #endif
 }
 extension Swift.Unmanaged.AtomicOptionalRepresentation : Atomics.AtomicStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicLoadOrdering) -> Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicLoad(ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicStore(_ desired: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicStoreOrdering) {
     _extract(pointer)._atomicStore(_encode(desired), ordering: ordering)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicExchange(_ desired: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value {
     _decode(_extract(pointer)._atomicExchange(_encode(desired), ordering: ordering))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, desired: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -2109,6 +2220,8 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation : Atomics.AtomicStorage {
       ordering: ordering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicCompareExchange(expected: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, desired: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicCompareExchange(
       expected: _encode(expected),
@@ -2117,6 +2230,8 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation : Atomics.AtomicStorage {
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public static func atomicWeakCompareExchange(expected: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, desired: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value, at pointer: Swift.UnsafeMutablePointer<Swift.Unmanaged<Instance>.AtomicOptionalRepresentation>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Swift.Unmanaged<Instance>.AtomicOptionalRepresentation.Value) {
     let (exchanged, original) = _extract(pointer)._atomicWeakCompareExchange(
       expected: _encode(expected),
@@ -2125,6 +2240,7 @@ extension Swift.Unmanaged.AtomicOptionalRepresentation : Atomics.AtomicStorage {
       failureOrdering: failureOrdering)
     return (exchanged, _decode(original))
   }
+  #endif
 }
 @_alwaysEmitIntoClient @_transparent internal func _atomicMemoryFence(ordering: Atomics.AtomicUpdateOrdering) {
   switch ordering {
@@ -3798,9 +3914,11 @@ public protocol AtomicIntegerStorage : Atomics.AtomicStorage {
 public protocol AtomicOptionalWrappable : Atomics.AtomicValue {
   associatedtype AtomicOptionalRepresentation : Atomics.AtomicStorage where Self.AtomicOptionalRepresentation.Value == Self.AtomicRepresentation.Value?
 }
+#if compiler(>=5.3) && $NonescapableTypes
 extension Swift.Optional : Atomics.AtomicValue where Wrapped : Atomics.AtomicOptionalWrappable, Wrapped == Wrapped.AtomicRepresentation.Value {
   public typealias AtomicRepresentation = Wrapped.AtomicOptionalRepresentation
 }
+#endif
 public protocol AtomicReference : AnyObject, Atomics.AtomicOptionalWrappable {
   associatedtype _AtomicBase : AnyObject = Self where Self.AtomicOptionalRepresentation == Atomics.AtomicOptionalReferenceStorage<Self._AtomicBase>, Self.AtomicRepresentation == Atomics.AtomicReferenceStorage<Self._AtomicBase>
 }
@@ -3817,16 +3935,26 @@ extension Swift.UnsafeMutablePointer where Pointee == Atomics._AtomicReferenceSt
 }
 @usableFromInline
 internal struct _AtomicReferenceStorage {
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   internal init(_ value: __owned Swift.AnyObject?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   internal func dispose() -> Swift.AnyObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   internal static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Atomics._AtomicReferenceStorage>) -> Swift.AnyObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   internal static func atomicExchange(_ desired: __owned Swift.AnyObject?, at pointer: Swift.UnsafeMutablePointer<Atomics._AtomicReferenceStorage>) -> Swift.AnyObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   internal static func atomicCompareExchange(expected: Swift.AnyObject?, desired: __owned Swift.AnyObject?, at pointer: Swift.UnsafeMutablePointer<Atomics._AtomicReferenceStorage>) -> (exchanged: Swift.Bool, original: Swift.AnyObject?)
+  #endif
 }
 @frozen public struct AtomicReferenceStorage<Value> where Value : AnyObject {
   @usableFromInline
@@ -3892,13 +4020,17 @@ extension Atomics.AtomicReferenceStorage : Atomics.AtomicStorage {
 @frozen public struct AtomicOptionalReferenceStorage<Instance> where Instance : AnyObject {
   @usableFromInline
   internal var _storage: Atomics._AtomicReferenceStorage
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable public init(_ value: __owned Instance?) {
     _storage = .init(value)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable public func dispose() -> Instance? {
     guard let value = _storage.dispose() else { return nil }
     return unsafeDowncast(value, to: Instance.self)
   }
+  #endif
 }
 extension Atomics.AtomicOptionalReferenceStorage {
   @inlinable @inline(__always) @_alwaysEmitIntoClient internal static func _extract(_ ptr: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>) -> Swift.UnsafeMutablePointer<Atomics._AtomicReferenceStorage> {
@@ -3909,18 +4041,23 @@ extension Atomics.AtomicOptionalReferenceStorage {
 }
 extension Atomics.AtomicOptionalReferenceStorage : Atomics.AtomicStorage {
   public typealias Value = Instance?
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicLoad(at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, ordering: Atomics.AtomicLoadOrdering) -> Instance? {
      
     let result = _AtomicReferenceStorage.atomicLoad(at: Self._extract(pointer))
     guard let r = result else { return nil }
     return unsafeDowncast(r, to: Instance.self)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicStore(_ desired: __owned Instance?, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, ordering: Atomics.AtomicStoreOrdering) {
      
     _ = _AtomicReferenceStorage.atomicExchange(
       desired,
       at: _extract(pointer))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicExchange(_ desired: __owned Instance?, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, ordering: Atomics.AtomicUpdateOrdering) -> Instance? {
      
     let result = _AtomicReferenceStorage.atomicExchange(
@@ -3929,6 +4066,8 @@ extension Atomics.AtomicOptionalReferenceStorage : Atomics.AtomicStorage {
     guard let r = result else { return nil }
     return unsafeDowncast(r, to: Instance.self)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicCompareExchange(expected: Instance?, desired: __owned Instance?, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, ordering: Atomics.AtomicUpdateOrdering) -> (exchanged: Swift.Bool, original: Instance?) {
      
     let result = _AtomicReferenceStorage.atomicCompareExchange(
@@ -3938,6 +4077,8 @@ extension Atomics.AtomicOptionalReferenceStorage : Atomics.AtomicStorage {
     guard let original = result.original else { return (result.exchanged, nil) }
     return (result.exchanged, unsafeDowncast(original, to: Instance.self))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicCompareExchange(expected: Instance?, desired: __owned Instance?, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Instance?) {
      
     let result = _AtomicReferenceStorage.atomicCompareExchange(
@@ -3947,6 +4088,8 @@ extension Atomics.AtomicOptionalReferenceStorage : Atomics.AtomicStorage {
     guard let original = result.original else { return (result.exchanged, nil) }
     return (result.exchanged, unsafeDowncast(original, to: Instance.self))
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable @inline(__always) @_alwaysEmitIntoClient @_semantics("atomics.requires_constant_orderings") public static func atomicWeakCompareExchange(expected: Instance?, desired: __owned Instance?, at pointer: Swift.UnsafeMutablePointer<Atomics.AtomicOptionalReferenceStorage<Instance>>, successOrdering: Atomics.AtomicUpdateOrdering, failureOrdering: Atomics.AtomicLoadOrdering) -> (exchanged: Swift.Bool, original: Instance?) {
      
     let result = _AtomicReferenceStorage.atomicCompareExchange(
@@ -3956,6 +4099,7 @@ extension Atomics.AtomicOptionalReferenceStorage : Atomics.AtomicStorage {
     guard let original = result.original else { return (result.exchanged, nil) }
     return (result.exchanged, unsafeDowncast(original, to: Instance.self))
   }
+  #endif
 }
 public protocol AtomicStorage {
   associatedtype Value
@@ -4275,7 +4419,9 @@ extension Atomics.ManagedAtomicLazyReference : @unchecked Swift.Sendable where I
 }
 extension Atomics.ManagedAtomicLazyReference {
   public func storeIfNilThenLoad(_ desired: __owned Instance) -> Instance
+  #if compiler(>=5.3) && $NonescapableTypes
   public func load() -> Instance?
+  #endif
 }
 @frozen public struct UnsafeAtomic<Value> where Value : Atomics.AtomicValue, Value == Value.AtomicRepresentation.Value {
   public typealias Storage = Value.AtomicRepresentation
@@ -4362,11 +4508,13 @@ extension Atomics.UnsafeAtomicLazyReference {
     @inlinable @inline(__always) public init() {
       _storage = _Rep(nil)
     }
+    #if compiler(>=5.3) && $NonescapableTypes
     @discardableResult
     @inlinable @inline(__always) public mutating func dispose() -> Atomics.UnsafeAtomicLazyReference<Instance>.Value {
       defer { _storage = _Rep(nil) }
       return _storage.dispose()?.takeRetainedValue()
     }
+    #endif
   }
 }
 extension Atomics.UnsafeAtomicLazyReference {
@@ -4375,6 +4523,7 @@ extension Atomics.UnsafeAtomicLazyReference {
     ptr.initialize(to: Storage())
     return Self(at: ptr)
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   @inlinable public func destroy() -> Atomics.UnsafeAtomicLazyReference<Instance>.Value {
      
@@ -4383,10 +4532,13 @@ extension Atomics.UnsafeAtomicLazyReference {
     defer { address.deallocate() }
     return address.pointee.dispose()
   }
+  #endif
 }
 extension Atomics.UnsafeAtomicLazyReference {
   public func storeIfNilThenLoad(_ desired: __owned Instance) -> Instance
+  #if compiler(>=5.3) && $NonescapableTypes
   public func load() -> Instance?
+  #endif
 }
 extension Atomics.UnsafeAtomic where Value : Atomics.AtomicInteger {
   @_semantics("atomics.requires_constant_orderings") @_transparent @_alwaysEmitIntoClient public func loadThenWrappingIncrement(by operand: Value = 1, ordering: Atomics.AtomicUpdateOrdering) -> Value {

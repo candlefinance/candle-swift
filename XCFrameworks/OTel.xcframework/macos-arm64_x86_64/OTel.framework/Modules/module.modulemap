@@ -1,0 +1,4 @@
+framework module OTel {
+    header "OTel-Swift.h"
+    export *
+}

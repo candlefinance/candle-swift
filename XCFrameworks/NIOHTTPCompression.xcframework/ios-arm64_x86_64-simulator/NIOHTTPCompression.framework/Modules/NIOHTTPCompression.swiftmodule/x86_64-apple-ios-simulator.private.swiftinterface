@@ -1,0 +1,138 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOHTTPCompression -package-name swift_nio_extras
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CNIOExtrasZlib
+import NIOCore
+import NIOHTTP1
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum NIOCompression : Swift.Sendable {
+  public struct Algorithm : Swift.CustomStringConvertible, Swift.Equatable, Swift.Sendable {
+    public var description: Swift.String {
+      get
+    }
+    public static let gzip: NIOHTTPCompression.NIOCompression.Algorithm
+    public static let deflate: NIOHTTPCompression.NIOCompression.Algorithm
+    public static func == (a: NIOHTTPCompression.NIOCompression.Algorithm, b: NIOHTTPCompression.NIOCompression.Algorithm) -> Swift.Bool
+  }
+  public struct Error : Swift.Error, Swift.CustomStringConvertible, Swift.Equatable {
+    public var description: Swift.String {
+      get
+    }
+    public static let uncompressedWritesPending: NIOHTTPCompression.NIOCompression.Error
+    public static let noDataToWrite: NIOHTTPCompression.NIOCompression.Error
+    public static func == (a: NIOHTTPCompression.NIOCompression.Error, b: NIOHTTPCompression.NIOCompression.Error) -> Swift.Bool
+  }
+}
+public enum NIOHTTPDecompression : Swift.Sendable {
+  public struct DecompressionLimit : Swift.Sendable {
+    public static let none: NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+    public static func size(_ value: Swift.Int) -> NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+    public static func ratio(_ value: Swift.Int) -> NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+  }
+  public enum DecompressionError : Swift.Error, Swift.Equatable {
+    case limit
+    case inflationError(Swift.Int)
+    case initializationError(Swift.Int)
+    public static func == (a: NIOHTTPCompression.NIOHTTPDecompression.DecompressionError, b: NIOHTTPCompression.NIOHTTPDecompression.DecompressionError) -> Swift.Bool
+  }
+  public struct ExtraDecompressionError : Swift.Error, Swift.Hashable, Swift.CustomStringConvertible {
+    public static let invalidTrailingData: NIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError
+    public static let truncatedData: NIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: NIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError, b: NIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+final public class NIOHTTPRequestCompressor : NIOCore.ChannelOutboundHandler, NIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = NIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = NIOHTTP1.HTTPClientRequestPart
+  public init(encoding: NIOHTTPCompression.NIOCompression.Algorithm)
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: NIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTPCompression.NIOHTTPRequestCompressor : Swift.Sendable {
+}
+final public class NIOHTTPRequestDecompressor : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
+  public typealias InboundIn = NIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = NIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = NIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = NIOHTTP1.HTTPServerResponsePart
+  public init(limit: NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTPCompression.NIOHTTPRequestDecompressor : Swift.Sendable {
+}
+final public class HTTPResponseCompressor : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
+  public typealias InboundIn = NIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = NIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = NIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = NIOHTTP1.HTTPServerResponsePart
+  public typealias ResponseCompressionPredicate = (_ responseHeaders: inout NIOHTTP1.HTTPResponseHead, _ isCompressionSupported: Swift.Bool) -> NIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+  public struct CompressionIntent : Swift.Sendable, Swift.Hashable {
+    public static let compressIfPossible: NIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+    public static let doNotCompress: NIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+    public static func == (a: NIOHTTPCompression.HTTPResponseCompressor.CompressionIntent, b: NIOHTTPCompression.HTTPResponseCompressor.CompressionIntent) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum CompressionError : Swift.Error {
+    case uncompressedWritesPending
+    case noDataToWrite
+    public static func == (a: NIOHTTPCompression.HTTPResponseCompressor.CompressionError, b: NIOHTTPCompression.HTTPResponseCompressor.CompressionError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init(initialByteBufferCapacity: Swift.Int = 1024)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(initialByteBufferCapacity: Swift.Int = 1024, responseCompressionPredicate: NIOHTTPCompression.HTTPResponseCompressor.ResponseCompressionPredicate? = nil)
+  #endif
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: NIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTPCompression.HTTPResponseCompressor : Swift.Sendable {
+}
+final public class NIOHTTPResponseDecompressor : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
+  public typealias InboundIn = NIOHTTP1.HTTPClientResponsePart
+  public typealias InboundOut = NIOHTTP1.HTTPClientResponsePart
+  public typealias OutboundIn = NIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = NIOHTTP1.HTTPClientRequestPart
+  public init(limit: NIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTPCompression.NIOHTTPResponseDecompressor : Swift.Sendable {
+}
+extension NIOHTTPCompression.HTTPResponseCompressor.CompressionError : Swift.Equatable {}
+extension NIOHTTPCompression.HTTPResponseCompressor.CompressionError : Swift.Hashable {}

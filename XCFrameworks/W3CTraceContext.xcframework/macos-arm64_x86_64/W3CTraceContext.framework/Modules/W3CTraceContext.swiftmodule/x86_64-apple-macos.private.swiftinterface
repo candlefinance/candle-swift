@@ -1,0 +1,272 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -module-name W3CTraceContext -package-name swift_w3c_trace_context
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import OrderedCollections
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_spi(Hex) public enum Hex {
+  @_spi(Hex) public static let lookup: [Swift.UInt8]
+  @_spi(Hex) public static func convert<T>(_ ascii: T, toBytes target: Swift.UnsafeMutableRawBufferPointer) where T : Swift.RandomAccessCollection, T.Element == Swift.UInt8
+}
+public struct SpanID : Swift.Sendable {
+  public let bytes: W3CTraceContext.SpanID.Bytes
+  public init(bytes: W3CTraceContext.SpanID.Bytes)
+  public static func random(using randomNumberGenerator: inout some RandomNumberGenerator) -> W3CTraceContext.SpanID
+  public static func random() -> W3CTraceContext.SpanID
+}
+extension W3CTraceContext.SpanID : Swift.Equatable {
+  public static func == (a: W3CTraceContext.SpanID, b: W3CTraceContext.SpanID) -> Swift.Bool
+}
+extension W3CTraceContext.SpanID : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension W3CTraceContext.SpanID : Swift.Identifiable {
+  public var id: W3CTraceContext.SpanID {
+    get
+  }
+  public typealias ID = W3CTraceContext.SpanID
+}
+extension W3CTraceContext.SpanID : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension W3CTraceContext.SpanID {
+  public struct Bytes : Swift.Collection, Swift.Equatable, Swift.Hashable, Swift.Sendable {
+    public static var null: W3CTraceContext.SpanID.Bytes {
+      get
+    }
+    @usableFromInline
+    internal var _bytes: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8)
+    public init(_ bytes: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8))
+    public subscript(position: Swift.Int) -> Swift.UInt8 {
+      get
+    }
+    public func index(after i: Swift.Int) -> Swift.Int
+    public var startIndex: Swift.Int {
+      get
+    }
+    public var endIndex: Swift.Int {
+      get
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public func withContiguousStorageIfAvailable<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result? {
+            try Swift.withUnsafeBytes(of: _bytes) { bytes in
+                try bytes.withMemoryRebound(to: UInt8.self, body)
+            }
+        }
+    #endif
+    @inlinable public func withUnsafeBytes<Result>(_ body: (Swift.UnsafeRawBufferPointer) throws -> Result) rethrows -> Result {
+            try Swift.withUnsafeBytes(of: _bytes, body)
+        }
+    @inlinable public mutating func withUnsafeMutableBytes<Result>(_ body: (Swift.UnsafeMutableRawBufferPointer) throws -> Result) rethrows -> Result {
+            try Swift.withUnsafeMutableBytes(of: &_bytes) { bytes in
+                try body(bytes)
+            }
+        }
+    public static func == (lhs: W3CTraceContext.SpanID.Bytes, rhs: W3CTraceContext.SpanID.Bytes) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public typealias Element = Swift.UInt8
+    public typealias Index = Swift.Int
+    public typealias Indices = Swift.DefaultIndices<W3CTraceContext.SpanID.Bytes>
+    public typealias Iterator = Swift.IndexingIterator<W3CTraceContext.SpanID.Bytes>
+    public typealias SubSequence = Swift.Slice<W3CTraceContext.SpanID.Bytes>
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension W3CTraceContext.SpanID.Bytes : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var hexBytes: [Swift.UInt8] {
+    get
+  }
+}
+public struct TraceContext : Swift.Sendable {
+  public let traceID: W3CTraceContext.TraceID
+  public let spanID: W3CTraceContext.SpanID
+  public let flags: W3CTraceContext.TraceFlags
+  public var state: W3CTraceContext.TraceState
+  public init(traceID: W3CTraceContext.TraceID, spanID: W3CTraceContext.SpanID, flags: W3CTraceContext.TraceFlags, state: W3CTraceContext.TraceState)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(traceParentHeaderValue: Swift.String, traceStateHeaderValue: Swift.String? = nil) throws
+  #endif
+  public var traceParentHeaderValue: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var traceStateHeaderValue: Swift.String? {
+    get
+  }
+  #endif
+}
+extension W3CTraceContext.TraceContext : Swift.Hashable {
+  public static func == (a: W3CTraceContext.TraceContext, b: W3CTraceContext.TraceContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct TraceParentDecodingError : Swift.Error {
+}
+public struct TraceFlags : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.UInt8
+  public init(rawValue: Swift.UInt8)
+  public init()
+  public static let sampled: W3CTraceContext.TraceFlags
+  public typealias ArrayLiteralElement = W3CTraceContext.TraceFlags
+  public typealias Element = W3CTraceContext.TraceFlags
+  public typealias RawValue = Swift.UInt8
+}
+extension W3CTraceContext.TraceFlags : Swift.Hashable {
+}
+extension W3CTraceContext.TraceFlags : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct TraceID : Swift.Sendable {
+  public let bytes: W3CTraceContext.TraceID.Bytes
+  public init(bytes: W3CTraceContext.TraceID.Bytes)
+  public static func random(using randomNumberGenerator: inout some RandomNumberGenerator) -> W3CTraceContext.TraceID
+  public static func random() -> W3CTraceContext.TraceID
+}
+extension W3CTraceContext.TraceID : Swift.Equatable {
+  public static func == (a: W3CTraceContext.TraceID, b: W3CTraceContext.TraceID) -> Swift.Bool
+}
+extension W3CTraceContext.TraceID : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension W3CTraceContext.TraceID : Swift.Identifiable {
+  public var id: W3CTraceContext.TraceID {
+    get
+  }
+  public typealias ID = W3CTraceContext.TraceID
+}
+extension W3CTraceContext.TraceID : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension W3CTraceContext.TraceID {
+  public struct Bytes : Swift.Collection, Swift.Equatable, Swift.Hashable, Swift.Sendable {
+    public static var null: W3CTraceContext.TraceID.Bytes {
+      get
+    }
+    @usableFromInline
+    internal var _bytes: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8)
+    public init(_ bytes: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8))
+    public subscript(position: Swift.Int) -> Swift.UInt8 {
+      get
+    }
+    public func index(after i: Swift.Int) -> Swift.Int
+    public var startIndex: Swift.Int {
+      get
+    }
+    public var endIndex: Swift.Int {
+      get
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public func withContiguousStorageIfAvailable<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result? {
+            try Swift.withUnsafeBytes(of: _bytes) { bytes in
+                try bytes.withMemoryRebound(to: UInt8.self, body)
+            }
+        }
+    #endif
+    @inlinable public func withUnsafeBytes<Result>(_ body: (Swift.UnsafeRawBufferPointer) throws -> Result) rethrows -> Result {
+            try Swift.withUnsafeBytes(of: _bytes, body)
+        }
+    @inlinable public mutating func withUnsafeMutableBytes<Result>(_ body: (Swift.UnsafeMutableRawBufferPointer) throws -> Result) rethrows -> Result {
+            try Swift.withUnsafeMutableBytes(of: &_bytes) { bytes in
+                try body(bytes)
+            }
+        }
+    public static func == (lhs: W3CTraceContext.TraceID.Bytes, rhs: W3CTraceContext.TraceID.Bytes) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public typealias Element = Swift.UInt8
+    public typealias Index = Swift.Int
+    public typealias Indices = Swift.DefaultIndices<W3CTraceContext.TraceID.Bytes>
+    public typealias Iterator = Swift.IndexingIterator<W3CTraceContext.TraceID.Bytes>
+    public typealias SubSequence = Swift.Slice<W3CTraceContext.TraceID.Bytes>
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension W3CTraceContext.TraceID.Bytes : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var hexBytes: [Swift.UInt8] {
+    get
+  }
+}
+public struct TraceState : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(vendor: W3CTraceContext.TraceState.Vendor) -> Swift.String? {
+    get
+    set
+  }
+  #endif
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public init()
+  public init(_ entries: some Sequence<(Vendor, String)>)
+  public struct Vendor : Swift.RawRepresentable, Swift.Sendable, Swift.Hashable {
+    public let rawValue: Swift.String
+    public init(rawValue: Swift.String)
+    public static func simple(_ value: Swift.String) -> W3CTraceContext.TraceState.Vendor
+    public static func tenant(_ tenant: Swift.String, in system: Swift.String) -> W3CTraceContext.TraceState.Vendor
+    public typealias RawValue = Swift.String
+  }
+}
+extension W3CTraceContext.TraceState : Swift.Sequence {
+  public struct Element : Swift.Hashable {
+    public let vendor: W3CTraceContext.TraceState.Vendor
+    public let value: Swift.String
+    public static func == (a: W3CTraceContext.TraceState.Element, b: W3CTraceContext.TraceState.Element) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public func makeIterator() -> W3CTraceContext.TraceState.Iterator
+  public struct Iterator : Swift.IteratorProtocol {
+    public typealias Element = W3CTraceContext.TraceState.Element
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> W3CTraceContext.TraceState.Element?
+    #endif
+  }
+}
+extension W3CTraceContext.TraceState : Swift.Hashable {
+  public static func == (a: W3CTraceContext.TraceState, b: W3CTraceContext.TraceState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension W3CTraceContext.TraceState.Vendor : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct TraceStateDecodingError : Swift.Error, Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}

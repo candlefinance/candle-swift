@@ -2,7 +2,7 @@ import Candle
 import SwiftUI
 
 struct MarketAssetFormViewModel: Observable {
-    var quoteRequest: Models.MarketAssetQuoteRequest
+    var quoteRequest: Candle.Models.MarketAssetQuoteRequest
 
     var serviceAccountID: String {
         get { quoteRequest.serviceAccountID ?? "" }

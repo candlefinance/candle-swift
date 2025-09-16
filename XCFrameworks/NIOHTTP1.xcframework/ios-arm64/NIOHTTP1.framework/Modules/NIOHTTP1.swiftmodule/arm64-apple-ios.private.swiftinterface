@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOHTTP1 -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import DequeModule
 import NIOCore
 import Swift
@@ -86,7 +86,9 @@ final public class HTTPRequestEncoder : NIOCore.ChannelOutboundHandler, NIOCore.
   }
   convenience public init()
   public init(configuration: NIOHTTP1.HTTPRequestEncoder.Configuration)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -106,7 +108,9 @@ final public class HTTPResponseEncoder : NIOCore.ChannelOutboundHandler, NIOCore
   }
   convenience public init()
   public init(configuration: NIOHTTP1.HTTPResponseEncoder.Configuration)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -116,14 +120,18 @@ final public class NIOHTTPRequestHeadersValidator : NIOCore.ChannelOutboundHandl
   public typealias OutboundIn = NIOHTTP1.HTTPClientRequestPart
   public typealias OutboundOut = NIOHTTP1.HTTPClientRequestPart
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 final public class NIOHTTPResponseHeadersValidator : NIOCore.ChannelOutboundHandler, NIOCore.RemovableChannelHandler {
   public typealias OutboundIn = NIOHTTP1.HTTPServerResponsePart
   public typealias OutboundOut = NIOHTTP1.HTTPServerResponsePart
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -140,32 +148,68 @@ public typealias NIOHTTPServerUpgradeConfiguration = (upgraders: [any NIOHTTP1.H
 public typealias NIOHTTPServerUpgradeSendableConfiguration = (upgraders: [any NIOHTTP1.HTTPServerProtocolUpgrader & Swift.Sendable], completionHandler: @Sendable (NIOCore.ChannelHandlerContext) -> Swift.Void)
 extension NIOCore.ChannelPipeline {
   final public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration?) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration? = nil) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: NIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration? = nil) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: NIOHTTP1.HTTPResponseEncoder.Configuration = .init()) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
 }
 extension NIOCore.ChannelPipeline.SynchronousOperations {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @_disfavoredOverload @preconcurrency public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @_disfavoredOverload public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: NIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @_disfavoredOverload public func addHTTPClientHandlers(position: NIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: NIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: NIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: NIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @preconcurrency @_disfavoredOverload public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @_disfavoredOverload public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: NIOHTTP1.HTTPResponseEncoder.Configuration) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
   @_disfavoredOverload public func configureHTTPServerPipeline(position: NIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: NIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: NIOHTTP1.HTTPResponseEncoder.Configuration) throws
+  #endif
 }
 final public class HTTPServerPipelineHandler : NIOCore.ChannelDuplexHandler, NIOCore.RemovableChannelHandler {
   public typealias InboundIn = NIOHTTP1.HTTPServerRequestPart
@@ -187,11 +231,15 @@ final public class HTTPServerPipelineHandler : NIOCore.ChannelDuplexHandler, NIO
   final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
   final public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
   final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func read(context: NIOCore.ChannelHandlerContext)
   final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
   final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func close(context: NIOCore.ChannelHandlerContext, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -204,7 +252,9 @@ final public class HTTPServerProtocolErrorHandler : NIOCore.ChannelDuplexHandler
   public typealias OutboundOut = NIOHTTP1.HTTPServerResponsePart
   public init()
   final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
@@ -344,7 +394,9 @@ public struct HTTPHeaders : Swift.CustomStringConvertible, Swift.ExpressibleByDi
   public subscript(name: Swift.String) -> [Swift.String] {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func first(name: Swift.String) -> Swift.String?
+  #endif
   public func contains(name: Swift.String) -> Swift.Bool
   public subscript(canonicalForm name: Swift.String) -> [Swift.Substring] {
     get
@@ -623,7 +675,9 @@ public protocol NIOHTTPClientProtocolUpgrader {
   public typealias InboundIn = NIOHTTP1.HTTPClientResponsePart
   public typealias InboundOut = NIOHTTP1.HTTPClientResponsePart
   convenience public init(upgraders: [any NIOHTTP1.NIOHTTPClientProtocolUpgrader], httpHandlers: [any NIOCore.RemovableChannelHandler], upgradeCompletionHandler: @escaping (NIOCore.ChannelHandlerContext) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
   @objc deinit
 }
@@ -632,7 +686,9 @@ extension NIOHTTP1.NIOHTTPClientUpgradeHandler : @unchecked Swift.Sendable {
 public struct NIOHTTPServerRequestFull : Swift.Sendable {
   public var head: NIOHTTP1.HTTPRequestHead
   public var body: NIOCore.ByteBuffer?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(head: NIOHTTP1.HTTPRequestHead, body: NIOCore.ByteBuffer?)
+  #endif
 }
 extension NIOHTTP1.NIOHTTPServerRequestFull : Swift.Equatable {
   public static func == (a: NIOHTTP1.NIOHTTPServerRequestFull, b: NIOHTTP1.NIOHTTPServerRequestFull) -> Swift.Bool
@@ -640,7 +696,9 @@ extension NIOHTTP1.NIOHTTPServerRequestFull : Swift.Equatable {
 public struct NIOHTTPClientResponseFull : Swift.Sendable {
   public var head: NIOHTTP1.HTTPResponseHead
   public var body: NIOCore.ByteBuffer?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(head: NIOHTTP1.HTTPResponseHead, body: NIOCore.ByteBuffer?)
+  #endif
 }
 extension NIOHTTP1.NIOHTTPClientResponseFull : Swift.Equatable {
   public static func == (a: NIOHTTP1.NIOHTTPClientResponseFull, b: NIOHTTP1.NIOHTTPClientResponseFull) -> Swift.Bool
@@ -715,7 +773,9 @@ final public class NIOTypedHTTPClientUpgradeHandler<UpgradeResult> : NIOCore.Cha
   final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
   final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
   final public func channelActive(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
   final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
   @objc deinit

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOPosix -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Atomics
 @_exported import Darwin.C
 import CNIODarwin
@@ -28,9 +28,11 @@ extension NIOCore.NIOBSDSocket {
 }
 extension NIOCore.NIOBSDSocket.ProtocolSubtype {
   public static let `default`: NIOCore.NIOBSDSocket.ProtocolSubtype
+  #if compiler(>=5.3) && $NonescapableTypes
   public static var mptcp: NIOCore.NIOBSDSocket.ProtocolSubtype? {
     get
   }
+  #endif
 }
 extension NIOCore.NIOBSDSocket.ProtocolSubtype {
   public init(_ protocol: NIOCore.NIOIPProtocol)
@@ -40,7 +42,9 @@ public struct UnixDomainSocketPathWrongType : Swift.Error {
 final public class ServerBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
   convenience public init(group: any NIOCore.EventLoopGroup, childGroup: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup, childGroup: (any NIOCore.EventLoopGroup)? = nil)
+  #endif
   @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   final public func serverChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
@@ -58,28 +62,42 @@ final public class ServerBootstrap {
   @objc deinit
 }
 extension NIOPosix.ServerBootstrap {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(host: Swift.String, port: Swift.Int, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(to address: NIOCore.SocketAddress, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(unixDomainSocketPath: Swift.String, cleanupExistingSocketFile: Swift.Bool = false, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(to vsockAddress: NIOPosix.VsockAddress, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(_ socket: NIOCore.NIOBSDSocket.Handle, cleanupExistingSocketFile: Swift.Bool = false, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
 }
 @available(*, unavailable)
 extension NIOPosix.ServerBootstrap : Swift.Sendable {
 }
 final public class ClientBootstrap : NIOCore.NIOClientTCPBootstrapProtocol {
   convenience public init(group: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  #endif
   @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   @preconcurrency final public func protocolHandlers(_ handlers: @escaping @Sendable () -> [any NIOCore.ChannelHandler]) -> Self
   final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
   final public func connectTimeout(_ timeout: NIOCore.TimeAmount) -> Self
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func resolver(_ resolver: (any NIOPosix.Resolver & Swift.Sendable)?) -> Self
+  #endif
   final public func enableMPTCP(_ value: Swift.Bool) -> Self
   final public func bind(to address: NIOCore.SocketAddress) -> NIOPosix.ClientBootstrap
   final public func connect(host: Swift.String, port: Swift.Int) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
@@ -108,7 +126,9 @@ extension NIOPosix.ClientBootstrap : Swift.Sendable {
 }
 final public class DatagramBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  #endif
   @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
   final public func protocolSubtype(_ subtype: NIOCore.NIOBSDSocket.ProtocolSubtype) -> Self
@@ -145,7 +165,9 @@ extension NIOPosix.DatagramBootstrap : Swift.Sendable {
 }
 @_hasMissingDesignatedInitializers final public class NIOPipeBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  #endif
   @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
   final public func takingOwnershipOfDescriptor(inputOutput: Swift.CInt) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
@@ -193,13 +215,17 @@ public struct NIOConnectionError : Swift.Error {
   convenience public init(numberOfThreads: Swift.Int, metricsDelegate: any NIOPosix.NIOEventLoopMetricsDelegate)
   public static func _makePerpetualGroup(threadNamePrefix: Swift.String, numberOfThreads: Swift.Int) -> NIOPosix.MultiThreadedEventLoopGroup
   @objc deinit
+  #if compiler(>=5.3) && $NonescapableTypes
   public static var currentEventLoop: (any NIOCore.EventLoop)? {
     get
   }
+  #endif
   final public func makeIterator() -> NIOCore.EventLoopIterator
   final public func next() -> any NIOCore.EventLoop
   final public func any() -> any NIOCore.EventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ handler: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   public static func withCurrentThreadAsEventLoop(_ callback: @escaping (any NIOCore.EventLoop) -> Swift.Void)
   final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
 }
@@ -230,7 +256,9 @@ public enum NIOThreadPoolError : Swift.Sendable {
   }
   public typealias WorkItem = @Sendable (NIOPosix.NIOThreadPool.WorkItemState) -> Swift.Void
   final public let numberOfThreads: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   @preconcurrency final public func submit(_ body: @escaping NIOPosix.NIOThreadPool.WorkItem)
   convenience public init(numberOfThreads: Swift.Int)
   public static func _makePerpetualStartedPool(numberOfThreads: Swift.Int, threadNamePrefix: Swift.String) -> NIOPosix.NIOThreadPool
@@ -246,7 +274,9 @@ extension NIOPosix.NIOThreadPool {
   final public func runIfActive<T>(_ body: @escaping @Sendable () throws -> T) async throws -> T where T : Swift.Sendable
 }
 extension NIOPosix.NIOThreadPool {
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func shutdownGracefully(_ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func shutdownGracefully() async throws
   @available(*, noasync, renamed: "shutdownGracefully()", message: "this can end up blocking the calling thread")
@@ -371,7 +401,9 @@ extension NIOPosix.NIOThreadPool {
 }
 final public class NIORawSocketBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  #endif
   final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
   final public func bind(host: Swift.String, ipProtocol: NIOCore.NIOIPProtocol) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
@@ -414,11 +446,13 @@ public struct NIOFailedToSetSocketNonBlockingError : Swift.Error {
 final public class ThreadSpecificVariable<Value> where Value : AnyObject {
   public init()
   convenience public init(value: Value)
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, noasync, message: "threads can change between suspension points and therefore the thread specific value too")
   final public var currentValue: Value? {
     get
     set
   }
+  #endif
   @objc deinit
 }
 extension NIOPosix.ThreadSpecificVariable : @unchecked Swift.Sendable where Value : Swift.Sendable {

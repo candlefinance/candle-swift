@@ -1,0 +1,97 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Metrics -package-name swift_metrics
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+@_exported import CoreMetrics
+@_exported import CoreMetrics/*.Timer*/
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension CoreMetrics.Timer {
+  @inlinable public static func measure<T>(label: Swift.String, dimensions: [(Swift.String, Swift.String)] = [], body: @escaping () throws -> T) rethrows -> T {
+        let timer = Timer(label: label, dimensions: dimensions)
+        let start = DispatchTime.now().uptimeNanoseconds
+        defer {
+            let delta = DispatchTime.now().uptimeNanoseconds - start
+            timer.recordNanoseconds(delta)
+        }
+        return try body()
+    }
+  final public func recordInterval(since: Dispatch.DispatchTime, end: Dispatch.DispatchTime = .now())
+}
+extension CoreMetrics.Timer {
+  @inlinable final public func record(_ duration: Foundation.TimeInterval) {
+        self.recordSeconds(duration)
+    }
+  @inlinable final public func record(_ duration: Dispatch.DispatchTimeInterval) {
+         
+         
+         
+         
+         
+         
+         
+         
+         
+        let duration = Optional(duration)
+        switch duration {
+        case .nanoseconds(let value):
+            self.recordNanoseconds(value)
+        case .microseconds(let value):
+            self.recordMicroseconds(value)
+        case .milliseconds(let value):
+            self.recordMilliseconds(value)
+        case .seconds(let value):
+            self.recordSeconds(value)
+        case .never:
+            self.record(0)
+        default:
+            self.record(0)
+        }
+    }
+}
+extension CoreMetrics.Timer {
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @inlinable final public func record(duration: Swift.Duration) {
+         
+         
+        let seconds = duration.components.seconds.multipliedReportingOverflow(by: 1_000_000_000)
+        guard !seconds.overflow else { return self.recordNanoseconds(Int64.max) }
+
+        let nanoseconds = seconds.partialValue.addingReportingOverflow(duration.components.attoseconds / 1_000_000_000)
+        guard !nanoseconds.overflow else { return self.recordNanoseconds(Int64.max) }
+
+        self.recordNanoseconds(nanoseconds.partialValue)
+    }
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @inlinable final public func measure<Result, Failure, Clock>(clock: Clock = .continuous, body: () throws(Failure) -> Result) throws(Failure) -> Result where Failure : Swift.Error, Clock : _Concurrency.Clock, Clock.Duration == Swift.Duration {
+        let start = clock.now
+        defer {
+            self.record(duration: start.duration(to: clock.now))
+        }
+        return try body()
+    }
+  #if compiler(>=5.3) && $NonescapableTypes
+  #if compiler(>=5.3) && $SendingArgsAndResults
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @inlinable final public func measure<Result, Failure, Clock>(clock: Clock = .continuous, isolation: isolated (any _Concurrency.Actor)? = #isolation, body: () async throws(Failure) -> sending Result) async throws(Failure) -> sending Result where Failure : Swift.Error, Clock : _Concurrency.Clock, Clock.Duration == Swift.Duration {
+        let start = clock.now
+        defer {
+            self.record(duration: start.duration(to: clock.now))
+        }
+        return try await body()
+    }
+  #else
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @inlinable final public func measure<Result, Failure, Clock>(clock: Clock = .continuous, isolation: isolated (any _Concurrency.Actor)? = #isolation, body: () async throws(Failure) -> Result) async throws(Failure) -> Result where Failure : Swift.Error, Clock : _Concurrency.Clock, Clock.Duration == Swift.Duration {
+        let start = clock.now
+        defer {
+            self.record(duration: start.duration(to: clock.now))
+        }
+        return try await body()
+    }
+  #endif
+  #endif
+}

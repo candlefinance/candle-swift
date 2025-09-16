@@ -23,10 +23,8 @@ struct ContentView: View {
         }
     }
 
-    @Environment(CandleClient.self) private var client
-
     @State var selectedTab: AppTab = .services
-    @State var linkedAccounts: [Models.LinkedAccount] = []
+    @State var linkedAccounts: [Candle.Models.LinkedAccount] = []
 
     @State var error: (title: String, message: String)? = nil
 
@@ -56,4 +54,4 @@ struct ContentView: View {
     }
 }
 
-#Preview { ContentView().environment(CandleClient(appUser: .init(appKey: "", appSecret: ""))) }
+#Preview { ContentView() }

@@ -1,0 +1,1155 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "UnixSignals",
+    "printedName": "UnixSignals",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "UnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "Dispatch",
+        "printedName": "Dispatch",
+        "declKind": "Import",
+        "moduleName": "UnixSignals"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnixSignal",
+        "printedName": "UnixSignal",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV8rawValues5Int32Vvp",
+            "mangledName": "$s11UnixSignals0A6SignalV8rawValues5Int32Vvp",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV8rawValues5Int32Vvg",
+                "mangledName": "$s11UnixSignals0A6SignalV8rawValues5Int32Vvg",
+                "moduleName": "UnixSignals",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV11descriptionSSvp",
+            "mangledName": "$s11UnixSignals0A6SignalV11descriptionSSvp",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV11descriptionSSvg",
+                "mangledName": "$s11UnixSignals0A6SignalV11descriptionSSvg",
+                "moduleName": "UnixSignals",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigabrt",
+            "printedName": "sigabrt",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigabrtACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigabrtACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigabrtACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigabrtACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sighup",
+            "printedName": "sighup",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV6sighupACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV6sighupACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV6sighupACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV6sighupACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigill",
+            "printedName": "sigill",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV6sigillACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV6sigillACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV6sigillACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV6sigillACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigint",
+            "printedName": "sigint",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV6sigintACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV6sigintACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV6sigintACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV6sigintACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigquit",
+            "printedName": "sigquit",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigquitACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigquitACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigquitACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigquitACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigsegv",
+            "printedName": "sigsegv",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigsegvACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigsegvACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigsegvACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigsegvACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigterm",
+            "printedName": "sigterm",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigtermACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigtermACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigtermACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigtermACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigusr1",
+            "printedName": "sigusr1",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigusr1ACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigusr1ACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigusr1ACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigusr1ACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigusr2",
+            "printedName": "sigusr2",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigusr2ACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigusr2ACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigusr2ACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigusr2ACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigalrm",
+            "printedName": "sigalrm",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigalrmACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigalrmACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigalrmACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigalrmACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigwinch",
+            "printedName": "sigwinch",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV8sigwinchACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV8sigwinchACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV8sigwinchACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV8sigwinchACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigcont",
+            "printedName": "sigcont",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV7sigcontACvpZ",
+            "mangledName": "$s11UnixSignals0A6SignalV7sigcontACvpZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV7sigcontACvgZ",
+                "mangledName": "$s11UnixSignals0A6SignalV7sigcontACvgZ",
+                "moduleName": "UnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11UnixSignals0A6SignalV9hashValueSivp",
+            "mangledName": "$s11UnixSignals0A6SignalV9hashValueSivp",
+            "moduleName": "UnixSignals",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11UnixSignals0A6SignalV9hashValueSivg",
+                "mangledName": "$s11UnixSignals0A6SignalV9hashValueSivg",
+                "moduleName": "UnixSignals",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11UnixSignals0A6SignalV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11UnixSignals0A6SignalV4hash4intoys6HasherVz_tF",
+            "moduleName": "UnixSignals",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "UnixSignals.UnixSignal",
+                "usr": "s:11UnixSignals0A6SignalV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11UnixSignals0A6SignalV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s11UnixSignals0A6SignalV2eeoiySbAC_ACtFZ",
+            "moduleName": "UnixSignals",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11UnixSignals0A6SignalV",
+        "mangledName": "$s11UnixSignals0A6SignalV",
+        "moduleName": "UnixSignals",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "UnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "Dispatch",
+        "printedName": "Dispatch",
+        "declKind": "Import",
+        "moduleName": "UnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "ConcurrencyHelpers",
+        "printedName": "ConcurrencyHelpers",
+        "declKind": "Import",
+        "moduleName": "UnixSignals"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnixSignalsSequence",
+        "printedName": "UnixSignalsSequence",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(trapping:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignalsSequence",
+                "printedName": "UnixSignals.UnixSignalsSequence",
+                "usr": "s:11UnixSignals0aB8SequenceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[UnixSignals.UnixSignal]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11UnixSignals0aB8SequenceV8trappingAcA0A6SignalVd_tYacfc",
+            "mangledName": "$s11UnixSignals0aB8SequenceV8trappingAcA0A6SignalVd_tYacfc",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(trapping:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignalsSequence",
+                "printedName": "UnixSignals.UnixSignalsSequence",
+                "usr": "s:11UnixSignals0aB8SequenceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[UnixSignals.UnixSignal]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11UnixSignals0aB8SequenceV8trappingACSayAA0A6SignalVG_tYacfc",
+            "mangledName": "$s11UnixSignals0aB8SequenceV8trappingACSayAA0A6SignalVG_tYacfc",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "makeAsyncIterator",
+            "printedName": "makeAsyncIterator()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AsyncIterator",
+                "printedName": "UnixSignals.UnixSignalsSequence.AsyncIterator",
+                "usr": "s:11UnixSignals0aB8SequenceV13AsyncIteratorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11UnixSignals0aB8SequenceV17makeAsyncIteratorAC0eF0VyF",
+            "mangledName": "$s11UnixSignals0aB8SequenceV17makeAsyncIteratorAC0eF0VyF",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "AsyncIterator",
+            "printedName": "AsyncIterator",
+            "children": [
+              {
+                "kind": "Function",
+                "name": "next",
+                "printedName": "next()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "UnixSignals.UnixSignal?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UnixSignal",
+                        "printedName": "UnixSignals.UnixSignal",
+                        "usr": "s:11UnixSignals0A6SignalV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:11UnixSignals0aB8SequenceV13AsyncIteratorV4nextAA0A6SignalVSgyYaF",
+                "mangledName": "$s11UnixSignals0aB8SequenceV13AsyncIteratorV4nextAA0A6SignalVSgyYaF",
+                "moduleName": "UnixSignals",
+                "declAttributes": [
+                  "Mutating",
+                  "AccessControl"
+                ],
+                "funcSelfKind": "Mutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:11UnixSignals0aB8SequenceV13AsyncIteratorV",
+            "mangledName": "$s11UnixSignals0aB8SequenceV13AsyncIteratorV",
+            "moduleName": "UnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "AsyncIteratorProtocol",
+                "printedName": "AsyncIteratorProtocol",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UnixSignal",
+                        "printedName": "UnixSignals.UnixSignal",
+                        "usr": "s:11UnixSignals0A6SignalV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Failure",
+                    "printedName": "Failure",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Never",
+                        "printedName": "Swift.Never",
+                        "usr": "s:s5NeverO"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:ScI",
+                "mangledName": "$sScI"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11UnixSignals0aB8SequenceV",
+        "mangledName": "$s11UnixSignals0aB8SequenceV",
+        "moduleName": "UnixSignals",
+        "intro_Macosx": "10.15",
+        "intro_iOS": "13.0",
+        "intro_tvOS": "13.0",
+        "intro_watchOS": "6.0",
+        "declAttributes": [
+          "AccessControl",
+          "Available",
+          "Available",
+          "Available",
+          "Available",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "AsyncSequence",
+            "printedName": "AsyncSequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AsyncIterator",
+                "printedName": "AsyncIterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AsyncIterator",
+                    "printedName": "UnixSignals.UnixSignalsSequence.AsyncIterator",
+                    "usr": "s:11UnixSignals0aB8SequenceV13AsyncIteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "UnixSignals.UnixSignal",
+                    "usr": "s:11UnixSignals0A6SignalV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Failure",
+                "printedName": "Failure",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sci",
+            "mangledName": "$sSci"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-service-lifecycle\/Sources\/UnixSignals\/UnixSignalsSequence.swift",
+      "kind": "StringLiteral",
+      "offset": 1310,
+      "length": 36,
+      "value": "\"com.service-lifecycle.unix-signals\""
+    }
+  ]
+}

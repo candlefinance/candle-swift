@@ -1,0 +1,4 @@
+framework module Algorithms {
+    header "Algorithms-Swift.h"
+    export *
+}

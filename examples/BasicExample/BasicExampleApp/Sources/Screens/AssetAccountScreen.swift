@@ -2,11 +2,9 @@ import Candle
 import SwiftUI
 
 struct AssetAccountScreen: View {
-    @Environment(CandleClient.self) private var client
-
     @Binding var error: (title: String, message: String)?
 
-    @State private(set) var assetAccount: Models.AssetAccount
+    @State private(set) var assetAccount: Candle.Models.AssetAccount
 
     private var badgeText: String {
         switch assetAccount {
@@ -153,8 +151,14 @@ struct AssetAccountScreen: View {
     }
 
     private func getAssetAccount() async {
-        do { assetAccount = try await client.getAssetAccount(ref: assetAccount.ref) } catch {
+        do {
+            assetAccount = try await Candle.Client.shared.getAssetAccount(ref: assetAccount.ref)
+        } catch {
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -187,7 +191,6 @@ struct AssetAccountScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }

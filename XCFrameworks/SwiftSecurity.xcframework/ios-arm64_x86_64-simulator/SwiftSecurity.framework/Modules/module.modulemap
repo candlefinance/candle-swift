@@ -1,4 +1,0 @@
-framework module SwiftSecurity {
-    header "SwiftSecurity-Swift.h"
-    export *
-}

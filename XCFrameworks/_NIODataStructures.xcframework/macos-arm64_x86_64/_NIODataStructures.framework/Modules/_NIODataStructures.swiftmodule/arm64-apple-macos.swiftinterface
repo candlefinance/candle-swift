@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name _NIODataStructures -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Darwin.C
 import Darwin
 import Swift
@@ -11,15 +11,21 @@ import _SwiftConcurrencyShims
 public struct PriorityQueue<Element> where Element : Swift.Comparable {
   public init()
   public mutating func remove(_ key: Element)
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public mutating func removeFirst(where shouldBeRemoved: (Element) throws -> Swift.Bool) rethrows -> Element?
+  #endif
   public mutating func push(_ key: Element)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peek() -> Element?
+  #endif
   public var isEmpty: Swift.Bool {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public mutating func pop() -> Element?
+  #endif
   public mutating func clear()
 }
 extension _NIODataStructures.PriorityQueue : Swift.Equatable {
@@ -28,7 +34,9 @@ extension _NIODataStructures.PriorityQueue : Swift.Equatable {
 extension _NIODataStructures.PriorityQueue : Swift.Sequence {
   public struct Iterator : Swift.IteratorProtocol {
     public init(queue: _NIODataStructures.PriorityQueue<Element>)
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() -> Element?
+    #endif
   }
   public func makeIterator() -> _NIODataStructures.PriorityQueue<Element>.Iterator
 }
@@ -64,7 +72,9 @@ extension _NIODataStructures._TinyArray : Swift.RandomAccessCollection {
   public typealias Index = Swift.Int
   public func makeIterator() -> _NIODataStructures._TinyArray<Element>.Iterator
   public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
     public mutating func next() -> Element?
+    #endif
   }
   public subscript(position: Swift.Int) -> Element {
     get
@@ -82,7 +92,9 @@ extension _NIODataStructures._TinyArray.Iterator : Swift.Sendable where Element 
 }
 extension _NIODataStructures._TinyArray {
   public init(_ elements: some Sequence<Element>)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(_ elements: some Sequence<Result<Element, some Error>>) throws
+  #endif
   public init()
   public mutating func append(_ newElement: Element)
   public mutating func append(contentsOf newElements: some Sequence<Element>)

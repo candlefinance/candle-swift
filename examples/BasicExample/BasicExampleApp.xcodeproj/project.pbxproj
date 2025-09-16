@@ -32,7 +32,6 @@
 		A426180B1EBE39E3570505BF /* BasicExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1924E6F9864418459C71374B /* BasicExampleUITests.swift */; };
 		A64BCF617FDDE3E0558B0238 /* CandlePrimaryButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5176FA18CF2FC1E55E6CDE8 /* CandlePrimaryButtonModifier.swift */; };
 		A97254483E11B1974A75139C /* TradeAssetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053EEB6A280D2BF6528E3E1 /* TradeAssetGroup.swift */; };
-		ABF07BF57A212BA32D5AF3F7 /* SessionError++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359EFE9A72CC30F2936460E /* SessionError++.swift */; };
 		AD6EDAFF22C8E9DF8A67D194 /* TradesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352617F5CB23ACDA48782EF2 /* TradesScreen.swift */; };
 		B00E96B5F17538908FB8CFF6 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86220273371613FAC4A361A /* ItemRow.swift */; };
 		B56C68C8E54DECC0A52F1FAD /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5912105660C065A61A683 /* LocationViewModel.swift */; };
@@ -94,7 +93,6 @@
 		0D1DCEAF3560F15BDCDAB822 /* LinkedAccountsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedAccountsScreen.swift; sourceTree = "<group>"; };
 		16756FED00B842BAC5FE0EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1924E6F9864418459C71374B /* BasicExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleUITests.swift; sourceTree = "<group>"; };
-		2359EFE9A72CC30F2936460E /* SessionError++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionError++.swift"; sourceTree = "<group>"; };
 		2BA4C33E33BC21D53CA76CC5 /* TradeQuotesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeQuotesScreen.swift; sourceTree = "<group>"; };
 		2DDF1E6D6C6960E9AC328358 /* ItemPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPhoto.swift; sourceTree = "<group>"; };
 		2E256EFD0418F3ED1CA238D8 /* TuistBundle+BasicExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+BasicExampleApp.swift"; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				36BB3275890D44D31C3F8C34 /* Double++.swift */,
 				BC3970017998CBB47650063B /* ISO8601DateFormatter.swift */,
 				C10B3927B5DF4E4910D3F388 /* LinkedAccount++.swift */,
-				2359EFE9A72CC30F2936460E /* SessionError++.swift */,
 				44201274A586FCC0E392D802 /* Trade++.swift */,
 				D681576345754C54603ACFA4 /* TradeQuote++.swift */,
 			);
@@ -484,7 +481,6 @@
 				7012F3F8CF68BD4F91CBDC25 /* Double++.swift in Sources */,
 				BB283C59EAA4AF0F9660A44C /* ISO8601DateFormatter.swift in Sources */,
 				C55FF512F855BDB6F4AFE637 /* LinkedAccount++.swift in Sources */,
-				ABF07BF57A212BA32D5AF3F7 /* SessionError++.swift in Sources */,
 				99276BFE10EF4D2E6D8F3AFB /* Trade++.swift in Sources */,
 				3BE562294B5E010A2FA0628A /* TradeQuote++.swift in Sources */,
 				39E3EBFF1357C771E30B4A73 /* FiatAssetForm.swift in Sources */,
@@ -695,7 +691,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trycandle.candle;
 				PRODUCT_NAME = BasicExampleApp;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -723,7 +719,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trycandle.candle;
 				PRODUCT_NAME = BasicExampleApp;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;

@@ -1,0 +1,184 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name ServiceLifecycle
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import AsyncAlgorithms
+import ConcurrencyHelpers
+import Logging
+import Swift
+import UnixSignals
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Sendable {
+  public func cancelOnGracefulShutdown() -> ServiceLifecycle.AsyncCancelOnGracefulShutdownSequence<Self>
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct AsyncCancelOnGracefulShutdownSequence<Base> : _Concurrency.AsyncSequence, Swift.Sendable where Base : Swift.Sendable, Base : _Concurrency.AsyncSequence, Base.Element : Swift.Sendable {
+  public typealias Element = Base.Element
+  public init(base: Base)
+  public func makeAsyncIterator() -> ServiceLifecycle.AsyncCancelOnGracefulShutdownSequence<Base>.AsyncIterator
+  public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> ServiceLifecycle.AsyncCancelOnGracefulShutdownSequence<Base>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = ServiceLifecycle.AsyncCancelOnGracefulShutdownSequence<Base>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public func withGracefulShutdownHandler<T>(isolation: isolated (any _Concurrency.Actor)? = #isolation, operation: () async throws -> T, onGracefulShutdown handler: @escaping @Sendable () -> Swift.Void) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+@available(*, deprecated, message: "Use the method with the isolation parameter instead.")
+@_disfavoredOverload public func withGracefulShutdownHandler<T>(operation: () async throws -> T, onGracefulShutdown handler: @escaping @Sendable () -> Swift.Void) async rethrows -> T
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public func withTaskCancellationOrGracefulShutdownHandler<T>(isolation: isolated (any _Concurrency.Actor)? = #isolation, operation: () async throws -> T, onCancelOrGracefulShutdown handler: @escaping @Sendable () -> Swift.Void) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+@available(*, deprecated, message: "Use the method with the isolation parameter instead.")
+@_disfavoredOverload public func withTaskCancellationOrGracefulShutdownHandler<T>(operation: () async throws -> T, onCancelOrGracefulShutdown handler: @escaping @Sendable () -> Swift.Void) async rethrows -> T
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public func gracefulShutdown() async throws
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public func cancelWhenGracefulShutdown<T>(_ operation: @escaping @Sendable () async throws -> T) async rethrows -> T where T : Swift.Sendable
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+@available(*, deprecated, renamed: "cancelWhenGracefulShutdown")
+public func cancelOnGracefulShutdown<T>(_ operation: @escaping @Sendable () async throws -> T) async rethrows -> T? where T : Swift.Sendable
+#endif
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension _Concurrency.Task where Success == Swift.Never, Failure == Swift.Never {
+  public static var isShuttingDownGracefully: Swift.Bool {
+    get
+  }
+}
+@_spi(TestKit) @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public enum TaskLocals {
+  @_spi(TestKit) public static let $gracefulShutdownManager: _Concurrency.TaskLocal<ServiceLifecycle.GracefulShutdownManager?>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(TestKit) public static var gracefulShutdownManager: ServiceLifecycle.GracefulShutdownManager? {
+    @_spi(TestKit) get
+  }
+  #endif
+}
+@_spi(TestKit) @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+final public class GracefulShutdownManager : @unchecked Swift.Sendable {
+  @_spi(TestKit) public init()
+  @_spi(TestKit) final public func shutdownGracefully()
+  @_spi(TestKit) @objc deinit
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public protocol Service : Swift.Sendable {
+  func run() async throws
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public actor ServiceGroup : Swift.Sendable, ServiceLifecycle.Service {
+  public init(configuration: ServiceLifecycle.ServiceGroupConfiguration)
+  public convenience init(services: [any ServiceLifecycle.Service], gracefulShutdownSignals: [UnixSignals.UnixSignal] = [], cancellationSignals: [UnixSignals.UnixSignal] = [], logger: Logging.Logger)
+  @available(*, deprecated, renamed: "init(services:gracefulShutdownSignals:cancellationSignals:logger:)")
+  public init(services: [any ServiceLifecycle.Service], configuration: ServiceLifecycle.ServiceGroupConfiguration, logger: Logging.Logger)
+  public func addServiceUnlessShutdown(_ serviceConfiguration: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration) async
+  public func addServiceUnlessShutdown(_ service: any ServiceLifecycle.Service) async
+  @_disfavoredOverload public func run() async throws
+  public func run(file: Swift.String = #file, line: Swift.Int = #line) async throws
+  public func triggerGracefulShutdown() async
+  @objc deinit
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  @_semantics("defaultActor") nonisolated final public var unownedExecutor: _Concurrency.UnownedSerialExecutor {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct ServiceGroupConfiguration : Swift.Sendable {
+  public struct LoggingConfiguration : Swift.Sendable {
+    public struct Keys : Swift.Sendable {
+      public var signalKey: Swift.String
+      public var gracefulShutdownSignalsKey: Swift.String
+      public var cancellationSignalsKey: Swift.String
+      public var serviceKey: Swift.String
+      public var servicesKey: Swift.String
+      public var errorKey: Swift.String
+      public init()
+    }
+    public var keys: ServiceLifecycle.ServiceGroupConfiguration.LoggingConfiguration.Keys
+    public init()
+  }
+  public struct ServiceConfiguration : Swift.Sendable {
+    public struct TerminationBehavior : Swift.Sendable, Swift.CustomStringConvertible {
+      public static let cancelGroup: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior
+      public static let gracefullyShutdownGroup: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior
+      public static let ignore: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior
+      public var description: Swift.String {
+        get
+      }
+    }
+    public var service: any ServiceLifecycle.Service
+    public var successTerminationBehavior: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior
+    public var failureTerminationBehavior: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior
+    public init(service: any ServiceLifecycle.Service, successTerminationBehavior: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior = .cancelGroup, failureTerminationBehavior: ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration.TerminationBehavior = .cancelGroup)
+  }
+  public var services: [ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration]
+  public var gracefulShutdownSignals: [UnixSignals.UnixSignal]
+  public var cancellationSignals: [UnixSignals.UnixSignal]
+  public var logger: Logging.Logger
+  public var logging: ServiceLifecycle.ServiceGroupConfiguration.LoggingConfiguration
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public var maximumGracefulShutdownDuration: Swift.Duration? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public var maximumCancellationDuration: Swift.Duration? {
+    get
+    set
+  }
+  #endif
+  public init(services: [ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration], logger: Logging.Logger)
+  public init(services: [ServiceLifecycle.ServiceGroupConfiguration.ServiceConfiguration], gracefulShutdownSignals: [UnixSignals.UnixSignal] = [], cancellationSignals: [UnixSignals.UnixSignal] = [], logger: Logging.Logger)
+  public init(services: [any ServiceLifecycle.Service], logger: Logging.Logger)
+  public init(services: [any ServiceLifecycle.Service], gracefulShutdownSignals: [UnixSignals.UnixSignal] = [], cancellationSignals: [UnixSignals.UnixSignal] = [], logger: Logging.Logger)
+  @available(*, deprecated)
+  public init(gracefulShutdownSignals: [UnixSignals.UnixSignal])
+}
+public struct ServiceGroupError : Swift.Error, Swift.Hashable, Swift.Sendable {
+  public struct Code : Swift.Hashable, Swift.Sendable, Swift.CustomStringConvertible {
+    public var description: Swift.String {
+      get
+    }
+    public static let alreadyRunning: ServiceLifecycle.ServiceGroupError.Code
+    public static let alreadyFinished: ServiceLifecycle.ServiceGroupError.Code
+    public static let serviceFinishedUnexpectedly: ServiceLifecycle.ServiceGroupError.Code
+    public static func == (a: ServiceLifecycle.ServiceGroupError.Code, b: ServiceLifecycle.ServiceGroupError.Code) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var errorCode: ServiceLifecycle.ServiceGroupError.Code {
+    get
+  }
+  public static func alreadyRunning(file: Swift.String = #fileID, line: Swift.Int = #line) -> ServiceLifecycle.ServiceGroupError
+  public static func alreadyFinished(file: Swift.String = #fileID, line: Swift.Int = #line) -> ServiceLifecycle.ServiceGroupError
+  public static func serviceFinishedUnexpectedly(file: Swift.String = #fileID, line: Swift.Int = #line) -> ServiceLifecycle.ServiceGroupError
+  public static func == (a: ServiceLifecycle.ServiceGroupError, b: ServiceLifecycle.ServiceGroupError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ServiceLifecycle.ServiceGroupError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}

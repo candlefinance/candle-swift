@@ -1,0 +1,4 @@
+framework module CAsyncHTTPClient {
+    umbrella header "CAsyncHTTPClient.h"
+    export *
+}

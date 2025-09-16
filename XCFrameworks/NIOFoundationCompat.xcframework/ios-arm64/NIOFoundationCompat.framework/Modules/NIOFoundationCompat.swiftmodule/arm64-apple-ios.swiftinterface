@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOFoundationCompat -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Atomics
 import Foundation
 import NIOConcurrencyHelpers
@@ -29,13 +29,27 @@ extension NIOCore.ByteBuffer {
       get
     }
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readData(length: Swift.Int) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readData(length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getData(at index: Swift.Int, length: Swift.Int) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getData(at index: Swift.Int, length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekData(length: Swift.Int, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getString(at index: Swift.Int, length: Swift.Int, encoding: Swift.String.Encoding) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readString(length: Swift.Int, encoding: Swift.String.Encoding) -> Swift.String?
+  #endif
   @discardableResult
   public mutating func writeString(_ string: Swift.String, encoding: Swift.String.Encoding) throws -> Swift.Int
   @discardableResult
@@ -49,13 +63,19 @@ extension NIOCore.ByteBuffer {
   public mutating func writeData<D>(_ data: D) -> Swift.Int where D : Foundation.DataProtocol
   @discardableResult
   public mutating func setData<D>(_ data: D, at index: Swift.Int) -> Swift.Int where D : Foundation.DataProtocol
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getUUIDBytes(at index: Swift.Int) -> Foundation.UUID?
+  #endif
   @discardableResult
   public mutating func setUUIDBytes(_ uuid: Foundation.UUID, at index: Swift.Int) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readUUIDBytes() -> Foundation.UUID?
+  #endif
   @discardableResult
   public mutating func writeUUIDBytes(_ uuid: Foundation.UUID) -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public func peekUUIDBytes() -> Foundation.UUID?
+  #endif
 }
 extension NIOCore.ByteBufferAllocator {
   public func buffer(data: Foundation.Data) -> NIOCore.ByteBuffer
@@ -76,8 +96,12 @@ extension Foundation.Data {
   public init(buffer: NIOCore.ByteBuffer, byteTransferStrategy: NIOCore.ByteBuffer.ByteTransferStrategy = .automatic)
 }
 extension NIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getJSONDecodable<T>(_ type: T.Type, decoder: Foundation.JSONDecoder = JSONDecoder(), at index: Swift.Int, length: Swift.Int) throws -> T? where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func readJSONDecodable<T>(_ type: T.Type, decoder: Foundation.JSONDecoder = JSONDecoder(), length: Swift.Int) throws -> T? where T : Swift.Decodable
+  #endif
   @discardableResult
   public mutating func setJSONEncodable<T>(_ value: T, encoder: Foundation.JSONEncoder = JSONEncoder(), at index: Swift.Int) throws -> Swift.Int where T : Swift.Encodable
   @discardableResult

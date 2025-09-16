@@ -1,0 +1,49 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Instrumentation -package-name swift_distributed_tracing
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+import ServiceContextModule
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol Extractor : Swift.Sendable {
+  associatedtype Carrier : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  func extract(key: Swift.String, from carrier: Self.Carrier) -> Swift.String?
+  #endif
+}
+public protocol Injector : Swift.Sendable {
+  associatedtype Carrier : Swift.Sendable
+  func inject(_ value: Swift.String, forKey key: Swift.String, into carrier: inout Self.Carrier)
+}
+public protocol Instrument : Swift.Sendable {
+  func extract<Carrier, Extract>(_ carrier: Carrier, into context: inout ServiceContextModule.ServiceContext, using extractor: Extract) where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor
+  func inject<Carrier, Inject>(_ context: ServiceContextModule.ServiceContext, into carrier: inout Carrier, using injector: Inject) where Carrier == Inject.Carrier, Inject : Instrumentation.Injector
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public enum InstrumentationSystem {
+  public static func bootstrap(_ instrument: any Instrumentation.Instrument)
+  public static var instrument: any Instrumentation.Instrument {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Instrumentation.InstrumentationSystem {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func _findInstrument(where predicate: (any Instrumentation.Instrument) -> Swift.Bool) -> (any Instrumentation.Instrument)?
+  #endif
+}
+public struct MultiplexInstrument {
+  public init(_ instruments: [any Instrumentation.Instrument])
+}
+extension Instrumentation.MultiplexInstrument : Instrumentation.Instrument {
+  public func inject<Carrier, Inject>(_ context: ServiceContextModule.ServiceContext, into carrier: inout Carrier, using injector: Inject) where Carrier == Inject.Carrier, Inject : Instrumentation.Injector
+  public func extract<Carrier, Extract>(_ carrier: Carrier, into context: inout ServiceContextModule.ServiceContext, using extractor: Extract) where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor
+}
+public struct NoOpInstrument : Instrumentation.Instrument {
+  public init()
+  public func inject<Carrier, Inject>(_ context: ServiceContextModule.ServiceContext, into carrier: inout Carrier, using injector: Inject) where Carrier == Inject.Carrier, Inject : Instrumentation.Injector
+  public func extract<Carrier, Extract>(_ carrier: Carrier, into context: inout ServiceContextModule.ServiceContext, using extractor: Extract) where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor
+}

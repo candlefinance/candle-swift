@@ -4,7 +4,7 @@ struct ItemRow: View {
     let title: String
     let subtitle: String
     let value: String
-    let logoURL: URL
+    let logoURL: URL?
 
     var body: some View {
         HStack(spacing: .large) {

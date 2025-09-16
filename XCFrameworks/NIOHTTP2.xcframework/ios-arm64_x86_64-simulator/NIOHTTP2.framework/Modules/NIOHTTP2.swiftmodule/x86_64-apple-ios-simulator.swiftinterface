@@ -1,0 +1,1268 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOHTTP2 -package-name swift_nio_http2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Atomics
+import DequeModule
+import NIOConcurrencyHelpers
+import NIOCore
+import NIOHPACK
+import NIOHTTP1
+import NIOTLS
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension NIOHTTP2.NIOHTTP2Handler {
+  public struct StreamMultiplexer : Swift.Sendable {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public func createStreamChannel(promise: NIOCore.EventLoopPromise<any NIOCore.Channel>?, _ streamStateInitializer: @escaping NIOHTTP2.NIOHTTP2Handler.StreamInitializer)
+    #endif
+    public func createStreamChannel(_ streamStateInitializer: @escaping NIOHTTP2.NIOHTTP2Handler.StreamInitializer) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  }
+}
+extension NIOHTTP2.NIOHTTP2Handler {
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public struct AsyncStreamMultiplexer<InboundStreamOutput> : Swift.Sendable where InboundStreamOutput : Swift.Sendable {
+    public let inbound: NIOHTTP2.NIOHTTP2AsyncSequence<InboundStreamOutput>
+    public func openStream<Output>(_ initializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) async throws -> Output where Output : Swift.Sendable
+  }
+}
+public let nioDefaultSettings: [NIOHTTP2.HTTP2Setting]
+@_hasMissingDesignatedInitializers final public class NIOHTTP2Handler : NIOCore.ChannelDuplexHandler {
+  public typealias InboundIn = NIOCore.ByteBuffer
+  public typealias InboundOut = NIOHTTP2.HTTP2Frame
+  public typealias OutboundIn = NIOHTTP2.HTTP2Frame
+  public typealias OutboundOut = NIOCore.IOData
+  public enum ParserMode : Swift.Sendable {
+    case client
+    case server
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.ParserMode, b: NIOHTTP2.NIOHTTP2Handler.ParserMode) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum ValidationState : Swift.Sendable {
+    case enabled
+    case disabled
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.ValidationState, b: NIOHTTP2.NIOHTTP2Handler.ValidationState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, initialSettings: NIOHTTP2.HTTP2Settings = nioDefaultSettings, headerBlockValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState = .enabled, contentLengthValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState = .enabled)
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, initialSettings: NIOHTTP2.HTTP2Settings = nioDefaultSettings, headerBlockValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState = .enabled, contentLengthValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState = .enabled, maximumSequentialEmptyDataFrames: Swift.Int = 1, maximumBufferedControlFrames: Swift.Int = 10000)
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration = .init(), streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration = .init())
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, frameDelegate: (any NIOHTTP2.NIOHTTP2FrameDelegate)?, connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration = ConnectionConfiguration(), streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration = StreamConfiguration())
+  #endif
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  final public func channelActive(context: NIOCore.ChannelHandlerContext)
+  final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  final public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  final public func channelReadComplete(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: NIOCore.ChannelHandlerContext)
+  final public func channelWritabilityChanged(context: NIOCore.ChannelHandlerContext)
+  final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
+  @objc deinit
+}
+extension NIOHTTP2.NIOHTTP2Handler : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+extension NIOHTTP2.NIOHTTP2Handler : Swift.CustomDebugStringConvertible {
+  final public var debugDescription: Swift.String {
+    get
+  }
+}
+extension NIOHTTP2.NIOHTTP2Handler {
+  public typealias StreamInitializer = NIOHTTP2.NIOChannelInitializer
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, eventLoop: any NIOCore.EventLoop, connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration = .init(), streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration = .init(), streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)? = nil, inboundStreamInitializer: @escaping NIOHTTP2.NIOHTTP2Handler.StreamInitializer)
+  #endif
+  public struct ConnectionConfiguration : Swift.Hashable, Swift.Sendable {
+    public var initialSettings: [NIOHTTP2.HTTP2Setting]
+    public var headerBlockValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState
+    public var contentLengthValidation: NIOHTTP2.NIOHTTP2Handler.ValidationState
+    public var maximumSequentialEmptyDataFrames: Swift.Int
+    public var maximumBufferedControlFrames: Swift.Int
+    public var maximumSequentialContinuationFrames: Swift.Int
+    public var maximumRecentlyResetStreams: Swift.Int
+    public var maximumConnectionGlitches: Swift.Int
+    public init()
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration, b: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct StreamConfiguration : Swift.Hashable, Swift.Sendable {
+    public var targetWindowSize: Swift.Int
+    public var outboundBufferSizeHighWatermark: Swift.Int
+    public var outboundBufferSizeLowWatermark: Swift.Int
+    public var streamResetFrameRateLimit: NIOHTTP2.NIOHTTP2Handler.StreamResetFrameRateLimitConfiguration
+    public var streamErrorRateLimit: NIOHTTP2.NIOHTTP2Handler.StreamErrorRateLimitConfiguration
+    public init()
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration, b: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct StreamResetFrameRateLimitConfiguration : Swift.Hashable, Swift.Sendable {
+    public var maximumCount: Swift.Int
+    public var windowLength: NIOCore.TimeAmount
+    public init()
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.StreamResetFrameRateLimitConfiguration, b: NIOHTTP2.NIOHTTP2Handler.StreamResetFrameRateLimitConfiguration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct StreamErrorRateLimitConfiguration : Swift.Hashable, Swift.Sendable {
+    public var maximumCount: Swift.Int
+    public var windowLength: NIOCore.TimeAmount
+    public init()
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.StreamErrorRateLimitConfiguration, b: NIOHTTP2.NIOHTTP2Handler.StreamErrorRateLimitConfiguration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct Configuration : Swift.Hashable, Swift.Sendable {
+    public var connection: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration
+    public var stream: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration
+    public init()
+    public init(connection: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration, stream: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration)
+    public static func == (a: NIOHTTP2.NIOHTTP2Handler.Configuration, b: NIOHTTP2.NIOHTTP2Handler.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public var multiplexer: NIOCore.EventLoopFuture<NIOHTTP2.NIOHTTP2Handler.StreamMultiplexer> {
+    get
+  }
+  final public func syncMultiplexer() throws -> NIOHTTP2.NIOHTTP2Handler.StreamMultiplexer
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct NIOHTTP2AsyncSequence<Output> : _Concurrency.AsyncSequence where Output : Swift.Sendable {
+  public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    public typealias Element = Output
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Output?
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public typealias Element = Output
+  public func makeAsyncIterator() -> NIOHTTP2.NIOHTTP2AsyncSequence<Output>.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(*, unavailable)
+extension NIOHTTP2.NIOHTTP2AsyncSequence.AsyncIterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension NIOHTTP2.NIOHTTP2AsyncSequence : Swift.Sendable {
+}
+public protocol NIOHTTP2Error : Swift.Equatable, Swift.Error {
+}
+public enum NIOHTTP2Errors {
+  public static func excessiveOutboundFrameBuffering(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveOutboundFrameBuffering
+  public static func invalidALPNToken(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidALPNToken
+  public static func noSuchStream(streamID: NIOHTTP2.HTTP2StreamID, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.NoSuchStream
+  public static func streamClosed(streamID: NIOHTTP2.HTTP2StreamID, errorCode: NIOHTTP2.HTTP2ErrorCode, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.StreamClosed
+  public static func badClientMagic(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.BadClientMagic
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func badStreamStateTransition(from state: NIOHTTP2.NIOHTTP2StreamState? = nil, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.BadStreamStateTransition
+  #endif
+  public static func invalidFlowControlWindowSize(delta: Swift.Int, currentWindowSize: Swift.Int, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidFlowControlWindowSize
+  public static func flowControlViolation(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.FlowControlViolation
+  public static func invalidSetting(setting: NIOHTTP2.HTTP2Setting, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidSetting
+  public static func ioOnClosedConnection(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.IOOnClosedConnection
+  public static func receivedBadSettings(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ReceivedBadSettings
+  public static func maxStreamsViolation(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.MaxStreamsViolation
+  public static func streamIDTooSmall(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.StreamIDTooSmall
+  public static func missingPreface(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.MissingPreface
+  public static func createdStreamAfterGoaway(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.CreatedStreamAfterGoaway
+  public static func invalidStreamIDForPeer(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidStreamIDForPeer
+  public static func raisedGoawayLastStreamID(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.RaisedGoawayLastStreamID
+  public static func invalidWindowIncrementSize(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidWindowIncrementSize
+  public static func pushInViolationOfSetting(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.PushInViolationOfSetting
+  public static func unsupported(info: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.Unsupported
+  public static func unableToSerializeFrame(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.UnableToSerializeFrame
+  public static func unableToParseFrame(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.UnableToParseFrame
+  public static func missingPseudoHeader(_ name: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.MissingPseudoHeader
+  public static func duplicatePseudoHeader(_ name: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.DuplicatePseudoHeader
+  public static func pseudoHeaderAfterRegularHeader(_ name: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.PseudoHeaderAfterRegularHeader
+  public static func unknownPseudoHeader(_ name: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.UnknownPseudoHeader
+  public static func unsupportedPseudoHeader(_ name: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.UnsupportedPseudoHeader
+  public static func invalidPseudoHeaders(_ block: NIOHPACK.HPACKHeaders, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidPseudoHeaders
+  public static func missingHostHeader(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.MissingHostHeader
+  public static func duplicateHostHeader(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.DuplicateHostHeader
+  public static func emptyPathHeader(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.EmptyPathHeader
+  public static func invalidStatusValue(_ value: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidStatusValue
+  public static func priorityCycle(streamID: NIOHTTP2.HTTP2StreamID, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.PriorityCycle
+  public static func trailersWithoutEndStream(streamID: NIOHTTP2.HTTP2StreamID, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.TrailersWithoutEndStream
+  public static func invalidHTTP2HeaderFieldName(_ fieldName: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.InvalidHTTP2HeaderFieldName
+  public static func forbiddenHeaderField(name: Swift.String, value: Swift.String, file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ForbiddenHeaderField
+  public static func contentLengthViolated(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ContentLengthViolated
+  public static func contentLengthHeadersMismatch(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ContentLengthHeadersMismatch
+  public static func contentLengthHeaderNegative(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderNegative
+  public static func contentLengthHeaderMalformedValue(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderMalformedValue
+  public static func excessiveEmptyDataFrames(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveEmptyDataFrames
+  public static func excessiveNumberOfGlitches(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveNumberOfGlitches
+  public static func excessivelyLargeHeaderBlock(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessivelyLargeHeaderBlock
+  public static func noStreamIDAvailable(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.NoStreamIDAvailable
+  public static func missingMultiplexer(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.MissingMultiplexer
+  public static func excessiveRSTFrames(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveRSTFrames
+  public static func excessiveContinuationFrames(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveContinuationFrames
+  public static func excessiveStreamErrors(file: Swift.String = #fileID, line: Swift.UInt = #line) -> NIOHTTP2.NIOHTTP2Errors.ExcessiveStreamErrors
+  public static func streamError(streamID: NIOHTTP2.HTTP2StreamID, baseError: any Swift.Error) -> NIOHTTP2.NIOHTTP2Errors.StreamError
+  public struct ExcessiveOutboundFrameBuffering : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "excessiveOutboundFrameBuffering")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveOutboundFrameBuffering, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveOutboundFrameBuffering) -> Swift.Bool
+  }
+  public struct InvalidALPNToken : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidALPNToken")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.InvalidALPNToken, rhs: NIOHTTP2.NIOHTTP2Errors.InvalidALPNToken) -> Swift.Bool
+  }
+  public struct NoSuchStream : NIOHTTP2.NIOHTTP2Error {
+    public var streamID: NIOHTTP2.HTTP2StreamID
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "noSuchStream")
+    public init(streamID: NIOHTTP2.HTTP2StreamID)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.NoSuchStream, rhs: NIOHTTP2.NIOHTTP2Errors.NoSuchStream) -> Swift.Bool
+  }
+  public struct StreamClosed : NIOHTTP2.NIOHTTP2Error {
+    public var streamID: NIOHTTP2.HTTP2StreamID
+    public var errorCode: NIOHTTP2.HTTP2ErrorCode
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "streamClosed")
+    public init(streamID: NIOHTTP2.HTTP2StreamID, errorCode: NIOHTTP2.HTTP2ErrorCode)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.StreamClosed, rhs: NIOHTTP2.NIOHTTP2Errors.StreamClosed) -> Swift.Bool
+  }
+  public struct BadClientMagic : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "badClientMagic")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.BadClientMagic, rhs: NIOHTTP2.NIOHTTP2Errors.BadClientMagic) -> Swift.Bool
+  }
+  public struct BadStreamStateTransition : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible {
+    public let fromState: NIOHTTP2.NIOHTTP2StreamState?
+    public let location: Swift.String
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "badStreamStateTransition")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.BadStreamStateTransition, rhs: NIOHTTP2.NIOHTTP2Errors.BadStreamStateTransition) -> Swift.Bool
+  }
+  public struct InvalidFlowControlWindowSize : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var delta: Swift.Int {
+      get
+      set
+    }
+    public var currentWindowSize: Swift.Int {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidFlowControlWindowSize")
+    public init(delta: Swift.Int, currentWindowSize: Swift.Int)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.InvalidFlowControlWindowSize, b: NIOHTTP2.NIOHTTP2Errors.InvalidFlowControlWindowSize) -> Swift.Bool
+  }
+  public struct FlowControlViolation : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "flowControlViolation")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.FlowControlViolation, rhs: NIOHTTP2.NIOHTTP2Errors.FlowControlViolation) -> Swift.Bool
+  }
+  public struct InvalidSetting : NIOHTTP2.NIOHTTP2Error {
+    public var setting: NIOHTTP2.HTTP2Setting
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "invalidSetting")
+    public init(setting: NIOHTTP2.HTTP2Setting)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.InvalidSetting, rhs: NIOHTTP2.NIOHTTP2Errors.InvalidSetting) -> Swift.Bool
+  }
+  public struct IOOnClosedConnection : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "ioOnClosedConnection")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.IOOnClosedConnection, rhs: NIOHTTP2.NIOHTTP2Errors.IOOnClosedConnection) -> Swift.Bool
+  }
+  public struct ReceivedBadSettings : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "receivedBadSettings")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ReceivedBadSettings, rhs: NIOHTTP2.NIOHTTP2Errors.ReceivedBadSettings) -> Swift.Bool
+  }
+  public struct MaxStreamsViolation : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "maxStreamsViolation")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.MaxStreamsViolation, rhs: NIOHTTP2.NIOHTTP2Errors.MaxStreamsViolation) -> Swift.Bool
+  }
+  public struct StreamIDTooSmall : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "streamIDTooSmall")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.StreamIDTooSmall, rhs: NIOHTTP2.NIOHTTP2Errors.StreamIDTooSmall) -> Swift.Bool
+  }
+  public struct MissingPreface : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "missingPreface")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.MissingPreface, rhs: NIOHTTP2.NIOHTTP2Errors.MissingPreface) -> Swift.Bool
+  }
+  public struct CreatedStreamAfterGoaway : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "createdStreamAfterGoaway")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.CreatedStreamAfterGoaway, rhs: NIOHTTP2.NIOHTTP2Errors.CreatedStreamAfterGoaway) -> Swift.Bool
+  }
+  public struct InvalidStreamIDForPeer : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidStreamIDForPeer")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.InvalidStreamIDForPeer, rhs: NIOHTTP2.NIOHTTP2Errors.InvalidStreamIDForPeer) -> Swift.Bool
+  }
+  public struct RaisedGoawayLastStreamID : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "raisedGoawayLastStreamID")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.RaisedGoawayLastStreamID, rhs: NIOHTTP2.NIOHTTP2Errors.RaisedGoawayLastStreamID) -> Swift.Bool
+  }
+  public struct InvalidWindowIncrementSize : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidWindowIncrementSize")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.InvalidWindowIncrementSize, rhs: NIOHTTP2.NIOHTTP2Errors.InvalidWindowIncrementSize) -> Swift.Bool
+  }
+  public struct PushInViolationOfSetting : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "pushInViolationOfSetting")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.PushInViolationOfSetting, rhs: NIOHTTP2.NIOHTTP2Errors.PushInViolationOfSetting) -> Swift.Bool
+  }
+  public struct Unsupported : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var info: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unsupported")
+    public init(info: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.Unsupported, b: NIOHTTP2.NIOHTTP2Errors.Unsupported) -> Swift.Bool
+  }
+  public struct UnableToSerializeFrame : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unableToSerializeFrame")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.UnableToSerializeFrame, rhs: NIOHTTP2.NIOHTTP2Errors.UnableToSerializeFrame) -> Swift.Bool
+  }
+  public struct UnableToParseFrame : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unableToParseFrame")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.UnableToParseFrame, rhs: NIOHTTP2.NIOHTTP2Errors.UnableToParseFrame) -> Swift.Bool
+  }
+  public struct MissingPseudoHeader : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "missingPseudoHeader")
+    public init(_ name: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.MissingPseudoHeader, b: NIOHTTP2.NIOHTTP2Errors.MissingPseudoHeader) -> Swift.Bool
+  }
+  public struct DuplicatePseudoHeader : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "duplicatePseudoHeader")
+    public init(_ name: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.DuplicatePseudoHeader, b: NIOHTTP2.NIOHTTP2Errors.DuplicatePseudoHeader) -> Swift.Bool
+  }
+  public struct PseudoHeaderAfterRegularHeader : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "pseudoHeaderAfterRegularHeader")
+    public init(_ name: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.PseudoHeaderAfterRegularHeader, b: NIOHTTP2.NIOHTTP2Errors.PseudoHeaderAfterRegularHeader) -> Swift.Bool
+  }
+  public struct UnknownPseudoHeader : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unknownPseudoHeader")
+    public init(_ name: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.UnknownPseudoHeader, b: NIOHTTP2.NIOHTTP2Errors.UnknownPseudoHeader) -> Swift.Bool
+  }
+  public struct UnsupportedPseudoHeader : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.UnsupportedPseudoHeader, b: NIOHTTP2.NIOHTTP2Errors.UnsupportedPseudoHeader) -> Swift.Bool
+  }
+  public struct InvalidPseudoHeaders : NIOHTTP2.NIOHTTP2Error {
+    public var headerBlock: NIOHPACK.HPACKHeaders
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "invalidPseudoHeaders")
+    public init(_ block: NIOHPACK.HPACKHeaders)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.InvalidPseudoHeaders, rhs: NIOHTTP2.NIOHTTP2Errors.InvalidPseudoHeaders) -> Swift.Bool
+  }
+  public struct MissingHostHeader : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "missingHostHeader")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.MissingHostHeader, rhs: NIOHTTP2.NIOHTTP2Errors.MissingHostHeader) -> Swift.Bool
+  }
+  public struct DuplicateHostHeader : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "duplicateHostHeader")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.DuplicateHostHeader, rhs: NIOHTTP2.NIOHTTP2Errors.DuplicateHostHeader) -> Swift.Bool
+  }
+  public struct EmptyPathHeader : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "emptyPathHeader")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.EmptyPathHeader, rhs: NIOHTTP2.NIOHTTP2Errors.EmptyPathHeader) -> Swift.Bool
+  }
+  public struct InvalidStatusValue : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var value: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidStatusValue")
+    public init(_ value: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.InvalidStatusValue, b: NIOHTTP2.NIOHTTP2Errors.InvalidStatusValue) -> Swift.Bool
+  }
+  public struct PriorityCycle : NIOHTTP2.NIOHTTP2Error {
+    public var streamID: NIOHTTP2.HTTP2StreamID
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "priorityCycle")
+    public init(streamID: NIOHTTP2.HTTP2StreamID)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.PriorityCycle, rhs: NIOHTTP2.NIOHTTP2Errors.PriorityCycle) -> Swift.Bool
+  }
+  public struct TrailersWithoutEndStream : NIOHTTP2.NIOHTTP2Error {
+    public var streamID: NIOHTTP2.HTTP2StreamID
+    public let location: Swift.String
+    @available(*, deprecated, renamed: "trailersWithoutEndStream")
+    public init(streamID: NIOHTTP2.HTTP2StreamID)
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.TrailersWithoutEndStream, rhs: NIOHTTP2.NIOHTTP2Errors.TrailersWithoutEndStream) -> Swift.Bool
+  }
+  public struct InvalidHTTP2HeaderFieldName : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var fieldName: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "invalidHTTP2HeaderFieldName")
+    public init(_ name: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.InvalidHTTP2HeaderFieldName, b: NIOHTTP2.NIOHTTP2Errors.InvalidHTTP2HeaderFieldName) -> Swift.Bool
+  }
+  public struct ForbiddenHeaderField : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible, @unchecked Swift.Sendable {
+    public var name: Swift.String {
+      get
+      set
+    }
+    public var value: Swift.String {
+      get
+      set
+    }
+    public var location: Swift.String {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "forbiddenHeaderField")
+    public init(name: Swift.String, value: Swift.String)
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.ForbiddenHeaderField, b: NIOHTTP2.NIOHTTP2Errors.ForbiddenHeaderField) -> Swift.Bool
+  }
+  public struct ContentLengthViolated : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "contentLengthViolated")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthViolated, rhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthViolated) -> Swift.Bool
+  }
+  public struct ContentLengthHeadersMismatch : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeadersMismatch, rhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeadersMismatch) -> Swift.Bool
+  }
+  public struct ContentLengthHeaderNegative : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderNegative, rhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderNegative) -> Swift.Bool
+  }
+  public struct ContentLengthHeaderMalformedValue : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderMalformedValue, rhs: NIOHTTP2.NIOHTTP2Errors.ContentLengthHeaderMalformedValue) -> Swift.Bool
+  }
+  public struct ExcessiveEmptyDataFrames : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "excessiveEmptyDataFrames")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveEmptyDataFrames, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveEmptyDataFrames) -> Swift.Bool
+  }
+  public struct ExcessiveNumberOfGlitches : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "excessiveNumberOfGlitches")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveNumberOfGlitches, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveNumberOfGlitches) -> Swift.Bool
+  }
+  public struct ExcessivelyLargeHeaderBlock : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "excessivelyLargeHeaderBlock")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessivelyLargeHeaderBlock, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessivelyLargeHeaderBlock) -> Swift.Bool
+  }
+  public struct NoStreamIDAvailable : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "noStreamIDAvailable")
+    public init()
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.NoStreamIDAvailable, rhs: NIOHTTP2.NIOHTTP2Errors.NoStreamIDAvailable) -> Swift.Bool
+  }
+  public struct StreamError : Swift.Error, @unchecked Swift.Sendable {
+    public var baseError: any Swift.Error {
+      get
+      set
+    }
+    public var streamID: NIOHTTP2.HTTP2StreamID {
+      get
+      set
+    }
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct ActivationError : NIOHTTP2.NIOHTTP2Error, Swift.CustomStringConvertible {
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: NIOHTTP2.NIOHTTP2Errors.ActivationError, b: NIOHTTP2.NIOHTTP2Errors.ActivationError) -> Swift.Bool
+  }
+  public struct MissingMultiplexer : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.MissingMultiplexer, rhs: NIOHTTP2.NIOHTTP2Errors.MissingMultiplexer) -> Swift.Bool
+  }
+  public struct ExcessiveRSTFrames : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveRSTFrames, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveRSTFrames) -> Swift.Bool
+  }
+  public struct ExcessiveContinuationFrames : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveContinuationFrames, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveContinuationFrames) -> Swift.Bool
+  }
+  public struct ExcessiveStreamErrors : NIOHTTP2.NIOHTTP2Error {
+    public var location: Swift.String {
+      get
+    }
+    public static func == (lhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveStreamErrors, rhs: NIOHTTP2.NIOHTTP2Errors.ExcessiveStreamErrors) -> Swift.Bool
+  }
+}
+public struct HTTP2ErrorCode : Swift.Sendable {
+  public var networkCode: Swift.Int {
+    get
+    set
+  }
+  public init(networkCode: Swift.Int)
+  public static let noError: NIOHTTP2.HTTP2ErrorCode
+  public static let protocolError: NIOHTTP2.HTTP2ErrorCode
+  public static let internalError: NIOHTTP2.HTTP2ErrorCode
+  public static let flowControlError: NIOHTTP2.HTTP2ErrorCode
+  public static let settingsTimeout: NIOHTTP2.HTTP2ErrorCode
+  public static let streamClosed: NIOHTTP2.HTTP2ErrorCode
+  public static let frameSizeError: NIOHTTP2.HTTP2ErrorCode
+  public static let refusedStream: NIOHTTP2.HTTP2ErrorCode
+  public static let cancel: NIOHTTP2.HTTP2ErrorCode
+  public static let compressionError: NIOHTTP2.HTTP2ErrorCode
+  public static let connectError: NIOHTTP2.HTTP2ErrorCode
+  public static let enhanceYourCalm: NIOHTTP2.HTTP2ErrorCode
+  public static let inadequateSecurity: NIOHTTP2.HTTP2ErrorCode
+  public static let http11Required: NIOHTTP2.HTTP2ErrorCode
+}
+extension NIOHTTP2.HTTP2ErrorCode : Swift.Equatable {
+  public static func == (a: NIOHTTP2.HTTP2ErrorCode, b: NIOHTTP2.HTTP2ErrorCode) -> Swift.Bool
+}
+extension NIOHTTP2.HTTP2ErrorCode : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOHTTP2.HTTP2ErrorCode : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension Swift.UInt32 {
+  public init(http2ErrorCode code: NIOHTTP2.HTTP2ErrorCode)
+}
+extension Swift.Int {
+  public init(http2ErrorCode code: NIOHTTP2.HTTP2ErrorCode)
+}
+extension NIOCore.ByteBuffer {
+  public mutating func write(http2ErrorCode code: NIOHTTP2.HTTP2ErrorCode) -> Swift.Int
+}
+public struct HTTP2Frame : Swift.Sendable {
+  public var streamID: NIOHTTP2.HTTP2StreamID
+  public var payload: NIOHTTP2.HTTP2Frame.FramePayload
+  public struct StreamPriorityData : Swift.Equatable, Swift.Hashable, Swift.Sendable {
+    public var dependency: NIOHTTP2.HTTP2StreamID
+    public var exclusive: Swift.Bool
+    public var weight: Swift.UInt8
+    public init(exclusive: Swift.Bool, dependency: NIOHTTP2.HTTP2StreamID, weight: Swift.UInt8)
+    public static func == (a: NIOHTTP2.HTTP2Frame.StreamPriorityData, b: NIOHTTP2.HTTP2Frame.StreamPriorityData) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum FramePayload {
+    case data(NIOHTTP2.HTTP2Frame.FramePayload.Data)
+    case headers(NIOHTTP2.HTTP2Frame.FramePayload.Headers)
+    case priority(NIOHTTP2.HTTP2Frame.StreamPriorityData)
+    case rstStream(NIOHTTP2.HTTP2ErrorCode)
+    case settings(NIOHTTP2.HTTP2Frame.FramePayload.Settings)
+    indirect case pushPromise(NIOHTTP2.HTTP2Frame.FramePayload.PushPromise)
+    case ping(NIOHTTP2.HTTP2PingData, ack: Swift.Bool)
+    indirect case goAway(lastStreamID: NIOHTTP2.HTTP2StreamID, errorCode: NIOHTTP2.HTTP2ErrorCode, opaqueData: NIOCore.ByteBuffer?)
+    case windowUpdate(windowSizeIncrement: Swift.Int)
+    indirect case alternativeService(origin: Swift.String?, field: NIOCore.ByteBuffer?)
+    case origin([Swift.String])
+    public struct Data {
+      public var data: NIOCore.IOData {
+        get
+        set
+      }
+      public var endStream: Swift.Bool {
+        get
+        set
+      }
+      #if compiler(>=5.3) && $NonescapableTypes
+      public var paddingBytes: Swift.Int? {
+        get
+        set
+      }
+      #endif
+      #if compiler(>=5.3) && $NonescapableTypes
+      public init(data: NIOCore.IOData, endStream: Swift.Bool = false, paddingBytes: Swift.Int? = nil)
+      #endif
+    }
+    public struct Headers : Swift.Sendable {
+      public var headers: NIOHPACK.HPACKHeaders
+      #if compiler(>=5.3) && $NonescapableTypes
+      public var priorityData: NIOHTTP2.HTTP2Frame.StreamPriorityData? {
+        get
+        set
+      }
+      #endif
+      public var endStream: Swift.Bool {
+        get
+        set
+      }
+      #if compiler(>=5.3) && $NonescapableTypes
+      public var paddingBytes: Swift.Int? {
+        get
+        set
+      }
+      #endif
+      #if compiler(>=5.3) && $NonescapableTypes
+      public init(headers: NIOHPACK.HPACKHeaders, priorityData: NIOHTTP2.HTTP2Frame.StreamPriorityData? = nil, endStream: Swift.Bool = false, paddingBytes: Swift.Int? = nil)
+      #endif
+    }
+    public enum Settings : Swift.Sendable {
+      case settings(NIOHTTP2.HTTP2Settings)
+      case ack
+    }
+    public struct PushPromise : Swift.Sendable {
+      public var pushedStreamID: NIOHTTP2.HTTP2StreamID
+      public var headers: NIOHPACK.HPACKHeaders
+      #if compiler(>=5.3) && $NonescapableTypes
+      public var paddingBytes: Swift.Int? {
+        get
+        set
+      }
+      #endif
+      #if compiler(>=5.3) && $NonescapableTypes
+      public init(pushedStreamID: NIOHTTP2.HTTP2StreamID, headers: NIOHPACK.HPACKHeaders, paddingBytes: Swift.Int? = nil)
+      #endif
+    }
+  }
+  public init(streamID: NIOHTTP2.HTTP2StreamID, payload: NIOHTTP2.HTTP2Frame.FramePayload)
+}
+extension NIOHTTP2.HTTP2Frame.FramePayload : @unchecked Swift.Sendable {
+}
+extension NIOHTTP2.HTTP2Frame.FramePayload.Data : @unchecked Swift.Sendable {
+}
+public struct HTTP2PingData : Swift.Sendable {
+  public var bytes: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8)
+  public var integer: Swift.UInt64 {
+    get
+    set
+  }
+  public init()
+  public init(withInteger integer: Swift.UInt64)
+  public init(withTuple tuple: (Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8, Swift.UInt8))
+}
+extension NIOHTTP2.HTTP2PingData : Swift.RandomAccessCollection, Swift.MutableCollection {
+  public typealias Index = Swift.Int
+  public typealias Element = Swift.UInt8
+  public var startIndex: NIOHTTP2.HTTP2PingData.Index {
+    get
+  }
+  public var endIndex: NIOHTTP2.HTTP2PingData.Index {
+    get
+  }
+  public subscript(index: NIOHTTP2.HTTP2PingData.Index) -> NIOHTTP2.HTTP2PingData.Element {
+    get
+    set
+  }
+  public typealias Indices = Swift.Range<NIOHTTP2.HTTP2PingData.Index>
+  public typealias Iterator = Swift.IndexingIterator<NIOHTTP2.HTTP2PingData>
+  public typealias SubSequence = Swift.Slice<NIOHTTP2.HTTP2PingData>
+}
+extension NIOHTTP2.HTTP2PingData : Swift.Equatable {
+  public static func == (lhs: NIOHTTP2.HTTP2PingData, rhs: NIOHTTP2.HTTP2PingData) -> Swift.Bool
+}
+extension NIOHTTP2.HTTP2PingData : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public let NIOHTTP2SupportedALPNProtocols: [Swift.String]
+public typealias NIOChannelInitializerWithStreamID = @Sendable (any NIOCore.Channel, NIOHTTP2.HTTP2StreamID) -> NIOCore.EventLoopFuture<Swift.Void>
+public typealias NIOChannelInitializer = @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>
+public typealias NIOChannelInitializerWithOutput<Output> = @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>
+extension NIOCore.ChannelPipeline {
+  @available(*, deprecated, renamed: "Channel.configureHTTP2SecureUpgrade(h2ChannelConfigurator:http1ChannelConfigurator:)")
+  @preconcurrency final public func configureHTTP2SecureUpgrade(h2PipelineConfigurator: @escaping @Sendable (NIOCore.ChannelPipeline) -> NIOCore.EventLoopFuture<Swift.Void>, http1PipelineConfigurator: @escaping @Sendable (NIOCore.ChannelPipeline) -> NIOCore.EventLoopFuture<Swift.Void>) -> NIOCore.EventLoopFuture<Swift.Void>
+}
+extension NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "configureHTTP2Pipeline(mode:initialLocalSettings:position:targetWindowSize:inboundStreamInitializer:)")
+  public func configureHTTP2Pipeline(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, initialLocalSettings: [NIOHTTP2.HTTP2Setting] = nioDefaultSettings, position: NIOCore.ChannelPipeline.Position = .last, inboundStreamStateInitializer: NIOHTTP2.NIOChannelInitializerWithStreamID? = nil) -> NIOCore.EventLoopFuture<NIOHTTP2.HTTP2StreamMultiplexer>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "configureHTTP2Pipeline(mode:initialLocalSettings:position:targetWindowSize:inboundStreamInitializer:)")
+  public func configureHTTP2Pipeline(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, initialLocalSettings: [NIOHTTP2.HTTP2Setting] = nioDefaultSettings, position: NIOCore.ChannelPipeline.Position = .last, targetWindowSize: Swift.Int, inboundStreamStateInitializer: NIOHTTP2.NIOChannelInitializerWithStreamID? = nil) -> NIOCore.EventLoopFuture<NIOHTTP2.HTTP2StreamMultiplexer>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTP2Pipeline(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, initialLocalSettings: [NIOHTTP2.HTTP2Setting] = nioDefaultSettings, position: NIOCore.ChannelPipeline.Position = .last, targetWindowSize: Swift.Int = 65535, inboundStreamInitializer: NIOHTTP2.NIOChannelInitializer?) -> NIOCore.EventLoopFuture<NIOHTTP2.HTTP2StreamMultiplexer>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTP2Pipeline(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration, streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)? = nil, position: NIOCore.ChannelPipeline.Position = .last, inboundStreamInitializer: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<NIOHTTP2.NIOHTTP2Handler.StreamMultiplexer>
+  #endif
+  public func configureHTTP2SecureUpgrade(h2ChannelConfigurator: @escaping NIOHTTP2.NIOChannelInitializer, http1ChannelConfigurator: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureCommonHTTPServerPipeline(h2ConnectionChannelConfigurator: NIOHTTP2.NIOChannelInitializer? = nil, _ configurator: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureCommonHTTPServerPipeline(h2ConnectionChannelConfigurator: NIOHTTP2.NIOChannelInitializer? = nil, targetWindowSize: Swift.Int, _ configurator: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureCommonHTTPServerPipeline(connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration, streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)? = nil, h2ConnectionChannelConfigurator: NIOHTTP2.NIOChannelInitializer? = nil, configurator: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<Swift.Void>
+  #endif
+}
+extension NIOCore.ChannelPipeline.SynchronousOperations {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTP2Pipeline(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, connectionConfiguration: NIOHTTP2.NIOHTTP2Handler.ConnectionConfiguration, streamConfiguration: NIOHTTP2.NIOHTTP2Handler.StreamConfiguration, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)? = nil, position: NIOCore.ChannelPipeline.Position = .last, inboundStreamInitializer: @escaping NIOHTTP2.NIOChannelInitializer) throws -> NIOHTTP2.NIOHTTP2Handler.StreamMultiplexer
+  #endif
+}
+extension NIOCore.Channel {
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTP2Pipeline<Output>(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = .init(), streamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) -> NIOCore.EventLoopFuture<NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<Output>> where Output : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTP2Pipeline<Output>(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)?, configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = NIOHTTP2Handler.Configuration(), streamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) -> NIOCore.EventLoopFuture<NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<Output>> where Output : Swift.Sendable
+  #endif
+  public func configureHTTP2AsyncSecureUpgrade<HTTP1Output, HTTP2Output>(http1ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP1Output>, http2ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP2Output>) -> NIOCore.EventLoopFuture<NIOCore.EventLoopFuture<NIOHTTP2.NIONegotiatedHTTPVersion<HTTP1Output, HTTP2Output>>> where HTTP1Output : Swift.Sendable, HTTP2Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTPServerPipeline<HTTP1ConnectionOutput, HTTP2ConnectionOutput, HTTP2StreamOutput>(http2Configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = .init(), http1ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP1ConnectionOutput>, http2ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP2ConnectionOutput>, http2StreamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP2StreamOutput>) -> NIOCore.EventLoopFuture<NIOCore.EventLoopFuture<NIOHTTP2.NIONegotiatedHTTPVersion<HTTP1ConnectionOutput, (HTTP2ConnectionOutput, NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<HTTP2StreamOutput>)>>> where HTTP1ConnectionOutput : Swift.Sendable, HTTP2ConnectionOutput : Swift.Sendable, HTTP2StreamOutput : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTPServerPipeline<HTTP1ConnectionOutput, HTTP2ConnectionOutput, HTTP2StreamOutput>(streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)?, http2Configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = .init(), http1ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP1ConnectionOutput>, http2ConnectionInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP2ConnectionOutput>, http2StreamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<HTTP2StreamOutput>) -> NIOCore.EventLoopFuture<NIOCore.EventLoopFuture<NIOHTTP2.NIONegotiatedHTTPVersion<HTTP1ConnectionOutput, (HTTP2ConnectionOutput, NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<HTTP2StreamOutput>)>>> where HTTP1ConnectionOutput : Swift.Sendable, HTTP2ConnectionOutput : Swift.Sendable, HTTP2StreamOutput : Swift.Sendable
+  #endif
+}
+extension NIOCore.ChannelPipeline.SynchronousOperations {
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTP2Pipeline<Output>(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = .init(), streamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) throws -> NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<Output> where Output : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTP2Pipeline<Output>(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)?, configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = NIOHTTP2Handler.Configuration(), streamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) throws -> NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<Output> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  public func configureAsyncHTTP2Pipeline<Output>(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, streamDelegate: (any NIOHTTP2.NIOHTTP2StreamDelegate)?, frameDelegate: (any NIOHTTP2.NIOHTTP2FrameDelegate)?, configuration: NIOHTTP2.NIOHTTP2Handler.Configuration = NIOHTTP2Handler.Configuration(), streamInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithOutput<Output>) throws -> NIOHTTP2.NIOHTTP2Handler.AsyncStreamMultiplexer<Output> where Output : Swift.Sendable
+  #endif
+}
+public enum NIONegotiatedHTTPVersion<HTTP1Output, HTTP2Output> : Swift.Sendable where HTTP1Output : Swift.Sendable, HTTP2Output : Swift.Sendable {
+  case http1_1(HTTP1Output)
+  case http2(HTTP2Output)
+}
+public typealias HTTP2Settings = [NIOHTTP2.HTTP2Setting]
+public struct HTTP2SettingsParameter : Swift.Sendable {
+  public init(extensionSetting: Swift.Int)
+  public static let headerTableSize: NIOHTTP2.HTTP2SettingsParameter
+  public static let enablePush: NIOHTTP2.HTTP2SettingsParameter
+  public static let maxConcurrentStreams: NIOHTTP2.HTTP2SettingsParameter
+  public static let initialWindowSize: NIOHTTP2.HTTP2SettingsParameter
+  public static let maxFrameSize: NIOHTTP2.HTTP2SettingsParameter
+  public static let maxHeaderListSize: NIOHTTP2.HTTP2SettingsParameter
+  public static let enableConnectProtocol: NIOHTTP2.HTTP2SettingsParameter
+}
+extension NIOHTTP2.HTTP2SettingsParameter : Swift.Equatable {
+  public static func == (a: NIOHTTP2.HTTP2SettingsParameter, b: NIOHTTP2.HTTP2SettingsParameter) -> Swift.Bool
+}
+extension NIOHTTP2.HTTP2SettingsParameter : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct HTTP2Setting : Swift.Sendable {
+  public var parameter: NIOHTTP2.HTTP2SettingsParameter
+  public var value: Swift.Int {
+    get
+    set
+  }
+  public init(parameter: NIOHTTP2.HTTP2SettingsParameter, value: Swift.Int)
+}
+extension NIOHTTP2.HTTP2Setting : Swift.Equatable {
+  public static func == (lhs: NIOHTTP2.HTTP2Setting, rhs: NIOHTTP2.HTTP2Setting) -> Swift.Bool
+}
+extension NIOHTTP2.HTTP2Setting : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct HTTP2StreamChannelOptions : Swift.Sendable {
+  public static let streamID: NIOHTTP2.HTTP2StreamChannelOptions.Types.StreamIDOption
+}
+extension NIOHTTP2.HTTP2StreamChannelOptions {
+  public enum Types : Swift.Sendable {
+  }
+}
+@available(*, deprecated, renamed: "HTTP2StreamChannelOptions.Types.StreamIDOption")
+public typealias StreamIDOption = NIOHTTP2.HTTP2StreamChannelOptions.Types.StreamIDOption
+extension NIOHTTP2.HTTP2StreamChannelOptions.Types {
+  public struct StreamIDOption : NIOCore.ChannelOption {
+    public typealias Value = NIOHTTP2.HTTP2StreamID
+    public init()
+    public static func == (a: NIOHTTP2.HTTP2StreamChannelOptions.Types.StreamIDOption, b: NIOHTTP2.HTTP2StreamChannelOptions.Types.StreamIDOption) -> Swift.Bool
+  }
+}
+public protocol NIOHTTP2StreamDelegate : Swift.Sendable {
+  func streamCreated(_ id: NIOHTTP2.HTTP2StreamID, channel: any NIOCore.Channel)
+  func streamClosed(_ id: NIOHTTP2.HTTP2StreamID, channel: any NIOCore.Channel)
+}
+public struct HTTP2StreamID : Swift.Sendable {
+  public static let rootStream: NIOHTTP2.HTTP2StreamID
+  public static let maxID: NIOHTTP2.HTTP2StreamID
+  public var isClientInitiated: Swift.Bool {
+    get
+  }
+  public var isServerInitiated: Swift.Bool {
+    get
+  }
+  public init(_ integerID: Swift.Int)
+  public init(_ integerID: Swift.Int32)
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.Equatable {
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.Comparable {
+  public static func < (lhs: NIOHTTP2.HTTP2StreamID, rhs: NIOHTTP2.HTTP2StreamID) -> Swift.Bool
+  public static func > (lhs: NIOHTTP2.HTTP2StreamID, rhs: NIOHTTP2.HTTP2StreamID) -> Swift.Bool
+  public static func <= (lhs: NIOHTTP2.HTTP2StreamID, rhs: NIOHTTP2.HTTP2StreamID) -> Swift.Bool
+  public static func >= (lhs: NIOHTTP2.HTTP2StreamID, rhs: NIOHTTP2.HTTP2StreamID) -> Swift.Bool
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.ExpressibleByIntegerLiteral {
+  public typealias IntegerLiteralType = Swift.Int32
+  public init(integerLiteral value: NIOHTTP2.HTTP2StreamID.IntegerLiteralType)
+}
+extension NIOHTTP2.HTTP2StreamID : Swift.Strideable {
+  public typealias Stride = Swift.Int
+  public func advanced(by n: NIOHTTP2.HTTP2StreamID.Stride) -> NIOHTTP2.HTTP2StreamID
+  public func distance(to other: NIOHTTP2.HTTP2StreamID) -> NIOHTTP2.HTTP2StreamID.Stride
+}
+extension Swift.Int {
+  public init(_ http2StreamID: NIOHTTP2.HTTP2StreamID)
+}
+extension Swift.Int32 {
+  public init(_ http2StreamID: NIOHTTP2.HTTP2StreamID)
+}
+@_hasMissingDesignatedInitializers final public class HTTP2StreamMultiplexer : NIOCore.ChannelInboundHandler, NIOCore.ChannelOutboundHandler {
+  public typealias InboundIn = NIOHTTP2.HTTP2Frame
+  public typealias InboundOut = NIOHTTP2.HTTP2Frame
+  public typealias OutboundIn = NIOHTTP2.HTTP2Frame
+  public typealias OutboundOut = NIOHTTP2.HTTP2Frame
+  final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: NIOCore.ChannelHandlerContext)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  final public func channelReadComplete(context: NIOCore.ChannelHandlerContext)
+  final public func flush(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func channelActive(context: NIOCore.ChannelHandlerContext)
+  final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  final public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
+  final public func channelWritabilityChanged(context: NIOCore.ChannelHandlerContext)
+  final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "init(mode:channel:targetWindowSize:outboundBufferSizeHighWatermark:outboundBufferSizeLowWatermark:inboundStreamInitializer:)")
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, channel: any NIOCore.Channel, targetWindowSize: Swift.Int = 65535, inboundStreamStateInitializer: NIOHTTP2.NIOChannelInitializerWithStreamID? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, channel: any NIOCore.Channel, targetWindowSize: Swift.Int = 65535, outboundBufferSizeHighWatermark: Swift.Int = 8196, outboundBufferSizeLowWatermark: Swift.Int = 4092, inboundStreamInitializer: NIOHTTP2.NIOChannelInitializer?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "init(mode:channel:targetWindowSize:outboundBufferSizeHighWatermark:outboundBufferSizeLowWatermark:inboundStreamInitializer:)")
+  convenience public init(mode: NIOHTTP2.NIOHTTP2Handler.ParserMode, channel: any NIOCore.Channel, targetWindowSize: Swift.Int = 65535, outboundBufferSizeHighWatermark: Swift.Int, outboundBufferSizeLowWatermark: Swift.Int, inboundStreamStateInitializer: NIOHTTP2.NIOChannelInitializerWithStreamID? = nil)
+  #endif
+  @objc deinit
+}
+extension NIOHTTP2.HTTP2StreamMultiplexer {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func createStreamChannel(promise: NIOCore.EventLoopPromise<any NIOCore.Channel>?, _ streamStateInitializer: @escaping NIOHTTP2.NIOChannelInitializer)
+  #endif
+  final public func createStreamChannel(_ initializer: @escaping NIOHTTP2.NIOChannelInitializer) -> NIOCore.EventLoopFuture<any NIOCore.Channel>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "The signature of 'streamStateInitializer' has changed to '(Channel) -> EventLoopFuture<Void>'")
+  final public func createStreamChannel(promise: NIOCore.EventLoopPromise<any NIOCore.Channel>?, _ streamStateInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithStreamID)
+  #endif
+  final public var sendableView: NIOHTTP2.HTTP2StreamMultiplexer.SendableView {
+    get
+  }
+}
+extension NIOHTTP2.HTTP2StreamMultiplexer {
+  public struct SendableView : @unchecked Swift.Sendable {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public func createStreamChannel(promise: NIOCore.EventLoopPromise<any NIOCore.Channel>?, _ streamStateInitializer: @escaping NIOHTTP2.NIOChannelInitializer)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @available(*, deprecated, message: "The signature of 'streamStateInitializer' has changed to '(Channel) -> EventLoopFuture<Void>'")
+    public func createStreamChannel(promise: NIOCore.EventLoopPromise<any NIOCore.Channel>?, _ streamStateInitializer: @escaping NIOHTTP2.NIOChannelInitializerWithStreamID)
+    #endif
+  }
+}
+@available(*, unavailable)
+extension NIOHTTP2.HTTP2StreamMultiplexer : Swift.Sendable {
+}
+@available(*, deprecated, renamed: "HTTP2FramePayloadToHTTP1ClientCodec")
+final public class HTTP2ToHTTP1ClientCodec : NIOCore.ChannelInboundHandler, NIOCore.ChannelOutboundHandler {
+  public typealias InboundIn = NIOHTTP2.HTTP2Frame
+  public typealias InboundOut = NIOHTTP1.HTTPClientResponsePart
+  public typealias OutboundIn = NIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = NIOHTTP2.HTTP2Frame
+  public typealias HTTPProtocol = NIOHTTP2.HTTP2FramePayloadToHTTP1ClientCodec.HTTPProtocol
+  public init(streamID: NIOHTTP2.HTTP2StreamID, httpProtocol: NIOHTTP2.HTTP2ToHTTP1ClientCodec.HTTPProtocol, normalizeHTTPHeaders: Swift.Bool)
+  convenience public init(streamID: NIOHTTP2.HTTP2StreamID, httpProtocol: NIOHTTP2.HTTP2ToHTTP1ClientCodec.HTTPProtocol)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTP2.HTTP2ToHTTP1ClientCodec : Swift.Sendable {
+}
+final public class HTTP2FramePayloadToHTTP1ClientCodec : NIOCore.ChannelInboundHandler, NIOCore.ChannelOutboundHandler {
+  public typealias InboundIn = NIOHTTP2.HTTP2Frame.FramePayload
+  public typealias InboundOut = NIOHTTP1.HTTPClientResponsePart
+  public typealias OutboundIn = NIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = NIOHTTP2.HTTP2Frame.FramePayload
+  public enum HTTPProtocol : Swift.Sendable, Swift.Hashable {
+    case https
+    case http
+    public static func == (a: NIOHTTP2.HTTP2FramePayloadToHTTP1ClientCodec.HTTPProtocol, b: NIOHTTP2.HTTP2FramePayloadToHTTP1ClientCodec.HTTPProtocol) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(httpProtocol: NIOHTTP2.HTTP2FramePayloadToHTTP1ClientCodec.HTTPProtocol, normalizeHTTPHeaders: Swift.Bool = true)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTP2.HTTP2FramePayloadToHTTP1ClientCodec : Swift.Sendable {
+}
+@available(*, deprecated, renamed: "HTTP2FramePayloadToHTTP1ServerCodec")
+final public class HTTP2ToHTTP1ServerCodec : NIOCore.ChannelInboundHandler, NIOCore.ChannelOutboundHandler {
+  public typealias InboundIn = NIOHTTP2.HTTP2Frame
+  public typealias InboundOut = NIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = NIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = NIOHTTP2.HTTP2Frame
+  public init(streamID: NIOHTTP2.HTTP2StreamID, normalizeHTTPHeaders: Swift.Bool)
+  convenience public init(streamID: NIOHTTP2.HTTP2StreamID)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTP2.HTTP2ToHTTP1ServerCodec : Swift.Sendable {
+}
+final public class HTTP2FramePayloadToHTTP1ServerCodec : NIOCore.ChannelInboundHandler, NIOCore.ChannelOutboundHandler {
+  public typealias InboundIn = NIOHTTP2.HTTP2Frame.FramePayload
+  public typealias InboundOut = NIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = NIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = NIOHTTP2.HTTP2Frame.FramePayload
+  public init(normalizeHTTPHeaders: Swift.Bool = true)
+  final public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension NIOHTTP2.HTTP2FramePayloadToHTTP1ServerCodec : Swift.Sendable {
+}
+public struct StreamClosedEvent : Swift.Sendable {
+  public let streamID: NIOHTTP2.HTTP2StreamID
+  public let reason: NIOHTTP2.HTTP2ErrorCode?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(streamID: NIOHTTP2.HTTP2StreamID, reason: NIOHTTP2.HTTP2ErrorCode?)
+  #endif
+}
+extension NIOHTTP2.StreamClosedEvent : Swift.Hashable {
+  public static func == (a: NIOHTTP2.StreamClosedEvent, b: NIOHTTP2.StreamClosedEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOHTTP2WindowUpdatedEvent : Swift.Sendable {
+  public let streamID: NIOHTTP2.HTTP2StreamID
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var inboundWindowSize: Swift.Int? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var outboundWindowSize: Swift.Int? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(streamID: NIOHTTP2.HTTP2StreamID, inboundWindowSize: Swift.Int?, outboundWindowSize: Swift.Int?)
+  #endif
+}
+extension NIOHTTP2.NIOHTTP2WindowUpdatedEvent : Swift.Hashable {
+  public static func == (a: NIOHTTP2.NIOHTTP2WindowUpdatedEvent, b: NIOHTTP2.NIOHTTP2WindowUpdatedEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOHTTP2StreamCreatedEvent : Swift.Sendable {
+  public let streamID: NIOHTTP2.HTTP2StreamID
+  public let localInitialWindowSize: Swift.UInt32?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "remoteInitialWindowSize")
+  public var remoteInitialWidowSize: Swift.UInt32? {
+    get
+  }
+  #endif
+  public let remoteInitialWindowSize: Swift.UInt32?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(streamID: NIOHTTP2.HTTP2StreamID, localInitialWindowSize: Swift.UInt32?, remoteInitialWindowSize: Swift.UInt32?)
+  #endif
+}
+extension NIOHTTP2.NIOHTTP2StreamCreatedEvent : Swift.Hashable {
+  public static func == (a: NIOHTTP2.NIOHTTP2StreamCreatedEvent, b: NIOHTTP2.NIOHTTP2StreamCreatedEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOHTTP2BulkStreamWindowChangeEvent : Swift.Sendable {
+  public let delta: Swift.Int
+  public init(delta: Swift.Int)
+}
+extension NIOHTTP2.NIOHTTP2BulkStreamWindowChangeEvent : Swift.Hashable {
+  public static func == (a: NIOHTTP2.NIOHTTP2BulkStreamWindowChangeEvent, b: NIOHTTP2.NIOHTTP2BulkStreamWindowChangeEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol NIOHTTP2FrameDelegate {
+  func wroteFrame(_ frame: NIOHTTP2.HTTP2Frame)
+}
+public struct NIOHTTP2StreamState : Swift.Hashable, Swift.CustomStringConvertible, Swift.Sendable {
+  public var description: Swift.String {
+    get
+  }
+  public static let idle: NIOHTTP2.NIOHTTP2StreamState
+  public static let reservedRemote: NIOHTTP2.NIOHTTP2StreamState
+  public static let reservedLocal: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfOpenLocalPeerIdle: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfOpenRemoteLocalIdle: NIOHTTP2.NIOHTTP2StreamState
+  public static let fullyOpen: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfClosedLocalPeerIdle: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfClosedLocalPeerActive: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfClosedRemoteLocalIdle: NIOHTTP2.NIOHTTP2StreamState
+  public static let halfClosedRemoteLocalActive: NIOHTTP2.NIOHTTP2StreamState
+  public static let closed: NIOHTTP2.NIOHTTP2StreamState
+  public static func == (a: NIOHTTP2.NIOHTTP2StreamState, b: NIOHTTP2.NIOHTTP2StreamState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOHTTP2.NIOHTTP2Handler.ParserMode : Swift.Equatable {}
+extension NIOHTTP2.NIOHTTP2Handler.ParserMode : Swift.Hashable {}
+extension NIOHTTP2.NIOHTTP2Handler.ValidationState : Swift.Equatable {}
+extension NIOHTTP2.NIOHTTP2Handler.ValidationState : Swift.Hashable {}

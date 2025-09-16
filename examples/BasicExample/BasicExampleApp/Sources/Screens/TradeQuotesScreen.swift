@@ -5,23 +5,22 @@ struct TradeQuotesScreen: View {
     private enum _State {
         case initial
         case loading
-        case normal(Models.TradeQuotesResponse)
+        case normal(Candle.Models.TradeQuotesResponse)
     }
 
     private enum TradeQuoteAssetKind: String, Codable, Hashable, Sendable, CaseIterable {
         case fiat, stock, crypto, transport
     }
 
-    @Environment(CandleClient.self) private var client
     @Environment(\.dismiss) private var dismiss
 
     @Binding var error: (title: String, message: String)?
-    @Binding var tradeQuoteToExecute: Models.TradeQuote?
+    @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
     @State private var state: _State = .initial
-    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
+    @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
-    let tradeQuotesRequest: Models.TradeQuotesRequest
+    let tradeQuotesRequest: Candle.Models.TradeQuotesRequest
 
     var body: some View {
         List {
@@ -89,7 +88,7 @@ struct TradeQuotesScreen: View {
                                     title: tradeQuote.formattedTitle,
                                     subtitle: tradeQuote.formattedSubtitle,
                                     value: tradeQuote.formattedValue,
-                                    logoURL: tradeQuote.logoURL!
+                                    logoURL: tradeQuote.logoURL
                                 )  // TODO
                             }
                             .swipeActions {
@@ -115,12 +114,18 @@ struct TradeQuotesScreen: View {
         if showLoading { state = .loading }
 
         do {
-            let tradeQuotesResponse = try await client.getTradeQuotes(request: tradeQuotesRequest)
+            let tradeQuotesResponse = try await Candle.Client.shared.getTradeQuotes(
+                request: tradeQuotesRequest
+            )
             state = .normal(tradeQuotesResponse)
         } catch {
             if showLoading { state = .initial }
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -147,7 +152,6 @@ struct TradeQuotesScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -164,5 +168,4 @@ struct TradeQuotesScreen: View {
             lost: .FiatAssetQuoteRequest(.init(assetKind: .fiat))
         )
     )
-    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

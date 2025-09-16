@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name InternalCollectionsUtilities
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Swift
 import _Concurrency
 import _StringProcessing
@@ -16,21 +16,31 @@ extension Swift.FixedWidthInteger {
   @inline(__always) public func _rank(ofBit bit: Swift.UInt) -> Swift.Int
 }
 extension Swift.UInt {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+  #endif
 }
 extension Swift.UInt32 {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+  #endif
 }
 extension Swift.UInt16 {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_effects(releasenone) public func _bit(ranked n: Swift.Int) -> Swift.UInt?
+  #endif
 }
 extension Swift.UInt {
+  #if compiler(>=5.3) && $NonescapableTypes
   @inline(__always) public var _firstSetBit: Swift.UInt? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inline(__always) public var _lastSetBit: Swift.UInt? {
     get
   }
+  #endif
 }
 extension Swift.UInt {
   public var _reversed: Swift.UInt {
@@ -95,12 +105,16 @@ extension InternalCollectionsUtilities._UnsafeBitSet._Word {
     get
   }
   @inline(__always) public func contains(_ bit: Swift.UInt) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   @inline(__always) public var firstMember: Swift.UInt? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @inline(__always) public var lastMember: Swift.UInt? {
     get
   }
+  #endif
   @discardableResult
   @inline(__always) public mutating func insert(_ bit: Swift.UInt) -> Swift.Bool
   @discardableResult
@@ -119,7 +133,9 @@ extension InternalCollectionsUtilities._UnsafeBitSet._Word : Swift.Sequence, Swi
   @inline(__always) public var underestimatedCount: Swift.Int {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func next() -> Swift.UInt?
+  #endif
   public typealias Element = Swift.UInt
   public typealias Iterator = InternalCollectionsUtilities._UnsafeBitSet._Word
 }
@@ -191,7 +207,9 @@ extension InternalCollectionsUtilities._UnsafeBitSet : Swift.Sequence {
   }
   @inline(__always) public func makeIterator() -> InternalCollectionsUtilities._UnsafeBitSet.Iterator
   public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
     @_effects(releasenone) public mutating func next() -> Swift.UInt?
+    #endif
     public typealias Element = Swift.UInt
   }
 }
@@ -215,7 +233,9 @@ extension InternalCollectionsUtilities._UnsafeBitSet : Swift.BidirectionalCollec
   @_effects(releasenone) public func index(before index: InternalCollectionsUtilities._UnsafeBitSet.Index) -> InternalCollectionsUtilities._UnsafeBitSet.Index
   @_effects(releasenone) public func distance(from start: InternalCollectionsUtilities._UnsafeBitSet.Index, to end: InternalCollectionsUtilities._UnsafeBitSet.Index) -> Swift.Int
   @_effects(releasenone) public func index(_ i: InternalCollectionsUtilities._UnsafeBitSet.Index, offsetBy distance: Swift.Int) -> InternalCollectionsUtilities._UnsafeBitSet.Index
+  #if compiler(>=5.3) && $NonescapableTypes
   @_effects(releasenone) public func index(_ i: InternalCollectionsUtilities._UnsafeBitSet.Index, offsetBy distance: Swift.Int, limitedBy limit: InternalCollectionsUtilities._UnsafeBitSet.Index) -> InternalCollectionsUtilities._UnsafeBitSet.Index?
+  #endif
   public typealias Indices = Swift.DefaultIndices<InternalCollectionsUtilities._UnsafeBitSet>
   public typealias SubSequence = Swift.Slice<InternalCollectionsUtilities._UnsafeBitSet>
 }
@@ -246,6 +266,7 @@ extension Swift.RandomAccessCollection {
     get
   }
 }
+#if compiler(>=5.3) && $NonescapableTypes
 @_transparent public func _specialize<T, U>(_ x: T, for: U.Type) -> U? {
    
   guard T.self == U.self else {
@@ -253,6 +274,7 @@ extension Swift.RandomAccessCollection {
   }
   return _identityCast(x, to: U.self)
 }
+#endif
 extension Swift.UnsafeBufferPointer {
   @inline(__always) public func _ptr(at index: Swift.Int) -> Swift.UnsafePointer<Element>
 }

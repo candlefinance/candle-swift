@@ -1,0 +1,442 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Tracing -package-name swift_distributed_tracing
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+@_exported import Instrumentation
+@_exported import ServiceContextModule
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Instrumentation.InstrumentationSystem {
+  public static var tracer: any Tracing.Tracer {
+    get
+  }
+  @available(*, deprecated, message: "prefer tracer")
+  public static var legacyTracer: any Tracing.LegacyTracer {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public struct NoOpTracer : Tracing.LegacyTracer {
+  public typealias Span = Tracing.NoOpTracer.NoOpSpan
+  public init()
+  public func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext, ofKind kind: Tracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any Tracing.Span where Instant : Tracing.TracerInstant
+  public func forceFlush()
+  public func inject<Carrier, Inject>(_ context: ServiceContextModule.ServiceContext, into carrier: inout Carrier, using injector: Inject) where Carrier == Inject.Carrier, Inject : Instrumentation.Injector
+  public func extract<Carrier, Extract>(_ carrier: Carrier, into context: inout ServiceContextModule.ServiceContext, using extractor: Extract) where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor
+  public struct NoOpSpan : Tracing.Span {
+    public let context: ServiceContextModule.ServiceContext
+    public var isRecording: Swift.Bool {
+      get
+    }
+    public var operationName: Swift.String {
+      get
+      nonmutating set
+    }
+    public init(context: ServiceContextModule.ServiceContext)
+    public func setStatus(_ status: Tracing.SpanStatus)
+    public func addLink(_ link: Tracing.SpanLink)
+    public func addEvent(_ event: Tracing.SpanEvent)
+    public func recordError<Instant>(_ error: any Swift.Error, attributes: Tracing.SpanAttributes, at instant: @autoclosure () -> Instant) where Instant : Tracing.TracerInstant
+    public var attributes: Tracing.SpanAttributes {
+      get
+      nonmutating set
+    }
+    public func end<Instant>(at instant: @autoclosure () -> Instant) where Instant : Tracing.TracerInstant
+  }
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tracing.NoOpTracer : Tracing.Tracer {
+  public func startSpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext, ofKind kind: Tracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> Tracing.NoOpTracer.NoOpSpan where Instant : Tracing.TracerInstant
+}
+public protocol Span : Swift.Sendable {
+  var context: ServiceContextModule.ServiceContext { get }
+  var operationName: Swift.String { get nonmutating set }
+  func setStatus(_ status: Tracing.SpanStatus)
+  func addEvent(_ event: Tracing.SpanEvent)
+  func recordError<Instant>(_ error: any Swift.Error, attributes: Tracing.SpanAttributes, at instant: @autoclosure () -> Instant) where Instant : Tracing.TracerInstant
+  var attributes: Tracing.SpanAttributes { get nonmutating set }
+  var isRecording: Swift.Bool { get }
+  func addLink(_ link: Tracing.SpanLink)
+  func end<Instant>(at instant: @autoclosure () -> Instant) where Instant : Tracing.TracerInstant
+}
+extension Tracing.Span {
+  public func recordError(_ error: any Swift.Error, attributes: Tracing.SpanAttributes)
+  public func end()
+  public func addLink(_ other: Self, attributes: Tracing.SpanAttributes = [:])
+}
+extension Tracing.Span {
+  public func recordError(_ error: any Swift.Error)
+}
+extension Tracing.Span {
+  public func updateAttributes(_ update: (inout Tracing.SpanAttributes) -> Swift.Void)
+}
+public struct SpanEvent : Swift.Equatable {
+  public let name: Swift.String
+  public var attributes: Tracing.SpanAttributes
+  public let nanosecondsSinceEpoch: Swift.UInt64
+  public var millisecondsSinceEpoch: Swift.UInt64 {
+    get
+  }
+  public init<Instant>(name: Swift.String, at instant: @autoclosure () -> Instant, attributes: Tracing.SpanAttributes = [:]) where Instant : Tracing.TracerInstant
+  public init(name: Swift.String, attributes: Tracing.SpanAttributes = [:])
+  public static func == (a: Tracing.SpanEvent, b: Tracing.SpanEvent) -> Swift.Bool
+}
+extension Tracing.SpanEvent : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral name: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+public struct SpanAttributeKey<T> : Swift.Hashable, Swift.ExpressibleByStringLiteral where T : Tracing.SpanAttributeConvertible {
+  public let name: Swift.String
+  public init(name: Swift.String)
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public static func == (a: Tracing.SpanAttributeKey<T>, b: Tracing.SpanAttributeKey<T>) -> Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public typealias StringLiteralType = Swift.StringLiteralType
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@dynamicMemberLookup public protocol SpanAttributeNamespace {
+  associatedtype NestedSpanAttributes : Tracing.NestedSpanAttributesProtocol
+  var attributes: Tracing.SpanAttributes { get set }
+  #if compiler(>=5.3) && $NonescapableTypes
+  subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<Self.NestedSpanAttributes, Tracing.SpanAttributeKey<T>>) -> T? where T : Tracing.SpanAttributeConvertible { get set }
+  #endif
+  subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<Tracing.SpanAttribute, Namespace>) -> Namespace where Namespace : Tracing.SpanAttributeNamespace { get }
+}
+public protocol NestedSpanAttributesProtocol {
+  init()
+  static var __namespace: Self { get }
+}
+extension Tracing.NestedSpanAttributesProtocol {
+  public static var __namespace: Self {
+    get
+  }
+}
+extension Tracing.NestedSpanAttributesProtocol {
+  public typealias Key = Tracing.SpanAttributeKey
+}
+extension Tracing.SpanAttributeNamespace {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<Self.NestedSpanAttributes, Tracing.SpanAttributeKey<T>>) -> T? where T : Tracing.SpanAttributeConvertible {
+    get
+    set
+  }
+  #endif
+  public subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<Tracing.SpanAttribute, Namespace>) -> Namespace where Namespace : Tracing.SpanAttributeNamespace {
+    get
+  }
+}
+public enum SpanAttribute : Swift.Equatable {
+  public typealias Key = Tracing.SpanAttributeKey
+  case int32(Swift.Int32)
+  case int64(Swift.Int64)
+  case int32Array([Swift.Int32])
+  case int64Array([Swift.Int64])
+  case double(Swift.Double)
+  case doubleArray([Swift.Double])
+  case bool(Swift.Bool)
+  case boolArray([Swift.Bool])
+  case string(Swift.String)
+  case stringArray([Swift.String])
+  case __DO_NOT_SWITCH_EXHAUSTIVELY_OVER_THIS_ENUM_USE_DEFAULT_INSTEAD
+  case stringConvertible(any Swift.CustomStringConvertible & Swift.Sendable)
+  case stringConvertibleArray([any Swift.CustomStringConvertible & Swift.Sendable])
+  public static func int(_ value: Swift.Int64) -> Tracing.SpanAttribute
+  public static func == (lhs: Tracing.SpanAttribute, rhs: Tracing.SpanAttribute) -> Swift.Bool
+}
+extension Tracing.SpanAttribute : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+public protocol SpanAttributeConvertible {
+  func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int32 {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int64 {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Double {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Array : Tracing.SpanAttributeConvertible where Element : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.String : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Tracing.SpanAttribute : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension Tracing.SpanAttribute : Swift.ExpressibleByStringInterpolation {
+  public init(stringInterpolation value: Tracing.SpanAttribute.StringInterpolation)
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+}
+extension Tracing.SpanAttribute : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension Swift.Int : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Int32 : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Int64 : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Float : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Swift.Double : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Tracing.SpanAttribute : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension Swift.Bool : Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
+}
+extension Tracing.SpanAttribute : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.Bool)
+  public typealias BooleanLiteralType = Swift.Bool
+}
+@dynamicMemberLookup public struct SpanAttributes : Swift.Equatable {
+  public static func == (a: Tracing.SpanAttributes, b: Tracing.SpanAttributes) -> Swift.Bool
+}
+extension Tracing.SpanAttributes {
+  public init(_ attributes: [Swift.String : Tracing.SpanAttribute])
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(name: Swift.String) -> (any Tracing.SpanAttributeConvertible)? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func get(_ name: Swift.String) -> Tracing.SpanAttribute?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func set(_ name: Swift.String, value: Tracing.SpanAttribute?)
+  #endif
+  public func forEach(_ callback: (Swift.String, Tracing.SpanAttribute) -> Swift.Void)
+  public mutating func merge(_ other: Tracing.SpanAttributes)
+  public var count: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+}
+extension Tracing.SpanAttributes {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<Tracing.SpanAttribute, Tracing.SpanAttributeKey<T>>) -> Tracing.SpanAttribute? where T : Tracing.SpanAttributeConvertible {
+    get
+    set
+  }
+  #endif
+  public subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<Tracing.SpanAttribute, Namespace>) -> Namespace where Namespace : Tracing.SpanAttributeNamespace {
+    get
+  }
+}
+extension Tracing.SpanAttributes : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, Tracing.SpanAttribute)...)
+  public typealias Key = Swift.String
+  public typealias Value = Tracing.SpanAttribute
+}
+public struct SpanStatus : Swift.Equatable {
+  public let code: Tracing.SpanStatus.Code
+  public let message: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(code: Tracing.SpanStatus.Code, message: Swift.String? = nil)
+  #endif
+  public enum Code {
+    case ok
+    case error
+    public static func == (a: Tracing.SpanStatus.Code, b: Tracing.SpanStatus.Code) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: Tracing.SpanStatus, b: Tracing.SpanStatus) -> Swift.Bool
+}
+public enum SpanKind {
+  case server
+  case client
+  case producer
+  case consumer
+  case `internal`
+  public static func == (a: Tracing.SpanKind, b: Tracing.SpanKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SpanLink {
+  public let context: ServiceContextModule.ServiceContext
+  public let attributes: Tracing.SpanAttributes
+  public init(context: ServiceContextModule.ServiceContext, attributes: Tracing.SpanAttributes)
+}
+extension Tracing.SpanAttributes : Swift.Sendable {
+}
+extension Tracing.SpanAttribute : Swift.Sendable {
+}
+extension Tracing.SpanStatus : Swift.Sendable {
+}
+extension Tracing.SpanEvent : Swift.Sendable {
+}
+extension Tracing.SpanKind : Swift.Sendable {
+}
+extension Tracing.SpanStatus.Code : Swift.Sendable {
+}
+extension Tracing.SpanLink : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan<Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any Tracing.Span where Instant : Tracing.TracerInstant
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any Tracing.Span
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any Tracing.Span
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T where Instant : Tracing.TracerInstant
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T where Instant : Tracing.TracerInstant
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T where Instant : Tracing.TracerInstant
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, renamed: "Tracer")
+public protocol LegacyTracer : Instrumentation.Instrument {
+  @available(*, deprecated, message: "prefer withSpan")
+  func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext, ofKind kind: Tracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any Tracing.Span where Instant : Tracing.TracerInstant
+  @available(*, deprecated)
+  func forceFlush()
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tracing.LegacyTracer {
+  @available(*, deprecated, message: "prefer withSpan")
+  public func startAnySpan<Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any Tracing.Span where Instant : Tracing.TracerInstant
+  public func startAnySpan(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any Tracing.Span
+  public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T where Instant : Tracing.TracerInstant
+  public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T where Instant : Tracing.TracerInstant
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T where Instant : Tracing.TracerInstant
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tracing.Tracer {
+  public func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext, ofKind kind: Tracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any Tracing.Span where Instant : Tracing.TracerInstant
+  public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any Tracing.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (any Tracing.Span) async throws -> T) async rethrows -> T
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public protocol Tracer : Tracing.LegacyTracer {
+  associatedtype Span : Tracing.Span
+  func startSpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext, ofKind kind: Tracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> Self.Span where Instant : Tracing.TracerInstant
+  #if compiler(>=5.3) && $NonescapableTypes
+  func activeSpan(identifiedBy context: ServiceContextModule.ServiceContext) -> Self.Span?
+  #endif
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tracing.Tracer {
+  public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> Self.Span
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func activeSpan(identifiedBy context: ServiceContextModule.ServiceContext) -> Self.Span?
+  #endif
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Tracing.Tracer {
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (Self.Span) throws -> T) rethrows -> T
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (Self.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> ServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: Tracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+}
+public protocol TracerInstant : Swift.Comparable, Swift.Hashable, Swift.Sendable {
+  var nanosecondsSinceEpoch: Swift.UInt64 { get }
+}
+extension Tracing.TracerInstant {
+  @inlinable public var millisecondsSinceEpoch: Swift.UInt64 {
+    get {
+        self.nanosecondsSinceEpoch / 1_000_000
+    }
+  }
+}
+public struct DefaultTracerClock {
+  public typealias Instant = Tracing.DefaultTracerClock.Timestamp
+  public init()
+  public struct Timestamp : Tracing.TracerInstant {
+    public let nanosecondsSinceEpoch: Swift.UInt64
+    public init(nanosecondsSinceEpoch: Swift.UInt64)
+    public static func < (lhs: Tracing.DefaultTracerClock.Instant, rhs: Tracing.DefaultTracerClock.Instant) -> Swift.Bool
+    public static func == (lhs: Tracing.DefaultTracerClock.Instant, rhs: Tracing.DefaultTracerClock.Instant) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static var now: Tracing.DefaultTracerClock.Instant {
+    get
+  }
+  public var now: Tracing.DefaultTracerClock.Instant {
+    get
+  }
+}
+extension Tracing.SpanStatus.Code : Swift.Equatable {}
+extension Tracing.SpanStatus.Code : Swift.Hashable {}
+extension Tracing.SpanKind : Swift.Equatable {}
+extension Tracing.SpanKind : Swift.Hashable {}

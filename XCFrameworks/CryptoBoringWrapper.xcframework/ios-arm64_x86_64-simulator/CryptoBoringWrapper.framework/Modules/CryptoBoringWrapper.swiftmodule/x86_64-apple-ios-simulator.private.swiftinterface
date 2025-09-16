@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CryptoBoringWrapper -package-name swift_crypto
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Foundation
 import Foundation/*.Bundle*/
 import Foundation/*.ContiguousBytes*/
@@ -205,10 +205,12 @@ extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup {
       get
     }
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   final internal var curveName: CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName? {
     get
   }
+  #endif
 }
 @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
 extension CryptoBoringWrapper.BoringSSLEllipticCurveGroup.CurveName {
@@ -371,9 +373,11 @@ extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.Numeric {
   package static func * (lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger) -> CryptoBoringWrapper.ArbitraryPrecisionInteger
   @usableFromInline
   package static func *= (lhs: inout CryptoBoringWrapper.ArbitraryPrecisionInteger, rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger)
+  #if compiler(>=5.3) && $NonescapableTypes
   @inlinable package init?<T>(exactly integer: T) where T : Swift.BinaryInteger {
         fatalError("Not currently implemented")
     }
+  #endif
 }
 @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
 extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
@@ -383,12 +387,18 @@ extension CryptoBoringWrapper.ArbitraryPrecisionInteger {
   package func inverse(modulo mod: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
   @usableFromInline
   package static func inverse(lhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo mod: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   package func add(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   package func sub(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   package func mul(_ rhs: CryptoBoringWrapper.ArbitraryPrecisionInteger, modulo modulus: CryptoBoringWrapper.ArbitraryPrecisionInteger? = nil) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  #endif
 }
 @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
 extension CryptoBoringWrapper.ArbitraryPrecisionInteger : Swift.SignedNumeric {
@@ -451,8 +461,10 @@ extension CryptoBoringWrapper.FiniteFieldArithmeticContext {
   package func subtract(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, from y: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
   @usableFromInline
   package func positiveSquareRoot(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
+  #if compiler(>=5.3) && $NonescapableTypes
   @usableFromInline
   package func inverse(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger?
+  #endif
   @usableFromInline
   package func pow(_ x: CryptoBoringWrapper.ArbitraryPrecisionInteger, _ p: CryptoBoringWrapper.ArbitraryPrecisionInteger) throws -> CryptoBoringWrapper.ArbitraryPrecisionInteger
   @usableFromInline

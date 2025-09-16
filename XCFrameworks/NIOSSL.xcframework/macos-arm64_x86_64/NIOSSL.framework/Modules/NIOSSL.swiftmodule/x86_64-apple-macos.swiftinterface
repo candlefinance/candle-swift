@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOSSL -package-name swift_nio_ssl
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Darwin.C
 import CNIOLinux
 import Darwin
@@ -20,17 +20,36 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 public protocol NIOSSLCustomPrivateKey : NIOCore._NIOPreconcurrencySendable {
   var signatureAlgorithms: [NIOSSL.SignatureAlgorithm] { get }
+  var derBytes: [Swift.UInt8] { get }
   func sign(channel: any NIOCore.Channel, algorithm: NIOSSL.SignatureAlgorithm, data: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<NIOCore.ByteBuffer>
   func decrypt(channel: any NIOCore.Channel, data: NIOCore.ByteBuffer) -> NIOCore.EventLoopFuture<NIOCore.ByteBuffer>
 }
+extension NIOSSL.NIOSSLCustomPrivateKey {
+  public var derBytes: [Swift.UInt8] {
+    get
+  }
+}
 @_hasMissingDesignatedInitializers final public class NIOSSLClientHandler : NIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "init(context:serverHostname:customVerificationCallback:)")
   public init(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?, verificationCallback: NIOSSL.NIOSSLVerificationCallback? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: @escaping NIOSSL.NIOSSLCustomVerificationCallback) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: NIOSSL.NIOSSLCustomVerificationCallback? = nil, configuration: NIOSSL.NIOSSLHandler.Configuration) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _makeSSLClientHandler(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?, additionalPeerCertificateVerificationCallback: @escaping NIOSSL._NIOAdditionalPeerCertificateVerificationCallback) throws -> Self
+  #endif
   @objc deinit
+}
+@available(*, unavailable)
+extension NIOSSL.NIOSSLClientHandler : Swift.Sendable {
 }
 extension NIOSSL.NIOSSLHandler {
   public struct Configuration : Swift.Hashable, Swift.Sendable {
@@ -55,39 +74,71 @@ extension NIOSSL.NIOSSLHandler {
   public func channelRead(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny)
   public func channelReadComplete(context: NIOCore.ChannelHandlerContext)
   public func userInboundEventTriggered(context: NIOCore.ChannelHandlerContext, event: Any)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public func flush(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func close(context: NIOCore.ChannelHandlerContext, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   @objc deinit
 }
 @available(*, unavailable)
 extension NIOSSL.NIOSSLHandler : Swift.Sendable {
 }
 extension NIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var tlsVersion: NIOSSL.TLSVersion? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var peerCertificate: NIOSSL.NIOSSLCertificate? {
+    get
+  }
+  #endif
 }
 extension NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func nioSSL_tlsVersion() -> NIOCore.EventLoopFuture<NIOSSL.TLSVersion?>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_peerCertificate() -> NIOCore.EventLoopFuture<NIOSSL.NIOSSLCertificate?>
+  #endif
 }
 extension NIOCore.ChannelPipeline.SynchronousOperations {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func nioSSL_tlsVersion() throws -> NIOSSL.TLSVersion?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_peerCertificate() throws -> NIOSSL.NIOSSLCertificate?
+  #endif
 }
 extension NIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func stopTLS(promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
 }
 @_hasMissingDesignatedInitializers final public class NIOSSLServerHandler : NIOSSL.NIOSSLHandler {
   convenience public init(context: NIOSSL.NIOSSLContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "init(context:customVerificationCallback:)")
   public init(context: NIOSSL.NIOSSLContext, verificationCallback: NIOSSL.NIOSSLVerificationCallback? = nil) throws
+  #endif
   convenience public init(context: NIOSSL.NIOSSLContext, customVerificationCallback: @escaping NIOSSL.NIOSSLCustomVerificationCallback)
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(context: NIOSSL.NIOSSLContext, customVerificationCallback: NIOSSL.NIOSSLCustomVerificationCallback? = nil, configuration: NIOSSL.NIOSSLHandler.Configuration)
+  #endif
   public static func _makeSSLServerHandler(context: NIOSSL.NIOSSLContext, additionalPeerCertificateVerificationCallback: @escaping NIOSSL._NIOAdditionalPeerCertificateVerificationCallback) -> Self
   @objc deinit
 }
+@available(*, unavailable)
+extension NIOSSL.NIOSSLServerHandler : Swift.Sendable {
+}
 public struct NIOSSLObjectIdentifier {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(_ string: Swift.String)
+  #endif
 }
 extension NIOSSL.NIOSSLObjectIdentifier : @unchecked Swift.Sendable {
 }
@@ -122,7 +173,9 @@ public struct PSKServerContext : Swift.Sendable, Swift.Hashable {
   public let hint: Swift.String?
   public let clientIdentity: Swift.String
   public let maxPSKLength: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(hint: Swift.String?, clientIdentity: Swift.String, maxPSKLength: Swift.Int)
+  #endif
   public static func == (a: NIOSSL.PSKServerContext, b: NIOSSL.PSKServerContext) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -132,7 +185,9 @@ public struct PSKServerContext : Swift.Sendable, Swift.Hashable {
 public struct PSKClientContext : Swift.Sendable, Swift.Hashable {
   public let hint: Swift.String?
   public let maxPSKLength: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(hint: Swift.String?, maxPSKLength: Swift.Int)
+  #endif
   public static func == (a: NIOSSL.PSKClientContext, b: NIOSSL.PSKClientContext) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -150,7 +205,9 @@ public struct PSKClientIdentityResponse : Swift.Sendable {
 }
 public struct NIOSSLClientExtensionValues : Swift.Hashable, Swift.Sendable {
   public var serverHostname: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(serverHostname: Swift.String?)
+  #endif
   public static func == (a: NIOSSL.NIOSSLClientExtensionValues, b: NIOSSL.NIOSSLClientExtensionValues) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -174,6 +231,7 @@ public typealias NIOPSKServerIdentityProvider = @Sendable (NIOSSL.PSKServerConte
   final public var serialNumber: [Swift.UInt8] {
     get
   }
+  @available(*, deprecated, message: "Use 'fromPEMFile(_:)' to load all certificates from a PEM file or 'fromDERFile(_:)' to load a single certificate from a DER file.")
   convenience public init(file: Swift.String, format: NIOSSL.NIOSSLSerializationFormats) throws
   @available(*, deprecated, renamed: "NIOSSLCertificate.init(bytes:format:)")
   convenience public init(buffer: [Swift.Int8], format: NIOSSL.NIOSSLSerializationFormats) throws
@@ -190,10 +248,11 @@ extension NIOSSL.NIOSSLCertificate {
   final public class func fromPEMBuffer(_ buffer: [Swift.Int8]) throws -> [NIOSSL.NIOSSLCertificate]
   final public class func fromPEMBytes(_ bytes: [Swift.UInt8]) throws -> [NIOSSL.NIOSSLCertificate]
   final public class func fromPEMFile(_ path: Swift.String) throws -> [NIOSSL.NIOSSLCertificate]
-  final public var notValidBefore: sys_types.time_t {
+  public static func fromDERFile(_ path: Swift.String) throws -> NIOSSL.NIOSSLCertificate
+  final public var notValidBefore: _DarwinFoundation2.time_t {
     get
   }
-  final public var notValidAfter: sys_types.time_t {
+  final public var notValidAfter: _DarwinFoundation2.time_t {
     get
   }
 }
@@ -271,12 +330,47 @@ extension NIOSSL.NIOSSLCertificate._Extension.Data : Swift.RandomAccessCollectio
   public subscript(position: Swift.Int) -> Swift.UInt8 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func withContiguousStorageIfAvailable<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result?
+  #endif
   public typealias Element = Swift.UInt8
   public typealias Index = Swift.Int
   public typealias Indices = Swift.Range<Swift.Int>
   public typealias Iterator = Swift.IndexingIterator<NIOSSL.NIOSSLCertificate._Extension.Data>
   public typealias SubSequence = Swift.Slice<NIOSSL.NIOSSLCertificate._Extension.Data>
+}
+public struct SSLCertificateNameType : Swift.Equatable, Swift.Hashable, Swift.Sendable {
+  public static let organization: NIOSSL.SSLCertificateNameType
+  public static let organizationalUnit: NIOSSL.SSLCertificateNameType
+  public static let state: NIOSSL.SSLCertificateNameType
+  public static let country: NIOSSL.SSLCertificateNameType
+  public static let city: NIOSSL.SSLCertificateNameType
+  public static let commonName: NIOSSL.SSLCertificateNameType
+  public static let emailAddress: NIOSSL.SSLCertificateNameType
+  public static let userId: NIOSSL.SSLCertificateNameType
+  public static func == (a: NIOSSL.SSLCertificateNameType, b: NIOSSL.SSLCertificateNameType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SSLCertificateName : Swift.Equatable, Swift.Hashable, Swift.Sendable {
+  public var value: Swift.String
+  public var type: NIOSSL.SSLCertificateNameType
+  public init(_ value: Swift.String, _ type: NIOSSL.SSLCertificateNameType)
+  public static func == (a: NIOSSL.SSLCertificateName, b: NIOSSL.SSLCertificateName) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension NIOSSL.NIOSSLCertificate {
+  final public var subjectName: [NIOSSL.SSLCertificateName] {
+    get
+  }
+  final public var issuerName: [NIOSSL.SSLCertificateName] {
+    get
+  }
 }
 @_hasMissingDesignatedInitializers final public class NIOSSLContext {
   convenience public init(configuration: NIOSSL.TLSConfiguration) throws
@@ -364,8 +458,12 @@ extension NIOSSL.NIOSSLExtraError : Swift.Equatable {
 public struct NIOSSLPKCS12Bundle : Swift.Hashable {
   public let certificateChain: [NIOSSL.NIOSSLCertificate]
   public let privateKey: NIOSSL.NIOSSLPrivateKey
+  #if compiler(>=5.3) && $NonescapableTypes
   public init<Bytes>(buffer: [Swift.UInt8], passphrase: Bytes?) throws where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init<Bytes>(file: Swift.String, passphrase: Bytes?) throws where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+  #endif
   public init(file: Swift.String) throws
   public init(buffer: [Swift.UInt8]) throws
   public static func == (a: NIOSSL.NIOSSLPKCS12Bundle, b: NIOSSL.NIOSSLPKCS12Bundle) -> Swift.Bool
@@ -395,6 +493,11 @@ public typealias NIOSSLPassphraseSetter<Bytes> = (Bytes) -> Swift.Void where Byt
   @objc deinit
 }
 extension NIOSSL.NIOSSLPrivateKey : @unchecked Swift.Sendable {
+}
+extension NIOSSL.NIOSSLPrivateKey {
+  final public var derBytes: [Swift.UInt8] {
+    get throws
+  }
 }
 extension NIOSSL.NIOSSLPrivateKey : Swift.Equatable {
   public static func == (lhs: NIOSSL.NIOSSLPrivateKey, rhs: NIOSSL.NIOSSLPrivateKey) -> Swift.Bool
@@ -599,6 +702,7 @@ public struct NIOTLSCurve : Swift.RawRepresentable, Swift.Hashable, Swift.Sendab
   public static let secp521r1: NIOSSL.NIOTLSCurve
   public static let x25519: NIOSSL.NIOTLSCurve
   public static let x448: NIOSSL.NIOTLSCurve
+  public static let x25519_MLKEM768: NIOSSL.NIOTLSCurve
 }
 public enum NIOSSLSerializationFormats : Swift.Sendable {
   case pem
@@ -664,25 +768,33 @@ public struct TLSConfiguration {
   public var additionalTrustRoots: [NIOSSL.NIOSSLAdditionalTrustRoots]
   public var certificateChain: [NIOSSL.NIOSSLCertificateSource]
   public var privateKey: NIOSSL.NIOSSLPrivateKeySource?
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Deprecated in favor of pskClientProvider which can handle optional hint")
   public var pskClientCallback: NIOSSL.NIOPSKClientIdentityCallback? {
     get
     set
   }
+  #endif
   public var sslContextCallback: NIOSSL.NIOSSLContextCallback?
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Deprecated in favor of pskServerProvider which can handle optional hint")
   public var pskServerCallback: NIOSSL.NIOPSKServerIdentityCallback? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var pskClientProvider: NIOSSL.NIOPSKClientIdentityProvider? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var pskServerProvider: NIOSSL.NIOPSKServerIdentityProvider? {
     get
     set
   }
+  #endif
   public var pskHint: Swift.String?
   public var applicationProtocols: [Swift.String] {
     get
@@ -701,30 +813,51 @@ extension NIOSSL.TLSConfiguration {
   public static func makeClientConfiguration() -> NIOSSL.TLSConfiguration
   public static func makeServerConfiguration(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource) -> NIOSSL.TLSConfiguration
   public static func makePreSharedKeyConfiguration() -> NIOSSL.TLSConfiguration
+  public static func makeServerConfigurationWithMTLS(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource, trustRoots: NIOSSL.NIOSSLTrustRoots) -> NIOSSL.TLSConfiguration
 }
 extension NIOSSL.TLSConfiguration {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
   public static func forServer(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource, cipherSuites: [NIOSSL.NIOTLSCipher], verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .none, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, additionalTrustRoots: [NIOSSL.NIOSSLAdditionalTrustRoots] = []) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
   public static func forServer(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .none, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
   public static func forServer(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .none, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
   public static func forServer(certificateChain: [NIOSSL.NIOSSLCertificateSource], privateKey: NIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .none, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, additionalTrustRoots: [NIOSSL.NIOSSLAdditionalTrustRoots]) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeClientConfiguration()")
   public static func forClient(cipherSuites: [NIOSSL.NIOTLSCipher], verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .fullVerification, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, certificateChain: [NIOSSL.NIOSSLCertificateSource] = [], privateKey: NIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: NIOSSL.NIORenegotiationSupport = .none, additionalTrustRoots: [NIOSSL.NIOSSLAdditionalTrustRoots] = []) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeClientConfiguration()")
   public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .fullVerification, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, certificateChain: [NIOSSL.NIOSSLCertificateSource] = [], privateKey: NIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeClientConfiguration()")
   public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .fullVerification, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, certificateChain: [NIOSSL.NIOSSLCertificateSource] = [], privateKey: NIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: NIOSSL.NIORenegotiationSupport) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeClientConfiguration()")
   public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .fullVerification, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, certificateChain: [NIOSSL.NIOSSLCertificateSource] = [], privateKey: NIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: NIOSSL.NIORenegotiationSupport) -> NIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "makeClientConfiguration()")
   public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [NIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: NIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: NIOSSL.TLSVersion? = nil, certificateVerification: NIOSSL.CertificateVerification = .fullVerification, trustRoots: NIOSSL.NIOSSLTrustRoots = .default, certificateChain: [NIOSSL.NIOSSLCertificateSource] = [], privateKey: NIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: NIOCore.TimeAmount = .seconds(5), keyLogCallback: NIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: NIOSSL.NIORenegotiationSupport = .none, additionalTrustRoots: [NIOSSL.NIOSSLAdditionalTrustRoots]) -> NIOSSL.TLSConfiguration
+  #endif
 }
 public struct NIOSSLClientTLSProvider<Bootstrap> : NIOCore.NIOClientTLSProvider where Bootstrap : NIOCore.NIOClientTCPBootstrapProtocol {
   public typealias Bootstrap = Bootstrap
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency public init(context: NIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: (@Sendable ([NIOSSL.NIOSSLCertificate], NIOCore.EventLoopPromise<NIOSSL.NIOSSLVerificationResult>) -> Swift.Void)? = nil) throws
+  #endif
   public func enableTLS(_ bootstrap: Bootstrap) -> Bootstrap
 }
 extension NIOSSL.NIOSSLClientTLSProvider : Swift.Sendable where Bootstrap : Swift.Sendable {

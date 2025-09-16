@@ -1,0 +1,478 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "Metrics",
+    "printedName": "Metrics",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "CoreMetrics",
+        "printedName": "CoreMetrics",
+        "declKind": "Import",
+        "moduleName": "Metrics",
+        "declAttributes": [
+          "Exported",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Metrics"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreMetrics",
+        "printedName": "CoreMetrics",
+        "declKind": "Import",
+        "moduleName": "Metrics",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Timer",
+        "printedName": "Timer",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "measure",
+            "printedName": "measure(label:dimensions:body:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[(Swift.String, Swift.String)]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.String, Swift.String)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E7measure5label10dimensions4bodyxSS_SaySS_SStGxyKctKlFZ",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E7measure5label10dimensions4bodyxSS_SaySS_SStGxyKctKlFZ",
+            "moduleName": "Metrics",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "Rethrows",
+              "AccessControl",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "recordInterval",
+            "printedName": "recordInterval(since:end:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DispatchTime",
+                "printedName": "Dispatch.DispatchTime",
+                "usr": "s:8Dispatch0A4TimeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DispatchTime",
+                "printedName": "Dispatch.DispatchTime",
+                "hasDefaultArg": true,
+                "usr": "s:8Dispatch0A4TimeV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E14recordInterval5since3endy8Dispatch0H4TimeV_AJtF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E14recordInterval5since3endy8Dispatch0H4TimeV_AJtF",
+            "moduleName": "Metrics",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "record",
+            "printedName": "record(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E6recordyySdF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E6recordyySdF",
+            "moduleName": "Metrics",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "record",
+            "printedName": "record(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DispatchTimeInterval",
+                "printedName": "Dispatch.DispatchTimeInterval",
+                "usr": "s:8Dispatch0A12TimeIntervalO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E6recordyy8Dispatch0E12TimeIntervalOF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E6recordyy8Dispatch0E12TimeIntervalOF",
+            "moduleName": "Metrics",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "record",
+            "printedName": "record(duration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Duration",
+                "printedName": "Swift.Duration",
+                "usr": "s:s8DurationV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E6record8durationys8DurationV_tF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E6record8durationys8DurationV_tF",
+            "moduleName": "Metrics",
+            "intro_Macosx": "13",
+            "intro_iOS": "16",
+            "intro_tvOS": "16",
+            "intro_watchOS": "9",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Inlinable",
+              "Available",
+              "Available",
+              "Available",
+              "Available",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "measure",
+            "printedName": "measure(clock:body:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_2",
+                "hasDefaultArg": true
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws(τ_0_1) -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E7measure5clock4bodyxq0__xyq_YKXEtq_YKs5ErrorR_12_Concurrency5ClockR0_s8DurationVAKRt0_r1_lF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E7measure5clock4bodyxq0__xyq_YKXEtq_YKs5ErrorR_s5ClockR0_s8DurationVAJRt0_r1_lF",
+            "moduleName": "Metrics",
+            "genericSig": "<τ_0_0, τ_0_1, τ_0_2 where τ_0_1 : Swift.Error, τ_0_2 : _Concurrency.Clock, τ_0_2.Duration == Swift.Duration>",
+            "sugared_genericSig": "<Result, Failure, Clock where Failure : Swift.Error, Clock : _Concurrency.Clock, Clock.Duration == Swift.Duration>",
+            "intro_Macosx": "13",
+            "intro_iOS": "16",
+            "intro_tvOS": "16",
+            "intro_watchOS": "9",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Available",
+              "Available",
+              "Available",
+              "Available",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "measure",
+            "printedName": "measure(clock:isolation:body:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_2",
+                "hasDefaultArg": true
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any _Concurrency.Actor)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Actor",
+                    "printedName": "any _Concurrency.Actor",
+                    "usr": "s:ScA"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() async throws(τ_0_1) -> sending τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11CoreMetrics5TimerC0B0E7measure5clock9isolation4bodyxq0__ScA_pSgYixyYaq_YKYTXEtYaq_YKs5ErrorR_12_Concurrency5ClockR0_s8DurationVAMRt0_r1_lF",
+            "mangledName": "$s11CoreMetrics5TimerC0B0E7measure5clock9isolation4bodyxq0__ScA_pSgYixyYaq_YKYTXEtYaq_YKs5ErrorR_s5ClockR0_s8DurationVALRt0_r1_lF",
+            "moduleName": "Metrics",
+            "genericSig": "<τ_0_0, τ_0_1, τ_0_2 where τ_0_1 : Swift.Error, τ_0_2 : _Concurrency.Clock, τ_0_2.Duration == Swift.Duration>",
+            "sugared_genericSig": "<Result, Failure, Clock where Failure : Swift.Error, Clock : _Concurrency.Clock, Clock.Duration == Swift.Duration>",
+            "intro_Macosx": "13",
+            "intro_iOS": "16",
+            "intro_tvOS": "16",
+            "intro_watchOS": "9",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Available",
+              "Available",
+              "Available",
+              "Available",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:11CoreMetrics5TimerC",
+        "mangledName": "$s11CoreMetrics5TimerC",
+        "moduleName": "CoreMetrics",
+        "declAttributes": [
+          "Final"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/Metrics\/Metrics.swift",
+      "kind": "Array",
+      "offset": 1126,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/Metrics\/Metrics.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3449,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/Metrics\/Metrics.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3493,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/Metrics\/Metrics.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4135,
+      "length": 13,
+      "value": "1000000000"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/Metrics\/Metrics.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4338,
+      "length": 13,
+      "value": "1000000000"
+    }
+  ]
+}

@@ -6,11 +6,10 @@ struct TradeQuotesRequestScreen: View {
         case fiat, stock, crypto, transport
     }
 
-    @Environment(CandleClient.self) private var client
     @Environment(\.dismiss) private var dismiss
 
     @Binding var error: (title: String, message: String)?
-    @Binding var tradeQuoteToExecute: Models.TradeQuote?
+    @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
     @State private var gainedAssetKind: TradeQuoteAssetKind? = .transport
     @State private var gainedFiatAsset: FiatAssetFormViewModel = .init(
@@ -40,15 +39,15 @@ struct TradeQuotesRequestScreen: View {
         quoteRequest: .init(assetKind: .transport)
     )
 
-    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
+    @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
     @State private var locationViewModel = LocationViewModel()
     @State private var areRequested: Bool = false
     // FIXME: Add this back
-    //    @State private var counterpartyKind: Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
+    //    @State private var counterpartyKind: Candle.Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
-    let linkedAccounts: [Models.LinkedAccount]
+    let linkedAccounts: [Candle.Models.LinkedAccount]
 
-    var gainedAssetQuoteRequest: Models.TradeAssetQuoteRequest {
+    var gainedAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
         switch gainedAssetKind {
         case .transport: return .TransportAssetQuoteRequest(gainedTransportAsset.quoteRequest)
         case .fiat: return .FiatAssetQuoteRequest(gainedFiatAsset.quoteRequest)
@@ -58,7 +57,7 @@ struct TradeQuotesRequestScreen: View {
         }
     }
 
-    var lostAssetQuoteRequest: Models.TradeAssetQuoteRequest {
+    var lostAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
         switch lostAssetKind {
         case .transport: return .TransportAssetQuoteRequest(lostTransportAsset.quoteRequest)
         case .fiat: return .FiatAssetQuoteRequest(lostFiatAsset.quoteRequest)
@@ -68,7 +67,7 @@ struct TradeQuotesRequestScreen: View {
         }
     }
 
-    var tradeQuotesRequest: Models.TradeQuotesRequest {
+    var tradeQuotesRequest: Candle.Models.TradeQuotesRequest {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
@@ -151,5 +150,4 @@ struct TradeQuotesRequestScreen: View {
         tradeQuoteToExecute: .constant(nil),
         linkedAccounts: []
     )
-    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

@@ -3,7 +3,7 @@ import MapKit
 import SwiftUI
 
 struct TransportAssetFormViewModel: Observable {
-    var quoteRequest: Models.TransportAssetQuoteRequest
+    var quoteRequest: Candle.Models.TransportAssetQuoteRequest
 
     var serviceAccountID: String {
         get { quoteRequest.serviceAccountID ?? "" }
@@ -17,7 +17,7 @@ struct TransportAssetFormViewModel: Observable {
             } ?? CLLocationCoordinate2D()
         }
         set {
-            let newCoordinates = Models.Coordinates(
+            let newCoordinates = Candle.Models.Coordinates(
                 latitude: newValue.latitude.rounded(to: 6),
                 longitude: newValue.longitude.rounded(to: 6)
             )
@@ -37,7 +37,7 @@ struct TransportAssetFormViewModel: Observable {
             } ?? CLLocationCoordinate2D()
         }
         set {
-            let newCoordinates = Models.Coordinates(
+            let newCoordinates = Candle.Models.Coordinates(
                 latitude: newValue.latitude.rounded(to: 6),
                 longitude: newValue.longitude.rounded(to: 6)
             )

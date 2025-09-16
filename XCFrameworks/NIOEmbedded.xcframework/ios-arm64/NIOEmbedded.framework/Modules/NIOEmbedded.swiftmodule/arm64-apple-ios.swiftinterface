@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOEmbedded -package-name swift_nio
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Atomics
 import Darwin
 import DequeModule
@@ -67,23 +67,31 @@ final public class NIOAsyncTestingChannel : NIOCore.Channel {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var localAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var remoteAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
   public init(loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop())
   @preconcurrency convenience public init(handler: any NIOCore.ChannelHandler & Swift.Sendable, loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop()) async
   @preconcurrency convenience public init(handlers: [any NIOCore.ChannelHandler & Swift.Sendable], loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop()) async
   convenience public init(loop: NIOEmbedded.NIOAsyncTestingEventLoop = NIOAsyncTestingEventLoop(), channelInitializer: @escaping @Sendable (NIOEmbedded.NIOAsyncTestingChannel) throws -> Swift.Void) async throws
   final public func finish(acceptAlreadyClosed: Swift.Bool) async throws -> NIOEmbedded.NIOAsyncTestingChannel.LeftOverState
   final public func finish() async throws -> NIOEmbedded.NIOAsyncTestingChannel.LeftOverState
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func readOutbound<T>(as type: T.Type = T.self) async throws -> T? where T : Swift.Sendable
+  #endif
   final public func waitForOutboundWrite<T>(as type: T.Type = T.self) async throws -> T where T : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func readInbound<T>(as type: T.Type = T.self) async throws -> T? where T : Swift.Sendable
+  #endif
   final public func waitForInboundWrite<T>(as type: T.Type = T.self) async throws -> T where T : Swift.Sendable
   @discardableResult
   final public func writeInbound<T>(_ data: T) async throws -> NIOEmbedded.NIOAsyncTestingChannel.BufferState where T : Swift.Sendable
@@ -92,15 +100,21 @@ final public class NIOAsyncTestingChannel : NIOCore.Channel {
   final public func throwIfErrorCaught() async throws
   final public func setOption<Option>(_ option: Option, value: Option.Value) -> NIOCore.EventLoopFuture<Swift.Void> where Option : NIOCore.ChannelOption
   final public func getOption<Option>(_ option: Option) -> NIOCore.EventLoopFuture<Option.Value> where Option : NIOCore.ChannelOption
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   public struct SynchronousOptions : NIOCore.NIOSynchronousChannelOptions {
     public func setOption<Option>(_ option: Option, value: Option.Value) throws where Option : NIOCore.ChannelOption
     public func getOption<Option>(_ option: Option) throws -> Option.Value where Option : NIOCore.ChannelOption
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? {
     get
   }
+  #endif
   @objc deinit
 }
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
@@ -133,11 +147,15 @@ final public class NIOAsyncTestingEventLoop : NIOCore.EventLoop, @unchecked Swif
   final public func advanceTime(by increment: NIOCore.TimeAmount) async
   final public func advanceTime(to deadline: NIOCore.NIODeadline) async
   final public func executeInContext<ReturnType>(_ task: @escaping @Sendable () throws -> ReturnType) async throws -> ReturnType where ReturnType : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   final public func shutdownGracefully() async
   final public func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
   final public func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  #endif
   final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
   final public func _executeIsolatedUnsafeUnchecked(_ task: @escaping () -> Swift.Void)
   final public func _submitIsolatedUnsafeUnchecked<T>(_ task: @escaping () throws -> T) -> NIOCore.EventLoopFuture<T>
@@ -172,12 +190,16 @@ final public class EmbeddedEventLoop : NIOCore.EventLoop, Swift.CustomStringConv
   final public func run()
   final public func advanceTime(by increment: NIOCore.TimeAmount)
   final public func advanceTime(to deadline: NIOCore.NIODeadline)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping ((any Swift.Error)?) -> Swift.Void)
+  #endif
   final public func preconditionInEventLoop(file: Swift.StaticString, line: Swift.UInt)
   final public func preconditionNotInEventLoop(file: Swift.StaticString, line: Swift.UInt)
   final public func _preconditionSafeToWait(file: Swift.StaticString, line: Swift.UInt)
   final public func _promiseCreated(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier, file: Swift.StaticString, line: Swift.UInt)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func _promiseCompleted(futureIdentifier: NIOCore._NIOEventLoopFutureIdentifier) -> (file: Swift.StaticString, line: Swift.UInt)?
+  #endif
   final public func _preconditionSafeToSyncShutdown(file: Swift.StaticString, line: Swift.UInt)
   final public func _executeIsolatedUnsafeUnchecked(_ task: @escaping () -> Swift.Void)
   final public func _submitIsolatedUnsafeUnchecked<T>(_ task: @escaping () throws -> T) -> NIOCore.EventLoopFuture<T>
@@ -244,31 +266,49 @@ final public class EmbeddedChannel : NIOCore.Channel {
     get
   }
   final public var embeddedEventLoop: NIOEmbedded.EmbeddedEventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var localAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var remoteAddress: NIOCore.SocketAddress? {
     get
     set
   }
+  #endif
   final public let parent: (any NIOCore.Channel)?
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func readOutbound<T>(as type: T.Type = T.self) throws -> T?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func readInbound<T>(as type: T.Type = T.self) throws -> T?
+  #endif
   @discardableResult
   final public func writeInbound<T>(_ data: T) throws -> NIOEmbedded.EmbeddedChannel.BufferState
   @discardableResult
   final public func writeOutbound<T>(_ data: T) throws -> NIOEmbedded.EmbeddedChannel.BufferState
   final public func throwIfErrorCaught() throws
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(handler: (any NIOCore.ChannelHandler)? = nil, loop: NIOEmbedded.EmbeddedEventLoop = EmbeddedEventLoop())
+  #endif
   public init(handlers: [any NIOCore.ChannelHandler], loop: NIOEmbedded.EmbeddedEventLoop = EmbeddedEventLoop())
   final public func setOption<Option>(_ option: Option, value: Option.Value) -> NIOCore.EventLoopFuture<Swift.Void> where Option : NIOCore.ChannelOption
   final public func getOption<Option>(_ option: Option) -> NIOCore.EventLoopFuture<Option.Value> where Option : NIOCore.ChannelOption
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func bind(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func connect(to address: NIOCore.SocketAddress, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func write<T>(_ data: T) -> NIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func writeAndFlush<T>(_ data: T, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func writeAndFlush<T>(_ data: T) -> NIOCore.EventLoopFuture<Swift.Void>
   @objc deinit
 }
@@ -277,9 +317,11 @@ extension NIOEmbedded.EmbeddedChannel {
     public func setOption<Option>(_ option: Option, value: Option.Value) throws where Option : NIOCore.ChannelOption
     public func getOption<Option>(_ option: Option) throws -> Option.Value where Option : NIOCore.ChannelOption
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var syncOptions: (any NIOCore.NIOSynchronousChannelOptions)? {
     get
   }
+  #endif
 }
 extension NIOEmbedded.EmbeddedChannel : @unchecked Swift.Sendable {
 }

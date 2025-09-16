@@ -1,0 +1,1267 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "Instrumentation",
+    "printedName": "Instrumentation",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "ServiceContextModule",
+        "printedName": "ServiceContextModule",
+        "declKind": "Import",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Extractor",
+        "printedName": "Extractor",
+        "children": [
+          {
+            "kind": "AssociatedType",
+            "name": "Carrier",
+            "printedName": "Carrier",
+            "declKind": "AssociatedType",
+            "usr": "s:15Instrumentation9ExtractorP7CarrierQa",
+            "mangledName": "$s15Instrumentation9ExtractorP7CarrierQa",
+            "moduleName": "Instrumentation",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "extract",
+            "printedName": "extract(key:from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Carrier"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation9ExtractorP7extract3key4fromSSSgSS_7CarrierQztF",
+            "mangledName": "$s15Instrumentation9ExtractorP7extract3key4fromSSSgSS_7CarrierQztF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0 where τ_0_0 : Instrumentation.Extractor>",
+            "sugared_genericSig": "<Self where Self : Instrumentation.Extractor>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15Instrumentation9ExtractorP",
+        "mangledName": "$s15Instrumentation9ExtractorP",
+        "moduleName": "Instrumentation",
+        "genericSig": "<τ_0_0 : Swift.Sendable, τ_0_0.Carrier : Swift.Sendable>",
+        "sugared_genericSig": "<Self : Swift.Sendable, Self.Carrier : Swift.Sendable>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Injector",
+        "printedName": "Injector",
+        "children": [
+          {
+            "kind": "AssociatedType",
+            "name": "Carrier",
+            "printedName": "Carrier",
+            "declKind": "AssociatedType",
+            "usr": "s:15Instrumentation8InjectorP7CarrierQa",
+            "mangledName": "$s15Instrumentation8InjectorP7CarrierQa",
+            "moduleName": "Instrumentation",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "inject",
+            "printedName": "inject(_:forKey:into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DependentMember",
+                "printedName": "τ_0_0.Carrier",
+                "paramValueOwnership": "InOut"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation8InjectorP6inject_6forKey4intoySS_SS7CarrierQzztF",
+            "mangledName": "$s15Instrumentation8InjectorP6inject_6forKey4intoySS_SS7CarrierQzztF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0 where τ_0_0 : Instrumentation.Injector>",
+            "sugared_genericSig": "<Self where Self : Instrumentation.Injector>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15Instrumentation8InjectorP",
+        "mangledName": "$s15Instrumentation8InjectorP",
+        "moduleName": "Instrumentation",
+        "genericSig": "<τ_0_0 : Swift.Sendable, τ_0_0.Carrier : Swift.Sendable>",
+        "sugared_genericSig": "<Self : Swift.Sendable, Self.Carrier : Swift.Sendable>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Instrument",
+        "printedName": "Instrument",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "extract",
+            "printedName": "extract(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "paramValueOwnership": "InOut",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation10InstrumentP7extract_4into5usingyqd___20ServiceContextModule0fG0Vzqd_0_t7CarrierQyd_0_Rsd__AA9ExtractorRd_0_r0_lF",
+            "mangledName": "$s15Instrumentation10InstrumentP7extract_4into5usingyqd___20ServiceContextModule0fG0Vzqd_0_t7CarrierQyd_0_Rsd__AA9ExtractorRd_0_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_1_0, τ_1_1 where τ_0_0 : Instrumentation.Instrument, τ_1_0 == τ_1_1.Carrier, τ_1_1 : Instrumentation.Extractor>",
+            "sugared_genericSig": "<Self, Carrier, Extract where Self : Instrumentation.Instrument, Carrier == Extract.Carrier, Extract : Instrumentation.Extractor>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "inject",
+            "printedName": "inject(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0",
+                "paramValueOwnership": "InOut"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation10InstrumentP6inject_4into5usingy20ServiceContextModule0fG0V_qd__zqd_0_t7CarrierQyd_0_Rsd__AA8InjectorRd_0_r0_lF",
+            "mangledName": "$s15Instrumentation10InstrumentP6inject_4into5usingy20ServiceContextModule0fG0V_qd__zqd_0_t7CarrierQyd_0_Rsd__AA8InjectorRd_0_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_1_0, τ_1_1 where τ_0_0 : Instrumentation.Instrument, τ_1_0 == τ_1_1.Carrier, τ_1_1 : Instrumentation.Injector>",
+            "sugared_genericSig": "<Self, Carrier, Inject where Self : Instrumentation.Instrument, Carrier == Inject.Carrier, Inject : Instrumentation.Injector>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15Instrumentation10InstrumentP",
+        "mangledName": "$s15Instrumentation10InstrumentP",
+        "moduleName": "Instrumentation",
+        "genericSig": "<τ_0_0 : Swift.Sendable>",
+        "sugared_genericSig": "<Self : Swift.Sendable>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "ServiceContextModule",
+        "printedName": "ServiceContextModule",
+        "declKind": "Import",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "InstrumentationSystem",
+        "printedName": "InstrumentationSystem",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "bootstrap",
+            "printedName": "bootstrap(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Instrument",
+                "printedName": "any Instrumentation.Instrument",
+                "usr": "s:15Instrumentation10InstrumentP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation0A6SystemO9bootstrapyyAA10Instrument_pFZ",
+            "mangledName": "$s15Instrumentation0A6SystemO9bootstrapyyAA10Instrument_pFZ",
+            "moduleName": "Instrumentation",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "instrument",
+            "printedName": "instrument",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Instrument",
+                "printedName": "any Instrumentation.Instrument",
+                "usr": "s:15Instrumentation10InstrumentP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15Instrumentation0A6SystemO10instrumentAA10Instrument_pvpZ",
+            "mangledName": "$s15Instrumentation0A6SystemO10instrumentAA10Instrument_pvpZ",
+            "moduleName": "Instrumentation",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Instrument",
+                    "printedName": "any Instrumentation.Instrument",
+                    "usr": "s:15Instrumentation10InstrumentP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15Instrumentation0A6SystemO10instrumentAA10Instrument_pvgZ",
+                "mangledName": "$s15Instrumentation0A6SystemO10instrumentAA10Instrument_pvgZ",
+                "moduleName": "Instrumentation",
+                "static": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "_findInstrument",
+            "printedName": "_findInstrument(where:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Instrumentation.Instrument)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Instrument",
+                    "printedName": "any Instrumentation.Instrument",
+                    "usr": "s:15Instrumentation10InstrumentP"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(any Instrumentation.Instrument) -> Swift.Bool",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Instrument",
+                    "printedName": "any Instrumentation.Instrument",
+                    "usr": "s:15Instrumentation10InstrumentP"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation0A6SystemO15_findInstrument5whereAA0D0_pSgSbAaF_pXE_tFZ",
+            "mangledName": "$s15Instrumentation0A6SystemO15_findInstrument5whereAA0D0_pSgSbAaF_pXE_tFZ",
+            "moduleName": "Instrumentation",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:15Instrumentation0A6SystemO",
+        "mangledName": "$s15Instrumentation0A6SystemO",
+        "moduleName": "Instrumentation",
+        "intro_Macosx": "10.15",
+        "intro_iOS": "13",
+        "intro_tvOS": "13",
+        "intro_watchOS": "6",
+        "declAttributes": [
+          "AccessControl",
+          "Available",
+          "Available",
+          "Available",
+          "Available",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "Instrumentation"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ReadWriteLock",
+        "printedName": "ReadWriteLock",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ReadWriteLock",
+                "printedName": "Instrumentation.ReadWriteLock",
+                "usr": "s:15Instrumentation13ReadWriteLockC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15Instrumentation13ReadWriteLockCACycfc",
+            "mangledName": "$s15Instrumentation13ReadWriteLockCACycfc",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "lockRead",
+            "printedName": "lockRead()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation13ReadWriteLockC04lockB0yyF",
+            "mangledName": "$s15Instrumentation13ReadWriteLockC04lockB0yyF",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "lockWrite",
+            "printedName": "lockWrite()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation13ReadWriteLockC04lockC0yyF",
+            "mangledName": "$s15Instrumentation13ReadWriteLockC04lockC0yyF",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unlock",
+            "printedName": "unlock()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation13ReadWriteLockC6unlockyyF",
+            "mangledName": "$s15Instrumentation13ReadWriteLockC6unlockyyF",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withReaderLock",
+            "printedName": "withReaderLock(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation13ReadWriteLockC010withReaderD0yxxyKXEKlF",
+            "mangledName": "$s15Instrumentation13ReadWriteLockC010withReaderD0yxxyKXEKlF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Final",
+              "Rethrows",
+              "AccessControl",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "spi_group_names": [
+              "Locking"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withWriterLock",
+            "printedName": "withWriterLock(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation13ReadWriteLockC010withWriterD0yxxyKXEKlF",
+            "mangledName": "$s15Instrumentation13ReadWriteLockC010withWriterD0yxxyKXEKlF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Final",
+              "Rethrows",
+              "AccessControl",
+              "Inlinable",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "spi_group_names": [
+              "Locking"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15Instrumentation13ReadWriteLockC",
+        "mangledName": "$s15Instrumentation13ReadWriteLockC",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "SPIAccessControl",
+          "RawDocComment"
+        ],
+        "spi_group_names": [
+          "Locking"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LockedValueBox",
+        "printedName": "LockedValueBox",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LockedValueBox",
+                "printedName": "Instrumentation.LockedValueBox<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:15Instrumentation14LockedValueBoxC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15Instrumentation14LockedValueBoxCyACyxGxcfc",
+            "mangledName": "$s15Instrumentation14LockedValueBoxCyACyxGxcfc",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<Value where Value : Swift.Sendable>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "withValue",
+            "printedName": "withValue(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(inout τ_0_0) throws -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation14LockedValueBoxC04withC0yqd__qd__xzKXEKlF",
+            "mangledName": "$s15Instrumentation14LockedValueBoxC04withC0yqd__qd__xzKXEKlF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<Value, R where Value : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "Rethrows",
+              "AccessControl"
+            ],
+            "spi_group_names": [
+              "Locking"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15Instrumentation14LockedValueBoxC",
+        "mangledName": "$s15Instrumentation14LockedValueBoxC",
+        "moduleName": "Instrumentation",
+        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+        "sugared_genericSig": "<Value where Value : Swift.Sendable>",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "SPIAccessControl",
+          "RawDocComment"
+        ],
+        "spi_group_names": [
+          "Locking"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "ServiceContextModule",
+        "printedName": "ServiceContextModule",
+        "declKind": "Import",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MultiplexInstrument",
+        "printedName": "MultiplexInstrument",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MultiplexInstrument",
+                "printedName": "Instrumentation.MultiplexInstrument",
+                "usr": "s:15Instrumentation19MultiplexInstrumentV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[any Instrumentation.Instrument]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Instrument",
+                    "printedName": "any Instrumentation.Instrument",
+                    "usr": "s:15Instrumentation10InstrumentP"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15Instrumentation19MultiplexInstrumentVyACSayAA0C0_pGcfc",
+            "mangledName": "$s15Instrumentation19MultiplexInstrumentVyACSayAA0C0_pGcfc",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "inject",
+            "printedName": "inject(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0",
+                "paramValueOwnership": "InOut"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation19MultiplexInstrumentV6inject_4into5usingy20ServiceContextModule0gH0V_xzq_t7CarrierQy_RszAA8InjectorR_r0_lF",
+            "mangledName": "$s15Instrumentation19MultiplexInstrumentV6inject_4into5usingy20ServiceContextModule0gH0V_xzq_t7CarrierQy_RszAA8InjectorR_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == τ_0_1.Carrier, τ_0_1 : Instrumentation.Injector>",
+            "sugared_genericSig": "<Carrier, Inject where Carrier == Inject.Carrier, Inject : Instrumentation.Injector>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "extract",
+            "printedName": "extract(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "paramValueOwnership": "InOut",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation19MultiplexInstrumentV7extract_4into5usingyx_20ServiceContextModule0gH0Vzq_t7CarrierQy_RszAA9ExtractorR_r0_lF",
+            "mangledName": "$s15Instrumentation19MultiplexInstrumentV7extract_4into5usingyx_20ServiceContextModule0gH0Vzq_t7CarrierQy_RszAA9ExtractorR_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == τ_0_1.Carrier, τ_0_1 : Instrumentation.Extractor>",
+            "sugared_genericSig": "<Carrier, Extract where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:15Instrumentation19MultiplexInstrumentV",
+        "mangledName": "$s15Instrumentation19MultiplexInstrumentV",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Instrument",
+            "printedName": "Instrument",
+            "usr": "s:15Instrumentation10InstrumentP",
+            "mangledName": "$s15Instrumentation10InstrumentP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "ServiceContextModule",
+        "printedName": "ServiceContextModule",
+        "declKind": "Import",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NoOpInstrument",
+        "printedName": "NoOpInstrument",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NoOpInstrument",
+                "printedName": "Instrumentation.NoOpInstrument",
+                "usr": "s:15Instrumentation14NoOpInstrumentV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15Instrumentation14NoOpInstrumentVACycfc",
+            "mangledName": "$s15Instrumentation14NoOpInstrumentVACycfc",
+            "moduleName": "Instrumentation",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "inject",
+            "printedName": "inject(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0",
+                "paramValueOwnership": "InOut"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation14NoOpInstrumentV6inject_4into5usingy20ServiceContextModule0hI0V_xzq_t7CarrierQy_RszAA8InjectorR_r0_lF",
+            "mangledName": "$s15Instrumentation14NoOpInstrumentV6inject_4into5usingy20ServiceContextModule0hI0V_xzq_t7CarrierQy_RszAA8InjectorR_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == τ_0_1.Carrier, τ_0_1 : Instrumentation.Injector>",
+            "sugared_genericSig": "<Carrier, Inject where Carrier == Inject.Carrier, Inject : Instrumentation.Injector>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "extract",
+            "printedName": "extract(_:into:using:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "ServiceContextModule.ServiceContext",
+                "paramValueOwnership": "InOut",
+                "usr": "s:20ServiceContextModule0aB0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_1"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15Instrumentation14NoOpInstrumentV7extract_4into5usingyx_20ServiceContextModule0hI0Vzq_t7CarrierQy_RszAA9ExtractorR_r0_lF",
+            "mangledName": "$s15Instrumentation14NoOpInstrumentV7extract_4into5usingyx_20ServiceContextModule0hI0Vzq_t7CarrierQy_RszAA9ExtractorR_r0_lF",
+            "moduleName": "Instrumentation",
+            "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == τ_0_1.Carrier, τ_0_1 : Instrumentation.Extractor>",
+            "sugared_genericSig": "<Carrier, Extract where Carrier == Extract.Carrier, Extract : Instrumentation.Extractor>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:15Instrumentation14NoOpInstrumentV",
+        "mangledName": "$s15Instrumentation14NoOpInstrumentV",
+        "moduleName": "Instrumentation",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Instrument",
+            "printedName": "Instrument",
+            "usr": "s:15Instrumentation10InstrumentP",
+            "mangledName": "$s15Instrumentation10InstrumentP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-distributed-tracing\/Sources\/Instrumentation\/InstrumentationSystem.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1483,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-distributed-tracing\/Sources\/Instrumentation\/Locks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1827,
+      "length": 1,
+      "value": "1"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+framework module CNIOExtrasZlib {
+    umbrella header "CNIOExtrasZlib.h"
+    export *
+}

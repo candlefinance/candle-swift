@@ -1,0 +1,1162 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name Algorithms
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import RealModule
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension Swift.Sequence {
+  public func adjacentPairs() -> Algorithms.AdjacentPairsSequence<Self>
+}
+extension Swift.Collection {
+  public func adjacentPairs() -> Algorithms.AdjacentPairsCollection<Self>
+}
+public struct AdjacentPairsSequence<Base> where Base : Swift.Sequence {
+}
+extension Algorithms.AdjacentPairsSequence {
+  public struct Iterator {
+  }
+}
+extension Algorithms.AdjacentPairsSequence.Iterator : Swift.IteratorProtocol {
+  public typealias Element = (Base.Element, Base.Element)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func next() -> Algorithms.AdjacentPairsSequence<Base>.Iterator.Element?
+  #endif
+}
+extension Algorithms.AdjacentPairsSequence : Swift.Sequence {
+  public func makeIterator() -> Algorithms.AdjacentPairsSequence<Base>.Iterator
+  public var underestimatedCount: Swift.Int {
+    get
+  }
+  public typealias Element = Algorithms.AdjacentPairsSequence<Base>.Iterator.Element
+}
+extension Algorithms.AdjacentPairsSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.AdjacentPairsSequence<Base>
+}
+public struct AdjacentPairsCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.AdjacentPairsCollection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.AdjacentPairsCollection<Base>.Index, rhs: Algorithms.AdjacentPairsCollection<Base>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.AdjacentPairsCollection<Base>.Index, rhs: Algorithms.AdjacentPairsCollection<Base>.Index) -> Swift.Bool
+  }
+}
+extension Algorithms.AdjacentPairsCollection : Swift.Collection {
+  public var startIndex: Algorithms.AdjacentPairsCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.AdjacentPairsCollection<Base>.Index {
+    get
+  }
+  public subscript(position: Algorithms.AdjacentPairsCollection<Base>.Index) -> (Base.Element, Base.Element) {
+    get
+  }
+  public func index(after i: Algorithms.AdjacentPairsCollection<Base>.Index) -> Algorithms.AdjacentPairsCollection<Base>.Index
+  public func index(_ i: Algorithms.AdjacentPairsCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.AdjacentPairsCollection<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.AdjacentPairsCollection<Base>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.AdjacentPairsCollection<Base>.Index) -> Algorithms.AdjacentPairsCollection<Base>.Index?
+  #endif
+  public func distance(from start: Algorithms.AdjacentPairsCollection<Base>.Index, to end: Algorithms.AdjacentPairsCollection<Base>.Index) -> Swift.Int
+  public var count: Swift.Int {
+    get
+  }
+  public typealias Element = (Base.Element, Base.Element)
+  public typealias Indices = Swift.DefaultIndices<Algorithms.AdjacentPairsCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.AdjacentPairsCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.AdjacentPairsCollection<Base>>
+}
+extension Algorithms.AdjacentPairsCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.AdjacentPairsCollection<Base>.Index) -> Algorithms.AdjacentPairsCollection<Base>.Index
+}
+extension Algorithms.AdjacentPairsCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.AdjacentPairsCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.AdjacentPairsCollection<Base>
+}
+extension Algorithms.AdjacentPairsCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Chain2Sequence<Base1, Base2> where Base1 : Swift.Sequence, Base2 : Swift.Sequence, Base1.Element == Base2.Element {
+}
+extension Algorithms.Chain2Sequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base1.Element?
+    #endif
+    public typealias Element = Base1.Element
+  }
+  public func makeIterator() -> Algorithms.Chain2Sequence<Base1, Base2>.Iterator
+  public typealias Element = Base1.Element
+}
+extension Algorithms.Chain2Sequence : Swift.Collection where Base1 : Swift.Collection, Base2 : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: Algorithms.Chain2Sequence<Base1, Base2>.Index, rhs: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Swift.Bool
+    public static func == (a: Algorithms.Chain2Sequence<Base1, Base2>.Index, b: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.Chain2Sequence<Base1, Base2>.Index {
+    get
+  }
+  public var endIndex: Algorithms.Chain2Sequence<Base1, Base2>.Index {
+    get
+  }
+  public subscript(i: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Base1.Element {
+    get
+  }
+  public func index(after i: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Algorithms.Chain2Sequence<Base1, Base2>.Index
+  public func index(_ i: Algorithms.Chain2Sequence<Base1, Base2>.Index, offsetBy distance: Swift.Int) -> Algorithms.Chain2Sequence<Base1, Base2>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.Chain2Sequence<Base1, Base2>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Algorithms.Chain2Sequence<Base1, Base2>.Index?
+  #endif
+  public func distance(from start: Algorithms.Chain2Sequence<Base1, Base2>.Index, to end: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Swift.Int
+  public typealias Indices = Swift.DefaultIndices<Algorithms.Chain2Sequence<Base1, Base2>>
+  public typealias SubSequence = Swift.Slice<Algorithms.Chain2Sequence<Base1, Base2>>
+}
+extension Algorithms.Chain2Sequence : Swift.BidirectionalCollection where Base1 : Swift.BidirectionalCollection, Base2 : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.Chain2Sequence<Base1, Base2>.Index) -> Algorithms.Chain2Sequence<Base1, Base2>.Index
+}
+extension Algorithms.Chain2Sequence : Swift.RandomAccessCollection where Base1 : Swift.RandomAccessCollection, Base2 : Swift.RandomAccessCollection {
+}
+public func chain<S1, S2>(_ s1: S1, _ s2: S2) -> Algorithms.Chain2Sequence<S1, S2> where S1 : Swift.Sequence, S2 : Swift.Sequence, S1.Element == S2.Element
+public struct ChunkedByCollection<Base, Subject> where Base : Swift.Collection {
+}
+extension Algorithms.ChunkedByCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.ChunkedByCollection<Base, Subject>.Index, rhs: Algorithms.ChunkedByCollection<Base, Subject>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.ChunkedByCollection<Base, Subject>.Index, rhs: Algorithms.ChunkedByCollection<Base, Subject>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.ChunkedByCollection<Base, Subject>.Index {
+    get
+  }
+  public var endIndex: Algorithms.ChunkedByCollection<Base, Subject>.Index {
+    get
+  }
+  public func index(after i: Algorithms.ChunkedByCollection<Base, Subject>.Index) -> Algorithms.ChunkedByCollection<Base, Subject>.Index
+  public subscript(position: Algorithms.ChunkedByCollection<Base, Subject>.Index) -> Base.SubSequence {
+    get
+  }
+  public typealias Element = Base.SubSequence
+  public typealias Indices = Swift.DefaultIndices<Algorithms.ChunkedByCollection<Base, Subject>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.ChunkedByCollection<Base, Subject>>
+  public typealias SubSequence = Swift.Slice<Algorithms.ChunkedByCollection<Base, Subject>>
+}
+extension Algorithms.ChunkedByCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Algorithms.ChunkedByCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.ChunkedByCollection<Base, Subject>.Index) -> Algorithms.ChunkedByCollection<Base, Subject>.Index
+}
+extension Algorithms.ChunkedByCollection : Swift.LazyCollectionProtocol {
+  public typealias Elements = Algorithms.ChunkedByCollection<Base, Subject>
+}
+public struct ChunkedOnCollection<Base, Subject> where Base : Swift.Collection, Subject : Swift.Equatable {
+}
+extension Algorithms.ChunkedOnCollection : Swift.Collection {
+  public typealias Index = Algorithms.ChunkedByCollection<Base, Subject>.Index
+  public var startIndex: Algorithms.ChunkedOnCollection<Base, Subject>.Index {
+    get
+  }
+  public var endIndex: Algorithms.ChunkedOnCollection<Base, Subject>.Index {
+    get
+  }
+  public subscript(position: Algorithms.ChunkedOnCollection<Base, Subject>.Index) -> (Subject, Base.SubSequence) {
+    get
+  }
+  public func index(after i: Algorithms.ChunkedOnCollection<Base, Subject>.Index) -> Algorithms.ChunkedOnCollection<Base, Subject>.Index
+  public typealias Element = (Subject, Base.SubSequence)
+  public typealias Indices = Swift.DefaultIndices<Algorithms.ChunkedOnCollection<Base, Subject>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.ChunkedOnCollection<Base, Subject>>
+  public typealias SubSequence = Swift.Slice<Algorithms.ChunkedOnCollection<Base, Subject>>
+}
+extension Algorithms.ChunkedOnCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.ChunkedOnCollection<Base, Subject>.Index) -> Algorithms.ChunkedOnCollection<Base, Subject>.Index
+}
+extension Algorithms.ChunkedOnCollection : Swift.LazyCollectionProtocol {
+  public typealias Elements = Algorithms.ChunkedOnCollection<Base, Subject>
+}
+public struct EvenlyChunkedCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.EvenlyChunkedCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.EvenlyChunkedCollection<Base>.Index, rhs: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.EvenlyChunkedCollection<Base>.Index, rhs: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Swift.Bool
+  }
+  public typealias Element = Base.SubSequence
+  public var startIndex: Algorithms.EvenlyChunkedCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.EvenlyChunkedCollection<Base>.Index {
+    get
+  }
+  public func index(after i: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Algorithms.EvenlyChunkedCollection<Base>.Index
+  public subscript(position: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Algorithms.EvenlyChunkedCollection<Base>.Element {
+    get
+  }
+  public func index(_ i: Algorithms.EvenlyChunkedCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.EvenlyChunkedCollection<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.EvenlyChunkedCollection<Base>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Algorithms.EvenlyChunkedCollection<Base>.Index?
+  #endif
+  public func distance(from start: Algorithms.EvenlyChunkedCollection<Base>.Index, to end: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Swift.Int
+  public typealias Indices = Swift.DefaultIndices<Algorithms.EvenlyChunkedCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.EvenlyChunkedCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.EvenlyChunkedCollection<Base>>
+}
+extension Algorithms.EvenlyChunkedCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Algorithms.EvenlyChunkedCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.EvenlyChunkedCollection<Base>.Index) -> Algorithms.EvenlyChunkedCollection<Base>.Index
+}
+extension Algorithms.EvenlyChunkedCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.EvenlyChunkedCollection : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.EvenlyChunkedCollection<Base>
+}
+extension Algorithms.EvenlyChunkedCollection : Swift.LazyCollectionProtocol where Base : Swift.LazyCollectionProtocol {
+}
+extension Swift.LazySequenceProtocol where Self : Swift.Collection, Self.Elements : Swift.Collection {
+  public func chunked(by belongInSameGroup: @escaping (Self.Element, Self.Element) -> Swift.Bool) -> Algorithms.ChunkedByCollection<Self.Elements, Self.Element>
+  public func chunked<Subject>(on projection: @escaping (Self.Element) -> Subject) -> Algorithms.ChunkedOnCollection<Self.Elements, Subject> where Subject : Swift.Equatable
+}
+extension Swift.Collection {
+  public func chunked(by belongInSameGroup: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> [Self.SubSequence]
+  public func chunked<Subject>(on projection: (Self.Element) throws -> Subject) rethrows -> [(Subject, Self.SubSequence)] where Subject : Swift.Equatable
+}
+public struct ChunksOfCountCollection<Base> where Base : Swift.Collection {
+  public typealias Element = Base.SubSequence
+}
+extension Algorithms.ChunksOfCountCollection : Swift.Collection {
+  public struct Index {
+  }
+  public var startIndex: Algorithms.ChunksOfCountCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.ChunksOfCountCollection<Base>.Index {
+    get
+  }
+  public subscript(i: Algorithms.ChunksOfCountCollection<Base>.Index) -> Algorithms.ChunksOfCountCollection<Base>.Element {
+    get
+  }
+  public func index(after i: Algorithms.ChunksOfCountCollection<Base>.Index) -> Algorithms.ChunksOfCountCollection<Base>.Index
+  public typealias Indices = Swift.DefaultIndices<Algorithms.ChunksOfCountCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.ChunksOfCountCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.ChunksOfCountCollection<Base>>
+}
+extension Algorithms.ChunksOfCountCollection.Index : Swift.Comparable {
+  public static func == (lhs: Algorithms.ChunksOfCountCollection<Base>.Index, rhs: Algorithms.ChunksOfCountCollection<Base>.Index) -> Swift.Bool
+  public static func < (lhs: Algorithms.ChunksOfCountCollection<Base>.Index, rhs: Algorithms.ChunksOfCountCollection<Base>.Index) -> Swift.Bool
+}
+extension Algorithms.ChunksOfCountCollection : Swift.BidirectionalCollection, Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+  public func index(before i: Algorithms.ChunksOfCountCollection<Base>.Index) -> Algorithms.ChunksOfCountCollection<Base>.Index
+}
+extension Algorithms.ChunksOfCountCollection {
+  public func distance(from start: Algorithms.ChunksOfCountCollection<Base>.Index, to end: Algorithms.ChunksOfCountCollection<Base>.Index) -> Swift.Int
+  public var count: Swift.Int {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.ChunksOfCountCollection<Base>.Index, offsetBy offset: Swift.Int, limitedBy limit: Algorithms.ChunksOfCountCollection<Base>.Index) -> Algorithms.ChunksOfCountCollection<Base>.Index?
+  #endif
+  public func index(_ i: Algorithms.ChunksOfCountCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.ChunksOfCountCollection<Base>.Index
+}
+extension Swift.Collection {
+  public func chunks(ofCount count: Swift.Int) -> Algorithms.ChunksOfCountCollection<Self>
+}
+extension Algorithms.ChunksOfCountCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Algorithms.ChunksOfCountCollection : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.ChunksOfCountCollection<Base>
+}
+extension Algorithms.ChunksOfCountCollection : Swift.LazyCollectionProtocol where Base : Swift.LazyCollectionProtocol {
+}
+extension Swift.Collection {
+  public func evenlyChunked(in count: Swift.Int) -> Algorithms.EvenlyChunkedCollection<Self>
+}
+public struct CombinationsSequence<Base> where Base : Swift.Collection {
+  public var count: Swift.Int {
+    get
+  }
+  public var underestimatedCount: Swift.Int {
+    get
+  }
+}
+extension Algorithms.CombinationsSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> [Base.Element]?
+    #endif
+    public typealias Element = [Base.Element]
+  }
+  public func makeIterator() -> Algorithms.CombinationsSequence<Base>.Iterator
+  public typealias Element = [Base.Element]
+}
+extension Algorithms.CombinationsSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.CombinationsSequence<Base>
+}
+extension Swift.Collection {
+  public func combinations<R>(ofCount kRange: R) -> Algorithms.CombinationsSequence<Self> where R : Swift.RangeExpression, R.Bound == Swift.Int
+  public func combinations(ofCount k: Swift.Int) -> Algorithms.CombinationsSequence<Self>
+}
+public struct CompactedSequence<Base, Element> : Swift.Sequence where Base : Swift.Sequence, Base.Element == Element? {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Element?
+    #endif
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func makeIterator() -> Algorithms.CompactedSequence<Base, Element>.Iterator
+  #endif
+}
+extension Swift.Sequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func compacted<Unwrapped>() -> Algorithms.CompactedSequence<Self, Unwrapped> where Self.Element == Unwrapped?
+  #endif
+}
+public struct CompactedCollection<Base, Element> : Swift.Collection where Base : Swift.Collection, Base.Element == Element? {
+  public struct Index {
+  }
+  public var startIndex: Algorithms.CompactedCollection<Base, Element>.Index
+  public var endIndex: Algorithms.CompactedCollection<Base, Element>.Index {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(position: Algorithms.CompactedCollection<Base, Element>.Index) -> Element {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(after i: Algorithms.CompactedCollection<Base, Element>.Index) -> Algorithms.CompactedCollection<Base, Element>.Index
+  #endif
+  public typealias Indices = Swift.DefaultIndices<Algorithms.CompactedCollection<Base, Element>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.CompactedCollection<Base, Element>>
+  public typealias SubSequence = Swift.Slice<Algorithms.CompactedCollection<Base, Element>>
+}
+extension Algorithms.CompactedCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(before i: Algorithms.CompactedCollection<Base, Element>.Index) -> Algorithms.CompactedCollection<Base, Element>.Index
+  #endif
+}
+extension Algorithms.CompactedCollection.Index : Swift.Comparable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func < (lhs: Algorithms.CompactedCollection<Base, Element>.Index, rhs: Algorithms.CompactedCollection<Base, Element>.Index) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func == (a: Algorithms.CompactedCollection<Base, Element>.Index, b: Algorithms.CompactedCollection<Base, Element>.Index) -> Swift.Bool
+  #endif
+}
+extension Algorithms.CompactedCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func hash(into hasher: inout Swift.Hasher)
+  #endif
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Swift.Collection {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func compacted<Unwrapped>() -> Algorithms.CompactedCollection<Self, Unwrapped> where Self.Element == Unwrapped?
+  #endif
+}
+extension Algorithms.CompactedSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.CompactedSequence<Base, Element>
+}
+extension Algorithms.CompactedCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.CompactedCollection<Base, Element>
+}
+public struct CycledSequence<Base> where Base : Swift.Collection {
+}
+extension Algorithms.CycledSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element?
+    #endif
+    public typealias Element = Base.Element
+  }
+  public func makeIterator() -> Algorithms.CycledSequence<Base>.Iterator
+  public typealias Element = Base.Element
+}
+extension Algorithms.CycledSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.CycledSequence<Base>
+}
+public struct CycledTimesCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.CycledTimesCollection : Swift.Collection {
+  public typealias Element = Base.Element
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.CycledTimesCollection<Base>.Index, rhs: Algorithms.CycledTimesCollection<Base>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.CycledTimesCollection<Base>.Index, rhs: Algorithms.CycledTimesCollection<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.CycledTimesCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.CycledTimesCollection<Base>.Index {
+    get
+  }
+  public subscript(index: Algorithms.CycledTimesCollection<Base>.Index) -> Algorithms.CycledTimesCollection<Base>.Element {
+    get
+  }
+  public func index(after i: Algorithms.CycledTimesCollection<Base>.Index) -> Algorithms.CycledTimesCollection<Base>.Index
+  public func distance(from start: Algorithms.CycledTimesCollection<Base>.Index, to end: Algorithms.CycledTimesCollection<Base>.Index) -> Swift.Int
+  public func index(_ i: Algorithms.CycledTimesCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.CycledTimesCollection<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.CycledTimesCollection<Base>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.CycledTimesCollection<Base>.Index) -> Algorithms.CycledTimesCollection<Base>.Index?
+  #endif
+  public var count: Swift.Int {
+    get
+  }
+  public typealias Indices = Swift.DefaultIndices<Algorithms.CycledTimesCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.CycledTimesCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.CycledTimesCollection<Base>>
+}
+extension Algorithms.CycledTimesCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.CycledTimesCollection<Base>.Index) -> Algorithms.CycledTimesCollection<Base>.Index
+}
+extension Algorithms.CycledTimesCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.CycledTimesCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.CycledTimesCollection<Base>
+}
+extension Swift.Collection {
+  public func cycled() -> Algorithms.CycledSequence<Self>
+  public func cycled(times: Swift.Int) -> Algorithms.CycledTimesCollection<Self>
+}
+extension Swift.Sequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func firstNonNil<Result>(_ transform: (Self.Element) throws -> Result?) rethrows -> Result?
+  #endif
+}
+extension Swift.Sequence {
+  public func grouped<GroupKey>(by keyForValue: (Self.Element) throws -> GroupKey) rethrows -> [GroupKey : [Self.Element]] where GroupKey : Swift.Hashable
+}
+public struct IndexedCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.IndexedCollection : Swift.Collection {
+  public typealias Element = (index: Base.Index, element: Base.Element)
+  public var startIndex: Base.Index {
+    get
+  }
+  public var endIndex: Base.Index {
+    get
+  }
+  public subscript(position: Base.Index) -> Algorithms.IndexedCollection<Base>.Element {
+    get
+  }
+  public func index(after i: Base.Index) -> Base.Index
+  public func index(_ i: Base.Index, offsetBy distance: Swift.Int) -> Base.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Base.Index, offsetBy distance: Swift.Int, limitedBy limit: Base.Index) -> Base.Index?
+  #endif
+  public func distance(from start: Base.Index, to end: Base.Index) -> Swift.Int
+  public var indices: Base.Indices {
+    get
+  }
+  public typealias Index = Base.Index
+  public typealias Indices = Base.Indices
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.IndexedCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.IndexedCollection<Base>>
+}
+extension Algorithms.IndexedCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Base.Index) -> Base.Index
+}
+extension Algorithms.IndexedCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.IndexedCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.IndexedCollection<Base>
+}
+extension Swift.Collection {
+  public func indexed() -> Algorithms.IndexedCollection<Self>
+}
+public struct InterspersedSequence<Base> where Base : Swift.Sequence {
+}
+extension Algorithms.InterspersedSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element?
+    #endif
+    public typealias Element = Base.Element
+  }
+  public func makeIterator() -> Algorithms.InterspersedSequence<Base>.Iterator
+  public typealias Element = Base.Element
+}
+extension Algorithms.InterspersedSequence : Swift.Collection where Base : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: Algorithms.InterspersedSequence<Base>.Index, rhs: Algorithms.InterspersedSequence<Base>.Index) -> Swift.Bool
+    public static func == (a: Algorithms.InterspersedSequence<Base>.Index, b: Algorithms.InterspersedSequence<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.InterspersedSequence<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.InterspersedSequence<Base>.Index {
+    get
+  }
+  public func index(after i: Algorithms.InterspersedSequence<Base>.Index) -> Algorithms.InterspersedSequence<Base>.Index
+  public subscript(position: Algorithms.InterspersedSequence<Base>.Index) -> Algorithms.InterspersedSequence<Base>.Element {
+    get
+  }
+  public func distance(from start: Algorithms.InterspersedSequence<Base>.Index, to end: Algorithms.InterspersedSequence<Base>.Index) -> Swift.Int
+  public func index(_ index: Algorithms.InterspersedSequence<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.InterspersedSequence<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ index: Algorithms.InterspersedSequence<Base>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.InterspersedSequence<Base>.Index) -> Algorithms.InterspersedSequence<Base>.Index?
+  #endif
+  public typealias Indices = Swift.DefaultIndices<Algorithms.InterspersedSequence<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.InterspersedSequence<Base>>
+}
+extension Algorithms.InterspersedSequence : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.InterspersedSequence<Base>.Index) -> Algorithms.InterspersedSequence<Base>.Index
+}
+extension Algorithms.InterspersedSequence : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.InterspersedSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.InterspersedSequence<Base>
+}
+extension Algorithms.InterspersedSequence : Swift.LazyCollectionProtocol where Base : Swift.Collection, Base : Swift.LazySequenceProtocol {
+}
+extension Swift.Sequence {
+  public func interspersed(with separator: Self.Element) -> Algorithms.InterspersedSequence<Self>
+}
+public struct JoinedBySequence<Base, Separator> where Base : Swift.Sequence, Separator : Swift.Sequence, Base.Element : Swift.Sequence, Separator.Element == Base.Element.Element {
+}
+extension Algorithms.JoinedBySequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element.Element?
+    #endif
+    public typealias Element = Separator.Element
+  }
+  public func makeIterator() -> Algorithms.JoinedBySequence<Base, Separator>.Iterator
+  public typealias Element = Separator.Element
+}
+extension Algorithms.JoinedBySequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.JoinedBySequence<Base, Separator>
+}
+public struct JoinedByClosureSequence<Base, Separator> where Base : Swift.Sequence, Separator : Swift.Sequence, Base.Element : Swift.Sequence, Separator.Element == Base.Element.Element {
+}
+extension Algorithms.JoinedByClosureSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element.Element?
+    #endif
+    public typealias Element = Separator.Element
+  }
+  public func makeIterator() -> Algorithms.JoinedByClosureSequence<Base, Separator>.Iterator
+  public typealias Element = Separator.Element
+}
+extension Algorithms.JoinedByClosureSequence : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.JoinedByClosureSequence<Base, Separator>
+}
+public struct JoinedByCollection<Base, Separator> where Base : Swift.Collection, Separator : Swift.Collection, Base.Element : Swift.Collection, Separator.Element == Base.Element.Element {
+}
+extension Algorithms.JoinedByCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.JoinedByCollection<Base, Separator>.Index, rhs: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.JoinedByCollection<Base, Separator>.Index, rhs: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.JoinedByCollection<Base, Separator>.Index {
+    get
+  }
+  public var endIndex: Algorithms.JoinedByCollection<Base, Separator>.Index {
+    get
+  }
+  public func index(after index: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Algorithms.JoinedByCollection<Base, Separator>.Index
+  public subscript(position: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Base.Element.Element {
+    get
+  }
+  public func index(_ index: Algorithms.JoinedByCollection<Base, Separator>.Index, offsetBy distance: Swift.Int) -> Algorithms.JoinedByCollection<Base, Separator>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ index: Algorithms.JoinedByCollection<Base, Separator>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Algorithms.JoinedByCollection<Base, Separator>.Index?
+  #endif
+  public func distance(from start: Algorithms.JoinedByCollection<Base, Separator>.Index, to end: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Swift.Int
+  public typealias Element = Separator.Element
+  public typealias Indices = Swift.DefaultIndices<Algorithms.JoinedByCollection<Base, Separator>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.JoinedByCollection<Base, Separator>>
+  public typealias SubSequence = Swift.Slice<Algorithms.JoinedByCollection<Base, Separator>>
+}
+extension Algorithms.JoinedByCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection, Separator : Swift.BidirectionalCollection, Base.Element : Swift.BidirectionalCollection {
+  public func index(before index: Algorithms.JoinedByCollection<Base, Separator>.Index) -> Algorithms.JoinedByCollection<Base, Separator>.Index
+}
+extension Algorithms.JoinedByCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.JoinedByCollection<Base, Separator>
+}
+public struct JoinedByClosureCollection<Base, Separator> where Base : Swift.Collection, Separator : Swift.Collection, Base.Element : Swift.Collection, Separator.Element == Base.Element.Element {
+}
+extension Algorithms.JoinedByClosureCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.JoinedByClosureCollection<Base, Separator>.Index, rhs: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.JoinedByClosureCollection<Base, Separator>.Index, rhs: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.JoinedByClosureCollection<Base, Separator>.Index {
+    get
+  }
+  public var endIndex: Algorithms.JoinedByClosureCollection<Base, Separator>.Index {
+    get
+  }
+  public func index(after index: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Algorithms.JoinedByClosureCollection<Base, Separator>.Index
+  public subscript(position: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Base.Element.Element {
+    get
+  }
+  public func index(_ index: Algorithms.JoinedByClosureCollection<Base, Separator>.Index, offsetBy distance: Swift.Int) -> Algorithms.JoinedByClosureCollection<Base, Separator>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ index: Algorithms.JoinedByClosureCollection<Base, Separator>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Algorithms.JoinedByClosureCollection<Base, Separator>.Index?
+  #endif
+  public func distance(from start: Algorithms.JoinedByClosureCollection<Base, Separator>.Index, to end: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Swift.Int
+  public typealias Element = Separator.Element
+  public typealias Indices = Swift.DefaultIndices<Algorithms.JoinedByClosureCollection<Base, Separator>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.JoinedByClosureCollection<Base, Separator>>
+  public typealias SubSequence = Swift.Slice<Algorithms.JoinedByClosureCollection<Base, Separator>>
+}
+extension Algorithms.JoinedByClosureCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection, Separator : Swift.BidirectionalCollection, Base.Element : Swift.BidirectionalCollection {
+  public func index(before index: Algorithms.JoinedByClosureCollection<Base, Separator>.Index) -> Algorithms.JoinedByClosureCollection<Base, Separator>.Index
+}
+extension Algorithms.JoinedByClosureCollection : Swift.LazyCollectionProtocol {
+  public typealias Elements = Algorithms.JoinedByClosureCollection<Base, Separator>
+}
+extension Swift.Sequence where Self.Element : Swift.Sequence {
+  public func joined(by separator: Self.Element.Element) -> Algorithms.JoinedBySequence<Self, Swift.CollectionOfOne<Self.Element.Element>>
+  public func joined<Separator>(by separator: Separator) -> Algorithms.JoinedBySequence<Self, Separator> where Separator : Swift.Collection, Separator.Element == Self.Element.Element
+  public func joined(by separator: (Self.Element, Self.Element) throws -> Self.Element.Element) rethrows -> [Self.Element.Element]
+  public func joined<Separator>(by separator: (Self.Element, Self.Element) throws -> Separator) rethrows -> [Self.Element.Element] where Separator : Swift.Sequence, Separator.Element == Self.Element.Element
+}
+extension Swift.LazySequenceProtocol where Self.Element : Swift.Sequence {
+  public func joined(by separator: @escaping (Self.Element, Self.Element) -> Self.Element.Element) -> Algorithms.JoinedByClosureSequence<Self.Elements, Swift.CollectionOfOne<Self.Element.Element>>
+  public func joined<Separator>(by separator: @escaping (Self.Element, Self.Element) -> Separator) -> Algorithms.JoinedByClosureSequence<Self.Elements, Separator> where Separator : Swift.Sequence, Separator.Element == Self.Element.Element
+}
+extension Swift.Collection where Self.Element : Swift.Collection {
+  public func joined(by separator: Self.Element.Element) -> Algorithms.JoinedByCollection<Self, Swift.CollectionOfOne<Self.Element.Element>>
+  public func joined<Separator>(by separator: Separator) -> Algorithms.JoinedByCollection<Self, Separator> where Separator : Swift.Collection, Separator.Element == Self.Element.Element
+}
+extension Swift.LazySequenceProtocol where Self.Element : Swift.Collection, Self.Elements : Swift.Collection {
+  public func joined(by separator: @escaping (Self.Element, Self.Element) -> Self.Element.Element) -> Algorithms.JoinedByClosureCollection<Self.Elements, Swift.CollectionOfOne<Self.Element.Element>>
+  public func joined<Separator>(by separator: @escaping (Self.Element, Self.Element) -> Separator) -> Algorithms.JoinedByClosureCollection<Self.Elements, Separator> where Separator : Swift.Collection, Separator.Element == Self.Element.Element
+}
+extension Swift.Sequence {
+  public func keyed<Key>(by keyForValue: (Self.Element) throws -> Key) rethrows -> [Key : Self.Element] where Key : Swift.Hashable
+  public func keyed<Key>(by keyForValue: (Self.Element) throws -> Key, resolvingConflictsWith resolve: (Key, Self.Element, Self.Element) throws -> Self.Element) rethrows -> [Key : Self.Element] where Key : Swift.Hashable
+}
+extension Swift.Sequence {
+  public func min(count: Swift.Int, sortedBy areInIncreasingOrder: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> [Self.Element]
+  public func max(count: Swift.Int, sortedBy areInIncreasingOrder: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> [Self.Element]
+}
+extension Swift.Sequence where Self.Element : Swift.Comparable {
+  public func min(count: Swift.Int) -> [Self.Element]
+  public func max(count: Swift.Int) -> [Self.Element]
+}
+extension Swift.Collection {
+  public func min(count: Swift.Int, sortedBy areInIncreasingOrder: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> [Self.Element]
+  public func max(count: Swift.Int, sortedBy areInIncreasingOrder: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> [Self.Element]
+}
+extension Swift.Collection where Self.Element : Swift.Comparable {
+  public func min(count: Swift.Int) -> [Self.Element]
+  public func max(count: Swift.Int) -> [Self.Element]
+}
+extension Swift.Sequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func minAndMax(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Swift.Bool) rethrows -> (min: Self.Element, max: Self.Element)?
+  #endif
+}
+extension Swift.Sequence where Self.Element : Swift.Comparable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func minAndMax() -> (min: Self.Element, max: Self.Element)?
+  #endif
+}
+extension Swift.MutableCollection {
+  public mutating func stablePartition(subrange: Swift.Range<Self.Index>, by belongsInSecondPartition: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+  public mutating func stablePartition(by belongsInSecondPartition: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.MutableCollection {
+  public mutating func partition(subrange: Swift.Range<Self.Index>, by belongsInSecondPartition: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.MutableCollection where Self : Swift.BidirectionalCollection {
+  public mutating func partition(subrange: Swift.Range<Self.Index>, by belongsInSecondPartition: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.Collection {
+  public func partitioningIndex(where belongsInSecondPartition: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.Sequence {
+  public func partitioned(by predicate: (Self.Element) throws -> Swift.Bool) rethrows -> (falseElements: [Self.Element], trueElements: [Self.Element])
+}
+extension Swift.Collection {
+  public func partitioned(by predicate: (Self.Element) throws -> Swift.Bool) rethrows -> (falseElements: [Self.Element], trueElements: [Self.Element])
+}
+public struct PermutationsSequence<Base> where Base : Swift.Collection {
+  public var count: Swift.Int {
+    get
+  }
+}
+extension Algorithms.PermutationsSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> [Base.Element]?
+    #endif
+    public typealias Element = [Base.Element]
+  }
+  public func makeIterator() -> Algorithms.PermutationsSequence<Base>.Iterator
+  public typealias Element = [Base.Element]
+}
+extension Algorithms.PermutationsSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.PermutationsSequence<Base>
+}
+extension Swift.Collection {
+  public func permutations<R>(ofCount kRange: R) -> Algorithms.PermutationsSequence<Self> where R : Swift.RangeExpression, R.Bound == Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func permutations(ofCount k: Swift.Int? = nil) -> Algorithms.PermutationsSequence<Self>
+  #endif
+}
+public struct UniquePermutationsSequence<Base> where Base : Swift.Collection {
+}
+extension Algorithms.UniquePermutationsSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> [Base.Element]?
+    #endif
+    public typealias Element = [Base.Element]
+  }
+  public func makeIterator() -> Algorithms.UniquePermutationsSequence<Base>.Iterator
+  public typealias Element = [Base.Element]
+}
+extension Algorithms.UniquePermutationsSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.UniquePermutationsSequence<Base>
+}
+extension Swift.Collection where Self.Element : Swift.Hashable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func uniquePermutations(ofCount k: Swift.Int? = nil) -> Algorithms.UniquePermutationsSequence<Self>
+  #endif
+  public func uniquePermutations<R>(ofCount kRange: R) -> Algorithms.UniquePermutationsSequence<Self> where R : Swift.RangeExpression, R.Bound == Swift.Int
+}
+public struct Product2Sequence<Base1, Base2> where Base1 : Swift.Sequence, Base2 : Swift.Collection {
+}
+extension Algorithms.Product2Sequence : Swift.Sequence {
+  public typealias Element = (Base1.Element, Base2.Element)
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> (Base1.Element, Base2.Element)?
+    #endif
+    public typealias Element = (Base1.Element, Base2.Element)
+  }
+  public func makeIterator() -> Algorithms.Product2Sequence<Base1, Base2>.Iterator
+}
+extension Algorithms.Product2Sequence : Swift.Collection where Base1 : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: Algorithms.Product2Sequence<Base1, Base2>.Index, rhs: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Swift.Bool
+    public static func == (a: Algorithms.Product2Sequence<Base1, Base2>.Index, b: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Swift.Bool
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public var startIndex: Algorithms.Product2Sequence<Base1, Base2>.Index {
+    get
+  }
+  public var endIndex: Algorithms.Product2Sequence<Base1, Base2>.Index {
+    get
+  }
+  public subscript(position: Algorithms.Product2Sequence<Base1, Base2>.Index) -> (Base1.Element, Base2.Element) {
+    get
+  }
+  public func index(after i: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Algorithms.Product2Sequence<Base1, Base2>.Index
+  public func distance(from start: Algorithms.Product2Sequence<Base1, Base2>.Index, to end: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Swift.Int
+  public func index(_ i: Algorithms.Product2Sequence<Base1, Base2>.Index, offsetBy distance: Swift.Int) -> Algorithms.Product2Sequence<Base1, Base2>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.Product2Sequence<Base1, Base2>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Algorithms.Product2Sequence<Base1, Base2>.Index?
+  #endif
+  public typealias Indices = Swift.DefaultIndices<Algorithms.Product2Sequence<Base1, Base2>>
+  public typealias SubSequence = Swift.Slice<Algorithms.Product2Sequence<Base1, Base2>>
+}
+extension Algorithms.Product2Sequence : Swift.BidirectionalCollection where Base1 : Swift.BidirectionalCollection, Base2 : Swift.BidirectionalCollection {
+  public func index(before i: Algorithms.Product2Sequence<Base1, Base2>.Index) -> Algorithms.Product2Sequence<Base1, Base2>.Index
+}
+extension Algorithms.Product2Sequence : Swift.RandomAccessCollection where Base1 : Swift.RandomAccessCollection, Base2 : Swift.RandomAccessCollection {
+}
+extension Algorithms.Product2Sequence.Index : Swift.Hashable where Base1.Index : Swift.Hashable, Base2.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public func product<Base1, Base2>(_ s1: Base1, _ s2: Base2) -> Algorithms.Product2Sequence<Base1, Base2> where Base1 : Swift.Sequence, Base2 : Swift.Collection
+extension Swift.Collection {
+  public func randomStableSample<G>(count k: Swift.Int, using rng: inout G) -> [Self.Element] where G : Swift.RandomNumberGenerator
+  public func randomStableSample(count k: Swift.Int) -> [Self.Element]
+}
+extension Swift.Collection {
+  public func randomSample<G>(count k: Swift.Int, using rng: inout G) -> [Self.Element] where G : Swift.RandomNumberGenerator
+  public func randomSample(count k: Swift.Int) -> [Self.Element]
+}
+extension Swift.Sequence {
+  public func randomSample<G>(count k: Swift.Int, using rng: inout G) -> [Self.Element] where G : Swift.RandomNumberGenerator
+  public func randomSample(count k: Swift.Int) -> [Self.Element]
+}
+extension Swift.LazySequenceProtocol {
+  public func reductions<Result>(_ initial: Result, _ transform: @escaping (Result, Self.Element) -> Result) -> Algorithms.ExclusiveReductionsSequence<Self.Elements, Result>
+  public func reductions<Result>(into initial: Result, _ transform: @escaping (inout Result, Self.Element) -> Swift.Void) -> Algorithms.ExclusiveReductionsSequence<Self.Elements, Result>
+}
+extension Swift.Sequence {
+  public func reductions<Result>(_ initial: Result, _ transform: (Result, Self.Element) throws -> Result) rethrows -> [Result]
+  public func reductions<Result>(into initial: Result, _ transform: (inout Result, Self.Element) throws -> Swift.Void) rethrows -> [Result]
+}
+public struct ExclusiveReductionsSequence<Base, Result> where Base : Swift.Sequence {
+}
+extension Algorithms.ExclusiveReductionsSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Result?
+    #endif
+    public typealias Element = Result
+  }
+  public func makeIterator() -> Algorithms.ExclusiveReductionsSequence<Base, Result>.Iterator
+  public typealias Element = Result
+}
+extension Algorithms.ExclusiveReductionsSequence : Swift.Collection where Base : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index, rhs: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index, rhs: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index {
+    get
+  }
+  public var endIndex: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index {
+    get
+  }
+  public subscript(position: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index) -> Result {
+    get
+  }
+  public func index(after index: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index) -> Algorithms.ExclusiveReductionsSequence<Base, Result>.Index
+  public func distance(from start: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index, to end: Algorithms.ExclusiveReductionsSequence<Base, Result>.Index) -> Swift.Int
+  public typealias Indices = Swift.DefaultIndices<Algorithms.ExclusiveReductionsSequence<Base, Result>>
+  public typealias SubSequence = Swift.Slice<Algorithms.ExclusiveReductionsSequence<Base, Result>>
+}
+extension Algorithms.ExclusiveReductionsSequence : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.ExclusiveReductionsSequence<Base, Result>
+}
+extension Algorithms.ExclusiveReductionsSequence : Swift.LazyCollectionProtocol where Base : Swift.Collection {
+}
+extension Algorithms.ExclusiveReductionsSequence.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Swift.LazySequenceProtocol {
+  public func reductions(_ transform: @escaping (Self.Element, Self.Element) -> Self.Element) -> Algorithms.InclusiveReductionsSequence<Self.Elements>
+}
+extension Swift.Sequence {
+  public func reductions(_ transform: (Self.Element, Self.Element) throws -> Self.Element) rethrows -> [Self.Element]
+}
+public struct InclusiveReductionsSequence<Base> where Base : Swift.Sequence {
+}
+extension Algorithms.InclusiveReductionsSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element?
+    #endif
+    public typealias Element = Base.Element
+  }
+  public func makeIterator() -> Algorithms.InclusiveReductionsSequence<Base>.Iterator
+  public typealias Element = Base.Element
+}
+extension Algorithms.InclusiveReductionsSequence : Swift.Collection where Base : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: Algorithms.InclusiveReductionsSequence<Base>.Index, rhs: Algorithms.InclusiveReductionsSequence<Base>.Index) -> Swift.Bool
+    public static func == (lhs: Algorithms.InclusiveReductionsSequence<Base>.Index, rhs: Algorithms.InclusiveReductionsSequence<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.InclusiveReductionsSequence<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.InclusiveReductionsSequence<Base>.Index {
+    get
+  }
+  public subscript(index: Algorithms.InclusiveReductionsSequence<Base>.Index) -> Base.Element {
+    get
+  }
+  public func index(after index: Algorithms.InclusiveReductionsSequence<Base>.Index) -> Algorithms.InclusiveReductionsSequence<Base>.Index
+  public func distance(from start: Algorithms.InclusiveReductionsSequence<Base>.Index, to end: Algorithms.InclusiveReductionsSequence<Base>.Index) -> Swift.Int
+  public typealias Indices = Swift.DefaultIndices<Algorithms.InclusiveReductionsSequence<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.InclusiveReductionsSequence<Base>>
+}
+extension Algorithms.InclusiveReductionsSequence : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.InclusiveReductionsSequence<Base>
+}
+extension Algorithms.InclusiveReductionsSequence : Swift.LazyCollectionProtocol where Base : Swift.Collection {
+}
+extension Algorithms.InclusiveReductionsSequence.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Swift.LazySequenceProtocol {
+  @available(*, deprecated, message: "Use reductions(_:_:) instead.")
+  public func scan<Result>(_ initial: Result, _ transform: @escaping (Result, Self.Element) -> Result) -> Algorithms.ExclusiveReductionsSequence<Self.Elements, Result>
+  @available(*, deprecated, message: "Use reductions(into:_:) instead.")
+  public func scan<Result>(into initial: Result, _ transform: @escaping (inout Result, Self.Element) -> Swift.Void) -> Algorithms.ExclusiveReductionsSequence<Self.Elements, Result>
+}
+extension Swift.Sequence {
+  @available(*, deprecated, message: "Use reductions(_:_:) instead.")
+  public func scan<Result>(_ initial: Result, _ transform: (Result, Self.Element) throws -> Result) rethrows -> [Result]
+  @available(*, deprecated, message: "Use reductions(into:_:) instead.")
+  public func scan<Result>(into initial: Result, _ transform: (inout Result, Self.Element) throws -> Swift.Void) rethrows -> [Result]
+}
+extension Swift.LazySequenceProtocol {
+  @available(*, deprecated, message: "Use reductions(_:) instead.")
+  public func scan(_ transform: @escaping (Self.Element, Self.Element) -> Self.Element) -> Algorithms.InclusiveReductionsSequence<Self.Elements>
+}
+extension Swift.Sequence {
+  @available(*, deprecated, message: "Use reductions(_:) instead.")
+  public func scan(_ transform: (Self.Element, Self.Element) throws -> Self.Element) rethrows -> [Self.Element]
+}
+extension Swift.MutableCollection where Self : Swift.BidirectionalCollection {
+  public mutating func reverse(subrange: Swift.Range<Self.Index>)
+}
+extension Swift.MutableCollection {
+  @discardableResult
+  public mutating func rotate(subrange: Swift.Range<Self.Index>, toStartAt newStart: Self.Index) -> Self.Index
+  @discardableResult
+  public mutating func rotate(toStartAt newStart: Self.Index) -> Self.Index
+}
+extension Swift.MutableCollection where Self : Swift.BidirectionalCollection {
+  @discardableResult
+  public mutating func rotate(subrange: Swift.Range<Self.Index>, toStartAt newStart: Self.Index) -> Self.Index
+  @discardableResult
+  public mutating func rotate(toStartAt newStart: Self.Index) -> Self.Index
+}
+public struct SplitSequence<Base> where Base : Swift.Sequence {
+}
+extension Algorithms.SplitSequence : Swift.Sequence {
+  public struct Iterator {
+    public typealias Element = [Base.Element]
+  }
+  public func makeIterator() -> Algorithms.SplitSequence<Base>.Iterator
+  public typealias Element = Algorithms.SplitSequence<Base>.Iterator.Element
+}
+extension Algorithms.SplitSequence.Iterator : Swift.IteratorProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func next() -> Algorithms.SplitSequence<Base>.Iterator.Element?
+  #endif
+}
+extension Algorithms.SplitSequence : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.SplitSequence<Base>
+}
+extension Swift.LazySequenceProtocol {
+  public func split(maxSplits: Swift.Int = Int.max, omittingEmptySubsequences: Swift.Bool = true, whereSeparator isSeparator: @escaping (Self.Element) -> Swift.Bool) -> Algorithms.SplitSequence<Self.Elements>
+}
+extension Swift.LazySequenceProtocol where Self.Element : Swift.Equatable {
+  public func split(separator: Self.Element, maxSplits: Swift.Int = Int.max, omittingEmptySubsequences: Swift.Bool = true) -> Algorithms.SplitSequence<Self.Elements>
+}
+public struct SplitCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.SplitCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.SplitCollection<Base>.Index, rhs: Algorithms.SplitCollection<Base>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.SplitCollection<Base>.Index, rhs: Algorithms.SplitCollection<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.SplitCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.SplitCollection<Base>.Index {
+    get
+  }
+  public func index(after i: Algorithms.SplitCollection<Base>.Index) -> Algorithms.SplitCollection<Base>.Index
+  public subscript(position: Algorithms.SplitCollection<Base>.Index) -> Base.SubSequence {
+    get
+  }
+  public typealias Element = Base.SubSequence
+  public typealias Indices = Swift.DefaultIndices<Algorithms.SplitCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.SplitCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.SplitCollection<Base>>
+}
+extension Algorithms.SplitCollection.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Algorithms.SplitCollection : Swift.LazyCollectionProtocol {
+  public typealias Elements = Algorithms.SplitCollection<Base>
+}
+extension Swift.LazySequenceProtocol where Self : Swift.Collection, Self.Elements : Swift.Collection {
+  public func split(maxSplits: Swift.Int = Int.max, omittingEmptySubsequences: Swift.Bool = true, whereSeparator isSeparator: @escaping (Self.Element) -> Swift.Bool) -> Algorithms.SplitCollection<Self.Elements>
+}
+extension Swift.LazySequenceProtocol where Self : Swift.Collection, Self.Element : Swift.Equatable, Self.Elements : Swift.Collection {
+  public func split(separator: Self.Element, maxSplits: Swift.Int = Int.max, omittingEmptySubsequences: Swift.Bool = true) -> Algorithms.SplitCollection<Self.Elements>
+}
+extension Swift.Sequence {
+  public func striding(by step: Swift.Int) -> Algorithms.StridingSequence<Self>
+}
+extension Swift.Collection {
+  public func striding(by step: Swift.Int) -> Algorithms.StridingCollection<Self>
+}
+public struct StridingSequence<Base> where Base : Swift.Sequence {
+}
+extension Algorithms.StridingSequence {
+  public func striding(by step: Swift.Int) -> Algorithms.StridingSequence<Base>
+}
+extension Algorithms.StridingSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element?
+    #endif
+    public typealias Element = Base.Element
+  }
+  public func makeIterator() -> Algorithms.StridingSequence<Base>.Iterator
+  public typealias Element = Base.Element
+}
+extension Algorithms.StridingSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.StridingSequence<Base>
+}
+public struct StridingCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.StridingCollection {
+  public func striding(by step: Swift.Int) -> Algorithms.StridingCollection<Base>
+}
+extension Algorithms.StridingCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: Algorithms.StridingCollection<Base>.Index, rhs: Algorithms.StridingCollection<Base>.Index) -> Swift.Bool
+    public static func == (a: Algorithms.StridingCollection<Base>.Index, b: Algorithms.StridingCollection<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.StridingCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.StridingCollection<Base>.Index {
+    get
+  }
+  public subscript(i: Algorithms.StridingCollection<Base>.Index) -> Base.Element {
+    get
+  }
+  public func index(after i: Algorithms.StridingCollection<Base>.Index) -> Algorithms.StridingCollection<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.StridingCollection<Base>.Index, offsetBy n: Swift.Int, limitedBy limit: Algorithms.StridingCollection<Base>.Index) -> Algorithms.StridingCollection<Base>.Index?
+  #endif
+  public var count: Swift.Int {
+    get
+  }
+  public func distance(from start: Algorithms.StridingCollection<Base>.Index, to end: Algorithms.StridingCollection<Base>.Index) -> Swift.Int
+  public func index(_ i: Algorithms.StridingCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.StridingCollection<Base>.Index
+  public typealias Element = Base.Element
+  public typealias Indices = Swift.DefaultIndices<Algorithms.StridingCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.StridingCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.StridingCollection<Base>>
+}
+extension Algorithms.StridingCollection : Swift.BidirectionalCollection where Base : Swift.RandomAccessCollection {
+  public func index(before i: Algorithms.StridingCollection<Base>.Index) -> Algorithms.StridingCollection<Base>.Index
+}
+extension Algorithms.StridingCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.StridingCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.StridingCollection<Base>
+}
+extension Algorithms.StridingCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Swift.BidirectionalCollection {
+  public func suffix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.SubSequence
+}
+extension Swift.Collection {
+  public func endOfPrefix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.BidirectionalCollection {
+  public func startOfSuffix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.Index
+}
+extension Swift.Collection {
+  public func trimmingPrefix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.SubSequence
+}
+extension Swift.Collection where Self : Swift.RangeReplaceableCollection {
+  @_disfavoredOverload public mutating func trimPrefix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+}
+extension Swift.Collection where Self == Self.SubSequence {
+  public mutating func trimPrefix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+}
+extension Swift.BidirectionalCollection {
+  public func trimming(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.SubSequence
+  public func trimmingSuffix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows -> Self.SubSequence
+}
+extension Swift.BidirectionalCollection where Self : Swift.RangeReplaceableCollection {
+  @_disfavoredOverload public mutating func trim(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+  @_disfavoredOverload public mutating func trimSuffix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+}
+extension Swift.BidirectionalCollection where Self == Self.SubSequence {
+  public mutating func trim(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+  public mutating func trimSuffix(while predicate: (Self.Element) throws -> Swift.Bool) rethrows
+}
+public struct UniquedSequence<Base, Subject> where Base : Swift.Sequence, Subject : Swift.Hashable {
+}
+extension Algorithms.UniquedSequence : Swift.Sequence {
+  public struct Iterator : Swift.IteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() -> Base.Element?
+    #endif
+    public typealias Element = Base.Element
+  }
+  public func makeIterator() -> Algorithms.UniquedSequence<Base, Subject>.Iterator
+  public typealias Element = Base.Element
+}
+extension Algorithms.UniquedSequence : Swift.LazySequenceProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.UniquedSequence<Base, Subject>
+}
+extension Swift.Sequence where Self.Element : Swift.Hashable {
+  public func uniqued() -> Algorithms.UniquedSequence<Self, Self.Element>
+}
+extension Swift.Sequence {
+  public func uniqued<Subject>(on projection: (Self.Element) throws -> Subject) rethrows -> [Self.Element] where Subject : Swift.Hashable
+}
+extension Swift.LazySequenceProtocol {
+  public func uniqued<Subject>(on projection: @escaping (Self.Element) -> Subject) -> Algorithms.UniquedSequence<Self, Subject> where Subject : Swift.Hashable
+}
+extension Swift.Collection {
+  public func windows(ofCount count: Swift.Int) -> Algorithms.WindowsOfCountCollection<Self>
+}
+public struct WindowsOfCountCollection<Base> where Base : Swift.Collection {
+}
+extension Algorithms.WindowsOfCountCollection : Swift.Collection {
+  public struct Index : Swift.Comparable {
+    public static func == (lhs: Algorithms.WindowsOfCountCollection<Base>.Index, rhs: Algorithms.WindowsOfCountCollection<Base>.Index) -> Swift.Bool
+    public static func < (lhs: Algorithms.WindowsOfCountCollection<Base>.Index, rhs: Algorithms.WindowsOfCountCollection<Base>.Index) -> Swift.Bool
+  }
+  public var startIndex: Algorithms.WindowsOfCountCollection<Base>.Index {
+    get
+  }
+  public var endIndex: Algorithms.WindowsOfCountCollection<Base>.Index {
+    get
+  }
+  public subscript(index: Algorithms.WindowsOfCountCollection<Base>.Index) -> Base.SubSequence {
+    get
+  }
+  public func index(after index: Algorithms.WindowsOfCountCollection<Base>.Index) -> Algorithms.WindowsOfCountCollection<Base>.Index
+  public func index(_ i: Algorithms.WindowsOfCountCollection<Base>.Index, offsetBy distance: Swift.Int) -> Algorithms.WindowsOfCountCollection<Base>.Index
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func index(_ i: Algorithms.WindowsOfCountCollection<Base>.Index, offsetBy distance: Swift.Int, limitedBy limit: Algorithms.WindowsOfCountCollection<Base>.Index) -> Algorithms.WindowsOfCountCollection<Base>.Index?
+  #endif
+  public func distance(from start: Algorithms.WindowsOfCountCollection<Base>.Index, to end: Algorithms.WindowsOfCountCollection<Base>.Index) -> Swift.Int
+  public typealias Element = Base.SubSequence
+  public typealias Indices = Swift.DefaultIndices<Algorithms.WindowsOfCountCollection<Base>>
+  public typealias Iterator = Swift.IndexingIterator<Algorithms.WindowsOfCountCollection<Base>>
+  public typealias SubSequence = Swift.Slice<Algorithms.WindowsOfCountCollection<Base>>
+}
+extension Algorithms.WindowsOfCountCollection : Swift.BidirectionalCollection where Base : Swift.BidirectionalCollection {
+  public func index(before index: Algorithms.WindowsOfCountCollection<Base>.Index) -> Algorithms.WindowsOfCountCollection<Base>.Index
+}
+extension Algorithms.WindowsOfCountCollection : Swift.RandomAccessCollection where Base : Swift.RandomAccessCollection {
+}
+extension Algorithms.WindowsOfCountCollection : Swift.LazySequenceProtocol, Swift.LazyCollectionProtocol where Base : Swift.LazySequenceProtocol {
+  public typealias Elements = Algorithms.WindowsOfCountCollection<Base>
+}
+extension Algorithms.WindowsOfCountCollection.Index : Swift.Hashable where Base.Index : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}

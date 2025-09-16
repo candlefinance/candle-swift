@@ -5,20 +5,18 @@ struct AssetAccountsScreen: View {
     private enum _State {
         case initial
         case loading
-        case normal(Models.AssetAccountsResponse)
+        case normal(Candle.Models.AssetAccountsResponse)
     }
-
-    @Environment(CandleClient.self) private var client
 
     @Binding var error: (title: String, message: String)?
 
     @State private var state: _State = .initial
-    @State private var assetKind: Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
-    @State private var selectedLinkedAccountIDs: [Models.LinkedAccountID] = []
+    @State private var assetKind: Candle.Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
+    @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
-    let linkedAccounts: [Models.LinkedAccount]
+    let linkedAccounts: [Candle.Models.LinkedAccount]
 
-    var assetAccountsQuery: Models.GetAssetAccounts.Input.Query {
+    var assetAccountsQuery: Candle.Models.GetAssetAccounts.Input.Query {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
@@ -143,12 +141,18 @@ struct AssetAccountsScreen: View {
         if showLoading { state = .loading }
 
         do {
-            let assetAccountsResponse = try await client.getAssetAccounts(query: assetAccountsQuery)
+            let assetAccountsResponse = try await Candle.Client.shared.getAssetAccounts(
+                query: assetAccountsQuery
+            )
             state = .normal(assetAccountsResponse)
         } catch {
             if showLoading { state = .initial }
 
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -175,7 +179,6 @@ struct AssetAccountsScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }

@@ -139,6 +139,67 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "derBytes",
+            "printedName": "derBytes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22NIOSSLCustomPrivateKeyP8derBytesSays5UInt8VGvp",
+            "mangledName": "$s6NIOSSL22NIOSSLCustomPrivateKeyP8derBytesSays5UInt8VGvp",
+            "moduleName": "NIOSSL",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.UInt8]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22NIOSSLCustomPrivateKeyP8derBytesSays5UInt8VGvg",
+                "mangledName": "$s6NIOSSL22NIOSSLCustomPrivateKeyP8derBytesSays5UInt8VGvg",
+                "moduleName": "NIOSSL",
+                "genericSig": "<τ_0_0 where τ_0_0 : NIOSSL.NIOSSLCustomPrivateKey>",
+                "sugared_genericSig": "<Self where Self : NIOSSL.NIOSSLCustomPrivateKey>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "sign",
             "printedName": "sign(channel:algorithm:data:)",
@@ -233,6 +294,66 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "derBytes",
+            "printedName": "derBytes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22NIOSSLCustomPrivateKeyPAAE8derBytesSays5UInt8VGvp",
+            "mangledName": "$s6NIOSSL22NIOSSLCustomPrivateKeyPAAE8derBytesSays5UInt8VGvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.UInt8]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22NIOSSLCustomPrivateKeyPAAE8derBytesSays5UInt8VGvg",
+                "mangledName": "$s6NIOSSL22NIOSSLCustomPrivateKeyPAAE8derBytesSays5UInt8VGvg",
+                "moduleName": "NIOSSL",
+                "genericSig": "<τ_0_0 where τ_0_0 : NIOSSL.NIOSSLCustomPrivateKey>",
+                "sugared_genericSig": "<Self where Self : NIOSSL.NIOSSLCustomPrivateKey>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Protocol",
@@ -273,6 +394,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -867,6 +995,20 @@
             "printedName": "ChannelHandler",
             "usr": "s:7NIOCore14ChannelHandlerP",
             "mangledName": "$s7NIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -1480,6 +1622,13 @@
                 "printedName": "Equatable",
                 "usr": "s:SQ",
                 "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
               }
             ]
           },
@@ -1536,6 +1685,65 @@
                 "declKind": "Accessor",
                 "usr": "s:6NIOSSL13NIOSSLHandlerC10tlsVersionAA10TLSVersionOSgvg",
                 "mangledName": "$s6NIOSSL13NIOSSLHandlerC10tlsVersionAA10TLSVersionOSgvg",
+                "moduleName": "NIOSSL",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "peerCertificate",
+            "printedName": "peerCertificate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOSSL.NIOSSLCertificate?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOSSLCertificate",
+                    "printedName": "NIOSSL.NIOSSLCertificate",
+                    "usr": "s:6NIOSSL17NIOSSLCertificateC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL13NIOSSLHandlerC15peerCertificateAA17NIOSSLCertificateCSgvp",
+            "mangledName": "$s6NIOSSL13NIOSSLHandlerC15peerCertificateAA17NIOSSLCertificateCSgvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOSSL.NIOSSLCertificate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOSSLCertificate",
+                        "printedName": "NIOSSL.NIOSSLCertificate",
+                        "usr": "s:6NIOSSL17NIOSSLCertificateC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL13NIOSSLHandlerC15peerCertificateAA17NIOSSLCertificateCSgvg",
+                "mangledName": "$s6NIOSSL13NIOSSLHandlerC15peerCertificateAA17NIOSSLCertificateCSgvg",
                 "moduleName": "NIOSSL",
                 "isFromExtension": true,
                 "accessorKind": "get"
@@ -1723,6 +1931,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -2212,6 +2427,20 @@
             "printedName": "ChannelHandler",
             "usr": "s:7NIOCore14ChannelHandlerP",
             "mangledName": "$s7NIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -2452,6 +2681,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -2752,6 +2988,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3095,6 +3338,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -3391,6 +3641,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -3547,6 +3804,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3791,6 +4055,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -4086,6 +4357,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -4441,6 +4719,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -4582,9 +4867,11 @@
             "usr": "s:6NIOSSL17NIOSSLCertificateC4file6formatACSS_AA26NIOSSLSerializationFormatsOtKcfc",
             "mangledName": "$s6NIOSSL17NIOSSLCertificateC4file6formatACSS_AA26NIOSSLSerializationFormatsOtKcfc",
             "moduleName": "NIOSSL",
+            "deprecated": true,
             "declAttributes": [
               "Convenience",
               "AccessControl",
+              "Available",
               "RawDocComment"
             ],
             "throwing": true,
@@ -4888,6 +5175,38 @@
             "declKind": "Func",
             "usr": "s:6NIOSSL17NIOSSLCertificateC11fromPEMFileySayACGSSKFZ",
             "mangledName": "$s6NIOSSL17NIOSSLCertificateC11fromPEMFileySayACGSSKFZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "fromDERFile",
+            "printedName": "fromDERFile(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOSSLCertificate",
+                "printedName": "NIOSSL.NIOSSLCertificate",
+                "usr": "s:6NIOSSL17NIOSSLCertificateC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL17NIOSSLCertificateC11fromDERFileyACSSKFZ",
+            "mangledName": "$s6NIOSSL17NIOSSLCertificateC11fromDERFileyACSSKFZ",
             "moduleName": "NIOSSL",
             "static": true,
             "declAttributes": [
@@ -5324,6 +5643,13 @@
                 "printedName": "Sendable",
                 "usr": "s:s8SendableP",
                 "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
               },
               {
                 "kind": "Conformance",
@@ -6129,6 +6455,13 @@
                   },
                   {
                     "kind": "Conformance",
+                    "name": "SendableMetatype",
+                    "printedName": "SendableMetatype",
+                    "usr": "s:s16SendableMetatypeP",
+                    "mangledName": "$ss16SendableMetatypeP"
+                  },
+                  {
+                    "kind": "Conformance",
                     "name": "RandomAccessCollection",
                     "printedName": "RandomAccessCollection",
                     "children": [
@@ -6454,6 +6787,139 @@
                 "printedName": "Sendable",
                 "usr": "s:s8SendableP",
                 "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "subjectName",
+            "printedName": "subjectName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[NIOSSL.SSLCertificateName]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateName",
+                    "printedName": "NIOSSL.SSLCertificateName",
+                    "usr": "s:6NIOSSL18SSLCertificateNameV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL17NIOSSLCertificateC11subjectNameSayAA014SSLCertificateD0VGvp",
+            "mangledName": "$s6NIOSSL17NIOSSLCertificateC11subjectNameSayAA014SSLCertificateD0VGvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[NIOSSL.SSLCertificateName]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SSLCertificateName",
+                        "printedName": "NIOSSL.SSLCertificateName",
+                        "usr": "s:6NIOSSL18SSLCertificateNameV"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL17NIOSSLCertificateC11subjectNameSayAA014SSLCertificateD0VGvg",
+                "mangledName": "$s6NIOSSL17NIOSSLCertificateC11subjectNameSayAA014SSLCertificateD0VGvg",
+                "moduleName": "NIOSSL",
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "issuerName",
+            "printedName": "issuerName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[NIOSSL.SSLCertificateName]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateName",
+                    "printedName": "NIOSSL.SSLCertificateName",
+                    "usr": "s:6NIOSSL18SSLCertificateNameV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL17NIOSSLCertificateC10issuerNameSayAA014SSLCertificateD0VGvp",
+            "mangledName": "$s6NIOSSL17NIOSSLCertificateC10issuerNameSayAA014SSLCertificateD0VGvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[NIOSSL.SSLCertificateName]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SSLCertificateName",
+                        "printedName": "NIOSSL.SSLCertificateName",
+                        "usr": "s:6NIOSSL18SSLCertificateNameV"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL17NIOSSLCertificateC10issuerNameSayAA014SSLCertificateD0VGvg",
+                "mangledName": "$s6NIOSSL17NIOSSLCertificateC10issuerNameSayAA014SSLCertificateD0VGvg",
+                "moduleName": "NIOSSL",
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
               }
             ]
           }
@@ -6489,6 +6955,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -6531,6 +7004,905 @@
         "moduleName": "NIOSSL",
         "declAttributes": [
           "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CNIOBoringSSL",
+        "printedName": "CNIOBoringSSL",
+        "declKind": "Import",
+        "moduleName": "NIOSSL",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SSLCertificateNameType",
+        "printedName": "SSLCertificateNameType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "organization",
+            "printedName": "organization",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV12organizationACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV12organizationACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV12organizationACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV12organizationACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "organizationalUnit",
+            "printedName": "organizationalUnit",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV18organizationalUnitACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV18organizationalUnitACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV18organizationalUnitACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV18organizationalUnitACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "state",
+            "printedName": "state",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV5stateACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV5stateACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV5stateACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV5stateACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "country",
+            "printedName": "country",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV7countryACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV7countryACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV7countryACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV7countryACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "city",
+            "printedName": "city",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV4cityACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV4cityACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV4cityACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV4cityACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "commonName",
+            "printedName": "commonName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV06commonC0ACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV06commonC0ACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV06commonC0ACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV06commonC0ACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "emailAddress",
+            "printedName": "emailAddress",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV12emailAddressACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV12emailAddressACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV12emailAddressACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV12emailAddressACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "userId",
+            "printedName": "userId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV6userIdACvpZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV6userIdACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV6userIdACvgZ",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV6userIdACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV9hashValueSivp",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV9hashValueSivp",
+            "moduleName": "NIOSSL",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV9hashValueSivg",
+                "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV9hashValueSivg",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL22SSLCertificateNameTypeV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV4hash4intoys6HasherVz_tF",
+            "moduleName": "NIOSSL",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:6NIOSSL22SSLCertificateNameTypeV",
+        "mangledName": "$s6NIOSSL22SSLCertificateNameTypeV",
+        "moduleName": "NIOSSL",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SSLCertificateName",
+        "printedName": "SSLCertificateName",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "value",
+            "printedName": "value",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL18SSLCertificateNameV5valueSSvp",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameV5valueSSvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV5valueSSvg",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV5valueSSvg",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV5valueSSvs",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV5valueSSvs",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV5valueSSvM",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV5valueSSvM",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvp",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvg",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvg",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SSLCertificateNameType",
+                    "printedName": "NIOSSL.SSLCertificateNameType",
+                    "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvs",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvs",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvM",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV4typeAA0bC4TypeVvM",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateName",
+                "printedName": "NIOSSL.SSLCertificateName",
+                "usr": "s:6NIOSSL18SSLCertificateNameV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateNameType",
+                "printedName": "NIOSSL.SSLCertificateNameType",
+                "usr": "s:6NIOSSL22SSLCertificateNameTypeV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6NIOSSL18SSLCertificateNameVyACSS_AA0bC4TypeVtcfc",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameVyACSS_AA0bC4TypeVtcfc",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateName",
+                "printedName": "NIOSSL.SSLCertificateName",
+                "usr": "s:6NIOSSL18SSLCertificateNameV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SSLCertificateName",
+                "printedName": "NIOSSL.SSLCertificateName",
+                "usr": "s:6NIOSSL18SSLCertificateNameV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL18SSLCertificateNameV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameV2eeoiySbAC_ACtFZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL18SSLCertificateNameV9hashValueSivp",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameV9hashValueSivp",
+            "moduleName": "NIOSSL",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL18SSLCertificateNameV9hashValueSivg",
+                "mangledName": "$s6NIOSSL18SSLCertificateNameV9hashValueSivg",
+                "moduleName": "NIOSSL",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL18SSLCertificateNameV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s6NIOSSL18SSLCertificateNameV4hash4intoys6HasherVz_tF",
+            "moduleName": "NIOSSL",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:6NIOSSL18SSLCertificateNameV",
+        "mangledName": "$s6NIOSSL18SSLCertificateNameV",
+        "moduleName": "NIOSSL",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
         ]
       },
       {
@@ -6721,6 +8093,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -6961,6 +8340,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -7553,6 +8939,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -7600,6 +8993,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -8246,6 +9646,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -8565,6 +9972,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -8937,6 +10351,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -9469,6 +10890,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -9871,6 +11299,70 @@
             "init_kind": "Designated"
           },
           {
+            "kind": "Var",
+            "name": "derBytes",
+            "printedName": "derBytes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL16NIOSSLPrivateKeyC8derBytesSays5UInt8VGvp",
+            "mangledName": "$s6NIOSSL16NIOSSLPrivateKeyC8derBytesSays5UInt8VGvp",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.UInt8]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL16NIOSSLPrivateKeyC8derBytesSays5UInt8VGvg",
+                "mangledName": "$s6NIOSSL16NIOSSLPrivateKeyC8derBytesSays5UInt8VGvg",
+                "moduleName": "NIOSSL",
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "throwing": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -10017,6 +11509,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -10111,6 +11610,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -10368,6 +11874,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -11115,6 +12628,13 @@
                 "printedName": "Equatable",
                 "usr": "s:SQ",
                 "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
               }
             ]
           },
@@ -11343,6 +12863,13 @@
                 "printedName": "Sendable",
                 "usr": "s:s8SendableP",
                 "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
               },
               {
                 "kind": "Conformance",
@@ -11840,6 +13367,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -12271,6 +13805,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -12985,6 +14526,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -13237,6 +14785,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -13493,6 +15048,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -13795,6 +15357,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -14057,6 +15626,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -15260,6 +16836,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -15644,6 +17227,53 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Var",
+            "name": "x25519_MLKEM768",
+            "printedName": "x25519_MLKEM768",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOTLSCurve",
+                "printedName": "NIOSSL.NIOTLSCurve",
+                "usr": "s:6NIOSSL11NIOTLSCurveV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6NIOSSL11NIOTLSCurveV15x25519_MLKEM768ACvpZ",
+            "mangledName": "$s6NIOSSL11NIOTLSCurveV15x25519_MLKEM768ACvpZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOTLSCurve",
+                    "printedName": "NIOSSL.NIOTLSCurve",
+                    "usr": "s:6NIOSSL11NIOTLSCurveV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6NIOSSL11NIOTLSCurveV15x25519_MLKEM768ACvgZ",
+                "mangledName": "$s6NIOSSL11NIOTLSCurveV15x25519_MLKEM768ACvgZ",
+                "moduleName": "NIOSSL",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -15711,6 +17341,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -15933,6 +17570,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -16201,6 +17845,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -16469,6 +18120,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -17219,6 +18877,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -20258,6 +21923,56 @@
           },
           {
             "kind": "Function",
+            "name": "makeServerConfigurationWithMTLS",
+            "printedName": "makeServerConfigurationWithMTLS(certificateChain:privateKey:trustRoots:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "TLSConfiguration",
+                "printedName": "NIOSSL.TLSConfiguration",
+                "usr": "s:6NIOSSL16TLSConfigurationV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[NIOSSL.NIOSSLCertificateSource]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOSSLCertificateSource",
+                    "printedName": "NIOSSL.NIOSSLCertificateSource",
+                    "usr": "s:6NIOSSL23NIOSSLCertificateSourceO"
+                  }
+                ],
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOSSLPrivateKeySource",
+                "printedName": "NIOSSL.NIOSSLPrivateKeySource",
+                "usr": "s:6NIOSSL22NIOSSLPrivateKeySourceO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOSSLTrustRoots",
+                "printedName": "NIOSSL.NIOSSLTrustRoots",
+                "usr": "s:6NIOSSL16NIOSSLTrustRootsO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:6NIOSSL16TLSConfigurationV31makeServerConfigurationWithMTLS16certificateChain10privateKey10trustRootsACSayAA23NIOSSLCertificateSourceOG_AA013NIOSSLPrivatekO0OAA011NIOSSLTrustM0OtFZ",
+            "mangledName": "$s6NIOSSL16TLSConfigurationV31makeServerConfigurationWithMTLS16certificateChain10privateKey10trustRootsACSayAA23NIOSSLCertificateSourceOG_AA013NIOSSLPrivatekO0OAA011NIOSSLTrustM0OtFZ",
+            "moduleName": "NIOSSL",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "forServer",
             "printedName": "forServer(certificateChain:privateKey:cipherSuites:verifySignatureAlgorithms:signingSignatureAlgorithms:minimumTLSVersion:maximumTLSVersion:certificateVerification:trustRoots:applicationProtocols:shutdownTimeout:keyLogCallback:additionalTrustRoots:)",
             "children": [
@@ -21952,6 +23667,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -22160,6 +23882,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -22218,6 +23947,47 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "nioSSL_peerCertificate",
+            "printedName": "nioSSL_peerCertificate()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoopFuture",
+                "printedName": "NIOCore.EventLoopFuture<NIOSSL.NIOSSLCertificate?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "NIOSSL.NIOSSLCertificate?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NIOSSLCertificate",
+                        "printedName": "NIOSSL.NIOSSLCertificate",
+                        "usr": "s:6NIOSSL17NIOSSLCertificateC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:7NIOCore15EventLoopFutureC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7NIOCore7ChannelP6NIOSSLE22nioSSL_peerCertificateAA15EventLoopFutureCyAD17NIOSSLCertificateCSgGyF",
+            "mangledName": "$s7NIOCore7ChannelP6NIOSSLE22nioSSL_peerCertificateAA15EventLoopFutureCyAD17NIOSSLCertificateCSgGyF",
+            "moduleName": "NIOSSL",
+            "genericSig": "<τ_0_0 where τ_0_0 : NIOCore.Channel>",
+            "sugared_genericSig": "<Self where Self : NIOCore.Channel>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -22255,6 +24025,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -22301,6 +24078,38 @@
             "isFromExtension": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "nioSSL_peerCertificate",
+            "printedName": "nioSSL_peerCertificate()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "NIOSSL.NIOSSLCertificate?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NIOSSLCertificate",
+                    "printedName": "NIOSSL.NIOSSLCertificate",
+                    "usr": "s:6NIOSSL17NIOSSLCertificateC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7NIOCore15ChannelPipelineC21SynchronousOperationsV6NIOSSLE22nioSSL_peerCertificateAF17NIOSSLCertificateCSgyKF",
+            "mangledName": "$s7NIOCore15ChannelPipelineC21SynchronousOperationsV6NIOSSLE22nioSSL_peerCertificateAF17NIOSSLCertificateCSgyKF",
+            "moduleName": "NIOSSL",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Struct",
@@ -22330,6 +24139,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       }
@@ -22466,42 +24282,42 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 37892,
+      "offset": 37744,
       "length": 3,
       "value": "\"0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 37945,
+      "offset": 37797,
       "length": 3,
       "value": "\"9\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 38004,
+      "offset": 37856,
       "length": 3,
       "value": "\"a\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 38063,
+      "offset": 37915,
       "length": 3,
       "value": "\"f\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 38122,
+      "offset": 37974,
       "length": 3,
       "value": "\"A\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/SSLContext.swift",
       "kind": "StringLiteral",
-      "offset": 38181,
+      "offset": 38033,
       "length": 3,
       "value": "\"F\""
     },
@@ -22718,287 +24534,294 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8421,
+      "offset": 6719,
+      "length": 6,
+      "value": "0x11EC"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
+      "kind": "IntegerLiteral",
+      "offset": 8491,
       "length": 6,
       "value": "0x0201"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8497,
+      "offset": 8567,
       "length": 6,
       "value": "0x0401"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8573,
+      "offset": 8643,
       "length": 6,
       "value": "0x0501"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8649,
+      "offset": 8719,
       "length": 6,
       "value": "0x0601"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8720,
+      "offset": 8790,
       "length": 6,
       "value": "0x0203"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8802,
+      "offset": 8872,
       "length": 6,
       "value": "0x0403"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8884,
+      "offset": 8954,
       "length": 6,
       "value": "0x0503"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 8966,
+      "offset": 9036,
       "length": 6,
       "value": "0x0603"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 9044,
+      "offset": 9114,
       "length": 6,
       "value": "0x0804"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 9122,
+      "offset": 9192,
       "length": 6,
       "value": "0x0805"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 9200,
+      "offset": 9270,
       "length": 6,
       "value": "0x0806"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 9269,
+      "offset": 9339,
       "length": 6,
       "value": "0x0807"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 9805,
+      "offset": 9875,
       "length": 221,
       "value": "[\"ECDH+AESGCM\", \"ECDH+CHACHA20\", \"DH+AESGCM\", \"DH+CHACHA20\", \"ECDH+AES256\", \"DH+AES256\", \"ECDH+AES128\", \"DH+AES\", \"RSA+AESGCM\", \"RSA+AES\", \"!aNULL\", \"!eNULL\", \"!MD5\"]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 10045,
+      "offset": 10115,
       "length": 3,
       "value": "\":\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 17536,
+      "offset": 18122,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 18252,
+      "offset": 18838,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 28860,
+      "offset": 31409,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 28911,
+      "offset": 31460,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 29029,
+      "offset": 31578,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 30682,
+      "offset": 33231,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 30733,
+      "offset": 33282,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 32500,
+      "offset": 35049,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 32551,
+      "offset": 35100,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 34363,
+      "offset": 36912,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 34414,
+      "offset": 36963,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 36258,
+      "offset": 38807,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 36354,
+      "offset": 38903,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 36405,
+      "offset": 38954,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 36586,
+      "offset": 39135,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 38099,
+      "offset": 40648,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 38195,
+      "offset": 40744,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 38246,
+      "offset": 40795,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 39783,
+      "offset": 42332,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 39879,
+      "offset": 42428,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 39930,
+      "offset": 42479,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 41612,
+      "offset": 44161,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 41708,
+      "offset": 44257,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 41759,
+      "offset": 44308,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 43486,
+      "offset": 46035,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "Array",
-      "offset": 43582,
+      "offset": 46131,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-nio-ssl\/Sources\/NIOSSL\/TLSConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 43633,
+      "offset": 46182,
       "length": 1,
       "value": "5"
     }

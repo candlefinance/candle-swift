@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name NIOTransportServices
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Atomics
 import Darwin
 import Dispatch
@@ -42,7 +42,9 @@ final public class NIOTSDatagramListenerBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
   convenience public init(group: NIOTransportServices.NIOTSEventLoopGroup)
   convenience public init(group: any NIOCore.EventLoopGroup, childGroup: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup, childGroup: (any NIOCore.EventLoopGroup)? = nil)
+  #endif
   convenience public init(group: NIOTransportServices.NIOTSEventLoopGroup, childGroup: NIOTransportServices.NIOTSEventLoopGroup)
   @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
@@ -73,7 +75,9 @@ final public class NIOFilterEmptyWritesHandler : NIOCore.ChannelDuplexHandler {
   public typealias OutboundIn = NIOCore.ByteBuffer
   public typealias OutboundOut = NIOCore.ByteBuffer
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func write(context: NIOCore.ChannelHandlerContext, data: NIOCore.NIOAny, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func flush(context: NIOCore.ChannelHandlerContext)
   @objc deinit
 }
@@ -83,7 +87,9 @@ extension NIOTransportServices.NIOFilterEmptyWritesHandler : Swift.Sendable {
 extension NIOTransportServices.NIOFilterEmptyWritesHandler {
   final public func channelActive(context: NIOCore.ChannelHandlerContext)
   final public func channelInactive(context: NIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func close(context: NIOCore.ChannelHandlerContext, mode: NIOCore.CloseMode, promise: NIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
   final public func errorCaught(context: NIOCore.ChannelHandlerContext, error: any Swift.Error)
   final public func handlerAdded(context: NIOCore.ChannelHandlerContext)
 }
@@ -191,7 +197,9 @@ public typealias NIOTSEnablePeerToPeerOption = NIOTransportServices.NIOTSChannel
 final public class NIOTSConnectionBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
   convenience public init(group: NIOTransportServices.NIOTSEventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup)
+  #endif
   @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : NIOCore.ChannelOption
   final public func connectTimeout(_ timeout: NIOCore.TimeAmount) -> Self
@@ -247,8 +255,12 @@ public struct NIOTSChannelIsNotANIOTSConnectionChannel : Swift.Error, Swift.Hash
 }
 @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
 extension NIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getMetadata(definition: Network.NWProtocolDefinition) -> NIOCore.EventLoopFuture<Network.NWProtocolMetadata?>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getMetadataSync(definition: Network.NWProtocolDefinition, file: Swift.StaticString = #fileID, line: Swift.UInt = #line) throws -> Network.NWProtocolMetadata?
+  #endif
 }
 @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
 public protocol NIOTSError : Swift.Equatable, Swift.Error {
@@ -298,7 +310,9 @@ final public class NIOTSEventLoopGroup : NIOCore.EventLoopGroup {
   convenience public init(loopCount: Swift.Int = 1, defaultQoS: Dispatch.DispatchQoS = .default)
   public static func _makePerpetualGroup(loopCount: Swift.Int, defaultQoS: Dispatch.DispatchQoS) -> Self
   final public func next() -> any NIOCore.EventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
   @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
   final public func makeIterator() -> NIOCore.EventLoopIterator
   @objc deinit
 }
@@ -319,7 +333,9 @@ final public class NIOTSListenerBootstrap {
   convenience public init(group: any NIOCore.EventLoopGroup)
   convenience public init(group: NIOTransportServices.NIOTSEventLoopGroup)
   convenience public init(group: any NIOCore.EventLoopGroup, childGroup: any NIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(validatingGroup group: any NIOCore.EventLoopGroup, childGroup: (any NIOCore.EventLoopGroup)? = nil)
+  #endif
   convenience public init(group: NIOTransportServices.NIOTSEventLoopGroup, childGroup: NIOTransportServices.NIOTSEventLoopGroup)
   @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
   @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Swift.Void>) -> Self
@@ -344,14 +360,22 @@ final public class NIOTSListenerBootstrap {
 }
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 extension NIOTransportServices.NIOTSListenerBootstrap {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(host: Swift.String, port: Swift.Int, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(to address: NIOCore.SocketAddress, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func bind<Output>(endpoint: Network.NWEndpoint, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
   final public func withNWListener<Output>(_ listener: Network.NWListener, serverBackPressureStrategy: NIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any NIOCore.Channel) -> NIOCore.EventLoopFuture<Output>) async throws -> NIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
 }
 @available(*, unavailable)
 extension NIOTransportServices.NIOTSListenerBootstrap : Swift.Sendable {

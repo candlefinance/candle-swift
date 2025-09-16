@@ -1,0 +1,1738 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature "AvailabilityMacro=AsyncAlgorithms 1.0:macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0" -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AsyncAlgorithms
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+import DequeModule
+import OrderedCollections
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func adjacentPairs() -> AsyncAlgorithms.AsyncAdjacentPairsSequence<Self> {
+    AsyncAdjacentPairsSequence(self)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncAdjacentPairsSequence<Base> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence {
+  public typealias Element = (Base.Element, Base.Element)
+  @usableFromInline
+  internal let base: Base
+  @inlinable internal init(_ base: Base) {
+    self.base = base
+  }
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    public typealias Element = (Base.Element, Base.Element)
+    @usableFromInline
+    internal var base: Base.AsyncIterator
+    @usableFromInline
+    internal var previousElement: Base.Element?
+    @inlinable internal init(_ base: Base.AsyncIterator) {
+      self.base = base
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> (Base.Element, Base.Element)? {
+      if previousElement == nil {
+        previousElement = try await base.next()
+      }
+
+      guard let previous = previousElement, let next = try await base.next() else {
+        return nil
+      }
+
+      previousElement = next
+      return (previous, next)
+    }
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncAdjacentPairsSequence<Base>.Iterator {
+    Iterator(base.makeAsyncIterator())
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncAdjacentPairsSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncAdjacentPairsSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncAdjacentPairsSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncBufferedByteIterator : _Concurrency.AsyncIteratorProtocol {
+  public typealias Element = Swift.UInt8
+  @usableFromInline
+  internal var buffer: AsyncAlgorithms._AsyncBytesBuffer
+  public init(capacity: Swift.Int, readFunction: @escaping @Sendable (Swift.UnsafeMutableRawBufferPointer) async throws -> Swift.Int)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public mutating func next() async throws -> Swift.UInt8? {
+    return try await buffer.next()
+  }
+  #endif
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncBufferedByteIterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@usableFromInline
+@frozen internal struct _AsyncBytesBuffer {
+  @_hasMissingDesignatedInitializers @usableFromInline
+  final internal class Storage {
+    @objc deinit
+  }
+  @usableFromInline
+  internal let storage: AsyncAlgorithms._AsyncBytesBuffer.Storage
+  @usableFromInline
+  internal var nextPointer: Swift.UnsafeRawPointer
+  @usableFromInline
+  internal var endPointer: Swift.UnsafeRawPointer
+  internal let readFunction: @Sendable (Swift.UnsafeMutableRawBufferPointer) async throws -> Swift.Int
+  internal var finished: Swift.Bool = false
+  @usableFromInline
+  internal init(capacity: Swift.Int, readFunction: @escaping @Sendable (Swift.UnsafeMutableRawBufferPointer) async throws -> Swift.Int)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @usableFromInline
+  @inline(never) internal mutating func reloadBufferAndNext() async throws -> Swift.UInt8?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal mutating func next() async throws -> Swift.UInt8? {
+    if _fastPath(nextPointer != endPointer) {
+      let byte = nextPointer.load(fromByteOffset: 0, as: UInt8.self)
+      nextPointer = nextPointer + 1
+      return byte
+    }
+    return try await reloadBufferAndNext()
+  }
+  #endif
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@inlinable public func chain<Base1, Base2>(_ s1: Base1, _ s2: Base2) -> AsyncAlgorithms.AsyncChain2Sequence<Base1, Base2> where Base1 : _Concurrency.AsyncSequence, Base2 : _Concurrency.AsyncSequence, Base1.Element == Base2.Element {
+  AsyncChain2Sequence(s1, s2)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncChain2Sequence<Base1, Base2> where Base1 : _Concurrency.AsyncSequence, Base2 : _Concurrency.AsyncSequence, Base1.Element == Base2.Element {
+  @usableFromInline
+  internal let base1: Base1
+  @usableFromInline
+  internal let base2: Base2
+  @usableFromInline
+  internal init(_ base1: Base1, _ base2: Base2)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChain2Sequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base1.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base1: Base1.AsyncIterator?
+    @usableFromInline
+    internal var base2: Base2.AsyncIterator?
+    @usableFromInline
+    internal init(_ base1: Base1.AsyncIterator, _ base2: Base2.AsyncIterator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> AsyncAlgorithms.AsyncChain2Sequence<Base1, Base2>.Element? {
+      do {
+        if let value = try await base1?.next() {
+          return value
+        } else {
+          base1 = nil
+        }
+        return try await base2?.next()
+      } catch {
+        base1 = nil
+        base2 = nil
+        throw error
+      }
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncChain2Sequence<Base1, Base2>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChain2Sequence<Base1, Base2>.Iterator {
+    Iterator(base1.makeAsyncIterator(), base2.makeAsyncIterator())
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChain2Sequence<Base1, Base2>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChain2Sequence : Swift.Sendable where Base1 : Swift.Sendable, Base2 : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChain2Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@inlinable public func chain<Base1, Base2, Base3>(_ s1: Base1, _ s2: Base2, _ s3: Base3) -> AsyncAlgorithms.AsyncChain3Sequence<Base1, Base2, Base3> where Base1 : _Concurrency.AsyncSequence, Base2 : _Concurrency.AsyncSequence, Base3 : _Concurrency.AsyncSequence, Base1.Element == Base2.Element, Base2.Element == Base3.Element {
+  AsyncChain3Sequence(s1, s2, s3)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncChain3Sequence<Base1, Base2, Base3> where Base1 : _Concurrency.AsyncSequence, Base2 : _Concurrency.AsyncSequence, Base3 : _Concurrency.AsyncSequence, Base1.Element == Base2.Element, Base2.Element == Base3.Element {
+  @usableFromInline
+  internal let base1: Base1
+  @usableFromInline
+  internal let base2: Base2
+  @usableFromInline
+  internal let base3: Base3
+  @usableFromInline
+  internal init(_ base1: Base1, _ base2: Base2, _ base3: Base3)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChain3Sequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base1.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base1: Base1.AsyncIterator?
+    @usableFromInline
+    internal var base2: Base2.AsyncIterator?
+    @usableFromInline
+    internal var base3: Base3.AsyncIterator?
+    @usableFromInline
+    internal init(_ base1: Base1.AsyncIterator, _ base2: Base2.AsyncIterator, _ base3: Base3.AsyncIterator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> AsyncAlgorithms.AsyncChain3Sequence<Base1, Base2, Base3>.Element? {
+      do {
+        if let value = try await base1?.next() {
+          return value
+        } else {
+          base1 = nil
+        }
+        if let value = try await base2?.next() {
+          return value
+        } else {
+          base2 = nil
+        }
+        return try await base3?.next()
+      } catch {
+        base1 = nil
+        base2 = nil
+        base3 = nil
+        throw error
+      }
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncChain3Sequence<Base1, Base2, Base3>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChain3Sequence<Base1, Base2, Base3>.Iterator {
+    Iterator(base1.makeAsyncIterator(), base2.makeAsyncIterator(), base3.makeAsyncIterator())
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChain3Sequence<Base1, Base2, Base3>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChain3Sequence : Swift.Sendable where Base1 : Swift.Sendable, Base2 : Swift.Sendable, Base3 : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChain3Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunked<Collected>(into: Collected.Type, by belongInSameGroup: @escaping @Sendable (Self.Element, Self.Element) -> Swift.Bool) -> AsyncAlgorithms.AsyncChunkedByGroupSequence<Self, Collected> where Collected : Swift.RangeReplaceableCollection, Self.Element == Collected.Element {
+    AsyncChunkedByGroupSequence(self, grouping: belongInSameGroup)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunked(by belongInSameGroup: @escaping @Sendable (Self.Element, Self.Element) -> Swift.Bool) -> AsyncAlgorithms.AsyncChunkedByGroupSequence<Self, [Self.Element]> {
+    chunked(into: [Element].self, by: belongInSameGroup)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncChunkedByGroupSequence<Base, Collected> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Collected : Swift.RangeReplaceableCollection, Base.Element == Collected.Element {
+  public typealias Element = Collected
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base: Base.AsyncIterator
+    @usableFromInline
+    internal let grouping: @Sendable (Base.Element, Base.Element) -> Swift.Bool
+    @usableFromInline
+    internal init(base: Base.AsyncIterator, grouping: @escaping @Sendable (Base.Element, Base.Element) -> Swift.Bool)
+    @usableFromInline
+    internal var hangingNext: Base.Element?
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Collected? {
+      var firstOpt = hangingNext
+      if firstOpt == nil {
+        firstOpt = try await base.next()
+      } else {
+        hangingNext = nil
+      }
+
+      guard let first = firstOpt else {
+        return nil
+      }
+
+      var result: Collected = .init()
+      result.append(first)
+
+      var prev = first
+      while let next = try await base.next() {
+        guard grouping(prev, next) else {
+          hangingNext = next
+          break
+        }
+        result.append(next)
+        prev = next
+      }
+      return result
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Collected
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let grouping: @Sendable (Base.Element, Base.Element) -> Swift.Bool
+  @usableFromInline
+  internal init(_ base: Base, grouping: @escaping @Sendable (Base.Element, Base.Element) -> Swift.Bool)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChunkedByGroupSequence<Base, Collected>.Iterator {
+    Iterator(base: base.makeAsyncIterator(), grouping: grouping)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChunkedByGroupSequence<Base, Collected>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChunkedByGroupSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChunkedByGroupSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunked<Subject, Collected>(into: Collected.Type, on projection: @escaping @Sendable (Self.Element) -> Subject) -> AsyncAlgorithms.AsyncChunkedOnProjectionSequence<Self, Subject, Collected> where Subject : Swift.Equatable, Collected : Swift.RangeReplaceableCollection, Self.Element == Collected.Element {
+    AsyncChunkedOnProjectionSequence(self, projection: projection)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunked<Subject>(on projection: @escaping @Sendable (Self.Element) -> Subject) -> AsyncAlgorithms.AsyncChunkedOnProjectionSequence<Self, Subject, [Self.Element]> where Subject : Swift.Equatable {
+    chunked(into: [Element].self, on: projection)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncChunkedOnProjectionSequence<Base, Subject, Collected> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Subject : Swift.Equatable, Collected : Swift.RangeReplaceableCollection, Base.Element == Collected.Element {
+  public typealias Element = (Subject, Collected)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base: Base.AsyncIterator
+    @usableFromInline
+    internal let projection: @Sendable (Base.Element) -> Subject
+    @usableFromInline
+    internal init(base: Base.AsyncIterator, projection: @escaping @Sendable (Base.Element) -> Subject)
+    @usableFromInline
+    internal var hangingNext: (Subject, Base.Element)?
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> (Subject, Collected)? {
+      var firstOpt = hangingNext
+      if firstOpt == nil {
+        let nextOpt = try await base.next()
+        if let next = nextOpt {
+          firstOpt = (projection(next), next)
+        }
+      } else {
+        hangingNext = nil
+      }
+
+      guard let first = firstOpt else {
+        return nil
+      }
+
+      var result: Collected = .init()
+      result.append(first.1)
+
+      while let next = try await base.next() {
+        let subj = projection(next)
+        guard subj == first.0 else {
+          hangingNext = (subj, next)
+          break
+        }
+        result.append(next)
+      }
+      return (first.0, result)
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = (Subject, Collected)
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let projection: @Sendable (Base.Element) -> Subject
+  @usableFromInline
+  internal init(_ base: Base, projection: @escaping @Sendable (Base.Element) -> Subject)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChunkedOnProjectionSequence<Base, Subject, Collected>.Iterator {
+    Iterator(base: base.makeAsyncIterator(), projection: projection)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChunkedOnProjectionSequence<Base, Subject, Collected>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChunkedOnProjectionSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChunkedOnProjectionSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func chunks<Signal, Collected>(ofCount count: Swift.Int, or signal: Signal, into: Collected.Type) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, Collected, Signal> where Self : Swift.Sendable, Signal : Swift.Sendable, Signal : _Concurrency.AsyncSequence, Collected : Swift.RangeReplaceableCollection, Self.Element : Swift.Sendable, Self.Element == Collected.Element, Signal.Element : Swift.Sendable
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func chunks<Signal>(ofCount count: Swift.Int, or signal: Signal) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, [Self.Element], Signal> where Self : Swift.Sendable, Signal : Swift.Sendable, Signal : _Concurrency.AsyncSequence, Self.Element : Swift.Sendable, Signal.Element : Swift.Sendable
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func chunked<Signal, Collected>(by signal: Signal, into: Collected.Type) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, Collected, Signal> where Self : Swift.Sendable, Signal : Swift.Sendable, Signal : _Concurrency.AsyncSequence, Collected : Swift.RangeReplaceableCollection, Self.Element : Swift.Sendable, Self.Element == Collected.Element, Signal.Element : Swift.Sendable
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func chunked<Signal>(by signal: Signal) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, [Self.Element], Signal> where Self : Swift.Sendable, Signal : Swift.Sendable, Signal : _Concurrency.AsyncSequence, Self.Element : Swift.Sendable, Signal.Element : Swift.Sendable
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func chunks<C, Collected>(ofCount count: Swift.Int, or timer: AsyncAlgorithms.AsyncTimerSequence<C>, into: Collected.Type) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, Collected, AsyncAlgorithms.AsyncTimerSequence<C>> where Self : Swift.Sendable, C : _Concurrency.Clock, Collected : Swift.RangeReplaceableCollection, Self.Element : Swift.Sendable, Self.Element == Collected.Element
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func chunks<C>(ofCount count: Swift.Int, or timer: AsyncAlgorithms.AsyncTimerSequence<C>) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, [Self.Element], AsyncAlgorithms.AsyncTimerSequence<C>> where Self : Swift.Sendable, C : _Concurrency.Clock, Self.Element : Swift.Sendable
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func chunked<C, Collected>(by timer: AsyncAlgorithms.AsyncTimerSequence<C>, into: Collected.Type) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, Collected, AsyncAlgorithms.AsyncTimerSequence<C>> where Self : Swift.Sendable, C : _Concurrency.Clock, Collected : Swift.RangeReplaceableCollection, Self.Element : Swift.Sendable, Self.Element == Collected.Element
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func chunked<C>(by timer: AsyncAlgorithms.AsyncTimerSequence<C>) -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Self, [Self.Element], AsyncAlgorithms.AsyncTimerSequence<C>> where Self : Swift.Sendable, C : _Concurrency.Clock, Self.Element : Swift.Sendable
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncChunksOfCountOrSignalSequence<Base, Collected, Signal> : _Concurrency.AsyncSequence, Swift.Sendable where Base : Swift.Sendable, Base : _Concurrency.AsyncSequence, Collected : Swift.RangeReplaceableCollection, Signal : Swift.Sendable, Signal : _Concurrency.AsyncSequence, Base.Element : Swift.Sendable, Base.Element == Collected.Element, Signal.Element : Swift.Sendable {
+  public typealias Element = Collected
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> Collected?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Collected
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Base, Collected, Signal>.Iterator
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence<Base, Collected, Signal>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChunksOfCountOrSignalSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunks<Collected>(ofCount count: Swift.Int, into: Collected.Type) -> AsyncAlgorithms.AsyncChunksOfCountSequence<Self, Collected> where Collected : Swift.RangeReplaceableCollection, Self.Element == Collected.Element {
+    AsyncChunksOfCountSequence(self, count: count)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func chunks(ofCount count: Swift.Int) -> AsyncAlgorithms.AsyncChunksOfCountSequence<Self, [Self.Element]> {
+    chunks(ofCount: count, into: [Element].self)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncChunksOfCountSequence<Base, Collected> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Collected : Swift.RangeReplaceableCollection, Base.Element == Collected.Element {
+  public typealias Element = Collected
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base: Base.AsyncIterator
+    @usableFromInline
+    internal let count: Swift.Int
+    @usableFromInline
+    internal init(base: Base.AsyncIterator, count: Swift.Int)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Collected? {
+      guard let first = try await base.next() else {
+        return nil
+      }
+
+      if count == 1 {
+        return Collected(CollectionOfOne(first))
+      }
+
+      var result: Collected = .init()
+      result.append(first)
+
+      while let next = try await base.next() {
+        result.append(next)
+        if result.count == count {
+          break
+        }
+      }
+      return result
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Collected
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let count: Swift.Int
+  @usableFromInline
+  internal init(_ base: Base, count: Swift.Int)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChunksOfCountSequence<Base, Collected>.Iterator {
+    Iterator(base: base.makeAsyncIterator(), count: count)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChunksOfCountSequence<Base, Collected>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChunksOfCountSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncChunksOfCountSequence.Iterator : Swift.Sendable where Base.AsyncIterator : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func compacted<Unwrapped>() -> AsyncAlgorithms.AsyncCompactedSequence<Self, Unwrapped> where Self.Element == Unwrapped? {
+    AsyncCompactedSequence(self)
+  }
+  #endif
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncCompactedSequence<Base, Element> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Base.Element == Element? {
+  @usableFromInline
+  internal let base: Base
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal init(_ base: Base) {
+    self.base = base
+  }
+  #endif
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var base: Base.AsyncIterator
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable internal init(_ base: Base.AsyncIterator) {
+      self.base = base
+    }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Element? {
+      while let wrapped = try await base.next() {
+        guard let some = wrapped else { continue }
+        return some
+      }
+      return nil
+    }
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncCompactedSequence<Base, Element>.Iterator {
+    Iterator(base.makeAsyncIterator())
+  }
+  #endif
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncCompactedSequence<Base, Element>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncCompactedSequence : Swift.Sendable where Base : Swift.Sendable, Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncCompactedSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions<Result>(_ initial: Result, _ transform: @escaping @Sendable (Result, Self.Element) async -> Result) -> AsyncAlgorithms.AsyncExclusiveReductionsSequence<Self, Result> {
+    reductions(into: initial) { result, element in
+      result = await transform(result, element)
+    }
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions<Result>(into initial: Result, _ transform: @escaping @Sendable (inout Result, Self.Element) async -> Swift.Void) -> AsyncAlgorithms.AsyncExclusiveReductionsSequence<Self, Result> {
+    AsyncExclusiveReductionsSequence(self, initial: initial, transform: transform)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncExclusiveReductionsSequence<Base, Element> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let initial: Element
+  @usableFromInline
+  internal let transform: @Sendable (inout Element, Base.Element) async -> Swift.Void
+  @inlinable internal init(_ base: Base, initial: Element, transform: @escaping @Sendable (inout Element, Base.Element) async -> Swift.Void) {
+    self.base = base
+    self.initial = initial
+    self.transform = transform
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncExclusiveReductionsSequence : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal var current: Element?
+    @usableFromInline
+    internal let transform: @Sendable (inout Element, Base.Element) async -> Swift.Void
+    @inlinable internal init(_ iterator: Base.AsyncIterator, initial: Element, transform: @escaping @Sendable (inout Element, Base.Element) async -> Swift.Void) {
+      self.iterator = iterator
+      self.current = initial
+      self.transform = transform
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Element? {
+      guard var result = current else { return nil }
+      let value = try await iterator.next()
+      guard let value = value else {
+        current = nil
+        return nil
+      }
+      await transform(&result, value)
+      current = result
+      return result
+    }
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncExclusiveReductionsSequence<Base, Element>.Iterator {
+    Iterator(base.makeAsyncIterator(), initial: initial, transform: transform)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncExclusiveReductionsSequence<Base, Element>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncExclusiveReductionsSequence : Swift.Sendable where Base : Swift.Sendable, Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncExclusiveReductionsSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions(_ transform: @escaping @Sendable (Self.Element, Self.Element) async -> Self.Element) -> AsyncAlgorithms.AsyncInclusiveReductionsSequence<Self> {
+    AsyncInclusiveReductionsSequence(self, transform: transform)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncInclusiveReductionsSequence<Base> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let transform: @Sendable (Base.Element, Base.Element) async -> Base.Element
+  @inlinable internal init(_ base: Base, transform: @escaping @Sendable (Base.Element, Base.Element) async -> Base.Element) {
+    self.base = base
+    self.transform = transform
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncInclusiveReductionsSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal var element: Base.Element?
+    @usableFromInline
+    internal let transform: @Sendable (Base.Element, Base.Element) async -> Base.Element
+    @inlinable internal init(_ iterator: Base.AsyncIterator, transform: @escaping @Sendable (Base.Element, Base.Element) async -> Base.Element) {
+      self.iterator = iterator
+      self.transform = transform
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Base.Element? {
+      guard let previous = element else {
+        element = try await iterator.next()
+        return element
+      }
+      guard let next = try await iterator.next() else { return nil }
+      element = await transform(previous, next)
+      return element
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncInclusiveReductionsSequence<Base>.Iterator {
+    Iterator(base.makeAsyncIterator(), transform: transform)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncInclusiveReductionsSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncInclusiveReductionsSequence : Swift.Sendable where Base : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncInclusiveReductionsSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence where Self.Element : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func joined<Separator>(separator: Separator) -> AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Self, Separator> where Separator : _Concurrency.AsyncSequence, Separator.Element == Self.Element.Element {
+    return AsyncJoinedBySeparatorSequence(self, separator: separator)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncJoinedBySeparatorSequence<Base, Separator> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Separator : _Concurrency.AsyncSequence, Base.Element : _Concurrency.AsyncSequence, Separator.Element == Base.Element.Element {
+  public typealias Element = Base.Element.Element
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal enum State {
+      @usableFromInline
+      internal enum SeparatorState {
+        case initial(Separator)
+        case partialAsync(Separator.AsyncIterator, Swift.ContiguousArray<AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Element>)
+        case cached(Swift.ContiguousArray<AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Element>)
+        case partialCached(Swift.ContiguousArray<AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Element>.Iterator, Swift.ContiguousArray<AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Element>)
+        @usableFromInline
+        internal func startSeparator() -> AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator.State.SeparatorState
+        #if compiler(>=5.3) && $NonescapableTypes
+        @usableFromInline
+        internal func next() async rethrows -> (AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Element?, AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator.State.SeparatorState)
+        #endif
+      }
+      case initial(Base.AsyncIterator, Separator)
+      case sequence(Base.AsyncIterator, Base.Element.AsyncIterator, AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator.State.SeparatorState)
+      case separator(Base.AsyncIterator, AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator.State.SeparatorState, Base.Element)
+      case terminal
+    }
+    @usableFromInline
+    internal var state: AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator.State
+    @usableFromInline
+    internal init(_ iterator: Base.AsyncIterator, separator: Separator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Base.Element.Element? {
+      do {
+        switch state {
+        case .terminal:
+          return nil
+        case .initial(var outerIterator, let separator):
+          guard let innerSequence = try await outerIterator.next() else {
+            state = .terminal
+            return nil
+          }
+          let innerIterator = innerSequence.makeAsyncIterator()
+          state = .sequence(outerIterator, innerIterator, .initial(separator))
+          return try await next()
+        case .sequence(var outerIterator, var innerIterator, let separatorState):
+          if let item = try await innerIterator.next() {
+            state = .sequence(outerIterator, innerIterator, separatorState)
+            return item
+          }
+
+          guard let nextInner = try await outerIterator.next() else {
+            state = .terminal
+            return nil
+          }
+
+          state = .separator(outerIterator, separatorState.startSeparator(), nextInner)
+          return try await next()
+        case .separator(let iterator, let separatorState, let nextBase):
+          let (itemOpt, newSepState) = try await separatorState.next()
+          guard let item = itemOpt else {
+            state = .sequence(iterator, nextBase.makeAsyncIterator(), newSepState)
+            return try await next()
+          }
+          state = .separator(iterator, newSepState, nextBase)
+          return item
+        }
+      } catch {
+        state = .terminal
+        throw error
+      }
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Separator.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let separator: Separator
+  @usableFromInline
+  internal init(_ base: Base, separator: Separator)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncJoinedBySeparatorSequence<Base, Separator>.Iterator {
+    return Iterator(base.makeAsyncIterator(), separator: separator)
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncJoinedBySeparatorSequence : Swift.Sendable where Base : Swift.Sendable, Separator : Swift.Sendable, Base.Element : Swift.Sendable, Separator.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncJoinedBySeparatorSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence where Self.Element : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func joined() -> AsyncAlgorithms.AsyncJoinedSequence<Self> {
+    return AsyncJoinedSequence(self)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncJoinedSequence<Base> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence, Base.Element : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element.Element
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncJoinedSequence<Base>.Iterator
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal enum State {
+      case initial(Base.AsyncIterator)
+      case sequence(Base.AsyncIterator, Base.Element.AsyncIterator)
+      case terminal
+    }
+    @usableFromInline
+    internal var state: AsyncAlgorithms.AsyncJoinedSequence<Base>.Iterator.State
+    @inlinable internal init(_ iterator: Base.AsyncIterator) {
+      state = .initial(iterator)
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> Base.Element.Element? {
+      do {
+        switch state {
+        case .terminal:
+          return nil
+        case .initial(var outerIterator):
+          guard let innerSequence = try await outerIterator.next() else {
+            state = .terminal
+            return nil
+          }
+          let innerIterator = innerSequence.makeAsyncIterator()
+          state = .sequence(outerIterator, innerIterator)
+          return try await next()
+        case .sequence(var outerIterator, var innerIterator):
+          if let item = try await innerIterator.next() {
+            state = .sequence(outerIterator, innerIterator)
+            return item
+          }
+
+          guard let nextInner = try await outerIterator.next() else {
+            state = .terminal
+            return nil
+          }
+
+          state = .sequence(outerIterator, nextInner.makeAsyncIterator())
+          return try await next()
+        }
+      } catch {
+        state = .terminal
+        throw error
+      }
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal init(_ base: Base)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncJoinedSequence<Base>.Iterator {
+    return Iterator(base.makeAsyncIterator())
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncJoinedSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable, Base.Element.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncJoinedSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence where Self.Element : Swift.Equatable {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func removeDuplicates() -> AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Self>
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func removeDuplicates(by predicate: @escaping @Sendable (Self.Element, Self.Element) async -> Swift.Bool) -> AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Self>
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func removeDuplicates(by predicate: @escaping @Sendable (Self.Element, Self.Element) async throws -> Swift.Bool) -> AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Self>
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncRemoveDuplicatesSequence<Base> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal let predicate: @Sendable (AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element) async -> Swift.Bool
+    @usableFromInline
+    internal var last: AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element?
+    @usableFromInline
+    internal init(iterator: Base.AsyncIterator, predicate: @escaping @Sendable (AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element) async -> Swift.Bool)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async rethrows -> AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element? {
+      guard let last = last else {
+        last = try await iterator.next()
+        return last
+      }
+      while let element = try await iterator.next() {
+        if await !predicate(last, element) {
+          self.last = element
+          return element
+        }
+      }
+      return nil
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let predicate: @Sendable (AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Element) async -> Swift.Bool
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Iterator {
+    Iterator(iterator: base.makeAsyncIterator(), predicate: predicate)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncRemoveDuplicatesSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncThrowingRemoveDuplicatesSequence<Base> : _Concurrency.AsyncSequence where Base : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal let predicate: @Sendable (AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element) async throws -> Swift.Bool
+    @usableFromInline
+    internal var last: AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element?
+    @usableFromInline
+    internal init(iterator: Base.AsyncIterator, predicate: @escaping @Sendable (AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element) async throws -> Swift.Bool)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async throws -> AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element? {
+      guard let last = last else {
+        last = try await iterator.next()
+        return last
+      }
+      while let element = try await iterator.next() {
+        if try await !predicate(last, element) {
+          self.last = element
+          return element
+        }
+      }
+      return nil
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let predicate: @Sendable (AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element, AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Element) async throws -> Swift.Bool
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Iterator {
+    Iterator(iterator: base.makeAsyncIterator(), predicate: predicate)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncRemoveDuplicatesSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncRemoveDuplicatesSequence.Iterator : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncThrowingRemoveDuplicatesSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Swift.Sequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public var async: AsyncAlgorithms.AsyncSyncSequence<Self> {
+    get {
+    AsyncSyncSequence(self)
+  }
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncSyncSequence<Base> : _Concurrency.AsyncSequence where Base : Swift.Sequence {
+  public typealias Element = Base.Element
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.Iterator?
+    @usableFromInline
+    internal init(_ iterator: Base.Iterator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async -> Base.Element? {
+      guard !Task.isCancelled, let value = iterator?.next() else {
+        iterator = nil
+        return nil
+      }
+      return value
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal init(_ base: Base)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncSyncSequence<Base>.Iterator {
+    Iterator(base.makeIterator())
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncSyncSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncSyncSequence : Swift.Sendable where Base : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncSyncSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func _throttle<C, Reduced>(for interval: C.Instant.Duration, clock: C, reducing: @escaping @Sendable (Reduced?, Self.Element) async -> Reduced) -> AsyncAlgorithms._AsyncThrottleSequence<Self, C, Reduced> where C : _Concurrency.Clock
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func _throttle<Reduced>(for interval: Swift.Duration, reducing: @escaping @Sendable (Reduced?, Self.Element) async -> Reduced) -> AsyncAlgorithms._AsyncThrottleSequence<Self, _Concurrency.ContinuousClock, Reduced>
+  #endif
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func _throttle<C>(for interval: C.Instant.Duration, clock: C, latest: Swift.Bool = true) -> AsyncAlgorithms._AsyncThrottleSequence<Self, C, Self.Element> where C : _Concurrency.Clock
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func _throttle(for interval: Swift.Duration, latest: Swift.Bool = true) -> AsyncAlgorithms._AsyncThrottleSequence<Self, _Concurrency.ContinuousClock, Self.Element>
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+public struct _AsyncThrottleSequence<Base, C, Reduced> where Base : _Concurrency.AsyncSequence, C : _Concurrency.Clock {
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms._AsyncThrottleSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Reduced
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> Reduced?
+    #endif
+    @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+    public typealias Element = Reduced
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  public func makeAsyncIterator() -> AsyncAlgorithms._AsyncThrottleSequence<Base, C, Reduced>.Iterator
+  @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+  public typealias AsyncIterator = AsyncAlgorithms._AsyncThrottleSequence<Base, C, Reduced>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms._AsyncThrottleSequence : Swift.Sendable where Base : Swift.Sendable, Reduced : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms._AsyncThrottleSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions<Result>(_ initial: Result, _ transform: @escaping @Sendable (Result, Self.Element) async throws -> Result) -> AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence<Self, Result> {
+    reductions(into: initial) { result, element in
+      result = try await transform(result, element)
+    }
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions<Result>(into initial: Result, _ transform: @escaping @Sendable (inout Result, Self.Element) async throws -> Swift.Void) -> AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence<Self, Result> {
+    AsyncThrowingExclusiveReductionsSequence(self, initial: initial, transform: transform)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncThrowingExclusiveReductionsSequence<Base, Element> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let initial: Element
+  @usableFromInline
+  internal let transform: @Sendable (inout Element, Base.Element) async throws -> Swift.Void
+  @inlinable internal init(_ base: Base, initial: Element, transform: @escaping @Sendable (inout Element, Base.Element) async throws -> Swift.Void) {
+    self.base = base
+    self.initial = initial
+    self.transform = transform
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal var current: Element?
+    @usableFromInline
+    internal let transform: @Sendable (inout Element, Base.Element) async throws -> Swift.Void
+    @inlinable internal init(_ iterator: Base.AsyncIterator, initial: Element, transform: @escaping @Sendable (inout Element, Base.Element) async throws -> Swift.Void) {
+      self.iterator = iterator
+      self.current = initial
+      self.transform = transform
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async throws -> Element? {
+      guard var result = current else { return nil }
+      let value = try await iterator.next()
+      guard let value = value else {
+        current = nil
+        return nil
+      }
+      do {
+        try await transform(&result, value)
+        current = result
+        return result
+      } catch {
+        current = nil
+        throw error
+      }
+    }
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence<Base, Element>.Iterator {
+    Iterator(base.makeAsyncIterator(), initial: initial, transform: transform)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence<Base, Element>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence : Swift.Sendable where Base : Swift.Sendable, Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncThrowingExclusiveReductionsSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func reductions(_ transform: @escaping @Sendable (Self.Element, Self.Element) async throws -> Self.Element) -> AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence<Self> {
+    AsyncThrowingInclusiveReductionsSequence(self, transform: transform)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@frozen public struct AsyncThrowingInclusiveReductionsSequence<Base> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let transform: @Sendable (Base.Element, Base.Element) async throws -> Base.Element
+  @inlinable internal init(_ base: Base, transform: @escaping @Sendable (Base.Element, Base.Element) async throws -> Base.Element) {
+    self.base = base
+    self.transform = transform
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @frozen public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator?
+    @usableFromInline
+    internal var element: Base.Element?
+    @usableFromInline
+    internal let transform: @Sendable (Base.Element, Base.Element) async throws -> Base.Element
+    @inlinable internal init(_ iterator: Base.AsyncIterator, transform: @escaping @Sendable (Base.Element, Base.Element) async throws -> Base.Element) {
+      self.iterator = iterator
+      self.transform = transform
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() async throws -> Base.Element? {
+      guard let previous = element else {
+        element = try await iterator?.next()
+        return element
+      }
+      guard let next = try await iterator?.next() else { return nil }
+      do {
+        element = try await transform(previous, next)
+      } catch {
+        iterator = nil
+        throw error
+      }
+      return element
+    }
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence<Base>.Iterator {
+    Iterator(base.makeAsyncIterator(), transform: transform)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence : Swift.Sendable where Base : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncThrowingInclusiveReductionsSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+public struct AsyncTimerSequence<C> : _Concurrency.AsyncSequence where C : _Concurrency.Clock {
+  public typealias Element = C.Instant
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async -> C.Instant?
+    #endif
+    @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+    public typealias Element = C.Instant
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(interval: C.Instant.Duration, tolerance: C.Instant.Duration? = nil, clock: C)
+  #endif
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncTimerSequence<C>.Iterator
+  @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncTimerSequence<C>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms.AsyncTimerSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func repeating(every interval: C.Instant.Duration, tolerance: C.Instant.Duration? = nil, clock: C) -> AsyncAlgorithms.AsyncTimerSequence<C>
+  #endif
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms.AsyncTimerSequence where C == _Concurrency.SuspendingClock {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func repeating(every interval: Swift.Duration, tolerance: Swift.Duration? = nil) -> AsyncAlgorithms.AsyncTimerSequence<_Concurrency.SuspendingClock>
+  #endif
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms.AsyncTimerSequence : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncTimerSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func buffer(policy: AsyncAlgorithms.AsyncBufferSequencePolicy) -> AsyncAlgorithms.AsyncBufferSequence<Self>
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncBufferSequencePolicy : Swift.Sendable {
+  public static func bounded(_ limit: Swift.Int) -> AsyncAlgorithms.AsyncBufferSequencePolicy
+  public static var unbounded: AsyncAlgorithms.AsyncBufferSequencePolicy {
+    get
+  }
+  public static func bufferingLatest(_ limit: Swift.Int) -> AsyncAlgorithms.AsyncBufferSequencePolicy
+  public static func bufferingOldest(_ limit: Swift.Int) -> AsyncAlgorithms.AsyncBufferSequencePolicy
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncBufferSequence<Base> : _Concurrency.AsyncSequence where Base : Swift.Sendable, Base : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncBufferSequence<Base>.Iterator
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncBufferSequence<Base>.Iterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncBufferSequence<Base>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncBufferSequence<Base>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncBufferSequence : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncBufferSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+final public class AsyncChannel<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
+  public typealias Element = Element
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncChannel<Element>.Iterator
+  public init()
+  final public func send(_ element: Element) async
+  final public func finish()
+  final public func makeAsyncIterator() -> AsyncAlgorithms.AsyncChannel<Element>.Iterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async -> Element?
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncChannel.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+final public class AsyncThrowingChannel<Element, Failure> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable, Failure : Swift.Error {
+  public typealias Element = Element
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncThrowingChannel<Element, Failure>.Iterator
+  public init()
+  final public func send(_ element: Element) async
+  final public func fail(_ error: any Swift.Error) where Failure == any Swift.Error
+  final public func finish()
+  final public func makeAsyncIterator() -> AsyncAlgorithms.AsyncThrowingChannel<Element, Failure>.Iterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Element?
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  @objc deinit
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncThrowingChannel.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func combineLatest<Base1, Base2>(_ base1: Base1, _ base2: Base2) -> AsyncAlgorithms.AsyncCombineLatest2Sequence<Base1, Base2> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncCombineLatest2Sequence<Base1, Base2> : _Concurrency.AsyncSequence, Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable {
+  public typealias Element = (Base1.Element, Base2.Element)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncCombineLatest2Sequence<Base1, Base2>.Iterator
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncCombineLatest2Sequence<Base1, Base2>.AsyncIterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncCombineLatest2Sequence<Base1, Base2>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncCombineLatest2Sequence<Base1, Base2>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncCombineLatest2Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func combineLatest<Base1, Base2, Base3>(_ base1: Base1, _ base2: Base2, _ base3: Base3) -> AsyncAlgorithms.AsyncCombineLatest3Sequence<Base1, Base2, Base3> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable, Base3.Element : Swift.Sendable
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncCombineLatest3Sequence<Base1, Base2, Base3> : _Concurrency.AsyncSequence, Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable, Base3.Element : Swift.Sendable {
+  public typealias Element = (Base1.Element, Base2.Element, Base3.Element)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncCombineLatest3Sequence<Base1, Base2, Base3>.Iterator
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncCombineLatest3Sequence<Base1, Base2, Base3>.AsyncIterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncCombineLatest3Sequence<Base1, Base2, Base3>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncCombineLatest3Sequence<Base1, Base2, Base3>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncCombineLatest3Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func debounce<C>(for interval: C.Instant.Duration, tolerance: C.Instant.Duration? = nil, clock: C) -> AsyncAlgorithms.AsyncDebounceSequence<Self, C> where Self : Swift.Sendable, C : _Concurrency.Clock, Self.Element : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  public func debounce(for interval: Swift.Duration, tolerance: Swift.Duration? = nil) -> AsyncAlgorithms.AsyncDebounceSequence<Self, _Concurrency.ContinuousClock> where Self : Swift.Sendable, Self.Element : Swift.Sendable
+  #endif
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+public struct AsyncDebounceSequence<Base, C> : Swift.Sendable where Base : Swift.Sendable, Base : _Concurrency.AsyncSequence, C : _Concurrency.Clock, Base.Element : Swift.Sendable {
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms.AsyncDebounceSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncDebounceSequence<Base, C>.Iterator
+  @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncDebounceSequence<Base, C>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AsyncAlgorithms.AsyncDebounceSequence {
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncDebounceSequence<Base, C>.Element?
+    #endif
+    @available(iOS 16.0, tvOS 16.0, watchOS 9.0, macOS 13.0, *)
+    public typealias Element = AsyncAlgorithms.AsyncDebounceSequence<Base, C>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncDebounceSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Swift.Dictionary {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public init<S>(uniqueKeysWithValues keysAndValues: S) async rethrows where S : _Concurrency.AsyncSequence, S.Element == (Key, Value) {
+    self.init(uniqueKeysWithValues: try await Array(keysAndValues))
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public init<S>(_ keysAndValues: S, uniquingKeysWith combine: (Value, Value) async throws -> Value) async rethrows where S : _Concurrency.AsyncSequence, S.Element == (Key, Value) {
+    self.init()
+    for try await (key, value) in keysAndValues {
+      if let existing = self[key] {
+        self[key] = try await combine(existing, value)
+      } else {
+        self[key] = value
+      }
+    }
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public init<S>(grouping values: S, by keyForValue: (S.Element) async throws -> Key) async rethrows where Value == [S.Element], S : _Concurrency.AsyncSequence {
+    self.init()
+    for try await value in values {
+      let key = try await keyForValue(value)
+      self[key, default: []].append(value)
+    }
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func interspersed(every: Swift.Int = 1, with separator: Self.Element) -> AsyncAlgorithms.AsyncInterspersedSequence<Self> {
+    AsyncInterspersedSequence(self, every: every, separator: separator)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func interspersed(every: Swift.Int = 1, with separator: @escaping @Sendable () -> Self.Element) -> AsyncAlgorithms.AsyncInterspersedSequence<Self> {
+    AsyncInterspersedSequence(self, every: every, separator: separator)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func interspersed(every: Swift.Int = 1, with separator: @escaping @Sendable () async -> Self.Element) -> AsyncAlgorithms.AsyncInterspersedSequence<Self> {
+    AsyncInterspersedSequence(self, every: every, separator: separator)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func interspersed(every: Swift.Int = 1, with separator: @escaping @Sendable () throws -> Self.Element) -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Self> {
+    AsyncThrowingInterspersedSequence(self, every: every, separator: separator)
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func interspersed(every: Swift.Int = 1, with separator: @escaping @Sendable () async throws -> Self.Element) -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Self> {
+    AsyncThrowingInterspersedSequence(self, every: every, separator: separator)
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncInterspersedSequence<Base> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal enum Separator {
+    case element(AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+    case syncClosure(@Sendable () -> AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+    case asyncClosure(@Sendable () async -> AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let separator: AsyncAlgorithms.AsyncInterspersedSequence<Base>.Separator
+  @usableFromInline
+  internal let every: Swift.Int
+  @usableFromInline
+  internal init(_ base: Base, every: Swift.Int, separator: AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+  @usableFromInline
+  internal init(_ base: Base, every: Swift.Int, separator: @escaping @Sendable () -> AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+  @usableFromInline
+  internal init(_ base: Base, every: Swift.Int, separator: @escaping @Sendable () async -> AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncInterspersedSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal enum State {
+      case start(AsyncAlgorithms.AsyncInterspersedSequence<Base>.Element?)
+      case element(Swift.Int)
+      case separator
+      case finished
+    }
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal let separator: AsyncAlgorithms.AsyncInterspersedSequence<Base>.Separator
+    @usableFromInline
+    internal let every: Swift.Int
+    @usableFromInline
+    internal var state: AsyncAlgorithms.AsyncInterspersedSequence<Base>.Iterator.State
+    @usableFromInline
+    internal init(_ iterator: Base.AsyncIterator, every: Swift.Int, separator: AsyncAlgorithms.AsyncInterspersedSequence<Base>.Separator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> Base.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base.Failure
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncInterspersedSequence<Base>.Iterator {
+    Iterator(self.base.makeAsyncIterator(), every: self.every, separator: self.separator)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncInterspersedSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncThrowingInterspersedSequence<Base> where Base : _Concurrency.AsyncSequence {
+  @usableFromInline
+  internal enum Separator {
+    case syncClosure(@Sendable () throws -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Element)
+    case asyncClosure(@Sendable () async throws -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Element)
+  }
+  @usableFromInline
+  internal let base: Base
+  @usableFromInline
+  internal let separator: AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Separator
+  @usableFromInline
+  internal let every: Swift.Int
+  @usableFromInline
+  internal init(_ base: Base, every: Swift.Int, separator: @escaping @Sendable () throws -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Element)
+  @usableFromInline
+  internal init(_ base: Base, every: Swift.Int, separator: @escaping @Sendable () async throws -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Element)
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingInterspersedSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Base.Element
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal enum State {
+      case start(AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Element?)
+      case element(Swift.Int)
+      case separator
+      case finished
+    }
+    @usableFromInline
+    internal var iterator: Base.AsyncIterator
+    @usableFromInline
+    internal let separator: AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Separator
+    @usableFromInline
+    internal let every: Swift.Int
+    @usableFromInline
+    internal var state: AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Iterator.State
+    @usableFromInline
+    internal init(_ iterator: Base.AsyncIterator, every: Swift.Int, separator: AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Separator)
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Base.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = Base.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  @inlinable public func makeAsyncIterator() -> AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Iterator {
+    Iterator(self.base.makeAsyncIterator(), every: self.every, separator: self.separator)
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncThrowingInterspersedSequence<Base>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncInterspersedSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncInterspersedSequence.Separator : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingInterspersedSequence : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncThrowingInterspersedSequence.Separator : Swift.Sendable where Base : Swift.Sendable, Base.Element : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncInterspersedSequence.Iterator : Swift.Sendable {
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncThrowingInterspersedSequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func merge<Base1, Base2>(_ base1: Base1, _ base2: Base2) -> AsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base1.Element == Base2.Element
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncMerge2Sequence<Base1, Base2> : Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base1.Element == Base2.Element {
+  public typealias Element = Base1.Element
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncMerge2Sequence : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2>.Iterator
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncMerge2Sequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncMerge2Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func merge<Base1, Base2, Base3>(_ base1: Base1, _ base2: Base2, _ base3: Base3) -> AsyncAlgorithms.AsyncMerge3Sequence<Base1, Base2, Base3> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base1.Element == Base2.Element, Base2.Element == Base3.Element
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncMerge3Sequence<Base1, Base2, Base3> : Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base1.Element == Base2.Element, Base2.Element == Base3.Element {
+  public typealias Element = Base1.Element
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncMerge3Sequence : _Concurrency.AsyncSequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncMerge3Sequence<Base1, Base2, Base3>.Iterator
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncMerge3Sequence<Base1, Base2, Base3>.Iterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension AsyncAlgorithms.AsyncMerge3Sequence {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncMerge3Sequence<Base1, Base2, Base3>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncMerge3Sequence<Base1, Base2, Base3>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncMerge3Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Swift.RangeReplaceableCollection {
+  @inlinable public init<Source>(_ source: Source) async rethrows where Source : _Concurrency.AsyncSequence, Self.Element == Source.Element {
+    self.init()
+    for try await item in source {
+      append(item)
+    }
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Swift.SetAlgebra {
+  @inlinable public init<Source>(_ source: Source) async rethrows where Source : _Concurrency.AsyncSequence, Self.Element == Source.Element {
+    self.init()
+    for try await item in source {
+      insert(item)
+    }
+  }
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func zip<Base1, Base2>(_ base1: Base1, _ base2: Base2) -> AsyncAlgorithms.AsyncZip2Sequence<Base1, Base2> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncZip2Sequence<Base1, Base2> : _Concurrency.AsyncSequence, Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable {
+  public typealias Element = (Base1.Element, Base2.Element)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncZip2Sequence<Base1, Base2>.Iterator
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncZip2Sequence<Base1, Base2>.AsyncIterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncZip2Sequence<Base1, Base2>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncZip2Sequence<Base1, Base2>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncZip2Sequence.Iterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public func zip<Base1, Base2, Base3>(_ base1: Base1, _ base2: Base2, _ base3: Base3) -> AsyncAlgorithms.AsyncZip3Sequence<Base1, Base2, Base3> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable, Base3.Element : Swift.Sendable
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public struct AsyncZip3Sequence<Base1, Base2, Base3> : _Concurrency.AsyncSequence, Swift.Sendable where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base3 : Swift.Sendable, Base3 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base2.Element : Swift.Sendable, Base3.Element : Swift.Sendable {
+  public typealias Element = (Base1.Element, Base2.Element, Base3.Element)
+  public typealias AsyncIterator = AsyncAlgorithms.AsyncZip3Sequence<Base1, Base2, Base3>.Iterator
+  public func makeAsyncIterator() -> AsyncAlgorithms.AsyncZip3Sequence<Base1, Base2, Base3>.AsyncIterator
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async rethrows -> AsyncAlgorithms.AsyncZip3Sequence<Base1, Base2, Base3>.Element?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = AsyncAlgorithms.AsyncZip3Sequence<Base1, Base2, Base3>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Base1.Failure
+  }
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Base1.Failure
+}
+@available(*, unavailable)
+extension AsyncAlgorithms.AsyncZip3Sequence.Iterator : Swift.Sendable {
+}

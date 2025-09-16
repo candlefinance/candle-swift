@@ -4,19 +4,17 @@ import SwiftUI
 struct TradeQuoteScreen: View {
     enum Side { case lost, gained }
 
-    @Environment(CandleClient.self) private var client
-
     @Binding var error: (title: String, message: String)?
-    @Binding var tradeQuoteToExecute: Models.TradeQuote?
+    @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
-    @State private(set) var tradeQuote: Models.TradeQuote
+    @State private(set) var tradeQuote: Candle.Models.TradeQuote
     @State private var selectedSide: Side = .lost
 
     private var badgeText: String { "Quote" }
 
     private var badgeColor: Color { return .blue }
 
-    @ViewBuilder private func logoURLView(asset: Models.TradeAsset) -> some View {
+    @ViewBuilder private func logoURLView(asset: Candle.Models.TradeAsset) -> some View {
         switch asset {
         case .FiatAsset(let fiatAsset):
             AsyncImageWithPlaceholder(

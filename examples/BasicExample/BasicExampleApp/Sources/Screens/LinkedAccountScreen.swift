@@ -2,12 +2,10 @@ import Candle
 import SwiftUI
 
 struct LinkedAccountScreen: View {
-    @Environment(CandleClient.self) private var client
-
     @Binding var showLinkSheet: Bool
     @Binding var error: (title: String, message: String)?
 
-    @State private(set) var linkedAccount: Models.LinkedAccount
+    @State private(set) var linkedAccount: Candle.Models.LinkedAccount
 
     private var badgeText: String {
         switch linkedAccount.details {
@@ -99,8 +97,14 @@ struct LinkedAccountScreen: View {
     }
 
     private func getLinkedAccount() async {
-        do { linkedAccount = try await client.getLinkedAccount(ref: linkedAccount.ref) } catch {
+        do {
+            linkedAccount = try await Candle.Client.shared.getLinkedAccount(ref: linkedAccount.ref)
+        } catch {
             switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
             case .notFound(let payload):
                 switch payload.kind {
                 case .notFound_user:
@@ -127,7 +131,6 @@ struct LinkedAccountScreen: View {
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
                 )
-            case .sessionError(let sessionError): self.error = sessionError.formatted
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
@@ -154,7 +157,6 @@ struct LinkedAccountScreen: View {
             )
         ),
     )
-    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }
 
 #Preview {
@@ -168,5 +170,4 @@ struct LinkedAccountScreen: View {
             details: .InactiveLinkedAccountDetails(.init(state: .inactive, ))
         )
     )
-    .environment(CandleClient(appUser: .init(appKey: "", appSecret: "")))
 }

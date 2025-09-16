@@ -1,0 +1,5 @@
+framework module RealModule {
+    header "RealModule-Swift.h"
+    export *
+    link framework "_NumericsShims"
+}
