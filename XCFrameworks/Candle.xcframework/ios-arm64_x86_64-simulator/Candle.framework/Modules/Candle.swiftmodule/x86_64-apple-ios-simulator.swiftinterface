@@ -3,6 +3,7 @@
 // swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -module-name Candle -package-name sdk_swift
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CoreGraphics
+import Darwin
 import FinanceKit
 import Foundation
 import Foundation/*.Data*/
@@ -14,6 +15,7 @@ import OpenAPIURLSession
 import SafariServices
 import Swift
 import SwiftUI
+import Tracing
 import UIKit
 import _Concurrency
 import _StringProcessing
@@ -481,6 +483,9 @@ extension Candle.Components.Schemas.Service {
   public var authenticationService: Candle.Components.Schemas.Service.AuthenticationService {
     get
   }
+}
+extension Swift.ObjectIdentifier : @retroactive Tracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> Tracing.SpanAttribute
 }
 public protocol APIProtocol : Swift.Sendable {
   func postUsers(_ input: Candle.Operations.PostUsers.Input) async throws -> Candle.Operations.PostUsers.Output
