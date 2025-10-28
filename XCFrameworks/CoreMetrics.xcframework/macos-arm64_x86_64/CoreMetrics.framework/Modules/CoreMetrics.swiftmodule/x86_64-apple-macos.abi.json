@@ -36,6 +36,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
+              "Documentation",
               "RawDocComment"
             ],
             "isLet": true,
@@ -85,7 +86,8 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "UsableFromInline"
+              "UsableFromInline",
+              "Documentation"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -133,7 +135,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -202,7 +205,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -722,6 +726,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
+              "Documentation",
               "RawDocComment"
             ],
             "isLet": true,
@@ -771,7 +776,8 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "UsableFromInline"
+              "UsableFromInline",
+              "Documentation"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -819,7 +825,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -888,7 +895,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -1660,6 +1668,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
+              "Documentation",
               "RawDocComment"
             ],
             "isLet": true,
@@ -1709,6 +1718,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
+              "Documentation",
               "UsableFromInline"
             ],
             "isLet": true,
@@ -1757,7 +1767,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -1826,7 +1837,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2436,6 +2448,7 @@
               "HasStorage",
               "Final",
               "AccessControl",
+              "Documentation",
               "RawDocComment"
             ],
             "isLet": true,
@@ -2485,7 +2498,8 @@
               "HasStorage",
               "Final",
               "AccessControl",
-              "UsableFromInline"
+              "UsableFromInline",
+              "Documentation"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2533,7 +2547,8 @@
             "declAttributes": [
               "HasStorage",
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2602,7 +2617,8 @@
             "declAttributes": [
               "HasStorage",
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2671,7 +2687,8 @@
             "declAttributes": [
               "HasStorage",
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3170,7 +3187,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3216,7 +3234,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3263,7 +3282,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3310,7 +3330,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3357,7 +3378,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3404,7 +3426,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3451,7 +3474,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3498,7 +3522,8 @@
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3629,6 +3654,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
+              "Documentation",
               "RawDocComment"
             ],
             "isLet": true,
@@ -3678,7 +3704,8 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "UsableFromInline"
+              "UsableFromInline",
+              "Documentation"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3726,7 +3753,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -3795,7 +3823,8 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -6018,7 +6047,8 @@
             "genericSig": "<τ_0_0 where τ_0_0 : CoreMetrics.TimerHandler>",
             "sugared_genericSig": "<Self where Self : CoreMetrics.TimerHandler>",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -6108,7 +6138,8 @@
             "mangledName": "$s11CoreMetrics09MultiplexB7HandlerC9factoriesACSayAA0B7Factory_pG_tcfc",
             "moduleName": "CoreMetrics",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           },
@@ -6163,7 +6194,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6218,7 +6250,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6273,7 +6306,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6334,7 +6368,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6389,7 +6424,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6416,7 +6452,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6443,7 +6480,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6470,7 +6508,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6497,7 +6536,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -6524,7 +6564,8 @@
             "moduleName": "CoreMetrics",
             "declAttributes": [
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           }
@@ -6609,7 +6650,8 @@
               "HasInitialValue",
               "Final",
               "HasStorage",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -7449,273 +7491,273 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 3066,
+      "offset": 3403,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 3464,
+      "offset": 3795,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 3856,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
-      "kind": "FloatLiteral",
-      "offset": 7558,
-      "length": 3,
-      "value": "1.0"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
-      "kind": "Array",
-      "offset": 8023,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
-      "kind": "Array",
-      "offset": 8454,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
-      "kind": "Array",
-      "offset": 9890,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
-      "kind": "Array",
-      "offset": 10262,
+      "offset": 4235,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "FloatLiteral",
-      "offset": 13165,
+      "offset": 8360,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
+      "kind": "Array",
+      "offset": 8823,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
+      "kind": "Array",
+      "offset": 9304,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
+      "kind": "Array",
+      "offset": 10838,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
+      "kind": "Array",
+      "offset": 11258,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
+      "kind": "FloatLiteral",
+      "offset": 14422,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "FloatLiteral",
-      "offset": 13544,
+      "offset": 14800,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 13861,
+      "offset": 15117,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 14311,
+      "offset": 15561,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 18611,
+      "offset": 20154,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "BooleanLiteral",
-      "offset": 18633,
+      "offset": 20176,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 19164,
+      "offset": 20744,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "BooleanLiteral",
-      "offset": 19194,
+      "offset": 20774,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 20618,
+      "offset": 22301,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 20710,
+      "offset": 22416,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 20822,
+      "offset": 22551,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 20974,
+      "offset": 22721,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 21126,
+      "offset": 22891,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 21250,
+      "offset": 23032,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 21367,
+      "offset": 23164,
       "length": 2,
       "value": "24"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 24374,
+      "offset": 26410,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 24816,
+      "offset": 26850,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 24861,
+      "offset": 26895,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 25259,
+      "offset": 27291,
       "length": 9,
       "value": "1000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 25719,
+      "offset": 27749,
       "length": 9,
       "value": "1000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 25769,
+      "offset": 27799,
       "length": 9,
       "value": "1000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 26171,
+      "offset": 28199,
       "length": 13,
       "value": "1000000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 26625,
+      "offset": 28651,
       "length": 13,
       "value": "1000000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 26679,
+      "offset": 28705,
       "length": 13,
       "value": "1000000000"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 27028,
+      "offset": 29046,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 27478,
+      "offset": 29539,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 28053,
+      "offset": 30104,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "Array",
-      "offset": 28804,
+      "offset": 30847,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "BooleanLiteral",
-      "offset": 31459,
+      "offset": 33498,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 37741,
+      "offset": 39811,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-metrics\/Sources\/CoreMetrics\/Metrics.swift",
       "kind": "IntegerLiteral",
-      "offset": 40494,
+      "offset": 42564,
       "length": 1,
       "value": "0"
     }

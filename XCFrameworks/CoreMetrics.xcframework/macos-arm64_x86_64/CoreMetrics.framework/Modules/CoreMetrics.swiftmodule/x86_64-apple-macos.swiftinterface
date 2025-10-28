@@ -8,9 +8,9 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 final public class Counter {
-  final public let _handler: any CoreMetrics.CounterHandler
+  @_documentation(visibility: internal) final public let _handler: any CoreMetrics.CounterHandler
   @usableFromInline
-  final package let _factory: any CoreMetrics.MetricsFactory
+  @_documentation(visibility: internal) final package let _factory: any CoreMetrics.MetricsFactory
   final public let label: Swift.String
   final public let dimensions: [(Swift.String, Swift.String)]
   public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.CounterHandler, factory: any CoreMetrics.MetricsFactory)
@@ -39,9 +39,9 @@ extension CoreMetrics.Counter : Swift.CustomStringConvertible {
   }
 }
 final public class FloatingPointCounter {
-  final public let _handler: any CoreMetrics.FloatingPointCounterHandler
+  @_documentation(visibility: internal) final public let _handler: any CoreMetrics.FloatingPointCounterHandler
   @usableFromInline
-  final package let _factory: any CoreMetrics.MetricsFactory
+  @_documentation(visibility: internal) final package let _factory: any CoreMetrics.MetricsFactory
   final public let label: Swift.String
   final public let dimensions: [(Swift.String, Swift.String)]
   public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.FloatingPointCounterHandler, factory: any CoreMetrics.MetricsFactory)
@@ -76,9 +76,9 @@ extension CoreMetrics.FloatingPointCounter : Swift.CustomStringConvertible {
   @objc deinit
 }
 final public class Meter {
-  final public let _handler: any CoreMetrics.MeterHandler
+  @_documentation(visibility: internal) final public let _handler: any CoreMetrics.MeterHandler
   @usableFromInline
-  final package let _factory: any CoreMetrics.MetricsFactory
+  @_documentation(visibility: internal) final package let _factory: any CoreMetrics.MetricsFactory
   final public let label: Swift.String
   final public let dimensions: [(Swift.String, Swift.String)]
   public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.MeterHandler, factory: any CoreMetrics.MetricsFactory)
@@ -116,9 +116,9 @@ extension CoreMetrics.Meter : Swift.CustomStringConvertible {
   }
 }
 public class Recorder {
-  final public let _handler: any CoreMetrics.RecorderHandler
+  @_documentation(visibility: internal) final public let _handler: any CoreMetrics.RecorderHandler
   @usableFromInline
-  final package let _factory: any CoreMetrics.MetricsFactory
+  @_documentation(visibility: internal) final package let _factory: any CoreMetrics.MetricsFactory
   final public let label: Swift.String
   final public let dimensions: [(Swift.String, Swift.String)]
   final public let aggregate: Swift.Bool
@@ -156,9 +156,9 @@ public struct TimeUnit : Swift.Equatable, Swift.Sendable {
   public static func == (a: CoreMetrics.TimeUnit, b: CoreMetrics.TimeUnit) -> Swift.Bool
 }
 final public class Timer {
-  final public let _handler: any CoreMetrics.TimerHandler
+  @_documentation(visibility: internal) final public let _handler: any CoreMetrics.TimerHandler
   @usableFromInline
-  final package let _factory: any CoreMetrics.MetricsFactory
+  @_documentation(visibility: internal) final package let _factory: any CoreMetrics.MetricsFactory
   final public let label: Swift.String
   final public let dimensions: [(Swift.String, Swift.String)]
   public init(label: Swift.String, dimensions: [(Swift.String, Swift.String)], handler: any CoreMetrics.TimerHandler, factory: any CoreMetrics.MetricsFactory)
@@ -278,7 +278,7 @@ public protocol TimerHandler : AnyObject, CoreMetrics._SwiftMetricsSendableProto
   func preferDisplayUnit(_ unit: CoreMetrics.TimeUnit)
 }
 extension CoreMetrics.TimerHandler {
-  public func preferDisplayUnit(_: CoreMetrics.TimeUnit)
+  public func preferDisplayUnit(_ unit: CoreMetrics.TimeUnit)
 }
 final public class MultiplexMetricsHandler : CoreMetrics.MetricsFactory {
   public init(factories: [any CoreMetrics.MetricsFactory])

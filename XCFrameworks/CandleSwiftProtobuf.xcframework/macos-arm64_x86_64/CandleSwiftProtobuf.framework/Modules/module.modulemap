@@ -1,0 +1,4 @@
+framework module CandleSwiftProtobuf {
+    header "CandleSwiftProtobuf-Swift.h"
+    export *
+}
