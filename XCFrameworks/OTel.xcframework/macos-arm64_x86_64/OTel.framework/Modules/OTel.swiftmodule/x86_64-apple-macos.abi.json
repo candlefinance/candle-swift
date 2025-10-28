@@ -47598,7 +47598,382 @@
         "declKind": "Import",
         "moduleName": "OTel",
         "declAttributes": [
+          "AccessControl",
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OTelSpanContext",
+        "printedName": "OTelSpanContext",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "traceID",
+            "printedName": "traceID",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "TraceID",
+                "printedName": "W3CTraceContext.TraceID",
+                "usr": "s:15W3CTraceContext7TraceIDV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV7traceID08W3CTraceC005TraceE0Vvp",
+            "mangledName": "$s4OTel0A11SpanContextV7traceID08W3CTraceC005TraceE0Vvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TraceID",
+                    "printedName": "W3CTraceContext.TraceID",
+                    "usr": "s:15W3CTraceContext7TraceIDV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV7traceID08W3CTraceC005TraceE0Vvg",
+                "mangledName": "$s4OTel0A11SpanContextV7traceID08W3CTraceC005TraceE0Vvg",
+                "moduleName": "OTel",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "spanID",
+            "printedName": "spanID",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanID",
+                "printedName": "W3CTraceContext.SpanID",
+                "usr": "s:15W3CTraceContext6SpanIDV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV6spanID08W3CTraceC00bE0Vvp",
+            "mangledName": "$s4OTel0A11SpanContextV6spanID08W3CTraceC00bE0Vvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanID",
+                    "printedName": "W3CTraceContext.SpanID",
+                    "usr": "s:15W3CTraceContext6SpanIDV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV6spanID08W3CTraceC00bE0Vvg",
+                "mangledName": "$s4OTel0A11SpanContextV6spanID08W3CTraceC00bE0Vvg",
+                "moduleName": "OTel",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "traceFlags",
+            "printedName": "traceFlags",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "TraceFlags",
+                "printedName": "W3CTraceContext.TraceFlags",
+                "usr": "s:15W3CTraceContext10TraceFlagsV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV10traceFlags08W3CTraceC005TraceE0Vvp",
+            "mangledName": "$s4OTel0A11SpanContextV10traceFlags08W3CTraceC005TraceE0Vvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TraceFlags",
+                    "printedName": "W3CTraceContext.TraceFlags",
+                    "usr": "s:15W3CTraceContext10TraceFlagsV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV10traceFlags08W3CTraceC005TraceE0Vvg",
+                "mangledName": "$s4OTel0A11SpanContextV10traceFlags08W3CTraceC005TraceE0Vvg",
+                "moduleName": "OTel",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "traceParentHeaderValue",
+            "printedName": "traceParentHeaderValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV22traceParentHeaderValueSSvp",
+            "mangledName": "$s4OTel0A11SpanContextV22traceParentHeaderValueSSvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV22traceParentHeaderValueSSvg",
+                "mangledName": "$s4OTel0A11SpanContextV22traceParentHeaderValueSSvg",
+                "moduleName": "OTel",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "traceStateHeaderValue",
+            "printedName": "traceStateHeaderValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV21traceStateHeaderValueSSSgvp",
+            "mangledName": "$s4OTel0A11SpanContextV21traceStateHeaderValueSSSgvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV21traceStateHeaderValueSSSgvg",
+                "mangledName": "$s4OTel0A11SpanContextV21traceStateHeaderValueSSSgvg",
+                "moduleName": "OTel",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:4OTel0A11SpanContextV9hashValueSivp",
+            "mangledName": "$s4OTel0A11SpanContextV9hashValueSivp",
+            "moduleName": "OTel",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:4OTel0A11SpanContextV9hashValueSivg",
+                "mangledName": "$s4OTel0A11SpanContextV9hashValueSivg",
+                "moduleName": "OTel",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:4OTel0A11SpanContextV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s4OTel0A11SpanContextV4hash4intoys6HasherVz_tF",
+            "moduleName": "OTel",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OTelSpanContext",
+                "printedName": "OTel.OTelSpanContext",
+                "usr": "s:4OTel0A11SpanContextV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OTelSpanContext",
+                "printedName": "OTel.OTelSpanContext",
+                "usr": "s:4OTel0A11SpanContextV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:4OTel0A11SpanContextV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s4OTel0A11SpanContextV2eeoiySbAC_ACtFZ",
+            "moduleName": "OTel",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:4OTel0A11SpanContextV",
+        "mangledName": "$s4OTel0A11SpanContextV",
+        "moduleName": "OTel",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
         ]
       },
       {
@@ -47608,6 +47983,7 @@
         "declKind": "Import",
         "moduleName": "OTel",
         "declAttributes": [
+          "AccessControl",
           "RawDocComment"
         ]
       },
@@ -49170,6 +49546,115 @@
         "name": "ServiceContext",
         "printedName": "ServiceContext",
         "children": [
+          {
+            "kind": "Var",
+            "name": "spanContext",
+            "printedName": "spanContext",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "OTel.OTelSpanContext?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OTelSpanContext",
+                    "printedName": "OTel.OTelSpanContext",
+                    "usr": "s:4OTel0A11SpanContextV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvp",
+            "mangledName": "$s20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvp",
+            "moduleName": "OTel",
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "OTel.OTelSpanContext?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OTelSpanContext",
+                        "printedName": "OTel.OTelSpanContext",
+                        "usr": "s:4OTel0A11SpanContextV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvg",
+                "mangledName": "$s20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvg",
+                "moduleName": "OTel",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "OTel.OTelSpanContext?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OTelSpanContext",
+                        "printedName": "OTel.OTelSpanContext",
+                        "usr": "s:4OTel0A11SpanContextV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvs",
+                "mangledName": "$s20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvs",
+                "moduleName": "OTel",
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvM",
+                "mangledName": "$s20ServiceContextModule0aB0V4OTelE04spanB0AD0d4SpanB0VSgvM",
+                "moduleName": "OTel",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
           {
             "kind": "Var",
             "name": "otelTraceID",
@@ -55671,7 +56156,7 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swift-otel\/Sources\/OTel\/OTelCore\/Context\/ServiceContext+OTelSpanContext.swift",
       "kind": "StringLiteral",
-      "offset": 833,
+      "offset": 847,
       "length": 19,
       "value": "\"otel-span-context\""
     },

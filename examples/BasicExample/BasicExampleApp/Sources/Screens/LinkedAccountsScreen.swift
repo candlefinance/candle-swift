@@ -14,8 +14,8 @@ struct LinkedAccountsScreen: View {
         var showOnboarding = true
 
     @Binding var linkedAccounts: [Candle.Models.LinkedAccount]
-    @Binding var error: (title: String, message: String)?
 
+    @State private var error: (title: String, message: String)?
     @State private var state: _State = .initial
 
     @State private var showDeleteConfirmation = false
@@ -123,16 +123,7 @@ struct LinkedAccountsScreen: View {
             isPresented: $showDeleteConfirmation,
             titleVisibility: .visible
         ) {
-            Button(
-                "Delete User",
-                role: .destructive,
-                action: {
-                    Task {
-                        await deleteUser()
-                        showOnboarding = true
-                    }
-                }
-            )
+            Button("Delete User", role: .destructive, action: { Task { await deleteUser() } })
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("If you delete the user, you will have to re-link your accounts.")
@@ -146,7 +137,6 @@ struct LinkedAccountsScreen: View {
         }
         .fullScreenCover(isPresented: $showOnboarding) {
             OnboardingScreen(
-                error: $error,
                 photos: [
                     .init(resource: .link1), .init(resource: .link7), .init(resource: .link2),
                     .init(resource: .link6), .init(resource: .link3), .init(resource: .link4),
@@ -169,6 +159,13 @@ struct LinkedAccountsScreen: View {
             Task { await getLinkedAccounts() }
         }
         .sensoryFeedback(.selection, trigger: showOnboarding)
+        .alert(isPresented: .constant(error != nil)) {
+            Alert(
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
+        }
     }
 
     private func getLinkedAccounts(showLoading: Bool = true) async {
@@ -272,6 +269,11 @@ struct LinkedAccountsScreen: View {
                 )
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
+            case .gatewayTimeout(let payload):
+                switch payload.kind {
+                case .unavailable_proxy:
+                    self.error = (title: "Proxy Unavailable", message: payload.message)
+                }
             }
         }
     }
@@ -282,20 +284,17 @@ struct LinkedAccountsScreen: View {
         do {
             try await Candle.Client.shared.deleteUser()
             state = .initial
+            showOnboarding = true
         } catch {
             state = .initial
 
             switch error {
             case .noActiveUser:
                 self.error = (title: "No Active User", message: "Go through onboarding again.")
+                showOnboarding = true
+
             case .keychainError:
                 self.error = (title: "Keychain Error", message: "Double-check your access group.")
-            case .notFound(let payload):
-                switch payload.kind {
-                case .notFound_user:
-                    self.error = (title: "User Not Found", message: payload.message)
-                case .notFound_app: self.error = (title: "App Not Found", message: payload.message)
-                }
             case .unprocessableContent(let payload):
                 switch payload.kind {
                 case .schemaInvalid_request:
@@ -329,4 +328,4 @@ struct LinkedAccountsScreen: View {
     }
 }
 
-#Preview { LinkedAccountsScreen(linkedAccounts: .constant([]), error: .constant(nil)) }
+#Preview { LinkedAccountsScreen(linkedAccounts: .constant([])) }

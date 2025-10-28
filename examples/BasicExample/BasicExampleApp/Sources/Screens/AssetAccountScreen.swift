@@ -193,6 +193,11 @@ struct AssetAccountScreen: View {
                 )
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
+            case .gatewayTimeout(let payload):
+                switch payload.kind {
+                case .unavailable_proxy:
+                    self.error = (title: "Proxy Unavailable", message: payload.message)
+                }
             }
         }
     }

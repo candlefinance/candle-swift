@@ -26,31 +26,20 @@ struct ContentView: View {
     @State var selectedTab: AppTab = .services
     @State var linkedAccounts: [Candle.Models.LinkedAccount] = []
 
-    @State var error: (title: String, message: String)? = nil
-
     var body: some View {
         TabView(selection: $selectedTab) {
             ForEach(AppTab.allCases, id: \.self) { tab in
                 NavigationStack {
                     switch tab {
-                    case .services:
-                        LinkedAccountsScreen(linkedAccounts: $linkedAccounts, error: $error)
-                    case .accounts:
-                        AssetAccountsScreen(error: $error, linkedAccounts: linkedAccounts)
-                    case .trades: TradesScreen(error: $error, linkedAccounts: linkedAccounts, )
+                    case .services: LinkedAccountsScreen(linkedAccounts: $linkedAccounts)
+                    case .accounts: AssetAccountsScreen(linkedAccounts: linkedAccounts)
+                    case .trades: TradesScreen(linkedAccounts: linkedAccounts)
                     }
                 }
                 .tabItem { Label(tab.title, systemImage: tab.systemImage) }.tag(tab)
             }
         }
         .toolbarBackground(.ultraThinMaterial, for: .tabBar)
-        .alert(isPresented: .constant(error != nil)) {
-            Alert(
-                title: Text(error!.title),
-                message: Text(error!.message),
-                dismissButton: .cancel(Text("OK"), action: { error = nil })
-            )
-        }
     }
 }
 

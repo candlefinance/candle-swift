@@ -36,8 +36,7 @@ struct TradesScreen: View {
         }
     }
 
-    @Binding var error: (title: String, message: String)?
-
+    @State private var error: (title: String, message: String)?
     @State private var state: _State = .initial
     @State private var dateTimeSpan: SupportedSpan? = nil
     @State private var lostAssetKind: Candle.Models.GetTrades.Input.Query.LostAssetKindPayload? =
@@ -176,7 +175,6 @@ struct TradesScreen: View {
         .sheet(isPresented: $showTradeQuotes) {
             NavigationStack {
                 TradeQuotesRequestScreen(
-                    error: $error,
                     tradeQuoteToExecute: $tradeQuoteToExecute,
                     linkedAccounts: linkedAccounts
                 )
@@ -191,6 +189,13 @@ struct TradesScreen: View {
                 // FIXME: Show error in snackbar?
                 }
             }
+        }
+        .alert(isPresented: .constant(error != nil)) {
+            Alert(
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
         }
     }
 
@@ -241,4 +246,4 @@ struct TradesScreen: View {
     }
 }
 
-#Preview { TradesScreen(error: .constant(nil), linkedAccounts: []) }
+#Preview { TradesScreen(linkedAccounts: []) }

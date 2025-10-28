@@ -8,15 +8,14 @@ struct AssetAccountsScreen: View {
         case normal(Candle.Models.AssetAccountsResponse)
     }
 
-    @Binding var error: (title: String, message: String)?
-
+    @State private var error: (title: String, message: String)?
     @State private var state: _State = .initial
     @State private var assetKind: Candle.Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
     @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
     let linkedAccounts: [Candle.Models.LinkedAccount]
 
-    var assetAccountsQuery: Candle.Models.GetAssetAccounts.Input.Query {
+    private var assetAccountsQuery: Candle.Models.GetAssetAccounts.Input.Query {
         .init(
             linkedAccountIDs: selectedLinkedAccountIDs.isEmpty
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
@@ -135,6 +134,13 @@ struct AssetAccountsScreen: View {
             Task { await getAssetAccounts() }
         }
         .refreshable { await getAssetAccounts(showLoading: false) }
+        .alert(isPresented: .constant(error != nil)) {
+            Alert(
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
+        }
     }
 
     private func getAssetAccounts(showLoading: Bool = true) async {
@@ -186,4 +192,4 @@ struct AssetAccountsScreen: View {
     }
 }
 
-#Preview { AssetAccountsScreen(error: .constant(nil), linkedAccounts: [], ) }
+#Preview { AssetAccountsScreen(linkedAccounts: [], ) }

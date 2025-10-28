@@ -8,7 +8,6 @@ struct TradeQuotesRequestScreen: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @Binding var error: (title: String, message: String)?
     @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
     @State private var gainedAssetKind: TradeQuoteAssetKind? = .transport
@@ -135,7 +134,6 @@ struct TradeQuotesRequestScreen: View {
             }
             .navigationDestination(isPresented: $areRequested) {
                 TradeQuotesScreen(
-                    error: $error,
                     tradeQuoteToExecute: $tradeQuoteToExecute,
                     tradeQuotesRequest: tradeQuotesRequest
                 )
@@ -144,10 +142,4 @@ struct TradeQuotesRequestScreen: View {
     }
 }
 
-#Preview {
-    TradeQuotesRequestScreen(
-        error: .constant(nil),
-        tradeQuoteToExecute: .constant(nil),
-        linkedAccounts: []
-    )
-}
+#Preview { TradeQuotesRequestScreen(tradeQuoteToExecute: .constant(nil), linkedAccounts: []) }

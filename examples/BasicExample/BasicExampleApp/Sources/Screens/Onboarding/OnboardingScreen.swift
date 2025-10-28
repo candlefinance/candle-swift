@@ -5,10 +5,10 @@ struct OnboardingScreen: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @Binding var error: (title: String, message: String)?
-
     // FIXME: Collect this value from the user
     @State private var username: String = ""
+    @State private var error: (title: String, message: String)?
+
     @State private var prVisible: Bool = false
     @State private var ctaVisible: Bool = false
     @State private var scrollOffset: CGFloat = 0
@@ -42,6 +42,13 @@ struct OnboardingScreen: View {
             }
             .background(.black.opacity(0.65)).background(.ultraThinMaterial)
             .sensoryFeedback(.selection, trigger: isDragging ? currentIndex : nil)
+            .alert(isPresented: .constant(error != nil)) {
+                Alert(
+                    title: Text(error!.title),
+                    message: Text(error!.message),
+                    dismissButton: .cancel(Text("OK"), action: { error = nil })
+                )
+            }
         }
     }
 
@@ -151,8 +158,7 @@ struct OnboardingScreen: View {
                 Spacer(minLength: .extraLarge)
                 Button(action: {
                     Task {
-                        await createUser()
-                        dismiss()
+                        if await createUser() { dismiss() }
                     }
                 }) {
                     Text(ctaText).font(.system(size: 15, weight: .semibold, design: .default))
@@ -170,11 +176,15 @@ struct OnboardingScreen: View {
             }
         }
     }
-    private func createUser() async {
-        do { try await Candle.Client.shared.createUser(appUserID: username) } catch {
+    private func createUser() async -> Bool {
+        do {
+            try await Candle.Client.shared.createUser(appUserID: username)
+            return true
+        } catch {
             switch error {
             case .existingActiveUser:
                 self.error = (title: "Existing Active User", message: "Delete user first.")
+                return true
             case .createSessionError:
                 self.error = (title: "Create Session Error", message: "Contact Candle support.")
             case .keychainError:
@@ -215,13 +225,13 @@ struct OnboardingScreen: View {
             case .networkError(let errorDescription):
                 self.error = (title: "Network Error", message: errorDescription)
             }
+            return false
         }
     }
 }
 
 #Preview {
     OnboardingScreen(
-        error: .constant(nil),
         photos: [
             .init(resource: .link1), .init(resource: .link2), .init(resource: .link3),
             .init(resource: .link4), .init(resource: .link5),

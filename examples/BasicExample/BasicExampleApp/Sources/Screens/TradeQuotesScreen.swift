@@ -14,9 +14,9 @@ struct TradeQuotesScreen: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @Binding var error: (title: String, message: String)?
     @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
+    @State private var error: (title: String, message: String)?
     @State private var state: _State = .initial
     @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
@@ -101,13 +101,13 @@ struct TradeQuotesScreen: View {
         }
         .navigationTitle("Trade Quotes").refreshable { await getTradeQuotes(showLoading: false) }
         .task { if case .initial = state { await getTradeQuotes() } }
-        //        .onAppear { locationViewModel.requestLocation() }
-        //        //        .onChange(of: locationViewModel.coordinate) { _, coordinate in
-        //        //            if let coordinate {
-        //        //                gainedTextInput1 = "\(coordinate.latitude)"
-        //        //                gainedTextInput2 = "\(coordinate.longitude)"
-        //        //            }
-        //        //        }
+        .alert(isPresented: .constant(error != nil)) {
+            Alert(
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
+        }
     }
 
     private func getTradeQuotes(showLoading: Bool = true) async {
@@ -161,7 +161,6 @@ struct TradeQuotesScreen: View {
 
 #Preview {
     TradeQuotesScreen(
-        error: .constant(nil),
         tradeQuoteToExecute: .constant(nil),
         tradeQuotesRequest: .init(
             gained: .FiatAssetQuoteRequest(.init(assetKind: .fiat)),

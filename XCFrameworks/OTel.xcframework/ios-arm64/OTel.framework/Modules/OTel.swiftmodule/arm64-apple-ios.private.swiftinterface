@@ -8,6 +8,7 @@ public import ServiceContextModule
 public import ServiceLifecycle
 public import Swift
 public import Tracing
+public import W3CTraceContext
 public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
@@ -210,6 +211,38 @@ extension OTel.OTel {
   public static func makeLoggingMetadataProvider(configuration: OTel.OTel.Configuration.LoggingMetadataProviderConfiguration = .default) -> Logging.Logger.MetadataProvider
 }
 public enum OTel {
+}
+public struct OTelSpanContext : Swift.Hashable, Swift.Sendable {
+  public var traceID: W3CTraceContext.TraceID {
+    get
+  }
+  public var spanID: W3CTraceContext.SpanID {
+    get
+  }
+  public var traceFlags: W3CTraceContext.TraceFlags {
+    get
+  }
+  public var traceParentHeaderValue: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var traceStateHeaderValue: Swift.String? {
+    get
+  }
+  #endif
+  public static func == (a: OTel.OTelSpanContext, b: OTel.OTelSpanContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var spanContext: OTel.OTelSpanContext? {
+    get
+    set
+  }
+  #endif
 }
 extension ServiceContextModule.ServiceContext {
   #if compiler(>=5.3) && $NonescapableTypes
