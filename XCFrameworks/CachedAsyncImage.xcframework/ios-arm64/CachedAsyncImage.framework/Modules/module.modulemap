@@ -1,0 +1,4 @@
+framework module CachedAsyncImage {
+    header "CachedAsyncImage-Swift.h"
+    export *
+}

@@ -1,0 +1,37 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-macos10.15 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CachedAsyncImage
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@_Concurrency.MainActor @preconcurrency public struct CachedAsyncImage<Content> : SwiftUICore.View where Content : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(url: Foundation.URL?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1) where Content == SwiftUICore.Image
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(urlRequest: Foundation.URLRequest?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1) where Content == SwiftUICore.Image
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init<I, P>(url: Foundation.URL?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1, @SwiftUICore.ViewBuilder content: @escaping (SwiftUICore.Image) -> I, @SwiftUICore.ViewBuilder placeholder: @escaping () -> P) where Content == SwiftUICore._ConditionalContent<I, P>, I : SwiftUICore.View, P : SwiftUICore.View
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init<I, P>(urlRequest: Foundation.URLRequest?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1, @SwiftUICore.ViewBuilder content: @escaping (SwiftUICore.Image) -> I, @SwiftUICore.ViewBuilder placeholder: @escaping () -> P) where Content == SwiftUICore._ConditionalContent<I, P>, I : SwiftUICore.View, P : SwiftUICore.View
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(url: Foundation.URL?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1, transaction: SwiftUICore.Transaction = Transaction(), @SwiftUICore.ViewBuilder content: @escaping (SwiftUI.AsyncImagePhase) -> Content)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(urlRequest: Foundation.URLRequest?, urlCache: Foundation.URLCache = .shared, scale: CoreFoundation.CGFloat = 1, transaction: SwiftUICore.Transaction = Transaction(), @SwiftUICore.ViewBuilder content: @escaping (SwiftUI.AsyncImagePhase) -> Content)
+  #endif
+  @available(iOS 15.0, tvOS 15.0, watchOS 8.0, macOS 12.0, *)
+  public typealias Body = @_opaqueReturnTypeOf("$s16CachedAsyncImageAAV4bodyQrvp", 0) __<Content>
+}
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension CachedAsyncImage.CachedAsyncImage : Swift.Sendable {}

@@ -1,0 +1,687 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CachedAsyncImage",
+    "printedName": "CachedAsyncImage",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "CachedAsyncImage",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CachedAsyncImage",
+        "printedName": "CachedAsyncImage",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "body",
+            "printedName": "body",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16CachedAsyncImageAAV4bodyQrvp",
+            "mangledName": "$s16CachedAsyncImageAAV4bodyQrvp",
+            "moduleName": "CachedAsyncImage",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16CachedAsyncImageAAV4bodyQrvg",
+                "mangledName": "$s16CachedAsyncImageAAV4bodyQrvg",
+                "moduleName": "CachedAsyncImage",
+                "genericSig": "<τ_0_0 where τ_0_0 : SwiftUI.View>",
+                "sugared_genericSig": "<Content where Content : SwiftUI.View>",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(url:urlCache:scale:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV3url0D5Cache5scaleABy7SwiftUI0C0VG10Foundation3URLVSg_So10NSURLCacheC04CoreI07CGFloatVtcAHRszrlufc",
+            "mangledName": "$s16CachedAsyncImageAAV3url0D5Cache5scaleABy7SwiftUI0C0VG10Foundation3URLVSg_So10NSURLCacheC12CoreGraphics7CGFloatVtcAHRszrlufc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0 where τ_0_0 == SwiftUI.Image>",
+            "sugared_genericSig": "<Content where Content == SwiftUI.Image>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(urlRequest:urlCache:scale:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV10urlRequest0D5Cache5scaleABy7SwiftUI0C0VG10Foundation10URLRequestVSg_So10NSURLCacheC04CoreJ07CGFloatVtcAHRszrlufc",
+            "mangledName": "$s16CachedAsyncImageAAV10urlRequest0D5Cache5scaleABy7SwiftUI0C0VG10Foundation10URLRequestVSg_So10NSURLCacheC12CoreGraphics7CGFloatVtcAHRszrlufc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0 where τ_0_0 == SwiftUI.Image>",
+            "sugared_genericSig": "<Content where Content == SwiftUI.Image>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(url:urlCache:scale:content:placeholder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SwiftUI.Image) -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Image",
+                    "printedName": "SwiftUI.Image",
+                    "usr": "s:7SwiftUI5ImageV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> τ_1_1",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_1"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV3url0D5Cache5scale7content11placeholderABy7SwiftUI19_ConditionalContentVyqd__qd_0_GG10Foundation3URLVSg_So10NSURLCacheC04CoreM07CGFloatVqd__AH0C0Vcqd_0_yctcAKRszAH4ViewRd__AhXRd_0_r0_lufc",
+            "mangledName": "$s16CachedAsyncImageAAV3url0D5Cache5scale7content11placeholderABy7SwiftUI19_ConditionalContentVyqd__qd_0_GG10Foundation3URLVSg_So10NSURLCacheC12CoreGraphics7CGFloatVqd__AH0C0Vcqd_0_yctcAKRszAH4ViewRd__AhXRd_0_r0_lufc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0, τ_1_0, τ_1_1 where τ_0_0 == SwiftUI._ConditionalContent<τ_1_0, τ_1_1>, τ_1_0 : SwiftUI.View, τ_1_1 : SwiftUI.View>",
+            "sugared_genericSig": "<Content, I, P where Content == SwiftUI._ConditionalContent<I, P>, I : SwiftUI.View, P : SwiftUI.View>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(urlRequest:urlCache:scale:content:placeholder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SwiftUI.Image) -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Image",
+                    "printedName": "SwiftUI.Image",
+                    "usr": "s:7SwiftUI5ImageV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> τ_1_1",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_1"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV10urlRequest0D5Cache5scale7content11placeholderABy7SwiftUI19_ConditionalContentVyqd__qd_0_GG10Foundation10URLRequestVSg_So10NSURLCacheC04CoreN07CGFloatVqd__AH0C0Vcqd_0_yctcAKRszAH4ViewRd__AhXRd_0_r0_lufc",
+            "mangledName": "$s16CachedAsyncImageAAV10urlRequest0D5Cache5scale7content11placeholderABy7SwiftUI19_ConditionalContentVyqd__qd_0_GG10Foundation10URLRequestVSg_So10NSURLCacheC12CoreGraphics7CGFloatVqd__AH0C0Vcqd_0_yctcAKRszAH4ViewRd__AhXRd_0_r0_lufc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0, τ_1_0, τ_1_1 where τ_0_0 == SwiftUI._ConditionalContent<τ_1_0, τ_1_1>, τ_1_0 : SwiftUI.View, τ_1_1 : SwiftUI.View>",
+            "sugared_genericSig": "<Content, I, P where Content == SwiftUI._ConditionalContent<I, P>, I : SwiftUI.View, P : SwiftUI.View>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(url:urlCache:scale:transaction:content:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Transaction",
+                "printedName": "SwiftUI.Transaction",
+                "hasDefaultArg": true,
+                "usr": "s:7SwiftUI11TransactionV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SwiftUI.AsyncImagePhase) -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AsyncImagePhase",
+                    "printedName": "SwiftUI.AsyncImagePhase",
+                    "usr": "s:7SwiftUI15AsyncImagePhaseO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV3url0D5Cache5scale11transaction7contentAByxG10Foundation3URLVSg_So10NSURLCacheC04CoreI07CGFloatV7SwiftUI11TransactionVxAR0bC5PhaseOctcfc",
+            "mangledName": "$s16CachedAsyncImageAAV3url0D5Cache5scale11transaction7contentAByxG10Foundation3URLVSg_So10NSURLCacheC12CoreGraphics7CGFloatV7SwiftUI11TransactionVxAR0bC5PhaseOctcfc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0 where τ_0_0 : SwiftUI.View>",
+            "sugared_genericSig": "<Content where Content : SwiftUI.View>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(urlRequest:urlCache:scale:transaction:content:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CachedAsyncImage",
+                "printedName": "CachedAsyncImage.CachedAsyncImage<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:16CachedAsyncImageAAV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLCache",
+                "printedName": "Foundation.URLCache",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSURLCache"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGFloat",
+                "printedName": "CoreGraphics.CGFloat",
+                "hasDefaultArg": true,
+                "usr": "s:14CoreFoundation7CGFloatV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Transaction",
+                "printedName": "SwiftUI.Transaction",
+                "hasDefaultArg": true,
+                "usr": "s:7SwiftUI11TransactionV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SwiftUI.AsyncImagePhase) -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AsyncImagePhase",
+                    "printedName": "SwiftUI.AsyncImagePhase",
+                    "usr": "s:7SwiftUI15AsyncImagePhaseO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:16CachedAsyncImageAAV10urlRequest0D5Cache5scale11transaction7contentAByxG10Foundation10URLRequestVSg_So10NSURLCacheC04CoreJ07CGFloatV7SwiftUI11TransactionVxAR0bC5PhaseOctcfc",
+            "mangledName": "$s16CachedAsyncImageAAV10urlRequest0D5Cache5scale11transaction7contentAByxG10Foundation10URLRequestVSg_So10NSURLCacheC12CoreGraphics7CGFloatV7SwiftUI11TransactionVxAR0bC5PhaseOctcfc",
+            "moduleName": "CachedAsyncImage",
+            "genericSig": "<τ_0_0 where τ_0_0 : SwiftUI.View>",
+            "sugared_genericSig": "<Content where Content : SwiftUI.View>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:16CachedAsyncImageAAV",
+        "mangledName": "$s16CachedAsyncImageAAV",
+        "moduleName": "CachedAsyncImage",
+        "genericSig": "<τ_0_0 where τ_0_0 : SwiftUI.View>",
+        "sugared_genericSig": "<Content where Content : SwiftUI.View>",
+        "intro_Macosx": "12.0",
+        "intro_iOS": "15.0",
+        "intro_tvOS": "15.0",
+        "intro_watchOS": "8.0",
+        "declAttributes": [
+          "Preconcurrency",
+          "Custom",
+          "AccessControl",
+          "Available",
+          "Available",
+          "Available",
+          "Available",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Body",
+                "printedName": "Body",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI4ViewP",
+            "mangledName": "$s7SwiftUI4ViewP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4624,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6158,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 8273,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 10508,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 12951,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "kind": "IntegerLiteral",
+      "offset": 15325,
+      "length": 1,
+      "value": "1"
+    }
+  ]
+}

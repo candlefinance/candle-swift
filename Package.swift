@@ -2,19 +2,27 @@
 import Foundation
 import PackageDescription
 
-let xcFrameworkNames: [String] = [
-    "_AtomicsShims", "_CWASI", "_NIOBase64", "_NIODataStructures", "_NumericsShims", "Algorithms",
-    "AsyncAlgorithms", "AsyncHTTPClient", "Atomics", "Candle", "CandleSwiftProtobuf",
-    "CAsyncHTTPClient", "CCryptoBoringSSL", "CCryptoBoringSSLShims", "CNIOAtomics", "CNIOBoringSSL",
-    "CNIOBoringSSLShims", "CNIODarwin", "CNIOExtrasZlib", "CNIOLinux", "CNIOLLHTTP", "CNIOSHA1",
-    "CNIOWASI", "CNIOWindows", "ConcurrencyHelpers", "CoreMetrics", "Crypto", "CryptoBoringWrapper",
-    "DequeModule", "HTTPTypes", "Instrumentation", "InternalCollectionsUtilities", "Logging",
-    "Metrics", "NIO", "NIOConcurrencyHelpers", "NIOCore", "NIOEmbedded", "NIOFoundationCompat",
-    "NIOHPACK", "NIOHTTP1", "NIOHTTP2", "NIOHTTPCompression", "NIOPosix", "NIOSOCKS", "NIOSSL",
-    "NIOTLS", "NIOTransportServices", "NIOWebSocket", "OpenAPIRuntime", "OpenAPIURLSession",
-    "OrderedCollections", "OTel", "RealModule", "ServiceContextModule", "ServiceLifecycle",
-    "Tracing", "UnixSignals", "W3CTraceContext",
-]
+let packageDirectory = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+let xcFrameworksDirectory = packageDirectory.appendingPathComponent(
+    "XCFrameworks",
+    isDirectory: true
+)
+
+let xcFrameworkPaths: [URL]
+do {
+    xcFrameworkPaths = try FileManager.default.contentsOfDirectory(
+        at: xcFrameworksDirectory,
+        includingPropertiesForKeys: nil,
+        options: [.skipsHiddenFiles]
+    )
+} catch {
+    fatalError(
+        "Failed to read contents of XCFrameworks directory at path: \(xcFrameworksDirectory.path)"
+    )
+}
+
+let xcFrameworkNames = xcFrameworkPaths.map { $0.deletingPathExtension().lastPathComponent }
+    .sorted()
 
 let package = Package(
     name: "Candle",

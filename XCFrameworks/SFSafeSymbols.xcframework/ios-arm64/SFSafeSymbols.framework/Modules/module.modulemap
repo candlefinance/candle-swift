@@ -1,0 +1,4 @@
+framework module SFSafeSymbols {
+    header "SFSafeSymbols-Swift.h"
+    export *
+}

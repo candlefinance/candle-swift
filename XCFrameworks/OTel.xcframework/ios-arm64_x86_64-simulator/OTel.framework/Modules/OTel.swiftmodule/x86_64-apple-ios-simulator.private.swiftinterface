@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-compiler-version: Apple Swift version 6.2.1 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
 // swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature "AvailabilityMacro=ClockAPI : macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1" -enable-experimental-feature "AvailabilityMacro=gRPCSwift : macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2" -enable-experimental-feature DebugDescriptionMacro -module-name OTel -package-name swift_otel
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 public import CoreMetrics
 public import Logging
 public import ServiceContextModule
