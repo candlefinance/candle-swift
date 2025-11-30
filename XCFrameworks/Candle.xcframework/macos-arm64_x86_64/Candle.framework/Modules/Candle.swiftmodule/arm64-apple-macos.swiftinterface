@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.1 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-macos13.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -module-name Candle -package-name sdk_swift
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import Darwin
 import Foundation
 import Foundation/*.Data*/
@@ -483,6 +483,8 @@ extension Candle.Components.Schemas.ChallengeCodeType {
   public init(challengeType: Candle.Models.ChallengeCodeAppRequest.ChallengeTypePayload)
   public init(challengeType: Candle.Models.ChallengeCodeEmailRequest.ChallengeTypePayload)
   public init(challengeType: Candle.Models.ChallengeCodePhoneRequest.ChallengeTypePayload)
+}
+public enum Constants {
 }
 extension Swift.ObjectIdentifier {
   public var hexString: Swift.String {
@@ -12617,6 +12619,9 @@ extension SwiftUICore.View {
             }) -> some SwiftUICore.View
   
   #endif
+}
+extension Candle.Constants {
+  public static let version: Swift.String
 }
 @available(macOS 14, iOS 17.0, *)
 extension Candle.Client.InitializationError : Swift.Equatable {}

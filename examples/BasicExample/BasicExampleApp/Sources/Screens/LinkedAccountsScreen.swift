@@ -25,14 +25,6 @@ struct LinkedAccountsScreen: View {
     @State private var accountToUnlink: Candle.Models.LinkedAccount? = nil
     @State private var newLinkedAccount: Candle.Models.LinkedAccount? = nil
 
-    var sdkVersion: String {
-        // FIXME: Get the version of the SDK dependency itself
-        guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        else { return "Unknown" }
-
-        return appVersion
-    }
-
     var body: some View {
         List {
             Section(header: Text("Linked Accounts")) {
@@ -131,7 +123,7 @@ struct LinkedAccountsScreen: View {
         .alert(isPresented: $showSDKVersion) {
             Alert(
                 title: Text("Candle SDK Version"),
-                message: Text(sdkVersion),
+                message: Text(Candle.Constants.version),
                 dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
             )
         }
