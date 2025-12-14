@@ -1,5 +1,6 @@
 import Candle
 import Foundation
+import SwiftUI
 
 extension Candle.Models.Trade {
     var searchTokens: [String] {
@@ -29,40 +30,64 @@ extension Candle.Models.Trade {
         return counterpartyNames + lostAssetNames + gainedAssetNames
     }
 
-    var formattedTitle: String {
-        switch counterparty {
-        case .MerchantCounterparty(let merchantCounterparty): return merchantCounterparty.name
-        case .UserCounterparty(let userCounterparty): return userCounterparty.legalName
-        case .ServiceCounterparty(let serviceCounterparty):
-            return serviceCounterparty.service.description
+    // FIXME: Support market -> market trades, etc
+    var title: String {
+        switch gained {
+        case .MarketTradeAsset(let marketAsset): return marketAsset.name
+        case .TransportAsset(let transportAsset): return transportAsset.name
+        default:
+            switch lost {
+            case .MarketTradeAsset(let marketAsset): return marketAsset.name
+            case .TransportAsset(let transportAsset): return transportAsset.name
+            default:
+                switch counterparty {
+                case .UserCounterparty(let userCounterparty): return userCounterparty.legalName
+                case .MerchantCounterparty(let merchantCounterparty):
+                    return merchantCounterparty.name
+                case .ServiceCounterparty(let serviceCounterparty):
+                    return serviceCounterparty.service.description
+                }
+            }
         }
     }
 
-    var formattedSubtitle: String {
-        let tradeDate = ISO8601DateFormatter.candle.date(from: dateTime)
-
-        return tradeDate?.formatted(date: .complete, time: .complete) ?? dateTime
-    }
-
-    var formattedValue: String {
+    // FIXME: Support market -> market trades, etc
+    var value: String? {
         if case .FiatAsset(let fiatAsset) = gained {
             return fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode))
         } else if case .FiatAsset(let fiatAsset) = lost {
             return (-fiatAsset.amount).formatted(.currency(code: fiatAsset.currencyCode))
         } else {
-            return "—"
+            return nil
         }
     }
 
-    var logoURL: URL {
-        switch counterparty {
-        // FIXME: Log if URLs don't decode (or decode them earlier)
-        case .MerchantCounterparty(let merchantCounterparty):
-            return URL(string: merchantCounterparty.logoURL)!
-        case .UserCounterparty(let userCounterparty):
-            return URL(string: userCounterparty.avatarURL)!
-        case .ServiceCounterparty(let serviceCounterparty):
-            return serviceCounterparty.service.logoURL
+    // FIXME: Support market -> market trades, etc
+    var logoURL: URL? {
+        switch gained {
+        case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
+        case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
+        case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+        default:
+            switch lost {
+            case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
+            case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
+            case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+            default:
+                switch counterparty {
+                case .ServiceCounterparty(let serviceCounterparty):
+                    return serviceCounterparty.service.logoURL
+                // FIXME: Always expose a service in Trade model
+                default: return nil
+                }
+            }
         }
+    }
+
+    var badges: [Badge] {
+        [
+            .init(id: "lostAssetKind", text: lost.badge.text, color: lost.badge.color),
+            .init(id: "gainedAssetKind", text: gained.badge.text, color: gained.badge.color),
+        ]
     }
 }

@@ -2,69 +2,20 @@ import Candle
 import SwiftUI
 
 struct TradeQuotesRequestScreen: View {
-    private enum TradeQuoteAssetKind: String, Codable, Hashable, Sendable, CaseIterable {
-        case fiat, stock, crypto, transport
-    }
 
     @Environment(\.dismiss) private var dismiss
 
     @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
 
-    @State private var gainedAssetKind: TradeQuoteAssetKind? = .transport
-    @State private var gainedFiatAsset: FiatAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .fiat)
-    )
-    @State private var gainedStockAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .stock)
-    )
-    @State private var gainedCryptoAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .crypto)
-    )
-    @State private var gainedTransportAsset: TransportAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .transport)
-    )
-
-    @State private var lostAssetKind: TradeQuoteAssetKind? = .fiat
-    @State private var lostFiatAsset: FiatAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .fiat)
-    )
-    @State private var lostStockAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .stock)
-    )
-    @State private var lostCryptoAsset: MarketAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .crypto)
-    )
-    @State private var lostTransportAsset: TransportAssetFormViewModel = .init(
-        quoteRequest: .init(assetKind: .transport)
-    )
+    @State var gainedAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest
+    @State var lostAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest
+    @State var counterpartyQuoteRequest: Candle.Models.CounterpartyQuoteRequest?
 
     @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
-    @State private var locationViewModel = LocationViewModel()
     @State private var areRequested: Bool = false
-    // FIXME: Add this back
-    //    @State private var counterpartyKind: Candle.Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
 
     let linkedAccounts: [Candle.Models.LinkedAccount]
-
-    var gainedAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
-        switch gainedAssetKind {
-        case .transport: return .TransportAssetQuoteRequest(gainedTransportAsset.quoteRequest)
-        case .fiat: return .FiatAssetQuoteRequest(gainedFiatAsset.quoteRequest)
-        case .stock: return .MarketAssetQuoteRequest(gainedStockAsset.quoteRequest)
-        case .crypto: return .MarketAssetQuoteRequest(gainedCryptoAsset.quoteRequest)
-        case .none: return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
-        }
-    }
-
-    var lostAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
-        switch lostAssetKind {
-        case .transport: return .TransportAssetQuoteRequest(lostTransportAsset.quoteRequest)
-        case .fiat: return .FiatAssetQuoteRequest(lostFiatAsset.quoteRequest)
-        case .stock: return .MarketAssetQuoteRequest(lostStockAsset.quoteRequest)
-        case .crypto: return .MarketAssetQuoteRequest(lostCryptoAsset.quoteRequest)
-        case .none: return .NothingAssetQuoteRequest(.init(assetKind: .nothing))
-        }
-    }
+    let assetAccounts: [Candle.Models.AssetAccount]
 
     var tradeQuotesRequest: Candle.Models.TradeQuotesRequest {
         .init(
@@ -72,44 +23,49 @@ struct TradeQuotesRequestScreen: View {
                 ? nil : selectedLinkedAccountIDs.joined(separator: ","),
             gained: gainedAssetQuoteRequest,
             lost: lostAssetQuoteRequest,
+            counterparty: counterpartyQuoteRequest
         )
     }
 
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("Lost Asset")) {
-                    Picker("Lost", selection: $lostAssetKind) {
-                        Text("Fiat").tag(TradeQuoteAssetKind.fiat)
-                        Text("Stock").tag(TradeQuoteAssetKind.stock)
-                        Text("Crypto").tag(TradeQuoteAssetKind.crypto)
-                        Text("Transport").tag(TradeQuoteAssetKind.transport)
-                        Text("Nothing").tag(Optional<TradeQuoteAssetKind>.none)
-                    }
-                    .pickerStyle(.segmented)
-                    switch lostAssetKind {
-                    case .fiat: FiatAssetForm(viewModel: $lostFiatAsset)
-                    case .crypto: MarketAssetForm(viewModel: $lostCryptoAsset)
-                    case .stock: MarketAssetForm(viewModel: $lostStockAsset)
-                    case .transport: TransportAssetForm(viewModel: $lostTransportAsset)
-                    case nil: NothingAssetForm()
-                    }
+                Section(
+                    header: QuoteRequestGroupHeader(
+                        title: "Lost Asset",
+                        badge: lostAssetQuoteRequest.badge
+                    )
+                ) {
+                    TradeAssetQuoteRequestGroup(
+                        tradeAssetQuoteRequest: $lostAssetQuoteRequest,
+                        assetAccounts: assetAccounts
+                    )
                 }
-                Section(header: Text("Gained Asset")) {
-                    Picker("Gained", selection: $gainedAssetKind) {
-                        Text("Fiat").tag(TradeQuoteAssetKind.fiat)
-                        Text("Stock").tag(TradeQuoteAssetKind.stock)
-                        Text("Crypto").tag(TradeQuoteAssetKind.crypto)
-                        Text("Transport").tag(TradeQuoteAssetKind.transport)
-                        Text("Nothing").tag(Optional<TradeQuoteAssetKind>.none)
-                    }
-                    .pickerStyle(.segmented)
-                    switch gainedAssetKind {
-                    case .fiat: FiatAssetForm(viewModel: $gainedFiatAsset)
-                    case .crypto: MarketAssetForm(viewModel: $gainedCryptoAsset)
-                    case .stock: MarketAssetForm(viewModel: $gainedStockAsset)
-                    case .transport: TransportAssetForm(viewModel: $gainedTransportAsset)
-                    case nil: NothingAssetForm()
+                Section(
+                    header: QuoteRequestGroupHeader(
+                        title: "Gained Asset",
+                        badge: gainedAssetQuoteRequest.badge
+                    )
+                ) {
+                    TradeAssetQuoteRequestGroup(
+                        tradeAssetQuoteRequest: $gainedAssetQuoteRequest,
+                        assetAccounts: assetAccounts
+                    )
+                }
+
+                if let counterpartyQuoteRequest {
+                    Section(
+                        header: QuoteRequestGroupHeader(
+                            title: "Counterparty",
+                            badge: counterpartyQuoteRequest.badge
+                        )
+                    ) {
+                        CounterpartyQuoteRequestGroup(
+                            counterpartyQuoteRequest: Binding(
+                                get: { counterpartyQuoteRequest },
+                                set: { self.counterpartyQuoteRequest = $0 }
+                            )
+                        )
                     }
                 }
             }
@@ -118,14 +74,12 @@ struct TradeQuotesRequestScreen: View {
                 ToolbarItem(placement: .navigationBarLeading) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        // FIXME: Add this back
-                        // EnumMenu(name: "Counterparty Kind", selectedCase: $counterpartyKind)
                         LinkedAccountsMenu(
                             linkedAccounts: linkedAccounts,
                             selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                         )
                     } label: {
-                        Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
+                        Label("Filters", systemSymbol: .line3HorizontalDecreaseCircle)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -138,8 +92,20 @@ struct TradeQuotesRequestScreen: View {
                     tradeQuotesRequest: tradeQuotesRequest
                 )
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        UIApplication.shared.sendAction(
+                            #selector(UIResponder.resignFirstResponder),
+                            to: nil,
+                            from: nil,
+                            for: nil
+                        )
+                    }
+                    .fontWeight(.semibold)
+                }
+            }
         }
     }
 }
-
-#Preview { TradeQuotesRequestScreen(tradeQuoteToExecute: .constant(nil), linkedAccounts: []) }

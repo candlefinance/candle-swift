@@ -25,14 +25,25 @@ struct LinkedAccountsScreen: View {
     @State private var accountToUnlink: Candle.Models.LinkedAccount? = nil
     @State private var newLinkedAccount: Candle.Models.LinkedAccount? = nil
 
+    private var isShowingAlert: Binding<Bool> {
+        Binding(
+            get: { showSDKVersion || error != nil },
+            set: { newValue in
+                guard !newValue else { return }
+                showSDKVersion = false
+                error = nil
+            }
+        )
+    }
+
     var body: some View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -42,7 +53,7 @@ struct LinkedAccountsScreen: View {
                     if linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Link a service to get started")
                         )
                         .onTapGesture { showLinkSheet = true }
@@ -56,10 +67,10 @@ struct LinkedAccountsScreen: View {
                                 )
                             ) {
                                 ItemRow(
-                                    title: linkedAccount.service.description,
-                                    subtitle: linkedAccount.formattedSubtitle,
-                                    value: "",
-                                    logoURL: linkedAccount.service.logoURL
+                                    title: linkedAccount.title,
+                                    badges: [linkedAccount.badge],
+                                    value: nil,
+                                    logo: .url(linkedAccount.service.logoURL)
                                 )
                             }
                             .swipeActions {
@@ -99,7 +110,7 @@ struct LinkedAccountsScreen: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showLinkSheet = true }) {
-                    Label("Link", systemImage: "plus.circle.fill")
+                    Label("Link", systemSymbol: .plusCircleFill)
                 }
             }
         }
@@ -119,13 +130,6 @@ struct LinkedAccountsScreen: View {
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("If you delete the user, you will have to re-link your accounts.")
-        }
-        .alert(isPresented: $showSDKVersion) {
-            Alert(
-                title: Text("Candle SDK Version"),
-                message: Text(Candle.Constants.version),
-                dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
-            )
         }
         .fullScreenCover(isPresented: $showOnboarding) {
             OnboardingScreen(
@@ -151,12 +155,20 @@ struct LinkedAccountsScreen: View {
             Task { await getLinkedAccounts() }
         }
         .sensoryFeedback(.selection, trigger: showOnboarding)
-        .alert(isPresented: .constant(error != nil)) {
-            Alert(
-                title: Text(error!.title),
-                message: Text(error!.message),
-                dismissButton: .cancel(Text("OK"), action: { error = nil })
-            )
+        .alert(isPresented: isShowingAlert) {
+            if showSDKVersion {
+                return Alert(
+                    title: Text("Candle SDK Version"),
+                    message: Text(Candle.Constants.version),
+                    dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
+                )
+            } else {
+                return Alert(
+                    title: Text(error!.title),
+                    message: Text(error!.message),
+                    dismissButton: .cancel(Text("OK"), action: { error = nil })
+                )
+            }
         }
     }
 

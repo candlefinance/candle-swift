@@ -7,9 +7,15 @@ struct AssetAccountsScreen: View {
         case loading
         case normal(Candle.Models.AssetAccountsResponse)
     }
+    @Binding var assetAccounts: [Candle.Models.AssetAccount]
 
     @State private var error: (title: String, message: String)?
-    @State private var state: _State = .initial
+    @State private var state: _State = .initial {
+        didSet {
+            guard case .normal(let assetAccountsResponse) = state else { return }
+            assetAccounts = assetAccountsResponse.assetAccounts
+        }
+    }
     @State private var assetKind: Candle.Models.GetAssetAccounts.Input.Query.AssetKindPayload? = nil
     @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
@@ -29,8 +35,8 @@ struct AssetAccountsScreen: View {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -40,18 +46,30 @@ struct AssetAccountsScreen: View {
                     if assetAccountsResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
-                        ForEach(assetAccountsResponse.linkedAccounts) { linkedAccountStatusRef in
-                            // FIXME: Show linkedAccountID too
-                            ItemRow(
-                                title: linkedAccountStatusRef.service.description,
-                                subtitle: linkedAccountStatusRef.serviceUserID,
-                                value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL
-                            )
+                        DisclosureGroup {
+                            ForEach(assetAccountsResponse.linkedAccounts) {
+                                linkedAccountStatusRef in
+                                ItemRow(
+                                    title: linkedAccountStatusRef.linkedAccountID,
+                                    badges: [linkedAccountStatusRef.badge],
+                                    value: linkedAccountStatusRef.serviceUserID,
+                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                )
+                            }
+                        } label: {
+                            VStack {
+                                ForEach(assetAccountsResponse.linkedAccounts) {
+                                    linkedAccountStatusRef in
+                                    SummaryRow(
+                                        badges: [linkedAccountStatusRef.badge],
+                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -60,8 +78,8 @@ struct AssetAccountsScreen: View {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -71,7 +89,7 @@ struct AssetAccountsScreen: View {
                     if assetAccountsResponse.assetAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Asset Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
@@ -82,31 +100,12 @@ struct AssetAccountsScreen: View {
                                     assetAccount: assetAccount
                                 )
                             ) {
-                                switch assetAccount {
-                                case .FiatAccount(let fiatAccount):
-                                    ItemRow(
-                                        title: fiatAccount.nickname,
-                                        subtitle: fiatAccount.service.description,
-                                        value: fiatAccount.balance?
-                                            .formatted(.currency(code: fiatAccount.currencyCode))
-                                            ?? fiatAccount.currencyCode,
-                                        logoURL: fiatAccount.service.logoURL
-                                    )
-                                case .MarketAccount(let marketAccount):
-                                    ItemRow(
-                                        title: marketAccount.nickname,
-                                        subtitle: marketAccount.service.description,
-                                        value: marketAccount.assetKind.description,
-                                        logoURL: marketAccount.service.logoURL
-                                    )
-                                case .TransportAccount(let transportAccount):
-                                    ItemRow(
-                                        title: transportAccount.nickname,
-                                        subtitle: transportAccount.service.description,
-                                        value: transportAccount.assetKind.description,
-                                        logoURL: transportAccount.service.logoURL
-                                    )
-                                }
+                                ItemRow(
+                                    title: assetAccount.nickname,
+                                    badges: [assetAccount.badge],
+                                    value: assetAccount.value,
+                                    logo: .url(assetAccount.service.logoURL)
+                                )
                             }
                         }
                     }
@@ -122,7 +121,7 @@ struct AssetAccountsScreen: View {
                         selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                     )
                 } label: {
-                    Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
+                    Label("Filters", systemSymbol: .line3HorizontalDecreaseCircle)
                 }
             }
         }
@@ -191,5 +190,3 @@ struct AssetAccountsScreen: View {
         }
     }
 }
-
-#Preview { AssetAccountsScreen(linkedAccounts: [], ) }

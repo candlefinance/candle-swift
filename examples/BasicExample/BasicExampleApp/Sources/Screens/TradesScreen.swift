@@ -1,4 +1,5 @@
 import Candle
+import SFSafeSymbols
 import SwiftUI
 
 struct TradesScreen: View {
@@ -10,7 +11,7 @@ struct TradesScreen: View {
     }
 
     // FIXME: Support dynamic span values like the SDK
-    private enum SupportedSpan: String, CaseIterable, Identifiable {
+    private enum SupportedSpan: String, CaseIterable, Identifiable, CustomStringConvertible {
         case pt3h = "PT3H"
         case pt6h = "PT6H"
         case pt12h = "PT12H"
@@ -22,7 +23,7 @@ struct TradesScreen: View {
 
         var id: String { rawValue }
 
-        var title: String {
+        var description: String {
             switch self {
             case .pt3h: return "3 Hours"
             case .pt6h: return "6 Hours"
@@ -38,21 +39,22 @@ struct TradesScreen: View {
 
     @State private var error: (title: String, message: String)?
     @State private var state: _State = .initial
-    @State private var dateTimeSpan: SupportedSpan? = nil
+    @State private var dateTimeSpan: SupportedSpan? = .p1m
     @State private var lostAssetKind: Candle.Models.GetTrades.Input.Query.LostAssetKindPayload? =
         nil
     @State private var gainedAssetKind:
         Candle.Models.GetTrades.Input.Query.GainedAssetKindPayload? = nil
     @State private var counterpartyKind:
         Candle.Models.GetTrades.Input.Query.CounterpartyKindPayload? = nil
+    @State private var selectedQuoteTemplate: QuoteTemplate? = nil
     @State private var selectedLinkedAccountIDs: [Candle.Models.LinkedAccountID] = []
 
     @State private var searchText = ""
-    @State private var showTradeQuotes: Bool = false
     @State private var tradeQuoteToExecute: Candle.Models.TradeQuote? = nil
     @State private var newTrade: Candle.Models.Trade? = nil
 
     let linkedAccounts: [Candle.Models.LinkedAccount]
+    let assetAccounts: [Candle.Models.AssetAccount]
 
     var tradesQuery: Candle.Models.GetTrades.Input.Query {
         .init(
@@ -65,14 +67,21 @@ struct TradesScreen: View {
         )
     }
 
+    var showTradeQuotes: Binding<Bool> {
+        Binding<Bool>(
+            get: { selectedQuoteTemplate != nil },
+            set: { if !$0 { selectedQuoteTemplate = nil } }
+        )
+    }
+
     var body: some View {
         List {
             Section(header: Text("Linked Accounts")) {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -82,53 +91,84 @@ struct TradesScreen: View {
                     if tradesResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
-                        ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
-                            // FIXME: Show linkedAccountID too
-                            ItemRow(
-                                title: linkedAccountStatusRef.service.description,
-                                subtitle: linkedAccountStatusRef.serviceUserID,
-                                value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL
-                            )
+                        DisclosureGroup {
+                            ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
+                                ItemRow(
+                                    title: linkedAccountStatusRef.linkedAccountID,
+                                    badges: [linkedAccountStatusRef.badge],
+                                    value: linkedAccountStatusRef.serviceUserID,
+                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                )
+                            }
+                        } label: {
+                            VStack {
+                                ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
+                                    SummaryRow(
+                                        badges: [linkedAccountStatusRef.badge],
+                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    )
+                                }
+                            }
                         }
                     }
                 }
             }
-            Section(header: Text("Trades")) {
-                switch state {
-                case .initial:
+
+            switch state {
+            case .initial:
+                Section(header: Text("Trades")) {
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
-                case .loading:
+                }
+
+            case .loading:
+                Section(header: Text("Trades")) {
                     ProgressView { Text("Loading...") }
                         .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
-                case .normal(let tradesResponse):
-                    if tradesResponse.trades.isEmpty {
+                }
+
+            case .normal(let tradesResponse):
+                let filteredTrades =
+                    searchText.isEmpty
+                    ? tradesResponse.trades
+                    : tradesResponse.trades.filter {
+                        $0.searchTokens.contains { $0.localizedCaseInsensitiveContains(searchText) }
+                    }
+
+                if filteredTrades.isEmpty {
+                    Section(header: Text("Trades")) {
                         ContentUnavailableView.search(text: searchText)
-                    } else {
-                        let filteredTrades =
-                            searchText.isEmpty
-                            ? tradesResponse.trades
-                            : tradesResponse.trades.filter {
-                                $0.searchTokens.contains {
-                                    $0.localizedCaseInsensitiveContains(searchText)
+                    }
+                } else {
+                    let sections = Dictionary(grouping: filteredTrades) { trade -> Date? in
+                        guard let date = ISO8601DateFormatter.candle.date(from: trade.dateTime)
+                        else { return nil }
+
+                        return Calendar.current.startOfDay(for: date)
+                    }
+                    .map { date, trades in TradeDateSection(date: date, trades: trades) }
+                    .sorted(using: KeyPathComparator(\.date, order: .reverse))
+
+                    ForEach(sections) { tradeSection in
+                        Section(header: Text(tradeSection.title)) {
+                            ForEach(tradeSection.trades) { trade in
+                                NavigationLink(
+                                    destination: TradeScreen(error: $error, trade: trade)
+                                ) {
+                                    ItemRow(
+                                        title: trade.title,
+                                        badges: trade.badges,
+                                        value: trade.value,
+                                        logo: .url(trade.logoURL),
+                                    )
                                 }
-                            }
-                        ForEach(filteredTrades) { trade in
-                            NavigationLink(destination: TradeScreen(error: $error, trade: trade)) {
-                                ItemRow(
-                                    title: trade.formattedTitle,
-                                    subtitle: trade.formattedSubtitle,
-                                    value: trade.formattedValue,
-                                    logoURL: trade.logoURL
-                                )
                             }
                         }
                     }
@@ -148,12 +188,24 @@ struct TradesScreen: View {
                         selectedLinkedAccountIDs: $selectedLinkedAccountIDs
                     )
                 } label: {
-                    Label("Filters", systemImage: "line.horizontal.3.decrease.circle")
+                    Label(
+                        "Filters",
+                        systemSymbol: dateTimeSpan == nil && lostAssetKind == nil
+                            && gainedAssetKind == nil && counterpartyKind == nil
+                            && selectedLinkedAccountIDs == []
+                            ? .line3HorizontalDecreaseCircle : .line3HorizontalDecreaseCircleFill
+                    )
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showTradeQuotes = true }) {
-                    Label("Link", systemImage: "plus.circle.fill")
+                Menu {
+                    ForEach(QuoteTemplate.allCases, id: \.self) { enumCase in
+                        Button(action: { selectedQuoteTemplate = enumCase }) {
+                            Label(enumCase.description, systemSymbol: enumCase.symbol)
+                        }
+                    }
+                } label: {
+                    Label("Create", systemSymbol: .plusCircleFill)
                 }
             }
         }
@@ -172,18 +224,24 @@ struct TradesScreen: View {
             Task { await getTrades() }
         }
         .refreshable { await getTrades(showLoading: false) }
-        .sheet(isPresented: $showTradeQuotes) {
+        .sheet(isPresented: showTradeQuotes) {
             NavigationStack {
                 TradeQuotesRequestScreen(
                     tradeQuoteToExecute: $tradeQuoteToExecute,
-                    linkedAccounts: linkedAccounts
+                    gainedAssetQuoteRequest: selectedQuoteTemplate?.gainedAssetQuoteRequest
+                        ?? .OtherAssetQuoteRequest(.init(assetKind: .other)),
+                    lostAssetQuoteRequest: selectedQuoteTemplate?.lostAssetQuoteRequest
+                        ?? .OtherAssetQuoteRequest(.init(assetKind: .other)),
+                    counterpartyQuoteRequest: selectedQuoteTemplate?.counterpartyQuoteRequest,
+                    linkedAccounts: linkedAccounts,
+                    assetAccounts: assetAccounts,
                 )
             }
             .candleTradeExecutionSheet(item: $tradeQuoteToExecute) { result in
                 switch result {
                 case .success(let trade):
                     newTrade = trade
-                    showTradeQuotes = false
+                    selectedQuoteTemplate = nil
 
                 case .failure: break
                 // FIXME: Show error in snackbar?
@@ -245,5 +303,3 @@ struct TradesScreen: View {
         }
     }
 }
-
-#Preview { TradesScreen(linkedAccounts: []) }

@@ -1,4 +1,5 @@
 import Candle
+import Foundation
 import SwiftUI
 
 struct TradeAssetGroup: View {
@@ -9,97 +10,68 @@ struct TradeAssetGroup: View {
         DisclosureGroup {
             switch tradeAsset {
             case .FiatAsset(let fiatAsset):
-                Section(header: Text("Metadata").bold()) {
-                    InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: fiatAsset.linkedAccountID
-                    )
-                    InfoRow(
-                        systemImage: "number",
-                        title: "Service Account ID",
-                        value: fiatAsset.serviceAccountID
-                    )
-                    if let serviceTradeID = fiatAsset.serviceTradeID {
-                        InfoRow(
-                            systemImage: "number",
-                            title: "Service Trade ID",
-                            value: serviceTradeID
-                        )
-                    }
-                }
-
                 Section(header: Text("Details").bold()) {
                     InfoRow(
-                        systemImage: "banknote",
+                        symbol: .banknote,
                         title: "Amount",
                         value: fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode)),
                     )
                 }
-
-            case .MarketTradeAsset(let marketAsset):
                 Section(header: Text("Metadata").bold()) {
+                    if let serviceTradeID = fiatAsset.serviceTradeID {
+                        InfoRow(
+                            symbol: .arrowLeftArrowRight,
+                            title: "Service Trade ID",
+                            value: serviceTradeID
+                        )
+                    }
                     InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: marketAsset.linkedAccountID
-                    )
-                    InfoRow(
-                        systemImage: "number",
+                        symbol: .buildingColumns,
                         title: "Service Account ID",
-                        value: marketAsset.serviceAccountID
+                        value: fiatAsset.serviceAccountID
                     )
                     InfoRow(
-                        systemImage: "number",
-                        title: "Service Asset ID",
-                        value: marketAsset.serviceAssetID
-                    )
-                    InfoRow(
-                        systemImage: "number",
-                        title: "Service Trade ID",
-                        value: marketAsset.serviceTradeID
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: fiatAsset.linkedAccountID
                     )
                 }
 
+            case .MarketTradeAsset(let marketAsset):
                 // FIXME: Show color + logoURL
-                Section(header: Text("Asset").bold()) {
-                    InfoRow(systemImage: "info.circle", title: "Name", value: marketAsset.name, )
+                Section(header: Text("Details").bold()) {
+                    InfoRow(symbol: .infoCircle, title: "Symbol", value: marketAsset.symbol, )
                     InfoRow(
-                        systemImage: "chart.line.uptrend.xyaxis",
-                        title: "Symbol",
-                        value: marketAsset.symbol,
-                    )
-                    InfoRow(
-                        systemImage: "banknote",
+                        symbol: .banknote,
                         title: "Amount",
                         value: marketAsset.amount.formatted(),
                     )
                 }
 
-            case .TransportAsset(let transportAsset):
                 Section(header: Text("Metadata").bold()) {
                     InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: transportAsset.linkedAccountID
-                    )
-                    InfoRow(
-                        systemImage: "number",
-                        title: "Service Account ID",
-                        value: transportAsset.serviceAccountID
-                    )
-                    InfoRow(
-                        systemImage: "number",
-                        title: "Service Asset ID",
-                        value: transportAsset.serviceAssetID
-                    )
-                    InfoRow(
-                        systemImage: "number",
+                        symbol: .arrowLeftArrowRight,
                         title: "Service Trade ID",
-                        value: transportAsset.serviceTradeID
+                        value: marketAsset.serviceTradeID
+                    )
+                    InfoRow(
+                        symbol: .diamond,
+                        title: "Service Asset ID",
+                        value: marketAsset.serviceAssetID
+                    )
+                    InfoRow(
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: marketAsset.serviceAccountID
+                    )
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: marketAsset.linkedAccountID
                     )
                 }
 
+            case .TransportAsset(let transportAsset):
                 // FIXME: Show logoURL and origin/destination coordinates
                 Section(header: Text("Details").bold()) {
                     let arrivalDate = ISO8601DateFormatter.candle.date(
@@ -110,36 +82,59 @@ struct TradeAssetGroup: View {
                     )
 
                     InfoRow(
-                        systemImage: "info.circle",
+                        symbol: .infoCircle,
                         title: "Description",
                         value: transportAsset.description
                     )
                     InfoRow(
-                        systemImage: "sunrise",
+                        symbol: .sunrise,
                         title: "Departure Date/Time",
                         value: departureDate?.formatted(date: .complete, time: .complete)
                             ?? transportAsset.departureDateTime
                     )
                     InfoRow(
-                        systemImage: "sunset",
+                        symbol: .sunset,
                         title: "Arrival Date/Time",
                         value: arrivalDate?.formatted(date: .complete, time: .complete)
                             ?? transportAsset.arrivalDateTime
                     )
                     InfoRow(
-                        systemImage: "sunrise",
+                        symbol: .sunrise,
                         title: "Origin Address",
                         value: transportAsset.originAddress.value
                     )
                     InfoRow(
-                        systemImage: "sunset",
+                        symbol: .sunset,
                         title: "Destination Address",
                         value: transportAsset.destinationAddress.value
                     )
                     InfoRow(
-                        systemImage: "figure.seated.seatbelt",
+                        symbol: .figureSeatedSeatbelt,
                         title: "Seats",
                         value: String(transportAsset.seats)
+                    )
+                }
+
+                Section(header: Text("Metadata").bold()) {
+                    InfoRow(
+                        symbol: .arrowLeftArrowRight,
+                        title: "Service Trade ID",
+                        value: transportAsset.serviceTradeID
+                    )
+                    InfoRow(
+                        symbol: .diamond,
+                        title: "Service Asset ID",
+                        value: transportAsset.serviceAssetID
+                    )
+                    InfoRow(
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: transportAsset.serviceAccountID
+                    )
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: transportAsset.linkedAccountID
                     )
                 }
 
@@ -150,41 +145,38 @@ struct TradeAssetGroup: View {
             switch tradeAsset {
             case .FiatAsset(let fiatAsset):
                 InfoHeader(
-                    logoURL: fiatAsset.service.logoURL,
-                    title: fiatAsset.currencyCode,
-                    badgeText: fiatAsset.assetKind.description,
-                    badgeColor: .green
+                    logo: .text(
+                        Locale.current.localizedSymbol(forCurrencyCode: fiatAsset.currencyCode),
+                        .assetKindFiat
+                    ),
+                    title: Locale.current.localizedString(forCurrencyCode: fiatAsset.currencyCode)
+                        ?? fiatAsset.currencyCode,
+                    badges: [tradeAsset.badge],
                 )
             case .MarketTradeAsset(let marketAsset):
-                let badgeColor = marketAsset.assetKind == .crypto ? Color.orange : .indigo
                 InfoHeader(
-                    logoURL: marketAsset.service.logoURL,
+                    logo: .url(URL(string: marketAsset.logoURL)),
                     title: marketAsset.name,
-                    badgeText: marketAsset.assetKind.description,
-                    badgeColor: badgeColor
+                    badges: [tradeAsset.badge],
                 )
             case .TransportAsset(let transportAsset):
                 InfoHeader(
-                    logoURL: transportAsset.service.logoURL,
+                    logo: .url(URL(string: transportAsset.imageURL)),
                     title: transportAsset.name,
-                    badgeText: transportAsset.assetKind.description,
-                    badgeColor: .black
+                    badges: [tradeAsset.badge],
                 )
-            case .OtherAsset(let otherAsset):
+            case .OtherAsset:
                 InfoHeader(
-                    logoURL: nil,
-                    title: nil,  // TODO
-                    badgeText: otherAsset.assetKind.description,
-                    badgeColor: .gray
+                    logo: .symbol(.ellipsis, .gray),
+                    title: "—",
+                    badges: [tradeAsset.badge],
                 )
-            case .NothingAsset(let nothingAsset):
+            case .NothingAsset:
                 InfoHeader(
-                    logoURL: nil,
-                    title: nil,  // TODO
-                    badgeText: nothingAsset.assetKind.description,
-                    badgeColor: .red
+                    logo: .symbol(.gift, .assetKindNothing),
+                    title: "—",
+                    badges: [tradeAsset.badge],
                 )
-
             }
         }
     }

@@ -22,7 +22,12 @@
 public enum BasicExampleAppAsset: Sendable {
   public enum Assets {
   public static let accentColor = BasicExampleAppColors(name: "AccentColor")
-    public static let candlePrimary = BasicExampleAppColors(name: "CandlePrimary")
+    public static let assetKindCrypto = BasicExampleAppColors(name: "AssetKindCrypto")
+    public static let assetKindFiat = BasicExampleAppColors(name: "AssetKindFiat")
+    public static let assetKindNothing = BasicExampleAppColors(name: "AssetKindNothing")
+    public static let assetKindStock = BasicExampleAppColors(name: "AssetKindStock")
+    public static let assetKindTransport = BasicExampleAppColors(name: "AssetKindTransport")
+    public static let color = BasicExampleAppColors(name: "Color")
     public static let link1 = BasicExampleAppImages(name: "link1")
     public static let link2 = BasicExampleAppImages(name: "link2")
     public static let link3 = BasicExampleAppImages(name: "link3")

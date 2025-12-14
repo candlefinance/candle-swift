@@ -2,61 +2,65 @@ import Candle
 import Foundation
 
 extension Candle.Models.TradeQuote {
-    var formattedTitle: String {
+    // FIXME: Support market -> market trades, etc
+    var title: String {
         switch gained {
-        case .TransportAsset(let transportAsset): return transportAsset.name
         case .MarketTradeAsset(let marketAsset): return marketAsset.name
-
-        case .FiatAsset, .NothingAsset, .OtherAsset:
+        case .TransportAsset(let transportAsset): return transportAsset.name
+        default:
             switch lost {
-            case .TransportAsset(let transportAsset): return transportAsset.name
             case .MarketTradeAsset(let marketAsset): return marketAsset.name
-            // FIXME: Display something in these cases
-            case .FiatAsset, .NothingAsset, .OtherAsset: return "—"
+            case .TransportAsset(let transportAsset): return transportAsset.name
+            default:
+                switch counterparty {
+                case .UserCounterparty(let userCounterparty): return userCounterparty.legalName
+                case .MerchantCounterparty(let merchantCounterparty):
+                    return merchantCounterparty.name
+                case .ServiceCounterparty(let serviceCounterparty):
+                    return serviceCounterparty.service.description
+                }
             }
         }
     }
 
-    // FIXME: Display counterparty (service) name instead?
-    var formattedSubtitle: String {
-        switch gained {
-        case .TransportAsset(let transportAsset): return transportAsset.service.description
-        case .MarketTradeAsset(let marketAsset): return marketAsset.service.description
-
-        case .FiatAsset, .NothingAsset, .OtherAsset:
-            switch lost {
-            case .TransportAsset(let transportAsset): return transportAsset.service.description
-            case .MarketTradeAsset(let marketAsset): return marketAsset.service.description
-            // FIXME: Display something in these cases
-            case .FiatAsset, .NothingAsset, .OtherAsset: return "—"
-            }
-        }
-    }
-
-    var formattedValue: String {
+    // FIXME: Support market -> market trades, etc
+    var value: String? {
         if case .FiatAsset(let fiatAsset) = gained {
             return fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode))
         } else if case .FiatAsset(let fiatAsset) = lost {
             return (-fiatAsset.amount).formatted(.currency(code: fiatAsset.currencyCode))
         } else {
-            return "—"
+            return nil
         }
     }
 
+    // FIXME: Support market -> market trades, etc
     var logoURL: URL? {
-        // FIXME: Log if URLs don't decode (or decode them earlier)
         switch gained {
-        case .TransportAsset(let transportAsset): return URL(string: transportAsset.imageURL)
-        case .MarketTradeAsset(let marketAsset): return URL(string: marketAsset.logoURL)
-
-        case .FiatAsset, .NothingAsset, .OtherAsset:
+        case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
+        case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
+        case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+        default:
             switch lost {
-            case .TransportAsset(let transportAsset): return URL(string: transportAsset.imageURL)
-            case .MarketTradeAsset(let marketAsset): return URL(string: marketAsset.logoURL)
-            // FIXME: Display something in these cases
-            case .FiatAsset, .NothingAsset, .OtherAsset: return nil
+            case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
+            case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
+            case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+            default:
+                switch counterparty {
+                case .ServiceCounterparty(let serviceCounterparty):
+                    return serviceCounterparty.service.logoURL
+                // FIXME: Always expose a service in Trade model
+                default: return nil
+                }
             }
         }
+    }
+
+    var badges: [Badge] {
+        [
+            .init(id: "lostAssetKind", text: lost.badge.text, color: lost.badge.color),
+            .init(id: "gainedAssetKind", text: gained.badge.text, color: gained.badge.color),
+        ]
     }
 
     var _context: Candle.Models.TradeQuoteContext {

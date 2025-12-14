@@ -18,11 +18,13 @@ struct LinkedAccountsMenu: View {
                         selectedLinkedAccountIDs.append(linkedAccount.linkedAccountID)
                     }
                 }) {
-                    Label(
-                        "\(linkedAccount.service.description) (\(linkedAccount.formattedSubtitle))",
-                        systemImage: selectedLinkedAccountIDs.contains(linkedAccount.id)
-                            ? "checkmark" : ""
-                    )
+                    Label {
+                        Text("\(linkedAccount.service.description) (\(linkedAccount.title))")
+                    } icon: {
+                        if selectedLinkedAccountIDs.contains(linkedAccount.id) {
+                            Image(systemSymbol: .checkmark)
+                        }
+                    }
                 }
             }
         }

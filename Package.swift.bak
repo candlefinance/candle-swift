@@ -1,0 +1,23 @@
+// swift-tools-version: 6.0
+import Foundation
+import PackageDescription
+
+let xcFrameworkNames: [String] = [
+    // THIS LINE IS REPLACED BY build_xcframework.sh
+]
+
+let package = Package(
+    name: "Candle",
+    platforms: [.iOS(.v17), .macOS(.v14)],
+    products: [.library(name: "Candle", targets: ["CandlePublic"])],
+    targets: [
+        .target(
+            name: "CandlePublic",
+            dependencies: xcFrameworkNames.map { Target.Dependency.target(name: $0) },
+            linkerSettings: [.linkedFramework("Network")]
+        )
+    ]
+        + xcFrameworkNames.map { name in
+            Target.binaryTarget(name: name, path: "./XCFrameworks/\(name).xcframework")
+        }
+)

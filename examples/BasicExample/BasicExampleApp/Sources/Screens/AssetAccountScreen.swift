@@ -1,4 +1,5 @@
 import Candle
+import SFSafeSymbols
 import SwiftUI
 
 struct AssetAccountScreen: View {
@@ -6,65 +7,32 @@ struct AssetAccountScreen: View {
 
     @State private(set) var assetAccount: Candle.Models.AssetAccount
 
-    private var badgeText: String {
-        switch assetAccount {
-        case .FiatAccount(let fiatAccount): return fiatAccount.assetKind.description
-        case .MarketAccount(let marketAccount): return marketAccount.assetKind.description
-        case .TransportAccount(let transportAccount): return transportAccount.assetKind.description
-        }
-    }
-
-    private var badgeColor: Color {
-        switch assetAccount {
-        case .FiatAccount: return .green
-        case .MarketAccount(let marketAccount):
-            switch marketAccount.assetKind {
-            case .crypto: return .orange
-            case .stock: return .indigo
-            }
-        case .TransportAccount: return .black
-        }
-    }
-
     var body: some View {
         List {
             InfoHeader(
-                logoURL: assetAccount.service.logoURL,
+                logo: .url(assetAccount.service.logoURL),
                 title: assetAccount.nickname,
-                badgeText: badgeText,
-                badgeColor: badgeColor
+                badges: [assetAccount.badge],
             )
 
             switch assetAccount {
             case .FiatAccount(let fiatAccount):
-                Section(header: Text("Metadata")) {
-                    InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: fiatAccount.linkedAccountID
-                    )
-                    InfoRow(
-                        systemImage: "number",
-                        title: "Service Account ID",
-                        value: fiatAccount.serviceAccountID
-                    )
-                }
-
                 Section(header: Text("Details")) {
                     InfoRow(
-                        systemImage: "info.circle",
+                        symbol: .infoCircle,
                         title: "Account Kind",
                         value: fiatAccount.accountKind.description,
                     )
+
                     if let balance = fiatAccount.balance {
                         InfoRow(
-                            systemImage: "banknote",
+                            symbol: .banknote,
                             title: "Balance",
                             value: balance.formatted(.currency(code: fiatAccount.currencyCode)),
                         )
                     } else {
                         InfoRow(
-                            systemImage: "banknote",
+                            symbol: .banknote,
                             title: "Currency Code",
                             value: fiatAccount.currencyCode,
                         )
@@ -74,17 +42,17 @@ struct AssetAccountScreen: View {
                 if let ach = fiatAccount.ach {
                     Section(header: Text("ACH")) {
                         InfoRow(
-                            systemImage: "text.document",
+                            symbol: .docText,
                             title: "Account Kind",
                             value: ach.accountKind.description,
                         )
                         InfoRow(
-                            systemImage: "creditcard",
+                            symbol: .number,
                             title: "Account Number",
                             value: ach.accountNumber,
                         )
                         InfoRow(
-                            systemImage: "arrow.left.arrow.right",
+                            symbol: .arrowLeftArrowRight,
                             title: "Routing Number",
                             value: ach.routingNumber,
                         )
@@ -94,55 +62,70 @@ struct AssetAccountScreen: View {
                 if let wire = fiatAccount.wire {
                     Section(header: Text("Wire")) {
                         InfoRow(
-                            systemImage: "arrow.left.arrow.right",
-                            title: "Routing Number",
-                            value: wire.routingNumber,
-                        )
-                        InfoRow(
-                            systemImage: "creditcard",
+                            symbol: .number,
                             title: "Account Number",
                             value: wire.accountNumber,
                         )
+                        InfoRow(
+                            symbol: .arrowLeftArrowRight,
+                            title: "Routing Number",
+                            value: wire.routingNumber,
+                        )
                     }
                 }
-            case .MarketAccount(let marketAccount):
+
                 Section(header: Text("Metadata")) {
                     InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: marketAccount.linkedAccountID
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: fiatAccount.serviceAccountID
                     )
                     InfoRow(
-                        systemImage: "number",
-                        title: "Service Account ID",
-                        value: marketAccount.serviceAccountID
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: fiatAccount.linkedAccountID
                     )
                 }
+            case .MarketAccount(let marketAccount):
                 Section(header: Text("Details")) {
+                    InfoRow(symbol: .tag, title: "Nickname", value: marketAccount.nickname, )
                     InfoRow(
-                        systemImage: "info.circle",
+                        symbol: .infoCircle,
                         title: "Account Kind",
                         value: marketAccount.accountKind.description,
                     )
                 }
-            case .TransportAccount(let transportAccount):
                 Section(header: Text("Metadata")) {
                     InfoRow(
-                        systemImage: "link",
-                        title: "Linked Account ID",
-                        value: transportAccount.linkedAccountID
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: marketAccount.serviceAccountID
                     )
                     InfoRow(
-                        systemImage: "number",
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: marketAccount.linkedAccountID
+                    )
+                }
+            case .TransportAccount(let transportAccount):
+                Section(header: Text("Details")) {
+                    InfoRow(symbol: .tag, title: "Nickname", value: transportAccount.nickname, )
+                    InfoRow(
+                        symbol: .infoCircle,
+                        title: "Account Kind",
+                        value: transportAccount.accountKind.description,
+                    )
+                }
+                Section(header: Text("Metadata")) {
+                    InfoRow(
+                        symbol: .buildingColumns,
                         title: "Service Account ID",
                         value: transportAccount.serviceAccountID
                     )
-                }
-                Section(header: Text("Details")) {
                     InfoRow(
-                        systemImage: "info.circle",
-                        title: "Account Kind",
-                        value: transportAccount.accountKind.description,
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: transportAccount.linkedAccountID
                     )
                 }
             }

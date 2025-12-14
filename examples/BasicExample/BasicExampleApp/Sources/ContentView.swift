@@ -1,4 +1,5 @@
 import Candle
+import SFSafeSymbols
 import SwiftUI
 
 struct ContentView: View {
@@ -14,17 +15,18 @@ struct ContentView: View {
             }
         }
 
-        var systemImage: String {
+        var symbol: SFSymbol {
             switch self {
-            case .services: "person.2"
-            case .accounts: "building.columns"
-            case .trades: "arrow.left.arrow.right"
+            case .services: .person2
+            case .accounts: .buildingColumns
+            case .trades: .arrowLeftArrowRight
             }
         }
     }
 
     @State var selectedTab: AppTab = .services
     @State var linkedAccounts: [Candle.Models.LinkedAccount] = []
+    @State var assetAccounts: [Candle.Models.AssetAccount] = []
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -32,11 +34,16 @@ struct ContentView: View {
                 NavigationStack {
                     switch tab {
                     case .services: LinkedAccountsScreen(linkedAccounts: $linkedAccounts)
-                    case .accounts: AssetAccountsScreen(linkedAccounts: linkedAccounts)
-                    case .trades: TradesScreen(linkedAccounts: linkedAccounts)
+                    case .accounts:
+                        AssetAccountsScreen(
+                            assetAccounts: $assetAccounts,
+                            linkedAccounts: linkedAccounts
+                        )
+                    case .trades:
+                        TradesScreen(linkedAccounts: linkedAccounts, assetAccounts: assetAccounts)
                     }
                 }
-                .tabItem { Label(tab.title, systemImage: tab.systemImage) }.tag(tab)
+                .tabItem { Label(tab.title, systemSymbol: tab.symbol) }.tag(tab)
             }
         }
         .toolbarBackground(.ultraThinMaterial, for: .tabBar)

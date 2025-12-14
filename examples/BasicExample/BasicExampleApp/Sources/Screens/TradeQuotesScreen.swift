@@ -8,10 +8,6 @@ struct TradeQuotesScreen: View {
         case normal(Candle.Models.TradeQuotesResponse)
     }
 
-    private enum TradeQuoteAssetKind: String, Codable, Hashable, Sendable, CaseIterable {
-        case fiat, stock, crypto, transport
-    }
-
     @Environment(\.dismiss) private var dismiss
 
     @Binding var tradeQuoteToExecute: Candle.Models.TradeQuote?
@@ -28,8 +24,8 @@ struct TradeQuotesScreen: View {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -40,18 +36,29 @@ struct TradeQuotesScreen: View {
                     if tradeQuotesResponse.linkedAccounts.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
-                        ForEach(tradeQuotesResponse.linkedAccounts) { linkedAccountStatusRef in
-                            // FIXME: Show linkedAccountID too
-                            ItemRow(
-                                title: linkedAccountStatusRef.service.description,
-                                subtitle: linkedAccountStatusRef.serviceUserID,
-                                value: linkedAccountStatusRef.state.description,
-                                logoURL: linkedAccountStatusRef.service.logoURL
-                            )
+                        DisclosureGroup {
+                            ForEach(tradeQuotesResponse.linkedAccounts) { linkedAccountStatusRef in
+                                ItemRow(
+                                    title: linkedAccountStatusRef.linkedAccountID,
+                                    badges: [linkedAccountStatusRef.badge],
+                                    value: linkedAccountStatusRef.serviceUserID,
+                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                )
+                            }
+                        } label: {
+                            VStack {
+                                ForEach(tradeQuotesResponse.linkedAccounts) {
+                                    linkedAccountStatusRef in
+                                    SummaryRow(
+                                        badges: [linkedAccountStatusRef.badge],
+                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -60,8 +67,8 @@ struct TradeQuotesScreen: View {
                 switch state {
                 case .initial:
                     ContentUnavailableView(
-                        "Connection Error",
-                        systemImage: "network.slash",
+                        "Network Error",
+                        systemSymbol: .networkSlash,
                         description: Text("Check your connection and pull to refresh.")
                     )
                 case .loading:
@@ -72,7 +79,7 @@ struct TradeQuotesScreen: View {
                     if tradeQuotesResponse.tradeQuotes.isEmpty {
                         ContentUnavailableView(
                             "No Trade Quotes",
-                            systemImage: "exclamationmark.magnifyingglass",
+                            systemSymbol: .exclamationmarkMagnifyingglass,
                             description: Text("Try changing your filters or linking more services.")
                         )
                     } else {
@@ -85,11 +92,11 @@ struct TradeQuotesScreen: View {
                                 )
                             ) {
                                 ItemRow(
-                                    title: tradeQuote.formattedTitle,
-                                    subtitle: tradeQuote.formattedSubtitle,
-                                    value: tradeQuote.formattedValue,
-                                    logoURL: tradeQuote.logoURL
-                                )  // TODO
+                                    title: tradeQuote.title,
+                                    badges: tradeQuote.badges,
+                                    value: tradeQuote.value,
+                                    logo: .url(tradeQuote.logoURL),
+                                )
                             }
                             .swipeActions {
                                 Button("Execute") { tradeQuoteToExecute = tradeQuote }.tint(.green)
@@ -157,14 +164,4 @@ struct TradeQuotesScreen: View {
             }
         }
     }
-}
-
-#Preview {
-    TradeQuotesScreen(
-        tradeQuoteToExecute: .constant(nil),
-        tradeQuotesRequest: .init(
-            gained: .FiatAssetQuoteRequest(.init(assetKind: .fiat)),
-            lost: .FiatAssetQuoteRequest(.init(assetKind: .fiat))
-        )
-    )
 }

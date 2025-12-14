@@ -4,7 +4,7 @@ import SwiftUI
 struct EnumMenu<EnumType>: View
 where
     EnumType: CaseIterable, EnumType: RawRepresentable, EnumType.RawValue == String,
-    EnumType.AllCases: RandomAccessCollection, EnumType: Hashable
+    EnumType: CustomStringConvertible, EnumType.AllCases: RandomAccessCollection, EnumType: Hashable
 {
     let name: String
     @Binding var selectedCase: EnumType?
@@ -19,10 +19,11 @@ where
                         selectedCase = enumCase
                     }
                 }) {
-                    Label(
-                        enumCase.rawValue,
-                        systemImage: selectedCase == enumCase ? "checkmark" : ""
-                    )
+                    Label {
+                        Text(enumCase.description)
+                    } icon: {
+                        if selectedCase == enumCase { Image(systemSymbol: .checkmark) }
+                    }
                 }
             }
         }

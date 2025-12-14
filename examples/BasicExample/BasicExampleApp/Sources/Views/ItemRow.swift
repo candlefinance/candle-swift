@@ -2,22 +2,28 @@ import SwiftUI
 
 struct ItemRow: View {
     let title: String
-    let subtitle: String
-    let value: String
-    let logoURL: URL?
+    let badges: [Badge]
+    let value: String?
+    let logo: Logo
 
     var body: some View {
         HStack(spacing: .large) {
-            AsyncImageWithPlaceholder(
-                logoURL: logoURL,
-                size: .init(width: .extraHuge, height: .extraHuge)
-            )
-            VStack(alignment: .leading) {
+            AnyImage(logo: logo, size: .extraHuge)
+
+            VStack(alignment: .leading, spacing: .small) {
                 Text(title).lineLimit(1).font(.headline)
-                Text(subtitle).font(.subheadline)
+
+                HStack(spacing: 8) {
+                    ForEach(badges) { badge in
+                        Text(badge.text).font(.caption.weight(.semibold)).padding(.vertical, 1)
+                            .padding(.horizontal, 6).foregroundStyle(.white)
+                            .background(badge.color, in: Capsule())
+                    }
+                }
             }
+
             Spacer()
-            Text(value)
+            if let value { Text(value) }
         }
     }
 }

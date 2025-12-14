@@ -1,0 +1,4 @@
+framework module CandleSFSafeSymbols {
+    header "CandleSFSafeSymbols-Swift.h"
+    export *
+}

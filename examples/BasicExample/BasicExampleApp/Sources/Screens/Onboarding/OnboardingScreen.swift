@@ -156,11 +156,7 @@ struct OnboardingScreen: View {
                     captionText
                 }
                 Spacer(minLength: .extraLarge)
-                Button(action: {
-                    Task {
-                        if await createUser() { dismiss() }
-                    }
-                }) {
+                Button(action: { Task { if await createUser() { dismiss() } } }) {
                     Text(ctaText).font(.system(size: 15, weight: .semibold, design: .default))
                         .padding([.vertical], .medium).padding([.horizontal], .large)
                 }
@@ -239,6 +235,6 @@ struct OnboardingScreen: View {
         title: "Welcome to",
         product: "Candle",
         caption: "This example app lets you explore the SDK functionality.",
-        ctaText: "Get Started"
+        ctaText: "Create User"
     )
 }

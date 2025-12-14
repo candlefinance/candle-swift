@@ -8,13 +8,13 @@ struct SettingsMenu: View {
     var body: some View {
         Menu {
             Button(action: { showDeleteConfirmation = true }) {
-                Label("Delete User", systemImage: "person.slash")
+                Label("Delete User", systemSymbol: .personSlash)
             }
             Button(action: { showSDKVersion = true }) {
-                Label("Show Candle Version", systemImage: "info.circle")
+                Label("Show Candle Version", systemSymbol: .infoCircle)
             }
         } label: {
-            Label("Settings", systemImage: "gear")
+            Label("Settings", systemSymbol: .gear)
         }
     }
 }

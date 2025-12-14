@@ -7,54 +7,13 @@ struct LinkedAccountScreen: View {
 
     @State private(set) var linkedAccount: Candle.Models.LinkedAccount
 
-    private var badgeText: String {
-        switch linkedAccount.details {
-        case .ActiveLinkedAccountDetails(let activeDetails): return activeDetails.state.description
-        case .InactiveLinkedAccountDetails(let inactiveDetails):
-            return inactiveDetails.state.description
-        }
-    }
-
-    private var badgeColor: Color {
-        switch linkedAccount.details {
-        case .ActiveLinkedAccountDetails: return .green
-        case .InactiveLinkedAccountDetails(let inactiveDetails):
-            switch inactiveDetails.state {
-            case .inactive: return .red
-            case .unavailable: return .yellow
-            }
-        }
-    }
-
-    private var headerTitle: String? {
-        if case .ActiveLinkedAccountDetails(let activeDetails) = linkedAccount.details {
-            return activeDetails.legalName
-        } else {
-            return nil
-        }
-    }
-
     var body: some View {
         List {
             InfoHeader(
-                logoURL: linkedAccount.service.logoURL,
-                title: headerTitle,
-                badgeText: badgeText,
-                badgeColor: badgeColor
+                logo: .url(linkedAccount.service.logoURL),
+                title: linkedAccount.title,
+                badges: [linkedAccount.badge],
             )
-
-            Section(header: Text("Metadata")) {
-                InfoRow(
-                    systemImage: "link",
-                    title: "Linked Account ID",
-                    value: linkedAccount.linkedAccountID
-                )
-                InfoRow(
-                    systemImage: "number",
-                    title: "Service User ID",
-                    value: linkedAccount.serviceUserID
-                )
-            }
 
             if case .ActiveLinkedAccountDetails(let activeDetails) = linkedAccount.details {
                 if activeDetails.emailAddress != nil || activeDetails.accountOpened != nil
@@ -62,21 +21,17 @@ struct LinkedAccountScreen: View {
                 {
                     Section(header: Text("Details")) {
                         if let username = activeDetails.username {
-                            InfoRow(systemImage: "person", title: "Username", value: username)
+                            InfoRow(symbol: .person, title: "Username", value: username)
                         }
                         if let emailAddress = activeDetails.emailAddress {
-                            InfoRow(
-                                systemImage: "envelope",
-                                title: "Email Address",
-                                value: emailAddress
-                            )
+                            InfoRow(symbol: .envelope, title: "Email Address", value: emailAddress)
                         }
                         if let accountOpened = activeDetails.accountOpened {
                             let accountOpenedDate = ISO8601DateFormatter.candle.date(
                                 from: accountOpened
                             )
                             InfoRow(
-                                systemImage: "calendar",
+                                symbol: .calendar,
                                 title: "Account Opened",
                                 value: accountOpenedDate?
                                     .formatted(date: .complete, time: .complete) ?? accountOpened
@@ -84,6 +39,19 @@ struct LinkedAccountScreen: View {
                         }
                     }
                 }
+            }
+
+            Section(header: Text("Metadata")) {
+                InfoRow(
+                    symbol: .person,
+                    title: "Service User ID",
+                    value: linkedAccount.serviceUserID
+                )
+                InfoRow(
+                    symbol: .link,
+                    title: "Linked Account ID",
+                    value: linkedAccount.linkedAccountID
+                )
             }
         }
         .toolbar {
