@@ -1,4 +1,0 @@
-framework module CNIOWASI {
-    umbrella header "CNIOWASI.h"
-    export *
-}

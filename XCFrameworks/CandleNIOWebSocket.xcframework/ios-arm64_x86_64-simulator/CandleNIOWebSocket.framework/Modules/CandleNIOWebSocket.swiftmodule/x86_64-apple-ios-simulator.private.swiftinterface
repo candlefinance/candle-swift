@@ -1,0 +1,345 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOWebSocket -package-name candle_swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleCNIOSHA1
+import CandleNIOCore
+import CandleNIOHTTP1
+import Candle_NIOBase64
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(*, deprecated, renamed: "NIOWebSocketClientUpgrader")
+public typealias NIOWebClientSocketUpgrader = CandleNIOWebSocket.NIOWebSocketClientUpgrader
+final public class NIOWebSocketClientUpgrader : CandleNIOHTTP1.NIOHTTPClientProtocolUpgrader, Swift.Sendable {
+  final public let supportedProtocol: Swift.String
+  final public let requiredUpgradeHeaders: [Swift.String]
+  public init(requestKey: Swift.String = randomRequestKey(), maxFrameSize: Swift.Int = 1 << 14, automaticErrorHandling: Swift.Bool = true, upgradePipelineHandler: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  final public func addCustom(upgradeRequestHeaders: inout CandleNIOHTTP1.HTTPHeaders)
+  final public func shouldAllowUpgrade(upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> Swift.Bool
+  final public func upgrade(context: CandleNIOCore.ChannelHandlerContext, upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  @objc deinit
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+final public class NIOTypedWebSocketClientUpgrader<UpgradeResult> : CandleNIOHTTP1.NIOTypedHTTPClientProtocolUpgrader where UpgradeResult : Swift.Sendable {
+  final public let supportedProtocol: Swift.String
+  final public let requiredUpgradeHeaders: [Swift.String]
+  public init(requestKey: Swift.String = NIOWebSocketClientUpgrader.randomRequestKey(), maxFrameSize: Swift.Int = 1 << 14, enableAutomaticErrorHandling: Swift.Bool = true, upgradePipelineHandler: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<UpgradeResult>)
+  final public func addCustom(upgradeRequestHeaders: inout CandleNIOHTTP1.HTTPHeaders)
+  final public func shouldAllowUpgrade(upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> Swift.Bool
+  final public func upgrade(channel: any CandleNIOCore.Channel, upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<UpgradeResult>
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOWebSocket.NIOWebSocketClientUpgrader : Swift.Sendable {
+}
+extension CandleNIOWebSocket.NIOWebSocketClientUpgrader {
+  public static func randomRequestKey<Generator>(using generator: inout Generator) -> Swift.String where Generator : Swift.RandomNumberGenerator
+  public static func randomRequestKey() -> Swift.String
+}
+final public class NIOWebSocketFrameAggregator : CandleNIOCore.ChannelInboundHandler {
+  public enum Error : Swift.Error {
+    case nonFinalFragmentSizeIsTooSmall
+    case tooManyFragments
+    case accumulatedFrameSizeIsTooLarge
+    case receivedNewFrameWithoutFinishingPrevious
+    case didReceiveFragmentBeforeReceivingTextOrBinaryFrame
+    public static func == (a: CandleNIOWebSocket.NIOWebSocketFrameAggregator.Error, b: CandleNIOWebSocket.NIOWebSocketFrameAggregator.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public typealias InboundIn = CandleNIOWebSocket.WebSocketFrame
+  public typealias InboundOut = CandleNIOWebSocket.WebSocketFrame
+  public init(minNonFinalFragmentSize: Swift.Int, maxAccumulatedFrameCount: Swift.Int, maxAccumulatedFrameSize: Swift.Int)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOWebSocket.NIOWebSocketFrameAggregator : Swift.Sendable {
+}
+@available(*, deprecated, renamed: "NIOWebSocketServerUpgrader")
+public typealias WebSocketUpgrader = CandleNIOWebSocket.NIOWebSocketServerUpgrader
+public struct NIOWebSocketUpgradeError : Swift.Error, Swift.Equatable {
+  public static let invalidUpgradeHeader: CandleNIOWebSocket.NIOWebSocketUpgradeError
+  public static let unsupportedWebSocketTarget: CandleNIOWebSocket.NIOWebSocketUpgradeError
+  public static func == (a: CandleNIOWebSocket.NIOWebSocketUpgradeError, b: CandleNIOWebSocket.NIOWebSocketUpgradeError) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers final public class NIOWebSocketServerUpgrader : CandleNIOHTTP1.HTTPServerProtocolUpgrader, Swift.Sendable {
+  final public let supportedProtocol: Swift.String
+  final public let requiredUpgradeHeaders: [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(automaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(maxFrameSize: Swift.Int, automaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  #endif
+  final public func buildUpgradeResponse(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead, initialResponseHeaders: CandleNIOHTTP1.HTTPHeaders) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders>
+  final public func upgrade(context: CandleNIOCore.ChannelHandlerContext, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  @objc deinit
+}
+final public class NIOTypedWebSocketServerUpgrader<UpgradeResult> : CandleNIOHTTP1.NIOTypedHTTPServerProtocolUpgrader, Swift.Sendable where UpgradeResult : Swift.Sendable {
+  final public let supportedProtocol: Swift.String
+  final public let requiredUpgradeHeaders: [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(maxFrameSize: Swift.Int = 1 << 14, enableAutomaticErrorHandling: Swift.Bool = true, shouldUpgrade: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders?>, upgradePipelineHandler: @escaping @Sendable (any CandleNIOCore.Channel, CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<UpgradeResult>)
+  #endif
+  final public func buildUpgradeResponse(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead, initialResponseHeaders: CandleNIOHTTP1.HTTPHeaders) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders>
+  final public func upgrade(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<UpgradeResult>
+  @objc deinit
+}
+public enum WebSocketErrorCode : Swift.Sendable {
+  case normalClosure
+  case goingAway
+  case protocolError
+  case unacceptableData
+  case dataInconsistentWithMessage
+  case policyViolation
+  case messageTooLarge
+  case missingExtension
+  case unexpectedServerError
+  case unknown(Swift.UInt16)
+  public init(codeNumber: Swift.Int)
+}
+extension CandleNIOWebSocket.WebSocketErrorCode : Swift.Equatable {
+  public static func == (a: CandleNIOWebSocket.WebSocketErrorCode, b: CandleNIOWebSocket.WebSocketErrorCode) -> Swift.Bool
+}
+extension CandleNIOCore.ByteBuffer {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func readWebSocketErrorCode() -> CandleNIOWebSocket.WebSocketErrorCode?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getWebSocketErrorCode(at index: Swift.Int) -> CandleNIOWebSocket.WebSocketErrorCode?
+  #endif
+  public mutating func write(webSocketErrorCode code: CandleNIOWebSocket.WebSocketErrorCode)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func peekWebSocketErrorCode() -> CandleNIOWebSocket.WebSocketErrorCode?
+  #endif
+}
+extension Swift.UInt16 {
+  public init(webSocketErrorCode code: CandleNIOWebSocket.WebSocketErrorCode)
+}
+public struct WebSocketMaskingKey : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?<T>(_ buffer: T) where T : Swift.Collection, T.Element == Swift.UInt8
+  #endif
+}
+extension CandleNIOWebSocket.WebSocketMaskingKey : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = Swift.UInt8
+  public init(arrayLiteral elements: Swift.UInt8...)
+}
+extension CandleNIOWebSocket.WebSocketMaskingKey {
+  public static func random<Generator>(using generator: inout Generator) -> CandleNIOWebSocket.WebSocketMaskingKey where Generator : Swift.RandomNumberGenerator
+  public static func random() -> CandleNIOWebSocket.WebSocketMaskingKey
+}
+extension CandleNIOWebSocket.WebSocketMaskingKey : Swift.Equatable {
+  public static func == (lhs: CandleNIOWebSocket.WebSocketMaskingKey, rhs: CandleNIOWebSocket.WebSocketMaskingKey) -> Swift.Bool
+}
+extension CandleNIOWebSocket.WebSocketMaskingKey : Swift.Collection {
+  public typealias Element = Swift.UInt8
+  public typealias Index = Swift.Int
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public func index(after: Swift.Int) -> Swift.Int
+  public subscript(index: Swift.Int) -> Swift.UInt8 {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> R) rethrows -> R?
+  #endif
+  public typealias Indices = Swift.DefaultIndices<CandleNIOWebSocket.WebSocketMaskingKey>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOWebSocket.WebSocketMaskingKey>
+  public typealias SubSequence = Swift.Slice<CandleNIOWebSocket.WebSocketMaskingKey>
+}
+public struct WebSocketFrame {
+  public var maskKey: CandleNIOWebSocket.WebSocketMaskingKey?
+  public var fin: Swift.Bool {
+    get
+    set
+  }
+  public var rsv1: Swift.Bool {
+    get
+    set
+  }
+  public var rsv2: Swift.Bool {
+    get
+    set
+  }
+  public var rsv3: Swift.Bool {
+    get
+    set
+  }
+  public var opcode: CandleNIOWebSocket.WebSocketOpcode {
+    get
+    set
+  }
+  public var length: Swift.Int {
+    get
+  }
+  public var data: CandleNIOCore.ByteBuffer {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var extensionData: CandleNIOCore.ByteBuffer? {
+    get
+    set
+  }
+  #endif
+  public var unmaskedData: CandleNIOCore.ByteBuffer {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var unmaskedExtensionData: CandleNIOCore.ByteBuffer? {
+    get
+  }
+  #endif
+  public init(allocator: CandleNIOCore.ByteBufferAllocator)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(fin: Swift.Bool = false, rsv1: Swift.Bool = false, rsv2: Swift.Bool = false, rsv3: Swift.Bool = false, opcode: CandleNIOWebSocket.WebSocketOpcode = .continuation, maskKey: CandleNIOWebSocket.WebSocketMaskingKey? = nil, data: CandleNIOCore.ByteBuffer, extensionData: CandleNIOCore.ByteBuffer? = nil)
+  #endif
+}
+extension CandleNIOWebSocket.WebSocketFrame : @unchecked Swift.Sendable {
+}
+extension CandleNIOWebSocket.WebSocketFrame : Swift.Equatable {
+  public static func == (a: CandleNIOWebSocket.WebSocketFrame, b: CandleNIOWebSocket.WebSocketFrame) -> Swift.Bool
+}
+extension CandleNIOWebSocket.WebSocketFrame : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOWebSocket.WebSocketFrame : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleNIOWebSocket.WebSocketFrame {
+  public struct ReservedBits : Swift.OptionSet, Swift.Sendable {
+    public var rawValue: Swift.UInt8
+    public init(rawValue: Swift.UInt8)
+    public static var rsv1: CandleNIOWebSocket.WebSocketFrame.ReservedBits {
+      get
+    }
+    public static var rsv2: CandleNIOWebSocket.WebSocketFrame.ReservedBits {
+      get
+    }
+    public static var rsv3: CandleNIOWebSocket.WebSocketFrame.ReservedBits {
+      get
+    }
+    public static var all: CandleNIOWebSocket.WebSocketFrame.ReservedBits {
+      get
+    }
+    public typealias ArrayLiteralElement = CandleNIOWebSocket.WebSocketFrame.ReservedBits
+    public typealias Element = CandleNIOWebSocket.WebSocketFrame.ReservedBits
+    public typealias RawValue = Swift.UInt8
+  }
+  public var reservedBits: CandleNIOWebSocket.WebSocketFrame.ReservedBits {
+    get
+    set
+  }
+}
+public enum NIOWebSocketError : Swift.Error {
+  case invalidFrameLength
+  case fragmentedControlFrame
+  case multiByteControlFrameLength
+  public static func == (a: CandleNIOWebSocket.NIOWebSocketError, b: CandleNIOWebSocket.NIOWebSocketError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOCore.ByteBuffer {
+  public mutating func webSocketUnmask(_ maskingKey: CandleNIOWebSocket.WebSocketMaskingKey, indexOffset: Swift.Int = 0)
+  public mutating func webSocketMask(_ maskingKey: CandleNIOWebSocket.WebSocketMaskingKey, indexOffset: Swift.Int = 0)
+}
+final public class WebSocketFrameDecoder : CandleNIOCore.ByteToMessageDecoder {
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOWebSocket.WebSocketFrame
+  public typealias OutboundOut = CandleNIOWebSocket.WebSocketFrame
+  public init(maxFrameSize: Swift.Int = 1 << 14)
+  final public func decode(context: CandleNIOCore.ChannelHandlerContext, buffer: inout CandleNIOCore.ByteBuffer) throws -> CandleNIOCore.DecodingState
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOWebSocket.WebSocketFrameDecoder : Swift.Sendable {
+}
+final public class WebSocketFrameEncoder : CandleNIOCore.ChannelOutboundHandler {
+  public typealias OutboundIn = CandleNIOWebSocket.WebSocketFrame
+  public typealias OutboundOut = CandleNIOCore.ByteBuffer
+  public init()
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOWebSocket.WebSocketFrameEncoder : Swift.Sendable {
+}
+public struct WebSocketOpcode : Swift.Sendable {
+  public static let continuation: CandleNIOWebSocket.WebSocketOpcode
+  public static let text: CandleNIOWebSocket.WebSocketOpcode
+  public static let binary: CandleNIOWebSocket.WebSocketOpcode
+  public static let connectionClose: CandleNIOWebSocket.WebSocketOpcode
+  public static let ping: CandleNIOWebSocket.WebSocketOpcode
+  public static let pong: CandleNIOWebSocket.WebSocketOpcode
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(encodedWebSocketOpcode encoded: Swift.UInt8)
+  #endif
+  public var isControlOpcode: Swift.Bool {
+    get
+  }
+}
+extension CandleNIOWebSocket.WebSocketOpcode : Swift.Equatable {
+  public static func == (a: CandleNIOWebSocket.WebSocketOpcode, b: CandleNIOWebSocket.WebSocketOpcode) -> Swift.Bool
+}
+extension CandleNIOWebSocket.WebSocketOpcode : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOWebSocket.WebSocketOpcode : Swift.CaseIterable {
+  public static var allCases: [CandleNIOWebSocket.WebSocketOpcode] {
+    get
+    @available(*, deprecated)
+    set
+  }
+  public typealias AllCases = [CandleNIOWebSocket.WebSocketOpcode]
+}
+extension CandleNIOWebSocket.WebSocketOpcode : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Swift.UInt8 {
+  public init(webSocketOpcode opcode: CandleNIOWebSocket.WebSocketOpcode)
+}
+extension Swift.Int {
+  public init(webSocketOpcode opcode: CandleNIOWebSocket.WebSocketOpcode)
+}
+final public class WebSocketProtocolErrorHandler : CandleNIOCore.ChannelInboundHandler {
+  public typealias InboundIn = Swift.Never
+  public typealias OutboundOut = CandleNIOWebSocket.WebSocketFrame
+  public init()
+  public init(isServer: Swift.Bool)
+  final public func errorCaught(context: CandleNIOCore.ChannelHandlerContext, error: any Swift.Error)
+  public typealias InboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOWebSocket.WebSocketProtocolErrorHandler : Swift.Sendable {
+}
+extension CandleNIOWebSocket.NIOWebSocketFrameAggregator.Error : Swift.Equatable {}
+extension CandleNIOWebSocket.NIOWebSocketFrameAggregator.Error : Swift.Hashable {}
+extension CandleNIOWebSocket.NIOWebSocketError : Swift.Equatable {}
+extension CandleNIOWebSocket.NIOWebSocketError : Swift.Hashable {}

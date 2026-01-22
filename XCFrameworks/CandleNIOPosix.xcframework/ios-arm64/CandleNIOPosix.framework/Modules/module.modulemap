@@ -1,0 +1,10 @@
+framework module CandleNIOPosix {
+    header "CandleNIOPosix-Swift.h"
+    export *
+    link framework "CandleCNIOLinux"
+    link framework "CandleCNIODarwin"
+    link framework "CandleCNIOWindows"
+    link framework "CandleNIOConcurrencyHelpers"
+    link framework "CandleNIOCore"
+    link framework "Candle_NIODataStructures"
+}

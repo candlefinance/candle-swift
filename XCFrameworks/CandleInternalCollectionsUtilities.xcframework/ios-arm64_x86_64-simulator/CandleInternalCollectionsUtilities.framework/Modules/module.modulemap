@@ -1,0 +1,4 @@
+framework module CandleInternalCollectionsUtilities {
+    header "CandleInternalCollectionsUtilities-Swift.h"
+    export *
+}

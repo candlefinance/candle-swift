@@ -1,0 +1,4 @@
+framework module CandleCCryptoBoringSSLShims {
+    header "CCryptoBoringSSLShims.h"
+    export *
+}

@@ -1,0 +1,4 @@
+framework module CandleCAsyncHTTPClient {
+    header "CAsyncHTTPClient.h"
+    export *
+}

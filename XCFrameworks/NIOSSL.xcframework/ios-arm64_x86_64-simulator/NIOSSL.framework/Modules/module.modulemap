@@ -1,6 +1,0 @@
-framework module NIOSSL {
-    header "NIOSSL-Swift.h"
-    export *
-    link framework "CNIOBoringSSL"
-    link framework "CNIOBoringSSLShims"
-}

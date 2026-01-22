@@ -1,0 +1,4 @@
+framework module Candle_NIOBase64 {
+    header "Candle_NIOBase64-Swift.h"
+    export *
+}

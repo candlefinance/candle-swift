@@ -1,0 +1,723 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleHTTPTypes
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+import Swift
+import Synchronization
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct HTTPField : Swift.Sendable, Swift.Hashable {
+  public struct DynamicTableIndexingStrategy : Swift.Sendable, Swift.Hashable {
+    public static var automatic: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var prefer: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var avoid: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static var disallow: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy {
+      get
+    }
+    public static func == (a: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy, b: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(name: CandleHTTPTypes.HTTPField.Name, value: Swift.String)
+  public init(name: CandleHTTPTypes.HTTPField.Name, value: some Collection<UInt8>)
+  public init(name: CandleHTTPTypes.HTTPField.Name, lenientValue: some Collection<UInt8>)
+  public var name: CandleHTTPTypes.HTTPField.Name
+  public var value: Swift.String {
+    get
+    set
+  }
+  public func withUnsafeBytesOfValue<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result
+  public var indexingStrategy: CandleHTTPTypes.HTTPField.DynamicTableIndexingStrategy
+  public static func isValidValue(_ value: Swift.String) -> Swift.Bool
+  public static func isValidValue(_ value: some Collection<UInt8>) -> Swift.Bool
+  public static func == (a: CandleHTTPTypes.HTTPField, b: CandleHTTPTypes.HTTPField) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField : Swift.CustomPlaygroundDisplayConvertible {
+  public var playgroundDescription: Any {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPField {
+  public struct Name : Swift.Sendable {
+    public let rawName: Swift.String
+    public let canonicalName: Swift.String
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(_ name: Swift.String)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(parsed name: Swift.String)
+    #endif
+  }
+}
+extension CandleHTTPTypes.HTTPField.Name : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: CandleHTTPTypes.HTTPField.Name, rhs: CandleHTTPTypes.HTTPField.Name) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField.Name : Swift.LosslessStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField.Name : Swift.CustomPlaygroundDisplayConvertible {
+  public var playgroundDescription: Any {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPField.Name : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPField.Name {
+  public static var accept: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptEncoding: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptLanguage: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var acceptRanges: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowCredentials: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowHeaders: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowMethods: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlAllowOrigin: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlExposeHeaders: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlMaxAge: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlRequestHeaders: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var accessControlRequestMethod: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var age: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var allow: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var authenticationInfo: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var authorization: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var cacheControl: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var connection: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentDisposition: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentEncoding: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLanguage: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLength: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentLocation: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentRange: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentSecurityPolicy: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentSecurityPolicyReportOnly: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var contentType: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var cookie: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var crossOriginResourcePolicy: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var date: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var earlyData: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var eTag: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var expect: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var expires: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var from: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  @available(*, unavailable, message: "Use HTTPRequest.authority instead")
+  public static var host: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifMatch: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifModifiedSince: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifNoneMatch: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifRange: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var ifUnmodifiedSince: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var lastModified: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var location: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var maxForwards: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var origin: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var priority: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthenticate: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthenticationInfo: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyAuthorization: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var proxyStatus: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var range: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var referer: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var retryAfter: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secPurpose: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketAccept: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketExtensions: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketKey: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketProtocol: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var secWebSocketVersion: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var server: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var setCookie: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var strictTransportSecurity: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var te: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var trailer: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var transferEncoding: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var upgrade: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var userAgent: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var vary: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var via: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var wwwAuthenticate: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+  public static var xContentTypeOptions: CandleHTTPTypes.HTTPField.Name {
+    get
+  }
+}
+public struct HTTPFields : Swift.Sendable, Swift.Hashable {
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(name: CandleHTTPTypes.HTTPField.Name) -> Swift.String? {
+    get
+    set
+  }
+  #endif
+  public subscript(values name: CandleHTTPTypes.HTTPField.Name) -> [Swift.String] {
+    get
+    set
+  }
+  public subscript(fields name: CandleHTTPTypes.HTTPField.Name) -> [CandleHTTPTypes.HTTPField] {
+    get
+    set
+  }
+  public func contains(_ name: CandleHTTPTypes.HTTPField.Name) -> Swift.Bool
+  public static func == (a: CandleHTTPTypes.HTTPFields, b: CandleHTTPTypes.HTTPFields) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPFields : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (CandleHTTPTypes.HTTPField.Name, Swift.String)...)
+  public typealias Key = CandleHTTPTypes.HTTPField.Name
+  public typealias Value = Swift.String
+}
+extension CandleHTTPTypes.HTTPFields : Swift.RangeReplaceableCollection, Swift.RandomAccessCollection, Swift.MutableCollection {
+  public typealias Element = CandleHTTPTypes.HTTPField
+  public typealias Index = Swift.Int
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public subscript(position: Swift.Int) -> CandleHTTPTypes.HTTPField {
+    get
+    set
+  }
+  public mutating func replaceSubrange<C>(_ subrange: Swift.Range<Swift.Int>, with newElements: C) where C : Swift.Collection, C.Element == CandleHTTPTypes.HTTPField
+  public mutating func reserveCapacity(_ capacity: Swift.Int)
+  public typealias Indices = Swift.Range<CandleHTTPTypes.HTTPFields.Index>
+  public typealias Iterator = Swift.IndexingIterator<CandleHTTPTypes.HTTPFields>
+  public typealias SubSequence = Swift.Slice<CandleHTTPTypes.HTTPFields>
+}
+extension CandleHTTPTypes.HTTPFields : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPRequest {
+  public init(parsed fields: [CandleHTTPTypes.HTTPField]) throws
+}
+extension CandleHTTPTypes.HTTPResponse {
+  public init(parsed fields: [CandleHTTPTypes.HTTPField]) throws
+}
+extension CandleHTTPTypes.HTTPFields {
+  public init(parsedTrailerFields fields: [CandleHTTPTypes.HTTPField]) throws
+}
+public struct HTTPRequest : Swift.Sendable, Swift.Hashable {
+  public struct Method : Swift.Sendable, Swift.Hashable, Swift.RawRepresentable, Swift.LosslessStringConvertible {
+    public let rawValue: Swift.String
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(_ method: Swift.String)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public var description: Swift.String {
+      get
+    }
+    public typealias RawValue = Swift.String
+  }
+  public var method: CandleHTTPTypes.HTTPRequest.Method {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var scheme: Swift.String? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var authority: Swift.String? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var path: Swift.String? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var extendedConnectProtocol: Swift.String? {
+    get
+    set
+  }
+  #endif
+  public struct PseudoHeaderFields : Swift.Sendable, Swift.Hashable {
+    public var method: CandleHTTPTypes.HTTPField {
+      get
+      set
+    }
+    public var scheme: CandleHTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var authority: CandleHTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var path: CandleHTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public var extendedConnectProtocol: CandleHTTPTypes.HTTPField? {
+      get
+      set
+    }
+    public static func == (a: CandleHTTPTypes.HTTPRequest.PseudoHeaderFields, b: CandleHTTPTypes.HTTPRequest.PseudoHeaderFields) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var pseudoHeaderFields: CandleHTTPTypes.HTTPRequest.PseudoHeaderFields
+  public var headerFields: CandleHTTPTypes.HTTPFields
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(method: CandleHTTPTypes.HTTPRequest.Method, scheme: Swift.String?, authority: Swift.String?, path: Swift.String?, headerFields: CandleHTTPTypes.HTTPFields = [:])
+  #endif
+  public static func == (a: CandleHTTPTypes.HTTPRequest, b: CandleHTTPTypes.HTTPRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPRequest : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPRequest.PseudoHeaderFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPRequest : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPRequest.Method {
+  public static var get: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var head: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var post: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var put: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var delete: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var connect: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var options: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var trace: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+  public static var patch: CandleHTTPTypes.HTTPRequest.Method {
+    get
+  }
+}
+public struct HTTPResponse : Swift.Sendable, Swift.Hashable {
+  public struct Status : Swift.Sendable, Swift.Hashable, Swift.ExpressibleByIntegerLiteral, Swift.CustomStringConvertible {
+    public let code: Swift.Int
+    public let reasonPhrase: Swift.String
+    public init(code: Swift.Int, reasonPhrase: Swift.String = "")
+    public init(integerLiteral value: Swift.Int)
+    @frozen public enum Kind {
+      case invalid
+      case informational
+      case successful
+      case redirection
+      case clientError
+      case serverError
+      public static func == (a: CandleHTTPTypes.HTTPResponse.Status.Kind, b: CandleHTTPTypes.HTTPResponse.Status.Kind) -> Swift.Bool
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
+    public var kind: CandleHTTPTypes.HTTPResponse.Status.Kind {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (lhs: CandleHTTPTypes.HTTPResponse.Status, rhs: CandleHTTPTypes.HTTPResponse.Status) -> Swift.Bool
+    public var description: Swift.String {
+      get
+    }
+    public typealias IntegerLiteralType = Swift.Int
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var status: CandleHTTPTypes.HTTPResponse.Status {
+    get
+    set
+  }
+  public struct PseudoHeaderFields : Swift.Sendable, Swift.Hashable {
+    public var status: CandleHTTPTypes.HTTPField {
+      get
+      set
+    }
+    public static func == (a: CandleHTTPTypes.HTTPResponse.PseudoHeaderFields, b: CandleHTTPTypes.HTTPResponse.PseudoHeaderFields) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var pseudoHeaderFields: CandleHTTPTypes.HTTPResponse.PseudoHeaderFields
+  public var headerFields: CandleHTTPTypes.HTTPFields
+  public init(status: CandleHTTPTypes.HTTPResponse.Status, headerFields: CandleHTTPTypes.HTTPFields = [:])
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: CandleHTTPTypes.HTTPResponse, rhs: CandleHTTPTypes.HTTPResponse) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPResponse : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPResponse.PseudoHeaderFields : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPResponse : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension CandleHTTPTypes.HTTPResponse.Status {
+  public static var `continue`: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var switchingProtocols: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var earlyHints: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var ok: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var created: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var accepted: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var nonAuthoritativeInformation: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var noContent: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var resetContent: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var partialContent: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var multipleChoices: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var movedPermanently: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var found: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var seeOther: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notModified: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var temporaryRedirect: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var permanentRedirect: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var badRequest: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unauthorized: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var forbidden: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notFound: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var methodNotAllowed: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notAcceptable: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var proxyAuthenticationRequired: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var requestTimeout: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var conflict: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var gone: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var lengthRequired: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var preconditionFailed: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var contentTooLarge: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var uriTooLong: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unsupportedMediaType: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var rangeNotSatisfiable: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var expectationFailed: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var misdirectedRequest: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unprocessableContent: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var tooEarly: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var upgradeRequired: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var preconditionRequired: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var tooManyRequests: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var requestHeaderFieldsTooLarge: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var unavailableForLegalReasons: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var internalServerError: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var notImplemented: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var badGateway: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var serviceUnavailable: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var gatewayTimeout: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var httpVersionNotSupported: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+  public static var networkAuthenticationRequired: CandleHTTPTypes.HTTPResponse.Status {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPResponse.Status.Kind : Swift.Equatable {}
+extension CandleHTTPTypes.HTTPResponse.Status.Kind : Swift.Hashable {}
+extension CandleHTTPTypes.HTTPResponse.Status.Kind : Swift.Sendable {}
+extension CandleHTTPTypes.HTTPResponse.Status.Kind : Swift.BitwiseCopyable {}

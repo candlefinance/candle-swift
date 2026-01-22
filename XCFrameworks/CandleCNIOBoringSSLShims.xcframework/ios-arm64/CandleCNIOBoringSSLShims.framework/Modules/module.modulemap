@@ -1,0 +1,5 @@
+framework module CandleCNIOBoringSSLShims {
+    header "CNIOBoringSSLShims.h"
+    export *
+    link framework "CandleCNIOBoringSSL"
+}

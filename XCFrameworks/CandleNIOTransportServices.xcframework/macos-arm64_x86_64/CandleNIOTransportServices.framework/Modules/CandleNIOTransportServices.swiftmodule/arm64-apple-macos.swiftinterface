@@ -1,0 +1,460 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOTransportServices
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleAtomics
+import CandleNIOConcurrencyHelpers
+import CandleNIOCore
+import CandleNIOFoundationCompat
+import CandleNIOTLS
+import Darwin
+import Dispatch
+import Dispatch/*.DispatchSource*/
+import Foundation
+import Network
+import Security
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+final public class NIOTSDatagramBootstrap {
+  public init(group: any CandleNIOCore.EventLoopGroup)
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func connectTimeout(_ timeout: CandleNIOCore.TimeAmount) -> Self
+  final public func withQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func udpOptions(_ options: Network.NWProtocolUDP.Options) -> Self
+  final public func tlsOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func configureNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func connect(host: Swift.String, port: Swift.Int) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(to address: CandleNIOCore.SocketAddress) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(unixDomainSocketPath: Swift.String) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(endpoint: Network.NWEndpoint) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOTSDatagramBootstrap : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+final public class NIOTSDatagramListenerBootstrap {
+  convenience public init(group: any CandleNIOCore.EventLoopGroup)
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  convenience public init(group: any CandleNIOCore.EventLoopGroup, childGroup: any CandleNIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(validatingGroup group: any CandleNIOCore.EventLoopGroup, childGroup: (any CandleNIOCore.EventLoopGroup)? = nil)
+  #endif
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup, childGroup: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func serverChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func childChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func bindTimeout(_ timeout: CandleNIOCore.TimeAmount) -> Self
+  final public func serverQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func childQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func udpOptions(_ options: Network.NWProtocolUDP.Options) -> Self
+  final public func childUDPOptions(_ options: Network.NWProtocolUDP.Options) -> Self
+  final public func tlsOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func childTLSOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func configureNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func configureChildNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func bind(host: Swift.String, port: Swift.Int) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(to address: CandleNIOCore.SocketAddress) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(endpoint: Network.NWEndpoint) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func withNWListener(_ listener: Network.NWListener) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOTSDatagramListenerBootstrap : Swift.Sendable {
+}
+final public class NIOFilterEmptyWritesHandler : CandleNIOCore.ChannelDuplexHandler {
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOCore.ByteBuffer
+  public typealias OutboundIn = CandleNIOCore.ByteBuffer
+  public typealias OutboundOut = CandleNIOCore.ByteBuffer
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: CandleNIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOFilterEmptyWritesHandler : Swift.Sendable {
+}
+extension CandleNIOTransportServices.NIOFilterEmptyWritesHandler {
+  final public func channelActive(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelInactive(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func close(context: CandleNIOCore.ChannelHandlerContext, mode: CandleNIOCore.CloseMode, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func errorCaught(context: CandleNIOCore.ChannelHandlerContext, error: any Swift.Error)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public struct NIOTSChannelOptions : Swift.Sendable {
+  public static let waitForActivity: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSWaitForActivityOption
+  public static let enablePeerToPeer: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEnablePeerToPeerOption
+  public static let allowLocalEndpointReuse: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSAllowLocalEndpointReuse
+  public static let currentPath: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSCurrentPathOption
+  public static let metadata: @Sendable (_ definition: Network.NWProtocolDefinition) -> CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMetadataOption
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public static let establishmentReport: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEstablishmentReportOption
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  public static let dataTransferReport: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSDataTransferReportOption
+  public static let multipathServiceType: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMultipathOption
+  @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+  public static let connection: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSConnectionOption
+  @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+  public static let listener: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSListenerOption
+  public static let minimumIncompleteReceiveLength: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMinimumIncompleteReceiveLengthOption
+  public static let maximumReceiveLength: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMaximumReceiveLengthOption
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSChannelOptions {
+  public enum Types : Swift.Sendable {
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSWaitForActivityOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Swift.Bool
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSWaitForActivityOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSWaitForActivityOption) -> Swift.Bool
+    }
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSEnablePeerToPeerOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Swift.Bool
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEnablePeerToPeerOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEnablePeerToPeerOption) -> Swift.Bool
+    }
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSAllowLocalEndpointReuse : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Swift.Bool
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSAllowLocalEndpointReuse, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSAllowLocalEndpointReuse) -> Swift.Bool
+    }
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSCurrentPathOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWPath
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSCurrentPathOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSCurrentPathOption) -> Swift.Bool
+    }
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSMetadataOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWProtocolMetadata
+      public init(definition: Network.NWProtocolDefinition)
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMetadataOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMetadataOption) -> Swift.Bool
+    }
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    public struct NIOTSEstablishmentReportOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = CandleNIOCore.EventLoopFuture<Network.NWConnection.EstablishmentReport?>
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEstablishmentReportOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEstablishmentReportOption) -> Swift.Bool
+    }
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    public struct NIOTSDataTransferReportOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWConnection.PendingDataTransferReport
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSDataTransferReportOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSDataTransferReportOption) -> Swift.Bool
+    }
+    @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+    public struct NIOTSMultipathOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWParameters.MultipathServiceType
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMultipathOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMultipathOption) -> Swift.Bool
+    }
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+    public struct NIOTSConnectionOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWConnection?
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSConnectionOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSConnectionOption) -> Swift.Bool
+    }
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, tvOS 17.0, *)
+    public struct NIOTSListenerOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Network.NWListener?
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSListenerOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSListenerOption) -> Swift.Bool
+    }
+    public struct NIOTSMinimumIncompleteReceiveLengthOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Swift.Int
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMinimumIncompleteReceiveLengthOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMinimumIncompleteReceiveLengthOption) -> Swift.Bool
+    }
+    public struct NIOTSMaximumReceiveLengthOption : CandleNIOCore.ChannelOption, Swift.Equatable {
+      public typealias Value = Swift.Int
+      public init()
+      public static func == (a: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMaximumReceiveLengthOption, b: CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSMaximumReceiveLengthOption) -> Swift.Bool
+    }
+  }
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+@available(*, deprecated, renamed: "NIOTSChannelOptions.Types.NIOTSWaitForActivityOption")
+public typealias NIOTSWaitForActivityOption = CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSWaitForActivityOption
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+@available(*, deprecated, renamed: "NIOTSChannelOptions.Types.NIOTSEnablePeerToPeerOption")
+public typealias NIOTSEnablePeerToPeerOption = CandleNIOTransportServices.NIOTSChannelOptions.Types.NIOTSEnablePeerToPeerOption
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+final public class NIOTSConnectionBootstrap {
+  convenience public init(group: any CandleNIOCore.EventLoopGroup)
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(validatingGroup group: any CandleNIOCore.EventLoopGroup)
+  #endif
+  @preconcurrency final public func channelInitializer(_ handler: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func channelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func connectTimeout(_ timeout: CandleNIOCore.TimeAmount) -> Self
+  final public func withQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func tcpOptions(_ options: Network.NWProtocolTCP.Options) -> Self
+  final public func tlsOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func withMultipath(_ type: Network.NWParameters.MultipathServiceType) -> Self
+  final public func configureNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func connect(host: Swift.String, port: Swift.Int) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(to address: CandleNIOCore.SocketAddress) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(unixDomainSocketPath: Swift.String) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func connect(endpoint: Network.NWEndpoint) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func withExistingNWConnection(_ connection: Network.NWConnection) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  @preconcurrency final public func protocolHandlers(_ handlers: @escaping @Sendable () -> [any CandleNIOCore.ChannelHandler]) -> Self
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleNIOTransportServices.NIOTSConnectionBootstrap {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(host: Swift.String, port: Swift.Int, channelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(to address: CandleNIOCore.SocketAddress, channelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(unixDomainSocketPath: Swift.String, channelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func connect<Output>(endpoint: Network.NWEndpoint, channelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func withExistingNWConnection<Output>(_ connection: Network.NWConnection, channelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> Output where Output : Swift.Sendable
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOTSConnectionBootstrap : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSConnectionBootstrap : CandleNIOCore.NIOClientTCPBootstrapProtocol {
+  final public func _applyChannelConvenienceOptions(_ options: inout CandleNIOCore.ChannelOptions.TCPConvenienceOptions) -> Self
+}
+public struct NIOTSConnectionNotInitialized : Swift.Error, Swift.Hashable {
+  public init()
+  public static func == (a: CandleNIOTransportServices.NIOTSConnectionNotInitialized, b: CandleNIOTransportServices.NIOTSConnectionNotInitialized) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOTSChannelIsNotANIOTSConnectionChannel : Swift.Error, Swift.Hashable {
+  public init()
+  public static func == (a: CandleNIOTransportServices.NIOTSChannelIsNotANIOTSConnectionChannel, b: CandleNIOTransportServices.NIOTSChannelIsNotANIOTSConnectionChannel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getMetadata(definition: Network.NWProtocolDefinition) -> CandleNIOCore.EventLoopFuture<Network.NWProtocolMetadata?>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getMetadataSync(definition: Network.NWProtocolDefinition, file: Swift.StaticString = #fileID, line: Swift.UInt = #line) throws -> Network.NWProtocolMetadata?
+  #endif
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public protocol NIOTSError : Swift.Equatable, Swift.Error {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public enum NIOTSErrors : Swift.Sendable {
+  public struct InvalidChannelStateTransition : CandleNIOTransportServices.NIOTSError {
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.InvalidChannelStateTransition, b: CandleNIOTransportServices.NIOTSErrors.InvalidChannelStateTransition) -> Swift.Bool
+  }
+  public struct NotPreConfigured : CandleNIOTransportServices.NIOTSError {
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.NotPreConfigured, b: CandleNIOTransportServices.NIOTSErrors.NotPreConfigured) -> Swift.Bool
+  }
+  public struct UnsupportedSocketOption : CandleNIOTransportServices.NIOTSError {
+    public let optionValue: CandleNIOCore.ChannelOptions.Types.SocketOption
+    public static func == (lhs: CandleNIOTransportServices.NIOTSErrors.UnsupportedSocketOption, rhs: CandleNIOTransportServices.NIOTSErrors.UnsupportedSocketOption) -> Swift.Bool
+  }
+  public struct NoCurrentPath : CandleNIOTransportServices.NIOTSError {
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.NoCurrentPath, b: CandleNIOTransportServices.NIOTSErrors.NoCurrentPath) -> Swift.Bool
+  }
+  public struct NoCurrentConnection : CandleNIOTransportServices.NIOTSError {
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.NoCurrentConnection, b: CandleNIOTransportServices.NIOTSErrors.NoCurrentConnection) -> Swift.Bool
+  }
+  public struct InvalidPort : CandleNIOTransportServices.NIOTSError {
+    public let port: Swift.Int
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.InvalidPort, b: CandleNIOTransportServices.NIOTSErrors.InvalidPort) -> Swift.Bool
+  }
+  public struct UnableToResolveEndpoint : CandleNIOTransportServices.NIOTSError {
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.UnableToResolveEndpoint, b: CandleNIOTransportServices.NIOTSErrors.UnableToResolveEndpoint) -> Swift.Bool
+  }
+  public struct BindTimeout : CandleNIOTransportServices.NIOTSError {
+    public var timeout: CandleNIOCore.TimeAmount
+    public init(timeout: CandleNIOCore.TimeAmount)
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.BindTimeout, b: CandleNIOTransportServices.NIOTSErrors.BindTimeout) -> Swift.Bool
+  }
+  public struct InvalidHostname : CandleNIOTransportServices.NIOTSError {
+    public init()
+    public static func == (a: CandleNIOTransportServices.NIOTSErrors.InvalidHostname, b: CandleNIOTransportServices.NIOTSErrors.InvalidHostname) -> Swift.Bool
+  }
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public protocol QoSEventLoop : CandleNIOCore.EventLoop {
+  @preconcurrency func execute(qos: Dispatch.DispatchQoS, _ task: @escaping @Sendable () -> Swift.Void)
+  @preconcurrency func scheduleTask<T>(in time: CandleNIOCore.TimeAmount, qos: Dispatch.DispatchQoS, _ task: @escaping @Sendable () throws -> T) -> CandleNIOCore.Scheduled<T>
+}
+@_hasMissingDesignatedInitializers @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+final public class NIOTSEventLoopGroup : CandleNIOCore.EventLoopGroup {
+  convenience public init(loopCount: Swift.Int = 1, defaultQoS: Dispatch.DispatchQoS = .default)
+  public static func _makePerpetualGroup(loopCount: Swift.Int, defaultQoS: Dispatch.DispatchQoS) -> Self
+  final public func next() -> any CandleNIOCore.EventLoop
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func shutdownGracefully(queue: Dispatch.DispatchQueue, _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
+  final public func makeIterator() -> CandleNIOCore.EventLoopIterator
+  @objc deinit
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public struct NIOTSClientTLSProvider : CandleNIOCore.NIOClientTLSProvider {
+  public typealias Bootstrap = CandleNIOTransportServices.NIOTSConnectionBootstrap
+  public init(tlsOptions: Network.NWProtocolTLS.Options = NWProtocolTLS.Options())
+  public func enableTLS(_ bootstrap: CandleNIOTransportServices.NIOTSConnectionBootstrap) -> CandleNIOTransportServices.NIOTSConnectionBootstrap
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSEventLoopGroup : @unchecked Swift.Sendable {
+}
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOTSClientTLSProvider : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+final public class NIOTSListenerBootstrap {
+  convenience public init(group: any CandleNIOCore.EventLoopGroup)
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  convenience public init(group: any CandleNIOCore.EventLoopGroup, childGroup: any CandleNIOCore.EventLoopGroup)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(validatingGroup group: any CandleNIOCore.EventLoopGroup, childGroup: (any CandleNIOCore.EventLoopGroup)? = nil)
+  #endif
+  convenience public init(group: CandleNIOTransportServices.NIOTSEventLoopGroup, childGroup: CandleNIOTransportServices.NIOTSEventLoopGroup)
+  @preconcurrency final public func serverChannelInitializer(_ initializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  @preconcurrency final public func childChannelInitializer(_ initializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> Self
+  final public func serverChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func childChannelOption<Option>(_ option: Option, value: Option.Value) -> Self where Option : CandleNIOCore.ChannelOption
+  final public func bindTimeout(_ timeout: CandleNIOCore.TimeAmount) -> Self
+  final public func serverQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func childQoS(_ qos: Dispatch.DispatchQoS) -> Self
+  final public func tcpOptions(_ options: Network.NWProtocolTCP.Options) -> Self
+  final public func childTCPOptions(_ options: Network.NWProtocolTCP.Options) -> Self
+  final public func tlsOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func childTLSOptions(_ options: Network.NWProtocolTLS.Options) -> Self
+  final public func configureNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func configureChildNWParameters(_ configurator: @escaping @Sendable (Network.NWParameters) -> Swift.Void) -> Self
+  final public func withMultipath(_ type: Network.NWParameters.MultipathServiceType) -> Self
+  final public func bind(host: Swift.String, port: Swift.Int) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(to address: CandleNIOCore.SocketAddress) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(unixDomainSocketPath: Swift.String) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func bind(endpoint: Network.NWEndpoint) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  final public func withNWListener(_ listener: Network.NWListener) -> CandleNIOCore.EventLoopFuture<any CandleNIOCore.Channel>
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleNIOTransportServices.NIOTSListenerBootstrap {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(host: Swift.String, port: Swift.Int, serverBackPressureStrategy: CandleNIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> CandleNIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(to address: CandleNIOCore.SocketAddress, serverBackPressureStrategy: CandleNIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> CandleNIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func bind<Output>(endpoint: Network.NWEndpoint, serverBackPressureStrategy: CandleNIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> CandleNIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  final public func withNWListener<Output>(_ listener: Network.NWListener, serverBackPressureStrategy: CandleNIOCore.NIOAsyncSequenceProducerBackPressureStrategies.HighLowWatermark? = nil, childChannelInitializer: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Output>) async throws -> CandleNIOCore.NIOAsyncChannel<Output, Swift.Never> where Output : Swift.Sendable
+  #endif
+}
+@available(*, unavailable)
+extension CandleNIOTransportServices.NIOTSListenerBootstrap : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public protocol NIOTSNetworkEvent : CandleNIOCore._NIOPreconcurrencySendable, Swift.Equatable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+public enum NIOTSNetworkEvents : Swift.Sendable {
+  public struct BetterPathAvailable : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public init()
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathAvailable, b: CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathAvailable) -> Swift.Bool
+  }
+  public struct BetterPathUnavailable : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public init()
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathUnavailable, b: CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathUnavailable) -> Swift.Bool
+  }
+  public struct ViabilityUpdate : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public var isViable: Swift.Bool
+    public init(isViable: Swift.Bool)
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.ViabilityUpdate, b: CandleNIOTransportServices.NIOTSNetworkEvents.ViabilityUpdate) -> Swift.Bool
+  }
+  public struct PathChanged : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public let newPath: Network.NWPath
+    public init(newPath: Network.NWPath)
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.PathChanged, b: CandleNIOTransportServices.NIOTSNetworkEvents.PathChanged) -> Swift.Bool
+  }
+  public struct ConnectToNWEndpoint : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public let endpoint: Network.NWEndpoint
+    public init(endpoint: Network.NWEndpoint)
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.ConnectToNWEndpoint, b: CandleNIOTransportServices.NIOTSNetworkEvents.ConnectToNWEndpoint) -> Swift.Bool
+  }
+  public struct BindToNWEndpoint : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public let endpoint: Network.NWEndpoint
+    public init(endpoint: Network.NWEndpoint)
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.BindToNWEndpoint, b: CandleNIOTransportServices.NIOTSNetworkEvents.BindToNWEndpoint) -> Swift.Bool
+  }
+  public struct WaitingForConnectivity : CandleNIOTransportServices.NIOTSNetworkEvent {
+    public var transientError: Network.NWError
+    public init(transientError: Network.NWError)
+    public static func == (a: CandleNIOTransportServices.NIOTSNetworkEvents.WaitingForConnectivity, b: CandleNIOTransportServices.NIOTSNetworkEvents.WaitingForConnectivity) -> Swift.Bool
+  }
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathAvailable : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.BetterPathUnavailable : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.ViabilityUpdate : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.PathChanged : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.ConnectToNWEndpoint : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.BindToNWEndpoint : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSNetworkEvents.WaitingForConnectivity : Swift.Sendable {
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOTransportServices.NIOTSEventLoopGroup {
+  public static var singleton: CandleNIOTransportServices.NIOTSEventLoopGroup {
+    get
+  }
+}
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+extension CandleNIOCore.EventLoopGroup where Self == CandleNIOTransportServices.NIOTSEventLoopGroup {
+  public static var singletonNIOTSEventLoopGroup: CandleNIOTransportServices.NIOTSEventLoopGroup {
+    get
+  }
+}
+extension CandleNIOCore.NIOSingletons {
+  @available(macOS 10.14, iOS 12.0, tvOS 12.0, watchOS 6.0, *)
+  public static var transportServicesEventLoopGroup: CandleNIOTransportServices.NIOTSEventLoopGroup {
+    get
+  }
+}

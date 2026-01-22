@@ -1,0 +1,4 @@
+framework module CandleOpenAPIURLSession {
+    header "CandleOpenAPIURLSession-Swift.h"
+    export *
+}

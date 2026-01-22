@@ -1,5 +1,0 @@
-framework module CNIOBoringSSLShims {
-    umbrella header "CNIOBoringSSLShims.h"
-    export *
-    link framework "CNIOBoringSSL"
-}

@@ -1,0 +1,6 @@
+framework module CandleNIOTLS {
+    header "CandleNIOTLS-Swift.h"
+    export *
+    link framework "CandleNIO"
+    link framework "CandleNIOCore"
+}

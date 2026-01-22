@@ -1,0 +1,3242 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleNIOFoundationCompat",
+    "printedName": "CandleNIOFoundationCompat",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ByteBufferFoundationError",
+        "printedName": "ByteBufferFoundationError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "failedToEncodeString",
+            "printedName": "failedToEncodeString",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOFoundationCompat.ByteBufferFoundationError.Type) -> CandleNIOFoundationCompat.ByteBufferFoundationError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferFoundationError",
+                    "printedName": "CandleNIOFoundationCompat.ByteBufferFoundationError",
+                    "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOFoundationCompat.ByteBufferFoundationError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBufferFoundationError",
+                        "printedName": "CandleNIOFoundationCompat.ByteBufferFoundationError",
+                        "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO20failedToEncodeStringyA2CmF",
+            "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO20failedToEncodeStringyA2CmF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBufferFoundationError",
+                "printedName": "CandleNIOFoundationCompat.ByteBufferFoundationError",
+                "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBufferFoundationError",
+                "printedName": "CandleNIOFoundationCompat.ByteBufferFoundationError",
+                "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleNIOFoundationCompat",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO9hashValueSivp",
+            "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO9hashValueSivp",
+            "moduleName": "CandleNIOFoundationCompat",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO9hashValueSivg",
+                "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO9hashValueSivg",
+                "moduleName": "CandleNIOFoundationCompat",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO4hash4intoys6HasherVz_tF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:25CandleNIOFoundationCompat25ByteBufferFoundationErrorO",
+        "mangledName": "$s25CandleNIOFoundationCompat25ByteBufferFoundationErrorO",
+        "moduleName": "CandleNIOFoundationCompat",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleAtomics",
+        "printedName": "CandleAtomics",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOConcurrencyHelpers",
+        "printedName": "CandleNIOConcurrencyHelpers",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOFoundationCompat"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ByteBuffer",
+        "printedName": "ByteBuffer",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "ByteTransferStrategy",
+            "printedName": "ByteTransferStrategy",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "copy",
+                "printedName": "copy",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type) -> CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteTransferStrategy",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                        "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ByteTransferStrategy",
+                            "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO4copyyA2FmF",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO4copyyA2FmF",
+                "moduleName": "CandleNIOFoundationCompat",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "noCopy",
+                "printedName": "noCopy",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type) -> CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteTransferStrategy",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                        "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ByteTransferStrategy",
+                            "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO6noCopyyA2FmF",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO6noCopyyA2FmF",
+                "moduleName": "CandleNIOFoundationCompat",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "automatic",
+                "printedName": "automatic",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type) -> CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteTransferStrategy",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                        "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ByteTransferStrategy",
+                            "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9automaticyA2FmF",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9automaticyA2FmF",
+                "moduleName": "CandleNIOFoundationCompat",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteTransferStrategy",
+                    "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                    "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteTransferStrategy",
+                    "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                    "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO2eeoiySbAF_AFtFZ",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO2eeoiySbAF_AFtFZ",
+                "moduleName": "CandleNIOFoundationCompat",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9hashValueSivp",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9hashValueSivp",
+                "moduleName": "CandleNIOFoundationCompat",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9hashValueSivg",
+                    "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO9hashValueSivg",
+                    "moduleName": "CandleNIOFoundationCompat",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO4hash4intoys6HasherVz_tF",
+                "moduleName": "CandleNIOFoundationCompat",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "readData",
+            "printedName": "readData(length:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8readData6length10Foundation0H0VSgSi_tF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8readData6length10Foundation0H0VSgSi_tF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "readData",
+            "printedName": "readData(length:byteTransferStrategy:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteTransferStrategy",
+                "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8readData6length20byteTransferStrategy10Foundation0H0VSgSi_AcDE0ckL0OtF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8readData6length20byteTransferStrategy10Foundation0H0VSgSi_AcDE0ckL0OtF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getData",
+            "printedName": "getData(at:length:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7getData2at6length10Foundation0H0VSgSi_SitF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7getData2at6length10Foundation0H0VSgSi_SitF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getData",
+            "printedName": "getData(at:length:byteTransferStrategy:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteTransferStrategy",
+                "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7getData2at6length20byteTransferStrategy10Foundation0H0VSgSi_SiAcDE0clM0OtF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7getData2at6length20byteTransferStrategy10Foundation0H0VSgSi_SiAcDE0clM0OtF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peekData",
+            "printedName": "peekData(length:byteTransferStrategy:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteTransferStrategy",
+                "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8peekData6length20byteTransferStrategy10Foundation0H0VSgSi_AcDE0ckL0OtF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE8peekData6length20byteTransferStrategy10Foundation0H0VSgSi_AcDE0ckL0OtF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getString",
+            "printedName": "getString(at:length:encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoding",
+                "printedName": "Swift.String.Encoding",
+                "usr": "s:SS10FoundationE8EncodingV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9getString2at6length8encodingSSSgSi_SiSS10FoundationE8EncodingVtF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9getString2at6length8encodingSSSgSi_SiSS10FoundationE8EncodingVtF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "readString",
+            "printedName": "readString(length:encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoding",
+                "printedName": "Swift.String.Encoding",
+                "usr": "s:SS10FoundationE8EncodingV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE10readString6length8encodingSSSgSi_SS10FoundationE8EncodingVtF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE10readString6length8encodingSSSgSi_SS10FoundationE8EncodingVtF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "writeString",
+            "printedName": "writeString(_:encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoding",
+                "printedName": "Swift.String.Encoding",
+                "usr": "s:SS10FoundationE8EncodingV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE11writeString_8encodingSiSS_SS10FoundationE8EncodingVtKF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE11writeString_8encodingSiSS_SS10FoundationE8EncodingVtKF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setString",
+            "printedName": "setString(_:encoding:at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoding",
+                "printedName": "Swift.String.Encoding",
+                "usr": "s:SS10FoundationE8EncodingV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9setString_8encoding2atSiSS_SS10FoundationE8EncodingVSitKF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9setString_8encoding2atSiSS_SS10FoundationE8EncodingVSitKF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE4dataAC10Foundation4DataV_tcfc",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE4dataAC10Foundation4DataV_tcfc",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "writeContiguousBytes",
+            "printedName": "writeContiguousBytes(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE20writeContiguousBytesySix10Foundation0hI0RzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE20writeContiguousBytesySix10Foundation0hI0RzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Foundation.ContiguousBytes>",
+            "sugared_genericSig": "<Bytes where Bytes : Foundation.ContiguousBytes>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setContiguousBytes",
+            "printedName": "setContiguousBytes(_:at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE18setContiguousBytes_2atSix_Sit10Foundation0hI0RzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE18setContiguousBytes_2atSix_Sit10Foundation0hI0RzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Foundation.ContiguousBytes>",
+            "sugared_genericSig": "<Bytes where Bytes : Foundation.ContiguousBytes>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "writeData",
+            "printedName": "writeData(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9writeDataySix10Foundation0H8ProtocolRzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE9writeDataySix10Foundation0H8ProtocolRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Foundation.DataProtocol>",
+            "sugared_genericSig": "<D where D : Foundation.DataProtocol>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setData",
+            "printedName": "setData(_:at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7setData_2atSix_Sit10Foundation0H8ProtocolRzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE7setData_2atSix_Sit10Foundation0H8ProtocolRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Foundation.DataProtocol>",
+            "sugared_genericSig": "<D where D : Foundation.DataProtocol>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getUUIDBytes",
+            "printedName": "getUUIDBytes(at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.UUID?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE12getUUIDBytes2at10Foundation4UUIDVSgSi_tF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE12getUUIDBytes2at10Foundation4UUIDVSgSi_tF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setUUIDBytes",
+            "printedName": "setUUIDBytes(_:at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UUID",
+                "printedName": "Foundation.UUID",
+                "usr": "s:10Foundation4UUIDV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE12setUUIDBytes_2atSi10Foundation4UUIDV_SitF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE12setUUIDBytes_2atSi10Foundation4UUIDV_SitF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "readUUIDBytes",
+            "printedName": "readUUIDBytes()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.UUID?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE13readUUIDBytes10Foundation4UUIDVSgyF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE13readUUIDBytes10Foundation4UUIDVSgyF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "writeUUIDBytes",
+            "printedName": "writeUUIDBytes(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UUID",
+                "printedName": "Foundation.UUID",
+                "usr": "s:10Foundation4UUIDV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE14writeUUIDBytesySi10Foundation4UUIDVF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE14writeUUIDBytesySi10Foundation4UUIDVF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peekUUIDBytes",
+            "printedName": "peekUUIDBytes()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.UUID?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE13peekUUIDBytes10Foundation4UUIDVSgyF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE13peekUUIDBytes10Foundation4UUIDVSgyF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getJSONDecodable",
+            "printedName": "getJSONDecodable(_:decoder:at:length:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_0_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "JSONDecoder",
+                "printedName": "Foundation.JSONDecoder",
+                "hasDefaultArg": true,
+                "usr": "s:10Foundation11JSONDecoderC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE16getJSONDecodable_7decoder2at6lengthxSgxm_10Foundation11JSONDecoderCS2itKSeRzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE16getJSONDecodable_7decoder2at6lengthxSgxm_10Foundation11JSONDecoderCS2itKSeRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable>",
+            "sugared_genericSig": "<T where T : Swift.Decodable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "readJSONDecodable",
+            "printedName": "readJSONDecodable(_:decoder:length:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_0_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "JSONDecoder",
+                "printedName": "Foundation.JSONDecoder",
+                "hasDefaultArg": true,
+                "usr": "s:10Foundation11JSONDecoderC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE17readJSONDecodable_7decoder6lengthxSgxm_10Foundation11JSONDecoderCSitKSeRzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE17readJSONDecodable_7decoder6lengthxSgxm_10Foundation11JSONDecoderCSitKSeRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable>",
+            "sugared_genericSig": "<T where T : Swift.Decodable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setJSONEncodable",
+            "printedName": "setJSONEncodable(_:encoder:at:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "JSONEncoder",
+                "printedName": "Foundation.JSONEncoder",
+                "hasDefaultArg": true,
+                "usr": "s:10Foundation11JSONEncoderC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE16setJSONEncodable_7encoder2atSix_10Foundation11JSONEncoderCSitKSERzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE16setJSONEncodable_7encoder2atSix_10Foundation11JSONEncoderCSitKSERzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
+            "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "writeJSONEncodable",
+            "printedName": "writeJSONEncodable(_:encoder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "JSONEncoder",
+                "printedName": "Foundation.JSONEncoder",
+                "hasDefaultArg": true,
+                "usr": "s:10Foundation11JSONEncoderC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE18writeJSONEncodable_7encoderSix_10Foundation11JSONEncoderCtKSERzlF",
+            "mangledName": "$s13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE18writeJSONEncodable_7encoderSix_10Foundation11JSONEncoderCtKSERzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
+            "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "Mutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:13CandleNIOCore10ByteBufferV",
+        "mangledName": "$s13CandleNIOCore10ByteBufferV",
+        "moduleName": "CandleNIOCore",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ByteBufferAllocator",
+        "printedName": "ByteBufferAllocator",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "buffer",
+            "printedName": "buffer(data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore19ByteBufferAllocatorV0A19NIOFoundationCompatE6buffer4dataAA0cD0V10Foundation4DataV_tF",
+            "mangledName": "$s13CandleNIOCore19ByteBufferAllocatorV0A19NIOFoundationCompatE6buffer4dataAA0cD0V10Foundation4DataV_tF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:13CandleNIOCore19ByteBufferAllocatorV",
+        "mangledName": "$s13CandleNIOCore19ByteBufferAllocatorV",
+        "moduleName": "CandleNIOCore",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ByteBufferView",
+        "printedName": "ByteBufferView",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "regions",
+            "printedName": "regions",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CollectionOfOne",
+                "printedName": "Swift.CollectionOfOne<CandleNIOCore.ByteBufferView>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ],
+                "usr": "s:s15CollectionOfOneV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13CandleNIOCore14ByteBufferViewV0A19NIOFoundationCompatE7regionss15CollectionOfOneVyACGvp",
+            "mangledName": "$s13CandleNIOCore14ByteBufferViewV0A19NIOFoundationCompatE7regionss15CollectionOfOneVyACGvp",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectionOfOne",
+                    "printedName": "Swift.CollectionOfOne<CandleNIOCore.ByteBufferView>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBufferView",
+                        "printedName": "CandleNIOCore.ByteBufferView",
+                        "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                      }
+                    ],
+                    "usr": "s:s15CollectionOfOneV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13CandleNIOCore14ByteBufferViewV0A19NIOFoundationCompatE7regionss15CollectionOfOneVyACGvg",
+                "mangledName": "$s13CandleNIOCore14ByteBufferViewV0A19NIOFoundationCompatE7regionss15CollectionOfOneVyACGvg",
+                "moduleName": "CandleNIOFoundationCompat",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:13CandleNIOCore14ByteBufferViewV",
+        "mangledName": "$s13CandleNIOCore14ByteBufferViewV",
+        "moduleName": "CandleNIOCore",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "RandomAccessCollection",
+            "printedName": "RandomAccessCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sk",
+            "mangledName": "$sSk"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BidirectionalCollection",
+            "printedName": "BidirectionalCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SK",
+            "mangledName": "$sSK"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Collection",
+            "printedName": "Collection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IndexingIterator",
+                    "printedName": "Swift.IndexingIterator<CandleNIOCore.ByteBufferView>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBufferView",
+                        "printedName": "CandleNIOCore.ByteBufferView",
+                        "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                      }
+                    ],
+                    "usr": "s:s16IndexingIteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sl",
+            "mangledName": "$sSl"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sequence",
+            "printedName": "Sequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IndexingIterator",
+                    "printedName": "Swift.IndexingIterator<CandleNIOCore.ByteBufferView>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBufferView",
+                        "printedName": "CandleNIOCore.ByteBufferView",
+                        "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                      }
+                    ],
+                    "usr": "s:s16IndexingIteratorV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:ST",
+            "mangledName": "$sST"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ContiguousBytes",
+            "printedName": "ContiguousBytes",
+            "usr": "s:10Foundation15ContiguousBytesP",
+            "mangledName": "$s10Foundation15ContiguousBytesP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "DataProtocol",
+            "printedName": "DataProtocol",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Regions",
+                "printedName": "Regions",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectionOfOne",
+                    "printedName": "Swift.CollectionOfOne<CandleNIOCore.ByteBufferView>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBufferView",
+                        "printedName": "CandleNIOCore.ByteBufferView",
+                        "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                      }
+                    ],
+                    "usr": "s:s15CollectionOfOneV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:10Foundation12DataProtocolP",
+            "mangledName": "$s10Foundation12DataProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MutableDataProtocol",
+            "printedName": "MutableDataProtocol",
+            "usr": "s:10Foundation19MutableDataProtocolP",
+            "mangledName": "$s10Foundation19MutableDataProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MutableCollection",
+            "printedName": "MutableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SM",
+            "mangledName": "$sSM"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RangeReplaceableCollection",
+            "printedName": "RangeReplaceableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBufferView",
+                    "printedName": "CandleNIOCore.ByteBufferView",
+                    "usr": "s:13CandleNIOCore14ByteBufferViewV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sm",
+            "mangledName": "$sSm"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByArrayLiteral",
+            "printedName": "ExpressibleByArrayLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ArrayLiteralElement",
+                "printedName": "ArrayLiteralElement",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s25ExpressibleByArrayLiteralP",
+            "mangledName": "$ss25ExpressibleByArrayLiteralP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Data",
+        "printedName": "Data",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(buffer:byteTransferStrategy:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteTransferStrategy",
+                "printedName": "CandleNIOCore.ByteBuffer.ByteTransferStrategy",
+                "hasDefaultArg": true,
+                "usr": "s:13CandleNIOCore10ByteBufferV0A19NIOFoundationCompatE0C16TransferStrategyO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10Foundation4DataV25CandleNIOFoundationCompatE6buffer20byteTransferStrategyAC0C7NIOCore10ByteBufferV_AiDE0khI0Otcfc",
+            "mangledName": "$s10Foundation4DataV25CandleNIOFoundationCompatE6buffer20byteTransferStrategyAC0C7NIOCore10ByteBufferV_AiDE0khI0Otcfc",
+            "moduleName": "CandleNIOFoundationCompat",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:10Foundation4DataV",
+        "mangledName": "$s10Foundation4DataV",
+        "moduleName": "Foundation",
+        "intro_Macosx": "10.10",
+        "intro_iOS": "8.0",
+        "intro_tvOS": "9.0",
+        "intro_watchOS": "2.0",
+        "declAttributes": [
+          "AddressableForDependencies",
+          "Frozen",
+          "Available",
+          "Available",
+          "Available",
+          "Available"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RandomAccessCollection",
+            "printedName": "RandomAccessCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sk",
+            "mangledName": "$sSk"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MutableCollection",
+            "printedName": "MutableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SM",
+            "mangledName": "$sSM"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RangeReplaceableCollection",
+            "printedName": "RangeReplaceableCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sm",
+            "mangledName": "$sSm"
+          },
+          {
+            "kind": "Conformance",
+            "name": "MutableDataProtocol",
+            "printedName": "MutableDataProtocol",
+            "usr": "s:10Foundation19MutableDataProtocolP",
+            "mangledName": "$s10Foundation19MutableDataProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ContiguousBytes",
+            "printedName": "ContiguousBytes",
+            "usr": "s:10Foundation15ContiguousBytesP",
+            "mangledName": "$s10Foundation15ContiguousBytesP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BidirectionalCollection",
+            "printedName": "BidirectionalCollection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SK",
+            "mangledName": "$sSK"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Collection",
+            "printedName": "Collection",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Index",
+                "printedName": "Index",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Iterator",
+                    "printedName": "Foundation.Data.Iterator",
+                    "usr": "s:10Foundation4DataV8IteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "SubSequence",
+                "printedName": "SubSequence",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Indices",
+                "printedName": "Indices",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Range",
+                    "printedName": "Swift.Range<Swift.Int>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sn"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sl",
+            "mangledName": "$sSl"
+          },
+          {
+            "kind": "Conformance",
+            "name": "DataProtocol",
+            "printedName": "DataProtocol",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Regions",
+                "printedName": "Regions",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectionOfOne",
+                    "printedName": "Swift.CollectionOfOne<Foundation.Data>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Data",
+                        "printedName": "Foundation.Data",
+                        "usr": "s:10Foundation4DataV"
+                      }
+                    ],
+                    "usr": "s:s15CollectionOfOneV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:10Foundation12DataProtocolP",
+            "mangledName": "$s10Foundation12DataProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sequence",
+            "printedName": "Sequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Iterator",
+                "printedName": "Iterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Iterator",
+                    "printedName": "Foundation.Data.Iterator",
+                    "usr": "s:10Foundation4DataV8IteratorV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:ST",
+            "mangledName": "$sST"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomReflectable",
+            "printedName": "CustomReflectable",
+            "usr": "s:s17CustomReflectableP",
+            "mangledName": "$ss17CustomReflectableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ReferenceConvertible",
+            "printedName": "ReferenceConvertible",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ReferenceType",
+                "printedName": "ReferenceType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSData",
+                    "printedName": "Foundation.NSData",
+                    "usr": "c:objc(cs)NSData"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:10Foundation20ReferenceConvertibleP",
+            "mangledName": "$s10Foundation20ReferenceConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjectiveCBridgeable",
+            "printedName": "_ObjectiveCBridgeable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "_ObjectiveCType",
+                "printedName": "_ObjectiveCType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSData",
+                    "printedName": "Foundation.NSData",
+                    "usr": "c:objc(cs)NSData"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s21_ObjectiveCBridgeableP",
+            "mangledName": "$ss21_ObjectiveCBridgeableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JSONDecoder",
+        "printedName": "JSONDecoder",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "decode",
+            "printedName": "decode(_:from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_0_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10Foundation11JSONDecoderC25CandleNIOFoundationCompatE6decode_4fromxxm_0C7NIOCore10ByteBufferVtKSeRzlF",
+            "mangledName": "$s10Foundation11JSONDecoderC25CandleNIOFoundationCompatE6decode_4fromxxm_0C7NIOCore10ByteBufferVtKSeRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable>",
+            "sugared_genericSig": "<T where T : Swift.Decodable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10Foundation11JSONDecoderC",
+        "mangledName": "$s10Foundation11JSONDecoderC",
+        "moduleName": "Foundation",
+        "isOpen": true,
+        "intro_Macosx": "10.10",
+        "intro_iOS": "8.0",
+        "intro_tvOS": "9.0",
+        "intro_watchOS": "2.0",
+        "declAttributes": [
+          "Available",
+          "Available",
+          "Available",
+          "Available"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TopLevelDecoder",
+            "printedName": "TopLevelDecoder",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Input",
+                "printedName": "Input",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine15TopLevelDecoderP",
+            "mangledName": "$s7Combine15TopLevelDecoderP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JSONEncoder",
+        "printedName": "JSONEncoder",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(_:into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10Foundation11JSONEncoderC25CandleNIOFoundationCompatE6encode_4intoyx_0C7NIOCore10ByteBufferVztKSERzlF",
+            "mangledName": "$s10Foundation11JSONEncoderC25CandleNIOFoundationCompatE6encode_4intoyx_0C7NIOCore10ByteBufferVztKSERzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
+            "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "encodeAsByteBuffer",
+            "printedName": "encodeAsByteBuffer(_:allocator:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBufferAllocator",
+                "printedName": "CandleNIOCore.ByteBufferAllocator",
+                "usr": "s:13CandleNIOCore19ByteBufferAllocatorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10Foundation11JSONEncoderC25CandleNIOFoundationCompatE18encodeAsByteBuffer_9allocator0C7NIOCore0hI0Vx_AG0hI9AllocatorVtKSERzlF",
+            "mangledName": "$s10Foundation11JSONEncoderC25CandleNIOFoundationCompatE18encodeAsByteBuffer_9allocator0C7NIOCore0hI0Vx_AG0hI9AllocatorVtKSERzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Encodable>",
+            "sugared_genericSig": "<T where T : Swift.Encodable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10Foundation11JSONEncoderC",
+        "mangledName": "$s10Foundation11JSONEncoderC",
+        "moduleName": "Foundation",
+        "isOpen": true,
+        "intro_Macosx": "10.10",
+        "intro_iOS": "8.0",
+        "intro_tvOS": "9.0",
+        "intro_watchOS": "2.0",
+        "declAttributes": [
+          "Available",
+          "Available",
+          "Available",
+          "Available"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TopLevelEncoder",
+            "printedName": "TopLevelEncoder",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Output",
+                "printedName": "Output",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine15TopLevelEncoderP",
+            "mangledName": "$s7Combine15TopLevelEncoderP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JSONSerialization",
+        "printedName": "JSONSerialization",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "jsonObject",
+            "printedName": "jsonObject(with:options:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ReadingOptions",
+                "printedName": "Foundation.JSONSerialization.ReadingOptions",
+                "hasDefaultArg": true,
+                "usr": "c:@E@NSJSONReadingOptions"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So19NSJSONSerializationC25CandleNIOFoundationCompatE10jsonObject4with7optionsyp0B7NIOCore10ByteBufferV_So20NSJSONReadingOptionsVtKFZ",
+            "mangledName": "$sSo19NSJSONSerializationC25CandleNIOFoundationCompatE10jsonObject4with7optionsyp0B7NIOCore10ByteBufferV_So20NSJSONReadingOptionsVtKFZ",
+            "moduleName": "CandleNIOFoundationCompat",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)NSJSONSerialization",
+        "moduleName": "Foundation",
+        "isOpen": true,
+        "intro_Macosx": "10.7",
+        "objc_name": "NSJSONSerialization",
+        "declAttributes": [
+          "Available",
+          "ObjC",
+          "NonSendable",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventLoopFuture",
+        "printedName": "EventLoopFuture",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "waitSpinningRunLoop",
+            "printedName": "waitSpinningRunLoop(inMode:file:line:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Mode",
+                "printedName": "Foundation.RunLoop.Mode",
+                "hasDefaultArg": true,
+                "usr": "c:@T@NSRunLoopMode"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StaticString",
+                "printedName": "Swift.StaticString",
+                "hasDefaultArg": true,
+                "usr": "s:s12StaticStringV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt",
+                "printedName": "Swift.UInt",
+                "hasDefaultArg": true,
+                "usr": "s:Su"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13CandleNIOCore15EventLoopFutureC0A19NIOFoundationCompatE015waitSpinningRunD06inMode4file4linexSo05NSRundL0a_s12StaticStringVSutKs8SendableRzlF",
+            "mangledName": "$s13CandleNIOCore15EventLoopFutureC0A19NIOFoundationCompatE015waitSpinningRunD06inMode4file4linexSo05NSRundL0a_s12StaticStringVSutKs8SendableRzlF",
+            "moduleName": "CandleNIOFoundationCompat",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<Value where Value : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Available",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:13CandleNIOCore15EventLoopFutureC",
+        "mangledName": "$s13CandleNIOCore15EventLoopFutureC",
+        "moduleName": "CandleNIOCore",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Value>",
+        "declAttributes": [
+          "Final"
+        ],
+        "isExternal": true,
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOFoundationCompat\/JSONSerialization+ByteBuffer.swift",
+      "kind": "Array",
+      "offset": 1105,
+      "length": 2,
+      "value": "[]"
+    }
+  ]
+}

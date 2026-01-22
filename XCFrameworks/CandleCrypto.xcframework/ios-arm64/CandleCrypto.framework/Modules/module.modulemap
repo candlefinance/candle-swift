@@ -1,0 +1,7 @@
+framework module CandleCrypto {
+    header "CandleCrypto-Swift.h"
+    export *
+    link framework "CandleCCryptoBoringSSL"
+    link framework "CandleCCryptoBoringSSLShims"
+    link framework "CandleCryptoBoringWrapper"
+}

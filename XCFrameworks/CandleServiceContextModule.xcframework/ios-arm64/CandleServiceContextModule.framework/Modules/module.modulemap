@@ -1,0 +1,4 @@
+framework module CandleServiceContextModule {
+    header "CandleServiceContextModule-Swift.h"
+    export *
+}

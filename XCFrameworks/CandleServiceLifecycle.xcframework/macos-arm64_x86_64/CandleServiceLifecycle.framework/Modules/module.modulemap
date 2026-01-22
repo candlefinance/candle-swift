@@ -1,0 +1,6 @@
+framework module CandleServiceLifecycle {
+    header "CandleServiceLifecycle-Swift.h"
+    export *
+    link framework "CandleUnixSignals"
+    link framework "CandleConcurrencyHelpers"
+}

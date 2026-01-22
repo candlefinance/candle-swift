@@ -1,7 +1,0 @@
-framework module NIOEmbedded {
-    header "NIOEmbedded-Swift.h"
-    export *
-    link framework "NIOCore"
-    link framework "NIOConcurrencyHelpers"
-    link framework "_NIODataStructures"
-}

@@ -1,0 +1,1320 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleServiceContextModule",
+    "printedName": "CandleServiceContextModule",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "ServiceContext",
+        "printedName": "ServiceContext",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "topLevel",
+            "printedName": "topLevel",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "CandleServiceContextModule.ServiceContext",
+                "usr": "s:26CandleServiceContextModule0bC0V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC0V8topLevelACvpZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V8topLevelACvpZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ServiceContext",
+                    "printedName": "CandleServiceContextModule.ServiceContext",
+                    "usr": "s:26CandleServiceContextModule0bC0V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0V8topLevelACvgZ",
+                "mangledName": "$s26CandleServiceContextModule0bC0V8topLevelACvgZ",
+                "moduleName": "CandleServiceContextModule",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "TODO",
+            "printedName": "TODO(_:function:file:line:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ServiceContext",
+                "printedName": "CandleServiceContextModule.ServiceContext",
+                "usr": "s:26CandleServiceContextModule0bC0V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.StaticString?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StaticString",
+                    "printedName": "Swift.StaticString",
+                    "usr": "s:s12StaticStringV"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt",
+                "printedName": "Swift.UInt",
+                "hasDefaultArg": true,
+                "usr": "s:Su"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule0bC0V4TODO_8function4file4lineACs12StaticStringVSg_S2SSutFZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V4TODO_8function4file4lineACs12StaticStringVSg_S2SSutFZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Subscript",
+            "name": "subscript",
+            "printedName": "subscript(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0.Value?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DependentMember",
+                    "printedName": "τ_0_0.Value"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_0_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Subscript",
+            "usr": "s:26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluip",
+            "mangledName": "$s26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluip",
+            "moduleName": "CandleServiceContextModule",
+            "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+            "sugared_genericSig": "<Key where Key : CandleServiceContextModule.ServiceContextKey>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "τ_0_0.Value?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DependentMember",
+                        "printedName": "τ_0_0.Value"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "τ_0_0.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluig",
+                "mangledName": "$s26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluig",
+                "moduleName": "CandleServiceContextModule",
+                "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+                "sugared_genericSig": "<Key where Key : CandleServiceContextModule.ServiceContextKey>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "τ_0_0.Value?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DependentMember",
+                        "printedName": "τ_0_0.Value"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "τ_0_0.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluis",
+                "mangledName": "$s26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluis",
+                "moduleName": "CandleServiceContextModule",
+                "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+                "sugared_genericSig": "<Key where Key : CandleServiceContextModule.ServiceContextKey>",
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "τ_0_0.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluiM",
+                "mangledName": "$s26CandleServiceContextModule0bC0Vy5ValueQzSgxmcAA0bC3KeyRzluiM",
+                "moduleName": "CandleServiceContextModule",
+                "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+                "sugared_genericSig": "<Key where Key : CandleServiceContextModule.ServiceContextKey>",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "count",
+            "printedName": "count",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC0V5countSivp",
+            "mangledName": "$s26CandleServiceContextModule0bC0V5countSivp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0V5countSivg",
+                "mangledName": "$s26CandleServiceContextModule0bC0V5countSivg",
+                "moduleName": "CandleServiceContextModule",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isEmpty",
+            "printedName": "isEmpty",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC0V7isEmptySbvp",
+            "mangledName": "$s26CandleServiceContextModule0bC0V7isEmptySbvp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0V7isEmptySbvg",
+                "mangledName": "$s26CandleServiceContextModule0bC0V7isEmptySbvg",
+                "moduleName": "CandleServiceContextModule",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "forEach",
+            "printedName": "forEach(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleServiceContextModule.AnyServiceContextKey, any Swift.Sendable) throws -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(CandleServiceContextModule.AnyServiceContextKey, any Swift.Sendable)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AnyServiceContextKey",
+                        "printedName": "CandleServiceContextModule.AnyServiceContextKey",
+                        "usr": "s:26CandleServiceContextModule03AnybC3KeyV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Sendable",
+                        "printedName": "any Swift.Sendable",
+                        "usr": "s:s8SendableP"
+                      }
+                    ]
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule0bC0V7forEachyyyAA03AnybC3KeyV_yptKXEKF",
+            "mangledName": "$s26CandleServiceContextModule0bC0V7forEachyyyAA03AnybC3KeyV_yptKXEKF",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "Preconcurrency",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "current",
+            "printedName": "current",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleServiceContextModule.ServiceContext?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ServiceContext",
+                    "printedName": "CandleServiceContextModule.ServiceContext",
+                    "usr": "s:26CandleServiceContextModule0bC0V"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC0V7currentACSgvpZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V7currentACSgvpZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "Custom",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "CandleServiceContextModule.ServiceContext?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ServiceContext",
+                        "printedName": "CandleServiceContextModule.ServiceContext",
+                        "usr": "s:26CandleServiceContextModule0bC0V"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC0V7currentACSgvgZ",
+                "mangledName": "$s26CandleServiceContextModule0bC0V7currentACSgvgZ",
+                "moduleName": "CandleServiceContextModule",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "withValue",
+            "printedName": "withValue(_:operation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleServiceContextModule.ServiceContext?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ServiceContext",
+                    "printedName": "CandleServiceContextModule.ServiceContext",
+                    "usr": "s:26CandleServiceContextModule0bC0V"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule0bC0V9withValue_9operationxACSg_xyKXEtKlFZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V9withValue_9operationxACSg_xyKXEtKlFZ",
+            "moduleName": "CandleServiceContextModule",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "static": true,
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withValue",
+            "printedName": "withValue(_:isolation:operation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleServiceContextModule.ServiceContext?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ServiceContext",
+                    "printedName": "CandleServiceContextModule.ServiceContext",
+                    "usr": "s:26CandleServiceContextModule0bC0V"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any _Concurrency.Actor)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Actor",
+                    "printedName": "any _Concurrency.Actor",
+                    "usr": "s:ScA"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() async throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule0bC0V9withValue_9isolation9operationxACSg_ScA_pSgYixyYaKXEtYaKlFZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V9withValue_9isolation9operationxACSg_ScA_pSgYixyYaKXEtYaKlFZ",
+            "moduleName": "CandleServiceContextModule",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "static": true,
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withValue",
+            "printedName": "withValue(_:operation:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleServiceContextModule.ServiceContext?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ServiceContext",
+                    "printedName": "CandleServiceContextModule.ServiceContext",
+                    "usr": "s:26CandleServiceContextModule0bC0V"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() async throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule0bC0V9withValue_9operationxACSg_xyYaKXEtYaKlFZ",
+            "mangledName": "$s26CandleServiceContextModule0bC0V9withValue_9operationxACSg_xyYaKXEtYaKlFZ",
+            "moduleName": "CandleServiceContextModule",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "static": true,
+            "deprecated": true,
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "DisfavoredOverload",
+              "Available"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:26CandleServiceContextModule0bC0V",
+        "mangledName": "$s26CandleServiceContextModule0bC0V",
+        "moduleName": "CandleServiceContextModule",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "TODOLocation",
+        "printedName": "TODOLocation",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "file",
+            "printedName": "file",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule12TODOLocationV4fileSSvp",
+            "mangledName": "$s26CandleServiceContextModule12TODOLocationV4fileSSvp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule12TODOLocationV4fileSSvg",
+                "mangledName": "$s26CandleServiceContextModule12TODOLocationV4fileSSvg",
+                "moduleName": "CandleServiceContextModule",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "line",
+            "printedName": "line",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UInt",
+                "printedName": "Swift.UInt",
+                "usr": "s:Su"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule12TODOLocationV4lineSuvp",
+            "mangledName": "$s26CandleServiceContextModule12TODOLocationV4lineSuvp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt",
+                    "printedName": "Swift.UInt",
+                    "usr": "s:Su"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule12TODOLocationV4lineSuvg",
+                "mangledName": "$s26CandleServiceContextModule12TODOLocationV4lineSuvg",
+                "moduleName": "CandleServiceContextModule",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:26CandleServiceContextModule12TODOLocationV",
+        "mangledName": "$s26CandleServiceContextModule12TODOLocationV",
+        "moduleName": "CandleServiceContextModule",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ServiceContextKey",
+        "printedName": "ServiceContextKey",
+        "children": [
+          {
+            "kind": "AssociatedType",
+            "name": "Value",
+            "printedName": "Value",
+            "declKind": "AssociatedType",
+            "usr": "s:26CandleServiceContextModule0bC3KeyP5ValueQa",
+            "mangledName": "$s26CandleServiceContextModule0bC3KeyP5ValueQa",
+            "moduleName": "CandleServiceContextModule",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "nameOverride",
+            "printedName": "nameOverride",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC3KeyP12nameOverrideSSSgvpZ",
+            "mangledName": "$s26CandleServiceContextModule0bC3KeyP12nameOverrideSSSgvpZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC3KeyP12nameOverrideSSSgvgZ",
+                "mangledName": "$s26CandleServiceContextModule0bC3KeyP12nameOverrideSSSgvgZ",
+                "moduleName": "CandleServiceContextModule",
+                "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+                "sugared_genericSig": "<Self where Self : CandleServiceContextModule.ServiceContextKey>",
+                "static": true,
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "nameOverride",
+            "printedName": "nameOverride",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule0bC3KeyPAAE12nameOverrideSSSgvpZ",
+            "mangledName": "$s26CandleServiceContextModule0bC3KeyPAAE12nameOverrideSSSgvpZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule0bC3KeyPAAE12nameOverrideSSSgvgZ",
+                "mangledName": "$s26CandleServiceContextModule0bC3KeyPAAE12nameOverrideSSSgvgZ",
+                "moduleName": "CandleServiceContextModule",
+                "genericSig": "<τ_0_0 where τ_0_0 : CandleServiceContextModule.ServiceContextKey>",
+                "sugared_genericSig": "<Self where Self : CandleServiceContextModule.ServiceContextKey>",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:26CandleServiceContextModule0bC3KeyP",
+        "mangledName": "$s26CandleServiceContextModule0bC3KeyP",
+        "moduleName": "CandleServiceContextModule",
+        "genericSig": "<τ_0_0 : Swift.Sendable, τ_0_0.Value : Swift.Sendable>",
+        "sugared_genericSig": "<Self : Swift.Sendable, Self.Value : Swift.Sendable>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "AnyServiceContextKey",
+        "printedName": "AnyServiceContextKey",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "keyType",
+            "printedName": "keyType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ExistentialMetatype",
+                "printedName": "any Any.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule03AnybC3KeyV7keyTypeypXpvp",
+            "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV7keyTypeypXpvp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExistentialMetatype",
+                    "printedName": "any Any.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule03AnybC3KeyV7keyTypeypXpvg",
+                "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV7keyTypeypXpvg",
+                "moduleName": "CandleServiceContextModule",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule03AnybC3KeyV4nameSSvp",
+            "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV4nameSSvp",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule03AnybC3KeyV4nameSSvg",
+                "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV4nameSSvg",
+                "moduleName": "CandleServiceContextModule",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AnyServiceContextKey",
+                "printedName": "CandleServiceContextModule.AnyServiceContextKey",
+                "usr": "s:26CandleServiceContextModule03AnybC3KeyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AnyServiceContextKey",
+                "printedName": "CandleServiceContextModule.AnyServiceContextKey",
+                "usr": "s:26CandleServiceContextModule03AnybC3KeyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule03AnybC3KeyV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleServiceContextModule",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:26CandleServiceContextModule03AnybC3KeyV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV4hash4intoys6HasherVz_tF",
+            "moduleName": "CandleServiceContextModule",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:26CandleServiceContextModule03AnybC3KeyV9hashValueSivp",
+            "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV9hashValueSivp",
+            "moduleName": "CandleServiceContextModule",
+            "implicit": true,
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:26CandleServiceContextModule03AnybC3KeyV9hashValueSivg",
+                "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV9hashValueSivg",
+                "moduleName": "CandleServiceContextModule",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:26CandleServiceContextModule03AnybC3KeyV",
+        "mangledName": "$s26CandleServiceContextModule03AnybC3KeyV",
+        "moduleName": "CandleServiceContextModule",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-service-context\/Sources\/CandleServiceContextModule\/ServiceContext.swift",
+      "kind": "StringLiteral",
+      "offset": 7382,
+      "length": 2,
+      "value": "\"\""
+    }
+  ]
+}

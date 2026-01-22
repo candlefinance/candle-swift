@@ -1,0 +1,4 @@
+framework module CandleHTTPTypes {
+    header "CandleHTTPTypes-Swift.h"
+    export *
+}

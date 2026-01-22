@@ -1,0 +1,5 @@
+framework module CandleRealModule {
+    header "CandleRealModule-Swift.h"
+    export *
+    link framework "Candle_NumericsShims"
+}

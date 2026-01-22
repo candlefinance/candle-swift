@@ -1,6 +1,0 @@
-framework module NIOFoundationCompat {
-    header "NIOFoundationCompat-Swift.h"
-    export *
-    link framework "NIO"
-    link framework "NIOCore"
-}

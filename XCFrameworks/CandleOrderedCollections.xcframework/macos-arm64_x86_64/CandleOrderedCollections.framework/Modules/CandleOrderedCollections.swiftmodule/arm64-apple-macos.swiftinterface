@@ -1,0 +1,3449 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleOrderedCollections
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleInternalCollectionsUtilities
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  @frozen internal struct Bucket {
+    @usableFromInline
+    internal var offset: Swift.Int
+    @inlinable @inline(__always) internal init(offset: Swift.Int) {
+      assert(offset >= 0)
+      self.offset = offset
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable.Bucket : Swift.Equatable {
+  @_transparent public static func == (left: CandleOrderedCollections._HashTable.Bucket, right: CandleOrderedCollections._HashTable.Bucket) -> Swift.Bool {
+    left.offset == right.offset
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  internal struct BucketIterator {
+    @usableFromInline
+    internal typealias Bucket = CandleOrderedCollections._HashTable.Bucket
+    @usableFromInline
+    internal var _currentBucket: CandleOrderedCollections._HashTable.BucketIterator.Bucket
+    @usableFromInline
+    @_effects(releasenone) internal init(hashTable: CandleOrderedCollections._UnsafeHashTable, startingAt bucket: CandleOrderedCollections._HashTable.BucketIterator.Bucket)
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @usableFromInline
+  internal typealias BucketIterator = CandleOrderedCollections._HashTable.BucketIterator
+  @_effects(releasenone) @inlinable @inline(__always) internal func idealBucket(forHashValue hashValue: Swift.Int) -> CandleOrderedCollections._HashTable.UnsafeHandle.Bucket {
+    return Bucket(offset: hashValue & (bucketCount - 1))
+  }
+  @inlinable @inline(__always) internal func idealBucket<Element>(for element: Element) -> CandleOrderedCollections._HashTable.UnsafeHandle.Bucket where Element : Swift.Hashable {
+    let hashValue = element._rawHashValue(seed: seed)
+    return idealBucket(forHashValue: hashValue)
+  }
+  @inlinable @inline(__always) internal func bucketIterator<Element>(for element: Element) -> CandleOrderedCollections._HashTable.UnsafeHandle.BucketIterator where Element : Swift.Hashable {
+    let bucket = idealBucket(for: element)
+    return bucketIterator(startingAt: bucket)
+  }
+  @inlinable @inline(__always) internal func bucketIterator(startingAt bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> CandleOrderedCollections._HashTable.UnsafeHandle.BucketIterator {
+    BucketIterator(hashTable: self, startingAt: bucket)
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @usableFromInline
+  @_effects(releasenone) internal func startFind(_ startBucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> (iterator: CandleOrderedCollections._HashTable.UnsafeHandle.BucketIterator, currentValue: Swift.Int?)
+  #endif
+  @usableFromInline
+  @_effects(readonly) internal func _startIterator(bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> (currentBits: Swift.UInt64, nextBits: Swift.UInt64, remainingBitCount: Swift.Int)
+}
+extension CandleOrderedCollections._HashTable.BucketIterator {
+  @inlinable @inline(__always) internal var currentBucket: CandleOrderedCollections._HashTable.BucketIterator.Bucket {
+    get { _currentBucket }
+  }
+  @usableFromInline
+  internal var isOccupied: Swift.Bool {
+    @_effects(readonly) @inline(__always) get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @usableFromInline
+  internal var currentValue: Swift.Int? {
+    @inline(__always) @_effects(readonly) get
+    @_effects(releasenone) set
+  }
+  #endif
+  @usableFromInline
+  @_effects(releasenone) internal mutating func advance()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @usableFromInline
+  @_effects(releasenone) internal mutating func findNext() -> Swift.Int?
+  #endif
+  @inlinable @_effects(releasenone) internal mutating func advance(until expected: Swift.Int) {
+    while isOccupied && currentValue != expected {
+      advance()
+    }
+  }
+  @inlinable @_effects(releasenone) internal mutating func advanceToNextUnoccupiedBucket() {
+    while isOccupied {
+      advance()
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  @inline(__always) internal static var minimumScale: Swift.Int {
+    @_effects(readnone) get
+  }
+  @usableFromInline
+  @inline(__always) internal static var maximumScale: Swift.Int {
+    @_effects(readnone) get
+  }
+  @usableFromInline
+  @inline(__always) internal static var maximumUnhashedCount: Swift.Int {
+    @_effects(readnone) get
+  }
+  @usableFromInline
+  @_effects(readnone) internal static func minimumCapacity(forScale scale: Swift.Int) -> Swift.Int
+  @usableFromInline
+  @_effects(readnone) internal static func maximumCapacity(forScale scale: Swift.Int) -> Swift.Int
+  @usableFromInline
+  @_effects(readnone) internal static func scale(forCapacity capacity: Swift.Int) -> Swift.Int
+}
+extension CandleOrderedCollections._HashTable.Header : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var _description: Swift.String {
+    get
+  }
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections._HashTable : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections._HashTable.Storage : Swift.CustomStringConvertible {
+  @usableFromInline
+  final internal var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections._HashTable.Bucket : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections._HashTable.BucketIterator : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+@usableFromInline
+internal typealias _UnsafeHashTable = CandleOrderedCollections._HashTable.UnsafeHandle
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  @frozen internal struct UnsafeHandle {
+    @usableFromInline
+    internal typealias Bucket = CandleOrderedCollections._HashTable.Bucket
+    @usableFromInline
+    internal var _header: Swift.UnsafeMutablePointer<CandleOrderedCollections._HashTable.Header>
+    @usableFromInline
+    internal var _buckets: Swift.UnsafeMutablePointer<Swift.UInt64>
+    @inlinable @inline(__always) internal init(header: Swift.UnsafeMutablePointer<CandleOrderedCollections._HashTable.Header>, buckets: Swift.UnsafeMutablePointer<Swift.UInt64>, readonly: Swift.Bool) {
+      self._header = header
+      self._buckets = buckets
+    }
+    @inlinable @inline(__always) internal func assertMutable() {
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @inlinable @inline(__always) internal var scale: Swift.Int {
+    get { _header.pointee.scale }
+  }
+  @inlinable @inline(__always) internal var reservedScale: Swift.Int {
+    get { _header.pointee.reservedScale }
+  }
+  @inlinable @inline(__always) internal var seed: Swift.Int {
+    get { _header.pointee.seed }
+  }
+  @inlinable @inline(__always) internal var bias: Swift.Int {
+    get { _header.pointee.bias }
+    nonmutating set { _header.pointee.bias = newValue }
+  }
+  @inlinable @inline(__always) internal var bucketCount: Swift.Int {
+    get { 1 &<< scale }
+  }
+  @inlinable @inline(__always) internal var bucketMask: Swift.UInt64 {
+    get { UInt64(truncatingIfNeeded: bucketCount) - 1 }
+  }
+  @inlinable @inline(__always) internal var bitCount: Swift.Int {
+    get { scale &<< scale }
+  }
+  @inlinable @inline(__always) internal var wordCount: Swift.Int {
+    get { (bitCount + UInt64.bitWidth - 1) / UInt64.bitWidth }
+  }
+  @inlinable @inline(__always) internal var capacity: Swift.Int {
+    get { _HashTable.maximumCapacity(forScale: scale) }
+  }
+  @inlinable @inline(__always) internal func bucket(after bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> CandleOrderedCollections._HashTable.UnsafeHandle.Bucket {
+    var offset = bucket.offset + 1
+    if offset == bucketCount {
+      offset = 0
+    }
+    return Bucket(offset: offset)
+  }
+  @inlinable @inline(__always) internal func bucket(before bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> CandleOrderedCollections._HashTable.UnsafeHandle.Bucket {
+    let offset = (bucket.offset == 0 ? bucketCount : bucket.offset) - 1
+    return Bucket(offset: offset)
+  }
+  @inlinable @inline(__always) internal func word(after word: Swift.Int) -> Swift.Int {
+    var result = word + 1
+    if result == wordCount {
+      result = 0
+    }
+    return result
+  }
+  @inlinable @inline(__always) internal func word(before word: Swift.Int) -> Swift.Int {
+    if word == 0 {
+      return wordCount - 1
+    }
+    return word - 1
+  }
+  @inlinable internal func position(of bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> (word: Swift.Int, bit: Swift.Int) {
+    let start = bucket.offset &* scale
+    return (start &>> 6, start & 0x3F)
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func _value(forBucketContents bucketContents: Swift.UInt64) -> Swift.Int? {
+    let mask = bucketMask
+    assert(bucketContents <= mask)
+    guard bucketContents != 0 else { return nil }
+    let v = (bucketContents ^ mask) &+ UInt64(truncatingIfNeeded: bias)
+    return Int(truncatingIfNeeded: v >= mask ? v - mask : v)
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func _bucketContents(for value: Swift.Int?) -> Swift.UInt64 {
+    guard var value = value else { return 0 }
+    let mask = Int(truncatingIfNeeded: bucketMask)
+    assert(value >= 0 && value < mask)
+    value &-= bias
+    if value < 0 { value += mask }
+    assert(value >= 0 && value < mask)
+    return UInt64(truncatingIfNeeded: value ^ mask)
+  }
+  #endif
+  @inlinable internal subscript(word word: Swift.Int) -> Swift.UInt64 {
+    @inline(__always) get {
+      assert(word >= 0 && word < bucketCount)
+      return _buckets[word]
+    }
+    @inline(__always) nonmutating set {
+      assert(word >= 0 && word < bucketCount)
+      assertMutable()
+      _buckets[word] = newValue
+    }
+  }
+  @inlinable internal subscript(raw bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> Swift.UInt64 {
+    get {
+      assert(bucket.offset < bucketCount)
+      let (word, bit) = position(of: bucket)
+      var value = self[word: word] &>> bit
+      let extractedBits = 64 - bit
+      if extractedBits < scale {
+        let word2 = self.word(after: word)
+        value &= (1 &<< extractedBits) - 1
+        value |= self[word: word2] &<< extractedBits
+      }
+      return value & bucketMask
+    }
+    nonmutating set {
+      assertMutable()
+      assert(bucket.offset < bucketCount)
+      let mask = bucketMask
+      assert(newValue <= mask)
+      let (word, bit) = position(of: bucket)
+      self[word: word] &= ~(mask &<< bit)
+      self[word: word] |= newValue &<< bit
+      let extractedBits = 64 - bit
+      if extractedBits < scale {
+        let word2 = self.word(after: word)
+        self[word: word2] &= ~((1 &<< (scale - extractedBits)) - 1)
+        self[word: word2] |= newValue &>> extractedBits
+      }
+    }
+  }
+  @inlinable @inline(__always) internal func isOccupied(_ bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> Swift.Bool {
+    self[raw: bucket] != 0
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal subscript(bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> Swift.Int? {
+    get {
+      let contents = self[raw: bucket]
+      return _value(forBucketContents: contents)
+    }
+    nonmutating set {
+      assertMutable()
+      let v = _bucketContents(for: newValue)
+      self[raw: bucket] = v
+    }
+  }
+  #endif
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func _find<Base>(_ item: Base.Element, in elements: Base) -> (index: Swift.Int?, bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) where Base : Swift.RandomAccessCollection, Base.Element : Swift.Hashable {
+    let start = idealBucket(for: item)
+    var (iterator, value) = startFind(start)
+    while let index = value {
+      if elements[_offset: index] == item {
+        return (index, iterator.currentBucket)
+      }
+      value = iterator.findNext()
+    }
+    return (nil, iterator.currentBucket)
+  }
+  #endif
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @usableFromInline
+  internal func firstOccupiedBucketInChain(with bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket) -> CandleOrderedCollections._HashTable.UnsafeHandle.Bucket
+  @inlinable internal func delete(bucket: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket, hashValueGenerator: (Swift.Int, Swift.Int) -> Swift.Int) {
+    assertMutable()
+    var it = bucketIterator(startingAt: bucket)
+    assert(it.isOccupied)
+    it.advance()
+    guard it.isOccupied else {
+       
+      self[bucket] = nil
+      return
+    }
+     
+     
+
+     
+    let start = firstOccupiedBucketInChain(with: bucket)
+    var hole = bucket
+
+    while it.isOccupied {
+      let hash = hashValueGenerator(it.currentValue!, seed)
+      let candidate = idealBucket(forHashValue: hash)
+
+       
+       
+       
+      let c0 = candidate.offset >= start.offset
+      let c1 = candidate.offset <= hole.offset
+      if start.offset <= hole.offset ? (c0 && c1) : (c0 || c1) {
+         
+         
+         
+        self[hole] = it.currentValue
+        hole = it.currentBucket
+      }
+      it.advance()
+    }
+    self[hole] = nil
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @inlinable internal func adjustContents<Base>(preparingForInsertionOfElementAtOffset offset: Swift.Int, in elements: Base) where Base : Swift.RandomAccessCollection, Base.Element : Swift.Hashable {
+    assertMutable()
+    let index = elements._index(at: offset)
+    if offset < elements.count / 2 {
+      self.bias += 1
+      if offset <= capacity / 3 {
+        var i = 1
+        for item in elements[..<index] {
+          var it = bucketIterator(for: item)
+          it.advance(until: i)
+          it.currentValue! -= 1
+          i += 1
+        }
+      } else {
+        var it = bucketIterator(startingAt: Bucket(offset: 0))
+        repeat {
+          if let value = it.currentValue, value <= offset {
+            it.currentValue = value - 1
+          }
+          it.advance()
+        } while it.currentBucket.offset != 0
+      }
+    } else {
+      if elements.count - offset - 1 <= capacity / 3 {
+        var i = offset
+        for item in elements[index...] {
+          var it = bucketIterator(for: item)
+          it.advance(until: i)
+          it.currentValue! += 1
+          i += 1
+        }
+      } else {
+        var it = bucketIterator(startingAt: Bucket(offset: 0))
+        repeat {
+          if let value = it.currentValue, value >= offset {
+            it.currentValue = value + 1
+          }
+          it.advance()
+        } while it.currentBucket.offset != 0
+      }
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @inlinable @inline(__always) internal func adjustContents<Base>(preparingForRemovalOf index: Base.Index, in elements: Base) where Base : Swift.RandomAccessCollection, Base.Element : Swift.Hashable {
+    let next = elements.index(after: index)
+    adjustContents(preparingForRemovalOf: index ..< next, in: elements)
+  }
+  @inlinable internal func adjustContents<Base>(preparingForRemovalOf bounds: Swift.Range<Base.Index>, in elements: Base) where Base : Swift.RandomAccessCollection, Base.Element : Swift.Hashable {
+    assertMutable()
+    let startOffset = elements._offset(of: bounds.lowerBound)
+    let endOffset = elements._offset(of: bounds.upperBound)
+    let c = endOffset - startOffset
+    guard c > 0 else { return }
+    let remainingCount = elements.count - c
+
+    if startOffset >= remainingCount / 2 {
+      let tailCount = elements.count - endOffset
+      if tailCount < capacity / 3 {
+        var i = endOffset
+        for item in elements[bounds.upperBound...] {
+          var it = self.bucketIterator(for: item)
+          it.advance(until: i)
+          it.currentValue = i - c
+          i += 1
+        }
+      } else {
+        var it = bucketIterator(startingAt: Bucket(offset: 0))
+        repeat {
+          if let value = it.currentValue {
+            if value >= endOffset {
+              it.currentValue = value - c
+            } else {
+              assert(value < startOffset)
+            }
+          }
+          it.advance()
+        } while it.currentBucket.offset != 0
+      }
+    } else {
+      if startOffset < capacity / 3 {
+        var i = 0
+        for item in elements[..<bounds.lowerBound] {
+          var it = self.bucketIterator(for: item)
+          it.advance(until: i)
+          it.currentValue = i + c
+          i += 1
+        }
+      } else {
+        var it = bucketIterator(startingAt: Bucket(offset: 0))
+        repeat {
+          if let value = it.currentValue {
+            if value < startOffset {
+              it.currentValue = value + c
+            } else {
+              assert(value >= endOffset)
+            }
+          }
+          it.advance()
+        } while it.currentBucket.offset != 0
+      }
+      self.bias -= c
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @usableFromInline
+  internal func clear()
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @inlinable internal func fill<C>(uncheckedUniqueElements elements: C) where C : Swift.RandomAccessCollection, C.Element : Swift.Hashable {
+    assertMutable()
+    assert(elements.count <= capacity)
+     
+    var offset = 0
+    for index in elements.indices {
+       
+       
+      var it = bucketIterator(for: elements[index])
+      it.advanceToNextUnoccupiedBucket()
+      it.currentValue = offset
+      offset += 1
+    }
+  }
+  @inlinable internal func fill<C>(untilFirstDuplicateIn elements: C) -> (success: Swift.Bool, end: C.Index) where C : Swift.RandomAccessCollection, C.Element : Swift.Hashable {
+    assertMutable()
+    assert(elements.count <= capacity)
+     
+    var offset = 0
+    for index in elements.indices {
+       
+       
+      var it = bucketIterator(for: elements[index])
+      while let offset = it.currentValue {
+        guard elements[_offset: offset] != elements[index] else {
+          return (false, index)
+        }
+        it.advance()
+      }
+      it.currentValue = offset
+      offset += 1
+    }
+    return (true, elements.endIndex)
+  }
+}
+@usableFromInline
+@frozen internal struct _HashTable {
+  @usableFromInline
+  internal var _storage: CandleOrderedCollections._HashTable.Storage
+  @inlinable @inline(__always) internal init(_ storage: CandleOrderedCollections._HashTable.Storage) {
+    _storage = storage
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @_inheritsConvenienceInitializers @usableFromInline
+  final internal class Storage : Swift.ManagedBuffer<CandleOrderedCollections._HashTable.Header, Swift.UInt64> {
+    @objc @usableFromInline
+    deinit
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  @_effects(releasenone) internal init(scale: Swift.Int, reservedScale: Swift.Int = 0)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(never) @_effects(releasenone) internal static func create<C>(uncheckedUniqueElements elements: C, scale: Swift.Int? = nil, reservedScale: Swift.Int = 0) -> CandleOrderedCollections._HashTable? where C : Swift.RandomAccessCollection, C.Element : Swift.Hashable {
+    let minScale = Self.scale(forCapacity: elements.count)
+    let scale = Swift.max(Swift.max(scale ?? 0, minScale),
+                          reservedScale)
+    if scale < Self.minimumScale { return nil }
+    let hashTable = Self(scale: scale, reservedScale: reservedScale)
+    hashTable.update { handle in
+      handle.fill(uncheckedUniqueElements: elements)
+    }
+    return hashTable
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(never) @_effects(releasenone) internal static func create<C>(untilFirstDuplicateIn elements: C, scale: Swift.Int? = nil, reservedScale: Swift.Int = 0) -> (hashTable: CandleOrderedCollections._HashTable?, end: C.Index) where C : Swift.RandomAccessCollection, C.Element : Swift.Hashable {
+    let minScale = Self.scale(forCapacity: elements.count)
+    let scale = Swift.max(Swift.max(scale ?? 0, minScale),
+                          reservedScale)
+    if scale < Self.minimumScale {
+       
+      if elements.count < 2 { return (nil, elements.endIndex) }
+      var temp: [C.Element] = []
+      temp.reserveCapacity(elements.count)
+      for i in elements.indices {
+        let item = elements[i]
+        guard !temp.contains(item) else { return (nil, i) }
+        temp.append(item)
+      }
+      return (nil, elements.endIndex)
+    }
+    let hashTable = Self(scale: scale, reservedScale: reservedScale)
+    let (_, index) = hashTable.update { handle in
+      handle.fill(untilFirstDuplicateIn: elements)
+    }
+    return (hashTable, index)
+  }
+  #endif
+  @usableFromInline
+  @_effects(releasenone) internal func copy() -> CandleOrderedCollections._HashTable
+}
+extension CandleOrderedCollections._HashTable {
+  @inlinable @inline(__always) internal func read<R>(_ body: (CandleOrderedCollections._UnsafeHashTable) throws -> R) rethrows -> R {
+    try _storage.withUnsafeMutablePointers { header, elements in
+      let handle = _UnsafeHashTable(header: header, buckets: elements, readonly: true)
+      return try body(handle)
+    }
+  }
+  @inlinable @inline(__always) internal func update<R>(_ body: (CandleOrderedCollections._UnsafeHashTable) throws -> R) rethrows -> R {
+    try _storage.withUnsafeMutablePointers { header, elements in
+      let handle = _UnsafeHashTable(header: header, buckets: elements, readonly: false)
+      return try body(handle)
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @inlinable internal var header: CandleOrderedCollections._HashTable.Header {
+    get { _storage.header }
+    @inline(__always) nonmutating _modify { yield &_storage.header }
+  }
+  @inlinable internal var capacity: Swift.Int {
+    get {
+    _storage.header.capacity
+  }
+  }
+  @inlinable internal var minimumCapacity: Swift.Int {
+    get {
+    if scale == reservedScale { return 0 }
+    return Self.minimumCapacity(forScale: scale)
+  }
+  }
+  @inlinable internal var scale: Swift.Int {
+    get {
+    _storage.header.scale
+  }
+  }
+  @inlinable internal var reservedScale: Swift.Int {
+    get {
+    _storage.header.reservedScale
+  }
+  }
+  @inlinable internal var bias: Swift.Int {
+    get {
+    _storage.header.bias
+  }
+  }
+}
+extension CandleOrderedCollections._HashTable {
+  @usableFromInline
+  internal struct Header {
+    @usableFromInline
+    internal var _scaleAndSeed: Swift.UInt64
+    @usableFromInline
+    internal var _reservedScaleAndBias: Swift.UInt64
+    @inlinable @inline(__always) internal var scale: Swift.Int {
+      get { Int(_scaleAndSeed & 0x3F) }
+    }
+    @inlinable internal var reservedScale: Swift.Int {
+      @inline(__always) get { Int(_reservedScaleAndBias & 0x3F) }
+      set {
+        assert(newValue >= 0 && newValue < 64)
+        _reservedScaleAndBias &= ~0x3F
+        _reservedScaleAndBias |= UInt64(truncatingIfNeeded: newValue) & 0x3F
+      }
+    }
+    @inlinable @inline(__always) internal var seed: Swift.Int {
+      get {
+      Int(truncatingIfNeeded: _scaleAndSeed)
+    }
+    }
+    @inlinable internal var bias: Swift.Int {
+      @inline(__always) get { Int(truncatingIfNeeded: _reservedScaleAndBias) &>> 6 }
+      set {
+        let limit = (1 &<< scale) - 1
+        var bias = newValue
+        if bias < 0 { bias += limit }
+        if bias >= limit { bias -= limit }
+        assert(bias >= 0 && bias < limit)
+        _reservedScaleAndBias &= 0x3F
+        _reservedScaleAndBias |= UInt64(truncatingIfNeeded: bias) &<< 6
+        assert(self.bias >= 0 && self.bias < limit)
+      }
+    }
+    @inlinable @inline(__always) internal var capacity: Swift.Int {
+      get { _HashTable.maximumCapacity(forScale: scale) }
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.Encodable where Key : Swift.Encodable, Value : Swift.Encodable {
+  @inlinable public func encode(to encoder: any Swift.Encoder) throws {
+     
+    var container = encoder.unkeyedContainer()
+    for (key, value) in self {
+      try container.encode(key)
+      try container.encode(value)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.Decodable where Key : Swift.Decodable, Value : Swift.Decodable {
+  @inlinable public init(from decoder: any Swift.Decoder) throws {
+     
+    var container = try decoder.unkeyedContainer()
+
+    self.init()
+    while !container.isAtEnd {
+      let key = try container.decode(Key.self)
+      let (index, bucket) = self._keys._find(key)
+      guard index == nil else {
+        let context = DecodingError.Context(
+          codingPath: container.codingPath,
+          debugDescription: "Duplicate key at offset \(container.currentIndex - 1)")
+        throw DecodingError.dataCorrupted(context)
+      }
+
+      guard !container.isAtEnd else {
+        throw DecodingError.dataCorrupted(
+          DecodingError.Context(
+            codingPath: container.codingPath,
+            debugDescription: "Unkeyed container reached end before value in key-value pair"
+          )
+        )
+      }
+      let value = try container.decode(Value.self)
+      _keys._appendNew(key, in: bucket)
+      _values.append(value)
+    }
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @available(*, unavailable, message: "Please use `elements[offset]`")
+  @inlinable @inline(__always) public subscript(offset offset: Swift.Int) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Element {
+    get {
+    fatalError()
+  }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @available(*, unavailable, renamed: "updateValue(forKey:default:with:)")
+  @inlinable public mutating func modifyValue<R>(forKey key: Key, default defaultValue: @autoclosure () -> Value, _ body: (inout Value) throws -> R) rethrows -> R {
+    fatalError()
+  }
+  @available(*, unavailable, renamed: "updateValue(forKey:insertingDefault:at:with:)")
+  @inlinable public mutating func modifyValue<R>(forKey key: Key, insertingDefault defaultValue: @autoclosure () -> Value, at index: Swift.Int, _ body: (inout Value) throws -> R) rethrows -> R {
+    fatalError()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @frozen public struct SubSequence {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedDictionary<Key, Value>
+    @usableFromInline
+    internal var _bounds: Swift.Range<Swift.Int>
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedDictionary<Key, Value>, bounds: Swift.Range<Swift.Int>) {
+      self._base = _base
+      self._bounds = bounds
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence {
+  @inlinable @inline(__always) public var keys: CandleOrderedCollections.OrderedSet<Key>.SubSequence {
+    get {
+    _base._keys[_bounds]
+  }
+  }
+  @inlinable @inline(__always) public var values: CandleOrderedCollections.OrderedDictionary<Key, Value>.Values.SubSequence {
+    get {
+    _base.values[_bounds]
+  }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func index(forKey key: Key) -> Swift.Int? {
+    guard let index = _base.index(forKey: key) else { return nil }
+    guard _bounds.contains(index) else { return nil }
+    return index
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.Sequence {
+  public typealias Element = CandleOrderedCollections.OrderedDictionary<Key, Value>.Element
+  @frozen public struct Iterator : Swift.IteratorProtocol {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedDictionary<Key, Value>
+    @usableFromInline
+    internal var _end: Swift.Int
+    @usableFromInline
+    internal var _index: Swift.Int
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence) {
+      self._base = _base._base
+      self._end = _base._bounds.upperBound
+      self._index = _base._bounds.lowerBound
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element? {
+      guard _index < _end else { return nil }
+      defer { _index += 1 }
+      return (_base._keys[_index], _base._values[_index])
+    }
+    #endif
+    public typealias Element = CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element
+  }
+  @inlinable @inline(__always) public func makeIterator() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Iterator {
+    Iterator(_base: self)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence.Iterator : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements.SubSequence : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias SubSequence = CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { _bounds.lowerBound }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { _bounds.upperBound }
+  }
+  @inlinable @inline(__always) public var indices: Swift.Range<Swift.Int> {
+    get { _bounds }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int { i + 1 }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int { i - 1 }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) { i += 1 }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) { i -= 1 }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+    i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+    _base._values.index(i, offsetBy: distance, limitedBy: limit)
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+    end - start
+  }
+  @inlinable public subscript(position: Swift.Int) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.Element {
+    get {
+    precondition(_bounds.contains(position), "Index out of range")
+    return (_base._keys[position], _base._values[position])
+  }
+  }
+  @inlinable public subscript(bounds: Swift.Range<Swift.Int>) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence.SubSequence {
+    get {
+    precondition(
+      bounds.lowerBound >= _bounds.lowerBound
+        && bounds.upperBound <= _bounds.upperBound,
+      "Index out of range")
+    return Self(_base: _base, bounds: bounds)
+  }
+  }
+  @inlinable @inline(__always) public var isEmpty: Swift.Bool {
+    get { _bounds.isEmpty }
+  }
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _bounds.count }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @frozen public struct Elements {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedDictionary<Key, Value>
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedDictionary<Key, Value>) {
+      self._base = _base
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable @inline(__always) public var elements: CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements {
+    get {
+      Elements(_base: self)
+    }
+    @inline(__always) _modify {
+      var elements = Elements(_base: self)
+      self = Self()
+      defer { self = elements._base }
+      yield &elements
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable @inline(__always) public var keys: CandleOrderedCollections.OrderedSet<Key> {
+    get {
+    _base._keys
+  }
+  }
+  @inlinable @inline(__always) public var values: CandleOrderedCollections.OrderedDictionary<Key, Value>.Values {
+    get {
+      _base.values
+    }
+    @inline(__always) _modify {
+      var values = OrderedDictionary.Values(_base: _base)
+      self = Self(_base: .init())
+      defer { self._base = values._base }
+      yield &values
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func index(forKey key: Key) -> Swift.Int? {
+    _base.index(forKey: key)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.Sequence {
+  public typealias Element = (key: Key, value: Value)
+  @inlinable public var underestimatedCount: Swift.Int {
+    get { _base.count }
+  }
+  @inlinable public func makeIterator() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Iterator {
+    _base.makeIterator()
+  }
+  public typealias Iterator = CandleOrderedCollections.OrderedDictionary<Key, Value>.Iterator
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { 0 }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { _base.count }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int { i + 1 }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int { i - 1 }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) { i += 1 }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) { i -= 1 }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+    i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+    _base._values.index(i, offsetBy: distance, limitedBy: limit)
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+    end - start
+  }
+  @inlinable @inline(__always) public subscript(position: Swift.Int) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element {
+    get {
+    (_base._keys[position], _base._values[position])
+  }
+  }
+  public subscript(bounds: Swift.Range<Swift.Int>) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.SubSequence {
+    get
+  }
+  @inlinable @inline(__always) public var isEmpty: Swift.Bool {
+    get { _base.isEmpty }
+  }
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _base.count }
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>) {
+    _base._values._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>) {
+    _base._values._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>) {
+    _base._values._failEarlyRangeCheck(range, bounds: bounds)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.Equatable where Value : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements, right: CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements) -> Swift.Bool {
+    left._base == right._base
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements : Swift.Hashable where Value : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    _base.hash(into: &hasher)
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable @inline(__always) public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int) {
+    _base.swapAt(i, j)
+  }
+  @inlinable @inline(__always) public mutating func partition(by belongsInSecondPartition: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows -> Swift.Int {
+    try _base.partition(by: belongsInSecondPartition)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable @inline(__always) public mutating func sort(by areInIncreasingOrder: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element, CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows {
+    try _base.sort(by: areInIncreasingOrder)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements where Key : Swift.Comparable {
+  @inlinable @inline(__always) public mutating func sort() {
+    _base.sort()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable public mutating func shuffle() {
+    _base.shuffle()
+  }
+  @inlinable public mutating func shuffle(using generator: inout some RandomNumberGenerator) {
+    _base.shuffle(using: &generator)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable public mutating func reverse() {
+    _base.reverse()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Elements {
+  @inlinable public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false) {
+    _base.removeAll(keepingCapacity: keepCapacity)
+  }
+  @discardableResult
+  @inlinable public mutating func remove(at index: Swift.Int) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element {
+    _base.remove(at: index)
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>) {
+    _base.removeSubrange(bounds)
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: some RangeExpression<Int>) {
+    _base.removeSubrange(bounds)
+  }
+  @discardableResult
+  @inlinable public mutating func removeLast() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element {
+    _base.removeLast()
+  }
+  @inlinable public mutating func removeLast(_ n: Swift.Int) {
+    _base.removeLast(n)
+  }
+  @discardableResult
+  @inlinable public mutating func removeFirst() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element {
+    _base.removeFirst()
+  }
+  @inlinable public mutating func removeFirst(_ n: Swift.Int) {
+    _base.removeFirst(n)
+  }
+  @inlinable public mutating func removeAll(where shouldBeRemoved: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Elements.Element) throws -> Swift.Bool) rethrows {
+    try _base.removeAll(where: shouldBeRemoved)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.Equatable where Value : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedDictionary<Key, Value>, right: CandleOrderedCollections.OrderedDictionary<Key, Value>) -> Swift.Bool {
+    left._keys == right._keys && left._values == right._values
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.ExpressibleByDictionaryLiteral {
+  @inlinable public init(dictionaryLiteral elements: (Key, Value)...) {
+    self.init(uniqueKeysWithValues: elements)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.Hashable where Value : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    hasher.combine(count)  
+    for (key, value) in self {
+      hasher.combine(key)
+      hasher.combine(value)
+    }
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable @inline(__always) public init() {
+    self._keys = OrderedSet()
+    self._values = []
+  }
+  @inlinable @inline(__always) public init(minimumCapacity: Swift.Int, persistent: Swift.Bool = false) {
+    self._keys = OrderedSet(minimumCapacity: minimumCapacity, persistent: persistent)
+    self._values = []
+    _values.reserveCapacity(minimumCapacity)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @_disfavoredOverload @inlinable public init(uniqueKeysWithValues keysAndValues: some Sequence<(key: Key, value: Value)>) {
+    if let keysAndValues = _specialize(
+      keysAndValues, for: Dictionary<Key, Value>.self
+    ) {
+      self.init(_uncheckedUniqueKeysWithValues: keysAndValues)
+      return
+    }
+    self.init()
+    reserveCapacity(keysAndValues.underestimatedCount)
+    for (key, value) in keysAndValues {
+      guard _keys._append(key).inserted else {
+        preconditionFailure("Duplicate key: '\(key)'")
+      }
+      _values.append(value)
+    }
+  }
+  @inlinable public init(uniqueKeysWithValues keysAndValues: some Sequence<(Key, Value)>) {
+    self.init()
+    reserveCapacity(keysAndValues.underestimatedCount)
+    for (key, value) in keysAndValues {
+      guard _keys._append(key).inserted else {
+        preconditionFailure("Duplicate key: '\(key)'")
+      }
+      _values.append(value)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public init(uniqueKeys keys: some Sequence<Key>, values: some Sequence<Value>) {
+    let keys = ContiguousArray(keys)
+    let values = ContiguousArray(values)
+    precondition(keys.count == values.count,
+                 "Mismatching element counts between keys and values")
+    self._keys = .init(keys)
+    self._values = values
+    precondition(_keys.count == _values.count, "Duplicate keys")
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @_disfavoredOverload @inlinable @inline(__always) public init(_ keysAndValues: some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows {
+    self.init()
+    try self.merge(keysAndValues, uniquingKeysWith: combine)
+  }
+  @inlinable @inline(__always) public init(_ keysAndValues: some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows {
+    self.init()
+    try self.merge(keysAndValues, uniquingKeysWith: combine)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public init<S>(grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value : Swift.RangeReplaceableCollection, S : Swift.Sequence, Value.Element == S.Element {
+    try self.init(_grouping: values, by: keyForValue)
+  }
+  @inlinable public init<S>(grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value == [S.Element], S : Swift.Sequence {
+     
+     
+     
+    try self.init(_grouping: values, by: keyForValue)
+  }
+  @inlinable internal init<S>(_grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value : Swift.RangeReplaceableCollection, S : Swift.Sequence, Value.Element == S.Element {
+    self.init()
+    for value in values {
+      let key = try keyForValue(value)
+      self.updateValue(forKey: key, default: Value()) { array in
+        array.append(value)
+      }
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable internal init(_uncheckedUniqueKeysWithValues keysAndValues: some Sequence<(key: Key, value: Value)>) {
+    self.init()
+    reserveCapacity(keysAndValues.underestimatedCount)
+    for (key, value) in keysAndValues {
+      _keys._appendNew(key)
+      _values.append(value)
+    }
+    _checkInvariants()
+  }
+  @_disfavoredOverload @inlinable public init(uncheckedUniqueKeysWithValues keysAndValues: some Sequence<(key: Key, value: Value)>) {
+    self.init(_uncheckedUniqueKeysWithValues: keysAndValues)
+  }
+  @inlinable public init(uncheckedUniqueKeysWithValues keysAndValues: some Sequence<(Key, Value)>) {
+     
+    let keysAndValues = keysAndValues.lazy.map { (key: $0.0, value: $0.1) }
+    self.init(uncheckedUniqueKeysWithValues: keysAndValues)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable @inline(__always) public init(uncheckedUniqueKeys keys: some Sequence<Key>, values: some Sequence<Value>) {
+    self._keys = .init(uncheckedUniqueElements: keys)
+    self._values = .init(values)
+    precondition(_keys.count == _values.count)
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+  @inline(__always) @inlinable public func _checkInvariants() {}
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int) {
+    _keys.swapAt(i, j)
+    _values.swapAt(i, j)
+  }
+  @inlinable public mutating func partition(by belongsInSecondPartition: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows -> Swift.Int {
+    let pivot = try _values.withUnsafeMutableBufferPointer { values in
+      try _keys._partition(values: values, by: belongsInSecondPartition)
+    }
+    _checkInvariants()
+    return pivot
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public mutating func sort(by areInIncreasingOrder: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Element, CandleOrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows {
+     
+    let temp = try self.sorted(by: areInIncreasingOrder)
+    precondition(temp.count == self.count)
+    temp.withUnsafeBufferPointer { source in
+      _keys = OrderedSet(uncheckedUniqueElements: source.lazy.map { $0.key })
+      _values = ContiguousArray(source.lazy.map { $0.value })
+    }
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary where Key : Swift.Comparable {
+  @inlinable public mutating func sort() {
+    sort { $0.key < $1.key }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public mutating func shuffle() {
+    var generator = SystemRandomNumberGenerator()
+    shuffle(using: &generator)
+  }
+  @inlinable public mutating func shuffle(using generator: inout some RandomNumberGenerator) {
+    guard count > 1 else { return }
+    var keys = self._keys.elements
+    var values = self._values
+    self = [:]
+    var amount = keys.count
+    var current = 0
+    while amount > 1 {
+      let random = Int.random(in: 0 ..< amount, using: &generator)
+      amount -= 1
+      keys.swapAt(current, current + random)
+      values.swapAt(current, current + random)
+      current += 1
+    }
+    self = OrderedDictionary(uncheckedUniqueKeys: keys, values: values)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public mutating func reverse() {
+    _keys.reverse()
+    _values.reverse()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public mutating func reserveCapacity(_ minimumCapacity: Swift.Int) {
+    self._keys.reserveCapacity(minimumCapacity)
+    self._values.reserveCapacity(minimumCapacity)
+  }
+  @inlinable public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false) {
+    _keys.removeAll(keepingCapacity: keepCapacity)
+    _values.removeAll(keepingCapacity: keepCapacity)
+  }
+  @discardableResult
+  @inlinable public mutating func remove(at index: Swift.Int) -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Element {
+    let key = _keys.remove(at: index)
+    let value = _values.remove(at: index)
+    return (key, value)
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>) {
+    _keys.removeSubrange(bounds)
+    _values.removeSubrange(bounds)
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: some RangeExpression<Int>) {
+    removeSubrange(bounds.relative(to: elements))
+  }
+  @discardableResult
+  @inlinable public mutating func removeLast() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Element {
+    precondition(!isEmpty, "Cannot remove last element of an empty collection")
+    return remove(at: count - 1)
+  }
+  @inlinable public mutating func removeLast(_ n: Swift.Int) {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the collection")
+    _keys.removeLast(n)
+    _values.removeLast(n)
+  }
+  @discardableResult
+  @inlinable public mutating func removeFirst() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Element {
+    precondition(!isEmpty, "Cannot remove first element of an empty collection")
+    return remove(at: 0)
+  }
+  @inlinable public mutating func removeFirst(_ n: Swift.Int) {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the collection")
+    _keys.removeFirst(n)
+    _values.removeFirst(n)
+  }
+  @inlinable public mutating func removeAll(where shouldBeRemoved: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows {
+    let pivot = try _values.withUnsafeMutableBufferPointer { values in
+      try _keys._halfStablePartition(
+        values: values,
+        by: shouldBeRemoved)
+    }
+    removeSubrange(pivot...)
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary : @unchecked Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary : Swift.Sequence {
+  public typealias Element = (key: Key, value: Value)
+  @frozen public struct Iterator : Swift.IteratorProtocol {
+    @usableFromInline
+    internal let _base: CandleOrderedCollections.OrderedDictionary<Key, Value>
+    @usableFromInline
+    internal var _position: Swift.Int
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedDictionary<Key, Value>) {
+      self._base = _base
+      self._position = 0
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Element? {
+      guard _position < _base._values.count else { return nil }
+      let result = (_base._keys[_position], _base._values[_position])
+      _position += 1
+      return result
+    }
+    #endif
+    public typealias Element = CandleOrderedCollections.OrderedDictionary<Key, Value>.Element
+  }
+  @inlinable @inline(__always) public var underestimatedCount: Swift.Int {
+    get {
+    count
+  }
+  }
+  @inlinable @inline(__always) public func makeIterator() -> CandleOrderedCollections.OrderedDictionary<Key, Value>.Iterator {
+    Iterator(_base: self)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Iterator : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @frozen public struct Values {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedDictionary<Key, Value>
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedDictionary<Key, Value>) {
+      self._base = _base
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.Sendable where Key : Swift.Sendable, Value : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values {
+  @inlinable @inline(__always) public var elements: Swift.Array<Value> {
+    get {
+    Array(_base._values)
+  }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values {
+  @inlinable @inline(__always) public func withUnsafeBufferPointer<R>(_ body: (Swift.UnsafeBufferPointer<CandleOrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R {
+    try _base._values.withUnsafeBufferPointer(body)
+  }
+  @inlinable @inline(__always) public mutating func withUnsafeMutableBufferPointer<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<CandleOrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R {
+    try _base._values.withUnsafeMutableBufferPointer(body)
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.Sequence {
+  public typealias Element = Value
+  public typealias Iterator = Swift.IndexingIterator<CandleOrderedCollections.OrderedDictionary<Key, Value>.Values>
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { 0 }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { _base._values.count }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int { i + 1 }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int { i - 1 }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) { i += 1 }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) { i -= 1 }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+    i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+    _base._values.index(i, offsetBy: distance, limitedBy: limit)
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+    end - start
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Value>) throws -> R) rethrows -> R? {
+    try _base._values.withUnsafeBufferPointer(body)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.MutableCollection {
+  @inlinable @inline(__always) public subscript(position: Swift.Int) -> Value {
+    get {
+      _base._values[position]
+    }
+    @inline(__always) _modify {
+      yield &_base._values[position]
+    }
+  }
+  @inlinable @inline(__always) public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int) {
+    _base._values.swapAt(i, j)
+  }
+  @inlinable @inline(__always) public mutating func partition(by belongsInSecondPartition: (Value) throws -> Swift.Bool) rethrows -> Swift.Int {
+    try _base._values.partition(by: belongsInSecondPartition)
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public mutating func withContiguousMutableStorageIfAvailable<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<CandleOrderedCollections.OrderedDictionary<Key, Value>.Values.Element>) throws -> R) rethrows -> R? {
+    try _base._values.withUnsafeMutableBufferPointer(body)
+  }
+  #endif
+  public typealias SubSequence = Swift.Slice<CandleOrderedCollections.OrderedDictionary<Key, Value>.Values>
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.Equatable where Value : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedDictionary<Key, Value>.Values, right: CandleOrderedCollections.OrderedDictionary<Key, Value>.Values) -> Swift.Bool {
+    left._base._values == right._base._values
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary.Values : Swift.Hashable where Value : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    hasher.combine(count)  
+    for item in self {
+      hasher.combine(item)
+    }
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@frozen public struct OrderedDictionary<Key, Value> where Key : Swift.Hashable {
+  @usableFromInline
+  internal var _keys: CandleOrderedCollections.OrderedSet<Key>
+  @usableFromInline
+  internal var _values: Swift.ContiguousArray<Value>
+  @inlinable @inline(__always) internal init(_uniqueKeys keys: CandleOrderedCollections.OrderedSet<Key>, values: Swift.ContiguousArray<Value>) {
+    self._keys = keys
+    self._values = values
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable @inline(__always) public var keys: CandleOrderedCollections.OrderedSet<Key> {
+    get { _keys }
+  }
+  @inlinable @inline(__always) public var values: CandleOrderedCollections.OrderedDictionary<Key, Value>.Values {
+    get { Values(_base: self) }
+    @inline(__always) _modify {
+      var values = Values(_base: self)
+      self = [:]
+      defer { self = values._base }
+      yield &values
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  public typealias Index = Swift.Int
+  @inlinable @inline(__always) public var isEmpty: Swift.Bool {
+    get { _values.isEmpty }
+  }
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _values.count }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(forKey key: Key) -> Swift.Int? {
+    _keys.firstIndex(of: key)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public subscript(key: Key) -> Value? {
+    get {
+      guard let index = _keys.firstIndex(of: key) else { return nil }
+      return _values[index]
+    }
+    set {
+       
+       
+       
+      let (index, bucket) = _keys._find(key)
+      switch (index, newValue) {
+      case let (index?, newValue?):  
+        _values[index] = newValue
+      case let (index?, nil):  
+        _keys._removeExistingMember(at: index, in: bucket)
+        _values.remove(at: index)
+      case let (nil, newValue?):  
+        _keys._appendNew(key, in: bucket)
+        _values.append(newValue)
+      case (nil, nil):  
+        break
+      }
+      _checkInvariants()
+    }
+    @inline(__always) _modify {
+      var value: Value?
+      let (index, bucket) = _prepareForKeyingModify(key, &value)
+      defer {
+        _finalizeKeyingModify(key, index, bucket, &value)
+      }
+      yield &value
+    }
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal mutating func _prepareForKeyingModify(_ key: Key, _ value: inout Value?) -> (index: Swift.Int?, bucket: CandleOrderedCollections._HashTable.Bucket) {
+    let (index, bucket) = _keys._find(key)
+
+     
+     
+    if let index = index {
+      _values.swapAt(index, _values.count - 1)
+      value = _values.removeLast()
+    }
+    return (index, bucket)
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal mutating func _finalizeKeyingModify(_ key: Key, _ index: Swift.Int?, _ bucket: CandleOrderedCollections._HashTable.Bucket, _ value: inout Value?) {
+    switch (index, value) {
+    case let (index?, value?):  
+      _values.append(value)
+      _values.swapAt(index, _values.count - 1)
+    case let (index?, nil):  
+      if index < _values.count {
+        let standin = _values.remove(at: index)
+        _values.append(standin)
+      }
+      _keys._removeExistingMember(at: index, in: bucket)
+    case let (nil, value?):  
+      _keys._appendNew(key, in: bucket)
+      _values.append(value)
+    case (nil, nil):  
+      break
+    }
+    _checkInvariants()
+  }
+  #endif
+  @inlinable public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value {
+    get {
+      guard let offset = _keys.firstIndex(of: key) else { return defaultValue() }
+      return _values[offset]
+    }
+    @inline(__always) _modify {
+      var (index, value) = _prepareForDefaultedModify(key, defaultValue)
+      defer {
+        _finalizeDefaultedModify(index, &value)
+      }
+      yield &value
+    }
+  }
+  @inlinable internal mutating func _prepareForDefaultedModify(_ key: Key, _ defaultValue: () -> Value) -> (index: Swift.Int, value: Value) {
+    let (inserted, index) = _keys.append(key)
+    if inserted {
+      assert(index == _values.count)
+      _values.append(defaultValue())
+    }
+    let value: Value = _values.withUnsafeMutableBufferPointer { buffer in
+      assert(index < buffer.count)
+      return (buffer.baseAddress! + index).move()
+    }
+    return (index, value)
+  }
+  @inlinable internal mutating func _finalizeDefaultedModify(_ index: Swift.Int, _ value: inout Value) {
+    _values.withUnsafeMutableBufferPointer { buffer in
+      assert(index < buffer.count)
+      (buffer.baseAddress! + index).initialize(to: value)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func updateValue(_ value: Value, forKey key: Key) -> Value? {
+    let (index, bucket) = _keys._find(key)
+    if let index = index {
+      let old = _values[index]
+      _values[index] = value
+      return old
+    }
+    _keys._appendNew(key, in: bucket)
+    _values.append(value)
+    return nil
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func updateValue(_ value: Value, forKey key: Key, insertingAt index: Swift.Int) -> (originalMember: Value?, index: Swift.Int) {
+    let (inserted, offset) = _keys.insert(key, at: index)
+    if inserted {
+      assert(offset == index)
+      _values.insert(value, at: offset)
+      return (nil, offset)
+    }
+    let old = _values[offset]
+    _values[offset] = value
+    return (old, offset)
+  }
+  #endif
+  @inlinable public mutating func updateValue<R>(forKey key: Key, default defaultValue: @autoclosure () -> Value, with body: (inout Value) throws -> R) rethrows -> R {
+    let (index, bucket) = _keys._find(key)
+    if let index = index {
+      return try body(&_values[index])
+    }
+    _keys._appendNew(key, in: bucket)
+    _values.append(defaultValue())
+    let i = _values.index(before: _values.endIndex)
+    return try body(&_values[i])
+  }
+  @inlinable public mutating func updateValue<R>(forKey key: Key, insertingDefault defaultValue: @autoclosure () -> Value, at index: Swift.Int, with body: (inout Value) throws -> R) rethrows -> R {
+    let (existingIndex, bucket) = _keys._find(key)
+    if let existingIndex = existingIndex {
+      return try body(&_values[existingIndex])
+    }
+    _keys._insertNew(key, at: index, in: bucket)
+    _values.insert(defaultValue(), at: index)
+    return try body(&_values[index])
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func removeValue(forKey key: Key) -> Value? {
+    let (idx, bucket) = _keys._find(key)
+    guard let index = idx else { return nil }
+    _keys._removeExistingMember(at: index, in: bucket)
+    return _values.remove(at: index)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @_disfavoredOverload @inlinable public mutating func merge(_ keysAndValues: __owned some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows {
+    for (key, value) in keysAndValues {
+      let (index, bucket) = _keys._find(key)
+      if let index = index {
+        try { $0 = try combine($0, value) }(&_values[index])
+      } else {
+        _keys._appendNew(key, in: bucket)
+        _values.append(value)
+      }
+    }
+  }
+  @inlinable public mutating func merge(_ keysAndValues: __owned some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows {
+    let mapped: LazyMapSequence =
+      keysAndValues.lazy.map { (key: $0.0, value: $0.1) }
+    try merge(mapped, uniquingKeysWith: combine)
+  }
+  @_disfavoredOverload @inlinable public __consuming func merging(_ other: __owned some Sequence<(key: Key, value: Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> CandleOrderedCollections.OrderedDictionary<Key, Value> {
+    var copy = self
+    try copy.merge(other, uniquingKeysWith: combine)
+    return copy
+  }
+  @inlinable public __consuming func merging(_ other: __owned some Sequence<(Key, Value)>, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> CandleOrderedCollections.OrderedDictionary<Key, Value> {
+    var copy = self
+    try copy.merge(other, uniquingKeysWith: combine)
+    return copy
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public func filter(_ isIncluded: (CandleOrderedCollections.OrderedDictionary<Key, Value>.Element) throws -> Swift.Bool) rethrows -> CandleOrderedCollections.OrderedDictionary<Key, Value> {
+    var result: OrderedDictionary = [:]
+    for element in self where try isIncluded(element) {
+      result._keys._appendNew(element.key)
+      result._values.append(element.value)
+    }
+    return result
+  }
+}
+extension CandleOrderedCollections.OrderedDictionary {
+  @inlinable public func mapValues<T>(_ transform: (Value) throws -> T) rethrows -> CandleOrderedCollections.OrderedDictionary<Key, T> {
+    OrderedDictionary<Key, T>(
+      _uniqueKeys: _keys,
+      values: ContiguousArray(try _values.map(transform)))
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func compactMapValues<T>(_ transform: (Value) throws -> T?) rethrows -> CandleOrderedCollections.OrderedDictionary<Key, T> {
+    var result: OrderedDictionary<Key, T> = [:]
+    for (key, value) in self {
+      if let value = try transform(value) {
+        result._keys._appendNew(key)
+        result._values.append(value)
+      }
+    }
+    return result
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet : Swift.Encodable where Element : Swift.Encodable {
+  @inlinable public func encode(to encoder: any Swift.Encoder) throws {
+    var container = encoder.singleValueContainer()
+    try container.encode(_elements)
+  }
+}
+extension CandleOrderedCollections.OrderedSet : Swift.Decodable where Element : Swift.Decodable {
+  @inlinable public init(from decoder: any Swift.Decoder) throws {
+    let container = try decoder.singleValueContainer()
+    let elements = try container.decode(ContiguousArray<Element>.self)
+
+    let (table, end) = _HashTable.create(untilFirstDuplicateIn: elements)
+    guard end == elements.endIndex else {
+      let context = DecodingError.Context(
+        codingPath: container.codingPath,
+        debugDescription: "Decoded elements aren't unique (first duplicate at offset \(end))")
+      throw DecodingError.dataCorrupted(context)
+    }
+    self.init(
+      _uniqueElements: elements,
+      elements.count > _HashTable.maximumUnhashedCount ? table : nil)
+  }
+}
+extension CandleOrderedCollections.OrderedSet : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func difference(from other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.CollectionDifference<Element>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+  public func applying(_ difference: Swift.CollectionDifference<Element>) -> CandleOrderedCollections.OrderedSet<Element>?
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedSet<Element>, right: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    left._elements == right._elements
+  }
+}
+extension CandleOrderedCollections.OrderedSet : Swift.ExpressibleByArrayLiteral {
+  @inlinable public init(arrayLiteral elements: Element...) {
+    self.init(elements)
+  }
+  public typealias ArrayLiteralElement = Element
+}
+extension CandleOrderedCollections.OrderedSet : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    hasher.combine(count)  
+    for item in _elements {
+      hasher.combine(item)
+    }
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable @inline(__always) public init(uncheckedUniqueElements elements: some Sequence<Element>) {
+    let elements = ContiguousArray<Element>(elements)
+    let table = _HashTable.create(uncheckedUniqueElements: elements)
+    self.init(
+      _uniqueElements: elements,
+      elements.count > _HashTable.maximumUnhashedCount ? table : nil)
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public init(_ elements: some Sequence<Element>) {
+    if let elements = _specialize(elements, for: Self.self) {
+      self = elements
+      return
+    }
+     
+    if elements is _UniqueCollection {
+      self.init(uncheckedUniqueElements: elements)
+      return
+    }
+
+    self.init(minimumCapacity: elements.underestimatedCount)
+    append(contentsOf: elements)
+  }
+  @inlinable public init(_ elements: CandleOrderedCollections.OrderedSet<Element>) {
+    self = elements
+  }
+  @inlinable public init(_ elements: CandleOrderedCollections.OrderedSet<Element>.SubSequence) {
+    self.init(uncheckedUniqueElements: elements._slice)
+  }
+  @inlinable public init(_ elements: Swift.Set<Element>) {
+    self.init(uncheckedUniqueElements: elements)
+  }
+  @inlinable public init<Value>(_ elements: Swift.Dictionary<Element, Value>.Keys) {
+    self._elements = ContiguousArray(elements)
+    _regenerateHashTable()
+    _checkInvariants()
+  }
+  @inlinable public init(_ elements: some RandomAccessCollection<Element>) {
+     
+     
+    let (table, firstDupe) = _HashTable.create(
+      untilFirstDuplicateIn: elements)
+    if firstDupe == elements.endIndex {
+       
+      self.init(_uniqueElements: ContiguousArray(elements), table)
+      return
+    }
+
+     
+    self.init(_uniqueElements: ContiguousArray(elements[..<firstDupe]), table)
+    self.append(contentsOf: elements[firstDupe...])
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal mutating func _appendNew(_ item: Element) {
+    assert(!contains(item), "Duplicate item")
+    _elements.append(item)
+    guard _elements.count <= _capacity else {
+      _regenerateHashTable()
+      return
+    }
+    guard _table != nil else { return }
+    _ensureUnique()
+    _table!.update { hashTable in
+      var it = hashTable.bucketIterator(for: item)
+      it.advanceToNextUnoccupiedBucket()
+      it.currentValue = _elements.count - 1
+    }
+  }
+  @inlinable internal mutating func _appendNew(_ item: Element, in bucket: CandleOrderedCollections.OrderedSet<Element>._Bucket) {
+    _elements.append(item)
+
+    guard _elements.count <= _capacity else {
+      _regenerateHashTable()
+      return
+    }
+    guard _table != nil else { return }
+    _ensureUnique()
+    _table!.update { hashTable in
+      assert(!hashTable.isOccupied(bucket))
+      hashTable[bucket] = _elements.count - 1
+    }
+  }
+  @discardableResult
+  @inlinable internal mutating func _append(_ item: Element) -> (inserted: Swift.Bool, index: Swift.Int) {
+    let (index, bucket) = _find(item)
+    if let index = index { return (false, index) }
+    _appendNew(item, in: bucket)
+    return (true, _elements.index(before: _elements.endIndex))
+  }
+  @discardableResult
+  @inlinable @inline(__always) public mutating func append(_ item: Element) -> (inserted: Swift.Bool, index: Swift.Int) {
+    let result = _append(item)
+    _checkInvariants()
+    return result
+  }
+  @inlinable public mutating func append(contentsOf elements: some Sequence<Element>) {
+    for item in elements {
+      _append(item)
+    }
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal mutating func _insertNew(_ item: Element, at index: Swift.Int, in bucket: CandleOrderedCollections.OrderedSet<Element>._Bucket) {
+    guard _elements.count < _capacity else {
+      _elements.insert(item, at: index)
+      _regenerateHashTable()
+      return
+    }
+    guard _table != nil else {
+      _elements.insert(item, at: index)
+      return
+    }
+
+    _ensureUnique()
+    _table!.update { hashTable in
+      assert(!hashTable.isOccupied(bucket))
+      hashTable.adjustContents(preparingForInsertionOfElementAtOffset: index, in: _elements)
+      hashTable[bucket] = index
+    }
+    _elements.insert(item, at: index)
+    _checkInvariants()
+  }
+  @discardableResult
+  @inlinable public mutating func insert(_ item: Element, at index: Swift.Int) -> (inserted: Swift.Bool, index: Swift.Int) {
+    let (existing, bucket) = _find(item)
+    if let existing = existing { return (false, existing) }
+    _insertNew(item, at: index, in: bucket)
+    return (true, index)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @discardableResult
+  @inlinable public mutating func update(_ item: Element, at index: Swift.Int) -> Element {
+    let old = _elements[index]
+    precondition(
+      item == old,
+      "The replacement item must compare equal to the original")
+    _elements[index] = item
+    return old
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func updateOrAppend(_ item: Element) -> Element? {
+    let (inserted, index) = _append(item)
+    if inserted { return nil }
+    let old = _elements[index]
+    _elements[index] = item
+    _checkInvariants()
+    return old
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func updateOrInsert(_ item: Element, at index: Swift.Int) -> (originalMember: Element?, index: Swift.Int) {
+    let (existing, bucket) = _find(item)
+    if let existing = existing {
+      let old = _elements[existing]
+      _elements[existing] = item
+      return (old, existing)
+    }
+    _insertNew(item, at: index, in: bucket)
+    return (nil, index)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+  @inline(__always) @inlinable public func _checkInvariants() {}
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int) {
+    guard i != j else { return }
+    _elements.swapAt(i, j)
+    guard _table != nil else { return }
+    _ensureUnique()
+    _table!.update { hashTable in
+      hashTable.swapBucketValues(for: _elements[i], withCurrentValue: j,
+                                 and: _elements[j], withCurrentValue: i)
+    }
+    _checkInvariants()
+  }
+  @inlinable public mutating func partition(by belongsInSecondPartition: (Element) throws -> Swift.Bool) rethrows -> Swift.Int {
+    try _partition(by: belongsInSecondPartition, callback: { a, b in })
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func _partition(by belongsInSecondPartition: (Element) throws -> Swift.Bool, callback: (Swift.Int, Swift.Int) -> Swift.Void) rethrows -> Swift.Int {
+    guard _table != nil else {
+      return try _elements.partition(by: belongsInSecondPartition)
+    }
+    _ensureUnique()
+    let result: Int = try _table!.update { hashTable in
+      let maybeOffset: Int? = try _elements.withContiguousMutableStorageIfAvailable { buffer in
+        let pivot = try buffer._partition(
+          with: hashTable,
+          by: belongsInSecondPartition,
+          callback: callback)
+        return pivot - buffer.startIndex
+      }
+      if let offset = maybeOffset {
+        return _elements.index(startIndex, offsetBy: offset)
+      }
+      return try _elements._partition(
+        with: hashTable,
+        by: belongsInSecondPartition,
+        callback: callback)
+    }
+    _checkInvariants()
+    return result
+  }
+}
+extension Swift.MutableCollection where Self : Swift.RandomAccessCollection, Self.Element : Swift.Hashable {
+  @inlinable internal mutating func _partition(with hashTable: CandleOrderedCollections._UnsafeHashTable, by belongsInSecondPartition: (Self.Element) throws -> Swift.Bool, callback: (Swift.Int, Swift.Int) -> Swift.Void) rethrows -> Self.Index {
+    var low = startIndex
+    var high = endIndex
+
+    while true {
+       
+       
+       
+       
+
+       
+      while true {
+        if low == high { return low }
+        if try belongsInSecondPartition(self[low]) { break }
+        formIndex(after: &low)
+      }
+
+       
+      while true {
+        formIndex(before: &high)
+        if low == high { return low }
+        if try !belongsInSecondPartition(self[high]) { break }
+      }
+
+       
+      swapAt(low, high)
+      let offsetLow = _offset(of: low)
+      let offsetHigh = _offset(of: high)
+      hashTable.swapBucketValues(for: self[low], withCurrentValue: offsetHigh,
+                                 and: self[high], withCurrentValue: offsetLow)
+      callback(offsetLow, offsetHigh)
+
+      formIndex(after: &low)
+    }
+  }
+}
+extension CandleOrderedCollections._HashTable.UnsafeHandle {
+  @inlinable @inline(__always) internal func swapBucketValues<Element>(for left: Element, withCurrentValue leftValue: Swift.Int, and right: Element, withCurrentValue rightValue: Swift.Int) where Element : Swift.Hashable {
+    let left = idealBucket(for: left)
+    let right = idealBucket(for: right)
+    swapBucketValues(for: left, withCurrentValue: leftValue,
+                     and: right, withCurrentValue: rightValue)
+  }
+  @usableFromInline
+  @_effects(releasenone) internal func swapBucketValues(for left: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket, withCurrentValue leftValue: Swift.Int, and right: CandleOrderedCollections._HashTable.UnsafeHandle.Bucket, withCurrentValue rightValue: Swift.Int)
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func sort(by areInIncreasingOrder: (Element, Element) throws -> Swift.Bool) rethrows {
+    defer {
+       
+       
+       
+       
+      _regenerateExistingHashTable()
+      _checkInvariants()
+    }
+    try _elements.sort(by: areInIncreasingOrder)
+  }
+}
+extension CandleOrderedCollections.OrderedSet where Element : Swift.Comparable {
+  @inlinable public mutating func sort() {
+    defer {
+       
+       
+       
+       
+      _regenerateExistingHashTable()
+      _checkInvariants()
+    }
+    _elements.sort()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func shuffle() {
+    var generator = SystemRandomNumberGenerator()
+    shuffle(using: &generator)
+  }
+  @inlinable public mutating func shuffle(using generator: inout some RandomNumberGenerator) {
+    _elements.shuffle(using: &generator)
+    _regenerateExistingHashTable()
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func reverse() {
+    _elements.reverse()
+     
+    _regenerateHashTable()
+    _checkInvariants()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal mutating func _halfStablePartition<Value>(values: Swift.UnsafeMutableBufferPointer<Value>, by belongsInSecondPartition: ((key: Element, value: Value)) throws -> Swift.Bool) rethrows -> Swift.Int {
+    precondition(self.count == values.count)
+    var i = 0
+    try _elements.withUnsafeMutableBufferPointer { keys in
+      while i < keys.count, try !belongsInSecondPartition((keys[i], values[i])) {
+        i += 1
+      }
+    }
+    guard i < self.count else { return self.count }
+
+    self._ensureUnique()
+    let table = _table
+    self._table = nil
+    defer { self._table = table }
+
+    return try _elements.withUnsafeMutableBufferPointer { keys in
+      for j in i + 1 ..< keys.count {
+        guard try !belongsInSecondPartition((keys[j], values[j])) else {
+          continue
+        }
+        keys.swapAt(i, j)
+        values.swapAt(i, j)
+        table?.update { hashTable in
+          hashTable.swapBucketValues(for: keys[i], withCurrentValue: j,
+                                     and: keys[j], withCurrentValue: i)
+        }
+        i += 1
+      }
+      return i
+    }
+  }
+  @inlinable internal mutating func _partition<Value>(values: Swift.UnsafeMutableBufferPointer<Value>, by belongsInSecondPartition: ((key: Element, value: Value)) throws -> Swift.Bool) rethrows -> Swift.Int {
+    self._ensureUnique()
+    let table = self._table
+    self._table = nil
+    defer { self._table = table }
+    return try _elements.withUnsafeMutableBufferPointer { keys in
+      assert(keys.count == values.count)
+      var low = keys.startIndex
+      var high = keys.endIndex
+
+      while true {
+         
+         
+         
+         
+
+         
+        while true {
+          if low == high { return low }
+          if try belongsInSecondPartition((keys[low], values[low])) { break }
+          low += 1
+        }
+
+         
+        while true {
+          high -= 1
+          if low == high { return low }
+          if try !belongsInSecondPartition((keys[high], values[high])) { break }
+        }
+
+         
+        keys.swapAt(low, high)
+        values.swapAt(low, high)
+        table?.update { hashTable in
+          hashTable.swapBucketValues(for: keys[low], withCurrentValue: high,
+                                     and: keys[high], withCurrentValue: low)
+        }
+        low += 1
+      }
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false) {
+    _elements.removeAll(keepingCapacity: keepCapacity)
+    guard keepCapacity else {
+      _table = nil
+      return
+    }
+    guard _table != nil else { return }
+    _ensureUnique()
+    _table!.update { hashTable in
+      hashTable.clear()
+    }
+  }
+  @discardableResult
+  @inlinable public mutating func remove(at index: Swift.Int) -> CandleOrderedCollections.OrderedSet<Element>.Element {
+    _elements._failEarlyRangeCheck(index, bounds: startIndex ..< endIndex)
+    let bucket = _bucket(for: index)
+    return _removeExistingMember(at: index, in: bucket)
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>) {
+    _elements._failEarlyRangeCheck(
+      bounds,
+      bounds: _elements.startIndex ..< _elements.endIndex)
+    guard _table != nil else {
+      _elements.removeSubrange(bounds)
+      _checkInvariants()
+      return
+    }
+    let c = bounds.count
+    guard c > 0 else { return }
+    let remainingCount = _elements.count - c
+    if remainingCount <= count / 2 || remainingCount < _minimumCapacity {
+       
+      _elements.removeSubrange(bounds)
+      _regenerateHashTable()
+      _checkInvariants()
+      return
+    }
+
+    _ensureUnique()
+    _table!.update { hashTable in
+       
+      for item in _elements[bounds] {
+        let (offset, bucket) = hashTable._find(item, in: _elements)
+        precondition(offset != nil, "Corrupt hash table")
+        hashTable.delete(
+          bucket: bucket,
+          hashValueGenerator: { offset, seed in
+            return _elements[offset]._rawHashValue(seed: seed)
+          })
+      }
+      hashTable.adjustContents(preparingForRemovalOf: bounds, in: _elements)
+    }
+    _elements.removeSubrange(bounds)
+    _checkInvariants()
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: some RangeExpression<Int>) {
+    removeSubrange(bounds.relative(to: self))
+  }
+  @discardableResult
+  @inlinable public mutating func removeLast() -> Element {
+    precondition(!isEmpty, "Cannot remove last element of an empty collection")
+    guard _table != nil else {
+      return _elements.removeLast()
+    }
+    guard _elements.count - 1 >= _minimumCapacity else {
+      let old = _elements.removeLast()
+      _regenerateHashTable()
+      return old
+    }
+    defer { _checkInvariants() }
+    let old = _elements.removeLast()
+    _ensureUnique()
+    _table!.update { hashTable in
+      var it = hashTable.bucketIterator(for: old)
+      it.advance(until: _elements.count)
+       
+      hashTable.delete(
+        bucket: it.currentBucket,
+        hashValueGenerator: { offset, seed in
+          _elements[offset]._rawHashValue(seed: seed)
+        })
+    }
+    return old
+  }
+  @inlinable public mutating func removeLast(_ n: Swift.Int) {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the collection")
+    removeSubrange(count - n ..< count)
+  }
+  @discardableResult
+  @inlinable public mutating func removeFirst() -> Element {
+    precondition(!isEmpty, "Cannot remove first element of an empty collection")
+    return remove(at: startIndex)
+  }
+  @inlinable public mutating func removeFirst(_ n: Swift.Int) {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the collection")
+    removeSubrange(0 ..< n)
+  }
+  @inlinable public mutating func removeAll(where shouldBeRemoved: (Element) throws -> Swift.Bool) rethrows {
+    defer {
+      _regenerateHashTable()
+      _checkInvariants()
+    }
+    try _elements.removeAll(where: shouldBeRemoved)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func formIntersection(_ other: CandleOrderedCollections.OrderedSet<Element>) {
+    self = self.intersection(other)
+  }
+  @inlinable @inline(__always) public mutating func formIntersection(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    formIntersection(other._base)
+  }
+  @inlinable public mutating func formIntersection(_ other: some Sequence<Element>) {
+    self = self.intersection(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func formSymmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>) {
+    self = self.symmetricDifference(other)
+  }
+  @inlinable @inline(__always) public mutating func formSymmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    formSymmetricDifference(other._base)
+  }
+  @inlinable public mutating func formSymmetricDifference(_ other: __owned some Sequence<Element>) {
+    self = self.symmetricDifference(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func formUnion(_ other: __owned CandleOrderedCollections.OrderedSet<Element>) {
+    append(contentsOf: other)
+  }
+  @inlinable @inline(__always) public mutating func formUnion(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    formUnion(other._base)
+  }
+  @inlinable public mutating func formUnion(_ other: __owned some Sequence<Element>) {
+    append(contentsOf: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public __consuming func intersection(_ other: CandleOrderedCollections.OrderedSet<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    var result = Self()
+    for item in self {
+      if other.contains(item) {
+        result._appendNew(item)
+      }
+    }
+    result._checkInvariants()
+    return result
+  }
+  @inlinable @inline(__always) public __consuming func intersection(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element> {
+    intersection(other._base)
+  }
+  @inlinable public __consuming func intersection(_ other: some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    _UnsafeBitSet.withTemporaryBitSet(capacity: self.count) { bitset in
+      for item in other {
+        if let index = self._find_inlined(item).index {
+          bitset.insert(index)
+        }
+      }
+      return self._extractSubset(using: bitset)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func isDisjoint(with other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    guard !self.isEmpty && !other.isEmpty else { return true }
+    if self.count <= other.count {
+      for item in self {
+        if other.contains(item) { return false }
+      }
+    } else {
+      for item in other {
+        if self.contains(item) { return false }
+      }
+    }
+    return true
+  }
+  @inlinable @inline(__always) public func isDisjoint(with other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    isDisjoint(with: other._base)
+  }
+  @inlinable public func isDisjoint(with other: Swift.Set<Element>) -> Swift.Bool {
+    guard !self.isEmpty && !other.isEmpty else { return true }
+    if self.count <= other.count {
+      for item in self {
+        if other.contains(item) { return false }
+      }
+    } else {
+      for item in other {
+        if self.contains(item) { return false }
+      }
+    }
+    return true
+  }
+  @inlinable public func isDisjoint(with other: some Sequence<Element>) -> Swift.Bool {
+    guard !self.isEmpty else { return true }
+    for item in other {
+      if self.contains(item) { return false }
+    }
+    return true
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  public func isEqualSet(to other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool
+  public func isEqualSet(to other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isEqualSet(to other: some Sequence<Element>) -> Swift.Bool
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func isStrictSubset(of other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    self.count < other.count && self.isSubset(of: other)
+  }
+  @inlinable @inline(__always) public func isStrictSubset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    isStrictSubset(of: other._base)
+  }
+  @inlinable public func isStrictSubset(of other: Swift.Set<Element>) -> Swift.Bool {
+    self.count < other.count && self.isSubset(of: other)
+  }
+  @inlinable public func isStrictSubset(of other: some Sequence<Element>) -> Swift.Bool {
+    if let other = _specialize(other, for: Self.self) {
+      return self.isStrictSubset(of: other)
+    }
+    if let other = _specialize(other, for: Set<Element>.self) {
+      return self.isStrictSubset(of: other)
+    }
+
+    var it = self.makeIterator()
+    guard let first = it.next() else {
+      return other.contains(where: { _ in true })
+    }
+    if let match = other._customContainsEquatableElement(first) {
+       
+      guard match else { return false }
+      while let item = it.next() {
+        guard other.contains(item) else { return false }
+      }
+      return !other.allSatisfy { self.contains($0) }
+    }
+
+    return _UnsafeBitSet.withTemporaryBitSet(capacity: count) { seen in
+       
+      var isKnownStrict = false
+      var c = 0
+      for item in other {
+        if let index = _find(item).index {
+          if seen.insert(index) {
+            c &+= 1
+            if c == self.count, isKnownStrict {
+               
+              return true
+            }
+          }
+        } else {
+          if !isKnownStrict, c == self.count { return true }
+          isKnownStrict = true
+        }
+      }
+      return false
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func isStrictSuperset(of other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    self.count > other.count && other.isSubset(of: self)
+  }
+  @inlinable @inline(__always) public func isStrictSuperset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    isStrictSuperset(of: other._base)
+  }
+  @inlinable public func isStrictSuperset(of other: Swift.Set<Element>) -> Swift.Bool {
+    self.count > other.count && other.isSubset(of: self)
+  }
+  @inlinable public func isStrictSuperset(of other: some Sequence<Element>) -> Swift.Bool {
+    if let other = _specialize(other, for: Self.self) {
+      return self.isStrictSuperset(of: other)
+    }
+    if let other = _specialize(other, for: Set<Element>.self) {
+      return self.isStrictSuperset(of: other)
+    }
+
+    var it = self.makeIterator()
+    guard let first = it.next() else { return false }
+    if let match = other._customContainsEquatableElement(first) {
+       
+      guard other.allSatisfy({ self.contains($0) }) else { return false }
+      guard match else { return true }
+      while let item = it.next() {
+        guard other.contains(item) else { return true }
+      }
+      return false
+    }
+
+    return _UnsafeBitSet.withTemporaryBitSet(capacity: count) { seen in
+       
+      var c = 0
+      for item in other {
+        guard let index = _find(item).index else {
+          return false
+        }
+        if seen.insert(index) {
+          c &+= 1
+          if c == self.count {
+             
+            return false
+          }
+        }
+      }
+      return c < self.count
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func isSubset(of other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    guard other.count >= self.count else { return false }
+    for item in self {
+      guard other.contains(item) else { return false }
+    }
+    return true
+  }
+  @inlinable @inline(__always) public func isSubset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    isSubset(of: other._base)
+  }
+  @inlinable public func isSubset(of other: Swift.Set<Element>) -> Swift.Bool {
+    guard other.count >= self.count else { return false }
+    for item in self {
+      guard other.contains(item) else { return false }
+    }
+    return true
+  }
+  @inlinable public func isSubset(of other: some Sequence<Element>) -> Swift.Bool {
+    guard !isEmpty else { return true }
+
+    if let other = _specialize(other, for: Self.self) {
+      return isSubset(of: other)
+    }
+
+    var it = self.makeIterator()
+    let first = it.next()!
+    if let match = other._customContainsEquatableElement(first) {
+       
+      guard match else { return false }
+      while let item = it.next() {
+        guard other.contains(item) else { return false }
+      }
+      return true
+    }
+
+    return _UnsafeBitSet.withTemporaryBitSet(capacity: count) { seen in
+       
+      var c = 0
+      for item in other {
+        if let index = _find(item).index {
+          if seen.insert(index) {
+            c &+= 1
+            if c == self.count {
+               
+              return true
+            }
+          }
+        }
+      }
+      return false
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func isSuperset(of other: CandleOrderedCollections.OrderedSet<Element>) -> Swift.Bool {
+    other.isSubset(of: self)
+  }
+  @inlinable public func isSuperset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    isSuperset(of: other._base)
+  }
+  @inlinable public func isSuperset(of other: Swift.Set<Element>) -> Swift.Bool {
+    guard self.count >= other.count else { return false }
+    return _isSuperset(of: other)
+  }
+  @inlinable public func isSuperset(of other: some Sequence<Element>) -> Swift.Bool {
+    _isSuperset(of: other)
+  }
+  @inlinable internal func _isSuperset(of other: some Sequence<Element>) -> Swift.Bool {
+    if let other = _specialize(other, for: Self.self) {
+      return self.isSuperset(of: other)
+    }
+    for item in other {
+      guard self.contains(item) else { return false }
+    }
+    return true
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable @inline(__always) public mutating func subtract(_ other: CandleOrderedCollections.OrderedSet<Element>) {
+    self = subtracting(other)
+  }
+  @inlinable @inline(__always) public mutating func subtract(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    subtract(other._base)
+  }
+  @inlinable @inline(__always) public mutating func subtract(_ other: some Sequence<Element>) {
+    self = _subtracting(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable @inline(__always) public __consuming func subtracting(_ other: CandleOrderedCollections.OrderedSet<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    _subtracting(other)
+  }
+  @inlinable @inline(__always) public __consuming func subtracting(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element> {
+    subtracting(other._base)
+  }
+  @inlinable @inline(__always) public __consuming func subtracting(_ other: some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    _subtracting(other)
+  }
+  @inlinable internal __consuming func _subtracting(_ other: some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    guard count > 0 else { return Self() }
+    return _UnsafeBitSet.withTemporaryBitSet(capacity: count) { difference in
+      difference.insertAll(upTo: count)
+      var c = count
+      for item in other {
+        if let index = self._find(item).index {
+          if difference.remove(index) {
+            c &-= 1
+            if c == 0 {
+              return Self()
+            }
+          }
+        }
+      }
+      assert(c > 0)
+      return _extractSubset(using: difference, count: c)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public __consuming func symmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    _UnsafeBitSet.withTemporaryBitSet(capacity: self.count) { bitset1 in
+      _UnsafeBitSet.withTemporaryBitSet(capacity: other.count) { bitset2 in
+        bitset1.insertAll(upTo: self.count)
+        for item in other {
+          if let index = self._find(item).index {
+            bitset1.remove(index)
+          }
+        }
+        bitset2.insertAll(upTo: other.count)
+        for item in self {
+          if let index = other._find(item).index {
+            bitset2.remove(index)
+          }
+        }
+        var result = self._extractSubset(using: bitset1,
+                                         extraCapacity: bitset2.count)
+        for offset in bitset2 {
+          result._appendNew(other._elements[Int(bitPattern: offset)])
+        }
+        result._checkInvariants()
+        return result
+      }
+    }
+  }
+  @inlinable @inline(__always) public __consuming func symmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element> {
+    symmetricDifference(other._base)
+  }
+  @inlinable public __consuming func symmetricDifference(_ other: __owned some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    _UnsafeBitSet.withTemporaryBitSet(capacity: self.count) { bitset in
+      var new = Self()
+      bitset.insertAll(upTo: self.count)
+      for item in other {
+        if let index = self._find(item).index {
+          bitset.remove(index)
+        } else {
+          new.append(item)
+        }
+      }
+      var result = _extractSubset(using: bitset, extraCapacity: new.count)
+      for item in new._elements {
+        result._appendNew(item)
+      }
+      result._checkInvariants()
+      return result
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public __consuming func union(_ other: __owned CandleOrderedCollections.OrderedSet<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    var result = self
+    result.formUnion(other)
+    return result
+  }
+  @inlinable @inline(__always) public __consuming func union(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element> {
+    union(other._base)
+  }
+  @inlinable public __consuming func union(_ other: __owned some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element> {
+    var result = self
+    result.formUnion(other)
+    return result
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public init() {
+    __storage = nil
+    _elements = []
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func contains(_ element: Element) -> Swift.Bool {
+    _find_inlined(element).index != nil
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable public mutating func remove(_ member: Element) -> Element? {
+    let (idx, bucket) = _find(member)
+    guard let index = idx else { return nil }
+    return _removeExistingMember(at: index, in: bucket)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet : Swift.Sequence {
+  public typealias Iterator = Swift.IndexingIterator<CandleOrderedCollections.OrderedSet<Element>>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func _customContainsEquatableElement(_ element: Element) -> Swift.Bool? {
+    _find(element).index != nil
+  }
+  #endif
+  @inlinable public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element> {
+    _elements._copyToContiguousArray()
+  }
+  @inlinable public __consuming func _copyContents(initializing ptr: Swift.UnsafeMutableBufferPointer<Element>) -> (CandleOrderedCollections.OrderedSet<Element>.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index) {
+    guard !isEmpty else { return (makeIterator(), 0) }
+    let copied: Int = _elements.withUnsafeBufferPointer { buffer in
+      guard let p = ptr.baseAddress else {
+        preconditionFailure("Attempt to copy contents into nil buffer pointer")
+      }
+      let c = Swift.min(buffer.count, ptr.count)
+      p.initialize(from: buffer.baseAddress!, count: c)
+      return c
+    }
+    return (Iterator(_elements: self, _position: copied), copied)
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R? {
+    try _elements.withContiguousStorageIfAvailable(body)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { _elements.startIndex }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { _elements.endIndex }
+  }
+  @inlinable @inline(__always) public var indices: CandleOrderedCollections.OrderedSet<Element>.Indices {
+    get { _elements.indices }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int { i + 1 }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int { i - 1 }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) { i += 1 }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) { i -= 1 }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+    i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+    _elements.index(i, offsetBy: distance, limitedBy: limit)
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+    end - start
+  }
+  @inlinable @inline(__always) public subscript(position: Swift.Int) -> Element {
+    get {
+    _elements[position]
+  }
+  }
+  @inlinable public subscript(bounds: Swift.Range<Swift.Int>) -> CandleOrderedCollections.OrderedSet<Element>.SubSequence {
+    get {
+    _failEarlyRangeCheck(bounds, bounds: startIndex ..< endIndex)
+    return SubSequence(_base: self, bounds: bounds)
+  }
+  }
+  @inlinable @inline(__always) public var isEmpty: Swift.Bool {
+    get { _elements.isEmpty }
+  }
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _elements.count }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func _customIndexOfEquatableElement(_ element: Element) -> Swift.Int?? {
+    guard let table = _table else {
+      return _elements._customIndexOfEquatableElement(element)
+    }
+    return table.read { hashTable in
+      let (o, _) = hashTable._find(element, in: _elements)
+      guard let offset = o else { return .some(nil) }
+      return offset
+    }
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func _customLastIndexOfEquatableElement(_ element: Element) -> Swift.Int?? {
+     
+    _customIndexOfEquatableElement(element)
+  }
+  #endif
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>) {
+    _elements._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>) {
+    _elements._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>) {
+    _elements._failEarlyRangeCheck(range, bounds: bounds)
+  }
+}
+extension CandleOrderedCollections.OrderedSet : CandleInternalCollectionsUtilities._UniqueCollection {
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public init(minimumCapacity: Swift.Int, persistent: Swift.Bool = false) {
+    self.init()
+    self._reserveCapacity(minimumCapacity, persistent: persistent)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public mutating func reserveCapacity(_ minimumCapacity: Swift.Int) {
+    self._reserveCapacity(minimumCapacity, persistent: false)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal mutating func _reserveCapacity(_ minimumCapacity: Swift.Int, persistent: Swift.Bool) {
+    precondition(minimumCapacity >= 0, "Minimum capacity cannot be negative")
+    defer { _checkInvariants() }
+
+    _elements.reserveCapacity(minimumCapacity)
+
+    let currentScale = _scale
+    let newScale = _HashTable.scale(forCapacity: minimumCapacity)
+
+    let reservedScale = persistent ? newScale : _reservedScale
+
+    if currentScale < newScale {
+       
+      _regenerateHashTable(scale: newScale, reservedScale: reservedScale)
+      return
+    }
+
+    let requiredScale = _HashTable.scale(forCapacity: self.count)
+    let minScale = Swift.max(Swift.max(newScale, reservedScale), requiredScale)
+    if minScale < currentScale {
+       
+      _regenerateHashTable(scale: minScale, reservedScale: reservedScale)
+      return
+    }
+
+     
+     
+    _ensureUnique()
+    if _reservedScale != reservedScale {
+       
+      __storage!.header.reservedScale = reservedScale
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedSet {
+  @frozen public struct SubSequence {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedSet<Element>
+    @usableFromInline
+    internal var _bounds: Swift.Range<Swift.Int>
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedSet<Element>, bounds: Swift.Range<Swift.Int>) {
+      self._base = _base
+      self._bounds = bounds
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.Sendable where Element : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence {
+  @inlinable internal var _slice: Swift.Array<Element>.SubSequence {
+    get {
+    _base._elements[_bounds]
+  }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func _index(of element: Element) -> Swift.Int? {
+    guard let index = _base._find(element).index else { return nil }
+    guard _bounds.contains(index) else { return nil }
+    return index
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.Sequence {
+  public typealias Element = CandleOrderedCollections.OrderedSet<Element>.Element
+  public typealias Iterator = Swift.IndexingIterator<CandleOrderedCollections.OrderedSet<Element>.SubSequence>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func _customContainsEquatableElement(_ element: Element) -> Swift.Bool? {
+    _index(of: element) != nil
+  }
+  #endif
+  @inlinable public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element> {
+    _slice._copyToContiguousArray()
+  }
+  @inlinable public __consuming func _copyContents(initializing ptr: Swift.UnsafeMutableBufferPointer<Element>) -> (CandleOrderedCollections.OrderedSet<Element>.SubSequence.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index) {
+    guard !isEmpty else { return (makeIterator(), 0) }
+    let copied: Int = _slice.withUnsafeBufferPointer { buffer in
+      guard let p = ptr.baseAddress else {
+        preconditionFailure("Attempt to copy contents into nil buffer pointer")
+      }
+      let c = Swift.min(buffer.count, ptr.count)
+      if c > 0 {
+        p.initialize(from: buffer.baseAddress!, count: c)
+      }
+      return c
+    }
+    return (Iterator(_elements: self, _position: _bounds.lowerBound + copied),
+            copied)
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R? {
+    try _slice.withContiguousStorageIfAvailable(body)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : CandleInternalCollectionsUtilities._UniqueCollection {
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Array<Element>.SubSequence.Indices
+  public typealias SubSequence = CandleOrderedCollections.OrderedSet<Element>.SubSequence
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { _bounds.lowerBound }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { _bounds.upperBound }
+  }
+  @inlinable @inline(__always) public var indices: CandleOrderedCollections.OrderedSet<Element>.SubSequence.Indices {
+    get { _slice.indices }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int { i + 1 }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int { i - 1 }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) { i += 1 }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) { i -= 1 }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+    i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+    _slice.index(i, offsetBy: distance, limitedBy: limit)
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+    end - start
+  }
+  @inlinable @inline(__always) public subscript(position: Swift.Int) -> Element {
+    get {
+    _slice[position]
+  }
+  }
+  @inlinable @inline(__always) public subscript(bounds: Swift.Range<Swift.Int>) -> CandleOrderedCollections.OrderedSet<Element>.SubSequence.SubSequence {
+    get {
+    _failEarlyRangeCheck(bounds, bounds: startIndex ..< endIndex)
+    return SubSequence(_base: _base, bounds: bounds)
+  }
+  }
+  @inlinable @inline(__always) public var isEmpty: Swift.Bool {
+    get { _bounds.isEmpty }
+  }
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _bounds.count }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func _customIndexOfEquatableElement(_ element: Element) -> Swift.Int?? {
+    .some(_index(of: element))
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func _customLastIndexOfEquatableElement(_ element: Element) -> Swift.Int?? {
+    .some(_index(of: element))
+  }
+  #endif
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.Range<Swift.Int>) {
+    _slice._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ index: Swift.Int, bounds: Swift.ClosedRange<Swift.Int>) {
+    _slice._failEarlyRangeCheck(index, bounds: bounds)
+  }
+  @inlinable @inline(__always) public func _failEarlyRangeCheck(_ range: Swift.Range<Swift.Int>, bounds: Swift.Range<Swift.Int>) {
+    _slice._failEarlyRangeCheck(range, bounds: bounds)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedSet<Element>.SubSequence, right: CandleOrderedCollections.OrderedSet<Element>.SubSequence) -> Swift.Bool {
+    left._base._elements[left._bounds] == right._base._elements[right._bounds]
+  }
+}
+extension CandleOrderedCollections.OrderedSet.SubSequence : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    hasher.combine(count)
+    for item in self {
+      hasher.combine(item)
+    }
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet._UnstableInternals {
+  public static var isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @frozen public struct UnorderedView {
+    @usableFromInline
+    internal var _base: CandleOrderedCollections.OrderedSet<Element>
+    @inlinable @inline(__always) internal init(_base: CandleOrderedCollections.OrderedSet<Element>) {
+      self._base = _base
+    }
+  }
+  @inlinable @inline(__always) public init(_ view: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    self = view._base
+  }
+  @inlinable public var unordered: CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    @inline(__always) get {
+      UnorderedView(_base: self)
+    }
+    @inline(__always) _modify {
+      var view = UnorderedView(_base: self)
+      self = OrderedSet()
+      defer { self = view._base }
+      yield &view
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.Sendable where Element : Swift.Sendable {
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.Equatable {
+  @inlinable public static func == (left: CandleOrderedCollections.OrderedSet<Element>.UnorderedView, right: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    if left._base.__storage != nil,
+       left._base.__storage === right._base.__storage
+    {
+      return true
+    }
+    guard left._base.count == right._base.count else { return false }
+
+    for item in left._base {
+      if !right._base.contains(item) { return false }
+    }
+    return true
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+     
+     
+     
+     
+    let copy = hasher
+    let seed = copy.finalize()
+
+    var hash = 0
+    for member in _base {
+      hash ^= member._rawHashValue(seed: seed)
+    }
+    hasher.combine(hash)
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.ExpressibleByArrayLiteral {
+  @inlinable @inline(__always) public init(arrayLiteral elements: Element...) {
+    _base = OrderedSet(elements)
+  }
+  public typealias ArrayLiteralElement = Element
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView : Swift.SetAlgebra {
+  public typealias Element = CandleOrderedCollections.OrderedSet<Element>.Element
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable @inline(__always) public init() {
+    _base = OrderedSet()
+  }
+  @inlinable @inline(__always) public init(_ elements: some Sequence<Element>) {
+    _base = OrderedSet(elements)
+  }
+  @inlinable @inline(__always) public init(_ elements: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    self = elements
+  }
+  @inlinable @inline(__always) public init(_ elements: Swift.Set<Element>) {
+    self._base = OrderedSet(elements)
+  }
+  @inlinable @inline(__always) public init<Value>(_ elements: Swift.Dictionary<Element, Value>.Keys) {
+    self._base = OrderedSet(elements)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable @inline(__always) public func contains(_ element: Element) -> Swift.Bool {
+    _base.contains(element)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public mutating func insert(_ newMember: __owned Element) -> (inserted: Swift.Bool, memberAfterInsert: Element) {
+    let (inserted, index) = _base.append(newMember)
+    return (inserted, _base[index])
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public mutating func update(with newMember: __owned Element) -> Element? {
+    let (inserted, index) = _base.append(newMember)
+    if inserted { return nil }
+    let old = _base._elements[index]
+    _base._elements[index] = newMember
+    return old
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  @inlinable @inline(__always) public mutating func remove(_ member: Element) -> Element? {
+    _base.remove(member)
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable @inline(__always) public mutating func formUnion(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    _base.formUnion(other._base)
+  }
+  @inlinable public __consuming func union(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.union(other._base).unordered
+  }
+  @inlinable public mutating func formUnion(_ other: __owned some Sequence<Element>) {
+    _base.formUnion(other)
+  }
+  @inlinable public __consuming func union(_ other: __owned some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.union(other).unordered
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public __consuming func intersection(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.intersection(other._base).unordered
+  }
+  @inlinable public mutating func formIntersection(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    _base.formIntersection(other._base)
+  }
+  @inlinable public __consuming func intersection(_ other: some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.intersection(other).unordered
+  }
+  @inlinable public mutating func formIntersection(_ other: some Sequence<Element>) {
+    _base.formIntersection(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public __consuming func symmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.symmetricDifference(other._base).unordered
+  }
+  @inlinable public mutating func formSymmetricDifference(_ other: __owned CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    _base.formSymmetricDifference(other._base)
+  }
+  @inlinable public __consuming func symmetricDifference(_ other: __owned some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.symmetricDifference(other).unordered
+  }
+  @inlinable public mutating func formSymmetricDifference(_ other: __owned some Sequence<Element>) {
+    _base.formSymmetricDifference(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public __consuming func subtracting(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.subtracting(other._base).unordered
+  }
+  @inlinable public mutating func subtract(_ other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) {
+    _base.subtract(other._base)
+  }
+  @inlinable public __consuming func subtracting(_ other: some Sequence<Element>) -> CandleOrderedCollections.OrderedSet<Element>.UnorderedView {
+    _base.subtracting(other).unordered
+  }
+  @inlinable public mutating func subtract(_ other: some Sequence<Element>) {
+    _base.subtract(other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  public func isEqualSet(to other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool
+  public func isEqualSet(to other: some Sequence<Element>) -> Swift.Bool
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public func isSubset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    _base.isSubset(of: other._base)
+  }
+  @inlinable public func isSubset(of other: Swift.Set<Element>) -> Swift.Bool {
+    _base.isSubset(of: other)
+  }
+  @inlinable public func isSubset(of other: some Sequence<Element>) -> Swift.Bool {
+    _base.isSubset(of: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public func isSuperset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    _base.isSuperset(of: other._base)
+  }
+  @inlinable public func isSuperset(of other: Swift.Set<Element>) -> Swift.Bool {
+    _base.isSuperset(of: other)
+  }
+  @inlinable public func isSuperset(of other: some Sequence<Element>) -> Swift.Bool {
+    _base.isSuperset(of: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public func isStrictSubset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    _base.isStrictSubset(of: other._base)
+  }
+  @inlinable public func isStrictSubset(of other: Swift.Set<Element>) -> Swift.Bool {
+    _base.isStrictSubset(of: other)
+  }
+  @inlinable public func isStrictSubset(of other: some Sequence<Element>) -> Swift.Bool {
+    _base.isStrictSubset(of: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public func isStrictSuperset(of other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    _base.isStrictSuperset(of: other._base)
+  }
+  @inlinable public func isStrictSuperset(of other: Swift.Set<Element>) -> Swift.Bool {
+    _base.isStrictSuperset(of: other)
+  }
+  @inlinable public func isStrictSuperset(of other: some Sequence<Element>) -> Swift.Bool {
+    _base.isStrictSuperset(of: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet.UnorderedView {
+  @inlinable public func isDisjoint(with other: CandleOrderedCollections.OrderedSet<Element>.UnorderedView) -> Swift.Bool {
+    _base.isDisjoint(with: other._base)
+  }
+  @inlinable public func isDisjoint(with other: Swift.Set<Element>) -> Swift.Bool {
+    _base.isDisjoint(with: other)
+  }
+  @inlinable public func isDisjoint(with other: some Sequence<Element>) -> Swift.Bool {
+    _base.isDisjoint(with: other)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @frozen public struct _UnstableInternals {
+    @usableFromInline
+    internal typealias _Bucket = CandleOrderedCollections._HashTable.Bucket
+    @usableFromInline
+    internal var base: CandleOrderedCollections.OrderedSet<Element>
+    @inlinable internal init(_ base: CandleOrderedCollections.OrderedSet<Element>) {
+      self.base = base
+    }
+  }
+  @inlinable public var __unstable: CandleOrderedCollections.OrderedSet<Element>._UnstableInternals {
+    @inline(__always) get {
+      _UnstableInternals(self)
+    }
+    @inline(__always) _modify {
+      var view = _UnstableInternals(self)
+      self = OrderedSet()
+      defer { self = view.base }
+      yield &view
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet._UnstableInternals : Swift.Sendable where Element : Swift.Sendable {
+}
+@frozen public struct OrderedSet<Element> where Element : Swift.Hashable {
+  @usableFromInline
+  internal typealias _Bucket = CandleOrderedCollections._HashTable.Bucket
+  @usableFromInline
+  internal var __storage: CandleOrderedCollections._HashTable.Storage?
+  @usableFromInline
+  internal var _elements: Swift.ContiguousArray<Element>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal init(_uniqueElements: Swift.ContiguousArray<Element>, _ table: CandleOrderedCollections._HashTable?) {
+    self.__storage = table?._storage
+    self._elements = _uniqueElements
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal var _table: CandleOrderedCollections._HashTable? {
+    get { __storage.map { _HashTable($0) } }
+    set { __storage = newValue?._storage }
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public var elements: [Element] {
+    get {
+      Array(_elements)
+    }
+    set {
+      self = .init(newValue)
+    }
+    @inline(__always) _modify {
+      var members = Array(_elements)
+      _elements = []
+      defer { self = .init(members) }
+      yield &members
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal var _capacity: Swift.Int {
+    get {
+    _table?.capacity ?? _HashTable.maximumUnhashedCount
+  }
+  }
+  @inlinable internal var _minimumCapacity: Swift.Int {
+    get {
+    if _scale == _reservedScale { return 0 }
+    return _HashTable.minimumCapacity(forScale: _scale)
+  }
+  }
+  @inlinable internal var _scale: Swift.Int {
+    get {
+    _table?.scale ?? 0
+  }
+  }
+  @inlinable internal var _reservedScale: Swift.Int {
+    get {
+    _table?.reservedScale ?? 0
+  }
+  }
+  @inlinable internal var _bias: Swift.Int {
+    get {
+    _table?.bias ?? 0
+  }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable internal mutating func _regenerateHashTable(scale: Swift.Int, reservedScale: Swift.Int) {
+    assert(_HashTable.maximumCapacity(forScale: scale) >= _elements.count)
+    assert(reservedScale == 0 || reservedScale >= _HashTable.minimumScale)
+    _table = _HashTable.create(
+      uncheckedUniqueElements: _elements,
+      scale: Swift.max(scale, reservedScale),
+      reservedScale: reservedScale)
+  }
+  @inlinable internal mutating func _regenerateHashTable() {
+    let reservedScale = _reservedScale
+    guard
+      _elements.count > _HashTable.maximumUnhashedCount || reservedScale != 0
+    else {
+       
+      _table = nil
+      return
+    }
+    let scale = _HashTable.scale(forCapacity: _elements.count)
+    _regenerateHashTable(scale: scale, reservedScale: reservedScale)
+  }
+  @inlinable internal mutating func _regenerateExistingHashTable() {
+    assert(_capacity >= _elements.count)
+    guard _table != nil else {
+      return
+    }
+    _ensureUnique()
+    _table!.update { hashTable in
+      hashTable.clear()
+      hashTable.fill(uncheckedUniqueElements: _elements)
+    }
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable @inline(__always) internal mutating func _isUnique() -> Swift.Bool {
+    isKnownUniquelyReferenced(&__storage)
+  }
+  @inlinable internal mutating func _ensureUnique() {
+    if __storage == nil { return }
+    if isKnownUniquelyReferenced(&__storage) { return }
+    _table = _table!.copy()
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func _find(_ item: Element) -> (index: Swift.Int?, bucket: CandleOrderedCollections.OrderedSet<Element>._Bucket) {
+    _find_inlined(item)
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal func _find_inlined(_ item: Element) -> (index: Swift.Int?, bucket: CandleOrderedCollections.OrderedSet<Element>._Bucket) {
+    _elements.withUnsafeBufferPointer { elements in
+      guard let table = _table else {
+        return (elements.firstIndex(of: item), _Bucket(offset: 0))
+      }
+      return table.read { hashTable in
+        hashTable._find(item, in: elements)
+      }
+    }
+  }
+  #endif
+  @inlinable internal func _bucket(for index: Swift.Int) -> CandleOrderedCollections.OrderedSet<Element>._Bucket {
+    guard let table = _table else { return _Bucket(offset: 0) }
+    return table.read { hashTable in
+      var it = hashTable.bucketIterator(for: _elements[index])
+      it.advance(until: index)
+      precondition(it.isOccupied, "Corrupt hash table")
+      return it.currentBucket
+    }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func firstIndex(of element: Element) -> Swift.Int? {
+    _find(element).index
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) public func lastIndex(of element: Element) -> Swift.Int? {
+    _find(element).index
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(never) internal __consuming func _extractSubset(using bitset: CandleOrderedCollections._UnsafeBitSet, count: Swift.Int? = nil, extraCapacity: Swift.Int = 0) -> CandleOrderedCollections.OrderedSet<Element> {
+    let c = count ?? bitset.count
+    assert(c == 0 || bitset.max()! <= self.count)
+    if c == 0 { return Self(minimumCapacity: extraCapacity) }
+    if c == self.count {
+      if extraCapacity <= self._capacity - self.count {
+        return self
+      }
+      var copy = self
+      copy.reserveCapacity(c + extraCapacity)
+      return copy
+    }
+    var result = Self(minimumCapacity: c + extraCapacity)
+    for offset in bitset {
+      result._appendNew(_elements[Int(bitPattern: offset)])
+    }
+    assert(result.count == c)
+    result._checkInvariants()
+    return result
+  }
+  #endif
+}
+extension CandleOrderedCollections.OrderedSet {
+  @discardableResult
+  @inlinable internal mutating func _removeExistingMember(at index: Swift.Int, in bucket: CandleOrderedCollections.OrderedSet<Element>._Bucket) -> Element {
+    guard _elements.count - 1 >= _minimumCapacity else {
+      let old = _elements.remove(at: index)
+      _regenerateHashTable()
+      return old
+    }
+    guard _table != nil else {
+      return _elements.remove(at: index)
+    }
+
+    defer { _checkInvariants() }
+    _ensureUnique()
+    _table!.update { hashTable in
+       
+      hashTable.delete(
+        bucket: bucket,
+        hashValueGenerator: { offset, seed in
+          _elements[offset]._rawHashValue(seed: seed)
+        })
+      hashTable.adjustContents(preparingForRemovalOf: index, in: _elements)
+    }
+    return _elements.remove(at: index)
+  }
+}
+extension CandleOrderedCollections.OrderedSet {
+  @inlinable public func filter(_ isIncluded: (Element) throws -> Swift.Bool) rethrows -> CandleOrderedCollections.OrderedSet<Element> {
+    try _UnsafeBitSet.withTemporaryBitSet(capacity: self.count) { bitset in
+      for i in _elements.indices where try isIncluded(_elements[i]) {
+        bitset.insert(i)
+      }
+      return self._extractSubset(using: bitset)
+    }
+  }
+}
+@usableFromInline
+internal typealias _UnsafeBitSet = CandleInternalCollectionsUtilities._UnsafeBitSet
+extension CandleOrderedCollections._HashTable.Bucket : Swift.Sendable {}
+extension CandleOrderedCollections._HashTable.Bucket : Swift.BitwiseCopyable {}
+extension CandleOrderedCollections._HashTable.UnsafeHandle : Swift.BitwiseCopyable {}

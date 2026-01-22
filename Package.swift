@@ -3,18 +3,22 @@ import Foundation
 import PackageDescription
 
 let xcFrameworkNames: [String] = [
-    "_AtomicsShims", "_CWASI", "_NIOBase64", "_NIODataStructures", "_NumericsShims", "Algorithms",
-    "AsyncAlgorithms", "AsyncHTTPClient", "Atomics", "CachedAsyncImage", "Candle",
-    "CandleSFSafeSymbols", "CandleSwiftProtobuf", "CAsyncHTTPClient", "CCryptoBoringSSL",
-    "CCryptoBoringSSLShims", "CNIOAtomics", "CNIOBoringSSL", "CNIOBoringSSLShims", "CNIODarwin",
-    "CNIOExtrasZlib", "CNIOLinux", "CNIOLLHTTP", "CNIOSHA1", "CNIOWASI", "CNIOWindows",
-    "ConcurrencyHelpers", "CoreMetrics", "Crypto", "CryptoBoringWrapper", "DequeModule",
-    "HTTPTypes", "Instrumentation", "InternalCollectionsUtilities", "Logging", "Metrics", "NIO",
-    "NIOConcurrencyHelpers", "NIOCore", "NIOEmbedded", "NIOFoundationCompat", "NIOHPACK",
-    "NIOHTTP1", "NIOHTTP2", "NIOHTTPCompression", "NIOPosix", "NIOSOCKS", "NIOSSL", "NIOTLS",
-    "NIOTransportServices", "NIOWebSocket", "OpenAPIRuntime", "OpenAPIURLSession",
-    "OrderedCollections", "OTel", "RealModule", "ServiceContextModule", "ServiceLifecycle",
-    "Tracing", "UnixSignals", "W3CTraceContext",
+    "Candle", "Candle_AtomicsShims", "Candle_CWASI", "Candle_NIOBase64", "Candle_NIODataStructures",
+    "Candle_NumericsShims", "CandleAlgorithms", "CandleAsyncAlgorithms", "CandleAsyncHTTPClient",
+    "CandleAtomics", "CandleCachedAsyncImage", "CandleCAsyncHTTPClient", "CandleCCryptoBoringSSL",
+    "CandleCCryptoBoringSSLShims", "CandleCNIOAtomics", "CandleCNIOBoringSSL",
+    "CandleCNIOBoringSSLShims", "CandleCNIODarwin", "CandleCNIOExtrasZlib", "CandleCNIOLinux",
+    "CandleCNIOLLHTTP", "CandleCNIOSHA1", "CandleCNIOWASI", "CandleCNIOWindows",
+    "CandleConcurrencyHelpers", "CandleCoreMetrics", "CandleCrypto", "CandleCryptoBoringWrapper",
+    "CandleDequeModule", "CandleHTTPTypes", "CandleInstrumentation",
+    "CandleInternalCollectionsUtilities", "CandleLogging", "CandleMetrics", "CandleNIO",
+    "CandleNIOConcurrencyHelpers", "CandleNIOCore", "CandleNIOEmbedded",
+    "CandleNIOFoundationCompat", "CandleNIOHPACK", "CandleNIOHTTP1", "CandleNIOHTTP2",
+    "CandleNIOHTTPCompression", "CandleNIOPosix", "CandleNIOSOCKS", "CandleNIOSSL", "CandleNIOTLS",
+    "CandleNIOTransportServices", "CandleNIOWebSocket", "CandleOpenAPIRuntime",
+    "CandleOpenAPIURLSession", "CandleOrderedCollections", "CandleOTel", "CandleRealModule",
+    "CandleServiceContextModule", "CandleServiceLifecycle", "CandleSFSafeSymbols",
+    "CandleSwiftProtobuf", "CandleTracing", "CandleUnixSignals", "CandleW3CTraceContext",
 ]
 
 let package = Package(

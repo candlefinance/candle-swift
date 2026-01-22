@@ -1,0 +1,5 @@
+framework module CandleUnixSignals {
+    header "CandleUnixSignals-Swift.h"
+    export *
+    link framework "CandleConcurrencyHelpers"
+}

@@ -1,0 +1,4 @@
+framework module Candle_CWASI {
+    header "_CWASI.h"
+    export *
+}

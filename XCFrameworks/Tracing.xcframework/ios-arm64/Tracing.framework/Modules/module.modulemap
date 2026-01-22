@@ -1,6 +1,0 @@
-framework module Tracing {
-    header "Tracing-Swift.h"
-    export *
-    link framework "Instrumentation"
-    link framework "_CWASI"
-}

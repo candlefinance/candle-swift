@@ -1,0 +1,5 @@
+framework module CandleAtomics {
+    header "CandleAtomics-Swift.h"
+    export *
+    link framework "Candle_AtomicsShims"
+}

@@ -1,13 +1,13 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
-// swift-module-flags: -target arm64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -module-alias SFSafeSymbols=CandleSFSafeSymbols -module-name Candle -package-name sdk_swift
+// swift-module-flags: -target arm64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -module-alias OTel=CandleOTel -module-alias OpenAPIURLSession=CandleOpenAPIURLSession -module-alias CachedAsyncImage=CandleCachedAsyncImage -module-alias SFSafeSymbols=CandleSFSafeSymbols -module-name Candle -package-name sdk_swift
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+@_spi(Generated) import CandleOpenAPIRuntime
 import Darwin
 import Foundation
 import Foundation/*.Data*/
 import Foundation/*.Date*/
 import Foundation/*.URL*/
-@_spi(Generated) import OpenAPIRuntime
 import SafariServices
 import Swift
 import SwiftUI
@@ -4214,8 +4214,8 @@ public enum Operations {
         public var xCandleAppKey: Candle.Components.Schemas.AppID
         public var xCandleAppSecret: Candle.Components.Schemas.AppAuthorizationToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostUsers.AcceptableContentType>]
-        public init(xCandleAppKey: Candle.Components.Schemas.AppID, xCandleAppSecret: Candle.Components.Schemas.AppAuthorizationToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostUsers.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostUsers.AcceptableContentType>]
+        public init(xCandleAppKey: Candle.Components.Schemas.AppID, xCandleAppSecret: Candle.Components.Schemas.AppAuthorizationToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostUsers.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.PostUsers.Input.Headers, b: Candle.Operations.PostUsers.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -4894,14 +4894,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.PostUsers.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostUsers.Output, b: Candle.Operations.PostUsers.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -4922,8 +4922,8 @@ public enum Operations {
     public struct Input : Swift.Sendable, Swift.Hashable {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteUsers.AcceptableContentType>]
-        public init(traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteUsers.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteUsers.AcceptableContentType>]
+        public init(traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteUsers.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.DeleteUsers.Input.Headers, b: Candle.Operations.DeleteUsers.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -5481,14 +5481,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.DeleteUsers.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.DeleteUsers.Output, b: Candle.Operations.DeleteUsers.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -5510,8 +5510,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccounts.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccounts.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccounts.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccounts.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.GetLinkedAccounts.Input.Headers, b: Candle.Operations.GetLinkedAccounts.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -6012,14 +6012,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.GetLinkedAccounts.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.GetLinkedAccounts.Output, b: Candle.Operations.GetLinkedAccounts.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -6041,8 +6041,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccounts.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccounts.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccounts.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccounts.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.PostLinkedAccounts.Input.Headers, b: Candle.Operations.PostLinkedAccounts.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -7012,14 +7012,14 @@ public enum Operations {
       public var gatewayTimeout: Candle.Operations.PostLinkedAccounts.Output.GatewayTimeout {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostLinkedAccounts.Output, b: Candle.Operations.PostLinkedAccounts.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -7051,8 +7051,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccount.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccount.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccount.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccount.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.GetLinkedAccount.Input.Headers, b: Candle.Operations.GetLinkedAccount.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -7554,14 +7554,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.GetLinkedAccount.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.GetLinkedAccount.Output, b: Candle.Operations.GetLinkedAccount.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -7593,8 +7593,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteLinkedAccount.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteLinkedAccount.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteLinkedAccount.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.DeleteLinkedAccount.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.DeleteLinkedAccount.Input.Headers, b: Candle.Operations.DeleteLinkedAccount.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -8294,14 +8294,14 @@ public enum Operations {
       public var gatewayTimeout: Candle.Operations.DeleteLinkedAccount.Output.GatewayTimeout {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.DeleteLinkedAccount.Output, b: Candle.Operations.DeleteLinkedAccount.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -8353,8 +8353,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsAssetAccounts.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsAssetAccounts.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsAssetAccounts.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsAssetAccounts.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.GetLinkedAccountsAssetAccounts.Input.Headers, b: Candle.Operations.GetLinkedAccountsAssetAccounts.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -8856,14 +8856,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.GetLinkedAccountsAssetAccounts.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.GetLinkedAccountsAssetAccounts.Output, b: Candle.Operations.GetLinkedAccountsAssetAccounts.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -8914,8 +8914,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountAssetAccount.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountAssetAccount.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountAssetAccount.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountAssetAccount.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.GetLinkedAccountAssetAccount.Input.Headers, b: Candle.Operations.GetLinkedAccountAssetAccount.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -9524,14 +9524,14 @@ public enum Operations {
       public var gatewayTimeout: Candle.Operations.GetLinkedAccountAssetAccount.Output.GatewayTimeout {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.GetLinkedAccountAssetAccount.Output, b: Candle.Operations.GetLinkedAccountAssetAccount.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -9623,8 +9623,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsTrades.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsTrades.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsTrades.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.GetLinkedAccountsTrades.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.GetLinkedAccountsTrades.Input.Headers, b: Candle.Operations.GetLinkedAccountsTrades.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -10126,14 +10126,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.GetLinkedAccountsTrades.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.GetLinkedAccountsTrades.Output, b: Candle.Operations.GetLinkedAccountsTrades.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -10156,9 +10156,9 @@ public enum Operations {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var xCandleConsentToken: Swift.String?
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrades.AcceptableContentType>]
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrades.AcceptableContentType>]
         #if compiler(>=5.3) && $NonescapableTypes
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, xCandleConsentToken: Swift.String? = nil, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrades.AcceptableContentType>] = .defaultValues())
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, xCandleConsentToken: Swift.String? = nil, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrades.AcceptableContentType>] = .defaultValues())
         #endif
         public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Input.Headers, b: Candle.Operations.PostLinkedAccountsTrades.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
@@ -10987,14 +10987,14 @@ public enum Operations {
       public var gatewayTimeout: Candle.Operations.PostLinkedAccountsTrades.Output.GatewayTimeout {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output, b: Candle.Operations.PostLinkedAccountsTrades.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -11016,8 +11016,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrade.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrade.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrade.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTrade.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.PostLinkedAccountsTrade.Input.Headers, b: Candle.Operations.PostLinkedAccountsTrade.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -11635,14 +11635,14 @@ public enum Operations {
       public var gatewayTimeout: Candle.Operations.PostLinkedAccountsTrade.Output.GatewayTimeout {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostLinkedAccountsTrade.Output, b: Candle.Operations.PostLinkedAccountsTrade.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -11664,8 +11664,8 @@ public enum Operations {
       public struct Headers : Swift.Sendable, Swift.Hashable {
         public var xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken
         public var traceparent: Candle.Components.Schemas.TraceParentString
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTradesQuotes.AcceptableContentType>]
-        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTradesQuotes.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTradesQuotes.AcceptableContentType>]
+        public init(xCandlePrivacyToken: Candle.Components.Schemas.UserPrivacyToken, traceparent: Candle.Components.Schemas.TraceParentString, accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostLinkedAccountsTradesQuotes.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.PostLinkedAccountsTradesQuotes.Input.Headers, b: Candle.Operations.PostLinkedAccountsTradesQuotes.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -12176,14 +12176,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.PostLinkedAccountsTradesQuotes.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostLinkedAccountsTradesQuotes.Output, b: Candle.Operations.PostLinkedAccountsTradesQuotes.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes
@@ -12203,8 +12203,8 @@ public enum Operations {
     public static let id: Swift.String
     public struct Input : Swift.Sendable, Swift.Hashable {
       public struct Headers : Swift.Sendable, Swift.Hashable {
-        public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostSession.AcceptableContentType>]
-        public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostSession.AcceptableContentType>] = .defaultValues())
+        public var accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostSession.AcceptableContentType>]
+        public init(accept: [CandleOpenAPIRuntime.AcceptHeaderContentType<Candle.Operations.PostSession.AcceptableContentType>] = .defaultValues())
         public static func == (a: Candle.Operations.PostSession.Input.Headers, b: Candle.Operations.PostSession.Input.Headers) -> Swift.Bool
         public func hash(into hasher: inout Swift.Hasher)
         public var hashValue: Swift.Int {
@@ -12867,14 +12867,14 @@ public enum Operations {
       public var internalServerError: Candle.Operations.PostSession.Output.InternalServerError {
         get throws
       }
-      case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+      case undocumented(statusCode: Swift.Int, CandleOpenAPIRuntime.UndocumentedPayload)
       public static func == (a: Candle.Operations.PostSession.Output, b: Candle.Operations.PostSession.Output) -> Swift.Bool
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
         get
       }
     }
-    @frozen public enum AcceptableContentType : OpenAPIRuntime.AcceptableProtocol {
+    @frozen public enum AcceptableContentType : CandleOpenAPIRuntime.AcceptableProtocol {
       case json
       case other(Swift.String)
       #if compiler(>=5.3) && $NonescapableTypes

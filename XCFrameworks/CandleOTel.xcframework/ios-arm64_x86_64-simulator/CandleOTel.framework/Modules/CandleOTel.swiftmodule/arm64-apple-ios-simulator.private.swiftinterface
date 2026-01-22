@@ -1,0 +1,253 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature "AvailabilityMacro=ClockAPI : macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1" -enable-experimental-feature "AvailabilityMacro=gRPCSwift : macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2" -enable-experimental-feature DebugDescriptionMacro -module-alias OTel=CandleOTel -module-name CandleOTel -package-name candle_swift_otel
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+public import CandleCoreMetrics
+public import CandleLogging
+public import CandleServiceContextModule
+public import CandleServiceLifecycle
+public import CandleTracing
+public import CandleW3CTraceContext
+public import Swift
+public import _Concurrency
+public import _StringProcessing
+public import _SwiftConcurrencyShims
+extension CandleOTel.OTel {
+  public static func makeLoggingBackend(configuration: CandleOTel.OTel.Configuration = .default) throws -> (factory: @Sendable (Swift.String) -> any CandleLogging.LogHandler, service: some CandleServiceLifecycle.Service)
+  
+  public static func makeMetricsBackend(configuration: CandleOTel.OTel.Configuration = .default) throws -> (factory: some CandleCoreMetrics.MetricsFactory, service: some CandleServiceLifecycle.Service)
+  
+  public static func makeTracingBackend(configuration: CandleOTel.OTel.Configuration = .default) throws -> (factory: some CandleTracing.Tracer, service: some CandleServiceLifecycle.Service)
+  
+}
+extension CandleOTel.OTel {
+  public static func bootstrap(configuration: CandleOTel.OTel.Configuration = .default) throws -> some CandleServiceLifecycle.Service
+  
+}
+extension CandleOTel.OTel {
+  public struct Configuration : Swift.Sendable {
+    public var serviceName: Swift.String
+    public var resourceAttributes: [Swift.String : Swift.String]
+    public var diagnosticLogger: CandleOTel.OTel.Configuration.DiagnosticLoggerSelection
+    public var diagnosticLogLevel: CandleOTel.OTel.Configuration.LogLevel
+    public var propagators: [CandleOTel.OTel.Configuration.Propagator]
+    public var traces: CandleOTel.OTel.Configuration.TracesConfiguration
+    public var metrics: CandleOTel.OTel.Configuration.MetricsConfiguration
+    public var logs: CandleOTel.OTel.Configuration.LogsConfiguration
+    public static let `default`: CandleOTel.OTel.Configuration
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct DiagnosticLoggerSelection : Swift.Sendable {
+    public static let console: CandleOTel.OTel.Configuration.DiagnosticLoggerSelection
+    public static func custom(_ logger: CandleLogging.Logger) -> CandleOTel.OTel.Configuration.DiagnosticLoggerSelection
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct LogLevel : Swift.Sendable {
+    public static let error: CandleOTel.OTel.Configuration.LogLevel
+    public static let warning: CandleOTel.OTel.Configuration.LogLevel
+    public static let info: CandleOTel.OTel.Configuration.LogLevel
+    public static let debug: CandleOTel.OTel.Configuration.LogLevel
+    public static let trace: CandleOTel.OTel.Configuration.LogLevel
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct Propagator : Swift.Sendable {
+    public static let traceContext: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let baggage: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let b3: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let b3Multi: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaeger: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let xray: CandleOTel.OTel.Configuration.Propagator
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let otTrace: CandleOTel.OTel.Configuration.Propagator
+    public static let none: CandleOTel.OTel.Configuration.Propagator
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct TracesConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var sampler: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public var batchSpanProcessor: CandleOTel.OTel.Configuration.TracesConfiguration.BatchSpanProcessorConfiguration
+    public var exporter: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    public var otlpExporter: CandleOTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.TracesConfiguration
+  }
+  public struct MetricsConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var exportInterval: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var exporter: CandleOTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    public var otlpExporter: CandleOTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.MetricsConfiguration
+  }
+  public struct LogsConfiguration : Swift.Sendable {
+    public var enabled: Swift.Bool
+    public var level: CandleOTel.OTel.Configuration.LogLevel
+    public var batchLogRecordProcessor: CandleOTel.OTel.Configuration.LogsConfiguration.BatchLogRecordProcessorConfiguration
+    public var exporter: CandleOTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public var otlpExporter: CandleOTel.OTel.Configuration.OTLPExporterConfiguration
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.LogsConfiguration
+  }
+}
+extension CandleOTel.OTel.Configuration.TracesConfiguration {
+  public struct SamplerConfiguration : Swift.Sendable {
+    public static let alwaysOn: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public static let alwaysOff: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func traceIDRatio(ratio: Swift.Double) -> CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration?
+    #endif
+    public static var traceIDRatio: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration {
+      get
+    }
+    public static let parentBasedAlwaysOn: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    public static let parentBasedAlwaysOff: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func parentBasedTraceIDRatio(ratio: Swift.Double) -> CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration?
+    #endif
+    public static var parentBasedTraceIDRatio: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration {
+      get
+    }
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let parentBasedJaegerRemote: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaegerRemote: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let xray: CandleOTel.OTel.Configuration.TracesConfiguration.SamplerConfiguration
+  }
+}
+extension CandleOTel.OTel.Configuration.TracesConfiguration {
+  public struct BatchSpanProcessorConfiguration : Swift.Sendable {
+    public var scheduleDelay: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var maxQueueSize: Swift.Int
+    public var maxExportBatchSize: Swift.Int
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.TracesConfiguration.BatchSpanProcessorConfiguration
+  }
+}
+extension CandleOTel.OTel.Configuration.TracesConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    public static let none: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let jaeger: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let zipkin: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let console: CandleOTel.OTel.Configuration.TracesConfiguration.ExporterSelection
+  }
+}
+extension CandleOTel.OTel.Configuration.MetricsConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: CandleOTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    public static let none: CandleOTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let prometheus: CandleOTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+    @available(*, unavailable, message: "This option is not supported by Swift OTel")
+    public static let console: CandleOTel.OTel.Configuration.MetricsConfiguration.ExporterSelection
+  }
+}
+extension CandleOTel.OTel.Configuration.LogsConfiguration {
+  public struct ExporterSelection : Swift.Sendable {
+    public static let otlp: CandleOTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public static let none: CandleOTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+    public static let console: CandleOTel.OTel.Configuration.LogsConfiguration.ExporterSelection
+  }
+}
+extension CandleOTel.OTel.Configuration.LogsConfiguration {
+  public struct BatchLogRecordProcessorConfiguration : Swift.Sendable {
+    public var scheduleDelay: Swift.Duration
+    public var exportTimeout: Swift.Duration
+    public var maxQueueSize: Swift.Int
+    public var maxExportBatchSize: Swift.Int
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.LogsConfiguration.BatchLogRecordProcessorConfiguration
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct OTLPExporterConfiguration : Swift.Sendable {
+    public var endpoint: Swift.String {
+      get
+      set
+    }
+    public var insecure: Swift.Bool
+    public var certificateFilePath: Swift.String?
+    public var clientKeyFilePath: Swift.String?
+    public var clientCertificateFilePath: Swift.String?
+    public var headers: [(Swift.String, Swift.String)]
+    public var compression: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+    public var timeout: Swift.Duration
+    public var `protocol`: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    @_documentation(visibility: internal) public static let `default`: CandleOTel.OTel.Configuration.OTLPExporterConfiguration
+  }
+}
+extension CandleOTel.OTel.Configuration.OTLPExporterConfiguration {
+  public struct Compression : Swift.Sendable {
+    public static let none: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+    public static let gzip: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.Compression
+  }
+  public struct `Protocol` : Swift.Equatable, Swift.Sendable {
+    @available(macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2, *)
+    public static let grpc: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static let httpProtobuf: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static let httpJSON: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`
+    public static func == (a: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`, b: CandleOTel.OTel.Configuration.OTLPExporterConfiguration.`Protocol`) -> Swift.Bool
+  }
+}
+extension CandleOTel.OTel.Configuration {
+  public struct LoggingMetadataProviderConfiguration : Swift.Sendable {
+    public var traceIDKey: Swift.String
+    public var spanIDKey: Swift.String
+    public var traceFlagsKey: Swift.String
+    public static let `default`: CandleOTel.OTel.Configuration.LoggingMetadataProviderConfiguration
+  }
+}
+extension CandleOTel.OTel {
+  public static func makeLoggingMetadataProvider(configuration: CandleOTel.OTel.Configuration.LoggingMetadataProviderConfiguration = .default) -> CandleLogging.Logger.MetadataProvider
+}
+public enum OTel {
+}
+public struct OTelSpanContext : Swift.Hashable, Swift.Sendable {
+  public var traceID: CandleW3CTraceContext.TraceID {
+    get
+  }
+  public var spanID: CandleW3CTraceContext.SpanID {
+    get
+  }
+  public var traceFlags: CandleW3CTraceContext.TraceFlags {
+    get
+  }
+  public var traceParentHeaderValue: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var traceStateHeaderValue: Swift.String? {
+    get
+  }
+  #endif
+  public static func == (a: CandleOTel.OTelSpanContext, b: CandleOTel.OTelSpanContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var spanContext: CandleOTel.OTelSpanContext? {
+    get
+    set
+  }
+  #endif
+}
+extension CandleServiceContextModule.ServiceContext {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var otelTraceID: Swift.String? {
+    get
+  }
+  #endif
+}

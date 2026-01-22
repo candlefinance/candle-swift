@@ -1,0 +1,1581 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleDequeModule
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleInternalCollectionsUtilities
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension CandleDequeModule.Deque : Swift.Encodable where Element : Swift.Encodable {
+  @inlinable public func encode(to encoder: any Swift.Encoder) throws {
+    var container = encoder.unkeyedContainer()
+    for element in self {
+      try container.encode(element)
+    }
+  }
+}
+extension CandleDequeModule.Deque : Swift.Decodable where Element : Swift.Decodable {
+  @inlinable public init(from decoder: any Swift.Decoder) throws {
+    self.init()
+
+    var container = try decoder.unkeyedContainer()
+    if let count = container.count {
+      self.reserveCapacity(count)
+    }
+    while !container.isAtEnd {
+      let element = try container.decode(Element.self)
+      self.append(element)
+    }
+  }
+}
+extension CandleDequeModule.Deque : Swift.Sequence {
+  @frozen public struct Iterator : Swift.IteratorProtocol {
+    @usableFromInline
+    internal var _storage: CandleDequeModule.Deque<Element>._Storage
+    @usableFromInline
+    internal var _nextSlot: CandleDequeModule.Deque<Element>._Slot
+    @usableFromInline
+    internal var _endSlot: CandleDequeModule.Deque<Element>._Slot
+    @inlinable internal init(_storage: CandleDequeModule.Deque<Element>._Storage, start: CandleDequeModule.Deque<Element>._Slot, end: CandleDequeModule.Deque<Element>._Slot) {
+      self._storage = _storage
+      self._nextSlot = start
+      self._endSlot = end
+    }
+    @inlinable internal init(_base: CandleDequeModule.Deque<Element>) {
+      self = _base._storage.read { handle in
+        let start = handle.startSlot
+        let end = Swift.min(start.advanced(by: handle.count), handle.limSlot)
+        return Self(_storage: _base._storage, start: start, end: end)
+      }
+    }
+    @inlinable internal init(_base: CandleDequeModule.Deque<Element>, from index: Swift.Int) {
+      self = _base._storage.read { handle in
+        assert(index >= 0 && index <= handle.count)
+        let start = handle.slot(forOffset: index)
+        if index == handle.count {
+          return Self(_storage: _base._storage, start: start, end: start)
+        }
+        var end = handle.endSlot
+        if start >= end { end = handle.limSlot }
+        return Self(_storage: _base._storage, start: start, end: end)
+      }
+    }
+    @inlinable @inline(never) internal mutating func _swapSegment() -> Swift.Bool {
+      assert(_nextSlot == _endSlot)
+      return _storage.read { handle in
+        let end = handle.endSlot
+        if end == .zero || end == _nextSlot {
+          return false
+        }
+        _endSlot = end
+        _nextSlot = .zero
+        return true
+      }
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @inlinable public mutating func next() -> Element? {
+      if _nextSlot == _endSlot {
+        guard _swapSegment() else { return nil }
+      }
+      assert(_nextSlot < _endSlot)
+      let slot = _nextSlot
+      _nextSlot = _nextSlot.advanced(by: 1)
+      return _storage.read { handle in
+        return handle.ptr(at: slot).pointee
+      }
+    }
+    #endif
+  }
+  @inlinable public func makeIterator() -> CandleDequeModule.Deque<Element>.Iterator {
+    Iterator(_base: self)
+  }
+  @inlinable public __consuming func _copyToContiguousArray() -> Swift.ContiguousArray<Element> {
+    ContiguousArray(unsafeUninitializedCapacity: _storage.count) { target, count in
+      _storage.read { source in
+        let segments = source.segments()
+        let c = segments.first.count
+        target[..<c].initializeAll(fromContentsOf: segments.first)
+        count += segments.first.count
+        if let second = segments.second {
+          target[c ..< c + second.count].initializeAll(fromContentsOf: second)
+          count += second.count
+        }
+        assert(count == source.count)
+      }
+    }
+  }
+  @inlinable public __consuming func _copyContents(initializing target: Swift.UnsafeMutableBufferPointer<Element>) -> (CandleDequeModule.Deque<Element>.Iterator, Swift.UnsafeMutableBufferPointer<Element>.Index) {
+    _storage.read { source in
+      let segments = source.segments()
+      let c1 = Swift.min(segments.first.count, target.count)
+      target[..<c1].initializeAll(fromContentsOf: segments.first.prefix(c1))
+      guard target.count > c1, let second = segments.second else {
+        return (Iterator(_base: self, from: c1), c1)
+      }
+      let c2 = Swift.min(second.count, target.count - c1)
+      target[c1 ..< c1 + c2].initializeAll(fromContentsOf: second.prefix(c2))
+      return (Iterator(_base: self, from: c1 + c2), c1 + c2)
+    }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func withContiguousStorageIfAvailable<R>(_ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> R? {
+    return try _storage.read { handle in
+      let endSlot = handle.startSlot.advanced(by: handle.count)
+      guard endSlot.position <= handle.capacity else { return nil }
+      return try body(handle.buffer(for: handle.startSlot ..< endSlot))
+    }
+  }
+  #endif
+}
+extension CandleDequeModule.Deque.Iterator : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}
+extension CandleDequeModule.Deque : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  public typealias SubSequence = Swift.Slice<CandleDequeModule.Deque<Element>>
+  public typealias Indices = Swift.Range<Swift.Int>
+  @inlinable @inline(__always) public var count: Swift.Int {
+    get { _storage.count }
+  }
+  @inlinable @inline(__always) public var startIndex: Swift.Int {
+    get { 0 }
+  }
+  @inlinable @inline(__always) public var endIndex: Swift.Int {
+    get { count }
+  }
+  @inlinable @inline(__always) public var indices: Swift.Range<Swift.Int> {
+    get { 0 ..< count }
+  }
+  @inlinable @inline(__always) public func index(after i: Swift.Int) -> Swift.Int {
+     
+     
+    return i + 1
+  }
+  @inlinable @inline(__always) public func formIndex(after i: inout Swift.Int) {
+     
+     
+     
+    i += 1
+  }
+  @inlinable @inline(__always) public func index(before i: Swift.Int) -> Swift.Int {
+     
+     
+    return i - 1
+  }
+  @inlinable @inline(__always) public func formIndex(before i: inout Swift.Int) {
+     
+     
+    i -= 1
+  }
+  @inlinable @inline(__always) public func index(_ i: Swift.Int, offsetBy distance: Swift.Int) -> Swift.Int {
+     
+     
+    return i + distance
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public func index(_ i: Swift.Int, offsetBy distance: Swift.Int, limitedBy limit: Swift.Int) -> Swift.Int? {
+     
+     
+     
+    let l = limit - i
+    if distance > 0 ? l >= 0 && l < distance : l <= 0 && distance < l {
+      return nil
+    }
+    return i + distance
+  }
+  #endif
+  @inlinable @inline(__always) public func distance(from start: Swift.Int, to end: Swift.Int) -> Swift.Int {
+     
+     
+     
+    return end - start
+  }
+  @inlinable public subscript(index: Swift.Int) -> Element {
+    get {
+      precondition(index >= 0 && index < count, "Index out of bounds")
+      return _storage.read { $0.ptr(at: $0.slot(forOffset: index)).pointee }
+    }
+    set {
+      precondition(index >= 0 && index < count, "Index out of bounds")
+      _storage.ensureUnique()
+      _storage.update { handle in
+        let slot = handle.slot(forOffset: index)
+        handle.ptr(at: slot).pointee = newValue
+      }
+    }
+    @inline(__always) _modify {
+      precondition(index >= 0 && index < count, "Index out of bounds")
+      var (slot, value) = _prepareForModify(at: index)
+      defer {
+        _finalizeModify(slot, value)
+      }
+      yield &value
+    }
+  }
+  @inlinable internal mutating func _prepareForModify(at index: Swift.Int) -> (CandleDequeModule.Deque<Element>._Slot, Element) {
+    _storage.ensureUnique()
+     
+     
+     
+    return _storage.update { handle in
+      let slot = handle.slot(forOffset: index)
+      return (slot, handle.ptr(at: slot).move())
+    }
+  }
+  @inlinable internal mutating func _finalizeModify(_ slot: CandleDequeModule.Deque<Element>._Slot, _ value: Element) {
+    _storage.update { handle in
+      handle.ptr(at: slot).initialize(to: value)
+    }
+  }
+  @inlinable public subscript(bounds: Swift.Range<Swift.Int>) -> Swift.Slice<CandleDequeModule.Deque<Element>> {
+    get {
+      precondition(bounds.lowerBound >= 0 && bounds.upperBound <= count,
+                   "Invalid bounds")
+      return Slice(base: self, bounds: bounds)
+    }
+    set(source) {
+      precondition(bounds.lowerBound >= 0 && bounds.upperBound <= count,
+                   "Invalid bounds")
+      self.replaceSubrange(bounds, with: source)
+    }
+  }
+}
+extension CandleDequeModule.Deque : Swift.MutableCollection {
+  @inlinable public mutating func swapAt(_ i: Swift.Int, _ j: Swift.Int) {
+    precondition(i >= 0 && i < count, "Index out of bounds")
+    precondition(j >= 0 && j < count, "Index out of bounds")
+    _storage.ensureUnique()
+    _storage.update { handle in
+      let slot1 = handle.slot(forOffset: i)
+      let slot2 = handle.slot(forOffset: j)
+      handle.mutableBuffer.swapAt(slot1.position, slot2.position)
+    }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public mutating func withContiguousMutableStorageIfAvailable<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R? {
+    _storage.ensureUnique()
+    return try _storage.update { handle in
+      let endSlot = handle.startSlot.advanced(by: handle.count)
+      guard endSlot.position <= handle.capacity else {
+         
+        return nil
+      }
+      let original = handle.mutableBuffer(for: handle.startSlot ..< endSlot)
+      var extract = original
+      defer {
+        precondition(extract.baseAddress == original.baseAddress && extract.count == original.count,
+                     "Closure must not replace the provided buffer")
+      }
+      return try body(&extract)
+    }
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public mutating func _withUnsafeMutableBufferPointerIfSupported<R>(_ body: (inout Swift.UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R? {
+    return try withContiguousMutableStorageIfAvailable(body)
+  }
+  #endif
+}
+extension CandleDequeModule.Deque : Swift.RangeReplaceableCollection {
+  @inlinable public init() {
+    _storage = _Storage()
+  }
+  @inlinable public mutating func reserveCapacity(_ minimumCapacity: Swift.Int) {
+    _storage.ensureUnique(minimumCapacity: minimumCapacity, linearGrowth: true)
+  }
+  @inlinable public mutating func replaceSubrange(_ subrange: Swift.Range<Swift.Int>, with newElements: __owned some Collection<Element>) {
+    precondition(subrange.lowerBound >= 0 && subrange.upperBound <= count, "Index range out of bounds")
+    let removalCount = subrange.count
+    let insertionCount = newElements.count
+    let deltaCount = insertionCount - removalCount
+    _storage.ensureUnique(minimumCapacity: count + deltaCount)
+
+    let replacementCount = Swift.min(removalCount, insertionCount)
+    let targetCut = subrange.lowerBound + replacementCount
+    let sourceCut = newElements.index(newElements.startIndex, offsetBy: replacementCount)
+
+    _storage.update { target in
+      target.uncheckedReplaceInPlace(
+        inOffsets: subrange.lowerBound ..< targetCut,
+        with: newElements[..<sourceCut])
+      if deltaCount < 0 {
+        let r = targetCut ..< subrange.upperBound
+        assert(replacementCount + r.count == removalCount)
+        target.uncheckedRemove(offsets: r)
+      } else if deltaCount > 0 {
+        target.uncheckedInsert(
+          contentsOf: newElements[sourceCut...],
+          count: deltaCount,
+          atOffset: targetCut)
+      }
+    }
+  }
+  @inlinable public init(repeating repeatedValue: Element, count: Swift.Int) {
+    precondition(count >= 0)
+    self.init(minimumCapacity: count)
+    _storage.update { handle in
+      assert(handle.startSlot == .zero)
+      if count > 0 {
+        handle.ptr(at: .zero).initialize(repeating: repeatedValue, count: count)
+      }
+      handle.count = count
+    }
+  }
+  @inlinable public init(_ elements: some Sequence<Element>) {
+    self.init()
+    self.append(contentsOf: elements)
+  }
+  @inlinable public init(_ elements: some Collection<Element>) {
+    let c = elements.count
+    guard c > 0 else { _storage = _Storage(); return }
+    self._storage = _Storage(minimumCapacity: c)
+    _storage.update { handle in
+      assert(handle.startSlot == .zero)
+      let target = handle.mutableBuffer(for: .zero ..< _Slot(at: c))
+      let done: Void? = elements.withContiguousStorageIfAvailable { source in
+        target.initializeAll(fromContentsOf: source)
+      }
+      if done == nil {
+        target.initializeAll(fromContentsOf: elements)
+      }
+      handle.count = c
+    }
+  }
+  @inlinable public mutating func append(_ newElement: Element) {
+    _storage.ensureUnique(minimumCapacity: count + 1)
+    _storage.update {
+      $0.uncheckedAppend(newElement)
+    }
+  }
+  @inlinable public mutating func append(contentsOf newElements: some Sequence<Element>) {
+    let done: Void? = newElements.withContiguousStorageIfAvailable { source in
+      _storage.ensureUnique(minimumCapacity: count + source.count)
+      _storage.update { $0.uncheckedAppend(contentsOf: source) }
+    }
+    if done != nil {
+      return
+    }
+
+    let underestimatedCount = newElements.underestimatedCount
+    _storage.ensureUnique(minimumCapacity: count + underestimatedCount)
+    var it = _storage.update { target in
+      let gaps = target.availableSegments()
+      let (it, copied) = gaps.initialize(fromSequencePrefix: newElements)
+      target.count += copied
+      return it
+    }
+    while let next = it.next() {
+      _storage.ensureUnique(minimumCapacity: count + 1)
+      _storage.update { target in
+        target.uncheckedAppend(next)
+        let gaps = target.availableSegments()
+        target.count += gaps.initialize(fromPrefixOf: &it)
+      }
+    }
+  }
+  @inlinable public mutating func append(contentsOf newElements: some Collection<Element>) {
+    let done: Void? = newElements.withContiguousStorageIfAvailable { source in
+      _storage.ensureUnique(minimumCapacity: count + source.count)
+      _storage.update { $0.uncheckedAppend(contentsOf: source) }
+    }
+    guard done == nil else { return }
+
+    let c = newElements.count
+    guard c > 0 else { return }
+    _storage.ensureUnique(minimumCapacity: count + c)
+    _storage.update { target in
+      let gaps = target.availableSegments().prefix(c)
+      gaps.initialize(from: newElements)
+      target.count += c
+    }
+  }
+  @inlinable public mutating func insert(_ newElement: Element, at index: Swift.Int) {
+    precondition(index >= 0 && index <= count,
+                 "Can't insert element at invalid index")
+    _storage.ensureUnique(minimumCapacity: count + 1)
+    _storage.update { target in
+      if index == 0 {
+        target.uncheckedPrepend(newElement)
+        return
+      }
+      if index == count {
+        target.uncheckedAppend(newElement)
+        return
+      }
+      let gap = target.openGap(ofSize: 1, atOffset: index)
+      assert(gap.first.count == 1)
+      gap.first.baseAddress!.initialize(to: newElement)
+    }
+  }
+  @inlinable public mutating func insert(contentsOf newElements: __owned some Collection<Element>, at index: Swift.Int) {
+    precondition(index >= 0 && index <= count,
+                 "Can't insert elements at an invalid index")
+    let newCount = newElements.count
+    _storage.ensureUnique(minimumCapacity: count + newCount)
+    _storage.update { target in
+      target.uncheckedInsert(contentsOf: newElements, count: newCount, atOffset: index)
+    }
+  }
+  @discardableResult
+  @inlinable public mutating func remove(at index: Swift.Int) -> Element {
+    precondition(index >= 0 && index < self.count, "Index out of bounds")
+     
+    _storage.ensureUnique()
+    return _storage.update { target in
+       
+      let result = self[index]
+      target.uncheckedRemove(offsets: index ..< index + 1)
+      return result
+    }
+  }
+  @inlinable public mutating func removeSubrange(_ bounds: Swift.Range<Swift.Int>) {
+    precondition(bounds.lowerBound >= 0 && bounds.upperBound <= self.count,
+                 "Index range out of bounds")
+    _storage.ensureUnique()
+    _storage.update { $0.uncheckedRemove(offsets: bounds) }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public mutating func _customRemoveLast() -> Element? {
+    precondition(!isEmpty, "Cannot remove last element of an empty Deque")
+    _storage.ensureUnique()
+    return _storage.update { $0.uncheckedRemoveLast() }
+  }
+  #endif
+  @inlinable public mutating func _customRemoveLast(_ n: Swift.Int) -> Swift.Bool {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the Collection")
+    _storage.ensureUnique()
+    _storage.update { $0.uncheckedRemoveLast(n) }
+    return true
+  }
+  @discardableResult
+  @inlinable public mutating func removeFirst() -> Element {
+    precondition(!isEmpty, "Cannot remove first element of an empty Deque")
+    _storage.ensureUnique()
+    return _storage.update { $0.uncheckedRemoveFirst() }
+  }
+  @inlinable public mutating func removeFirst(_ n: Swift.Int) {
+    precondition(n >= 0, "Can't remove a negative number of elements")
+    precondition(n <= count, "Can't remove more elements than there are in the Collection")
+    _storage.ensureUnique()
+    return _storage.update { $0.uncheckedRemoveFirst(n) }
+  }
+  @inlinable public mutating func removeAll(keepingCapacity keepCapacity: Swift.Bool = false) {
+    if keepCapacity {
+      _storage.ensureUnique()
+      _storage.update { $0.uncheckedRemoveAll() }
+    } else {
+      self = Deque()
+    }
+  }
+}
+extension CandleDequeModule.Deque : Swift.CustomReflectable {
+  public var customMirror: Swift.Mirror {
+    get
+  }
+}
+extension CandleDequeModule.Deque : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleDequeModule.Deque : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CandleDequeModule.Deque : Swift.Equatable where Element : Swift.Equatable {
+  @inlinable public static func == (left: CandleDequeModule.Deque<Element>, right: CandleDequeModule.Deque<Element>) -> Swift.Bool {
+    let lhsCount = left.count
+    if lhsCount != right.count {
+      return false
+    }
+
+     
+    if lhsCount == 0 || left._storage.isIdentical(to: right._storage) {
+      return true
+    }
+
+    return left.elementsEqual(right)
+  }
+}
+extension CandleDequeModule.Deque : Swift.ExpressibleByArrayLiteral {
+  @inlinable @inline(__always) public init(arrayLiteral elements: Element...) {
+    self.init(elements)
+  }
+  public typealias ArrayLiteralElement = Element
+}
+extension CandleDequeModule.Deque {
+  @inlinable public init(unsafeUninitializedCapacity capacity: Swift.Int, initializingWith initializer: (inout Swift.UnsafeMutableBufferPointer<Element>, inout Swift.Int) throws -> Swift.Void) rethrows {
+    self._storage = .init(minimumCapacity: capacity)
+    try _storage.update { handle in
+      handle.startSlot = .zero
+      var count = 0
+      var buffer = handle.mutableBuffer(for: .zero ..< _Slot(at: capacity))
+      defer {
+        precondition(count <= capacity,
+          "Initialized count set to greater than specified capacity")
+        let b = handle.mutableBuffer(for: .zero ..< _Slot(at: capacity))
+        precondition(buffer.baseAddress == b.baseAddress && buffer.count == b.count,
+          "Initializer relocated Deque storage")
+        handle.count = count
+      }
+      try initializer(&buffer, &count)
+    }
+  }
+}
+extension CandleDequeModule.Deque {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable public mutating func popFirst() -> Element? {
+     
+     
+    guard count > 0 else { return nil }
+    _storage.ensureUnique()
+    return _storage.update {
+      $0.uncheckedRemoveFirst()
+    }
+  }
+  #endif
+  @inlinable public mutating func prepend(_ newElement: Element) {
+    _storage.ensureUnique(minimumCapacity: count + 1)
+    return _storage.update {
+      $0.uncheckedPrepend(newElement)
+    }
+  }
+  @inlinable public mutating func prepend(contentsOf newElements: some Collection<Element>) {
+    let done: Void? = newElements.withContiguousStorageIfAvailable { source in
+      _storage.ensureUnique(minimumCapacity: count + source.count)
+      _storage.update { $0.uncheckedPrepend(contentsOf: source) }
+    }
+    guard done == nil else { return }
+
+    let c = newElements.count
+    guard c > 0 else { return }
+    _storage.ensureUnique(minimumCapacity: count + c)
+    _storage.update { target in
+      let gaps = target.availableSegments().suffix(c)
+      gaps.initialize(from: newElements)
+      target.count += c
+      target.startSlot = target.slot(target.startSlot, offsetBy: -c)
+    }
+  }
+  @inlinable public mutating func prepend(contentsOf newElements: some Sequence<Element>) {
+    let done: Void? = newElements.withContiguousStorageIfAvailable { source in
+      _storage.ensureUnique(minimumCapacity: count + source.count)
+      _storage.update { $0.uncheckedPrepend(contentsOf: source) }
+    }
+    guard done == nil else { return }
+
+    let originalCount = self.count
+    self.append(contentsOf: newElements)
+    let newCount = self.count
+    let c = newCount - originalCount
+    _storage.update { target in
+      target.startSlot = target.slot(forOffset: originalCount)
+      target.count = target.capacity
+      target.closeGap(offsets: c ..< c + (target.capacity - newCount))
+      assert(target.count == newCount)
+    }
+  }
+}
+extension CandleDequeModule.Deque : Swift.Hashable where Element : Swift.Hashable {
+  @inlinable public func hash(into hasher: inout Swift.Hasher) {
+    hasher.combine(count)  
+    for element in self {
+      hasher.combine(element)
+    }
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleDequeModule.Deque {
+  public static var _isConsistencyCheckingEnabled: Swift.Bool {
+    get
+  }
+  @_spi(Testing) public var _capacity: Swift.Int {
+    @_spi(Testing) get
+  }
+  @_spi(Testing) public var _startSlot: Swift.Int {
+    @_spi(Testing) get
+  }
+  @_spi(Testing) public init(_capacity capacity: Swift.Int, startSlot: Swift.Int, contents: some Sequence<Element>)
+}
+extension CandleDequeModule.Deque {
+  @usableFromInline
+  @frozen internal struct _Storage {
+    @usableFromInline
+    internal typealias _Buffer = Swift.ManagedBufferPointer<CandleDequeModule._DequeBufferHeader, Element>
+    @usableFromInline
+    internal var _buffer: CandleDequeModule.Deque<Element>._Storage._Buffer
+    @inlinable @inline(__always) internal init(_buffer: CandleDequeModule.Deque<Element>._Storage._Buffer) {
+      self._buffer = _buffer
+    }
+  }
+}
+extension CandleDequeModule.Deque._Storage : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+extension CandleDequeModule.Deque._Storage {
+  @inlinable internal init() {
+    self.init(_buffer: _Buffer(unsafeBufferObject: _emptyDequeStorage))
+  }
+  @inlinable internal init(_ object: CandleDequeModule._DequeBuffer<Element>) {
+    self.init(_buffer: _Buffer(unsafeBufferObject: object))
+  }
+  @inlinable internal init(minimumCapacity: Swift.Int) {
+    let object = _DequeBuffer<Element>.create(
+      minimumCapacity: minimumCapacity,
+      makingHeaderWith: {
+        let capacity = $0.capacity
+        return _DequeBufferHeader(capacity: capacity, count: 0, startSlot: .zero)
+      })
+    self.init(_buffer: _Buffer(unsafeBufferObject: object))
+  }
+}
+extension CandleDequeModule.Deque._Storage {
+  @inlinable @inline(__always) internal func _checkInvariants() {}
+}
+extension CandleDequeModule.Deque._Storage {
+  @inlinable @inline(__always) internal var identity: Swift.AnyObject {
+    get { _buffer.buffer }
+  }
+  @inlinable @inline(__always) internal var capacity: Swift.Int {
+    get {
+    _buffer.withUnsafeMutablePointerToHeader { $0.pointee.capacity }
+  }
+  }
+  @inlinable @inline(__always) internal var count: Swift.Int {
+    get {
+    _buffer.withUnsafeMutablePointerToHeader { $0.pointee.count }
+  }
+  }
+  @inlinable @inline(__always) internal var startSlot: CandleDequeModule._DequeSlot {
+    get {
+    _buffer.withUnsafeMutablePointerToHeader { $0.pointee.startSlot
+    }
+  }
+  }
+}
+extension CandleDequeModule.Deque._Storage {
+  @usableFromInline
+  internal typealias Index = Swift.Int
+  @usableFromInline
+  internal typealias _UnsafeHandle = CandleDequeModule.Deque<Element>._UnsafeHandle
+  @inlinable @inline(__always) internal func read<R>(_ body: (CandleDequeModule.Deque<Element>._Storage._UnsafeHandle) throws -> R) rethrows -> R {
+    try _buffer.withUnsafeMutablePointers { header, elements in
+      let handle = _UnsafeHandle(header: header,
+                                 elements: elements,
+                                 isMutable: false)
+      return try body(handle)
+    }
+  }
+  @inlinable @inline(__always) internal func update<R>(_ body: (CandleDequeModule.Deque<Element>._Storage._UnsafeHandle) throws -> R) rethrows -> R {
+    try _buffer.withUnsafeMutablePointers { header, elements in
+      let handle = _UnsafeHandle(header: header,
+                                 elements: elements,
+                                 isMutable: true)
+      return try body(handle)
+    }
+  }
+}
+extension CandleDequeModule.Deque._Storage {
+  @inlinable @inline(__always) internal mutating func isUnique() -> Swift.Bool {
+    _buffer.isUniqueReference()
+  }
+  @inlinable @inline(__always) internal mutating func ensureUnique() {
+    if isUnique() { return }
+    self._makeUniqueCopy()
+  }
+  @inlinable @inline(never) internal mutating func _makeUniqueCopy() {
+    self = self.read { $0.copyElements() }
+  }
+  @inlinable @inline(__always) internal static var growthFactor: Swift.Double {
+    get { 1.5 }
+  }
+  @usableFromInline
+  internal func _growCapacity(to minimumCapacity: Swift.Int, linearly: Swift.Bool) -> Swift.Int
+  @inlinable @inline(__always) internal mutating func ensureUnique(minimumCapacity: Swift.Int, linearGrowth: Swift.Bool = false) {
+    let unique = isUnique()
+    if _slowPath(capacity < minimumCapacity || !unique) {
+      _ensureUnique(isUnique: unique, minimumCapacity: minimumCapacity, linearGrowth: linearGrowth)
+    }
+  }
+  @inlinable @inline(never) internal mutating func _ensureUnique(isUnique: Swift.Bool, minimumCapacity: Swift.Int, linearGrowth: Swift.Bool) {
+    if capacity >= minimumCapacity {
+      assert(!isUnique)
+      self = self.read { $0.copyElements() }
+      return
+    }
+
+    let minimumCapacity = _growCapacity(to: minimumCapacity, linearly: linearGrowth)
+    if isUnique {
+      self = self.update { source in
+        source.moveElements(minimumCapacity: minimumCapacity)
+      }
+    } else {
+      self = self.read { source in
+        source.copyElements(minimumCapacity: minimumCapacity)
+      }
+    }
+  }
+}
+extension CandleDequeModule.Deque._Storage {
+  @inlinable @inline(__always) internal func isIdentical(to other: CandleDequeModule.Deque<Element>._Storage) -> Swift.Bool {
+    self._buffer.buffer === other._buffer.buffer
+  }
+}
+extension CandleDequeModule.Deque {
+  @usableFromInline
+  @frozen internal struct _UnsafeHandle {
+    @usableFromInline
+    internal let _header: Swift.UnsafeMutablePointer<CandleDequeModule._DequeBufferHeader>
+    @usableFromInline
+    internal let _elements: Swift.UnsafeMutablePointer<Element>
+    @inlinable @inline(__always) internal init(header: Swift.UnsafeMutablePointer<CandleDequeModule._DequeBufferHeader>, elements: Swift.UnsafeMutablePointer<Element>, isMutable: Swift.Bool) {
+      self._header = header
+      self._elements = elements
+    }
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable @inline(__always) internal func assertMutable() {
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @usableFromInline
+  internal typealias Slot = CandleDequeModule._DequeSlot
+  @inlinable @inline(__always) internal var header: CandleDequeModule._DequeBufferHeader {
+    get {
+    _header.pointee
+  }
+  }
+  @inlinable @inline(__always) internal var capacity: Swift.Int {
+    get {
+    _header.pointee.capacity
+  }
+  }
+  @inlinable @inline(__always) internal var count: Swift.Int {
+    get { _header.pointee.count }
+    nonmutating set { _header.pointee.count = newValue }
+  }
+  @inlinable @inline(__always) internal var startSlot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    get { _header.pointee.startSlot }
+    nonmutating set { _header.pointee.startSlot = newValue }
+  }
+  @inlinable @inline(__always) internal func ptr(at slot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot) -> Swift.UnsafeMutablePointer<Element> {
+    assert(slot.position >= 0 && slot.position <= capacity)
+    return _elements + slot.position
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable @inline(__always) internal var mutableBuffer: Swift.UnsafeMutableBufferPointer<Element> {
+    get {
+    assertMutable()
+    return .init(start: _elements, count: _header.pointee.capacity)
+  }
+  }
+  @inlinable internal func buffer(for range: Swift.Range<CandleDequeModule.Deque<Element>._UnsafeHandle.Slot>) -> Swift.UnsafeBufferPointer<Element> {
+    assert(range.upperBound.position <= capacity)
+    return .init(start: _elements + range.lowerBound.position, count: range._count)
+  }
+  @inlinable @inline(__always) internal func mutableBuffer(for range: Swift.Range<CandleDequeModule.Deque<Element>._UnsafeHandle.Slot>) -> Swift.UnsafeMutableBufferPointer<Element> {
+    assertMutable()
+    return .init(mutating: buffer(for: range))
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable @inline(__always) internal var limSlot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    get {
+    Slot(at: capacity)
+  }
+  }
+  @inlinable internal func slot(after slot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(slot.position < capacity)
+    let position = slot.position + 1
+    if position >= capacity {
+      return Slot(at: 0)
+    }
+    return Slot(at: position)
+  }
+  @inlinable internal func slot(before slot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(slot.position < capacity)
+    if slot.position == 0 { return Slot(at: capacity - 1) }
+    return Slot(at: slot.position - 1)
+  }
+  @inlinable internal func slot(_ slot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, offsetBy delta: Swift.Int) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(slot.position <= capacity)
+    let position = slot.position + delta
+    if delta >= 0 {
+      if position >= capacity { return Slot(at: position - capacity) }
+    } else {
+      if position < 0 { return Slot(at: position + capacity) }
+    }
+    return Slot(at: position)
+  }
+  @inlinable @inline(__always) internal var endSlot: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    get {
+    slot(startSlot, offsetBy: count)
+  }
+  }
+  @inlinable internal func slot(forOffset offset: Swift.Int) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(offset >= 0)
+    assert(offset <= capacity)  
+
+     
+     
+     
+     
+    let position = startSlot.position &+ offset
+    guard position < capacity else { return Slot(at: position &- capacity) }
+    return Slot(at: position)
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func segments() -> CandleDequeModule._UnsafeWrappedBuffer<Element> {
+    let wrap = capacity - startSlot.position
+    if count <= wrap {
+      return .init(start: ptr(at: startSlot), count: count)
+    }
+    return .init(first: ptr(at: startSlot), count: wrap,
+                 second: ptr(at: .zero), count: count - wrap)
+  }
+  @inlinable internal func segments(forOffsets offsets: Swift.Range<Swift.Int>) -> CandleDequeModule._UnsafeWrappedBuffer<Element> {
+    assert(offsets.lowerBound >= 0 && offsets.upperBound <= count)
+    let lower = slot(forOffset: offsets.lowerBound)
+    let upper = slot(forOffset: offsets.upperBound)
+    if offsets.count == 0 || lower < upper {
+      return .init(start: ptr(at: lower), count: offsets.count)
+    }
+    return .init(first: ptr(at: lower), count: capacity - lower.position,
+                 second: ptr(at: .zero), count: upper.position)
+  }
+  @inlinable @inline(__always) internal func mutableSegments() -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assertMutable()
+    return .init(mutating: segments())
+  }
+  @inlinable @inline(__always) internal func mutableSegments(forOffsets range: Swift.Range<Swift.Int>) -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assertMutable()
+    return .init(mutating: segments(forOffsets: range))
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func availableSegments() -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assertMutable()
+    let endSlot = self.endSlot
+    guard count < capacity else { return .init(start: ptr(at: endSlot), count: 0) }
+    if endSlot < startSlot { return .init(mutableBuffer(for: endSlot ..< startSlot)) }
+    return .init(mutableBuffer(for: endSlot ..< limSlot),
+                 mutableBuffer(for: .zero ..< startSlot))
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @discardableResult
+  @inlinable internal func initialize(at start: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, from source: Swift.UnsafeBufferPointer<Element>) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(start.position + source.count <= capacity)
+    guard source.count > 0 else { return start }
+    ptr(at: start).initialize(from: source.baseAddress!, count: source.count)
+    return Slot(at: start.position + source.count)
+  }
+  @discardableResult
+  @inlinable @inline(__always) internal func moveInitialize(at start: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, from source: Swift.UnsafeMutableBufferPointer<Element>) -> CandleDequeModule.Deque<Element>._UnsafeHandle.Slot {
+    assert(start.position + source.count <= capacity)
+    guard source.count > 0 else { return start }
+    ptr(at: start).moveInitialize(from: source.baseAddress!, count: source.count)
+    return Slot(at: start.position + source.count)
+  }
+  @discardableResult
+  @inlinable @inline(__always) public func move(from source: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, to target: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, count: Swift.Int) -> (source: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, target: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot) {
+    assert(count >= 0)
+    assert(source.position + count <= self.capacity)
+    assert(target.position + count <= self.capacity)
+    guard count > 0 else { return (source, target) }
+    ptr(at: target).moveInitialize(from: ptr(at: source), count: count)
+    return (slot(source, offsetBy: count), slot(target, offsetBy: count))
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func copyElements() -> CandleDequeModule.Deque<Element>._Storage {
+    let object = _DequeBuffer<Element>.create(
+      minimumCapacity: capacity,
+      makingHeaderWith: { _ in header })
+    let result = Deque._Storage(_buffer: ManagedBufferPointer(unsafeBufferObject: object))
+    guard self.count > 0 else { return result }
+    result.update { target in
+      let source = self.segments()
+      target.initialize(at: startSlot, from: source.first)
+      if let second = source.second {
+        target.initialize(at: .zero, from: second)
+      }
+    }
+    return result
+  }
+  @inlinable internal func copyElements(minimumCapacity: Swift.Int) -> CandleDequeModule.Deque<Element>._Storage {
+    assert(minimumCapacity >= count)
+    let object = _DequeBuffer<Element>.create(
+      minimumCapacity: minimumCapacity,
+      makingHeaderWith: {
+        let capacity = $0.capacity
+        return _DequeBufferHeader(
+          capacity: capacity,
+          count: count,
+          startSlot: .zero)
+      })
+    let result = Deque._Storage(_buffer: ManagedBufferPointer(unsafeBufferObject: object))
+    guard count > 0 else { return result }
+    result.update { target in
+      assert(target.count == count && target.startSlot.position == 0)
+      let source = self.segments()
+      let next = target.initialize(at: .zero, from: source.first)
+      if let second = source.second {
+        target.initialize(at: next, from: second)
+      }
+    }
+    return result
+  }
+  @inlinable internal func moveElements(minimumCapacity: Swift.Int) -> CandleDequeModule.Deque<Element>._Storage {
+    assertMutable()
+    let count = self.count
+    assert(minimumCapacity >= count)
+    let object = _DequeBuffer<Element>.create(
+      minimumCapacity: minimumCapacity,
+      makingHeaderWith: {
+        let capacity = $0.capacity
+        return _DequeBufferHeader(
+          capacity: capacity,
+          count: count,
+          startSlot: .zero)
+      })
+    let result = Deque._Storage(_buffer: ManagedBufferPointer(unsafeBufferObject: object))
+    guard count > 0 else { return result }
+    result.update { target in
+      let source = self.mutableSegments()
+      let next = target.moveInitialize(at: .zero, from: source.first)
+      if let second = source.second {
+        target.moveInitialize(at: next, from: second)
+      }
+    }
+    self.count = 0
+    return result
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable internal func withUnsafeSegment<R>(startingAt start: Swift.Int, maximumCount: Swift.Int?, _ body: (Swift.UnsafeBufferPointer<Element>) throws -> R) rethrows -> (end: Swift.Int, result: R) {
+    assert(start <= count)
+    guard start < count else {
+      return try (count, body(UnsafeBufferPointer(start: nil, count: 0)))
+    }
+    let endSlot = self.endSlot
+
+    let segmentStart = self.slot(forOffset: start)
+    let segmentEnd = segmentStart < endSlot ? endSlot : limSlot
+    let count = Swift.min(maximumCount ?? Int.max, segmentEnd.position - segmentStart.position)
+    let result = try body(UnsafeBufferPointer(start: ptr(at: segmentStart), count: count))
+    return (start + count, result)
+  }
+  #endif
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func uncheckedReplaceInPlace<C>(inOffsets range: Swift.Range<Swift.Int>, with newElements: C) where Element == C.Element, C : Swift.Collection {
+    assertMutable()
+    assert(range.upperBound <= count)
+    assert(newElements.count == range.count)
+    guard !range.isEmpty else { return }
+    let target = mutableSegments(forOffsets: range)
+    target.assign(from: newElements)
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func uncheckedAppend(_ element: Element) {
+    assertMutable()
+    assert(count < capacity)
+    ptr(at: endSlot).initialize(to: element)
+    count += 1
+  }
+  @inlinable internal func uncheckedAppend(contentsOf source: Swift.UnsafeBufferPointer<Element>) {
+    assertMutable()
+    assert(count + source.count <= capacity)
+    guard source.count > 0 else { return }
+    let c = self.count
+    count += source.count
+    let gap = mutableSegments(forOffsets: c ..< count)
+    gap.initialize(from: source)
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func uncheckedPrepend(_ element: Element) {
+    assertMutable()
+    assert(count < capacity)
+    let slot = self.slot(before: startSlot)
+    ptr(at: slot).initialize(to: element)
+    startSlot = slot
+    count += 1
+  }
+  @inlinable internal func uncheckedPrepend(contentsOf source: Swift.UnsafeBufferPointer<Element>) {
+    assertMutable()
+    assert(count + source.count <= capacity)
+    guard source.count > 0 else { return }
+    let oldStart = startSlot
+    let newStart = self.slot(startSlot, offsetBy: -source.count)
+    startSlot = newStart
+    count += source.count
+
+    let gap = mutableWrappedBuffer(between: newStart, and: oldStart)
+    gap.initialize(from: source)
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func uncheckedInsert<C>(contentsOf newElements: __owned C, count newCount: Swift.Int, atOffset offset: Swift.Int) where Element == C.Element, C : Swift.Collection {
+    assertMutable()
+    assert(offset <= count)
+    assert(newElements.count == newCount)
+    guard newCount > 0 else { return }
+    let gap = openGap(ofSize: newCount, atOffset: offset)
+    gap.initialize(from: newElements)
+  }
+  @inlinable internal func mutableWrappedBuffer(between start: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot, and end: CandleDequeModule.Deque<Element>._UnsafeHandle.Slot) -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assert(start.position <= capacity)
+    assert(end.position <= capacity)
+    if start < end {
+      return .init(start: ptr(at: start), count: end.position - start.position)
+    }
+    return .init(
+      first: ptr(at: start), count: capacity - start.position,
+      second: ptr(at: .zero), count: end.position)
+  }
+  @inlinable internal func openGap(ofSize gapSize: Swift.Int, atOffset offset: Swift.Int) -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assertMutable()
+    assert(offset >= 0 && offset <= self.count)
+    assert(self.count + gapSize <= capacity)
+    assert(gapSize > 0)
+
+    let headCount = offset
+    let tailCount = count - offset
+    if tailCount <= headCount {
+       
+
+      let originalEnd = self.slot(startSlot, offsetBy: count)
+      let newEnd = self.slot(startSlot, offsetBy: count + gapSize)
+      let gapStart = self.slot(forOffset: offset)
+      let gapEnd = self.slot(gapStart, offsetBy: gapSize)
+
+      let sourceIsContiguous = gapStart <= originalEnd.orIfZero(capacity)
+      let targetIsContiguous = gapEnd <= newEnd.orIfZero(capacity)
+
+      if sourceIsContiguous && targetIsContiguous {
+         
+         
+
+         
+         
+         
+         
+        move(from: gapStart, to: gapEnd, count: tailCount)
+      } else if targetIsContiguous {
+         
+
+         
+         
+         
+         
+         
+        assert(startSlot > originalEnd.orIfZero(capacity))
+        move(from: .zero, to: Slot.zero.advanced(by: gapSize), count: originalEnd.position)
+        move(from: gapStart, to: gapEnd, count: capacity - gapStart.position)
+      } else if sourceIsContiguous {
+         
+
+         
+         
+         
+         
+         
+        move(from: limSlot.advanced(by: -gapSize), to: .zero, count: newEnd.position)
+        move(from: gapStart, to: gapEnd, count: tailCount - newEnd.position)
+      } else {
+         
+
+         
+         
+         
+         
+         
+         
+        move(from: .zero, to: Slot.zero.advanced(by: gapSize), count: originalEnd.position)
+        move(from: limSlot.advanced(by: -gapSize), to: .zero, count: gapSize)
+        move(from: gapStart, to: gapEnd, count: tailCount - gapSize - originalEnd.position)
+      }
+      count += gapSize
+      return mutableWrappedBuffer(between: gapStart, and: gapEnd.orIfZero(capacity))
+    }
+
+     
+
+    let originalStart = self.startSlot
+    let newStart = self.slot(originalStart, offsetBy: -gapSize)
+    let gapEnd = self.slot(forOffset: offset)
+    let gapStart = self.slot(gapEnd, offsetBy: -gapSize)
+
+    let sourceIsContiguous = originalStart <= gapEnd.orIfZero(capacity)
+    let targetIsContiguous = newStart <= gapStart.orIfZero(capacity)
+
+    if sourceIsContiguous && targetIsContiguous {
+       
+
+       
+       
+       
+       
+      move(from: originalStart, to: newStart, count: headCount)
+    } else if targetIsContiguous {
+       
+
+       
+       
+       
+       
+       
+      assert(originalStart >= newStart)
+      move(from: originalStart, to: newStart, count: capacity - originalStart.position)
+      move(from: .zero, to: limSlot.advanced(by: -gapSize), count: gapEnd.position)
+    } else if sourceIsContiguous {
+       
+
+       
+       
+       
+       
+       
+      move(from: originalStart, to: newStart, count: capacity - newStart.position)
+      move(from: Slot.zero.advanced(by: gapSize), to: .zero, count: gapStart.position)
+    } else {
+       
+
+       
+       
+       
+       
+       
+      move(from: originalStart, to: newStart, count: capacity - originalStart.position)
+      move(from: .zero, to: limSlot.advanced(by: -gapSize), count: gapSize)
+      move(from: Slot.zero.advanced(by: gapSize), to: .zero, count: gapStart.position)
+    }
+    startSlot = newStart
+    count += gapSize
+    return mutableWrappedBuffer(between: gapStart, and: gapEnd.orIfZero(capacity))
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle {
+  @inlinable internal func uncheckedRemoveFirst() -> Element {
+    assertMutable()
+    assert(count > 0)
+    let result = ptr(at: startSlot).move()
+    startSlot = slot(after: startSlot)
+    count -= 1
+    return result
+  }
+  @inlinable internal func uncheckedRemoveLast() -> Element {
+    assertMutable()
+    assert(count > 0)
+    let slot = self.slot(forOffset: count - 1)
+    let result = ptr(at: slot).move()
+    count -= 1
+    return result
+  }
+  @inlinable internal func uncheckedRemoveFirst(_ n: Swift.Int) {
+    assertMutable()
+    assert(count >= n)
+    guard n > 0 else { return }
+    let target = mutableSegments(forOffsets: 0 ..< n)
+    target.deinitialize()
+    startSlot = slot(startSlot, offsetBy: n)
+    count -= n
+  }
+  @inlinable internal func uncheckedRemoveLast(_ n: Swift.Int) {
+    assertMutable()
+    assert(count >= n)
+    guard n > 0 else { return }
+    let target = mutableSegments(forOffsets: count - n ..< count)
+    target.deinitialize()
+    count -= n
+  }
+  @inlinable internal func uncheckedRemoveAll() {
+    assertMutable()
+    guard count > 0 else { return }
+    let target = mutableSegments()
+    target.deinitialize()
+    count = 0
+    startSlot = .zero
+  }
+  @inlinable internal func uncheckedRemove(offsets bounds: Swift.Range<Swift.Int>) {
+    assertMutable()
+    assert(bounds.lowerBound >= 0 && bounds.upperBound <= self.count)
+
+     
+    mutableSegments(forOffsets: bounds).deinitialize()
+    closeGap(offsets: bounds)
+  }
+  @inlinable internal func closeGap(offsets bounds: Swift.Range<Swift.Int>) {
+    assertMutable()
+    assert(bounds.lowerBound >= 0 && bounds.upperBound <= self.count)
+    let gapSize = bounds.count
+    guard gapSize > 0 else { return }
+
+    let gapStart = self.slot(forOffset: bounds.lowerBound)
+    let gapEnd = self.slot(forOffset: bounds.upperBound)
+
+    let headCount = bounds.lowerBound
+    let tailCount = count - bounds.upperBound
+
+    if headCount >= tailCount {
+       
+      let originalEnd = endSlot
+      let newEnd = self.slot(forOffset: count - gapSize)
+
+      let sourceIsContiguous = gapEnd < originalEnd.orIfZero(capacity)
+      let targetIsContiguous = gapStart <= newEnd.orIfZero(capacity)
+      if tailCount == 0 {
+         
+      } else if sourceIsContiguous && targetIsContiguous {
+         
+
+         
+         
+        move(from: gapEnd, to: gapStart, count: tailCount)
+      } else if sourceIsContiguous {
+         
+
+         
+         
+         
+        let c = capacity - gapStart.position
+        assert(tailCount > c)
+        let next = move(from: gapEnd, to: gapStart, count: c)
+        move(from: next.source, to: .zero, count: tailCount - c)
+      } else if targetIsContiguous {
+         
+         
+
+         
+         
+         
+        let next = move(from: gapEnd, to: gapStart, count: capacity - gapEnd.position)
+        move(from: .zero, to: next.target, count: originalEnd.position)
+      } else {
+         
+
+         
+         
+         
+         
+        var next = move(from: gapEnd, to: gapStart, count: capacity - gapEnd.position)
+        next = move(from: .zero, to: next.target, count: gapSize)
+        move(from: next.source, to: .zero, count: newEnd.position)
+      }
+      count -= gapSize
+    } else {
+       
+      let originalStart = startSlot
+      let newStart = slot(startSlot, offsetBy: gapSize)
+
+      let sourceIsContiguous = originalStart < gapStart.orIfZero(capacity)
+      let targetIsContiguous = newStart <= gapEnd.orIfZero(capacity)
+
+      if headCount == 0 {
+         
+      } else if sourceIsContiguous && targetIsContiguous {
+         
+
+         
+         
+        move(from: originalStart, to: newStart, count: headCount)
+      } else if sourceIsContiguous {
+         
+
+         
+         
+         
+        move(from: limSlot.advanced(by: -gapSize), to: .zero, count: gapEnd.position)
+        move(from: startSlot, to: newStart, count: headCount - gapEnd.position)
+      } else if targetIsContiguous {
+         
+         
+
+         
+         
+         
+        move(from: .zero, to: gapEnd.advanced(by: -gapStart.position), count: gapStart.position)
+        move(from: startSlot, to: newStart, count: headCount - gapStart.position)
+      } else {
+         
+         
+         
+         
+         
+        move(from: .zero, to: Slot.zero.advanced(by: gapSize), count: gapStart.position)
+        move(from: limSlot.advanced(by: -gapSize), to: .zero, count: gapSize)
+        move(from: startSlot, to: newStart, count: headCount - gapEnd.position)
+      }
+      startSlot = newStart
+      count -= gapSize
+    }
+  }
+}
+@frozen public struct Deque<Element> {
+  @usableFromInline
+  internal typealias _Slot = CandleDequeModule._DequeSlot
+  @usableFromInline
+  internal var _storage: CandleDequeModule.Deque<Element>._Storage
+  @inlinable internal init(_storage: CandleDequeModule.Deque<Element>._Storage) {
+    self._storage = _storage
+  }
+  @inlinable public init(minimumCapacity: Swift.Int) {
+    self._storage = _Storage(minimumCapacity: minimumCapacity)
+  }
+}
+extension CandleDequeModule.Deque : @unchecked Swift.Sendable where Element : Swift.Sendable {
+}
+@_inheritsConvenienceInitializers @usableFromInline
+@_fixed_layout final internal class _DequeBuffer<Element> : Swift.ManagedBuffer<CandleDequeModule._DequeBufferHeader, Element> {
+  @objc @inlinable deinit {
+    self.withUnsafeMutablePointers { header, elements in
+      header.pointee._checkInvariants()
+
+      let capacity = header.pointee.capacity
+      let count = header.pointee.count
+      let startSlot = header.pointee.startSlot
+
+      if startSlot.position + count <= capacity {
+        (elements + startSlot.position).deinitialize(count: count)
+      } else {
+        let firstRegion = capacity - startSlot.position
+        (elements + startSlot.position).deinitialize(count: firstRegion)
+        elements.deinitialize(count: count - firstRegion)
+      }
+    }
+  }
+}
+extension CandleDequeModule._DequeBuffer : Swift.CustomStringConvertible {
+  @usableFromInline
+  final internal var description: Swift.String {
+    get
+  }
+}
+@usableFromInline
+internal let _emptyDequeStorage: Swift.ManagedBuffer<CandleDequeModule._DequeBufferHeader, Swift.Void>
+@usableFromInline
+internal struct _DequeBufferHeader {
+  @usableFromInline
+  internal var capacity: Swift.Int
+  @usableFromInline
+  internal var count: Swift.Int
+  @usableFromInline
+  internal var startSlot: CandleDequeModule._DequeSlot
+  @usableFromInline
+  internal init(capacity: Swift.Int, count: Swift.Int, startSlot: CandleDequeModule._DequeSlot)
+  @inlinable @inline(__always) internal func _checkInvariants() {}
+}
+extension CandleDequeModule._DequeBufferHeader : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+@usableFromInline
+@frozen internal struct _DequeSlot {
+  @usableFromInline
+  internal var position: Swift.Int
+  @inlinable @inline(__always) internal init(at position: Swift.Int) {
+    assert(position >= 0)
+    self.position = position
+  }
+}
+extension CandleDequeModule._DequeSlot {
+  @inlinable @inline(__always) internal static var zero: CandleDequeModule._DequeSlot {
+    get { Self(at: 0) }
+  }
+  @inlinable @inline(__always) internal func advanced(by delta: Swift.Int) -> CandleDequeModule._DequeSlot {
+    Self(at: position &+ delta)
+  }
+  @inlinable @inline(__always) internal func orIfZero(_ value: Swift.Int) -> CandleDequeModule._DequeSlot {
+    guard position > 0 else { return Self(at: value) }
+    return self
+  }
+}
+extension CandleDequeModule._DequeSlot : Swift.CustomStringConvertible {
+  @usableFromInline
+  internal var description: Swift.String {
+    get
+  }
+}
+extension CandleDequeModule._DequeSlot : Swift.Equatable {
+  @inlinable @inline(__always) internal static func == (left: CandleDequeModule._DequeSlot, right: CandleDequeModule._DequeSlot) -> Swift.Bool {
+    left.position == right.position
+  }
+}
+extension CandleDequeModule._DequeSlot : Swift.Comparable {
+  @inlinable @inline(__always) internal static func < (left: CandleDequeModule._DequeSlot, right: CandleDequeModule._DequeSlot) -> Swift.Bool {
+    left.position < right.position
+  }
+}
+extension Swift.Range where Bound == CandleDequeModule._DequeSlot {
+  @inlinable @inline(__always) internal var _count: Swift.Int {
+    get { upperBound.position - lowerBound.position }
+  }
+}
+@usableFromInline
+@frozen internal struct _UnsafeWrappedBuffer<Element> {
+  @usableFromInline
+  internal let first: Swift.UnsafeBufferPointer<Element>
+  @usableFromInline
+  internal let second: Swift.UnsafeBufferPointer<Element>?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal init(_ first: Swift.UnsafeBufferPointer<Element>, _ second: Swift.UnsafeBufferPointer<Element>? = nil) {
+    self.first = first
+    self.second = second
+    assert(first.count > 0 || second == nil)
+  }
+  #endif
+  @inlinable internal init(start: Swift.UnsafePointer<Element>, count: Swift.Int) {
+    self.init(UnsafeBufferPointer(start: start, count: count))
+  }
+  @inlinable internal init(first start1: Swift.UnsafePointer<Element>, count count1: Swift.Int, second start2: Swift.UnsafePointer<Element>, count count2: Swift.Int) {
+    self.init(UnsafeBufferPointer(start: start1, count: count1),
+              UnsafeBufferPointer(start: start2, count: count2))
+  }
+  @inlinable internal var count: Swift.Int {
+    get { first.count + (second?.count ?? 0) }
+  }
+}
+@usableFromInline
+@frozen internal struct _UnsafeMutableWrappedBuffer<Element> {
+  @usableFromInline
+  internal let first: Swift.UnsafeMutableBufferPointer<Element>
+  @usableFromInline
+  internal let second: Swift.UnsafeMutableBufferPointer<Element>?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal init(_ first: Swift.UnsafeMutableBufferPointer<Element>, _ second: Swift.UnsafeMutableBufferPointer<Element>? = nil) {
+    self.first = first
+    self.second = second?.count == 0 ? nil : second
+    assert(first.count > 0 || second == nil)
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @inlinable @inline(__always) internal init(_ first: Swift.UnsafeMutableBufferPointer<Element>.SubSequence, _ second: Swift.UnsafeMutableBufferPointer<Element>? = nil) {
+    self.init(UnsafeMutableBufferPointer(rebasing: first), second)
+  }
+  #endif
+  @inlinable @inline(__always) internal init(_ first: Swift.UnsafeMutableBufferPointer<Element>, _ second: Swift.UnsafeMutableBufferPointer<Element>.SubSequence) {
+    self.init(first, UnsafeMutableBufferPointer(rebasing: second))
+  }
+  @inlinable @inline(__always) internal init(start: Swift.UnsafeMutablePointer<Element>, count: Swift.Int) {
+    self.init(UnsafeMutableBufferPointer(start: start, count: count))
+  }
+  @inlinable @inline(__always) internal init(first start1: Swift.UnsafeMutablePointer<Element>, count count1: Swift.Int, second start2: Swift.UnsafeMutablePointer<Element>, count count2: Swift.Int) {
+    self.init(UnsafeMutableBufferPointer(start: start1, count: count1),
+              UnsafeMutableBufferPointer(start: start2, count: count2))
+  }
+  @inlinable @inline(__always) internal init(mutating buffer: CandleDequeModule._UnsafeWrappedBuffer<Element>) {
+    self.init(.init(mutating: buffer.first),
+              buffer.second.map { .init(mutating: $0) })
+  }
+}
+extension CandleDequeModule._UnsafeMutableWrappedBuffer {
+  @inlinable @inline(__always) internal var count: Swift.Int {
+    get { first.count + (second?.count ?? 0) }
+  }
+  @inlinable internal func prefix(_ n: Swift.Int) -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assert(n >= 0)
+    if n >= self.count {
+      return self
+    }
+    if n <= first.count {
+      return Self(first.prefix(n))
+    }
+    return Self(first, second!.prefix(n - first.count))
+  }
+  @inlinable internal func suffix(_ n: Swift.Int) -> CandleDequeModule._UnsafeMutableWrappedBuffer<Element> {
+    assert(n >= 0)
+    if n >= self.count {
+      return self
+    }
+    guard let second = second else {
+      return Self(first.suffix(n))
+    }
+    if n <= second.count {
+      return Self(second.suffix(n))
+    }
+    return Self(first.suffix(n - second.count), second)
+  }
+}
+extension CandleDequeModule._UnsafeMutableWrappedBuffer {
+  @inlinable internal func deinitialize() {
+    first.deinitialize()
+    second?.deinitialize()
+  }
+  @discardableResult
+  @inlinable internal func initialize<I>(fromPrefixOf iterator: inout I) -> Swift.Int where Element == I.Element, I : Swift.IteratorProtocol {
+    var copied = 0
+    var gap = first
+    var wrapped = false
+    while true {
+      if copied == gap.count {
+        guard !wrapped, let second = second, second.count > 0 else { break }
+        gap = second
+        copied = 0
+        wrapped = true
+      }
+      guard let next = iterator.next() else { break }
+      (gap.baseAddress! + copied).initialize(to: next)
+      copied += 1
+    }
+    return wrapped ? first.count + copied : copied
+  }
+  @inlinable internal func initialize<S>(fromSequencePrefix elements: __owned S) -> (iterator: S.Iterator, count: Swift.Int) where Element == S.Element, S : Swift.Sequence {
+    guard second == nil || first.count >= elements.underestimatedCount else {
+      var it = elements.makeIterator()
+      let copied = initialize(fromPrefixOf: &it)
+      return (it, copied)
+    }
+     
+     
+     
+     
+     
+    var (it, copied) = elements._copyContents(initializing: first)
+    if copied == first.count, let second = second {
+      var i = 0
+      while i < second.count {
+        guard let next = it.next() else { break }
+        (second.baseAddress! + i).initialize(to: next)
+        i += 1
+      }
+      copied += i
+    }
+    return (it, copied)
+  }
+  @inlinable internal func initialize<C>(from elements: __owned C) where Element == C.Element, C : Swift.Collection {
+    assert(self.count == elements.count)
+    if let second = second {
+      let wrap = elements.index(elements.startIndex, offsetBy: first.count)
+      first.initializeAll(fromContentsOf: elements[..<wrap])
+      second.initializeAll(fromContentsOf: elements[wrap...])
+    } else {
+      first.initializeAll(fromContentsOf: elements)
+    }
+  }
+  @inlinable internal func assign<C>(from elements: C) where Element == C.Element, C : Swift.Collection {
+    assert(elements.count == self.count)
+    deinitialize()
+    initialize(from: elements)
+  }
+}
+extension CandleDequeModule.Deque._UnsafeHandle : Swift.BitwiseCopyable {}
+extension CandleDequeModule._DequeSlot : Swift.Sendable {}
+extension CandleDequeModule._DequeSlot : Swift.BitwiseCopyable {}
+extension CandleDequeModule._UnsafeWrappedBuffer : Swift.BitwiseCopyable {}
+extension CandleDequeModule._UnsafeMutableWrappedBuffer : Swift.BitwiseCopyable {}

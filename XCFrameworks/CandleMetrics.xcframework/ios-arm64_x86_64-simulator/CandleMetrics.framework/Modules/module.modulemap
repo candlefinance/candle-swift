@@ -1,0 +1,5 @@
+framework module CandleMetrics {
+    header "CandleMetrics-Swift.h"
+    export *
+    link framework "CandleCoreMetrics"
+}

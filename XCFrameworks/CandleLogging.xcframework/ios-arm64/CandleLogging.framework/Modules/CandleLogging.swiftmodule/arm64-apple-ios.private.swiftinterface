@@ -1,0 +1,310 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleLogging -package-name candle_swift_log
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol LogHandler : CandleLogging._SwiftLogSendableLogHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  var metadataProvider: CandleLogging.Logger.MetadataProvider? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, source: Swift.String, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "log(level:message:metadata:source:file:function:line:)")
+  func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  subscript(metadataKey _: Swift.String) -> CandleLogging.Logger.Metadata.Value? { get set }
+  #endif
+  var metadata: CandleLogging.Logger.Metadata { get set }
+  var logLevel: CandleLogging.Logger.Level { get set }
+}
+extension CandleLogging.LogHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var metadataProvider: CandleLogging.Logger.MetadataProvider? {
+    get
+    set
+  }
+  #endif
+}
+extension CandleLogging.LogHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "You should implement this method instead of using the default implementation")
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, source: Swift.String, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "log(level:message:metadata:source:file:function:line:)")
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+}
+@preconcurrency public protocol _SwiftLogSendableLogHandler : Swift.Sendable {
+}
+public struct Logger {
+  public var label: Swift.String {
+    get
+  }
+  public var handler: any CandleLogging.LogHandler {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var metadataProvider: CandleLogging.Logger.MetadataProvider? {
+    get
+  }
+  #endif
+}
+extension CandleLogging.Logger {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, _ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, _ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(metadataKey metadataKey: Swift.String) -> CandleLogging.Logger.Metadata.Value? {
+    get
+    set
+  }
+  #endif
+  public var logLevel: CandleLogging.Logger.Level {
+    get
+    set
+  }
+}
+extension CandleLogging.Logger {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func trace(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func trace(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func debug(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func debug(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func info(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func info(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func notice(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func notice(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func warning(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func warning(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func error(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func error(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func critical(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, source: @autoclosure () -> Swift.String? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func critical(_ message: @autoclosure () -> CandleLogging.Logger.Message, metadata: @autoclosure () -> CandleLogging.Logger.Metadata? = nil, file: Swift.String = #fileID, function: Swift.String = #function, line: Swift.UInt = #line)
+  #endif
+}
+public enum LoggingSystem {
+  @preconcurrency public static func bootstrap(_ factory: @escaping @Sendable (Swift.String) -> any CandleLogging.LogHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency public static func bootstrap(_ factory: @escaping @Sendable (Swift.String, CandleLogging.Logger.MetadataProvider?) -> any CandleLogging.LogHandler, metadataProvider: CandleLogging.Logger.MetadataProvider?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var metadataProvider: CandleLogging.Logger.MetadataProvider? {
+    get
+  }
+  #endif
+}
+extension CandleLogging.Logger {
+  public typealias Metadata = [Swift.String : CandleLogging.Logger.MetadataValue]
+  public enum MetadataValue {
+    case string(Swift.String)
+    case stringConvertible(any Swift.CustomStringConvertible & Swift.Sendable)
+    case dictionary(CandleLogging.Logger.Metadata)
+    case array([CandleLogging.Logger.Metadata.Value])
+  }
+  public enum Level : Swift.String, Swift.Codable, Swift.CaseIterable {
+    case trace
+    case debug
+    case info
+    case notice
+    case warning
+    case error
+    case critical
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public typealias AllCases = [CandleLogging.Logger.Level]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [CandleLogging.Logger.Level] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public init(label: Swift.String)
+  public init(label: Swift.String, factory: (Swift.String) -> any CandleLogging.LogHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(label: Swift.String, factory: (Swift.String, CandleLogging.Logger.MetadataProvider?) -> any CandleLogging.LogHandler)
+  #endif
+  public init(label: Swift.String, metadataProvider: CandleLogging.Logger.MetadataProvider)
+}
+extension CandleLogging.Logger.Level : Swift.Comparable {
+  public static func < (lhs: CandleLogging.Logger.Level, rhs: CandleLogging.Logger.Level) -> Swift.Bool
+}
+extension CandleLogging.Logger.MetadataValue : Swift.Equatable {
+  public static func == (lhs: CandleLogging.Logger.Metadata.Value, rhs: CandleLogging.Logger.Metadata.Value) -> Swift.Bool
+}
+extension CandleLogging.Logger {
+  public struct Message : Swift.ExpressibleByStringLiteral, Swift.Equatable, Swift.CustomStringConvertible, Swift.ExpressibleByStringInterpolation {
+    public typealias StringLiteralType = Swift.String
+    public init(stringLiteral value: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: CandleLogging.Logger.Message, b: CandleLogging.Logger.Message) -> Swift.Bool
+    public typealias ExtendedGraphemeClusterLiteralType = CandleLogging.Logger.Message.StringLiteralType
+    public typealias StringInterpolation = Swift.DefaultStringInterpolation
+    public typealias UnicodeScalarLiteralType = CandleLogging.Logger.Message.StringLiteralType
+  }
+}
+public struct MultiplexLogHandler : CandleLogging.LogHandler {
+  public init(_ handlers: [any CandleLogging.LogHandler])
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(_ handlers: [any CandleLogging.LogHandler], metadataProvider: CandleLogging.Logger.MetadataProvider?)
+  #endif
+  public var logLevel: CandleLogging.Logger.Level {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var metadataProvider: CandleLogging.Logger.MetadataProvider? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, source: Swift.String, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  public var metadata: CandleLogging.Logger.Metadata {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(metadataKey metadataKey: CandleLogging.Logger.Metadata.Key) -> CandleLogging.Logger.Metadata.Value? {
+    get
+    set
+  }
+  #endif
+}
+public struct StreamLogHandler : CandleLogging.LogHandler {
+  public static func standardOutput(label: Swift.String) -> CandleLogging.StreamLogHandler
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func standardOutput(label: Swift.String, metadataProvider: CandleLogging.Logger.MetadataProvider?) -> CandleLogging.StreamLogHandler
+  #endif
+  public static func standardError(label: Swift.String) -> CandleLogging.StreamLogHandler
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func standardError(label: Swift.String, metadataProvider: CandleLogging.Logger.MetadataProvider?) -> CandleLogging.StreamLogHandler
+  #endif
+  public var logLevel: CandleLogging.Logger.Level
+  public var metadataProvider: CandleLogging.Logger.MetadataProvider?
+  public var metadata: CandleLogging.Logger.Metadata {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(metadataKey metadataKey: Swift.String) -> CandleLogging.Logger.Metadata.Value? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata explicitMetadata: CandleLogging.Logger.Metadata?, source: Swift.String, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+}
+public struct SwiftLogNoOpLogHandler : CandleLogging.LogHandler {
+  public init()
+  public init(_: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func log(level: CandleLogging.Logger.Level, message: CandleLogging.Logger.Message, metadata: CandleLogging.Logger.Metadata?, source: Swift.String, file: Swift.String, function: Swift.String, line: Swift.UInt)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(metadataKey _: Swift.String) -> CandleLogging.Logger.Metadata.Value? {
+    get
+    set
+  }
+  #endif
+  public var metadata: CandleLogging.Logger.Metadata {
+    get
+    set
+  }
+  public var logLevel: CandleLogging.Logger.Level {
+    get
+    set
+  }
+}
+extension CandleLogging.Logger.MetadataValue : Swift.ExpressibleByStringLiteral {
+  public typealias StringLiteralType = Swift.String
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = CandleLogging.Logger.MetadataValue.StringLiteralType
+  public typealias UnicodeScalarLiteralType = CandleLogging.Logger.MetadataValue.StringLiteralType
+}
+extension CandleLogging.Logger.MetadataValue : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleLogging.Logger.MetadataValue : Swift.ExpressibleByStringInterpolation {
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+}
+extension CandleLogging.Logger.MetadataValue : Swift.ExpressibleByDictionaryLiteral {
+  public typealias Key = Swift.String
+  public typealias Value = CandleLogging.Logger.Metadata.Value
+  public init(dictionaryLiteral elements: (Swift.String, CandleLogging.Logger.Metadata.Value)...)
+}
+extension CandleLogging.Logger.MetadataValue : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = CandleLogging.Logger.Metadata.Value
+  public init(arrayLiteral elements: CandleLogging.Logger.Metadata.Value...)
+}
+extension CandleLogging.Logger.MetadataValue : Swift.Sendable {
+}
+extension CandleLogging.Logger : Swift.Sendable {
+}
+extension CandleLogging.Logger.Level : Swift.Sendable {
+}
+extension CandleLogging.Logger.Message : Swift.Sendable {
+}
+extension CandleLogging.Logger {
+  public struct MetadataProvider {
+    public init(_ provideMetadata: @escaping @Sendable () -> CandleLogging.Logger.Metadata)
+    public func get() -> CandleLogging.Logger.Metadata
+  }
+}
+extension CandleLogging.Logger.MetadataProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func multiplex(_ providers: [CandleLogging.Logger.MetadataProvider]) -> CandleLogging.Logger.MetadataProvider?
+  #endif
+}
+extension CandleLogging.Logger.Level : Swift.Hashable {}
+extension CandleLogging.Logger.Level : Swift.RawRepresentable {}
+extension CandleLogging.Logger.MetadataProvider : Swift.Sendable {}

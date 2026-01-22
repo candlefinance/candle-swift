@@ -1,0 +1,4 @@
+framework module CandleConcurrencyHelpers {
+    header "CandleConcurrencyHelpers-Swift.h"
+    export *
+}

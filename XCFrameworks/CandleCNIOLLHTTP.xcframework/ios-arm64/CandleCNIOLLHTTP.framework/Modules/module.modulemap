@@ -1,0 +1,5 @@
+framework module CandleCNIOLLHTTP {
+    header "CNIOLLHTTP.h"
+    header "c_nio_llhttp.h"
+    export *
+}

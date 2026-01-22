@@ -1,0 +1,1155 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleUnixSignals",
+    "printedName": "CandleUnixSignals",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "CandleUnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "Dispatch",
+        "printedName": "Dispatch",
+        "declKind": "Import",
+        "moduleName": "CandleUnixSignals"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnixSignal",
+        "printedName": "UnixSignal",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV8rawValues5Int32Vvp",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV8rawValues5Int32Vvp",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV8rawValues5Int32Vvg",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV8rawValues5Int32Vvg",
+                "moduleName": "CandleUnixSignals",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV11descriptionSSvp",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV11descriptionSSvp",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV11descriptionSSvg",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV11descriptionSSvg",
+                "moduleName": "CandleUnixSignals",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigabrt",
+            "printedName": "sigabrt",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigabrtACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigabrtACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigabrtACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigabrtACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sighup",
+            "printedName": "sighup",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV6sighupACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV6sighupACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV6sighupACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV6sighupACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigill",
+            "printedName": "sigill",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV6sigillACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV6sigillACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV6sigillACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV6sigillACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigint",
+            "printedName": "sigint",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV6sigintACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV6sigintACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV6sigintACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV6sigintACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigquit",
+            "printedName": "sigquit",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigquitACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigquitACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigquitACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigquitACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigsegv",
+            "printedName": "sigsegv",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigsegvACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigsegvACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigsegvACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigsegvACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigterm",
+            "printedName": "sigterm",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigtermACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigtermACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigtermACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigtermACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigusr1",
+            "printedName": "sigusr1",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigusr1ACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigusr1ACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigusr1ACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigusr1ACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigusr2",
+            "printedName": "sigusr2",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigusr2ACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigusr2ACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigusr2ACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigusr2ACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigalrm",
+            "printedName": "sigalrm",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigalrmACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigalrmACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigalrmACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigalrmACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigwinch",
+            "printedName": "sigwinch",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV8sigwinchACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV8sigwinchACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV8sigwinchACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV8sigwinchACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sigcont",
+            "printedName": "sigcont",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV7sigcontACvpZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV7sigcontACvpZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV7sigcontACvgZ",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV7sigcontACvgZ",
+                "moduleName": "CandleUnixSignals",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17CandleUnixSignals0B6SignalV9hashValueSivp",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV9hashValueSivp",
+            "moduleName": "CandleUnixSignals",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17CandleUnixSignals0B6SignalV9hashValueSivg",
+                "mangledName": "$s17CandleUnixSignals0B6SignalV9hashValueSivg",
+                "moduleName": "CandleUnixSignals",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17CandleUnixSignals0B6SignalV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV4hash4intoys6HasherVz_tF",
+            "moduleName": "CandleUnixSignals",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignal",
+                "printedName": "CandleUnixSignals.UnixSignal",
+                "usr": "s:17CandleUnixSignals0B6SignalV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17CandleUnixSignals0B6SignalV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s17CandleUnixSignals0B6SignalV2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleUnixSignals",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:17CandleUnixSignals0B6SignalV",
+        "mangledName": "$s17CandleUnixSignals0B6SignalV",
+        "moduleName": "CandleUnixSignals",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "CandleUnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "Dispatch",
+        "printedName": "Dispatch",
+        "declKind": "Import",
+        "moduleName": "CandleUnixSignals"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleConcurrencyHelpers",
+        "printedName": "CandleConcurrencyHelpers",
+        "declKind": "Import",
+        "moduleName": "CandleUnixSignals"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnixSignalsSequence",
+        "printedName": "UnixSignalsSequence",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(trapping:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignalsSequence",
+                "printedName": "CandleUnixSignals.UnixSignalsSequence",
+                "usr": "s:17CandleUnixSignals0bC8SequenceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[CandleUnixSignals.UnixSignal]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17CandleUnixSignals0bC8SequenceV8trappingAcA0B6SignalVd_tYacfc",
+            "mangledName": "$s17CandleUnixSignals0bC8SequenceV8trappingAcA0B6SignalVd_tYacfc",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(trapping:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnixSignalsSequence",
+                "printedName": "CandleUnixSignals.UnixSignalsSequence",
+                "usr": "s:17CandleUnixSignals0bC8SequenceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[CandleUnixSignals.UnixSignal]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17CandleUnixSignals0bC8SequenceV8trappingACSayAA0B6SignalVG_tYacfc",
+            "mangledName": "$s17CandleUnixSignals0bC8SequenceV8trappingACSayAA0B6SignalVG_tYacfc",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "makeAsyncIterator",
+            "printedName": "makeAsyncIterator()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AsyncIterator",
+                "printedName": "CandleUnixSignals.UnixSignalsSequence.AsyncIterator",
+                "usr": "s:17CandleUnixSignals0bC8SequenceV13AsyncIteratorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17CandleUnixSignals0bC8SequenceV17makeAsyncIteratorAC0fG0VyF",
+            "mangledName": "$s17CandleUnixSignals0bC8SequenceV17makeAsyncIteratorAC0fG0VyF",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "AsyncIterator",
+            "printedName": "AsyncIterator",
+            "children": [
+              {
+                "kind": "Function",
+                "name": "next",
+                "printedName": "next()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "CandleUnixSignals.UnixSignal?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UnixSignal",
+                        "printedName": "CandleUnixSignals.UnixSignal",
+                        "usr": "s:17CandleUnixSignals0B6SignalV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17CandleUnixSignals0bC8SequenceV13AsyncIteratorV4nextAA0B6SignalVSgyYaF",
+                "mangledName": "$s17CandleUnixSignals0bC8SequenceV13AsyncIteratorV4nextAA0B6SignalVSgyYaF",
+                "moduleName": "CandleUnixSignals",
+                "declAttributes": [
+                  "Mutating",
+                  "AccessControl"
+                ],
+                "funcSelfKind": "Mutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:17CandleUnixSignals0bC8SequenceV13AsyncIteratorV",
+            "mangledName": "$s17CandleUnixSignals0bC8SequenceV13AsyncIteratorV",
+            "moduleName": "CandleUnixSignals",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "AsyncIteratorProtocol",
+                "printedName": "AsyncIteratorProtocol",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UnixSignal",
+                        "printedName": "CandleUnixSignals.UnixSignal",
+                        "usr": "s:17CandleUnixSignals0B6SignalV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Failure",
+                    "printedName": "Failure",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Never",
+                        "printedName": "Swift.Never",
+                        "usr": "s:s5NeverO"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:ScI",
+                "mangledName": "$sScI"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:17CandleUnixSignals0bC8SequenceV",
+        "mangledName": "$s17CandleUnixSignals0bC8SequenceV",
+        "moduleName": "CandleUnixSignals",
+        "intro_Macosx": "10.15",
+        "intro_iOS": "13.0",
+        "intro_tvOS": "13.0",
+        "intro_watchOS": "6.0",
+        "declAttributes": [
+          "AccessControl",
+          "Available",
+          "Available",
+          "Available",
+          "Available",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "AsyncSequence",
+            "printedName": "AsyncSequence",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AsyncIterator",
+                "printedName": "AsyncIterator",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AsyncIterator",
+                    "printedName": "CandleUnixSignals.UnixSignalsSequence.AsyncIterator",
+                    "usr": "s:17CandleUnixSignals0bC8SequenceV13AsyncIteratorV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Element",
+                "printedName": "Element",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnixSignal",
+                    "printedName": "CandleUnixSignals.UnixSignal",
+                    "usr": "s:17CandleUnixSignals0B6SignalV"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Failure",
+                "printedName": "Failure",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:Sci",
+            "mangledName": "$sSci"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-service-lifecycle\/Sources\/CandleUnixSignals\/UnixSignalsSequence.swift",
+      "kind": "StringLiteral",
+      "offset": 1316,
+      "length": 36,
+      "value": "\"com.service-lifecycle.unix-signals\""
+    }
+  ]
+}

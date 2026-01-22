@@ -1,0 +1,5 @@
+framework module CandleNIOConcurrencyHelpers {
+    header "CandleNIOConcurrencyHelpers-Swift.h"
+    export *
+    link framework "CandleCNIOAtomics"
+}

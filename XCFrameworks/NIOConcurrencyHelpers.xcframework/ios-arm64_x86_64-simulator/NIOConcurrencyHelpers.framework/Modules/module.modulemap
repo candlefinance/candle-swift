@@ -1,5 +1,0 @@
-framework module NIOConcurrencyHelpers {
-    header "NIOConcurrencyHelpers-Swift.h"
-    export *
-    link framework "CNIOAtomics"
-}

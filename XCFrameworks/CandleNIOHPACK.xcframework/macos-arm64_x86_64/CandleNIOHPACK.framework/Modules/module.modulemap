@@ -1,0 +1,4 @@
+framework module CandleNIOHPACK {
+    header "CandleNIOHPACK-Swift.h"
+    export *
+}

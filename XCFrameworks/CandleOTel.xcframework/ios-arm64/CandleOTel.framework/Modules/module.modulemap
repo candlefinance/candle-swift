@@ -1,0 +1,4 @@
+framework module CandleOTel {
+    header "CandleOTel-Swift.h"
+    export *
+}

@@ -1,4 +1,0 @@
-framework module ServiceContextModule {
-    header "ServiceContextModule-Swift.h"
-    export *
-}

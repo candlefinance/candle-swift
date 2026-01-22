@@ -1,0 +1,6 @@
+framework module CandleTracing {
+    header "CandleTracing-Swift.h"
+    export *
+    link framework "CandleInstrumentation"
+    link framework "Candle_CWASI"
+}

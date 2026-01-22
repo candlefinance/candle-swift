@@ -1,4 +1,0 @@
-framework module Instrumentation {
-    header "Instrumentation-Swift.h"
-    export *
-}

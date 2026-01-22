@@ -1,0 +1,4 @@
+framework module CandleNIOSOCKS {
+    header "CandleNIOSOCKS-Swift.h"
+    export *
+}

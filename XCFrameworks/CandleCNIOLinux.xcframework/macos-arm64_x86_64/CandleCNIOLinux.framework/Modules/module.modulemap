@@ -1,0 +1,5 @@
+framework module CandleCNIOLinux {
+    header "CNIOLinux.h"
+    header "liburing_nio.h"
+    export *
+}

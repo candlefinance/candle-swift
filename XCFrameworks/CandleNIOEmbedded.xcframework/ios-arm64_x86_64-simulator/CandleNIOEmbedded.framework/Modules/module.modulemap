@@ -1,0 +1,7 @@
+framework module CandleNIOEmbedded {
+    header "CandleNIOEmbedded-Swift.h"
+    export *
+    link framework "CandleNIOCore"
+    link framework "CandleNIOConcurrencyHelpers"
+    link framework "Candle_NIODataStructures"
+}

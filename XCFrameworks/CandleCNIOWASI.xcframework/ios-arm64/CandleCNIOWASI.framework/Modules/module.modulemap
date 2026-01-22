@@ -1,0 +1,4 @@
+framework module CandleCNIOWASI {
+    header "CNIOWASI.h"
+    export *
+}

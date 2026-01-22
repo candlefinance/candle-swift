@@ -1,0 +1,4 @@
+framework module CandleOpenAPIRuntime {
+    header "CandleOpenAPIRuntime-Swift.h"
+    export *
+}

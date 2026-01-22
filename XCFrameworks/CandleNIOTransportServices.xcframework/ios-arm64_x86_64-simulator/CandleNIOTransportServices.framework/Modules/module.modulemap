@@ -1,0 +1,4 @@
+framework module CandleNIOTransportServices {
+    header "CandleNIOTransportServices-Swift.h"
+    export *
+}

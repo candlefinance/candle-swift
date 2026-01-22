@@ -1,0 +1,824 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOHTTP1 -package-name candle_swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleDequeModule
+import CandleNIOCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public typealias HTTPResponseDecoder = CandleNIOHTTP1.HTTPDecoder<CandleNIOHTTP1.HTTPClientResponsePart, CandleNIOHTTP1.HTTPClientRequestPart>
+public typealias HTTPRequestDecoder = CandleNIOHTTP1.HTTPDecoder<CandleNIOHTTP1.HTTPServerRequestPart, CandleNIOHTTP1.HTTPServerResponsePart>
+public enum HTTPDecoderKind : Swift.Sendable {
+  case request
+  case response
+  public static func == (a: CandleNIOHTTP1.HTTPDecoderKind, b: CandleNIOHTTP1.HTTPDecoderKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPDecoder : CandleNIOCore.WriteObservingByteToMessageDecoder where In == CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.ByteBuffer>, Out == CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData> {
+  public typealias OutboundIn = Out
+  final public func write(data: CandleNIOHTTP1.HTTPClientRequestPart)
+}
+final public class HTTPDecoder<In, Out> : CandleNIOCore.ByteToMessageDecoder {
+  public typealias InboundOut = In
+  convenience public init(leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes)
+  public init(leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, informationalResponseStrategy: CandleNIOHTTP1.NIOInformationalResponseStrategy = .drop)
+  final public func decoderAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func decoderRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func decode(context: CandleNIOCore.ChannelHandlerContext, buffer: inout CandleNIOCore.ByteBuffer) throws -> CandleNIOCore.DecodingState
+  final public func decodeLast(context: CandleNIOCore.ChannelHandlerContext, buffer: inout CandleNIOCore.ByteBuffer, seenEOF: Swift.Bool) throws -> CandleNIOCore.DecodingState
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.HTTPDecoder : Swift.Sendable {
+}
+public enum RemoveAfterUpgradeStrategy : Swift.Sendable {
+  case forwardBytes
+  case fireError
+  case dropBytes
+  public static func == (a: CandleNIOHTTP1.RemoveAfterUpgradeStrategy, b: CandleNIOHTTP1.RemoveAfterUpgradeStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOInformationalResponseStrategy : Swift.Hashable, Swift.Sendable {
+  public static let drop: CandleNIOHTTP1.NIOInformationalResponseStrategy
+  public static let forward: CandleNIOHTTP1.NIOInformationalResponseStrategy
+  public static func == (a: CandleNIOHTTP1.NIOInformationalResponseStrategy, b: CandleNIOHTTP1.NIOInformationalResponseStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOHTTPDecoderError : Swift.Error {
+}
+extension CandleNIOHTTP1.NIOHTTPDecoderError {
+  public static let unsolicitedResponse: CandleNIOHTTP1.NIOHTTPDecoderError
+}
+extension CandleNIOHTTP1.NIOHTTPDecoderError : Swift.Hashable {
+  public static func == (a: CandleNIOHTTP1.NIOHTTPDecoderError, b: CandleNIOHTTP1.NIOHTTPDecoderError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOHTTP1.NIOHTTPDecoderError : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+final public class HTTPRequestEncoder : CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOCore.IOData
+  public struct Configuration : Swift.Sendable, Swift.Hashable {
+    public var automaticallySetFramingHeaders: Swift.Bool
+    public init()
+    public static func == (a: CandleNIOHTTP1.HTTPRequestEncoder.Configuration, b: CandleNIOHTTP1.HTTPRequestEncoder.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init()
+  public init(configuration: CandleNIOHTTP1.HTTPRequestEncoder.Configuration)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.HTTPRequestEncoder : Swift.Sendable {
+}
+final public class HTTPResponseEncoder : CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOCore.IOData
+  public struct Configuration : Swift.Sendable, Swift.Hashable {
+    public var automaticallySetFramingHeaders: Swift.Bool
+    public init()
+    public static func == (a: CandleNIOHTTP1.HTTPResponseEncoder.Configuration, b: CandleNIOHTTP1.HTTPResponseEncoder.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init()
+  public init(configuration: CandleNIOHTTP1.HTTPResponseEncoder.Configuration)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.HTTPResponseEncoder : Swift.Sendable {
+}
+final public class NIOHTTPRequestHeadersValidator : CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPClientRequestPart
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+final public class NIOHTTPResponseHeadersValidator : CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOHTTPRequestHeadersValidator : Swift.Sendable {
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOHTTPResponseHeadersValidator : Swift.Sendable {
+}
+public typealias NIOHTTPClientUpgradeConfiguration = (upgraders: [any CandleNIOHTTP1.NIOHTTPClientProtocolUpgrader], completionHandler: @Sendable (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+public typealias NIOHTTPClientUpgradeSendableConfiguration = (upgraders: [any CandleNIOHTTP1.NIOHTTPClientProtocolUpgrader & Swift.Sendable], completionHandler: @Sendable (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+@available(*, deprecated, renamed: "NIOHTTPServerUpgradeConfiguration")
+public typealias HTTPUpgradeConfiguration = CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration
+public typealias NIOHTTPServerUpgradeConfiguration = (upgraders: [any CandleNIOHTTP1.HTTPServerProtocolUpgrader], completionHandler: @Sendable (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+public typealias NIOHTTPServerUpgradeSendableConfiguration = (upgraders: [any CandleNIOHTTP1.HTTPServerProtocolUpgrader & Swift.Sendable], completionHandler: @Sendable (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+extension CandleNIOCore.ChannelPipeline {
+  final public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration?) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration? = nil) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: CandleNIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeSendableConfiguration? = nil) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeSendableConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: CandleNIOHTTP1.HTTPResponseEncoder.Configuration = .init()) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #endif
+}
+extension CandleNIOCore.ChannelPipeline.SynchronousOperations {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @_disfavoredOverload @preconcurrency public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @_disfavoredOverload public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: CandleNIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @_disfavoredOverload public func addHTTPClientHandlers(position: CandleNIOCore.ChannelPipeline.Position = .last, leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy = .dropBytes, enableOutboundHeaderValidation: Swift.Bool = true, encoderConfiguration: CandleNIOHTTP1.HTTPRequestEncoder.Configuration = .init(), withClientUpgrade upgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeConfiguration? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @preconcurrency @_disfavoredOverload public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @_disfavoredOverload public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.SynchronousOperations.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: CandleNIOHTTP1.HTTPResponseEncoder.Configuration) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Use ChannelPipeline.SynchronousOperations.Position instead")
+  @_disfavoredOverload public func configureHTTPServerPipeline(position: CandleNIOCore.ChannelPipeline.Position = .last, withPipeliningAssistance pipelining: Swift.Bool = true, withServerUpgrade upgrade: CandleNIOHTTP1.NIOHTTPServerUpgradeConfiguration? = nil, withErrorHandling errorHandling: Swift.Bool = true, withOutboundHeaderValidation headerValidation: Swift.Bool = true, withEncoderConfiguration encoderConfiguration: CandleNIOHTTP1.HTTPResponseEncoder.Configuration) throws
+  #endif
+}
+final public class HTTPServerPipelineHandler : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init()
+  public struct ConnectionStateError : Swift.Error, Swift.CustomStringConvertible, Swift.Hashable {
+    public static func == (lhs: CandleNIOHTTP1.HTTPServerPipelineHandler.ConnectionStateError, rhs: CandleNIOHTTP1.HTTPServerPipelineHandler.ConnectionStateError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func preconditionViolated(message: Swift.String, file: Swift.String = #fileID, line: Swift.Int = #line) -> CandleNIOHTTP1.HTTPServerPipelineHandler.ConnectionStateError
+    public var description: Swift.String {
+      get
+    }
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func userInboundEventTriggered(context: CandleNIOCore.ChannelHandlerContext, event: Any)
+  final public func errorCaught(context: CandleNIOCore.ChannelHandlerContext, error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func read(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelInactive(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func close(context: CandleNIOCore.ChannelHandlerContext, mode: CandleNIOCore.CloseMode, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.HTTPServerPipelineHandler : Swift.Sendable {
+}
+final public class HTTPServerProtocolErrorHandler : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init()
+  final public func errorCaught(context: CandleNIOCore.ChannelHandlerContext, error: any Swift.Error)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.HTTPServerProtocolErrorHandler : Swift.Sendable {
+}
+public enum HTTPServerUpgradeErrors : Swift.Error {
+  case invalidHTTPOrdering
+  public static func == (a: CandleNIOHTTP1.HTTPServerUpgradeErrors, b: CandleNIOHTTP1.HTTPServerUpgradeErrors) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum HTTPServerUpgradeEvents : Swift.Sendable {
+  case upgradeComplete(toProtocol: Swift.String, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead)
+}
+public protocol HTTPServerProtocolUpgrader {
+  var supportedProtocol: Swift.String { get }
+  var requiredUpgradeHeaders: [Swift.String] { get }
+  func buildUpgradeResponse(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead, initialResponseHeaders: CandleNIOHTTP1.HTTPHeaders) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders>
+  func upgrade(context: CandleNIOCore.ChannelHandlerContext, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+}
+final public class HTTPServerUpgradeHandler : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init(upgraders: [any CandleNIOHTTP1.HTTPServerProtocolUpgrader], httpEncoder: CandleNIOHTTP1.HTTPResponseEncoder, extraHTTPHandlers: [any CandleNIOCore.RemovableChannelHandler], upgradeCompletionHandler: @escaping (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func removeHandler(context: CandleNIOCore.ChannelHandlerContext, removalToken: CandleNIOCore.ChannelHandlerContext.RemovalToken)
+  @objc deinit
+}
+extension CandleNIOHTTP1.HTTPServerUpgradeHandler : @unchecked Swift.Sendable {
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+public struct NIOUpgradableHTTPServerPipelineConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
+  public var enablePipelining: Swift.Bool
+  public var enableErrorHandling: Swift.Bool
+  public var enableResponseHeaderValidation: Swift.Bool
+  public var encoderConfiguration: CandleNIOHTTP1.HTTPResponseEncoder.Configuration
+  public var upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPServerUpgradeConfiguration<UpgradeResult>
+  public init(upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPServerUpgradeConfiguration<UpgradeResult>)
+}
+extension CandleNIOCore.ChannelPipeline {
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  final public func configureUpgradableHTTPServerPipeline<UpgradeResult>(configuration: CandleNIOHTTP1.NIOUpgradableHTTPServerPipelineConfiguration<UpgradeResult>) -> CandleNIOCore.EventLoopFuture<CandleNIOCore.EventLoopFuture<UpgradeResult>> where UpgradeResult : Swift.Sendable
+}
+extension CandleNIOCore.ChannelPipeline.SynchronousOperations {
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  public func configureUpgradableHTTPServerPipeline<UpgradeResult>(configuration: CandleNIOHTTP1.NIOUpgradableHTTPServerPipelineConfiguration<UpgradeResult>) throws -> CandleNIOCore.EventLoopFuture<UpgradeResult> where UpgradeResult : Swift.Sendable
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+public struct NIOUpgradableHTTPClientPipelineConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
+  public var leftOverBytesStrategy: CandleNIOHTTP1.RemoveAfterUpgradeStrategy
+  public var enableOutboundHeaderValidation: Swift.Bool
+  public var encoderConfiguration: CandleNIOHTTP1.HTTPRequestEncoder.Configuration
+  public var upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPClientUpgradeConfiguration<UpgradeResult>
+  public init(upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPClientUpgradeConfiguration<UpgradeResult>)
+}
+extension CandleNIOCore.ChannelPipeline {
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  final public func configureUpgradableHTTPClientPipeline<UpgradeResult>(configuration: CandleNIOHTTP1.NIOUpgradableHTTPClientPipelineConfiguration<UpgradeResult>) -> CandleNIOCore.EventLoopFuture<CandleNIOCore.EventLoopFuture<UpgradeResult>> where UpgradeResult : Swift.Sendable
+}
+extension CandleNIOCore.ChannelPipeline.SynchronousOperations {
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  public func configureUpgradableHTTPClientPipeline<UpgradeResult>(configuration: CandleNIOHTTP1.NIOUpgradableHTTPClientPipelineConfiguration<UpgradeResult>) throws -> CandleNIOCore.EventLoopFuture<UpgradeResult> where UpgradeResult : Swift.Sendable
+}
+public struct HTTPRequestHead : Swift.Equatable {
+  public var headers: CandleNIOHTTP1.HTTPHeaders
+  public var method: CandleNIOHTTP1.HTTPMethod {
+    get
+    set
+  }
+  public var uri: Swift.String {
+    get
+    set
+  }
+  public var version: CandleNIOHTTP1.HTTPVersion {
+    get
+    set
+  }
+  public init(version: CandleNIOHTTP1.HTTPVersion, method: CandleNIOHTTP1.HTTPMethod, uri: Swift.String, headers: CandleNIOHTTP1.HTTPHeaders)
+  public init(version: CandleNIOHTTP1.HTTPVersion, method: CandleNIOHTTP1.HTTPMethod, uri: Swift.String)
+  public static func == (lhs: CandleNIOHTTP1.HTTPRequestHead, rhs: CandleNIOHTTP1.HTTPRequestHead) -> Swift.Bool
+}
+extension CandleNIOHTTP1.HTTPRequestHead : @unchecked Swift.Sendable {
+}
+public enum HTTPPart<HeadT, BodyT> where HeadT : Swift.Equatable, BodyT : Swift.Equatable {
+  case head(HeadT)
+  case body(BodyT)
+  case end(CandleNIOHTTP1.HTTPHeaders?)
+}
+extension CandleNIOHTTP1.HTTPPart : Swift.Sendable where HeadT : Swift.Sendable, BodyT : Swift.Sendable {
+}
+extension CandleNIOHTTP1.HTTPPart : Swift.Equatable {
+  public static func == (a: CandleNIOHTTP1.HTTPPart<HeadT, BodyT>, b: CandleNIOHTTP1.HTTPPart<HeadT, BodyT>) -> Swift.Bool
+}
+public typealias HTTPClientRequestPart = CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData>
+public typealias HTTPServerRequestPart = CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.ByteBuffer>
+public typealias HTTPClientResponsePart = CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.ByteBuffer>
+public typealias HTTPServerResponsePart = CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.IOData>
+extension CandleNIOHTTP1.HTTPRequestHead {
+  public var isKeepAlive: Swift.Bool {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPResponseHead {
+  public var isKeepAlive: Swift.Bool {
+    get
+  }
+}
+public struct HTTPResponseHead : Swift.Equatable {
+  public var headers: CandleNIOHTTP1.HTTPHeaders
+  public var status: CandleNIOHTTP1.HTTPResponseStatus {
+    get
+    set
+  }
+  public var version: CandleNIOHTTP1.HTTPVersion {
+    get
+    set
+  }
+  public init(version: CandleNIOHTTP1.HTTPVersion, status: CandleNIOHTTP1.HTTPResponseStatus, headers: CandleNIOHTTP1.HTTPHeaders = HTTPHeaders())
+  public static func == (lhs: CandleNIOHTTP1.HTTPResponseHead, rhs: CandleNIOHTTP1.HTTPResponseHead) -> Swift.Bool
+}
+extension CandleNIOHTTP1.HTTPResponseHead : @unchecked Swift.Sendable {
+}
+public struct HTTPHeaders : Swift.CustomStringConvertible, Swift.ExpressibleByDictionaryLiteral {
+  public var description: Swift.String {
+    get
+  }
+  public init(_ headers: [(Swift.String, Swift.String)] = [])
+  public init(dictionaryLiteral elements: (Swift.String, Swift.String)...)
+  public mutating func add(name: Swift.String, value: Swift.String)
+  public mutating func add<S>(contentsOf other: S) where S : Swift.Sequence, S.Element == (Swift.String, Swift.String)
+  public mutating func add(contentsOf other: CandleNIOHTTP1.HTTPHeaders)
+  public mutating func replaceOrAdd(name: Swift.String, value: Swift.String)
+  public mutating func remove(name: Swift.String)
+  public subscript(name: Swift.String) -> [Swift.String] {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func first(name: Swift.String) -> Swift.String?
+  #endif
+  public func contains(name: Swift.String) -> Swift.Bool
+  public subscript(canonicalForm name: Swift.String) -> [Swift.Substring] {
+    get
+  }
+  public typealias Key = Swift.String
+  public typealias Value = Swift.String
+}
+extension CandleNIOHTTP1.HTTPHeaders : Swift.Sendable {
+}
+extension CandleNIOHTTP1.HTTPHeaders {
+  public var capacity: Swift.Int {
+    get
+  }
+  public mutating func reserveCapacity(_ minimumCapacity: Swift.Int)
+}
+extension CandleNIOHTTP1.HTTPHeaders : Swift.RandomAccessCollection {
+  public typealias Element = (name: Swift.String, value: Swift.String)
+  public struct Index : Swift.Comparable {
+    public static func < (lhs: CandleNIOHTTP1.HTTPHeaders.Index, rhs: CandleNIOHTTP1.HTTPHeaders.Index) -> Swift.Bool
+    public static func == (a: CandleNIOHTTP1.HTTPHeaders.Index, b: CandleNIOHTTP1.HTTPHeaders.Index) -> Swift.Bool
+  }
+  public var startIndex: CandleNIOHTTP1.HTTPHeaders.Index {
+    get
+  }
+  public var endIndex: CandleNIOHTTP1.HTTPHeaders.Index {
+    get
+  }
+  public func index(before i: CandleNIOHTTP1.HTTPHeaders.Index) -> CandleNIOHTTP1.HTTPHeaders.Index
+  public func index(after i: CandleNIOHTTP1.HTTPHeaders.Index) -> CandleNIOHTTP1.HTTPHeaders.Index
+  public subscript(position: CandleNIOHTTP1.HTTPHeaders.Index) -> CandleNIOHTTP1.HTTPHeaders.Element {
+    get
+  }
+  public typealias Indices = Swift.DefaultIndices<CandleNIOHTTP1.HTTPHeaders>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOHTTP1.HTTPHeaders>
+  public typealias SubSequence = Swift.Slice<CandleNIOHTTP1.HTTPHeaders>
+}
+extension CandleNIOHTTP1.HTTPHeaders : Swift.Equatable {
+  public static func == (lhs: CandleNIOHTTP1.HTTPHeaders, rhs: CandleNIOHTTP1.HTTPHeaders) -> Swift.Bool
+}
+public enum HTTPMethod : Swift.Equatable, Swift.Sendable {
+  case GET
+  case PUT
+  case ACL
+  case HEAD
+  case POST
+  case COPY
+  case LOCK
+  case MOVE
+  case BIND
+  case LINK
+  case PATCH
+  case TRACE
+  case MKCOL
+  case MERGE
+  case PURGE
+  case NOTIFY
+  case SEARCH
+  case UNLOCK
+  case REBIND
+  case UNBIND
+  case REPORT
+  case DELETE
+  case UNLINK
+  case CONNECT
+  case MSEARCH
+  case OPTIONS
+  case PROPFIND
+  case CHECKOUT
+  case PROPPATCH
+  case SUBSCRIBE
+  case MKCALENDAR
+  case MKACTIVITY
+  case UNSUBSCRIBE
+  case SOURCE
+  case RAW(value: Swift.String)
+}
+public struct HTTPVersion : Swift.Equatable, Swift.Sendable {
+  public init(major: Swift.Int, minor: Swift.Int)
+  public var major: Swift.Int {
+    get
+    set
+  }
+  public var minor: Swift.Int {
+    get
+    set
+  }
+  public static let http3: CandleNIOHTTP1.HTTPVersion
+  public static let http2: CandleNIOHTTP1.HTTPVersion
+  public static let http1_1: CandleNIOHTTP1.HTTPVersion
+  public static let http1_0: CandleNIOHTTP1.HTTPVersion
+  public static let http0_9: CandleNIOHTTP1.HTTPVersion
+  public static func == (a: CandleNIOHTTP1.HTTPVersion, b: CandleNIOHTTP1.HTTPVersion) -> Swift.Bool
+}
+extension CandleNIOHTTP1.HTTPParserError : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum HTTPParserError : Swift.Error {
+  case invalidCharactersUsed
+  case trailingGarbage
+  case invalidEOFState
+  case headerOverflow
+  case closedConnection
+  case invalidVersion
+  case invalidStatus
+  case invalidMethod
+  case invalidURL
+  @available(*, deprecated, message: "Cannot be thrown")
+  case invalidHost
+  @available(*, deprecated, message: "Cannot be thrown")
+  case invalidPort
+  @available(*, deprecated, message: "Cannot be thrown")
+  case invalidPath
+  @available(*, deprecated, message: "Cannot be thrown")
+  case invalidQueryString
+  @available(*, deprecated, message: "Cannot be thrown")
+  case invalidFragment
+  case lfExpected
+  case invalidHeaderToken
+  case invalidContentLength
+  case unexpectedContentLength
+  case invalidChunkSize
+  case invalidConstant
+  case invalidInternalState
+  case strictModeAssertion
+  case paused
+  case unknown
+  public static func == (a: CandleNIOHTTP1.HTTPParserError, b: CandleNIOHTTP1.HTTPParserError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPResponseStatus {
+  public var code: Swift.UInt {
+    get
+  }
+  public var reasonPhrase: Swift.String {
+    get
+  }
+}
+public enum HTTPResponseStatus : Swift.Sendable {
+  case custom(code: Swift.UInt, reasonPhrase: Swift.String)
+  case `continue`
+  case switchingProtocols
+  case processing
+  case ok
+  case created
+  case accepted
+  case nonAuthoritativeInformation
+  case noContent
+  case resetContent
+  case partialContent
+  case multiStatus
+  case alreadyReported
+  case imUsed
+  case multipleChoices
+  case movedPermanently
+  case found
+  case seeOther
+  case notModified
+  case useProxy
+  case temporaryRedirect
+  case permanentRedirect
+  case badRequest
+  case unauthorized
+  case paymentRequired
+  case forbidden
+  case notFound
+  case methodNotAllowed
+  case notAcceptable
+  case proxyAuthenticationRequired
+  case requestTimeout
+  case conflict
+  case gone
+  case lengthRequired
+  case preconditionFailed
+  case payloadTooLarge
+  case uriTooLong
+  case unsupportedMediaType
+  case rangeNotSatisfiable
+  case expectationFailed
+  case imATeapot
+  case misdirectedRequest
+  case unprocessableEntity
+  case locked
+  case failedDependency
+  case upgradeRequired
+  case preconditionRequired
+  case tooManyRequests
+  case requestHeaderFieldsTooLarge
+  case unavailableForLegalReasons
+  case internalServerError
+  case notImplemented
+  case badGateway
+  case serviceUnavailable
+  case gatewayTimeout
+  case httpVersionNotSupported
+  case variantAlsoNegotiates
+  case insufficientStorage
+  case loopDetected
+  case notExtended
+  case networkAuthenticationRequired
+  public var mayHaveResponseBody: Swift.Bool {
+    get
+  }
+  public init(statusCode: Swift.Int, reasonPhrase: Swift.String = "")
+}
+extension CandleNIOHTTP1.HTTPResponseStatus : Swift.Equatable {
+  public static func == (a: CandleNIOHTTP1.HTTPResponseStatus, b: CandleNIOHTTP1.HTTPResponseStatus) -> Swift.Bool
+}
+extension CandleNIOHTTP1.HTTPResponseStatus : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPRequestHead : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPResponseStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPResponseHead : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPVersion : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOHTTP1.HTTPMethod : Swift.RawRepresentable {
+  public var rawValue: Swift.String {
+    get
+  }
+  public init(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+}
+public struct NIOHTTPClientUpgradeError : Swift.Hashable, Swift.Error {
+  public static let responseProtocolNotFound: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let invalidHTTPOrdering: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let upgraderDeniedUpgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let writingToHandlerDuringUpgrade: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let writingToHandlerAfterUpgradeCompleted: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let writingToHandlerAfterUpgradeFailed: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let receivedResponseBeforeRequestSent: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static let receivedResponseAfterUpgradeCompleted: CandleNIOHTTP1.NIOHTTPClientUpgradeError
+  public static func == (a: CandleNIOHTTP1.NIOHTTPClientUpgradeError, b: CandleNIOHTTP1.NIOHTTPClientUpgradeError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOHTTP1.NIOHTTPClientUpgradeError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol NIOHTTPClientProtocolUpgrader {
+  var supportedProtocol: Swift.String { get }
+  var requiredUpgradeHeaders: [Swift.String] { get }
+  func addCustom(upgradeRequestHeaders: inout CandleNIOHTTP1.HTTPHeaders)
+  func shouldAllowUpgrade(upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> Swift.Bool
+  func upgrade(context: CandleNIOCore.ChannelHandlerContext, upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+}
+@_hasMissingDesignatedInitializers final public class NIOHTTPClientUpgradeHandler : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias InboundIn = CandleNIOHTTP1.HTTPClientResponsePart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPClientResponsePart
+  convenience public init(upgraders: [any CandleNIOHTTP1.NIOHTTPClientProtocolUpgrader], httpHandlers: [any CandleNIOCore.RemovableChannelHandler], upgradeCompletionHandler: @escaping (CandleNIOCore.ChannelHandlerContext) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  @objc deinit
+}
+extension CandleNIOHTTP1.NIOHTTPClientUpgradeHandler : @unchecked Swift.Sendable {
+}
+public struct NIOHTTPServerRequestFull : Swift.Sendable {
+  public var head: CandleNIOHTTP1.HTTPRequestHead
+  public var body: CandleNIOCore.ByteBuffer?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(head: CandleNIOHTTP1.HTTPRequestHead, body: CandleNIOCore.ByteBuffer?)
+  #endif
+}
+extension CandleNIOHTTP1.NIOHTTPServerRequestFull : Swift.Equatable {
+  public static func == (a: CandleNIOHTTP1.NIOHTTPServerRequestFull, b: CandleNIOHTTP1.NIOHTTPServerRequestFull) -> Swift.Bool
+}
+public struct NIOHTTPClientResponseFull : Swift.Sendable {
+  public var head: CandleNIOHTTP1.HTTPResponseHead
+  public var body: CandleNIOCore.ByteBuffer?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(head: CandleNIOHTTP1.HTTPResponseHead, body: CandleNIOCore.ByteBuffer?)
+  #endif
+}
+extension CandleNIOHTTP1.NIOHTTPClientResponseFull : Swift.Equatable {
+  public static func == (a: CandleNIOHTTP1.NIOHTTPClientResponseFull, b: CandleNIOHTTP1.NIOHTTPClientResponseFull) -> Swift.Bool
+}
+public struct NIOHTTPObjectAggregatorError : Swift.Error, Swift.Equatable {
+  public static let frameTooLong: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static let connectionClosed: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static let endingIgnoredMessage: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static let unexpectedMessageHead: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static let unexpectedMessageBody: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static let unexpectedMessageEnd: CandleNIOHTTP1.NIOHTTPObjectAggregatorError
+  public static func == (a: CandleNIOHTTP1.NIOHTTPObjectAggregatorError, b: CandleNIOHTTP1.NIOHTTPObjectAggregatorError) -> Swift.Bool
+}
+public struct NIOHTTPObjectAggregatorEvent : Swift.Hashable, Swift.Sendable {
+  public static let httpExpectationFailed: CandleNIOHTTP1.NIOHTTPObjectAggregatorEvent
+  public static let httpFrameTooLong: CandleNIOHTTP1.NIOHTTPObjectAggregatorEvent
+  public static func == (a: CandleNIOHTTP1.NIOHTTPObjectAggregatorEvent, b: CandleNIOHTTP1.NIOHTTPObjectAggregatorEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class NIOHTTPServerRequestAggregator : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.NIOHTTPServerRequestFull
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init(maxContentLength: Swift.Int, closeOnExpectationFailed: Swift.Bool = false)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOHTTPServerRequestAggregator : Swift.Sendable {
+}
+final public class NIOHTTPClientResponseAggregator : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPClientResponsePart
+  public typealias InboundOut = CandleNIOHTTP1.NIOHTTPClientResponseFull
+  public init(maxContentLength: Swift.Int)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOHTTPClientResponseAggregator : Swift.Sendable {
+}
+@preconcurrency public protocol NIOTypedHTTPClientProtocolUpgrader<UpgradeResult> : Swift.Sendable {
+  associatedtype UpgradeResult : Swift.Sendable
+  var supportedProtocol: Swift.String { get }
+  var requiredUpgradeHeaders: [Swift.String] { get }
+  func addCustom(upgradeRequestHeaders: inout CandleNIOHTTP1.HTTPHeaders)
+  func shouldAllowUpgrade(upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> Swift.Bool
+  func upgrade(channel: any CandleNIOCore.Channel, upgradeResponse: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Self.UpgradeResult>
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+public struct NIOTypedHTTPClientUpgradeConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
+  public var upgradeRequestHead: CandleNIOHTTP1.HTTPRequestHead
+  public var upgraders: [any CandleNIOHTTP1.NIOTypedHTTPClientProtocolUpgrader<UpgradeResult>]
+  public var notUpgradingCompletionHandler: @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<UpgradeResult>
+  public init(upgradeRequestHead: CandleNIOHTTP1.HTTPRequestHead, upgraders: [any CandleNIOHTTP1.NIOTypedHTTPClientProtocolUpgrader<UpgradeResult>], notUpgradingCompletionHandler: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<UpgradeResult>)
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+final public class NIOTypedHTTPClientUpgradeHandler<UpgradeResult> : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler where UpgradeResult : Swift.Sendable {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias InboundIn = CandleNIOHTTP1.HTTPClientResponsePart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPClientResponsePart
+  final public var upgradeResultFuture: CandleNIOCore.EventLoopFuture<UpgradeResult> {
+    get
+  }
+  public init(httpHandlers: [any CandleNIOCore.RemovableChannelHandler], upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPClientUpgradeConfiguration<UpgradeResult>)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelActive(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func errorCaught(context: CandleNIOCore.ChannelHandlerContext, error: any Swift.Error)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOTypedHTTPClientUpgradeHandler : Swift.Sendable {
+}
+@preconcurrency public protocol NIOTypedHTTPServerProtocolUpgrader<UpgradeResult> : Swift.Sendable {
+  associatedtype UpgradeResult : Swift.Sendable
+  var supportedProtocol: Swift.String { get }
+  var requiredUpgradeHeaders: [Swift.String] { get }
+  func buildUpgradeResponse(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead, initialResponseHeaders: CandleNIOHTTP1.HTTPHeaders) -> CandleNIOCore.EventLoopFuture<CandleNIOHTTP1.HTTPHeaders>
+  func upgrade(channel: any CandleNIOCore.Channel, upgradeRequest: CandleNIOHTTP1.HTTPRequestHead) -> CandleNIOCore.EventLoopFuture<Self.UpgradeResult>
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+public struct NIOTypedHTTPServerUpgradeConfiguration<UpgradeResult> : Swift.Sendable where UpgradeResult : Swift.Sendable {
+  public var upgraders: [any CandleNIOHTTP1.NIOTypedHTTPServerProtocolUpgrader<UpgradeResult>]
+  public var notUpgradingCompletionHandler: @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<UpgradeResult>
+  public init(upgraders: [any CandleNIOHTTP1.NIOTypedHTTPServerProtocolUpgrader<UpgradeResult>], notUpgradingCompletionHandler: @escaping @Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<UpgradeResult>)
+}
+@available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+final public class NIOTypedHTTPServerUpgradeHandler<UpgradeResult> : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler where UpgradeResult : Swift.Sendable {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  final public var upgradeResultFuture: CandleNIOCore.EventLoopFuture<UpgradeResult> {
+    get
+  }
+  public init(httpEncoder: CandleNIOHTTP1.HTTPResponseEncoder, extraHTTPHandlers: [any CandleNIOCore.RemovableChannelHandler], upgradeConfiguration: CandleNIOHTTP1.NIOTypedHTTPServerUpgradeConfiguration<UpgradeResult>)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func userInboundEventTriggered(context: CandleNIOCore.ChannelHandlerContext, event: Any)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTP1.NIOTypedHTTPServerUpgradeHandler : Swift.Sendable {
+}
+extension CandleNIOHTTP1.HTTPDecoderKind : Swift.Equatable {}
+extension CandleNIOHTTP1.HTTPDecoderKind : Swift.Hashable {}
+extension CandleNIOHTTP1.RemoveAfterUpgradeStrategy : Swift.Equatable {}
+extension CandleNIOHTTP1.RemoveAfterUpgradeStrategy : Swift.Hashable {}
+extension CandleNIOHTTP1.HTTPParserError : Swift.Equatable {}
+extension CandleNIOHTTP1.HTTPParserError : Swift.Hashable {}
+extension CandleNIOHTTP1.HTTPServerUpgradeErrors : Swift.Equatable {}
+extension CandleNIOHTTP1.HTTPServerUpgradeErrors : Swift.Hashable {}

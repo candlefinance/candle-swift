@@ -1,0 +1,5 @@
+framework module CandleAsyncHTTPClient {
+    header "CandleAsyncHTTPClient-Swift.h"
+    export *
+    link framework "CandleCAsyncHTTPClient"
+}

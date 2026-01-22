@@ -1,0 +1,5 @@
+framework module CandleOrderedCollections {
+    header "CandleOrderedCollections-Swift.h"
+    export *
+    link framework "CandleInternalCollectionsUtilities"
+}

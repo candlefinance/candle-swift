@@ -1,0 +1,4 @@
+framework module CandleW3CTraceContext {
+    header "CandleW3CTraceContext-Swift.h"
+    export *
+}

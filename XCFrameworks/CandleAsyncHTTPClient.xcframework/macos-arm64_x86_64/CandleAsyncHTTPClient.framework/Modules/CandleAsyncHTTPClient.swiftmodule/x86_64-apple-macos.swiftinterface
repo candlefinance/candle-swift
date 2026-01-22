@@ -1,0 +1,686 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleAsyncHTTPClient -package-name candle_async_http_client
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin.C
+import CandleAlgorithms
+import CandleAtomics
+import CandleCAsyncHTTPClient
+import CandleCNIOLinux
+import CandleLogging
+import CandleNIO
+import CandleNIOConcurrencyHelpers
+import CandleNIOCore
+import CandleNIOCore/*.SocketAddress*/
+import CandleNIOHTTP1
+import CandleNIOHTTP2
+import CandleNIOHTTPCompression
+import CandleNIOPosix
+import CandleNIOSOCKS
+import CandleNIOSSL
+import CandleNIOTLS
+import CandleNIOTransportServices
+import Darwin
+import Darwin/*.pow*/
+import Dispatch
+import Foundation
+import Foundation/*.URL*/
+import Network
+import Swift
+import _Concurrency
+import _Darwin_xlocale
+import _StringProcessing
+import _SwiftConcurrencyShims
+import xlocale
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ request: CandleAsyncHTTPClient.HTTPClientRequest, deadline: CandleNIOCore.NIODeadline, logger: CandleLogging.Logger? = nil) async throws -> CandleAsyncHTTPClient.HTTPClientResponse
+  #endif
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ request: CandleAsyncHTTPClient.HTTPClientRequest, timeout: CandleNIOCore.TimeAmount, logger: CandleLogging.Logger? = nil) async throws -> CandleAsyncHTTPClient.HTTPClientResponse
+  #endif
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  final public func shutdown() async throws
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest {
+  public mutating func setBasicAuth(username: Swift.String, password: Swift.String)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientRequest : Swift.Sendable {
+  public var url: Swift.String
+  public var method: CandleNIOHTTP1.HTTPMethod
+  public var headers: CandleNIOHTTP1.HTTPHeaders
+  public var body: CandleAsyncHTTPClient.HTTPClientRequest.Body?
+  public var tlsConfiguration: CandleNIOSSL.TLSConfiguration?
+  public init(url: Swift.String)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest {
+  public struct Body : Swift.Sendable {
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest.Body {
+  public static func bytes(_ byteBuffer: CandleNIOCore.ByteBuffer) -> CandleAsyncHTTPClient.HTTPClientRequest.Body
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes) -> CandleAsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.RandomAccessCollection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes, length: CandleAsyncHTTPClient.HTTPClientRequest.Body.Length) -> CandleAsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Sendable, Bytes : Swift.Sequence, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes, length: CandleAsyncHTTPClient.HTTPClientRequest.Body.Length) -> CandleAsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Collection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+  @preconcurrency public static func stream<SequenceOfBytes>(_ sequenceOfBytes: SequenceOfBytes, length: CandleAsyncHTTPClient.HTTPClientRequest.Body.Length) -> CandleAsyncHTTPClient.HTTPClientRequest.Body where SequenceOfBytes : Swift.Sendable, SequenceOfBytes : _Concurrency.AsyncSequence, SequenceOfBytes.Element == CandleNIOCore.ByteBuffer
+  @preconcurrency public static func stream<Bytes>(_ bytes: Bytes, length: CandleAsyncHTTPClient.HTTPClientRequest.Body.Length) -> CandleAsyncHTTPClient.HTTPClientRequest.Body where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element == Swift.UInt8
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest.Body {
+  public struct Length : Swift.Sendable {
+    public static let unknown: CandleAsyncHTTPClient.HTTPClientRequest.Body.Length
+    @available(*, deprecated, message: "Use `known(_ count: Int64)` with an explicit Int64 argument instead")
+    public static func known(_ count: Swift.Int) -> CandleAsyncHTTPClient.HTTPClientRequest.Body.Length
+    public static func known(_ count: Swift.Int64) -> CandleAsyncHTTPClient.HTTPClientRequest.Body.Length
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest.Body : _Concurrency.AsyncSequence {
+  public typealias Element = CandleNIOCore.ByteBuffer
+  public func makeAsyncIterator() -> CandleAsyncHTTPClient.HTTPClientRequest.Body.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientRequest.Body {
+  public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> CandleNIOCore.ByteBuffer?
+    #endif
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    public typealias Element = CandleNIOCore.ByteBuffer
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+}
+@available(*, unavailable)
+extension CandleAsyncHTTPClient.HTTPClientRequest.Body.AsyncIterator : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientResponse : Swift.Sendable {
+  public var version: CandleNIOHTTP1.HTTPVersion
+  public var status: CandleNIOHTTP1.HTTPResponseStatus
+  public var headers: CandleNIOHTTP1.HTTPHeaders
+  public var body: CandleAsyncHTTPClient.HTTPClientResponse.Body
+  public var history: [CandleAsyncHTTPClient.HTTPClientRequestResponse]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var url: Foundation.URL? {
+    get
+  }
+  #endif
+  public init(version: CandleNIOHTTP1.HTTPVersion = .http1_1, status: CandleNIOHTTP1.HTTPResponseStatus = .ok, headers: CandleNIOHTTP1.HTTPHeaders = [:], body: CandleAsyncHTTPClient.HTTPClientResponse.Body = Body())
+  public init(version: CandleNIOHTTP1.HTTPVersion = .http1_1, status: CandleNIOHTTP1.HTTPResponseStatus = .ok, headers: CandleNIOHTTP1.HTTPHeaders = [:], body: CandleAsyncHTTPClient.HTTPClientResponse.Body = Body(), history: [CandleAsyncHTTPClient.HTTPClientRequestResponse] = [])
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public struct HTTPClientRequestResponse : Swift.Sendable {
+  public var request: CandleAsyncHTTPClient.HTTPClientRequest
+  public var responseHead: CandleNIOHTTP1.HTTPResponseHead
+  public init(request: CandleAsyncHTTPClient.HTTPClientRequest, responseHead: CandleNIOHTTP1.HTTPResponseHead)
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientResponse {
+  public struct Body : _Concurrency.AsyncSequence, Swift.Sendable {
+    public typealias Element = CandleNIOCore.ByteBuffer
+    public struct AsyncIterator : _Concurrency.AsyncIteratorProtocol {
+      #if compiler(>=5.3) && $NonescapableTypes
+      public mutating func next() async throws -> CandleNIOCore.ByteBuffer?
+      #endif
+      @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+      public typealias Element = CandleNIOCore.ByteBuffer
+      @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+      @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+    }
+    public func makeAsyncIterator() -> CandleAsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator
+    public func collect(upTo maxBytes: Swift.Int) async throws -> CandleNIOCore.ByteBuffer
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClientResponse.Body {
+  public init()
+  public static func stream<SequenceOfBytes>(_ sequenceOfBytes: SequenceOfBytes) -> CandleAsyncHTTPClient.HTTPClientResponse.Body where SequenceOfBytes : Swift.Sendable, SequenceOfBytes : _Concurrency.AsyncSequence, SequenceOfBytes.Element == CandleNIOCore.ByteBuffer
+  public static func bytes(_ byteBuffer: CandleNIOCore.ByteBuffer) -> CandleAsyncHTTPClient.HTTPClientResponse.Body
+}
+@available(*, unavailable)
+extension CandleAsyncHTTPClient.HTTPClientResponse.Body.AsyncIterator : Swift.Sendable {
+}
+extension CandleAsyncHTTPClient.HTTPClient.Configuration {
+  public static var singletonConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration {
+    get
+  }
+}
+final public class FileDownloadDelegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate {
+  public struct Progress : Swift.Sendable {
+    public var totalBytes: Swift.Int?
+    public var receivedBytes: Swift.Int
+    public var history: [CandleAsyncHTTPClient.HTTPClient.RequestResponse]
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var url: Foundation.URL? {
+      get
+    }
+    #endif
+    public var head: CandleNIOHTTP1.HTTPResponseHead {
+      get
+      set
+    }
+  }
+  public typealias Response = CandleAsyncHTTPClient.FileDownloadDelegate.Progress
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency public init(path: Swift.String, pool: CandleNIOPosix.NIOThreadPool? = nil, reportHead: (@Sendable (CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Response>, CandleNIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Response>, CandleAsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(path: Swift.String, pool: CandleNIOPosix.NIOThreadPool, reportHead: (@Sendable (CandleNIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (CandleAsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency convenience public init(path: Swift.String, reportHead: (@Sendable (CandleNIOHTTP1.HTTPResponseHead) -> Swift.Void)? = nil, reportProgress: (@Sendable (CandleAsyncHTTPClient.FileDownloadDelegate.Progress) -> Swift.Void)? = nil) throws
+  #endif
+  final public func didVisitURL(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Progress>, _ request: CandleAsyncHTTPClient.HTTPClient.Request, _ head: CandleNIOHTTP1.HTTPResponseHead)
+  final public func didReceiveHead(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Response>, _ head: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveBodyPart(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Response>, _ buffer: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveError(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Progress>, _ error: any Swift.Error)
+  final public func didFinishRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.FileDownloadDelegate.Response>) throws -> CandleAsyncHTTPClient.FileDownloadDelegate.Response
+  @objc deinit
+}
+extension CandleAsyncHTTPClient.HTTPClient.Cookie {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var expires: Foundation.Date? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(name: Swift.String, value: Swift.String, path: Swift.String = "/", domain: Swift.String? = nil, expires: Foundation.Date? = nil, maxAge: Swift.Int? = nil, httpOnly: Swift.Bool = false, secure: Swift.Bool = false)
+  #endif
+}
+extension CandleAsyncHTTPClient.HTTPClient.Body {
+  public static func data(_ data: Foundation.Data) -> CandleAsyncHTTPClient.HTTPClient.Body
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  public struct Cookie : Swift.Sendable {
+    public var name: Swift.String
+    public var value: Swift.String
+    public var path: Swift.String
+    public var domain: Swift.String?
+    public var maxAge: Swift.Int?
+    public var httpOnly: Swift.Bool
+    public var secure: Swift.Bool
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(header: Swift.String, defaultDomain: Swift.String)
+    #endif
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient.Response {
+  public var cookies: [CandleAsyncHTTPClient.HTTPClient.Cookie] {
+    get
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient.Configuration {
+  public struct Proxy : Swift.Sendable, Swift.Hashable {
+    public var host: Swift.String
+    public var port: Swift.Int
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var authorization: CandleAsyncHTTPClient.HTTPClient.Authorization? {
+      get
+      set
+    }
+    #endif
+    public static func server(host: Swift.String, port: Swift.Int) -> CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func server(host: Swift.String, port: Swift.Int, authorization: CandleAsyncHTTPClient.HTTPClient.Authorization? = nil) -> CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy
+    #endif
+    public static func socksServer(host: Swift.String, port: Swift.Int = 1080) -> CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy
+    public static func == (a: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy, b: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension CandleAsyncHTTPClient.HTTPClient {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func withHTTPClient<Return>(eventLoopGroup: any CandleNIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: CandleAsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: CandleLogging.Logger? = nil, isolation: isolated (any _Concurrency.Actor)? = #isolation, _ body: (CandleAsyncHTTPClient.HTTPClient) async throws -> Return) async throws -> Return
+  #endif
+}
+@_hasMissingDesignatedInitializers final public class HTTPClient : Swift.Sendable {
+  final public let eventLoopGroup: any CandleNIOCore.EventLoopGroup
+  convenience public init(eventLoopGroupProvider: CandleAsyncHTTPClient.HTTPClient.EventLoopGroupProvider, configuration: CandleAsyncHTTPClient.HTTPClient.Configuration = Configuration())
+  convenience public init(eventLoopGroup: any CandleNIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: CandleAsyncHTTPClient.HTTPClient.Configuration = Configuration())
+  convenience public init(eventLoopGroupProvider: CandleAsyncHTTPClient.HTTPClient.EventLoopGroupProvider, configuration: CandleAsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: CandleLogging.Logger)
+  convenience public init(eventLoopGroup: any CandleNIOCore.EventLoopGroup = HTTPClient.defaultEventLoopGroup, configuration: CandleAsyncHTTPClient.HTTPClient.Configuration = Configuration(), backgroundActivityLogger: CandleLogging.Logger)
+  @objc deinit
+  @available(*, noasync, renamed: "shutdown()", message: "syncShutdown() can block indefinitely, prefer shutdown()")
+  final public func syncShutdown() throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency final public func shutdown(queue: Dispatch.DispatchQueue = .global(), _ callback: @escaping @Sendable ((any Swift.Error)?) -> Swift.Void)
+  #endif
+  final public func shutdown() -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func get(url: Swift.String, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func get(url: Swift.String, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func post(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func post(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func patch(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func patch(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func put(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func put(url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func delete(url: Swift.String, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func delete(url: Swift.String, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: CandleNIOHTTP1.HTTPMethod = .GET, url: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: CandleNIOHTTP1.HTTPMethod = .GET, socketPath: Swift.String, urlPath: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(_ method: CandleNIOHTTP1.HTTPMethod = .GET, secureSocketPath: Swift.String, urlPath: Swift.String, body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: CandleAsyncHTTPClient.HTTPClient.Request, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: CandleAsyncHTTPClient.HTTPClient.Request, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: CandleAsyncHTTPClient.HTTPClient.Request, eventLoop: CandleAsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute(request: CandleAsyncHTTPClient.HTTPClient.Request, eventLoop eventLoopPreference: CandleAsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger?) -> CandleNIOCore.EventLoopFuture<CandleAsyncHTTPClient.HTTPClient.Response>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: CandleAsyncHTTPClient.HTTPClient.Request, delegate: Delegate, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleAsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: CandleAsyncHTTPClient.HTTPClient.Request, delegate: Delegate, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger) -> CandleAsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: CandleAsyncHTTPClient.HTTPClient.Request, delegate: Delegate, eventLoop eventLoopPreference: CandleAsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: CandleNIOCore.NIODeadline? = nil) -> CandleAsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func execute<Delegate>(request: CandleAsyncHTTPClient.HTTPClient.Request, delegate: Delegate, eventLoop eventLoopPreference: CandleAsyncHTTPClient.HTTPClient.EventLoopPreference, deadline: CandleNIOCore.NIODeadline? = nil, logger: CandleLogging.Logger?) -> CandleAsyncHTTPClient.HTTPClient.Task<Delegate.Response> where Delegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate
+  #endif
+  public struct Configuration {
+    public var tlsConfiguration: Swift.Optional<CandleNIOSSL.TLSConfiguration>
+    public var dnsOverride: [Swift.String : Swift.String]
+    public var redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+    public var timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout
+    public var connectionPool: CandleAsyncHTTPClient.HTTPClient.Configuration.ConnectionPool
+    public var proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy?
+    public var decompression: CandleAsyncHTTPClient.HTTPClient.Decompression
+    @available(*, deprecated, message: "AsyncHTTPClient now correctly supports handling unexpected SSL connection drops. This property is ignored")
+    public var ignoreUncleanSSLShutdown: Swift.Bool {
+      get
+      set
+    }
+    public var httpVersion: CandleAsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public var networkFrameworkWaitForConnectivity: Swift.Bool
+    public var maximumUsesPerConnection: Swift.Int? {
+      get
+      set
+    }
+    public var enableMultipath: Swift.Bool
+    public var http1_1ConnectionDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)?
+    public var http2ConnectionDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)?
+    public var http2StreamChannelDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: CandleNIOSSL.TLSConfiguration? = nil, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: CandleAsyncHTTPClient.HTTPClient.Configuration.ConnectionPool = ConnectionPool(), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: CandleNIOSSL.TLSConfiguration? = nil, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: CandleNIOSSL.CertificateVerification, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), maximumAllowedIdleTimeInConnectionPool: CandleNIOCore.TimeAmount = .seconds(60), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: CandleNIOSSL.CertificateVerification, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: CandleNIOCore.TimeAmount = .seconds(60), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled, backgroundActivityLogger: CandleLogging.Logger?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(certificateVerification: CandleNIOSSL.CertificateVerification, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(tlsConfiguration: CandleNIOSSL.TLSConfiguration? = nil, redirectConfiguration: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration? = nil, timeout: CandleAsyncHTTPClient.HTTPClient.Configuration.Timeout = Timeout(), connectionPool: CandleAsyncHTTPClient.HTTPClient.Configuration.ConnectionPool = ConnectionPool(), proxy: CandleAsyncHTTPClient.HTTPClient.Configuration.Proxy? = nil, ignoreUncleanSSLShutdown: Swift.Bool = false, decompression: CandleAsyncHTTPClient.HTTPClient.Decompression = .disabled, http1_1ConnectionDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)? = nil, http2ConnectionDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)? = nil, http2StreamChannelDebugInitializer: (@Sendable (any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)? = nil)
+    #endif
+  }
+  public enum EventLoopGroupProvider {
+    case shared(any CandleNIOCore.EventLoopGroup)
+    @available(*, deprecated, renamed: "singleton", message: "Please use the singleton EventLoopGroup explicitly")
+    case createNew
+  }
+  public struct EventLoopPreference {
+    public static let indifferent: CandleAsyncHTTPClient.HTTPClient.EventLoopPreference
+    public static func delegate(on eventLoop: any CandleNIOCore.EventLoop) -> CandleAsyncHTTPClient.HTTPClient.EventLoopPreference
+    public static func delegateAndChannel(on eventLoop: any CandleNIOCore.EventLoop) -> CandleAsyncHTTPClient.HTTPClient.EventLoopPreference
+  }
+  public enum Decompression : Swift.Sendable {
+    case disabled
+    case enabled(limit: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient.EventLoopGroupProvider {
+  public static var singleton: CandleAsyncHTTPClient.HTTPClient.EventLoopGroupProvider {
+    get
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  public static var defaultEventLoopGroup: any CandleNIOCore.EventLoopGroup {
+    get
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient.Configuration : Swift.Sendable {
+}
+extension CandleAsyncHTTPClient.HTTPClient.EventLoopGroupProvider : Swift.Sendable {
+}
+extension CandleAsyncHTTPClient.HTTPClient.EventLoopPreference : Swift.Sendable {
+}
+extension CandleAsyncHTTPClient.HTTPClient.Configuration {
+  public struct Timeout : Swift.Sendable {
+    public var connect: CandleNIOCore.TimeAmount?
+    public var read: CandleNIOCore.TimeAmount?
+    public var write: CandleNIOCore.TimeAmount?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(connect: CandleNIOCore.TimeAmount? = nil, read: CandleNIOCore.TimeAmount? = nil)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(connect: CandleNIOCore.TimeAmount? = nil, read: CandleNIOCore.TimeAmount? = nil, write: CandleNIOCore.TimeAmount)
+    #endif
+  }
+  public struct RedirectConfiguration : Swift.Sendable {
+    public static let disallow: CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+    public static func follow(max: Swift.Int, allowCycles: Swift.Bool) -> CandleAsyncHTTPClient.HTTPClient.Configuration.RedirectConfiguration
+  }
+  public struct ConnectionPool : Swift.Hashable, Swift.Sendable {
+    public var idleTimeout: CandleNIOCore.TimeAmount
+    public var concurrentHTTP1ConnectionsPerHostSoftLimit: Swift.Int
+    public var retryConnectionEstablishment: Swift.Bool
+    public init()
+    public init(idleTimeout: CandleNIOCore.TimeAmount)
+    public init(idleTimeout: CandleNIOCore.TimeAmount, concurrentHTTP1ConnectionsPerHostSoftLimit: Swift.Int)
+    public static func == (a: CandleAsyncHTTPClient.HTTPClient.Configuration.ConnectionPool, b: CandleAsyncHTTPClient.HTTPClient.Configuration.ConnectionPool) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct HTTPVersion : Swift.Sendable, Swift.Hashable {
+    public static let http1Only: CandleAsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public static let automatic: CandleAsyncHTTPClient.HTTPClient.Configuration.HTTPVersion
+    public static func == (a: CandleAsyncHTTPClient.HTTPClient.Configuration.HTTPVersion, b: CandleAsyncHTTPClient.HTTPClient.Configuration.HTTPVersion) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public struct HTTPClientError : Swift.Error, Swift.Equatable, Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var shortDescription: Swift.String {
+    get
+  }
+  public static let invalidURL: CandleAsyncHTTPClient.HTTPClientError
+  public static let emptyHost: CandleAsyncHTTPClient.HTTPClientError
+  public static let missingSocketPath: CandleAsyncHTTPClient.HTTPClientError
+  public static let alreadyShutdown: CandleAsyncHTTPClient.HTTPClientError
+  public static let emptyScheme: CandleAsyncHTTPClient.HTTPClientError
+  public static func unsupportedScheme(_ scheme: Swift.String) -> CandleAsyncHTTPClient.HTTPClientError
+  public static let readTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static let writeTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static let remoteConnectionClosed: CandleAsyncHTTPClient.HTTPClientError
+  public static let cancelled: CandleAsyncHTTPClient.HTTPClientError
+  public static let identityCodingIncorrectlyPresent: CandleAsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now silently corrects this invalid header.")
+  public static let chunkedSpecifiedMultipleTimes: CandleAsyncHTTPClient.HTTPClientError
+  public static let invalidProxyResponse: CandleAsyncHTTPClient.HTTPClientError
+  public static let contentLengthMissing: CandleAsyncHTTPClient.HTTPClientError
+  public static let proxyAuthenticationRequired: CandleAsyncHTTPClient.HTTPClientError
+  public static let redirectLimitReached: CandleAsyncHTTPClient.HTTPClientError
+  public static let redirectCycleDetected: CandleAsyncHTTPClient.HTTPClientError
+  public static let uncleanShutdown: CandleAsyncHTTPClient.HTTPClientError
+  public static let traceRequestWithBody: CandleAsyncHTTPClient.HTTPClientError
+  public static func invalidHeaderFieldNames(_ names: [Swift.String]) -> CandleAsyncHTTPClient.HTTPClientError
+  public static func invalidHeaderFieldValues(_ values: [Swift.String]) -> CandleAsyncHTTPClient.HTTPClientError
+  public static let bodyLengthMismatch: CandleAsyncHTTPClient.HTTPClientError
+  public static let writeAfterRequestSent: CandleAsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now silently corrects invalid headers.")
+  public static let incompatibleHeaders: CandleAsyncHTTPClient.HTTPClientError
+  public static let connectTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static let socksHandshakeTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static let httpProxyHandshakeTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static let tlsHandshakeTimeout: CandleAsyncHTTPClient.HTTPClientError
+  public static func serverOfferedUnsupportedApplicationProtocol(_ proto: Swift.String) -> CandleAsyncHTTPClient.HTTPClientError
+  public static var shutdownUnsupported: CandleAsyncHTTPClient.HTTPClientError {
+    get
+  }
+  public static let deadlineExceeded: CandleAsyncHTTPClient.HTTPClientError
+  public static let requestStreamCancelled: CandleAsyncHTTPClient.HTTPClientError
+  public static let getConnectionFromPoolTimeout: CandleAsyncHTTPClient.HTTPClientError
+  @available(*, deprecated, message: "AsyncHTTPClient now correctly supports informational headers. For this reason `httpEndReceivedAfterHeadWith1xx` will not be thrown anymore.")
+  public static let httpEndReceivedAfterHeadWith1xx: CandleAsyncHTTPClient.HTTPClientError
+  public static func == (a: CandleAsyncHTTPClient.HTTPClientError, b: CandleAsyncHTTPClient.HTTPClientError) -> Swift.Bool
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  public struct Body : Swift.Sendable {
+    public struct StreamWriter : Swift.Sendable {
+      @preconcurrency public init(closure: @escaping @Sendable (CandleNIOCore.IOData) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+      public func write(_ data: CandleNIOCore.IOData) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+    }
+    #if compiler(>=5.3) && $NonescapableTypes
+    @available(*, deprecated, renamed: "contentLength")
+    public var length: Swift.Int? {
+      get
+      set
+    }
+    #endif
+    public var contentLength: Swift.Int64?
+    public var stream: @Sendable (CandleAsyncHTTPClient.HTTPClient.Body.StreamWriter) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+    public static func byteBuffer(_ buffer: CandleNIOCore.ByteBuffer) -> CandleAsyncHTTPClient.HTTPClient.Body
+    #if compiler(>=5.3) && $NonescapableTypes
+    @_disfavoredOverload @preconcurrency public static func stream(length: Swift.Int? = nil, _ stream: @escaping @Sendable (CandleAsyncHTTPClient.HTTPClient.Body.StreamWriter) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> CandleAsyncHTTPClient.HTTPClient.Body
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func stream(contentLength: Swift.Int64? = nil, _ stream: @escaping @Sendable (CandleAsyncHTTPClient.HTTPClient.Body.StreamWriter) -> CandleNIOCore.EventLoopFuture<Swift.Void>) -> CandleAsyncHTTPClient.HTTPClient.Body
+    #endif
+    @preconcurrency public static func bytes<Bytes>(_ bytes: Bytes) -> CandleAsyncHTTPClient.HTTPClient.Body where Bytes : Swift.RandomAccessCollection, Bytes : Swift.Sendable, Bytes.Element == Swift.UInt8
+    public static func string(_ string: Swift.String) -> CandleAsyncHTTPClient.HTTPClient.Body
+  }
+  public struct Request : Swift.Sendable {
+    public let method: CandleNIOHTTP1.HTTPMethod
+    public let url: Foundation.URL
+    public var scheme: Swift.String {
+      get
+    }
+    public var headers: CandleNIOHTTP1.HTTPHeaders
+    public var body: CandleAsyncHTTPClient.HTTPClient.Body?
+    public var tlsConfiguration: CandleNIOSSL.TLSConfiguration?
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Swift.String, method: CandleNIOHTTP1.HTTPMethod = .GET, headers: CandleNIOHTTP1.HTTPHeaders = HTTPHeaders(), body: CandleAsyncHTTPClient.HTTPClient.Body? = nil) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Swift.String, method: CandleNIOHTTP1.HTTPMethod = .GET, headers: CandleNIOHTTP1.HTTPHeaders = HTTPHeaders(), body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, tlsConfiguration: CandleNIOSSL.TLSConfiguration?) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Foundation.URL, method: CandleNIOHTTP1.HTTPMethod = .GET, headers: CandleNIOHTTP1.HTTPHeaders = HTTPHeaders(), body: CandleAsyncHTTPClient.HTTPClient.Body? = nil) throws
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(url: Foundation.URL, method: CandleNIOHTTP1.HTTPMethod = .GET, headers: CandleNIOHTTP1.HTTPHeaders = HTTPHeaders(), body: CandleAsyncHTTPClient.HTTPClient.Body? = nil, tlsConfiguration: CandleNIOSSL.TLSConfiguration?) throws
+    #endif
+    public var host: Swift.String {
+      get
+    }
+    public var port: Swift.Int {
+      get
+    }
+    public var useTLS: Swift.Bool {
+      get
+    }
+    public mutating func setBasicAuth(username: Swift.String, password: Swift.String)
+  }
+  public struct Response : Swift.Sendable {
+    public var host: Swift.String
+    public var status: CandleNIOHTTP1.HTTPResponseStatus
+    public var version: CandleNIOHTTP1.HTTPVersion
+    public var headers: CandleNIOHTTP1.HTTPHeaders
+    public var body: CandleNIOCore.ByteBuffer?
+    public var history: [CandleAsyncHTTPClient.HTTPClient.RequestResponse]
+    #if compiler(>=5.3) && $NonescapableTypes
+    public var url: Foundation.URL? {
+      get
+    }
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @available(*, deprecated, renamed: "init(host:status:version:headers:body:)")
+    public init(host: Swift.String, status: CandleNIOHTTP1.HTTPResponseStatus, headers: CandleNIOHTTP1.HTTPHeaders, body: CandleNIOCore.ByteBuffer?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(host: Swift.String, status: CandleNIOHTTP1.HTTPResponseStatus, version: CandleNIOHTTP1.HTTPVersion, headers: CandleNIOHTTP1.HTTPHeaders, body: CandleNIOCore.ByteBuffer?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(host: Swift.String, status: CandleNIOHTTP1.HTTPResponseStatus, version: CandleNIOHTTP1.HTTPVersion, headers: CandleNIOHTTP1.HTTPHeaders, body: CandleNIOCore.ByteBuffer?, history: [CandleAsyncHTTPClient.HTTPClient.RequestResponse])
+    #endif
+  }
+  public struct Authorization : Swift.Hashable, Swift.Sendable {
+    public static func basic(username: Swift.String, password: Swift.String) -> CandleAsyncHTTPClient.HTTPClient.Authorization
+    public static func basic(credentials: Swift.String) -> CandleAsyncHTTPClient.HTTPClient.Authorization
+    public static func bearer(tokens: Swift.String) -> CandleAsyncHTTPClient.HTTPClient.Authorization
+    public var headerValue: Swift.String {
+      get
+    }
+    public static func == (a: CandleAsyncHTTPClient.HTTPClient.Authorization, b: CandleAsyncHTTPClient.HTTPClient.Authorization) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct RequestResponse : Swift.Sendable {
+    public var request: CandleAsyncHTTPClient.HTTPClient.Request
+    public var responseHead: CandleNIOHTTP1.HTTPResponseHead
+    public init(request: CandleAsyncHTTPClient.HTTPClient.Request, responseHead: CandleNIOHTTP1.HTTPResponseHead)
+  }
+}
+final public class ResponseAccumulator : CandleAsyncHTTPClient.HTTPClientResponseDelegate {
+  public typealias Response = CandleAsyncHTTPClient.HTTPClient.Response
+  public struct ResponseTooBigError : Swift.Error, Swift.CustomStringConvertible {
+    public var maxBodySize: Swift.Int
+    public init(maxBodySize: Swift.Int)
+    public var description: Swift.String {
+      get
+    }
+  }
+  final public let maxBodySize: Swift.Int
+  convenience public init(request: CandleAsyncHTTPClient.HTTPClient.Request)
+  public init(request: CandleAsyncHTTPClient.HTTPClient.Request, maxBodySize: Swift.Int)
+  final public func didVisitURL(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.HTTPClient.Response>, _ request: CandleAsyncHTTPClient.HTTPClient.Request, _ head: CandleNIOHTTP1.HTTPResponseHead)
+  final public func didReceiveHead(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.ResponseAccumulator.Response>, _ head: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveBodyPart(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.ResponseAccumulator.Response>, _ part: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  final public func didReceiveError(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.ResponseAccumulator.Response>, _ error: any Swift.Error)
+  final public func didFinishRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<CandleAsyncHTTPClient.ResponseAccumulator.Response>) throws -> CandleAsyncHTTPClient.ResponseAccumulator.Response
+  @objc deinit
+}
+@preconcurrency public protocol HTTPClientResponseDelegate : AnyObject, Swift.Sendable {
+  associatedtype Response : Swift.Sendable
+  func didSendRequestHead(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: CandleNIOHTTP1.HTTPRequestHead)
+  func didSendRequestPart(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ part: CandleNIOCore.IOData)
+  func didSendRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>)
+  func didVisitURL(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ request: CandleAsyncHTTPClient.HTTPClient.Request, _ head: CandleNIOHTTP1.HTTPResponseHead)
+  func didReceiveHead(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  func didReceiveBodyPart(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ buffer: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  func didReceiveError(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ error: any Swift.Error)
+  func didFinishRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>) throws -> Self.Response
+}
+extension CandleAsyncHTTPClient.HTTPClientResponseDelegate {
+  public func didSendRequestHead(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ head: CandleNIOHTTP1.HTTPRequestHead)
+  public func didSendRequestPart(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _ part: CandleNIOCore.IOData)
+  public func didSendRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>)
+  public func didVisitURL(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _: CandleAsyncHTTPClient.HTTPClient.Request, _: CandleNIOHTTP1.HTTPResponseHead)
+  public func didReceiveHead(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _: CandleNIOHTTP1.HTTPResponseHead) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  public func didReceiveBodyPart(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  public func didReceiveError(task: CandleAsyncHTTPClient.HTTPClient.Task<Self.Response>, _: any Swift.Error)
+}
+extension Foundation.URL {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(httpURLWithSocketPath socketPath: Swift.String, uri: Swift.String = "/")
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(httpsURLWithSocketPath socketPath: Swift.String, uri: Swift.String = "/")
+  #endif
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  @_hasMissingDesignatedInitializers final public class Task<Response> : Swift.Sendable {
+    final public let eventLoop: any CandleNIOCore.EventLoop
+    final public let logger: CandleLogging.Logger
+    final public var futureResult: CandleNIOCore.EventLoopFuture<Response> {
+      get
+    }
+    @available(*, noasync, renamed: "get()", message: "wait() can block indefinitely, prefer get()")
+    @preconcurrency final public func wait() throws -> Response where Response : Swift.Sendable
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @preconcurrency final public func get() async throws -> Response where Response : Swift.Sendable
+    final public func cancel()
+    final public func fail(reason error: any Swift.Error)
+    @objc deinit
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  public struct NWPOSIXError : Swift.Error, Swift.CustomStringConvertible {
+    public let errorCode: _DarwinFoundation1.POSIXErrorCode
+    public init(_ errorCode: _DarwinFoundation1.POSIXErrorCode, reason: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct NWTLSError : Swift.Error, Swift.CustomStringConvertible {
+    public let status: Darwin.OSStatus
+    public init(_ status: Darwin.OSStatus, reason: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient {
+  public static var shared: CandleAsyncHTTPClient.HTTPClient {
+    get
+  }
+}
+extension CandleAsyncHTTPClient.HTTPClient.EventLoopPreference : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+final public class HTTPClientCopyingDelegate : CandleAsyncHTTPClient.HTTPClientResponseDelegate, Swift.Sendable {
+  public typealias Response = Swift.Void
+  @preconcurrency public init(chunkHandler: @escaping @Sendable (CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  final public func didReceiveBodyPart(task: CandleAsyncHTTPClient.HTTPClient.Task<Swift.Void>, _ buffer: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+  final public func didFinishRequest(task: CandleAsyncHTTPClient.HTTPClient.Task<Swift.Void>) throws
+  @objc deinit
+}

@@ -1,0 +1,42 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleNIO",
+    "printedName": "CandleNIO",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIO",
+        "declAttributes": [
+          "Exported",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOEmbedded",
+        "printedName": "CandleNIOEmbedded",
+        "declKind": "Import",
+        "moduleName": "CandleNIO",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOPosix",
+        "printedName": "CandleNIOPosix",
+        "declKind": "Import",
+        "moduleName": "CandleNIO",
+        "declAttributes": [
+          "Exported"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

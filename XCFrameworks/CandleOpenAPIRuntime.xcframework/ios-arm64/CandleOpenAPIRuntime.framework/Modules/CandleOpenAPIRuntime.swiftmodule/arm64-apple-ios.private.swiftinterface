@@ -1,0 +1,1141 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature ExistentialAny -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleOpenAPIRuntime -package-name candle_swift_openapi_runtime
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleHTTPTypes
+import CoreFoundation
+import Foundation
+import Foundation/*.Data*/
+import Foundation/*.JSONDecoder*/
+import Foundation/*.JSONEncoder*/
+import Foundation/*.LocalizedError*/
+import Foundation/*.NSLock*/
+import Foundation/*.NSNull*/
+import Foundation/*.NSNumber*/
+import Foundation/*.URL*/
+import Foundation/*.URLComponents*/
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol AcceptableProtocol : Swift.CaseIterable, Swift.Hashable, Swift.RawRepresentable, Swift.Sendable where Self.RawValue == Swift.String {
+}
+public struct QualityValue : Swift.Sendable, Swift.Hashable {
+  public var isDefault: Swift.Bool {
+    get
+  }
+  public init(doubleValue: Swift.Double)
+  public var doubleValue: Swift.Double {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.QualityValue : Swift.RawRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension CandleOpenAPIRuntime.QualityValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.UInt16)
+  public typealias IntegerLiteralType = Swift.UInt16
+}
+extension CandleOpenAPIRuntime.QualityValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension Swift.Array {
+  public static func defaultValues<T>() -> [CandleOpenAPIRuntime.AcceptHeaderContentType<T>] where Element == CandleOpenAPIRuntime.AcceptHeaderContentType<T>, T : CandleOpenAPIRuntime.AcceptableProtocol
+}
+public struct AcceptHeaderContentType<ContentType> : Swift.Sendable, Swift.Hashable where ContentType : CandleOpenAPIRuntime.AcceptableProtocol {
+  public var contentType: ContentType
+  public var quality: CandleOpenAPIRuntime.QualityValue
+  public init(contentType: ContentType, quality: CandleOpenAPIRuntime.QualityValue = 1.0)
+  public static var defaultValues: [CandleOpenAPIRuntime.AcceptHeaderContentType<ContentType>] {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.AcceptHeaderContentType : Swift.RawRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public var rawValue: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension Swift.Array {
+  public func sortedByQuality<T>() -> [CandleOpenAPIRuntime.AcceptHeaderContentType<T>] where Element == CandleOpenAPIRuntime.AcceptHeaderContentType<T>, T : CandleOpenAPIRuntime.AcceptableProtocol
+}
+public struct Base64EncodedData : Swift.Sendable, Swift.Hashable {
+  public var data: Swift.ArraySlice<Swift.UInt8>
+  public init(_ data: Swift.ArraySlice<Swift.UInt8>)
+  public init(_ data: some Sequence<UInt8>)
+  public static func == (a: CandleOpenAPIRuntime.Base64EncodedData, b: CandleOpenAPIRuntime.Base64EncodedData) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.Base64EncodedData : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: Swift.UInt8...)
+  public typealias ArrayLiteralElement = Swift.UInt8
+}
+extension CandleOpenAPIRuntime.Base64EncodedData : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_spi(Generated) public struct CopyOnWriteBox<Wrapped> {
+  @_spi(Generated) @usableFromInline
+  final internal class Storage {
+    @_spi(Generated) @usableFromInline
+    final internal var value: Wrapped
+    @_spi(Generated) @usableFromInline
+    internal init(value: Wrapped)
+    @_spi(Generated) @objc @usableFromInline
+    deinit
+  }
+  @_spi(Generated) @usableFromInline
+  internal var storage: CandleOpenAPIRuntime.CopyOnWriteBox<Wrapped>.Storage
+  @_spi(Generated) public init(value: Wrapped)
+  @_spi(Generated) @inlinable public var value: Wrapped {
+    @_spi(Generated) get { storage.value }
+    @_spi(Generated) _modify {
+            if !isKnownUniquelyReferenced(&storage) { storage = Storage(value: storage.value) }
+            yield &storage.value
+        }
+  }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.Encodable where Wrapped : Swift.Encodable {
+  @_spi(Generated) @inlinable public func encode(to encoder: any Swift.Encoder) throws { try value.encode(to: encoder) }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.Decodable where Wrapped : Swift.Decodable {
+  @_spi(Generated) @inlinable public init(from decoder: any Swift.Decoder) throws {
+        let value = try Wrapped(from: decoder)
+        self.init(value: value)
+    }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.Equatable where Wrapped : Swift.Equatable {
+  @_spi(Generated) @inlinable public static func == (lhs: CandleOpenAPIRuntime.CopyOnWriteBox<Wrapped>, rhs: CandleOpenAPIRuntime.CopyOnWriteBox<Wrapped>) -> Swift.Bool {
+        lhs.value == rhs.value
+    }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.Hashable where Wrapped : Swift.Hashable {
+  @_spi(Generated) @inlinable public func hash(into hasher: inout Swift.Hasher) { hasher.combine(value) }
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.CustomStringConvertible where Wrapped : Swift.CustomStringConvertible {
+  @_spi(Generated) @inlinable public var description: Swift.String {
+    @_spi(Generated) get { value.description }
+  }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : Swift.CustomDebugStringConvertible where Wrapped : Swift.CustomDebugStringConvertible {
+  @_spi(Generated) @inlinable public var debugDescription: Swift.String {
+    @_spi(Generated) get { value.debugDescription }
+  }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.CopyOnWriteBox : @unchecked Swift.Sendable where Wrapped : Swift.Sendable {
+}
+@_spi(Generated) public struct OpenAPIMIMEType : Swift.Equatable, Swift.Sendable {
+  @_spi(Generated) public static let xml: CandleOpenAPIRuntime.OpenAPIMIMEType
+  @_spi(Generated) public enum Kind : Swift.Equatable, Swift.Sendable {
+    @_spi(Generated) case any
+    @_spi(Generated) case anySubtype(type: Swift.String)
+    @_spi(Generated) case concrete(type: Swift.String, subtype: Swift.String)
+    @_spi(Generated) public static func == (lhs: CandleOpenAPIRuntime.OpenAPIMIMEType.Kind, rhs: CandleOpenAPIRuntime.OpenAPIMIMEType.Kind) -> Swift.Bool
+  }
+  @_spi(Generated) public var kind: CandleOpenAPIRuntime.OpenAPIMIMEType.Kind
+  @_spi(Generated) public var parameters: [Swift.String : Swift.String]
+  @_spi(Generated) public init(kind: CandleOpenAPIRuntime.OpenAPIMIMEType.Kind, parameters: [Swift.String : Swift.String] = [:])
+  @_spi(Generated) public static func == (lhs: CandleOpenAPIRuntime.OpenAPIMIMEType, rhs: CandleOpenAPIRuntime.OpenAPIMIMEType) -> Swift.Bool
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.OpenAPIMIMEType.Kind : Swift.LosslessStringConvertible {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public init?(_ description: Swift.String)
+  #endif
+  @_spi(Generated) public var description: Swift.String {
+    @_spi(Generated) get
+  }
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.OpenAPIMIMEType : Swift.LosslessStringConvertible {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public init?(_ description: Swift.String)
+  #endif
+  @_spi(Generated) public var description: Swift.String {
+    @_spi(Generated) get
+  }
+}
+public struct OpenAPIValueContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: (any Swift.Sendable)?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(unvalidatedValue: (any Swift.Sendable)? = nil) throws
+  #endif
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: CandleOpenAPIRuntime.OpenAPIValueContainer, rhs: CandleOpenAPIRuntime.OpenAPIValueContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.BooleanLiteralType)
+  public typealias BooleanLiteralType = Swift.BooleanLiteralType
+}
+extension CandleOpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension CandleOpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByNilLiteral {
+  public init(nilLiteral: ())
+}
+extension CandleOpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension CandleOpenAPIRuntime.OpenAPIValueContainer : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+public struct OpenAPIObjectContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: [Swift.String : (any Swift.Sendable)?]
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(unvalidatedValue: [Swift.String : (any Swift.Sendable)?]) throws
+  #endif
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: CandleOpenAPIRuntime.OpenAPIObjectContainer, rhs: CandleOpenAPIRuntime.OpenAPIObjectContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct OpenAPIArrayContainer : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public var value: [(any Swift.Sendable)?]
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(unvalidatedValue: [(any Swift.Sendable)?]) throws
+  #endif
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (lhs: CandleOpenAPIRuntime.OpenAPIArrayContainer, rhs: CandleOpenAPIRuntime.OpenAPIArrayContainer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct UndocumentedPayload : Swift.Sendable, Swift.Hashable {
+  public var headerFields: CandleHTTPTypes.HTTPFields
+  public var body: CandleOpenAPIRuntime.HTTPBody?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(headerFields: CandleHTTPTypes.HTTPFields = [:], body: CandleOpenAPIRuntime.HTTPBody? = nil)
+  #endif
+  public static func == (a: CandleOpenAPIRuntime.UndocumentedPayload, b: CandleOpenAPIRuntime.UndocumentedPayload) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_spi(Generated) @inline(__always) public func suppressMutabilityWarning<T>(_ value: inout T)
+@_spi(Generated) @inline(__always) public func suppressUnusedWarning<T>(_ value: T)
+@_spi(Generated) extension Swift.Decoder {
+  @_spi(Generated) public func ensureNoAdditionalProperties(knownKeys: Swift.Set<Swift.String>) throws
+  @_spi(Generated) public func decodeAdditionalProperties(knownKeys: Swift.Set<Swift.String>) throws -> CandleOpenAPIRuntime.OpenAPIObjectContainer
+  @_spi(Generated) public func decodeAdditionalProperties<T>(knownKeys: Swift.Set<Swift.String>) throws -> [Swift.String : T] where T : Swift.Decodable
+  @_spi(Generated) public func decodeFromSingleValueContainer<T>(_ type: T.Type = T.self) throws -> T where T : Swift.Decodable
+}
+@_spi(Generated) extension Swift.Encoder {
+  @_spi(Generated) public func encodeAdditionalProperties(_ additionalProperties: CandleOpenAPIRuntime.OpenAPIObjectContainer) throws
+  @_spi(Generated) public func encodeAdditionalProperties<T>(_ additionalProperties: [Swift.String : T]) throws where T : Swift.Encodable
+  @_spi(Generated) public func encodeToSingleValueContainer<T>(_ value: T) throws where T : Swift.Encodable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func encodeFirstNonNilValueToSingleValueContainer(_ values: [(any Swift.Encodable)?]) throws
+  #endif
+}
+public protocol DateTranscoder : Swift.Sendable {
+  func encode(_: Foundation.Date) throws -> Swift.String
+  func decode(_: Swift.String) throws -> Foundation.Date
+}
+public struct ISO8601DateTranscoder : CandleOpenAPIRuntime.DateTranscoder, @unchecked Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(options: Foundation.ISO8601DateFormatter.Options? = nil)
+  #endif
+  public func encode(_ date: Foundation.Date) throws -> Swift.String
+  public func decode(_ dateString: Swift.String) throws -> Foundation.Date
+}
+extension CandleOpenAPIRuntime.DateTranscoder where Self == CandleOpenAPIRuntime.ISO8601DateTranscoder {
+  public static var iso8601: CandleOpenAPIRuntime.ISO8601DateTranscoder {
+    get
+  }
+  public static var iso8601WithFractionalSeconds: CandleOpenAPIRuntime.ISO8601DateTranscoder {
+    get
+  }
+}
+public protocol CustomCoder : Swift.Sendable {
+  func customEncode<T>(_ value: T) throws -> Foundation.Data where T : Swift.Encodable
+  func customDecode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+}
+public struct JSONEncodingOptions : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.UInt
+  public init(rawValue: Swift.UInt)
+  public static let prettyPrinted: CandleOpenAPIRuntime.JSONEncodingOptions
+  public static let sortedKeys: CandleOpenAPIRuntime.JSONEncodingOptions
+  public static let withoutEscapingSlashes: CandleOpenAPIRuntime.JSONEncodingOptions
+  public typealias ArrayLiteralElement = CandleOpenAPIRuntime.JSONEncodingOptions
+  public typealias Element = CandleOpenAPIRuntime.JSONEncodingOptions
+  public typealias RawValue = Swift.UInt
+}
+public struct Configuration : Swift.Sendable {
+  public var dateTranscoder: any CandleOpenAPIRuntime.DateTranscoder
+  public var jsonEncodingOptions: CandleOpenAPIRuntime.JSONEncodingOptions
+  public var multipartBoundaryGenerator: any CandleOpenAPIRuntime.MultipartBoundaryGenerator
+  public var xmlCoder: (any CandleOpenAPIRuntime.CustomCoder)?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(dateTranscoder: any CandleOpenAPIRuntime.DateTranscoder = .iso8601, jsonEncodingOptions: CandleOpenAPIRuntime.JSONEncodingOptions = [.sortedKeys, .prettyPrinted], multipartBoundaryGenerator: any CandleOpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any CandleOpenAPIRuntime.CustomCoder)? = nil)
+  #endif
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.Converter {
+  @_spi(Generated) public func setAcceptHeader<T>(in headerFields: inout CandleHTTPTypes.HTTPFields, contentTypes: [CandleOpenAPIRuntime.AcceptHeaderContentType<T>]) where T : CandleOpenAPIRuntime.AcceptableProtocol
+  @_spi(Generated) public func renderedPath(template: Swift.String, parameters: [any Swift.Encodable]) throws -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setQueryItemAsURI<T>(in request: inout CandleHTTPTypes.HTTPRequest, style: CandleOpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setOptionalRequestBodyAsJSON<T>(_ value: T?, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  #endif
+  @_spi(Generated) public func setRequiredRequestBodyAsJSON<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setOptionalRequestBodyAsXML<T>(_ value: T?, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  #endif
+  @_spi(Generated) public func setRequiredRequestBodyAsXML<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setOptionalRequestBodyAsBinary(_ value: CandleOpenAPIRuntime.HTTPBody?, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody?
+  #endif
+  @_spi(Generated) public func setRequiredRequestBodyAsBinary(_ value: CandleOpenAPIRuntime.HTTPBody, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setOptionalRequestBodyAsURLEncodedForm<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody? where T : Swift.Encodable
+  #endif
+  @_spi(Generated) public func setRequiredRequestBodyAsURLEncodedForm<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setRequiredRequestBodyAsMultipart<Part>(_ value: CandleOpenAPIRuntime.MultipartBody<Part>, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, encoding encode: @escaping @Sendable (Part) throws -> CandleOpenAPIRuntime.MultipartRawPart) throws -> CandleOpenAPIRuntime.HTTPBody where Part : Swift.Sendable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getResponseBodyAsJSON<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getResponseBodyAsXML<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getResponseBodyAsBinary<C>(_ type: CandleOpenAPIRuntime.HTTPBody.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (CandleOpenAPIRuntime.HTTPBody) -> C) throws -> C
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getResponseBodyAsMultipart<C, Part>(_ type: CandleOpenAPIRuntime.MultipartBody<Part>.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: @escaping @Sendable (CandleOpenAPIRuntime.MultipartBody<Part>) throws -> C, boundary: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, decoding decoder: @escaping @Sendable (CandleOpenAPIRuntime.MultipartRawPart) async throws -> Part) throws -> C where Part : Swift.Sendable
+  #endif
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.Converter {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func extractContentTypeIfPresent(in headerFields: CandleHTTPTypes.HTTPFields) -> CandleOpenAPIRuntime.OpenAPIMIMEType?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func bestContentType(received: CandleOpenAPIRuntime.OpenAPIMIMEType?, options: [Swift.String]) throws -> Swift.String
+  #endif
+  @_spi(Generated) public func verifyContentTypeIfPresent(in headerFields: CandleHTTPTypes.HTTPFields, matches match: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func extractContentDispositionNameAndFilename(in headerFields: CandleHTTPTypes.HTTPFields) throws -> (name: Swift.String?, filename: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setHeaderFieldAsURI<T>(in headerFields: inout CandleHTTPTypes.HTTPFields, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func setHeaderFieldAsJSON<T>(in headerFields: inout CandleHTTPTypes.HTTPFields, name: Swift.String, value: T?) throws where T : Swift.Encodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalHeaderFieldAsURI<T>(in headerFields: CandleHTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  #endif
+  @_spi(Generated) public func getRequiredHeaderFieldAsURI<T>(in headerFields: CandleHTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalHeaderFieldAsJSON<T>(in headerFields: CandleHTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  #endif
+  @_spi(Generated) public func getRequiredHeaderFieldAsJSON<T>(in headerFields: CandleHTTPTypes.HTTPFields, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+}
+@_spi(Generated) extension CandleOpenAPIRuntime.Converter {
+  @_spi(Generated) public func extractAcceptHeaderIfPresent<T>(in headerFields: CandleHTTPTypes.HTTPFields) throws -> [CandleOpenAPIRuntime.AcceptHeaderContentType<T>] where T : CandleOpenAPIRuntime.AcceptableProtocol
+  @_spi(Generated) public func validateAcceptIfPresent(_ substring: Swift.String, in headerFields: CandleHTTPTypes.HTTPFields) throws
+  @_spi(Generated) public func getPathParameterAsURI<T>(in pathParameters: [Swift.String : Swift.Substring], name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalQueryItemAsURI<T>(in query: Swift.Substring?, style: CandleOpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, as type: T.Type) throws -> T? where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredQueryItemAsURI<T>(in query: Swift.Substring?, style: CandleOpenAPIRuntime.ParameterStyle?, explode: Swift.Bool?, name: Swift.String, as type: T.Type) throws -> T where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalRequestBodyAsJSON<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredRequestBodyAsJSON<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalRequestBodyAsXML<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredRequestBodyAsXML<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalRequestBodyAsBinary<C>(_ type: CandleOpenAPIRuntime.HTTPBody.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (CandleOpenAPIRuntime.HTTPBody) -> C) throws -> C?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredRequestBodyAsBinary<C>(_ type: CandleOpenAPIRuntime.HTTPBody.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (CandleOpenAPIRuntime.HTTPBody) -> C) throws -> C
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getOptionalRequestBodyAsURLEncodedForm<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C? where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredRequestBodyAsURLEncodedForm<T, C>(_ type: T.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: (T) -> C) async throws -> C where T : Swift.Decodable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func getRequiredRequestBodyAsMultipart<C, Part>(_ type: CandleOpenAPIRuntime.MultipartBody<Part>.Type, from data: CandleOpenAPIRuntime.HTTPBody?, transforming transform: @escaping @Sendable (CandleOpenAPIRuntime.MultipartBody<Part>) throws -> C, boundary: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, decoding decoder: @escaping @Sendable (CandleOpenAPIRuntime.MultipartRawPart) async throws -> Part) throws -> C where Part : Swift.Sendable
+  #endif
+  @_spi(Generated) public func setResponseBodyAsJSON<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setResponseBodyAsXML<T>(_ value: T, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody where T : Swift.Encodable
+  @_spi(Generated) public func setResponseBodyAsBinary(_ value: CandleOpenAPIRuntime.HTTPBody, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String) throws -> CandleOpenAPIRuntime.HTTPBody
+  @_spi(Generated) public func setResponseBodyAsMultipart<Part>(_ value: CandleOpenAPIRuntime.MultipartBody<Part>, headerFields: inout CandleHTTPTypes.HTTPFields, contentType: Swift.String, allowsUnknownParts: Swift.Bool, requiredExactlyOncePartNames: Swift.Set<Swift.String>, requiredAtLeastOncePartNames: Swift.Set<Swift.String>, atMostOncePartNames: Swift.Set<Swift.String>, zeroOrMoreTimesPartNames: Swift.Set<Swift.String>, encoding encode: @escaping @Sendable (Part) throws -> CandleOpenAPIRuntime.MultipartRawPart) throws -> CandleOpenAPIRuntime.HTTPBody where Part : Swift.Sendable
+}
+@_spi(Generated) public struct Converter : Swift.Sendable {
+  @_spi(Generated) public let configuration: CandleOpenAPIRuntime.Configuration
+  @_spi(Generated) public init(configuration: CandleOpenAPIRuntime.Configuration)
+}
+extension Swift.DecodingError {
+  @_spi(Generated) public static func failedToDecodeOneOfSchema(type: any Any.Type, codingPath: [any Swift.CodingKey], errors: [any Swift.Error]) -> Swift.DecodingError
+  @_spi(Generated) public static func unknownOneOfDiscriminator(discriminatorKey: any Swift.CodingKey, discriminatorValue: Swift.String, codingPath: [any Swift.CodingKey]) -> Swift.DecodingError
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public static func verifyAtLeastOneSchemaIsNotNil(_ values: [Any?], type: any Any.Type, codingPath: [any Swift.CodingKey], errors: [any Swift.Error]) throws
+  #endif
+}
+@_spi(Generated) public enum ParameterStyle : Swift.Sendable {
+  @_spi(Generated) case form
+  @_spi(Generated) case simple
+  @_spi(Generated) case deepObject
+  @_spi(Generated) public static func == (a: CandleOpenAPIRuntime.ParameterStyle, b: CandleOpenAPIRuntime.ParameterStyle) -> Swift.Bool
+  @_spi(Generated) public func hash(into hasher: inout Swift.Hasher)
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+extension Foundation.URL {
+  @_spi(Generated) public init(validatingOpenAPIServerURL string: Swift.String, variables: [CandleOpenAPIRuntime.ServerVariable]) throws
+}
+@_spi(Generated) public struct ServerVariable : Swift.Sendable, Swift.Hashable {
+  @_spi(Generated) public var name: Swift.String
+  @_spi(Generated) public var value: Swift.String
+  @_spi(Generated) public var allowedValues: [Swift.String]?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public init(name: Swift.String, value: Swift.String, allowedValues: [Swift.String]? = nil)
+  #endif
+  @_spi(Generated) public static func == (a: CandleOpenAPIRuntime.ServerVariable, b: CandleOpenAPIRuntime.ServerVariable) -> Swift.Bool
+  @_spi(Generated) public func hash(into hasher: inout Swift.Hasher)
+  @_spi(Generated) public var hashValue: Swift.Int {
+    @_spi(Generated) get
+  }
+}
+extension Foundation.URL {
+  public static let defaultOpenAPIServerURL: Foundation.URL
+  public init(validatingOpenAPIServerURL string: Swift.String) throws
+}
+extension CandleOpenAPIRuntime.UndocumentedPayload {
+  @available(*, deprecated, renamed: "init(headerFields:body:)")
+  @_disfavoredOverload public init()
+}
+extension CandleOpenAPIRuntime.Configuration {
+  @available(*, deprecated, renamed: "init(dateTranscoder:multipartBoundaryGenerator:xmlCoder:)")
+  @_disfavoredOverload public init(dateTranscoder: any CandleOpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any CandleOpenAPIRuntime.MultipartBoundaryGenerator = .random)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "init(dateTranscoder:jsonEncodingOptions:multipartBoundaryGenerator:xmlCoder:)")
+  @_disfavoredOverload public init(dateTranscoder: any CandleOpenAPIRuntime.DateTranscoder = .iso8601, multipartBoundaryGenerator: any CandleOpenAPIRuntime.MultipartBoundaryGenerator = .random, xmlCoder: (any CandleOpenAPIRuntime.CustomCoder)? = nil)
+  #endif
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  @available(*, deprecated, renamed: "asDecodedServerSentEvents(while:)")
+  @_disfavoredOverload public func asDecodedServerSentEvents() -> CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>
+  @available(*, deprecated, renamed: "asDecodedServerSentEventsWithJSONData(of:decoder:while:)")
+  @_disfavoredOverload public func asDecodedServerSentEventsWithJSONData<JSONDataType>(of dataType: JSONDataType.Type = JSONDataType.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>, CandleOpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>> where JSONDataType : Swift.Decodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable
+}
+extension CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence {
+  @available(*, deprecated, renamed: "init(upstream:while:)")
+  @_disfavoredOverload public init(upstream: Upstream)
+}
+public struct ClientError : Swift.Error {
+  public var operationID: Swift.String
+  public var operationInput: any Swift.Sendable
+  public var request: CandleHTTPTypes.HTTPRequest?
+  public var requestBody: CandleOpenAPIRuntime.HTTPBody?
+  public var baseURL: Foundation.URL?
+  public var response: CandleHTTPTypes.HTTPResponse?
+  public var responseBody: CandleOpenAPIRuntime.HTTPBody?
+  public var causeDescription: Swift.String
+  public var underlyingError: any Swift.Error
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(operationID: Swift.String, operationInput: any Swift.Sendable, request: CandleHTTPTypes.HTTPRequest? = nil, requestBody: CandleOpenAPIRuntime.HTTPBody? = nil, baseURL: Foundation.URL? = nil, response: CandleHTTPTypes.HTTPResponse? = nil, responseBody: CandleOpenAPIRuntime.HTTPBody? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+  #endif
+}
+extension CandleOpenAPIRuntime.ClientError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.ClientError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+}
+@_spi(Generated) public func throwUnexpectedResponseStatus(expectedStatus: Swift.String, response: any Swift.Sendable) throws -> Swift.Never
+@_spi(Generated) public func throwUnexpectedResponseBody(expectedContent: Swift.String, body: any Swift.Sendable) throws -> Swift.Never
+public struct ServerError : Swift.Error {
+  public var operationID: Swift.String
+  public var request: CandleHTTPTypes.HTTPRequest
+  public var requestBody: CandleOpenAPIRuntime.HTTPBody?
+  public var requestMetadata: CandleOpenAPIRuntime.ServerRequestMetadata
+  public var operationInput: (any Swift.Sendable)?
+  public var operationOutput: (any Swift.Sendable)?
+  public var causeDescription: Swift.String
+  public var underlyingError: any Swift.Error
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(operationID: Swift.String, request: CandleHTTPTypes.HTTPRequest, requestBody: CandleOpenAPIRuntime.HTTPBody?, requestMetadata: CandleOpenAPIRuntime.ServerRequestMetadata, operationInput: (any Swift.Sendable)? = nil, operationOutput: (any Swift.Sendable)? = nil, causeDescription: Swift.String, underlyingError: any Swift.Error)
+  #endif
+}
+extension CandleOpenAPIRuntime.ServerError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.ServerError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+}
+public struct JSONLinesDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.JSONLinesDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.JSONLinesDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedJSONLines<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<CandleOpenAPIRuntime.JSONLinesDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
+}
+public struct JSONLinesSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.JSONLinesSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.JSONLinesSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
+  public func asEncodedJSONLines(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> CandleOpenAPIRuntime.JSONLinesSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, Swift.ArraySlice<Swift.UInt8>>>
+}
+public struct JSONSequenceDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.JSONSequenceDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.JSONSequenceDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence where Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedJSONSequence<Event>(of eventType: Event.Type = Event.self, decoder: Foundation.JSONDecoder = .init()) -> _Concurrency.AsyncThrowingMapSequence<CandleOpenAPIRuntime.JSONSequenceDeserializationSequence<Self>, Event> where Self : Swift.Sendable, Event : Swift.Decodable
+}
+public struct JSONSequenceSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.JSONSequenceSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.JSONSequenceSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element : Swift.Encodable, Self.Element : Swift.Sendable {
+  public func asEncodedJSONSequence(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> CandleOpenAPIRuntime.JSONSequenceSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, Swift.ArraySlice<Swift.UInt8>>>
+}
+public struct ServerSentEventWithJSONData<JSONDataType> : Swift.Sendable, Swift.Hashable where JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable {
+  public var event: Swift.String?
+  public var data: JSONDataType?
+  public var id: Swift.String?
+  public var retry: Swift.Int64?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(event: Swift.String? = nil, data: JSONDataType? = nil, id: Swift.String? = nil, retry: Swift.Int64? = nil)
+  #endif
+  public static func == (a: CandleOpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>, b: CandleOpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ServerSentEvent : Swift.Sendable, Swift.Hashable {
+  public var id: Swift.String?
+  public var event: Swift.String?
+  public var data: Swift.String?
+  public var retry: Swift.Int64?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(id: Swift.String? = nil, event: Swift.String? = nil, data: Swift.String? = nil, retry: Swift.Int64? = nil)
+  #endif
+  public static func == (a: CandleOpenAPIRuntime.ServerSentEvent, b: CandleOpenAPIRuntime.ServerSentEvent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ServerSentEventsDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream, while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool)
+}
+extension CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = CandleOpenAPIRuntime.ServerSentEvent
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> CandleOpenAPIRuntime.ServerSentEvent?
+    #endif
+    public typealias Element = CandleOpenAPIRuntime.ServerSentEvent
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence where Self : Swift.Sendable, Self.Element == Swift.ArraySlice<Swift.UInt8> {
+  public func asDecodedServerSentEvents(while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool = { _ in true }) -> CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>
+  public func asDecodedServerSentEventsWithJSONData<JSONDataType>(of dataType: JSONDataType.Type = JSONDataType.self, decoder: Foundation.JSONDecoder = .init(), while predicate: @escaping @Sendable (Swift.ArraySlice<Swift.UInt8>) -> Swift.Bool = { _ in true }) -> _Concurrency.AsyncThrowingMapSequence<CandleOpenAPIRuntime.ServerSentEventsDeserializationSequence<CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Self>>, CandleOpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>> where JSONDataType : Swift.Decodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable
+}
+public struct ServerSentEventsLineDeserializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == Swift.ArraySlice<Swift.UInt8> {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == Swift.ArraySlice<Swift.UInt8> {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.ServerSentEventsLineDeserializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+public struct ServerSentEventsSerializationSequence<Upstream> : Swift.Sendable where Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence, Upstream.Element == CandleOpenAPIRuntime.ServerSentEvent {
+  public init(upstream: Upstream)
+}
+extension CandleOpenAPIRuntime.ServerSentEventsSerializationSequence : _Concurrency.AsyncSequence {
+  public typealias Element = Swift.ArraySlice<Swift.UInt8>
+  public struct Iterator<UpstreamIterator> : _Concurrency.AsyncIteratorProtocol where UpstreamIterator : _Concurrency.AsyncIteratorProtocol, UpstreamIterator.Element == CandleOpenAPIRuntime.ServerSentEvent {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> Swift.ArraySlice<Swift.UInt8>?
+    #endif
+    public typealias Element = Swift.ArraySlice<Swift.UInt8>
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  public func makeAsyncIterator() -> CandleOpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  public typealias AsyncIterator = CandleOpenAPIRuntime.ServerSentEventsSerializationSequence<Upstream>.Iterator<Upstream.AsyncIterator>
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension _Concurrency.AsyncSequence {
+  public func asEncodedServerSentEvents() -> CandleOpenAPIRuntime.ServerSentEventsSerializationSequence<Self> where Self : Swift.Sendable, Self.Element == CandleOpenAPIRuntime.ServerSentEvent
+  public func asEncodedServerSentEventsWithJSONData<JSONDataType>(encoder: Foundation.JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+            return encoder
+        }()) -> CandleOpenAPIRuntime.ServerSentEventsSerializationSequence<_Concurrency.AsyncThrowingMapSequence<Self, CandleOpenAPIRuntime.ServerSentEvent>> where Self : Swift.Sendable, JSONDataType : Swift.Encodable, JSONDataType : Swift.Hashable, JSONDataType : Swift.Sendable, Self.Element == CandleOpenAPIRuntime.ServerSentEventWithJSONData<JSONDataType>
+}
+public enum IterationBehavior : Swift.Sendable {
+  case single
+  case multiple
+  public static func == (a: CandleOpenAPIRuntime.IterationBehavior, b: CandleOpenAPIRuntime.IterationBehavior) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@usableFromInline
+internal struct AnyIterator<Element> : _Concurrency.AsyncIteratorProtocol where Element : Swift.Sendable {
+  @usableFromInline
+  internal init<Iterator>(_ iterator: Iterator) where Element == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func next() async throws -> Element?
+  #endif
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+}
+@usableFromInline
+internal struct AnySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = CandleOpenAPIRuntime.AnyIterator<Element>
+  @usableFromInline
+  internal let produceIterator: @Sendable () -> CandleOpenAPIRuntime.AnySequence<Element>.AsyncIterator
+  @usableFromInline
+  internal init<Upstream>(_ sequence: Upstream) where Element == Upstream.Element, Upstream : Swift.Sendable, Upstream : _Concurrency.AsyncSequence
+  @usableFromInline
+  internal func makeAsyncIterator() -> CandleOpenAPIRuntime.AnySequence<Element>.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+}
+@usableFromInline
+internal struct WrappedSyncSequence<Upstream> : _Concurrency.AsyncSequence, Swift.Sendable where Upstream : Swift.Sendable, Upstream : Swift.Sequence, Upstream.Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = CandleOpenAPIRuntime.WrappedSyncSequence<Upstream>.Iterator<CandleOpenAPIRuntime.WrappedSyncSequence<Upstream>.Element>
+  @usableFromInline
+  internal typealias Element = Upstream.Element
+  @usableFromInline
+  internal struct Iterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
+    @usableFromInline
+    internal typealias Element = IteratorElement
+    #if compiler(>=5.3) && $NonescapableTypes
+    @usableFromInline
+    internal mutating func next() async throws -> IteratorElement?
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @usableFromInline
+  internal let sequence: Upstream
+  @usableFromInline
+  internal init(sequence: Upstream)
+  @usableFromInline
+  internal func makeAsyncIterator() -> CandleOpenAPIRuntime.WrappedSyncSequence<Upstream>.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+}
+@usableFromInline
+internal struct EmptySequence<Element> : _Concurrency.AsyncSequence, Swift.Sendable where Element : Swift.Sendable {
+  @usableFromInline
+  internal typealias AsyncIterator = CandleOpenAPIRuntime.EmptySequence<Element>.EmptyIterator<Element>
+  @usableFromInline
+  internal struct EmptyIterator<IteratorElement> : _Concurrency.AsyncIteratorProtocol where IteratorElement : Swift.Sendable {
+    #if compiler(>=5.3) && $NonescapableTypes
+    @usableFromInline
+    internal mutating func next() async throws -> IteratorElement?
+    #endif
+    @usableFromInline
+    internal typealias Element = IteratorElement
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @usableFromInline
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) internal typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+  @usableFromInline
+  internal init()
+  @usableFromInline
+  internal func makeAsyncIterator() -> CandleOpenAPIRuntime.EmptySequence<Element>.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @usableFromInline
+  @_implements(_Concurrency.AsyncSequence, Failure) internal typealias __AsyncSequence_Failure = any Swift.Error
+}
+public protocol ClientTransport : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func send(_ request: CandleHTTPTypes.HTTPRequest, body: CandleOpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)
+  #endif
+}
+public protocol ClientMiddleware : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func intercept(_ request: CandleHTTPTypes.HTTPRequest, body: CandleOpenAPIRuntime.HTTPBody?, baseURL: Foundation.URL, operationID: Swift.String, next: @Sendable (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?, Foundation.URL) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)
+  #endif
+}
+public struct ServerRequestMetadata : Swift.Hashable, Swift.Sendable {
+  public var pathParameters: [Swift.String : Swift.Substring]
+  public init(pathParameters: [Swift.String : Swift.Substring] = [:])
+  public static func == (a: CandleOpenAPIRuntime.ServerRequestMetadata, b: CandleOpenAPIRuntime.ServerRequestMetadata) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleHTTPTypes.HTTPRequest {
+  @_spi(Generated) public init(soar_path path: Swift.String, method: CandleHTTPTypes.HTTPRequest.Method, headerFields: CandleHTTPTypes.HTTPFields = .init())
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public var soar_query: Swift.Substring? {
+    @_spi(Generated) get
+  }
+  #endif
+  @_spi(Generated) public var soar_pathOnly: Swift.Substring {
+    @_spi(Generated) get
+  }
+}
+extension CandleHTTPTypes.HTTPResponse {
+  @_spi(Generated) public init(soar_statusCode statusCode: Swift.Int)
+}
+extension CandleOpenAPIRuntime.ServerRequestMetadata : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct ErrorHandlingMiddleware : CandleOpenAPIRuntime.ServerMiddleware {
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func intercept(_ request: CandleHTTPTypes.HTTPRequest, body: CandleOpenAPIRuntime.HTTPBody?, metadata: CandleOpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?, CandleOpenAPIRuntime.ServerRequestMetadata) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)
+  #endif
+}
+public protocol HTTPResponseConvertible {
+  var httpStatus: CandleHTTPTypes.HTTPResponse.Status { get }
+  var httpHeaderFields: CandleHTTPTypes.HTTPFields { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  var httpBody: CandleOpenAPIRuntime.HTTPBody? { get }
+  #endif
+}
+extension CandleOpenAPIRuntime.HTTPResponseConvertible {
+  public var httpHeaderFields: CandleHTTPTypes.HTTPFields {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var httpBody: CandleOpenAPIRuntime.HTTPBody? {
+    get
+  }
+  #endif
+}
+final public class HTTPBody : @unchecked Swift.Sendable {
+  public typealias ByteChunk = Swift.ArraySlice<Swift.UInt8>
+  final public let iterationBehavior: CandleOpenAPIRuntime.IterationBehavior
+  public enum Length : Swift.Sendable, Swift.Equatable {
+    case unknown
+    case known(Swift.Int64)
+    public static func == (a: CandleOpenAPIRuntime.HTTPBody.Length, b: CandleOpenAPIRuntime.HTTPBody.Length) -> Swift.Bool
+  }
+  final public let length: CandleOpenAPIRuntime.HTTPBody.Length
+  @usableFromInline
+  internal init(_ sequence: CandleOpenAPIRuntime.AnySequence<CandleOpenAPIRuntime.HTTPBody.ByteChunk>, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior)
+  @usableFromInline
+  convenience internal init(_ byteChunks: some Sequence<ByteChunk> & Sendable, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior)
+  @objc deinit
+}
+extension CandleOpenAPIRuntime.HTTPBody : Swift.Equatable {
+  public static func == (lhs: CandleOpenAPIRuntime.HTTPBody, rhs: CandleOpenAPIRuntime.HTTPBody) -> Swift.Bool
+}
+extension CandleOpenAPIRuntime.HTTPBody : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init() {
+        self.init(.init(EmptySequence()), length: .known(0), iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: CandleOpenAPIRuntime.HTTPBody.ByteChunk, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init([bytes], length: length, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: CandleOpenAPIRuntime.HTTPBody.ByteChunk) {
+        self.init([bytes], length: .known(Int64(bytes.count)), iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: some Sequence<UInt8> & Sendable, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior) { self.init([ArraySlice(bytes)], length: length, iterationBehavior: iterationBehavior) }
+  @inlinable convenience public init(_ bytes: some Collection<UInt8> & Sendable, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init(ArraySlice(bytes), length: length, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ bytes: some Collection<UInt8> & Sendable) {
+        self.init(bytes, length: .known(Int64(bytes.count)))
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<CandleOpenAPIRuntime.HTTPBody.ByteChunk, any Swift.Error>, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<CandleOpenAPIRuntime.HTTPBody.ByteChunk>, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init<Bytes>(_ sequence: Bytes, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior) where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element == Swift.ArraySlice<Swift.UInt8> {
+        self.init(.init(sequence), length: length, iterationBehavior: iterationBehavior)
+    }
+  @inlinable convenience public init<Bytes>(_ sequence: Bytes, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior) where Bytes : Swift.Sendable, Bytes : _Concurrency.AsyncSequence, Bytes.Element : Swift.Sendable, Bytes.Element : Swift.Sequence, Bytes.Element.Element == Swift.UInt8 {
+        self.init(sequence.map { ArraySlice($0) }, length: length, iterationBehavior: iterationBehavior)
+    }
+}
+extension CandleOpenAPIRuntime.HTTPBody : _Concurrency.AsyncSequence {
+  public typealias Element = CandleOpenAPIRuntime.HTTPBody.ByteChunk
+  public typealias AsyncIterator = CandleOpenAPIRuntime.HTTPBody.Iterator
+  final public func makeAsyncIterator() -> CandleOpenAPIRuntime.HTTPBody.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension Swift.ArraySlice where Element == Swift.UInt8 {
+  public init(collecting body: CandleOpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension Swift.Array where Element == Swift.UInt8 {
+  public init(collecting body: CandleOpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension CandleOpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init(_ string: some StringProtocol & Sendable, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init(ByteChunk(string), length: length)
+    }
+  @inlinable convenience public init(_ string: some StringProtocol & Sendable) { self.init(ByteChunk(string)) }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<some StringProtocol & Sendable, any Swift.Error>, length: CandleOpenAPIRuntime.HTTPBody.Length) { self.init(.init(stream.map { ByteChunk.init($0) }), length: length, iterationBehavior: .single) }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<some StringProtocol & Sendable>, length: CandleOpenAPIRuntime.HTTPBody.Length) {
+        self.init(.init(stream.map { ByteChunk.init($0) }), length: length, iterationBehavior: .single)
+    }
+  @inlinable convenience public init<Strings>(_ sequence: Strings, length: CandleOpenAPIRuntime.HTTPBody.Length, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior) where Strings : Swift.Sendable, Strings : _Concurrency.AsyncSequence, Strings.Element : Swift.Sendable, Strings.Element : Swift.StringProtocol {
+        self.init(.init(sequence.map { ByteChunk.init($0) }), length: length, iterationBehavior: iterationBehavior)
+    }
+}
+extension Swift.ArraySlice where Element == Swift.UInt8 {
+  @inlinable internal init(_ string: some StringProtocol & Sendable) { self = Array(string.utf8)[...] }
+}
+extension Swift.String {
+  public init(collecting body: CandleOpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension CandleOpenAPIRuntime.HTTPBody : Swift.ExpressibleByStringLiteral {
+  convenience public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension CandleOpenAPIRuntime.HTTPBody {
+  @inlinable convenience public init(_ bytes: [Swift.UInt8]) { self.init(bytes[...]) }
+}
+extension CandleOpenAPIRuntime.HTTPBody : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = Swift.UInt8
+  convenience public init(arrayLiteral elements: Swift.UInt8...)
+}
+extension CandleOpenAPIRuntime.HTTPBody {
+  convenience public init(_ data: Foundation.Data)
+}
+extension Foundation.Data {
+  public init(collecting body: CandleOpenAPIRuntime.HTTPBody, upTo maxBytes: Swift.Int) async throws
+}
+extension CandleOpenAPIRuntime.HTTPBody {
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    public typealias Element = CandleOpenAPIRuntime.HTTPBody.ByteChunk
+    @usableFromInline
+    internal init<Iterator>(_ iterator: Iterator) where Iterator : _Concurrency.AsyncIteratorProtocol, Iterator.Element == Swift.ArraySlice<Swift.UInt8>
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> CandleOpenAPIRuntime.HTTPBody.Iterator.Element?
+    #endif
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+}
+public protocol ServerTransport {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func register(_ handler: @escaping @Sendable (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?, CandleOpenAPIRuntime.ServerRequestMetadata) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?), method: CandleHTTPTypes.HTTPRequest.Method, path: Swift.String) throws
+  #endif
+}
+public protocol ServerMiddleware : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func intercept(_ request: CandleHTTPTypes.HTTPRequest, body: CandleOpenAPIRuntime.HTTPBody?, metadata: CandleOpenAPIRuntime.ServerRequestMetadata, operationID: Swift.String, next: @Sendable (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?, CandleOpenAPIRuntime.ServerRequestMetadata) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)
+  #endif
+}
+@_spi(Generated) public struct UniversalClient : Swift.Sendable {
+  @_spi(Generated) public let serverURL: Foundation.URL
+  @_spi(Generated) public let converter: CandleOpenAPIRuntime.Converter
+  @_spi(Generated) public var transport: any CandleOpenAPIRuntime.ClientTransport
+  @_spi(Generated) public var middlewares: [any CandleOpenAPIRuntime.ClientMiddleware]
+  @_spi(Generated) public init(serverURL: Foundation.URL = .defaultOpenAPIServerURL, configuration: CandleOpenAPIRuntime.Configuration = .init(), transport: any CandleOpenAPIRuntime.ClientTransport, middlewares: [any CandleOpenAPIRuntime.ClientMiddleware] = [])
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func send<OperationInput, OperationOutput>(input: OperationInput, forOperation operationID: Swift.String, serializer: @Sendable (OperationInput) throws -> (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?), deserializer: @Sendable (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?) async throws -> OperationOutput) async throws -> OperationOutput where OperationInput : Swift.Sendable, OperationOutput : Swift.Sendable
+  #endif
+}
+@_spi(Generated) public struct UniversalServer<APIHandler> : Swift.Sendable where APIHandler : Swift.Sendable {
+  @_spi(Generated) public var serverURL: Foundation.URL
+  @_spi(Generated) public var converter: CandleOpenAPIRuntime.Converter
+  @_spi(Generated) public var handler: APIHandler
+  @_spi(Generated) public var middlewares: [any CandleOpenAPIRuntime.ServerMiddleware]
+  @_spi(Generated) public init(serverURL: Foundation.URL = .defaultOpenAPIServerURL, handler: APIHandler, configuration: CandleOpenAPIRuntime.Configuration = .init(), middlewares: [any CandleOpenAPIRuntime.ServerMiddleware] = [])
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(Generated) public func handle<OperationInput, OperationOutput>(request: CandleHTTPTypes.HTTPRequest, requestBody: CandleOpenAPIRuntime.HTTPBody?, metadata: CandleOpenAPIRuntime.ServerRequestMetadata, forOperation operationID: Swift.String, using handlerMethod: @escaping @Sendable (APIHandler) -> (OperationInput) async throws -> OperationOutput, deserializer: @escaping @Sendable (CandleHTTPTypes.HTTPRequest, CandleOpenAPIRuntime.HTTPBody?, CandleOpenAPIRuntime.ServerRequestMetadata) async throws -> OperationInput, serializer: @escaping @Sendable (OperationOutput, CandleHTTPTypes.HTTPRequest) throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?)) async throws -> (CandleHTTPTypes.HTTPResponse, CandleOpenAPIRuntime.HTTPBody?) where OperationInput : Swift.Sendable, OperationOutput : Swift.Sendable
+  #endif
+  @_spi(Generated) public func apiPathComponentsWithServerPrefix(_ path: Swift.String) throws -> Swift.String
+}
+public protocol MultipartBoundaryGenerator : Swift.Sendable {
+  func makeBoundary() -> Swift.String
+}
+extension CandleOpenAPIRuntime.MultipartBoundaryGenerator where Self == CandleOpenAPIRuntime.ConstantMultipartBoundaryGenerator {
+  public static var constant: CandleOpenAPIRuntime.ConstantMultipartBoundaryGenerator {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.MultipartBoundaryGenerator where Self == CandleOpenAPIRuntime.RandomMultipartBoundaryGenerator {
+  public static var random: CandleOpenAPIRuntime.RandomMultipartBoundaryGenerator {
+    get
+  }
+}
+public struct ConstantMultipartBoundaryGenerator : CandleOpenAPIRuntime.MultipartBoundaryGenerator {
+  public let boundary: Swift.String
+  public init(boundary: Swift.String = "__X_SWIFT_OPENAPI_GENERATOR_BOUNDARY__")
+  public func makeBoundary() -> Swift.String
+}
+public struct RandomMultipartBoundaryGenerator : CandleOpenAPIRuntime.MultipartBoundaryGenerator {
+  public let boundaryPrefix: Swift.String
+  public let randomNumberSuffixLength: Swift.Int
+  public init(boundaryPrefix: Swift.String = "__X_SWIFT_OPENAPI_", randomNumberSuffixLength: Swift.Int = 20)
+  public func makeBoundary() -> Swift.String
+}
+public struct MultipartRawPart : Swift.Sendable, Swift.Hashable {
+  public var headerFields: CandleHTTPTypes.HTTPFields
+  public var body: CandleOpenAPIRuntime.HTTPBody
+  public init(headerFields: CandleHTTPTypes.HTTPFields, body: CandleOpenAPIRuntime.HTTPBody)
+  public static func == (a: CandleOpenAPIRuntime.MultipartRawPart, b: CandleOpenAPIRuntime.MultipartRawPart) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct MultipartPart<Payload> : Swift.Sendable, Swift.Hashable where Payload : Swift.Hashable, Payload : Swift.Sendable {
+  public var payload: Payload
+  public var filename: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(payload: Payload, filename: Swift.String? = nil)
+  #endif
+  public static func == (a: CandleOpenAPIRuntime.MultipartPart<Payload>, b: CandleOpenAPIRuntime.MultipartPart<Payload>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct MultipartDynamicallyNamedPart<Payload> : Swift.Sendable, Swift.Hashable where Payload : Swift.Hashable, Payload : Swift.Sendable {
+  public var payload: Payload
+  public var filename: Swift.String?
+  public var name: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(payload: Payload, filename: Swift.String? = nil, name: Swift.String? = nil)
+  #endif
+  public static func == (a: CandleOpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>, b: CandleOpenAPIRuntime.MultipartDynamicallyNamedPart<Payload>) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class MultipartBody<Part> : @unchecked Swift.Sendable where Part : Swift.Sendable {
+  final public let iterationBehavior: CandleOpenAPIRuntime.IterationBehavior
+  @usableFromInline
+  internal init(_ sequence: CandleOpenAPIRuntime.AnySequence<Part>, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior)
+  @objc deinit
+}
+extension CandleOpenAPIRuntime.MultipartBody : Swift.Equatable {
+  public static func == (lhs: CandleOpenAPIRuntime.MultipartBody<Part>, rhs: CandleOpenAPIRuntime.MultipartBody<Part>) -> Swift.Bool
+}
+extension CandleOpenAPIRuntime.MultipartBody : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleOpenAPIRuntime.MultipartBody {
+  @inlinable convenience public init<Input>(_ sequence: Input, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior) where Part == Input.Element, Input : Swift.Sendable, Input : _Concurrency.AsyncSequence { self.init(.init(sequence), iterationBehavior: iterationBehavior) }
+  @usableFromInline
+  convenience internal init(_ elements: some Sequence<Element> & Sendable, iterationBehavior: CandleOpenAPIRuntime.IterationBehavior)
+  @inlinable convenience public init(_ elements: some Collection<Element> & Sendable) {
+        self.init(elements, iterationBehavior: .multiple)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncThrowingStream<CandleOpenAPIRuntime.MultipartBody<Part>.Element, any Swift.Error>) {
+        self.init(.init(stream), iterationBehavior: .single)
+    }
+  @inlinable convenience public init(_ stream: _Concurrency.AsyncStream<CandleOpenAPIRuntime.MultipartBody<Part>.Element>) {
+        self.init(.init(stream), iterationBehavior: .single)
+    }
+}
+extension CandleOpenAPIRuntime.MultipartBody : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = CandleOpenAPIRuntime.MultipartBody<Part>.Element
+  convenience public init(arrayLiteral elements: CandleOpenAPIRuntime.MultipartBody<Part>.Element...)
+}
+extension CandleOpenAPIRuntime.MultipartBody : _Concurrency.AsyncSequence {
+  public typealias Element = Part
+  public typealias AsyncIterator = CandleOpenAPIRuntime.MultipartBody<Part>.Iterator
+  final public func makeAsyncIterator() -> CandleOpenAPIRuntime.MultipartBody<Part>.AsyncIterator
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = any Swift.Error
+}
+extension CandleOpenAPIRuntime.MultipartBody {
+  public struct Iterator : _Concurrency.AsyncIteratorProtocol {
+    @usableFromInline
+    internal init<Iterator>(_ iterator: Iterator) where Part == Iterator.Element, Iterator : _Concurrency.AsyncIteratorProtocol
+    #if compiler(>=5.3) && $NonescapableTypes
+    public mutating func next() async throws -> CandleOpenAPIRuntime.MultipartBody<Part>.Element?
+    #endif
+    public typealias Element = CandleOpenAPIRuntime.MultipartBody<Part>.Element
+    @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+    @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = any Swift.Error
+  }
+}
+extension CandleOpenAPIRuntime.MultipartRawPart {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(name: Swift.String?, filename: Swift.String? = nil, headerFields: CandleHTTPTypes.HTTPFields, body: CandleOpenAPIRuntime.HTTPBody)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var name: Swift.String? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var filename: Swift.String? {
+    get
+    set
+  }
+  #endif
+}
+#if compiler(>=5.3) && $NonescapableTypes
+@_spi(Generated) extension Swift.Optional where Wrapped == CandleOpenAPIRuntime.OpenAPIMIMEType {
+  @_spi(Generated) public func requiredBoundary() throws -> Swift.String
+}
+#endif
+@_spi(Generated) extension CandleOpenAPIRuntime.ParameterStyle : Swift.Equatable {}
+@_spi(Generated) extension CandleOpenAPIRuntime.ParameterStyle : Swift.Hashable {}
+extension CandleOpenAPIRuntime.IterationBehavior : Swift.Equatable {}
+extension CandleOpenAPIRuntime.IterationBehavior : Swift.Hashable {}

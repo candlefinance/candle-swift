@@ -1,0 +1,6 @@
+framework module CandleNIOFoundationCompat {
+    header "CandleNIOFoundationCompat-Swift.h"
+    export *
+    link framework "CandleNIO"
+    link framework "CandleNIOCore"
+}

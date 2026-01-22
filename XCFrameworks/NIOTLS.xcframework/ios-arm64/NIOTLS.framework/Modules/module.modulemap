@@ -1,6 +1,0 @@
-framework module NIOTLS {
-    header "NIOTLS-Swift.h"
-    export *
-    link framework "NIO"
-    link framework "NIOCore"
-}

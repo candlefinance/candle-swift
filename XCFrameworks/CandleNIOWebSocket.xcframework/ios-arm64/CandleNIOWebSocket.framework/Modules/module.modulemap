@@ -1,0 +1,9 @@
+framework module CandleNIOWebSocket {
+    header "CandleNIOWebSocket-Swift.h"
+    export *
+    link framework "CandleNIO"
+    link framework "CandleNIOCore"
+    link framework "CandleNIOHTTP1"
+    link framework "CandleCNIOSHA1"
+    link framework "Candle_NIOBase64"
+}

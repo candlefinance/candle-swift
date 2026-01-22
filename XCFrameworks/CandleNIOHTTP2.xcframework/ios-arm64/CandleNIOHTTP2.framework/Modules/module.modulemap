@@ -1,0 +1,5 @@
+framework module CandleNIOHTTP2 {
+    header "CandleNIOHTTP2-Swift.h"
+    export *
+    link framework "CandleNIOHPACK"
+}

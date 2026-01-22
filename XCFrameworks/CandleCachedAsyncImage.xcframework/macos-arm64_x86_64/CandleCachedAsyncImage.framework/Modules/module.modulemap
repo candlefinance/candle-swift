@@ -1,0 +1,4 @@
+framework module CandleCachedAsyncImage {
+    header "CandleCachedAsyncImage-Swift.h"
+    export *
+}

@@ -1,0 +1,5 @@
+framework module CandleNIOHTTPCompression {
+    header "CandleNIOHTTPCompression-Swift.h"
+    export *
+    link framework "CandleCNIOExtrasZlib"
+}

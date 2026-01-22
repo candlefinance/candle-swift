@@ -1,0 +1,70 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-macos10.13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOTLS -package-name candle_swift_nio
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleDequeModule
+import CandleNIOCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum ALPNResult : Swift.Equatable, Swift.Sendable {
+  case negotiated(Swift.String)
+  case fallback
+  public static func == (a: CandleNIOTLS.ALPNResult, b: CandleNIOTLS.ALPNResult) -> Swift.Bool
+}
+final public class ApplicationProtocolNegotiationHandler : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = Any
+  public typealias InboundOut = Any
+  public init(alpnCompleteHandler: @escaping (CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  convenience public init(alpnCompleteHandler: @escaping (CandleNIOTLS.ALPNResult) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  final public func userInboundEventTriggered(context: CandleNIOCore.ChannelHandlerContext, event: Any)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func channelInactive(context: CandleNIOCore.ChannelHandlerContext)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTLS.ApplicationProtocolNegotiationHandler : Swift.Sendable {
+}
+@preconcurrency final public class NIOTypedApplicationProtocolNegotiationHandler<NegotiationResult> : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.RemovableChannelHandler where NegotiationResult : Swift.Sendable {
+  public typealias InboundIn = Any
+  public typealias InboundOut = Any
+  final public var protocolNegotiationResult: CandleNIOCore.EventLoopFuture<NegotiationResult> {
+    get
+  }
+  public init(alpnCompleteHandler: @escaping (CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<NegotiationResult>)
+  convenience public init(alpnCompleteHandler: @escaping (CandleNIOTLS.ALPNResult) -> CandleNIOCore.EventLoopFuture<NegotiationResult>)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func userInboundEventTriggered(context: CandleNIOCore.ChannelHandlerContext, event: Any)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func channelInactive(context: CandleNIOCore.ChannelHandlerContext)
+  public typealias OutboundOut = Swift.Never
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTLS.NIOTypedApplicationProtocolNegotiationHandler : Swift.Sendable {
+}
+public enum SNIResult : Swift.Equatable, Swift.Sendable {
+  case fallback
+  case hostname(Swift.String)
+  public static func == (a: CandleNIOTLS.SNIResult, b: CandleNIOTLS.SNIResult) -> Swift.Bool
+}
+final public class SNIHandler : CandleNIOCore.ByteToMessageDecoder {
+  final public var cumulationBuffer: Swift.Optional<CandleNIOCore.ByteBuffer>
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOCore.ByteBuffer
+  public init(sniCompleteHandler: @escaping (CandleNIOTLS.SNIResult) -> CandleNIOCore.EventLoopFuture<Swift.Void>)
+  final public func decodeLast(context: CandleNIOCore.ChannelHandlerContext, buffer: inout CandleNIOCore.ByteBuffer, seenEOF: Swift.Bool) throws -> CandleNIOCore.DecodingState
+  final public func decode(context: CandleNIOCore.ChannelHandlerContext, buffer: inout CandleNIOCore.ByteBuffer) -> CandleNIOCore.DecodingState
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOTLS.SNIHandler : Swift.Sendable {
+}
+public enum TLSUserEvent : Swift.Equatable, Swift.Sendable {
+  case handshakeCompleted(negotiatedProtocol: Swift.String?)
+  case shutdownCompleted
+  public static func == (a: CandleNIOTLS.TLSUserEvent, b: CandleNIOTLS.TLSUserEvent) -> Swift.Bool
+}

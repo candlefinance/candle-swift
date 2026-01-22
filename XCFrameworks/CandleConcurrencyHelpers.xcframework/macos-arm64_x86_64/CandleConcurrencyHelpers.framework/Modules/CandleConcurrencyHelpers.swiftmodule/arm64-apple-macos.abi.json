@@ -1,0 +1,344 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleConcurrencyHelpers",
+    "printedName": "CandleConcurrencyHelpers",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Darwin",
+        "printedName": "Darwin",
+        "declKind": "Import",
+        "moduleName": "CandleConcurrencyHelpers"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Lock",
+        "printedName": "Lock",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Lock",
+                "printedName": "CandleConcurrencyHelpers.Lock",
+                "usr": "s:24CandleConcurrencyHelpers4LockV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleConcurrencyHelpers4LockVACycfc",
+            "mangledName": "$s24CandleConcurrencyHelpers4LockVACycfc",
+            "moduleName": "CandleConcurrencyHelpers",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "lock",
+            "printedName": "lock()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleConcurrencyHelpers4LockV4lockyyF",
+            "mangledName": "$s24CandleConcurrencyHelpers4LockV4lockyyF",
+            "moduleName": "CandleConcurrencyHelpers",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unlock",
+            "printedName": "unlock()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleConcurrencyHelpers4LockV6unlockyyF",
+            "mangledName": "$s24CandleConcurrencyHelpers4LockV6unlockyyF",
+            "moduleName": "CandleConcurrencyHelpers",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withLock",
+            "printedName": "withLock(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> τ_0_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleConcurrencyHelpers4LockV04withD0yxxyKXEKlF",
+            "mangledName": "$s24CandleConcurrencyHelpers4LockV04withD0yxxyKXEKlF",
+            "moduleName": "CandleConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<T>",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "withLockVoid",
+            "printedName": "withLockVoid(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() throws -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleConcurrencyHelpers4LockV04withD4VoidyyyyKXEKF",
+            "mangledName": "$s24CandleConcurrencyHelpers4LockV04withD4VoidyyyyKXEKF",
+            "moduleName": "CandleConcurrencyHelpers",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:24CandleConcurrencyHelpers4LockV",
+        "mangledName": "$s24CandleConcurrencyHelpers4LockV",
+        "moduleName": "CandleConcurrencyHelpers",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LockedValueBox",
+        "printedName": "LockedValueBox",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LockedValueBox",
+                "printedName": "CandleConcurrencyHelpers.LockedValueBox<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:24CandleConcurrencyHelpers14LockedValueBoxV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleConcurrencyHelpers14LockedValueBoxVyACyxGxcfc",
+            "mangledName": "$s24CandleConcurrencyHelpers14LockedValueBoxVyACyxGxcfc",
+            "moduleName": "CandleConcurrencyHelpers",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Value>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "withLockedValue",
+            "printedName": "withLockedValue(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(inout τ_0_0) throws -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleConcurrencyHelpers14LockedValueBoxV04withdE0yqd__qd__xzKXEKlF",
+            "mangledName": "$s24CandleConcurrencyHelpers14LockedValueBoxV04withdE0yqd__qd__xzKXEKlF",
+            "moduleName": "CandleConcurrencyHelpers",
+            "genericSig": "<τ_0_0, τ_1_0>",
+            "sugared_genericSig": "<Value, T>",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:24CandleConcurrencyHelpers14LockedValueBoxV",
+        "mangledName": "$s24CandleConcurrencyHelpers14LockedValueBoxV",
+        "moduleName": "CandleConcurrencyHelpers",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<Value>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

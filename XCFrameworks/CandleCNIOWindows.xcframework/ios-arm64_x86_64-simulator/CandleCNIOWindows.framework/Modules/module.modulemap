@@ -1,0 +1,4 @@
+framework module CandleCNIOWindows {
+  header "CNIOWindows.h"
+  export *
+}

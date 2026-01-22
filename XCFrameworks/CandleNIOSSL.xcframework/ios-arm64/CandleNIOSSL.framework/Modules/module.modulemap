@@ -1,0 +1,6 @@
+framework module CandleNIOSSL {
+    header "CandleNIOSSL-Swift.h"
+    export *
+    link framework "CandleCNIOBoringSSL"
+    link framework "CandleCNIOBoringSSLShims"
+}

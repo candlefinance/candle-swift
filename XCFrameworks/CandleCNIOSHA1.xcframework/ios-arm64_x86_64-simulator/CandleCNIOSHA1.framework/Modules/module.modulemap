@@ -1,0 +1,4 @@
+framework module CandleCNIOSHA1 {
+    header "CNIOSHA1.h"
+    export *
+}

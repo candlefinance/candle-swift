@@ -1,0 +1,4 @@
+framework module CandleCNIODarwin {
+    header "CNIODarwin.h"
+    export *
+}

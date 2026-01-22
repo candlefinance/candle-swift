@@ -1,9 +1,0 @@
-framework module NIOWebSocket {
-    header "NIOWebSocket-Swift.h"
-    export *
-    link framework "NIO"
-    link framework "NIOCore"
-    link framework "NIOHTTP1"
-    link framework "CNIOSHA1"
-    link framework "_NIOBase64"
-}

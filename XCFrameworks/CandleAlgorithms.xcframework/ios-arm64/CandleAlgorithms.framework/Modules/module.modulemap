@@ -1,0 +1,4 @@
+framework module CandleAlgorithms {
+    header "CandleAlgorithms-Swift.h"
+    export *
+}

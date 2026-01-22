@@ -1,0 +1,138 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOHTTPCompression -package-name candle_swift_nio_extras
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleCNIOExtrasZlib
+import CandleNIOCore
+import CandleNIOHTTP1
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum NIOCompression : Swift.Sendable {
+  public struct Algorithm : Swift.CustomStringConvertible, Swift.Equatable, Swift.Sendable {
+    public var description: Swift.String {
+      get
+    }
+    public static let gzip: CandleNIOHTTPCompression.NIOCompression.Algorithm
+    public static let deflate: CandleNIOHTTPCompression.NIOCompression.Algorithm
+    public static func == (a: CandleNIOHTTPCompression.NIOCompression.Algorithm, b: CandleNIOHTTPCompression.NIOCompression.Algorithm) -> Swift.Bool
+  }
+  public struct Error : Swift.Error, Swift.CustomStringConvertible, Swift.Equatable {
+    public var description: Swift.String {
+      get
+    }
+    public static let uncompressedWritesPending: CandleNIOHTTPCompression.NIOCompression.Error
+    public static let noDataToWrite: CandleNIOHTTPCompression.NIOCompression.Error
+    public static func == (a: CandleNIOHTTPCompression.NIOCompression.Error, b: CandleNIOHTTPCompression.NIOCompression.Error) -> Swift.Bool
+  }
+}
+public enum NIOHTTPDecompression : Swift.Sendable {
+  public struct DecompressionLimit : Swift.Sendable {
+    public static let none: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+    public static func size(_ value: Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+    public static func ratio(_ value: Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit
+  }
+  public enum DecompressionError : Swift.Error, Swift.Equatable {
+    case limit
+    case inflationError(Swift.Int)
+    case initializationError(Swift.Int)
+    public static func == (a: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError, b: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError) -> Swift.Bool
+  }
+  public struct ExtraDecompressionError : Swift.Error, Swift.Hashable, Swift.CustomStringConvertible {
+    public static let invalidTrailingData: CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError
+    public static let truncatedData: CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError, b: CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+final public class NIOHTTPRequestCompressor : CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPClientRequestPart
+  public init(encoding: CandleNIOHTTPCompression.NIOCompression.Algorithm)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: CandleNIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTPCompression.NIOHTTPRequestCompressor : Swift.Sendable {
+}
+final public class NIOHTTPRequestDecompressor : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public init(limit: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTPCompression.NIOHTTPRequestDecompressor : Swift.Sendable {
+}
+final public class HTTPResponseCompressor : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPServerRequestPart
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPServerResponsePart
+  public typealias ResponseCompressionPredicate = (_ responseHeaders: inout CandleNIOHTTP1.HTTPResponseHead, _ isCompressionSupported: Swift.Bool) -> CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+  public struct CompressionIntent : Swift.Sendable, Swift.Hashable {
+    public static let compressIfPossible: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+    public static let doNotCompress: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent
+    public static func == (a: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent, b: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum CompressionError : Swift.Error {
+    case uncompressedWritesPending
+    case noDataToWrite
+    public static func == (a: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError, b: CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init(initialByteBufferCapacity: Swift.Int = 1024)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(initialByteBufferCapacity: Swift.Int = 1024, responseCompressionPredicate: CandleNIOHTTPCompression.HTTPResponseCompressor.ResponseCompressionPredicate? = nil)
+  #endif
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: CandleNIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTPCompression.HTTPResponseCompressor : Swift.Sendable {
+}
+final public class NIOHTTPResponseDecompressor : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOHTTP1.HTTPClientResponsePart
+  public typealias InboundOut = CandleNIOHTTP1.HTTPClientResponsePart
+  public typealias OutboundIn = CandleNIOHTTP1.HTTPClientRequestPart
+  public typealias OutboundOut = CandleNIOHTTP1.HTTPClientRequestPart
+  public init(limit: CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOHTTPCompression.NIOHTTPResponseDecompressor : Swift.Sendable {
+}
+extension CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError : Swift.Equatable {}
+extension CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError : Swift.Hashable {}

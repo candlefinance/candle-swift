@@ -1,0 +1,4 @@
+framework module CandleCCryptoBoringSSL {
+    header "CCryptoBoringSSL.h"
+    export *
+}

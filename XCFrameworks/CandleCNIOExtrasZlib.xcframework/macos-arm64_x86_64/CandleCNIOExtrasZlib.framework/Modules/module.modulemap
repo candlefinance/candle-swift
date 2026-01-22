@@ -1,0 +1,4 @@
+framework module CandleCNIOExtrasZlib {
+    header "CNIOExtrasZlib.h"
+    export *
+}

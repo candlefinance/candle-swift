@@ -1,0 +1,4 @@
+framework module CandleCNIOBoringSSL {
+    umbrella header "CNIOBoringSSL.h"
+    export *
+}

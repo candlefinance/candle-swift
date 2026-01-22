@@ -1,0 +1,245 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOSOCKS -package-name candle_swift_nio_extras
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CandleCNIOLinux
+import CandleNIOCore
+import Darwin
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+final public class SOCKSClientHandler : CandleNIOCore.ChannelDuplexHandler {
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOCore.ByteBuffer
+  public typealias OutboundIn = CandleNIOCore.ByteBuffer
+  public typealias OutboundOut = CandleNIOCore.ByteBuffer
+  public init(targetAddress: CandleNIOSOCKS.SOCKSAddress)
+  final public func channelActive(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  final public func flush(context: CandleNIOCore.ChannelHandlerContext)
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOSOCKS.SOCKSClientHandler : Swift.Sendable {
+}
+extension CandleNIOSOCKS.SOCKSClientHandler : CandleNIOCore.RemovableChannelHandler {
+  final public func removeHandler(context: CandleNIOCore.ChannelHandlerContext, removalToken: CandleNIOCore.ChannelHandlerContext.RemovalToken)
+}
+public struct SOCKSProxyEstablishedEvent : Swift.Sendable {
+  public init()
+}
+final public class SOCKSServerHandshakeHandler : CandleNIOCore.ChannelDuplexHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOSOCKS.ClientMessage
+  public typealias OutboundIn = CandleNIOSOCKS.ServerMessage
+  public typealias OutboundOut = CandleNIOCore.ByteBuffer
+  public init()
+  final public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  final public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  final public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOSOCKS.SOCKSServerHandshakeHandler : Swift.Sendable {
+}
+public struct AuthenticationMethod : Swift.Hashable, Swift.Sendable {
+  public static let noneRequired: CandleNIOSOCKS.AuthenticationMethod
+  public static let gssapi: CandleNIOSOCKS.AuthenticationMethod
+  public static let usernamePassword: CandleNIOSOCKS.AuthenticationMethod
+  public static let noneAcceptable: CandleNIOSOCKS.AuthenticationMethod
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: CandleNIOSOCKS.AuthenticationMethod, b: CandleNIOSOCKS.AuthenticationMethod) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ClientGreeting : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var methods: [CandleNIOSOCKS.AuthenticationMethod]
+  public init(methods: [CandleNIOSOCKS.AuthenticationMethod])
+  public static func == (a: CandleNIOSOCKS.ClientGreeting, b: CandleNIOSOCKS.ClientGreeting) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SOCKSError : Swift.Sendable {
+  public struct InvalidClientState : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidClientState, b: CandleNIOSOCKS.SOCKSError.InvalidClientState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidServerState : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidServerState, b: CandleNIOSOCKS.SOCKSError.InvalidServerState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidProtocolVersion : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidProtocolVersion, b: CandleNIOSOCKS.SOCKSError.InvalidProtocolVersion) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidReservedByte : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidReservedByte, b: CandleNIOSOCKS.SOCKSError.InvalidReservedByte) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidAddressType : Swift.Error, Swift.Hashable {
+    public var actual: Swift.UInt8
+    public init(actual: Swift.UInt8)
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidAddressType, b: CandleNIOSOCKS.SOCKSError.InvalidAddressType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct InvalidAuthenticationSelection : Swift.Error, Swift.Hashable {
+    public var selection: CandleNIOSOCKS.AuthenticationMethod
+    public init(selection: CandleNIOSOCKS.AuthenticationMethod)
+    public static func == (a: CandleNIOSOCKS.SOCKSError.InvalidAuthenticationSelection, b: CandleNIOSOCKS.SOCKSError.InvalidAuthenticationSelection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct NoValidAuthenticationMethod : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: CandleNIOSOCKS.SOCKSError.NoValidAuthenticationMethod, b: CandleNIOSOCKS.SOCKSError.NoValidAuthenticationMethod) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct ConnectionFailed : Swift.Error, Swift.Hashable {
+    public var reply: CandleNIOSOCKS.SOCKSServerReply
+    public init(reply: CandleNIOSOCKS.SOCKSServerReply)
+    public static func == (a: CandleNIOSOCKS.SOCKSError.ConnectionFailed, b: CandleNIOSOCKS.SOCKSError.ConnectionFailed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct UnexpectedRead : Swift.Error, Swift.Hashable {
+    public init()
+    public static func == (a: CandleNIOSOCKS.SOCKSError.UnexpectedRead, b: CandleNIOSOCKS.SOCKSError.UnexpectedRead) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public enum ClientMessage : Swift.Hashable, Swift.Sendable {
+  case greeting(CandleNIOSOCKS.ClientGreeting)
+  case request(CandleNIOSOCKS.SOCKSRequest)
+  case authenticationData(CandleNIOCore.ByteBuffer)
+  public static func == (a: CandleNIOSOCKS.ClientMessage, b: CandleNIOSOCKS.ClientMessage) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ServerMessage : Swift.Hashable, Swift.Sendable {
+  case selectedAuthenticationMethod(CandleNIOSOCKS.SelectedAuthenticationMethod)
+  case response(CandleNIOSOCKS.SOCKSResponse)
+  case authenticationData(CandleNIOCore.ByteBuffer, complete: Swift.Bool)
+  public static func == (a: CandleNIOSOCKS.ServerMessage, b: CandleNIOSOCKS.ServerMessage) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSRequest : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var command: CandleNIOSOCKS.SOCKSCommand
+  public var addressType: CandleNIOSOCKS.SOCKSAddress
+  public init(command: CandleNIOSOCKS.SOCKSCommand, addressType: CandleNIOSOCKS.SOCKSAddress)
+  public static func == (a: CandleNIOSOCKS.SOCKSRequest, b: CandleNIOSOCKS.SOCKSRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSCommand : Swift.Hashable, Swift.Sendable {
+  public static let connect: CandleNIOSOCKS.SOCKSCommand
+  public static let bind: CandleNIOSOCKS.SOCKSCommand
+  public static let udpAssociate: CandleNIOSOCKS.SOCKSCommand
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: CandleNIOSOCKS.SOCKSCommand, b: CandleNIOSOCKS.SOCKSCommand) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SOCKSAddress : Swift.Hashable, Swift.Sendable {
+  case address(CandleNIOCore.SocketAddress)
+  case domain(Swift.String, port: Swift.Int)
+  public static func == (a: CandleNIOSOCKS.SOCKSAddress, b: CandleNIOSOCKS.SOCKSAddress) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSResponse : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var reply: CandleNIOSOCKS.SOCKSServerReply
+  public var boundAddress: CandleNIOSOCKS.SOCKSAddress
+  public init(reply: CandleNIOSOCKS.SOCKSServerReply, boundAddress: CandleNIOSOCKS.SOCKSAddress)
+  public static func == (a: CandleNIOSOCKS.SOCKSResponse, b: CandleNIOSOCKS.SOCKSResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SOCKSServerReply : Swift.Hashable, Swift.Sendable {
+  public static let succeeded: CandleNIOSOCKS.SOCKSServerReply
+  public static let serverFailure: CandleNIOSOCKS.SOCKSServerReply
+  public static let notAllowed: CandleNIOSOCKS.SOCKSServerReply
+  public static let networkUnreachable: CandleNIOSOCKS.SOCKSServerReply
+  public static let hostUnreachable: CandleNIOSOCKS.SOCKSServerReply
+  public static let refused: CandleNIOSOCKS.SOCKSServerReply
+  public static let ttlExpired: CandleNIOSOCKS.SOCKSServerReply
+  public static let commandUnsupported: CandleNIOSOCKS.SOCKSServerReply
+  public static let addressUnsupported: CandleNIOSOCKS.SOCKSServerReply
+  public var value: Swift.UInt8
+  public init(value: Swift.UInt8)
+  public static func == (a: CandleNIOSOCKS.SOCKSServerReply, b: CandleNIOSOCKS.SOCKSServerReply) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SelectedAuthenticationMethod : Swift.Hashable, Swift.Sendable {
+  public let version: Swift.UInt8
+  public var method: CandleNIOSOCKS.AuthenticationMethod
+  public init(method: CandleNIOSOCKS.AuthenticationMethod)
+  public static func == (a: CandleNIOSOCKS.SelectedAuthenticationMethod, b: CandleNIOSOCKS.SelectedAuthenticationMethod) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}

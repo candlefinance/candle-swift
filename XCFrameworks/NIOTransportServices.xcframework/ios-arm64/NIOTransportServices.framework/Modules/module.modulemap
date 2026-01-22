@@ -1,4 +1,0 @@
-framework module NIOTransportServices {
-    header "NIOTransportServices-Swift.h"
-    export *
-}

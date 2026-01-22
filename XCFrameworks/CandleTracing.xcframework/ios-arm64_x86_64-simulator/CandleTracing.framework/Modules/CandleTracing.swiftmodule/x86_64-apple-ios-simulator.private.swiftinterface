@@ -1,0 +1,442 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature StrictConcurrency=complete -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleTracing -package-name candle_swift_distributed_tracing
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+@_exported import CandleInstrumentation
+@_exported import CandleServiceContextModule
+import Darwin
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleInstrumentation.InstrumentationSystem {
+  public static var tracer: any CandleTracing.Tracer {
+    get
+  }
+  @available(*, deprecated, message: "prefer tracer")
+  public static var legacyTracer: any CandleTracing.LegacyTracer {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public struct NoOpTracer : CandleTracing.LegacyTracer {
+  public typealias Span = CandleTracing.NoOpTracer.NoOpSpan
+  public init()
+  public func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext, ofKind kind: CandleTracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any CandleTracing.Span where Instant : CandleTracing.TracerInstant
+  public func forceFlush()
+  public func inject<Carrier, Inject>(_ context: CandleServiceContextModule.ServiceContext, into carrier: inout Carrier, using injector: Inject) where Carrier == Inject.Carrier, Inject : CandleInstrumentation.Injector
+  public func extract<Carrier, Extract>(_ carrier: Carrier, into context: inout CandleServiceContextModule.ServiceContext, using extractor: Extract) where Carrier == Extract.Carrier, Extract : CandleInstrumentation.Extractor
+  public struct NoOpSpan : CandleTracing.Span {
+    public let context: CandleServiceContextModule.ServiceContext
+    public var isRecording: Swift.Bool {
+      get
+    }
+    public var operationName: Swift.String {
+      get
+      nonmutating set
+    }
+    public init(context: CandleServiceContextModule.ServiceContext)
+    public func setStatus(_ status: CandleTracing.SpanStatus)
+    public func addLink(_ link: CandleTracing.SpanLink)
+    public func addEvent(_ event: CandleTracing.SpanEvent)
+    public func recordError<Instant>(_ error: any Swift.Error, attributes: CandleTracing.SpanAttributes, at instant: @autoclosure () -> Instant) where Instant : CandleTracing.TracerInstant
+    public var attributes: CandleTracing.SpanAttributes {
+      get
+      nonmutating set
+    }
+    public func end<Instant>(at instant: @autoclosure () -> Instant) where Instant : CandleTracing.TracerInstant
+  }
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleTracing.NoOpTracer : CandleTracing.Tracer {
+  public func startSpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext, ofKind kind: CandleTracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> CandleTracing.NoOpTracer.NoOpSpan where Instant : CandleTracing.TracerInstant
+}
+public protocol Span : Swift.Sendable {
+  var context: CandleServiceContextModule.ServiceContext { get }
+  var operationName: Swift.String { get nonmutating set }
+  func setStatus(_ status: CandleTracing.SpanStatus)
+  func addEvent(_ event: CandleTracing.SpanEvent)
+  func recordError<Instant>(_ error: any Swift.Error, attributes: CandleTracing.SpanAttributes, at instant: @autoclosure () -> Instant) where Instant : CandleTracing.TracerInstant
+  var attributes: CandleTracing.SpanAttributes { get nonmutating set }
+  var isRecording: Swift.Bool { get }
+  func addLink(_ link: CandleTracing.SpanLink)
+  func end<Instant>(at instant: @autoclosure () -> Instant) where Instant : CandleTracing.TracerInstant
+}
+extension CandleTracing.Span {
+  public func recordError(_ error: any Swift.Error, attributes: CandleTracing.SpanAttributes)
+  public func end()
+  public func addLink(_ other: Self, attributes: CandleTracing.SpanAttributes = [:])
+}
+extension CandleTracing.Span {
+  public func recordError(_ error: any Swift.Error)
+}
+extension CandleTracing.Span {
+  public func updateAttributes(_ update: (inout CandleTracing.SpanAttributes) -> Swift.Void)
+}
+public struct SpanEvent : Swift.Equatable {
+  public let name: Swift.String
+  public var attributes: CandleTracing.SpanAttributes
+  public let nanosecondsSinceEpoch: Swift.UInt64
+  public var millisecondsSinceEpoch: Swift.UInt64 {
+    get
+  }
+  public init<Instant>(name: Swift.String, at instant: @autoclosure () -> Instant, attributes: CandleTracing.SpanAttributes = [:]) where Instant : CandleTracing.TracerInstant
+  public init(name: Swift.String, attributes: CandleTracing.SpanAttributes = [:])
+  public static func == (a: CandleTracing.SpanEvent, b: CandleTracing.SpanEvent) -> Swift.Bool
+}
+extension CandleTracing.SpanEvent : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral name: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+public struct SpanAttributeKey<T> : Swift.Hashable, Swift.ExpressibleByStringLiteral where T : CandleTracing.SpanAttributeConvertible {
+  public let name: Swift.String
+  public init(name: Swift.String)
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public static func == (a: CandleTracing.SpanAttributeKey<T>, b: CandleTracing.SpanAttributeKey<T>) -> Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public typealias StringLiteralType = Swift.StringLiteralType
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@dynamicMemberLookup public protocol SpanAttributeNamespace {
+  associatedtype NestedSpanAttributes : CandleTracing.NestedSpanAttributesProtocol
+  var attributes: CandleTracing.SpanAttributes { get set }
+  #if compiler(>=5.3) && $NonescapableTypes
+  subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<Self.NestedSpanAttributes, CandleTracing.SpanAttributeKey<T>>) -> T? where T : CandleTracing.SpanAttributeConvertible { get set }
+  #endif
+  subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<CandleTracing.SpanAttribute, Namespace>) -> Namespace where Namespace : CandleTracing.SpanAttributeNamespace { get }
+}
+public protocol NestedSpanAttributesProtocol {
+  init()
+  static var __namespace: Self { get }
+}
+extension CandleTracing.NestedSpanAttributesProtocol {
+  public static var __namespace: Self {
+    get
+  }
+}
+extension CandleTracing.NestedSpanAttributesProtocol {
+  public typealias Key = CandleTracing.SpanAttributeKey
+}
+extension CandleTracing.SpanAttributeNamespace {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<Self.NestedSpanAttributes, CandleTracing.SpanAttributeKey<T>>) -> T? where T : CandleTracing.SpanAttributeConvertible {
+    get
+    set
+  }
+  #endif
+  public subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<CandleTracing.SpanAttribute, Namespace>) -> Namespace where Namespace : CandleTracing.SpanAttributeNamespace {
+    get
+  }
+}
+public enum SpanAttribute : Swift.Equatable {
+  public typealias Key = CandleTracing.SpanAttributeKey
+  case int32(Swift.Int32)
+  case int64(Swift.Int64)
+  case int32Array([Swift.Int32])
+  case int64Array([Swift.Int64])
+  case double(Swift.Double)
+  case doubleArray([Swift.Double])
+  case bool(Swift.Bool)
+  case boolArray([Swift.Bool])
+  case string(Swift.String)
+  case stringArray([Swift.String])
+  case __DO_NOT_SWITCH_EXHAUSTIVELY_OVER_THIS_ENUM_USE_DEFAULT_INSTEAD
+  case stringConvertible(any Swift.CustomStringConvertible & Swift.Sendable)
+  case stringConvertibleArray([any Swift.CustomStringConvertible & Swift.Sendable])
+  public static func int(_ value: Swift.Int64) -> CandleTracing.SpanAttribute
+  public static func == (lhs: CandleTracing.SpanAttribute, rhs: CandleTracing.SpanAttribute) -> Swift.Bool
+}
+extension CandleTracing.SpanAttribute : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+public protocol SpanAttributeConvertible {
+  func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int32 {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Int64 {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Array where Element == Swift.Double {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Array : CandleTracing.SpanAttributeConvertible where Element : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.String : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension CandleTracing.SpanAttribute : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension CandleTracing.SpanAttribute : Swift.ExpressibleByStringInterpolation {
+  public init(stringInterpolation value: CandleTracing.SpanAttribute.StringInterpolation)
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+}
+extension CandleTracing.SpanAttribute : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension Swift.Int : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Int32 : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Int64 : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Float : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension Swift.Double : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension CandleTracing.SpanAttribute : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension Swift.Bool : CandleTracing.SpanAttributeConvertible {
+  public func toSpanAttribute() -> CandleTracing.SpanAttribute
+}
+extension CandleTracing.SpanAttribute : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.Bool)
+  public typealias BooleanLiteralType = Swift.Bool
+}
+@dynamicMemberLookup public struct SpanAttributes : Swift.Equatable {
+  public static func == (a: CandleTracing.SpanAttributes, b: CandleTracing.SpanAttributes) -> Swift.Bool
+}
+extension CandleTracing.SpanAttributes {
+  public init(_ attributes: [Swift.String : CandleTracing.SpanAttribute])
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript(name: Swift.String) -> (any CandleTracing.SpanAttributeConvertible)? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func get(_ name: Swift.String) -> CandleTracing.SpanAttribute?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public mutating func set(_ name: Swift.String, value: CandleTracing.SpanAttribute?)
+  #endif
+  public func forEach(_ callback: (Swift.String, CandleTracing.SpanAttribute) -> Swift.Void)
+  public mutating func merge(_ other: CandleTracing.SpanAttributes)
+  public var count: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+}
+extension CandleTracing.SpanAttributes {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public subscript<T>(dynamicMember dynamicMember: Swift.KeyPath<CandleTracing.SpanAttribute, CandleTracing.SpanAttributeKey<T>>) -> CandleTracing.SpanAttribute? where T : CandleTracing.SpanAttributeConvertible {
+    get
+    set
+  }
+  #endif
+  public subscript<Namespace>(dynamicMember dynamicMember: Swift.KeyPath<CandleTracing.SpanAttribute, Namespace>) -> Namespace where Namespace : CandleTracing.SpanAttributeNamespace {
+    get
+  }
+}
+extension CandleTracing.SpanAttributes : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, CandleTracing.SpanAttribute)...)
+  public typealias Key = Swift.String
+  public typealias Value = CandleTracing.SpanAttribute
+}
+public struct SpanStatus : Swift.Equatable {
+  public let code: CandleTracing.SpanStatus.Code
+  public let message: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(code: CandleTracing.SpanStatus.Code, message: Swift.String? = nil)
+  #endif
+  public enum Code {
+    case ok
+    case error
+    public static func == (a: CandleTracing.SpanStatus.Code, b: CandleTracing.SpanStatus.Code) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: CandleTracing.SpanStatus, b: CandleTracing.SpanStatus) -> Swift.Bool
+}
+public enum SpanKind {
+  case server
+  case client
+  case producer
+  case consumer
+  case `internal`
+  public static func == (a: CandleTracing.SpanKind, b: CandleTracing.SpanKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SpanLink {
+  public let context: CandleServiceContextModule.ServiceContext
+  public let attributes: CandleTracing.SpanAttributes
+  public init(context: CandleServiceContextModule.ServiceContext, attributes: CandleTracing.SpanAttributes)
+}
+extension CandleTracing.SpanAttributes : Swift.Sendable {
+}
+extension CandleTracing.SpanAttribute : Swift.Sendable {
+}
+extension CandleTracing.SpanStatus : Swift.Sendable {
+}
+extension CandleTracing.SpanEvent : Swift.Sendable {
+}
+extension CandleTracing.SpanKind : Swift.Sendable {
+}
+extension CandleTracing.SpanStatus.Code : Swift.Sendable {
+}
+extension CandleTracing.SpanLink : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan<Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any CandleTracing.Span where Instant : CandleTracing.TracerInstant
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any CandleTracing.Span
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any CandleTracing.Span
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T where Instant : CandleTracing.TracerInstant
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T where Instant : CandleTracing.TracerInstant
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T where Instant : CandleTracing.TracerInstant
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+#if compiler(>=5.3) && $NonescapableTypes
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+#endif
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, message: "Prefer #isolation version of this API")
+@_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+@available(*, deprecated, renamed: "Tracer")
+public protocol LegacyTracer : CandleInstrumentation.Instrument {
+  @available(*, deprecated, message: "prefer withSpan")
+  func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext, ofKind kind: CandleTracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any CandleTracing.Span where Instant : CandleTracing.TracerInstant
+  @available(*, deprecated)
+  func forceFlush()
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleTracing.LegacyTracer {
+  @available(*, deprecated, message: "prefer withSpan")
+  public func startAnySpan<Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any CandleTracing.Span where Instant : CandleTracing.TracerInstant
+  public func startAnySpan(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> any CandleTracing.Span
+  public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T where Instant : CandleTracing.TracerInstant
+  public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T where Instant : CandleTracing.TracerInstant
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T, Instant>(_ operationName: Swift.String, at instant: @autoclosure () -> Instant, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T where Instant : CandleTracing.TracerInstant
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleTracing.Tracer {
+  public func startAnySpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext, ofKind kind: CandleTracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> any CandleTracing.Span where Instant : CandleTracing.TracerInstant
+  public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (any CandleTracing.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withAnySpan<T>(_ operationName: Swift.String, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (any CandleTracing.Span) async throws -> T) async rethrows -> T
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+public protocol Tracer : CandleTracing.LegacyTracer {
+  associatedtype Span : CandleTracing.Span
+  func startSpan<Instant>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext, ofKind kind: CandleTracing.SpanKind, at instant: @autoclosure () -> Instant, function: Swift.String, file fileID: Swift.String, line: Swift.UInt) -> Self.Span where Instant : CandleTracing.TracerInstant
+  #if compiler(>=5.3) && $NonescapableTypes
+  func activeSpan(identifiedBy context: CandleServiceContextModule.ServiceContext) -> Self.Span?
+  #endif
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleTracing.Tracer {
+  public func startSpan(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line) -> Self.Span
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func activeSpan(identifiedBy context: CandleServiceContextModule.ServiceContext) -> Self.Span?
+  #endif
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension CandleTracing.Tracer {
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (Self.Span) throws -> T) rethrows -> T
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, _ operation: (Self.Span) throws -> T) rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, isolation: isolated (any _Concurrency.Actor)? = #isolation, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+  #endif
+  @available(*, deprecated, message: "Prefer #isolation version of this API")
+  @_disfavoredOverload public func withSpan<T>(_ operationName: Swift.String, context: @autoclosure () -> CandleServiceContextModule.ServiceContext = .current ?? .topLevel, ofKind kind: CandleTracing.SpanKind = .internal, at instant: @autoclosure () -> some TracerInstant = DefaultTracerClock.now, function: Swift.String = #function, file fileID: Swift.String = #fileID, line: Swift.UInt = #line, @_inheritActorContext @_implicitSelfCapture _ operation: (Self.Span) async throws -> T) async rethrows -> T
+}
+public protocol TracerInstant : Swift.Comparable, Swift.Hashable, Swift.Sendable {
+  var nanosecondsSinceEpoch: Swift.UInt64 { get }
+}
+extension CandleTracing.TracerInstant {
+  @inlinable public var millisecondsSinceEpoch: Swift.UInt64 {
+    get {
+        self.nanosecondsSinceEpoch / 1_000_000
+    }
+  }
+}
+public struct DefaultTracerClock {
+  public typealias Instant = CandleTracing.DefaultTracerClock.Timestamp
+  public init()
+  public struct Timestamp : CandleTracing.TracerInstant {
+    public let nanosecondsSinceEpoch: Swift.UInt64
+    public init(nanosecondsSinceEpoch: Swift.UInt64)
+    public static func < (lhs: CandleTracing.DefaultTracerClock.Instant, rhs: CandleTracing.DefaultTracerClock.Instant) -> Swift.Bool
+    public static func == (lhs: CandleTracing.DefaultTracerClock.Instant, rhs: CandleTracing.DefaultTracerClock.Instant) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static var now: CandleTracing.DefaultTracerClock.Instant {
+    get
+  }
+  public var now: CandleTracing.DefaultTracerClock.Instant {
+    get
+  }
+}
+extension CandleTracing.SpanStatus.Code : Swift.Equatable {}
+extension CandleTracing.SpanStatus.Code : Swift.Hashable {}
+extension CandleTracing.SpanKind : Swift.Equatable {}
+extension CandleTracing.SpanKind : Swift.Hashable {}

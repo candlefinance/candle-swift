@@ -1,0 +1,4 @@
+framework module CandleInstrumentation {
+    header "CandleInstrumentation-Swift.h"
+    export *
+}

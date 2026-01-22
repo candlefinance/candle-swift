@@ -1,4 +1,0 @@
-framework module _CWASI {
-    umbrella header "_CWASI.h"
-    export *
-}

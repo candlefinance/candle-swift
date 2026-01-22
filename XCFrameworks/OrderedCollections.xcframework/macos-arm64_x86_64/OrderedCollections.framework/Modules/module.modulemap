@@ -1,5 +1,0 @@
-framework module OrderedCollections {
-    header "OrderedCollections-Swift.h"
-    export *
-    link framework "InternalCollectionsUtilities"
-}

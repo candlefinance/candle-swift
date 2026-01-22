@@ -1,0 +1,11 @@
+framework module CandleNIOCore {
+    header "CandleNIOCore-Swift.h"
+    export *
+    link framework "CandleNIOConcurrencyHelpers"
+    link framework "Candle_NIOBase64"
+    link framework "CandleCNIODarwin"
+    link framework "CandleCNIOLinux"
+    link framework "CandleCNIOWindows"
+    link framework "CandleCNIOWASI"
+    link framework "Candle_NIODataStructures"
+}

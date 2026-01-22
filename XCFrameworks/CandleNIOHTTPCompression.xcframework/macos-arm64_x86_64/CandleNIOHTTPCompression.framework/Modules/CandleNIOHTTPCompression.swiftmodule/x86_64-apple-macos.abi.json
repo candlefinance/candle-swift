@@ -1,0 +1,3300 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleNIOHTTPCompression",
+    "printedName": "CandleNIOHTTPCompression",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "CandleCNIOExtrasZlib",
+        "printedName": "CandleCNIOExtrasZlib",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOCompression",
+        "printedName": "NIOCompression",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "Algorithm",
+            "printedName": "Algorithm",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "description",
+                "printedName": "description",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV11descriptionSSvp",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV11descriptionSSvp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV11descriptionSSvg",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV11descriptionSSvg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "gzip",
+                "printedName": "gzip",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Algorithm",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV4gzipAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV4gzipAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Algorithm",
+                        "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                        "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV4gzipAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV4gzipAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "deflate",
+                "printedName": "deflate",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Algorithm",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV7deflateAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV7deflateAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Algorithm",
+                        "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                        "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV7deflateAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV7deflateAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Algorithm",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Algorithm",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV",
+            "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomStringConvertible",
+                "printedName": "CustomStringConvertible",
+                "usr": "s:s23CustomStringConvertibleP",
+                "mangledName": "$ss23CustomStringConvertibleP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Error",
+            "printedName": "Error",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "description",
+                "printedName": "description",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV11descriptionSSvp",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV11descriptionSSvp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV11descriptionSSvg",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV11descriptionSSvg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "uncompressedWritesPending",
+                "printedName": "uncompressedWritesPending",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV25uncompressedWritesPendingAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV25uncompressedWritesPendingAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                        "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV25uncompressedWritesPendingAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV25uncompressedWritesPendingAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "noDataToWrite",
+                "printedName": "noDataToWrite",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV13noDataToWriteAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV13noDataToWriteAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                        "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV13noDataToWriteAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV13noDataToWriteAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "CandleNIOHTTPCompression.NIOCompression.Error",
+                    "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO5ErrorV",
+            "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO5ErrorV",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Error",
+                "printedName": "Error",
+                "usr": "s:s5ErrorP",
+                "mangledName": "$ss5ErrorP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomStringConvertible",
+                "printedName": "CustomStringConvertible",
+                "usr": "s:s23CustomStringConvertibleP",
+                "mangledName": "$ss23CustomStringConvertibleP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO",
+        "mangledName": "$s24CandleNIOHTTPCompression14NIOCompressionO",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleCNIOExtrasZlib",
+        "printedName": "CandleCNIOExtrasZlib",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOHTTPDecompression",
+        "printedName": "NIOHTTPDecompression",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "DecompressionLimit",
+            "printedName": "DecompressionLimit",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "none",
+                "printedName": "none",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecompressionLimit",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4noneAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4noneAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecompressionLimit",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                        "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4noneAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4noneAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "size",
+                "printedName": "size(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecompressionLimit",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4sizeyAESiFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV4sizeyAESiFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "ratio",
+                "printedName": "ratio(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecompressionLimit",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV5ratioyAESiFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV5ratioyAESiFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV",
+            "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "DecompressionError",
+            "printedName": "DecompressionError",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "limit",
+                "printedName": "limit",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DecompressionError",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                        "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DecompressionError",
+                            "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO5limityA2EmF",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO5limityA2EmF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "inflationError",
+                "printedName": "inflationError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type) -> (Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DecompressionError",
+                            "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DecompressionError",
+                            "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO09inflationE0yAESicAEmF",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO09inflationE0yAESicAEmF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "initializationError",
+                "printedName": "initializationError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type) -> (Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.Int) -> CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DecompressionError",
+                            "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DecompressionError",
+                            "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO014initializationE0yAESicAEmF",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO014initializationE0yAESicAEmF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO",
+            "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionErrorO",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Error",
+                "printedName": "Error",
+                "usr": "s:s5ErrorP",
+                "mangledName": "$ss5ErrorP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "ExtraDecompressionError",
+            "printedName": "ExtraDecompressionError",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "invalidTrailingData",
+                "printedName": "invalidTrailingData",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExtraDecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV19invalidTrailingDataAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV19invalidTrailingDataAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ExtraDecompressionError",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                        "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV19invalidTrailingDataAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV19invalidTrailingDataAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "truncatedData",
+                "printedName": "truncatedData",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExtraDecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV13truncatedDataAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV13truncatedDataAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ExtraDecompressionError",
+                        "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                        "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV13truncatedDataAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV13truncatedDataAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "description",
+                "printedName": "description",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV11descriptionSSvp",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV11descriptionSSvp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV11descriptionSSvg",
+                    "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV11descriptionSSvg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV9hashValueSivp",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV9hashValueSivp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV9hashValueSivg",
+                    "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV9hashValueSivg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV4hash4intoys6HasherVz_tF",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV4hash4intoys6HasherVz_tF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExtraDecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExtraDecompressionError",
+                    "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.ExtraDecompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV",
+            "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO23ExtraDecompressionErrorV",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Error",
+                "printedName": "Error",
+                "usr": "s:s5ErrorP",
+                "mangledName": "$ss5ErrorP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomStringConvertible",
+                "printedName": "CustomStringConvertible",
+                "usr": "s:s23CustomStringConvertibleP",
+                "mangledName": "$ss23CustomStringConvertibleP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO",
+        "mangledName": "$s24CandleNIOHTTPCompression20NIOHTTPDecompressionO",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleCNIOExtrasZlib",
+        "printedName": "CandleCNIOExtrasZlib",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOHTTP1",
+        "printedName": "CandleNIOHTTP1",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOHTTPRequestCompressor",
+        "printedName": "NIOHTTPRequestCompressor",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(encoding:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOHTTPRequestCompressor",
+                "printedName": "CandleNIOHTTPCompression.NIOHTTPRequestCompressor",
+                "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Algorithm",
+                "printedName": "CandleNIOHTTPCompression.NIOCompression.Algorithm",
+                "usr": "s:24CandleNIOHTTPCompression14NIOCompressionO9AlgorithmV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC8encodingAcA14NIOCompressionO9AlgorithmV_tcfc",
+            "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC8encodingAcA14NIOCompressionO9AlgorithmV_tcfc",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerAdded",
+            "printedName": "handlerAdded(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC12handlerAdded7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC12handlerAdded7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerRemoved",
+            "printedName": "handlerRemoved(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC14handlerRemoved7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC14handlerRemoved7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "write",
+            "printedName": "write(context:data:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleNIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "CandleNIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "flush",
+            "printedName": "flush(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC5flush7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC5flush7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC",
+        "mangledName": "$s24CandleNIOHTTPCompression24NIOHTTPRequestCompressorC",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelOutboundHandler",
+            "printedName": "ChannelOutboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundIn",
+                "printedName": "OutboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore22ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelOutboundHandler",
+            "printedName": "_ChannelOutboundHandler",
+            "usr": "s:13CandleNIOCore23_ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore23_ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleCNIOExtrasZlib",
+        "printedName": "CandleCNIOExtrasZlib",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOHTTP1",
+        "printedName": "CandleNIOHTTP1",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOHTTPRequestDecompressor",
+        "printedName": "NIOHTTPRequestDecompressor",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(limit:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOHTTPRequestDecompressor",
+                "printedName": "CandleNIOHTTPCompression.NIOHTTPRequestDecompressor",
+                "usr": "s:24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DecompressionLimit",
+                "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC5limitAcA20NIOHTTPDecompressionO18DecompressionLimitV_tcfc",
+            "mangledName": "$s24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC5limitAcA20NIOHTTPDecompressionO18DecompressionLimitV_tcfc",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "mangledName": "$s24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC",
+        "mangledName": "$s24CandleNIOHTTPCompression26NIOHTTPRequestDecompressorC",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelOutboundHandler",
+            "printedName": "ChannelOutboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundIn",
+                "printedName": "OutboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore22ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:13CandleNIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelOutboundHandler",
+            "printedName": "_ChannelOutboundHandler",
+            "usr": "s:13CandleNIOCore23_ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore23_ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleCNIOExtrasZlib",
+        "printedName": "CandleCNIOExtrasZlib",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOHTTP1",
+        "printedName": "CandleNIOHTTP1",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "HTTPResponseCompressor",
+        "printedName": "HTTPResponseCompressor",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "CompressionIntent",
+            "printedName": "CompressionIntent",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "compressIfPossible",
+                "printedName": "compressIfPossible",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionIntent",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV18compressIfPossibleAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV18compressIfPossibleAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CompressionIntent",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV18compressIfPossibleAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV18compressIfPossibleAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "doNotCompress",
+                "printedName": "doNotCompress",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionIntent",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV13doNotCompressAEvpZ",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV13doNotCompressAEvpZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CompressionIntent",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV13doNotCompressAEvgZ",
+                    "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV13doNotCompressAEvgZ",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV9hashValueSivp",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV9hashValueSivp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV9hashValueSivg",
+                    "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV9hashValueSivg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV4hash4intoys6HasherVz_tF",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV4hash4intoys6HasherVz_tF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionIntent",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionIntent",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "CompressionError",
+            "printedName": "CompressionError",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "uncompressedWritesPending",
+                "printedName": "uncompressedWritesPending",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError.Type) -> CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CompressionError",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CompressionError",
+                            "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO25uncompressedWritesPendingyA2EmF",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO25uncompressedWritesPendingyA2EmF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "noDataToWrite",
+                "printedName": "noDataToWrite",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError.Type) -> CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CompressionError",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CompressionError",
+                            "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO13noDataToWriteyA2EmF",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO13noDataToWriteyA2EmF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "declAttributes": [
+                  "RawDocComment"
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionError",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CompressionError",
+                    "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionError",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO2eeoiySbAE_AEtFZ",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO2eeoiySbAE_AEtFZ",
+                "moduleName": "CandleNIOHTTPCompression",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO9hashValueSivp",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO9hashValueSivp",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO9hashValueSivg",
+                    "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO9hashValueSivg",
+                    "moduleName": "CandleNIOHTTPCompression",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO4hash4intoys6HasherVz_tF",
+                "moduleName": "CandleNIOHTTPCompression",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC16CompressionErrorO",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Error",
+                "printedName": "Error",
+                "usr": "s:s5ErrorP",
+                "mangledName": "$ss5ErrorP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(initialByteBufferCapacity:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HTTPResponseCompressor",
+                "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "hasDefaultArg": true,
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC25initialByteBufferCapacityACSi_tcfc",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC25initialByteBufferCapacityACSi_tcfc",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(initialByteBufferCapacity:responseCompressionPredicate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HTTPResponseCompressor",
+                "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor",
+                "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "hasDefaultArg": true,
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((inout CandleNIOHTTP1.HTTPResponseHead, Swift.Bool) -> CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(inout CandleNIOHTTP1.HTTPResponseHead, Swift.Bool) -> CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CompressionIntent",
+                        "printedName": "CandleNIOHTTPCompression.HTTPResponseCompressor.CompressionIntent",
+                        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC17CompressionIntentV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(CandleNIOHTTP1.HTTPResponseHead, Swift.Bool)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "HTTPResponseHead",
+                            "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                            "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC25initialByteBufferCapacity28responseCompressionPredicateACSi_AC0J6IntentV0A8NIOHTTP10C4HeadVz_SbtcSgtcfc",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC25initialByteBufferCapacity28responseCompressionPredicateACSi_AC0J6IntentV0A8NIOHTTP10C4HeadVz_SbtcSgtcfc",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerAdded",
+            "printedName": "handlerAdded(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC12handlerAdded7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC12handlerAdded7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerRemoved",
+            "printedName": "handlerRemoved(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC14handlerRemoved7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC14handlerRemoved7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "write",
+            "printedName": "write(context:data:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleNIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "CandleNIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "flush",
+            "printedName": "flush(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC5flush7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC5flush7contexty0A7NIOCore21ChannelHandlerContextC_tF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24CandleNIOHTTPCompression22HTTPResponseCompressorC",
+        "mangledName": "$s24CandleNIOHTTPCompression22HTTPResponseCompressorC",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelOutboundHandler",
+            "printedName": "ChannelOutboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundIn",
+                "printedName": "OutboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore22ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:13CandleNIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelOutboundHandler",
+            "printedName": "_ChannelOutboundHandler",
+            "usr": "s:13CandleNIOCore23_ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore23_ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOHTTP1",
+        "printedName": "CandleNIOHTTP1",
+        "declKind": "Import",
+        "moduleName": "CandleNIOHTTPCompression"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOHTTPResponseDecompressor",
+        "printedName": "NIOHTTPResponseDecompressor",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(limit:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOHTTPResponseDecompressor",
+                "printedName": "CandleNIOHTTPCompression.NIOHTTPResponseDecompressor",
+                "usr": "s:24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "DecompressionLimit",
+                "printedName": "CandleNIOHTTPCompression.NIOHTTPDecompression.DecompressionLimit",
+                "usr": "s:24CandleNIOHTTPCompression20NIOHTTPDecompressionO18DecompressionLimitV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC5limitAcA20NIOHTTPDecompressionO18DecompressionLimitV_tcfc",
+            "mangledName": "$s24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC5limitAcA20NIOHTTPDecompressionO18DecompressionLimitV_tcfc",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "write",
+            "printedName": "write(context:data:promise:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleNIOCore.EventLoopPromise<()>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopPromise",
+                    "printedName": "CandleNIOCore.EventLoopPromise<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore16EventLoopPromiseV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "mangledName": "$s24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC5write7context4data7promisey0A7NIOCore21ChannelHandlerContextC_AH6NIOAnyVAH16EventLoopPromiseVyytGSgtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "mangledName": "$s24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC11channelRead7context4datay0A7NIOCore21ChannelHandlerContextC_AG6NIOAnyVtF",
+            "moduleName": "CandleNIOHTTPCompression",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC",
+        "mangledName": "$s24CandleNIOHTTPCompression27NIOHTTPResponseDecompressorC",
+        "moduleName": "CandleNIOHTTPCompression",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPResponseHead, CandleNIOCore.ByteBuffer>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPResponseHead",
+                        "printedName": "CandleNIOHTTP1.HTTPResponseHead",
+                        "usr": "s:14CandleNIOHTTP116HTTPResponseHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelOutboundHandler",
+            "printedName": "ChannelOutboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundIn",
+                "printedName": "OutboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore22ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:13CandleNIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "HTTPPart",
+                    "printedName": "CandleNIOHTTP1.HTTPPart<CandleNIOHTTP1.HTTPRequestHead, CandleNIOCore.IOData>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "HTTPRequestHead",
+                        "printedName": "CandleNIOHTTP1.HTTPRequestHead",
+                        "usr": "s:14CandleNIOHTTP115HTTPRequestHeadV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IOData",
+                        "printedName": "CandleNIOCore.IOData",
+                        "usr": "s:13CandleNIOCore6IODataO"
+                      }
+                    ],
+                    "usr": "s:14CandleNIOHTTP18HTTPPartO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelOutboundHandler",
+            "printedName": "_ChannelOutboundHandler",
+            "usr": "s:13CandleNIOCore23_ChannelOutboundHandlerP",
+            "mangledName": "$s13CandleNIOCore23_ChannelOutboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPCompression.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1979,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPDecompression.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6380,
+      "length": 2,
+      "value": "15"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPDecompression.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6385,
+      "length": 2,
+      "value": "32"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPDecompression.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6527,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPResponseCompressor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6754,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPResponseCompressor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7218,
+      "length": 4,
+      "value": "1024"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio-extras\/Sources\/CandleNIOHTTPCompression\/HTTPResponseCompressor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 8254,
+      "length": 4,
+      "value": "1024"
+    }
+  ]
+}

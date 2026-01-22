@@ -1,0 +1,1749 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "CandleNIOTLS",
+    "printedName": "CandleNIOTLS",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ALPNResult",
+        "printedName": "ALPNResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "negotiated",
+            "printedName": "negotiated",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult.Type) -> (Swift.String) -> CandleNIOTLS.ALPNResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> CandleNIOTLS.ALPNResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "CandleNIOTLS.ALPNResult",
+                        "usr": "s:12CandleNIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.ALPNResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "CandleNIOTLS.ALPNResult",
+                        "usr": "s:12CandleNIOTLS10ALPNResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS10ALPNResultO10negotiatedyACSScACmF",
+            "mangledName": "$s12CandleNIOTLS10ALPNResultO10negotiatedyACSScACmF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fallback",
+            "printedName": "fallback",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult.Type) -> CandleNIOTLS.ALPNResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "CandleNIOTLS.ALPNResult",
+                    "usr": "s:12CandleNIOTLS10ALPNResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.ALPNResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "CandleNIOTLS.ALPNResult",
+                        "usr": "s:12CandleNIOTLS10ALPNResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS10ALPNResultO8fallbackyA2CmF",
+            "mangledName": "$s12CandleNIOTLS10ALPNResultO8fallbackyA2CmF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ALPNResult",
+                "printedName": "CandleNIOTLS.ALPNResult",
+                "usr": "s:12CandleNIOTLS10ALPNResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ALPNResult",
+                "printedName": "CandleNIOTLS.ALPNResult",
+                "usr": "s:12CandleNIOTLS10ALPNResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS10ALPNResultO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s12CandleNIOTLS10ALPNResultO2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleNIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12CandleNIOTLS10ALPNResultO",
+        "mangledName": "$s12CandleNIOTLS10ALPNResultO",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ApplicationProtocolNegotiationHandler",
+        "printedName": "ApplicationProtocolNegotiationHandler",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplicationProtocolNegotiationHandler",
+                "printedName": "CandleNIOTLS.ApplicationProtocolNegotiationHandler",
+                "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "CandleNIOTLS.ALPNResult",
+                        "usr": "s:12CandleNIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Channel",
+                        "printedName": "any CandleNIOCore.Channel",
+                        "usr": "s:13CandleNIOCore7ChannelP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteF0AC0A7NIOCore15EventLoopFutureCyytGAA10ALPNResultO_AE7Channel_ptc_tcfc",
+            "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteF0AC0A7NIOCore15EventLoopFutureCyytGAA10ALPNResultO_AE7Channel_ptc_tcfc",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ApplicationProtocolNegotiationHandler",
+                "printedName": "CandleNIOTLS.ApplicationProtocolNegotiationHandler",
+                "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult) -> CandleNIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "CandleNIOTLS.ALPNResult",
+                    "usr": "s:12CandleNIOTLS10ALPNResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteF0AC0A7NIOCore15EventLoopFutureCyytGAA10ALPNResultOc_tcfc",
+            "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC012alpnCompleteF0AC0A7NIOCore15EventLoopFutureCyytGAA10ALPNResultOc_tcfc",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "userInboundEventTriggered",
+            "printedName": "userInboundEventTriggered(context:event:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy0A7NIOCore07ChannelF7ContextC_yptF",
+            "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy0A7NIOCore07ChannelF7ContextC_yptF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC11channelRead7context4datay0A7NIOCore07ChannelF7ContextC_AG6NIOAnyVtF",
+            "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC11channelRead7context4datay0A7NIOCore07ChannelF7ContextC_AG6NIOAnyVtF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelInactive",
+            "printedName": "channelInactive(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC15channelInactive7contexty0A7NIOCore07ChannelF7ContextC_tF",
+            "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC15channelInactive7contexty0A7NIOCore07ChannelF7ContextC_tF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC",
+        "mangledName": "$s12CandleNIOTLS37ApplicationProtocolNegotiationHandlerC",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:13CandleNIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NIOTypedApplicationProtocolNegotiationHandler",
+        "printedName": "NIOTypedApplicationProtocolNegotiationHandler",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "protocolNegotiationResult",
+            "printedName": "protocolNegotiationResult",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventLoopFuture",
+                "printedName": "CandleNIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:13CandleNIOCore15EventLoopFutureC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolF6Result0A7NIOCore15EventLoopFutureCyxGvp",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolF6Result0A7NIOCore15EventLoopFutureCyxGvp",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolF6Result0A7NIOCore15EventLoopFutureCyxGvg",
+                "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC08protocolF6Result0A7NIOCore15EventLoopFutureCyxGvg",
+                "moduleName": "CandleNIOTLS",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+                "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOTypedApplicationProtocolNegotiationHandler",
+                "printedName": "CandleNIOTLS.NIOTypedApplicationProtocolNegotiationHandler<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(CandleNIOTLS.ALPNResult, any CandleNIOCore.Channel)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ALPNResult",
+                        "printedName": "CandleNIOTLS.ALPNResult",
+                        "usr": "s:12CandleNIOTLS10ALPNResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Channel",
+                        "printedName": "any CandleNIOCore.Channel",
+                        "usr": "s:13CandleNIOCore7ChannelP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteG0ACyxG0A7NIOCore15EventLoopFutureCyxGAA10ALPNResultO_AF7Channel_ptc_tcfc",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteG0ACyxG0A7NIOCore15EventLoopFutureCyxGAA10ALPNResultO_AF7Channel_ptc_tcfc",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(alpnCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NIOTypedApplicationProtocolNegotiationHandler",
+                "printedName": "CandleNIOTLS.NIOTypedApplicationProtocolNegotiationHandler<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.ALPNResult) -> CandleNIOCore.EventLoopFuture<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<τ_0_0>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ALPNResult",
+                    "printedName": "CandleNIOTLS.ALPNResult",
+                    "usr": "s:12CandleNIOTLS10ALPNResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteG0ACyxG0A7NIOCore15EventLoopFutureCyxGAA10ALPNResultOc_tcfc",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC012alpnCompleteG0ACyxG0A7NIOCore15EventLoopFutureCyxGAA10ALPNResultOc_tcfc",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerAdded",
+            "printedName": "handlerAdded(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC12handlerAdded7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC12handlerAdded7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "handlerRemoved",
+            "printedName": "handlerRemoved(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC14handlerRemoved7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC14handlerRemoved7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "userInboundEventTriggered",
+            "printedName": "userInboundEventTriggered(context:event:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy0A7NIOCore07ChannelG7ContextC_yptF",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC25userInboundEventTriggered7context5eventy0A7NIOCore07ChannelG7ContextC_yptF",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelRead",
+            "printedName": "channelRead(context:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NIOAny",
+                "printedName": "CandleNIOCore.NIOAny",
+                "usr": "s:13CandleNIOCore6NIOAnyV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC11channelRead7context4datay0A7NIOCore07ChannelG7ContextC_AG6NIOAnyVtF",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC11channelRead7context4datay0A7NIOCore07ChannelG7ContextC_AG6NIOAnyVtF",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "channelInactive",
+            "printedName": "channelInactive(context:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC15channelInactive7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC15channelInactive7contexty0A7NIOCore07ChannelG7ContextC_tF",
+            "moduleName": "CandleNIOTLS",
+            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+            "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC",
+        "mangledName": "$s12CandleNIOTLS45NIOTypedApplicationProtocolNegotiationHandlerC",
+        "moduleName": "CandleNIOTLS",
+        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Sendable>",
+        "sugared_genericSig": "<NegotiationResult where NegotiationResult : Swift.Sendable>",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "Preconcurrency",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelInboundHandler",
+            "printedName": "ChannelInboundHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundIn",
+                "printedName": "InboundIn",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore21ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore21ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RemovableChannelHandler",
+            "printedName": "RemovableChannelHandler",
+            "usr": "s:13CandleNIOCore23RemovableChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23RemovableChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ChannelInboundHandler",
+            "printedName": "_ChannelInboundHandler",
+            "usr": "s:13CandleNIOCore22_ChannelInboundHandlerP",
+            "mangledName": "$s13CandleNIOCore22_ChannelInboundHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_EmittingChannelHandler",
+            "printedName": "_EmittingChannelHandler",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "OutboundOut",
+                "printedName": "OutboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore23_EmittingChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore23_EmittingChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ChannelHandler",
+            "printedName": "ChannelHandler",
+            "usr": "s:13CandleNIOCore14ChannelHandlerP",
+            "mangledName": "$s13CandleNIOCore14ChannelHandlerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleDequeModule",
+        "printedName": "CandleDequeModule",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS"
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SNIResult",
+        "printedName": "SNIResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "fallback",
+            "printedName": "fallback",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.SNIResult.Type) -> CandleNIOTLS.SNIResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SNIResult",
+                    "printedName": "CandleNIOTLS.SNIResult",
+                    "usr": "s:12CandleNIOTLS9SNIResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.SNIResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "CandleNIOTLS.SNIResult",
+                        "usr": "s:12CandleNIOTLS9SNIResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS9SNIResultO8fallbackyA2CmF",
+            "mangledName": "$s12CandleNIOTLS9SNIResultO8fallbackyA2CmF",
+            "moduleName": "CandleNIOTLS"
+          },
+          {
+            "kind": "Var",
+            "name": "hostname",
+            "printedName": "hostname",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.SNIResult.Type) -> (Swift.String) -> CandleNIOTLS.SNIResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> CandleNIOTLS.SNIResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "CandleNIOTLS.SNIResult",
+                        "usr": "s:12CandleNIOTLS9SNIResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.SNIResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SNIResult",
+                        "printedName": "CandleNIOTLS.SNIResult",
+                        "usr": "s:12CandleNIOTLS9SNIResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS9SNIResultO8hostnameyACSScACmF",
+            "mangledName": "$s12CandleNIOTLS9SNIResultO8hostnameyACSScACmF",
+            "moduleName": "CandleNIOTLS"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SNIResult",
+                "printedName": "CandleNIOTLS.SNIResult",
+                "usr": "s:12CandleNIOTLS9SNIResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SNIResult",
+                "printedName": "CandleNIOTLS.SNIResult",
+                "usr": "s:12CandleNIOTLS9SNIResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS9SNIResultO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s12CandleNIOTLS9SNIResultO2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleNIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12CandleNIOTLS9SNIResultO",
+        "mangledName": "$s12CandleNIOTLS9SNIResultO",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SNIHandler",
+        "printedName": "SNIHandler",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "cumulationBuffer",
+            "printedName": "cumulationBuffer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CandleNIOCore.ByteBuffer?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBuffer",
+                    "printedName": "CandleNIOCore.ByteBuffer",
+                    "usr": "s:13CandleNIOCore10ByteBufferV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvp",
+            "mangledName": "$s12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvp",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "CandleNIOCore.ByteBuffer?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvg",
+                "mangledName": "$s12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvg",
+                "moduleName": "CandleNIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "CandleNIOCore.ByteBuffer?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ByteBuffer",
+                        "printedName": "CandleNIOCore.ByteBuffer",
+                        "usr": "s:13CandleNIOCore10ByteBufferV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvs",
+                "mangledName": "$s12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvs",
+                "moduleName": "CandleNIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvM",
+                "mangledName": "$s12CandleNIOTLS10SNIHandlerC16cumulationBuffer0A7NIOCore04ByteE0VSgvM",
+                "moduleName": "CandleNIOTLS",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(sniCompleteHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SNIHandler",
+                "printedName": "CandleNIOTLS.SNIHandler",
+                "usr": "s:12CandleNIOTLS10SNIHandlerC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.SNIResult) -> CandleNIOCore.EventLoopFuture<()>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventLoopFuture",
+                    "printedName": "CandleNIOCore.EventLoopFuture<()>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "usr": "s:13CandleNIOCore15EventLoopFutureC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SNIResult",
+                    "printedName": "CandleNIOTLS.SNIResult",
+                    "usr": "s:12CandleNIOTLS9SNIResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12CandleNIOTLS10SNIHandlerC18sniCompleteHandlerAC0A7NIOCore15EventLoopFutureCyytGAA9SNIResultOc_tcfc",
+            "mangledName": "$s12CandleNIOTLS10SNIHandlerC18sniCompleteHandlerAC0A7NIOCore15EventLoopFutureCyytGAA9SNIResultOc_tcfc",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "decodeLast",
+            "printedName": "decodeLast(context:buffer:seenEOF:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DecodingState",
+                "printedName": "CandleNIOCore.DecodingState",
+                "usr": "s:13CandleNIOCore13DecodingStateO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS10SNIHandlerC10decodeLast7context6buffer7seenEOF0A7NIOCore13DecodingStateOAH21ChannelHandlerContextC_AH10ByteBufferVzSbtKF",
+            "mangledName": "$s12CandleNIOTLS10SNIHandlerC10decodeLast7context6buffer7seenEOF0A7NIOCore13DecodingStateOAH21ChannelHandlerContextC_AH10ByteBufferVzSbtKF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "decode",
+            "printedName": "decode(context:buffer:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DecodingState",
+                "printedName": "CandleNIOCore.DecodingState",
+                "usr": "s:13CandleNIOCore13DecodingStateO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ChannelHandlerContext",
+                "printedName": "CandleNIOCore.ChannelHandlerContext",
+                "usr": "s:13CandleNIOCore21ChannelHandlerContextC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ByteBuffer",
+                "printedName": "CandleNIOCore.ByteBuffer",
+                "paramValueOwnership": "InOut",
+                "usr": "s:13CandleNIOCore10ByteBufferV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS10SNIHandlerC6decode7context6buffer0A7NIOCore13DecodingStateOAG21ChannelHandlerContextC_AG10ByteBufferVztF",
+            "mangledName": "$s12CandleNIOTLS10SNIHandlerC6decode7context6buffer0A7NIOCore13DecodingStateOAG21ChannelHandlerContextC_AG10ByteBufferVztF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:12CandleNIOTLS10SNIHandlerC",
+        "mangledName": "$s12CandleNIOTLS10SNIHandlerC",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ByteToMessageDecoder",
+            "printedName": "ByteToMessageDecoder",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "InboundOut",
+                "printedName": "InboundOut",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ByteBuffer",
+                    "printedName": "CandleNIOCore.ByteBuffer",
+                    "usr": "s:13CandleNIOCore10ByteBufferV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:13CandleNIOCore20ByteToMessageDecoderP",
+            "mangledName": "$s13CandleNIOCore20ByteToMessageDecoderP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CandleNIOCore",
+        "printedName": "CandleNIOCore",
+        "declKind": "Import",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "TLSUserEvent",
+        "printedName": "TLSUserEvent",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "handshakeCompleted",
+            "printedName": "handshakeCompleted",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.TLSUserEvent.Type) -> (Swift.String?) -> CandleNIOTLS.TLSUserEvent",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?) -> CandleNIOTLS.TLSUserEvent",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "CandleNIOTLS.TLSUserEvent",
+                        "usr": "s:12CandleNIOTLS12TLSUserEventO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(negotiatedProtocol: Swift.String?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.TLSUserEvent.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "CandleNIOTLS.TLSUserEvent",
+                        "usr": "s:12CandleNIOTLS12TLSUserEventO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS12TLSUserEventO18handshakeCompletedyACSSSg_tcACmF",
+            "mangledName": "$s12CandleNIOTLS12TLSUserEventO18handshakeCompletedyACSSSg_tcACmF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "shutdownCompleted",
+            "printedName": "shutdownCompleted",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CandleNIOTLS.TLSUserEvent.Type) -> CandleNIOTLS.TLSUserEvent",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TLSUserEvent",
+                    "printedName": "CandleNIOTLS.TLSUserEvent",
+                    "usr": "s:12CandleNIOTLS12TLSUserEventO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "CandleNIOTLS.TLSUserEvent.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TLSUserEvent",
+                        "printedName": "CandleNIOTLS.TLSUserEvent",
+                        "usr": "s:12CandleNIOTLS12TLSUserEventO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12CandleNIOTLS12TLSUserEventO17shutdownCompletedyA2CmF",
+            "mangledName": "$s12CandleNIOTLS12TLSUserEventO17shutdownCompletedyA2CmF",
+            "moduleName": "CandleNIOTLS",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "TLSUserEvent",
+                "printedName": "CandleNIOTLS.TLSUserEvent",
+                "usr": "s:12CandleNIOTLS12TLSUserEventO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "TLSUserEvent",
+                "printedName": "CandleNIOTLS.TLSUserEvent",
+                "usr": "s:12CandleNIOTLS12TLSUserEventO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12CandleNIOTLS12TLSUserEventO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s12CandleNIOTLS12TLSUserEventO2eeoiySbAC_ACtFZ",
+            "moduleName": "CandleNIOTLS",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12CandleNIOTLS12TLSUserEventO",
+        "mangledName": "$s12CandleNIOTLS12TLSUserEventO",
+        "moduleName": "CandleNIOTLS",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 606,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 714,
+      "length": 2,
+      "value": "22"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 823,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 911,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-nio\/Sources\/CandleNIOTLS\/SNIHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 995,
+      "length": 1,
+      "value": "0"
+    }
+  ]
+}

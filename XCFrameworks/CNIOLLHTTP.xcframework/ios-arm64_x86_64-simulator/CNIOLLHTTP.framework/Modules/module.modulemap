@@ -1,4 +1,0 @@
-framework module CNIOLLHTTP {
-    umbrella header "CNIOLLHTTP.h"
-    export *
-}

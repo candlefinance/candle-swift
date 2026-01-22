@@ -1,0 +1,59 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleCryptoBoringWrapper -package-name candle_swift_crypto
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ContiguousBytes*/
+import Foundation/*.Data*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+public enum BoringSSLAEAD {
+  case aes128gcm
+  case aes192gcm
+  case aes256gcm
+  case aes128gcmsiv
+  case aes256gcmsiv
+  case chacha20
+  public static func == (a: CandleCryptoBoringWrapper.BoringSSLAEAD, b: CandleCryptoBoringWrapper.BoringSSLAEAD) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CandleCryptoBoringWrapper.BoringSSLAEAD {
+  @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+  public class AEADContext {
+    public init<Key>(cipher: CandleCryptoBoringWrapper.BoringSSLAEAD, key: Key) throws where Key : Foundation.ContiguousBytes
+    @objc deinit
+  }
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CandleCryptoBoringWrapper.BoringSSLAEAD.AEADContext {
+  public func seal<Plaintext, Nonce, AuthenticatedData>(message: Plaintext, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> (ciphertext: Foundation.Data, tag: Foundation.Data) where Plaintext : Foundation.DataProtocol, Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CandleCryptoBoringWrapper.BoringSSLAEAD.AEADContext {
+  public func open<Nonce, AuthenticatedData>(ciphertext: Foundation.Data, nonce: Nonce, tag: Foundation.Data, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol
+  public func open<Nonce, AuthenticatedData>(combinedCiphertextAndTag: Foundation.Data, nonce: Nonce, authenticatedData: AuthenticatedData) throws -> Foundation.Data where Nonce : Foundation.ContiguousBytes, AuthenticatedData : Foundation.DataProtocol
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+public enum CryptoBoringWrapperError : Swift.Error {
+  case incorrectKeySize
+  case incorrectParameterSize
+  case authenticationFailure
+  case underlyingCoreCryptoError(error: Swift.Int32)
+  case wrapFailure
+  case unwrapFailure
+  case invalidParameter
+}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CandleCryptoBoringWrapper.BoringSSLAEAD : Swift.Equatable {}
+@available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, macCatalyst 13, visionOS 1.0, *)
+extension CandleCryptoBoringWrapper.BoringSSLAEAD : Swift.Hashable {}

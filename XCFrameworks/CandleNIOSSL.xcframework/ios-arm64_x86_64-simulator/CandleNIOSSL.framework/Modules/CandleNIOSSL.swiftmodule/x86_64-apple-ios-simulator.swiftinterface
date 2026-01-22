@@ -1,0 +1,876 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature MemberImportVisibility -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CandleNIOSSL -package-name candle_swift_nio_ssl
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import Darwin.C
+import CandleCNIOLinux
+import CandleNIOCore
+import CandleNIOTLS
+import Darwin
+import Darwin/*.time_t*/
+import Dispatch
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Security
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol NIOSSLCustomPrivateKey : CandleNIOCore._NIOPreconcurrencySendable {
+  var signatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm] { get }
+  var derBytes: [Swift.UInt8] { get }
+  func sign(channel: any CandleNIOCore.Channel, algorithm: CandleNIOSSL.SignatureAlgorithm, data: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<CandleNIOCore.ByteBuffer>
+  func decrypt(channel: any CandleNIOCore.Channel, data: CandleNIOCore.ByteBuffer) -> CandleNIOCore.EventLoopFuture<CandleNIOCore.ByteBuffer>
+}
+extension CandleNIOSSL.NIOSSLCustomPrivateKey {
+  public var derBytes: [Swift.UInt8] {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class NIOSSLClientHandler : CandleNIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "init(context:serverHostname:customVerificationCallback:)")
+  public init(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?, verificationCallback: CandleNIOSSL.NIOSSLVerificationCallback? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: @escaping CandleNIOSSL.NIOSSLCustomVerificationCallback) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: CandleNIOSSL.NIOSSLCustomVerificationCallback? = nil, configuration: CandleNIOSSL.NIOSSLHandler.Configuration) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func _makeSSLClientHandler(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?, additionalPeerCertificateVerificationCallback: @escaping CandleNIOSSL._NIOAdditionalPeerCertificateVerificationCallback) throws -> Self
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOSSL.NIOSSLClientHandler : Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLHandler {
+  public struct Configuration : Swift.Hashable, Swift.Sendable {
+    public var maximumPreservedOutboundBufferCapacity: Swift.Int
+    public init()
+    public static func == (a: CandleNIOSSL.NIOSSLHandler.Configuration, b: CandleNIOSSL.NIOSSLHandler.Configuration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+@_hasMissingDesignatedInitializers public class NIOSSLHandler : CandleNIOCore.ChannelInboundHandler, CandleNIOCore.ChannelOutboundHandler, CandleNIOCore.RemovableChannelHandler {
+  public typealias OutboundIn = CandleNIOCore.ByteBuffer
+  public typealias OutboundOut = CandleNIOCore.ByteBuffer
+  public typealias InboundIn = CandleNIOCore.ByteBuffer
+  public typealias InboundOut = CandleNIOCore.ByteBuffer
+  public func handlerAdded(context: CandleNIOCore.ChannelHandlerContext)
+  public func handlerRemoved(context: CandleNIOCore.ChannelHandlerContext)
+  public func channelActive(context: CandleNIOCore.ChannelHandlerContext)
+  public func channelInactive(context: CandleNIOCore.ChannelHandlerContext)
+  public func channelRead(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny)
+  public func channelReadComplete(context: CandleNIOCore.ChannelHandlerContext)
+  public func userInboundEventTriggered(context: CandleNIOCore.ChannelHandlerContext, event: Any)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func write(context: CandleNIOCore.ChannelHandlerContext, data: CandleNIOCore.NIOAny, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  public func flush(context: CandleNIOCore.ChannelHandlerContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func close(context: CandleNIOCore.ChannelHandlerContext, mode: CandleNIOCore.CloseMode, promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOSSL.NIOSSLHandler : Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var tlsVersion: CandleNIOSSL.TLSVersion? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var peerCertificate: CandleNIOSSL.NIOSSLCertificate? {
+    get
+  }
+  #endif
+}
+extension CandleNIOCore.Channel {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_tlsVersion() -> CandleNIOCore.EventLoopFuture<CandleNIOSSL.TLSVersion?>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_peerCertificate() -> CandleNIOCore.EventLoopFuture<CandleNIOSSL.NIOSSLCertificate?>
+  #endif
+}
+extension CandleNIOCore.ChannelPipeline.SynchronousOperations {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_tlsVersion() throws -> CandleNIOSSL.TLSVersion?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func nioSSL_peerCertificate() throws -> CandleNIOSSL.NIOSSLCertificate?
+  #endif
+}
+extension CandleNIOSSL.NIOSSLHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func stopTLS(promise: CandleNIOCore.EventLoopPromise<Swift.Void>?)
+  #endif
+}
+@_hasMissingDesignatedInitializers final public class NIOSSLServerHandler : CandleNIOSSL.NIOSSLHandler {
+  convenience public init(context: CandleNIOSSL.NIOSSLContext)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "init(context:customVerificationCallback:)")
+  public init(context: CandleNIOSSL.NIOSSLContext, verificationCallback: CandleNIOSSL.NIOSSLVerificationCallback? = nil) throws
+  #endif
+  convenience public init(context: CandleNIOSSL.NIOSSLContext, customVerificationCallback: @escaping CandleNIOSSL.NIOSSLCustomVerificationCallback)
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(context: CandleNIOSSL.NIOSSLContext, customVerificationCallback: CandleNIOSSL.NIOSSLCustomVerificationCallback? = nil, configuration: CandleNIOSSL.NIOSSLHandler.Configuration)
+  #endif
+  public static func _makeSSLServerHandler(context: CandleNIOSSL.NIOSSLContext, additionalPeerCertificateVerificationCallback: @escaping CandleNIOSSL._NIOAdditionalPeerCertificateVerificationCallback) -> Self
+  @objc deinit
+}
+@available(*, unavailable)
+extension CandleNIOSSL.NIOSSLServerHandler : Swift.Sendable {
+}
+public struct NIOSSLObjectIdentifier {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(_ string: Swift.String)
+  #endif
+}
+extension CandleNIOSSL.NIOSSLObjectIdentifier : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLObjectIdentifier : Swift.Equatable {
+  public static func == (lhs: CandleNIOSSL.NIOSSLObjectIdentifier, rhs: CandleNIOSSL.NIOSSLObjectIdentifier) -> Swift.Bool
+}
+extension CandleNIOSSL.NIOSSLObjectIdentifier : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLObjectIdentifier : Swift.LosslessStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum NIOSSLVerificationResult : Swift.Sendable {
+  case certificateVerified
+  case failed
+  public static func == (a: CandleNIOSSL.NIOSSLVerificationResult, b: CandleNIOSSL.NIOSSLVerificationResult) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias NIOSSLVerificationCallback = (CandleNIOSSL.NIOSSLVerificationResult, CandleNIOSSL.NIOSSLCertificate) -> CandleNIOSSL.NIOSSLVerificationResult
+public typealias NIOSSLCustomVerificationCallback = ([CandleNIOSSL.NIOSSLCertificate], CandleNIOCore.EventLoopPromise<CandleNIOSSL.NIOSSLVerificationResult>) -> Swift.Void
+public typealias _NIOAdditionalPeerCertificateVerificationCallback = (CandleNIOSSL.NIOSSLCertificate, any CandleNIOCore.Channel) -> CandleNIOCore.EventLoopFuture<Swift.Void>
+public typealias NIOSSLKeyLogCallback = @Sendable (CandleNIOCore.ByteBuffer) -> Swift.Void
+public struct PSKServerContext : Swift.Sendable, Swift.Hashable {
+  public let hint: Swift.String?
+  public let clientIdentity: Swift.String
+  public let maxPSKLength: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(hint: Swift.String?, clientIdentity: Swift.String, maxPSKLength: Swift.Int)
+  #endif
+  public static func == (a: CandleNIOSSL.PSKServerContext, b: CandleNIOSSL.PSKServerContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PSKClientContext : Swift.Sendable, Swift.Hashable {
+  public let hint: Swift.String?
+  public let maxPSKLength: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(hint: Swift.String?, maxPSKLength: Swift.Int)
+  #endif
+  public static func == (a: CandleNIOSSL.PSKClientContext, b: CandleNIOSSL.PSKClientContext) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PSKServerIdentityResponse : Swift.Sendable {
+  public var key: CandleNIOSSL.NIOSSLSecureBytes
+  public init(key: CandleNIOSSL.NIOSSLSecureBytes)
+}
+public struct PSKClientIdentityResponse : Swift.Sendable {
+  public var key: CandleNIOSSL.NIOSSLSecureBytes
+  public var identity: Swift.String
+  public init(key: CandleNIOSSL.NIOSSLSecureBytes, identity: Swift.String)
+}
+public struct NIOSSLClientExtensionValues : Swift.Hashable, Swift.Sendable {
+  public var serverHostname: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(serverHostname: Swift.String?)
+  #endif
+  public static func == (a: CandleNIOSSL.NIOSSLClientExtensionValues, b: CandleNIOSSL.NIOSSLClientExtensionValues) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOSSLContextConfigurationOverride : Swift.Sendable {
+  public var certificateChain: [CandleNIOSSL.NIOSSLCertificateSource]?
+  public var privateKey: CandleNIOSSL.NIOSSLPrivateKeySource?
+  public init()
+}
+extension CandleNIOSSL.NIOSSLContextConfigurationOverride {
+  public static let noChanges: CandleNIOSSL.NIOSSLContextConfigurationOverride
+}
+public typealias NIOSSLContextCallback = @Sendable (CandleNIOSSL.NIOSSLClientExtensionValues, CandleNIOCore.EventLoopPromise<CandleNIOSSL.NIOSSLContextConfigurationOverride>) -> Swift.Void
+public typealias NIOPSKClientIdentityCallback = @Sendable (Swift.String) throws -> CandleNIOSSL.PSKClientIdentityResponse
+public typealias NIOPSKClientIdentityProvider = @Sendable (CandleNIOSSL.PSKClientContext) throws -> CandleNIOSSL.PSKClientIdentityResponse
+public typealias NIOPSKServerIdentityCallback = @Sendable (Swift.String, Swift.String) throws -> CandleNIOSSL.PSKServerIdentityResponse
+public typealias NIOPSKServerIdentityProvider = @Sendable (CandleNIOSSL.PSKServerContext) throws -> CandleNIOSSL.PSKServerIdentityResponse
+@_hasMissingDesignatedInitializers final public class NIOSSLCertificate {
+  final public var serialNumber: [Swift.UInt8] {
+    get
+  }
+  @available(*, deprecated, message: "Use 'fromPEMFile(_:)' to load all certificates from a PEM file or 'fromDERFile(_:)' to load a single certificate from a DER file.")
+  convenience public init(file: Swift.String, format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  @available(*, deprecated, renamed: "NIOSSLCertificate.init(bytes:format:)")
+  convenience public init(buffer: [Swift.Int8], format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  convenience public init(bytes: [Swift.UInt8], format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  final public func _subjectAlternativeNames() -> CandleNIOSSL._SubjectAlternativeNames
+  @objc deinit
+}
+extension CandleNIOSSL.NIOSSLCertificate : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLCertificate {
+  final public func extractPublicKey() throws -> CandleNIOSSL.NIOSSLPublicKey
+  final public func toDERBytes() throws -> [Swift.UInt8]
+  @available(*, deprecated, renamed: "NIOSSLCertificate.fromPEMBytes(_:)")
+  final public class func fromPEMBuffer(_ buffer: [Swift.Int8]) throws -> [CandleNIOSSL.NIOSSLCertificate]
+  final public class func fromPEMBytes(_ bytes: [Swift.UInt8]) throws -> [CandleNIOSSL.NIOSSLCertificate]
+  final public class func fromPEMFile(_ path: Swift.String) throws -> [CandleNIOSSL.NIOSSLCertificate]
+  public static func fromDERFile(_ path: Swift.String) throws -> CandleNIOSSL.NIOSSLCertificate
+  final public var notValidBefore: _DarwinFoundation2.time_t {
+    get
+  }
+  final public var notValidAfter: _DarwinFoundation2.time_t {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate : Swift.Equatable {
+  public static func == (lhs: CandleNIOSSL.NIOSSLCertificate, rhs: CandleNIOSSL.NIOSSLCertificate) -> Swift.Bool
+}
+extension CandleNIOSSL.NIOSSLCertificate : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate {
+  public struct _Extensions {
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extensions : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLCertificate {
+  final public var _extensions: CandleNIOSSL.NIOSSLCertificate._Extensions {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extensions : Swift.RandomAccessCollection {
+  public subscript(position: Swift.Int) -> CandleNIOSSL.NIOSSLCertificate._Extension {
+    get
+  }
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public typealias Element = CandleNIOSSL.NIOSSLCertificate._Extension
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOSSL.NIOSSLCertificate._Extensions>
+  public typealias SubSequence = Swift.Slice<CandleNIOSSL.NIOSSLCertificate._Extensions>
+}
+extension CandleNIOSSL.NIOSSLCertificate {
+  public struct _Extension {
+    public var objectIdentifier: CandleNIOSSL.NIOSSLObjectIdentifier {
+      get
+    }
+    public var isCritical: Swift.Bool {
+      get
+    }
+    public var data: CandleNIOSSL.NIOSSLCertificate._Extension.Data {
+      get
+    }
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extension : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extension {
+  public struct Data {
+    public func withUnsafeBufferPointer<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result
+    public func withUnsafeBytes<Result>(_ body: (Swift.UnsafeRawBufferPointer) throws -> Result) rethrows -> Result
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extension.Data : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLCertificate._Extension.Data : Swift.RandomAccessCollection {
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public subscript(position: Swift.Int) -> Swift.UInt8 {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func withContiguousStorageIfAvailable<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result?
+  #endif
+  public typealias Element = Swift.UInt8
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOSSL.NIOSSLCertificate._Extension.Data>
+  public typealias SubSequence = Swift.Slice<CandleNIOSSL.NIOSSLCertificate._Extension.Data>
+}
+public struct SSLCertificateNameType : Swift.Equatable, Swift.Hashable, Swift.Sendable {
+  public static let organization: CandleNIOSSL.SSLCertificateNameType
+  public static let organizationalUnit: CandleNIOSSL.SSLCertificateNameType
+  public static let state: CandleNIOSSL.SSLCertificateNameType
+  public static let country: CandleNIOSSL.SSLCertificateNameType
+  public static let city: CandleNIOSSL.SSLCertificateNameType
+  public static let commonName: CandleNIOSSL.SSLCertificateNameType
+  public static let emailAddress: CandleNIOSSL.SSLCertificateNameType
+  public static let userId: CandleNIOSSL.SSLCertificateNameType
+  public static func == (a: CandleNIOSSL.SSLCertificateNameType, b: CandleNIOSSL.SSLCertificateNameType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SSLCertificateName : Swift.Equatable, Swift.Hashable, Swift.Sendable {
+  public var value: Swift.String
+  public var type: CandleNIOSSL.SSLCertificateNameType
+  public init(_ value: Swift.String, _ type: CandleNIOSSL.SSLCertificateNameType)
+  public static func == (a: CandleNIOSSL.SSLCertificateName, b: CandleNIOSSL.SSLCertificateName) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLCertificate {
+  final public var subjectName: [CandleNIOSSL.SSLCertificateName] {
+    get
+  }
+  final public var issuerName: [CandleNIOSSL.SSLCertificateName] {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class NIOSSLContext {
+  convenience public init(configuration: CandleNIOSSL.TLSConfiguration) throws
+  convenience public init<T>(configuration: CandleNIOSSL.TLSConfiguration, passphraseCallback: @escaping CandleNIOSSL.NIOSSLPassphraseCallback<T>) throws where T : Swift.Collection, T.Element == Swift.UInt8
+  @objc deinit
+}
+extension CandleNIOSSL.NIOSSLContext : @unchecked Swift.Sendable {
+}
+public struct BoringSSLInternalError : Swift.Equatable, Swift.CustomStringConvertible, Swift.Sendable {
+  public var description: Swift.String {
+    get
+  }
+  public static let eofDuringHandshake: CandleNIOSSL.BoringSSLInternalError
+  public static let eofDuringAdditionalCertficiateChainValidation: CandleNIOSSL.BoringSSLInternalError
+  public static func == (a: CandleNIOSSL.BoringSSLInternalError, b: CandleNIOSSL.BoringSSLInternalError) -> Swift.Bool
+}
+public typealias NIOBoringSSLErrorStack = [CandleNIOSSL.BoringSSLInternalError]
+public enum NIOSSLError : Swift.Error {
+  case writeDuringTLSShutdown
+  @available(*, deprecated, message: "unableToAllocateBoringSSLObject can no longer be thrown")
+  case unableToAllocateBoringSSLObject
+  case noSuchFilesystemObject
+  case failedToLoadCertificate
+  case failedToLoadPrivateKey
+  case handshakeFailed(CandleNIOSSL.BoringSSLError)
+  case shutdownFailed(CandleNIOSSL.BoringSSLError)
+  case cannotMatchULabel
+  case noCertificateToValidate
+  case unableToValidateCertificate
+  case cannotFindPeerIP
+  case readInInvalidTLSState
+  case uncleanShutdown
+}
+extension CandleNIOSSL.NIOSSLError : Swift.Equatable {
+  public static func == (a: CandleNIOSSL.NIOSSLError, b: CandleNIOSSL.NIOSSLError) -> Swift.Bool
+}
+public struct NIOSSLCloseTimedOutError : Swift.Error {
+}
+public enum BoringSSLError : Swift.Error {
+  case noError
+  case zeroReturn
+  case wantRead
+  case wantWrite
+  case wantConnect
+  case wantAccept
+  case wantX509Lookup
+  case wantCertificateVerify
+  case syscallError
+  case sslError(CandleNIOSSL.NIOBoringSSLErrorStack)
+  case unknownError(CandleNIOSSL.NIOBoringSSLErrorStack)
+  case invalidSNIName(CandleNIOSSL.NIOBoringSSLErrorStack)
+  case failedToSetALPN(CandleNIOSSL.NIOBoringSSLErrorStack)
+}
+extension CandleNIOSSL.BoringSSLError : Swift.Equatable {
+  public static func == (a: CandleNIOSSL.BoringSSLError, b: CandleNIOSSL.BoringSSLError) -> Swift.Bool
+}
+public enum NIOTLSUnwrappingError : Swift.Error {
+  case alreadyClosed
+  case invalidInternalState
+  case closeRequestedDuringUnwrap
+  case unflushedWriteOnUnwrap
+  public static func == (a: CandleNIOSSL.NIOTLSUnwrappingError, b: CandleNIOSSL.NIOTLSUnwrappingError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOSSLExtraError : Swift.Error {
+}
+extension CandleNIOSSL.NIOSSLExtraError {
+  public static let failedToValidateHostname: CandleNIOSSL.NIOSSLExtraError
+  public static let serverHostnameImpossibleToMatch: CandleNIOSSL.NIOSSLExtraError
+  public static let cannotUseIPAddressInSNI: CandleNIOSSL.NIOSSLExtraError
+  public static let invalidSNIHostname: CandleNIOSSL.NIOSSLExtraError
+  public static let unknownPrivateKeyFileType: CandleNIOSSL.NIOSSLExtraError
+}
+extension CandleNIOSSL.NIOSSLExtraError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLExtraError : Swift.Equatable {
+  public static func == (lhs: CandleNIOSSL.NIOSSLExtraError, rhs: CandleNIOSSL.NIOSSLExtraError) -> Swift.Bool
+}
+public struct NIOSSLPKCS12Bundle : Swift.Hashable {
+  public let certificateChain: [CandleNIOSSL.NIOSSLCertificate]
+  public let privateKey: CandleNIOSSL.NIOSSLPrivateKey
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init<Bytes>(buffer: [Swift.UInt8], passphrase: Bytes?) throws where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init<Bytes>(file: Swift.String, passphrase: Bytes?) throws where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+  #endif
+  public init(file: Swift.String) throws
+  public init(buffer: [Swift.UInt8]) throws
+  public static func == (a: CandleNIOSSL.NIOSSLPKCS12Bundle, b: CandleNIOSSL.NIOSSLPKCS12Bundle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLPKCS12Bundle : Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLPKCS12Bundle {
+  public init(certificateChain: [CandleNIOSSL.NIOSSLCertificate], privateKey: CandleNIOSSL.NIOSSLPrivateKey)
+  public func serialize<Bytes>(passphrase: Bytes) throws -> [Swift.UInt8] where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+}
+public typealias NIOSSLPassphraseCallback<Bytes> = ((Bytes) -> Swift.Void) throws -> Swift.Void where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+public typealias NIOSSLPassphraseSetter<Bytes> = (Bytes) -> Swift.Void where Bytes : Swift.Collection, Bytes.Element == Swift.UInt8
+@_hasMissingDesignatedInitializers final public class NIOSSLPrivateKey {
+  convenience public init(file: Swift.String, format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  convenience public init<T>(file: Swift.String, format: CandleNIOSSL.NIOSSLSerializationFormats, passphraseCallback: @escaping CandleNIOSSL.NIOSSLPassphraseCallback<T>) throws where T : Swift.Collection, T.Element == Swift.UInt8
+  @available(*, deprecated, renamed: "NIOSSLPrivateKey.init(bytes:format:)")
+  convenience public init(buffer: [Swift.Int8], format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  convenience public init(bytes: [Swift.UInt8], format: CandleNIOSSL.NIOSSLSerializationFormats) throws
+  @available(*, deprecated, renamed: "NIOSSLPrivateKey.init(bytes:format:passphraseCallback:)")
+  convenience public init<T>(buffer: [Swift.Int8], format: CandleNIOSSL.NIOSSLSerializationFormats, passphraseCallback: @escaping CandleNIOSSL.NIOSSLPassphraseCallback<T>) throws where T : Swift.Collection, T.Element == Swift.UInt8
+  convenience public init<T>(bytes: [Swift.UInt8], format: CandleNIOSSL.NIOSSLSerializationFormats, passphraseCallback: @escaping CandleNIOSSL.NIOSSLPassphraseCallback<T>) throws where T : Swift.Collection, T.Element == Swift.UInt8
+  public init<CustomKey>(customPrivateKey: CustomKey) where CustomKey : CandleNIOSSL.NIOSSLCustomPrivateKey, CustomKey : Swift.Hashable
+  @objc deinit
+}
+extension CandleNIOSSL.NIOSSLPrivateKey : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLPrivateKey {
+  final public var derBytes: [Swift.UInt8] {
+    get throws
+  }
+}
+extension CandleNIOSSL.NIOSSLPrivateKey : Swift.Equatable {
+  public static func == (lhs: CandleNIOSSL.NIOSSLPrivateKey, rhs: CandleNIOSSL.NIOSSLPrivateKey) -> Swift.Bool
+}
+extension CandleNIOSSL.NIOSSLPrivateKey : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class NIOSSLPublicKey {
+  @objc deinit
+}
+extension CandleNIOSSL.NIOSSLPublicKey : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLPublicKey {
+  final public func toSPKIBytes() throws -> [Swift.UInt8]
+}
+public struct _SubjectAlternativeNames {
+}
+extension CandleNIOSSL._SubjectAlternativeNames : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL._SubjectAlternativeNames : Swift.RandomAccessCollection {
+  public subscript(position: Swift.Int) -> CandleNIOSSL._SubjectAlternativeName {
+    get
+  }
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public typealias Element = CandleNIOSSL._SubjectAlternativeName
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOSSL._SubjectAlternativeNames>
+  public typealias SubSequence = Swift.Slice<CandleNIOSSL._SubjectAlternativeNames>
+}
+public struct _SubjectAlternativeName {
+  public struct NameType : Swift.Hashable, Swift.Sendable {
+    public var rawValue: Swift.Int
+    public init(_ rawCode: Swift.Int)
+    public static let email: CandleNIOSSL._SubjectAlternativeName.NameType
+    public static let dnsName: CandleNIOSSL._SubjectAlternativeName.NameType
+    public static let ipAddress: CandleNIOSSL._SubjectAlternativeName.NameType
+    public static let uri: CandleNIOSSL._SubjectAlternativeName.NameType
+    public static func == (a: CandleNIOSSL._SubjectAlternativeName.NameType, b: CandleNIOSSL._SubjectAlternativeName.NameType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct Contents {
+    public func withUnsafeBufferPointer<Result>(_ body: (Swift.UnsafeBufferPointer<Swift.UInt8>) throws -> Result) rethrows -> Result
+  }
+  public var nameType: CandleNIOSSL._SubjectAlternativeName.NameType
+  public var contents: CandleNIOSSL._SubjectAlternativeName.Contents
+}
+extension CandleNIOSSL._SubjectAlternativeName : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL._SubjectAlternativeName.Contents : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL._SubjectAlternativeName.Contents : Swift.RandomAccessCollection {
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public subscript(position: Swift.Int) -> Swift.UInt8 {
+    get
+  }
+  public typealias Element = Swift.UInt8
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOSSL._SubjectAlternativeName.Contents>
+  public typealias SubSequence = Swift.Slice<CandleNIOSSL._SubjectAlternativeName.Contents>
+}
+public struct NIOSSLSecureBytes {
+  public init()
+}
+extension CandleNIOSSL.NIOSSLSecureBytes : @unchecked Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLSecureBytes {
+  public mutating func append<C>(_ data: C) where C : Swift.Collection, C.Element == Swift.UInt8
+  public mutating func reserveCapacity(_ n: Swift.Int)
+}
+extension CandleNIOSSL.NIOSSLSecureBytes : Swift.Equatable {
+  public static func == (lhs: CandleNIOSSL.NIOSSLSecureBytes, rhs: CandleNIOSSL.NIOSSLSecureBytes) -> Swift.Bool
+}
+extension CandleNIOSSL.NIOSSLSecureBytes : Swift.RandomAccessCollection {
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public subscript(index: Swift.Int) -> Swift.UInt8 {
+    get
+    set
+  }
+  public typealias Element = Swift.UInt8
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.Range<Swift.Int>
+  public typealias Iterator = Swift.IndexingIterator<CandleNIOSSL.NIOSSLSecureBytes>
+  public typealias SubSequence = Swift.Slice<CandleNIOSSL.NIOSSLSecureBytes>
+}
+extension CandleNIOSSL.NIOSSLSecureBytes : Swift.MutableCollection {
+}
+extension CandleNIOSSL.NIOSSLSecureBytes : Swift.RangeReplaceableCollection {
+  public mutating func replaceSubrange<C>(_ subrange: Swift.Range<CandleNIOSSL.NIOSSLSecureBytes.Index>, with newElements: C) where C : Swift.Collection, C.Element == Swift.UInt8
+}
+public enum TLSVersion : Swift.Sendable {
+  case tlsv1
+  case tlsv11
+  case tlsv12
+  case tlsv13
+  public static func == (a: CandleNIOSSL.TLSVersion, b: CandleNIOSSL.TLSVersion) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NIOSSLCertificateSource : Swift.Hashable, Swift.Sendable {
+  @available(*, deprecated, message: "Use 'NIOSSLCertificate.fromPEMFile(_:)' to load the certificate(s) and use the '.certificate(NIOSSLCertificate)' case to provide them as a source")
+  case file(Swift.String)
+  case certificate(CandleNIOSSL.NIOSSLCertificate)
+  public static func == (a: CandleNIOSSL.NIOSSLCertificateSource, b: CandleNIOSSL.NIOSSLCertificateSource) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NIOSSLPrivateKeySource : Swift.Hashable {
+  @available(*, deprecated, message: "Use 'NIOSSLPrivateKeySource.privateKey(NIOSSLPrivateKey)' to set private key")
+  case file(Swift.String)
+  case privateKey(CandleNIOSSL.NIOSSLPrivateKey)
+  public static func == (a: CandleNIOSSL.NIOSSLPrivateKeySource, b: CandleNIOSSL.NIOSSLPrivateKeySource) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension CandleNIOSSL.NIOSSLPrivateKeySource : Swift.Sendable {
+}
+public enum NIOSSLTrustRoots : Swift.Hashable, Swift.Sendable {
+  case file(Swift.String)
+  case certificates([CandleNIOSSL.NIOSSLCertificate])
+  case `default`
+  public static func == (a: CandleNIOSSL.NIOSSLTrustRoots, b: CandleNIOSSL.NIOSSLTrustRoots) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NIOSSLAdditionalTrustRoots : Swift.Hashable, Swift.Sendable {
+  case file(Swift.String)
+  case certificates([CandleNIOSSL.NIOSSLCertificate])
+  public static func == (a: CandleNIOSSL.NIOSSLAdditionalTrustRoots, b: CandleNIOSSL.NIOSSLAdditionalTrustRoots) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct NIOTLSCipher : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
+  public init(rawValue: Swift.UInt16)
+  public init(_ rawValue: CandleNIOSSL.NIOTLSCipher.RawValue)
+  public var rawValue: Swift.UInt16
+  public typealias RawValue = Swift.UInt16
+  public static let TLS_RSA_WITH_AES_128_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_RSA_WITH_AES_256_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_PSK_WITH_AES_128_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_PSK_WITH_AES_256_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_RSA_WITH_AES_128_GCM_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_RSA_WITH_AES_256_GCM_SHA384: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_AES_128_GCM_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_AES_256_GCM_SHA384: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_CHACHA20_POLY1305_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: CandleNIOSSL.NIOTLSCipher
+  public static let TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: CandleNIOSSL.NIOTLSCipher
+}
+public struct NIOTLSCurve : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
+  public init(rawValue: Swift.UInt16)
+  public init(_ rawValue: CandleNIOSSL.NIOTLSCurve.RawValue)
+  public var rawValue: Swift.UInt16
+  public typealias RawValue = Swift.UInt16
+  public static let secp256r1: CandleNIOSSL.NIOTLSCurve
+  public static let secp384r1: CandleNIOSSL.NIOTLSCurve
+  public static let secp521r1: CandleNIOSSL.NIOTLSCurve
+  public static let x25519: CandleNIOSSL.NIOTLSCurve
+  public static let x448: CandleNIOSSL.NIOTLSCurve
+  public static let x25519_MLKEM768: CandleNIOSSL.NIOTLSCurve
+}
+public enum NIOSSLSerializationFormats : Swift.Sendable {
+  case pem
+  case der
+  public static func == (a: CandleNIOSSL.NIOSSLSerializationFormats, b: CandleNIOSSL.NIOSSLSerializationFormats) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum CertificateVerification : Swift.Sendable {
+  case none
+  case noHostnameVerification
+  case fullVerification
+  public static func == (a: CandleNIOSSL.CertificateVerification, b: CandleNIOSSL.CertificateVerification) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NIORenegotiationSupport : Swift.Sendable {
+  case none
+  case once
+  case always
+  public static func == (a: CandleNIOSSL.NIORenegotiationSupport, b: CandleNIOSSL.NIORenegotiationSupport) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SignatureAlgorithm : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
+  public typealias RawValue = Swift.UInt16
+  public var rawValue: Swift.UInt16
+  public init(rawValue: Swift.UInt16)
+  public static let rsaPkcs1Sha1: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPkcs1Sha256: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPkcs1Sha384: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPkcs1Sha512: CandleNIOSSL.SignatureAlgorithm
+  public static let ecdsaSha1: CandleNIOSSL.SignatureAlgorithm
+  public static let ecdsaSecp256R1Sha256: CandleNIOSSL.SignatureAlgorithm
+  public static let ecdsaSecp384R1Sha384: CandleNIOSSL.SignatureAlgorithm
+  public static let ecdsaSecp521R1Sha512: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPssRsaeSha256: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPssRsaeSha384: CandleNIOSSL.SignatureAlgorithm
+  public static let rsaPssRsaeSha512: CandleNIOSSL.SignatureAlgorithm
+  public static let ed25519: CandleNIOSSL.SignatureAlgorithm
+}
+public let defaultCipherSuites: Swift.String
+public struct TLSConfiguration {
+  public static let clientDefault: CandleNIOSSL.TLSConfiguration
+  public var minimumTLSVersion: CandleNIOSSL.TLSVersion
+  public var maximumTLSVersion: CandleNIOSSL.TLSVersion?
+  public var cipherSuites: Swift.String
+  public var curves: [CandleNIOSSL.NIOTLSCurve]?
+  public var cipherSuiteValues: [CandleNIOSSL.NIOTLSCipher] {
+    get
+    set
+  }
+  public var verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]?
+  public var signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]?
+  public var certificateVerification: CandleNIOSSL.CertificateVerification
+  public var trustRoots: CandleNIOSSL.NIOSSLTrustRoots?
+  public var additionalTrustRoots: [CandleNIOSSL.NIOSSLAdditionalTrustRoots]
+  public var certificateChain: [CandleNIOSSL.NIOSSLCertificateSource]
+  public var privateKey: CandleNIOSSL.NIOSSLPrivateKeySource?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Deprecated in favor of pskClientProvider which can handle optional hint")
+  public var pskClientCallback: CandleNIOSSL.NIOPSKClientIdentityCallback? {
+    get
+    set
+  }
+  #endif
+  public var sslContextCallback: CandleNIOSSL.NIOSSLContextCallback?
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, message: "Deprecated in favor of pskServerProvider which can handle optional hint")
+  public var pskServerCallback: CandleNIOSSL.NIOPSKServerIdentityCallback? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var pskClientProvider: CandleNIOSSL.NIOPSKClientIdentityProvider? {
+    get
+    set
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var pskServerProvider: CandleNIOSSL.NIOPSKServerIdentityProvider? {
+    get
+    set
+  }
+  #endif
+  public var pskHint: Swift.String?
+  public var applicationProtocols: [Swift.String] {
+    get
+    set
+  }
+  public var shutdownTimeout: CandleNIOCore.TimeAmount
+  public var keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback?
+  public var renegotiationSupport: CandleNIOSSL.NIORenegotiationSupport
+  public var sendCANameList: Swift.Bool
+}
+extension CandleNIOSSL.TLSConfiguration : Swift.Sendable {
+}
+extension CandleNIOSSL.TLSConfiguration {
+  public func bestEffortEquals(_ comparing: CandleNIOSSL.TLSConfiguration) -> Swift.Bool
+  public func bestEffortHash(into hasher: inout Swift.Hasher)
+  public static func makeClientConfiguration() -> CandleNIOSSL.TLSConfiguration
+  public static func makeServerConfiguration(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource) -> CandleNIOSSL.TLSConfiguration
+  public static func makePreSharedKeyConfiguration() -> CandleNIOSSL.TLSConfiguration
+  public static func makeServerConfigurationWithMTLS(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource, trustRoots: CandleNIOSSL.NIOSSLTrustRoots) -> CandleNIOSSL.TLSConfiguration
+}
+extension CandleNIOSSL.TLSConfiguration {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
+  public static func forServer(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource, cipherSuites: [CandleNIOSSL.NIOTLSCipher], verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .none, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, additionalTrustRoots: [CandleNIOSSL.NIOSSLAdditionalTrustRoots] = []) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
+  public static func forServer(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .none, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
+  public static func forServer(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .none, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeServerConfiguration(certificateChain:privateKey:)")
+  public static func forServer(certificateChain: [CandleNIOSSL.NIOSSLCertificateSource], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource, cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .none, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, additionalTrustRoots: [CandleNIOSSL.NIOSSLAdditionalTrustRoots]) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeClientConfiguration()")
+  public static func forClient(cipherSuites: [CandleNIOSSL.NIOTLSCipher], verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .fullVerification, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, certificateChain: [CandleNIOSSL.NIOSSLCertificateSource] = [], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: CandleNIOSSL.NIORenegotiationSupport = .none, additionalTrustRoots: [CandleNIOSSL.NIOSSLAdditionalTrustRoots] = []) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeClientConfiguration()")
+  public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .fullVerification, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, certificateChain: [CandleNIOSSL.NIOSSLCertificateSource] = [], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeClientConfiguration()")
+  public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .fullVerification, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, certificateChain: [CandleNIOSSL.NIOSSLCertificateSource] = [], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: CandleNIOSSL.NIORenegotiationSupport) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeClientConfiguration()")
+  public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .fullVerification, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, certificateChain: [CandleNIOSSL.NIOSSLCertificateSource] = [], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: CandleNIOSSL.NIORenegotiationSupport) -> CandleNIOSSL.TLSConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "makeClientConfiguration()")
+  public static func forClient(cipherSuites: Swift.String = defaultCipherSuites, verifySignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, signingSignatureAlgorithms: [CandleNIOSSL.SignatureAlgorithm]? = nil, minimumTLSVersion: CandleNIOSSL.TLSVersion = .tlsv1, maximumTLSVersion: CandleNIOSSL.TLSVersion? = nil, certificateVerification: CandleNIOSSL.CertificateVerification = .fullVerification, trustRoots: CandleNIOSSL.NIOSSLTrustRoots = .default, certificateChain: [CandleNIOSSL.NIOSSLCertificateSource] = [], privateKey: CandleNIOSSL.NIOSSLPrivateKeySource? = nil, applicationProtocols: [Swift.String] = [], shutdownTimeout: CandleNIOCore.TimeAmount = .seconds(5), keyLogCallback: CandleNIOSSL.NIOSSLKeyLogCallback? = nil, renegotiationSupport: CandleNIOSSL.NIORenegotiationSupport = .none, additionalTrustRoots: [CandleNIOSSL.NIOSSLAdditionalTrustRoots]) -> CandleNIOSSL.TLSConfiguration
+  #endif
+}
+public struct NIOSSLClientTLSProvider<Bootstrap> : CandleNIOCore.NIOClientTLSProvider where Bootstrap : CandleNIOCore.NIOClientTCPBootstrapProtocol {
+  public typealias Bootstrap = Bootstrap
+  #if compiler(>=5.3) && $NonescapableTypes
+  @preconcurrency public init(context: CandleNIOSSL.NIOSSLContext, serverHostname: Swift.String?, customVerificationCallback: (@Sendable ([CandleNIOSSL.NIOSSLCertificate], CandleNIOCore.EventLoopPromise<CandleNIOSSL.NIOSSLVerificationResult>) -> Swift.Void)? = nil) throws
+  #endif
+  public func enableTLS(_ bootstrap: Bootstrap) -> Bootstrap
+}
+extension CandleNIOSSL.NIOSSLClientTLSProvider : Swift.Sendable where Bootstrap : Swift.Sendable {
+}
+extension CandleNIOSSL.NIOSSLVerificationResult : Swift.Equatable {}
+extension CandleNIOSSL.NIOSSLVerificationResult : Swift.Hashable {}
+extension CandleNIOSSL.NIOTLSUnwrappingError : Swift.Equatable {}
+extension CandleNIOSSL.NIOTLSUnwrappingError : Swift.Hashable {}
+extension CandleNIOSSL.TLSVersion : Swift.Equatable {}
+extension CandleNIOSSL.TLSVersion : Swift.Hashable {}
+extension CandleNIOSSL.NIOSSLSerializationFormats : Swift.Equatable {}
+extension CandleNIOSSL.NIOSSLSerializationFormats : Swift.Hashable {}
+extension CandleNIOSSL.CertificateVerification : Swift.Equatable {}
+extension CandleNIOSSL.CertificateVerification : Swift.Hashable {}
+extension CandleNIOSSL.NIORenegotiationSupport : Swift.Equatable {}
+extension CandleNIOSSL.NIORenegotiationSupport : Swift.Hashable {}

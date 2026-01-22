@@ -1,8 +1,0 @@
-framework module NIOHTTP1 {
-    header "NIOHTTP1-Swift.h"
-    export *
-    link framework "NIO"
-    link framework "NIOCore"
-    link framework "NIOConcurrencyHelpers"
-    link framework "CNIOLLHTTP"
-}

@@ -1,0 +1,4 @@
+framework module Candle_NIODataStructures {
+    header "Candle_NIODataStructures-Swift.h"
+    export *
+}

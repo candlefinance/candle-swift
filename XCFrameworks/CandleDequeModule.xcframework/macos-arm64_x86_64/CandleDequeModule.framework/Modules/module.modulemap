@@ -1,0 +1,5 @@
+framework module CandleDequeModule {
+    header "CandleDequeModule-Swift.h"
+    export *
+    link framework "CandleInternalCollectionsUtilities"
+}
