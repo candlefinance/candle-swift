@@ -1612,6 +1612,12 @@ extension CandleAsyncAlgorithms.AsyncInterspersedSequence.Iterator : Swift.Senda
 @available(*, unavailable)
 extension CandleAsyncAlgorithms.AsyncThrowingInterspersedSequence.Iterator : Swift.Sendable {
 }
+public struct ManagedCriticalState<State> {
+  public init(_ initial: State)
+  public func withCriticalRegion<R>(_ critical: (inout State) throws -> R) rethrows -> R
+}
+extension CandleAsyncAlgorithms.ManagedCriticalState : @unchecked Swift.Sendable where State : Swift.Sendable {
+}
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public func merge<Base1, Base2>(_ base1: Base1, _ base2: Base2) -> CandleAsyncAlgorithms.AsyncMerge2Sequence<Base1, Base2> where Base1 : Swift.Sendable, Base1 : _Concurrency.AsyncSequence, Base2 : Swift.Sendable, Base2 : _Concurrency.AsyncSequence, Base1.Element : Swift.Sendable, Base1.Element == Base2.Element
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)

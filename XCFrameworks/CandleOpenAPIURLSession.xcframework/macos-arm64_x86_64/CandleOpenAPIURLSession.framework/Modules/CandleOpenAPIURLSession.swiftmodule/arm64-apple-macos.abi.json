@@ -702,42 +702,42 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/BufferedStream\/BufferedStream.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/BufferedStream\/BufferedStream.swift",
       "kind": "IntegerLiteral",
       "offset": 42298,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
       "kind": "StringLiteral",
       "offset": 740,
       "length": 24,
       "value": "\"HTTPBodyStreamDelegate\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
       "kind": "StringLiteral",
       "offset": 921,
       "length": 66,
       "value": "\"Output stream delegate state transition: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
       "kind": "StringLiteral",
       "offset": 974,
       "length": 2,
       "value": "\" -> \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/URLSessionBidirectionalStreaming\/HTTPBodyOutputStreamBridge.swift",
       "kind": "StringLiteral",
       "offset": 986,
       "length": 4,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/OpenAPIURLSession\/URLSessionTransport.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swift-openapi-urlsession\/Sources\/CandleOpenAPIURLSession\/URLSessionTransport.swift",
       "kind": "BooleanLiteral",
       "offset": 12432,
       "length": 5,

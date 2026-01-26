@@ -18653,6 +18653,131 @@
         "moduleName": "CandleAsyncAlgorithms"
       },
       {
+        "kind": "TypeDecl",
+        "name": "ManagedCriticalState",
+        "printedName": "ManagedCriticalState",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ManagedCriticalState",
+                "printedName": "CandleAsyncAlgorithms.ManagedCriticalState<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:21CandleAsyncAlgorithms20ManagedCriticalStateV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21CandleAsyncAlgorithms20ManagedCriticalStateVyACyxGxcfc",
+            "mangledName": "$s21CandleAsyncAlgorithms20ManagedCriticalStateVyACyxGxcfc",
+            "moduleName": "CandleAsyncAlgorithms",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<State>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "withCriticalRegion",
+            "printedName": "withCriticalRegion(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_1_0"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(inout τ_0_0) throws -> τ_1_0",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21CandleAsyncAlgorithms20ManagedCriticalStateV04withE6Regionyqd__qd__xzKXEKlF",
+            "mangledName": "$s21CandleAsyncAlgorithms20ManagedCriticalStateV04withE6Regionyqd__qd__xzKXEKlF",
+            "moduleName": "CandleAsyncAlgorithms",
+            "genericSig": "<τ_0_0, τ_1_0>",
+            "sugared_genericSig": "<State, R>",
+            "declAttributes": [
+              "Rethrows",
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21CandleAsyncAlgorithms20ManagedCriticalStateV",
+        "mangledName": "$s21CandleAsyncAlgorithms20ManagedCriticalStateV",
+        "moduleName": "CandleAsyncAlgorithms",
+        "genericSig": "<τ_0_0>",
+        "sugared_genericSig": "<State>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "CandleDequeModule",
         "printedName": "CandleDequeModule",

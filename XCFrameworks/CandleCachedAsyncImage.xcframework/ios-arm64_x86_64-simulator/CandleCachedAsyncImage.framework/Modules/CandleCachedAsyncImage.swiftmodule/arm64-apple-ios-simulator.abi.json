@@ -642,42 +642,42 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 4624,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 6158,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 8273,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 10508,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 12951,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/swiftui-cached-async-image\/Sources\/CachedAsyncImage\/CachedAsyncImage.swift",
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/.build\/checkouts\/candle-swiftui-cached-async-image\/Sources\/CandleCachedAsyncImage\/CachedAsyncImage.swift",
       "kind": "IntegerLiteral",
       "offset": 15325,
       "length": 1,
