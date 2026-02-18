@@ -6,7 +6,7 @@ import SwiftUI
     var body: some Scene { WindowGroup { ContentView() } }
 
     init() {
-        do {
+        do throws(Candle.Client.InitializationError) {
             #warning("Add your Candle app key and secret here (https://platform.candle.fi)")
             try Candle.Client.initialize(
                 appKey: <#YOUR_APP_KEY#>,

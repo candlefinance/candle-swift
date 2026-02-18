@@ -1,5 +1,4 @@
 import Candle
-import SFSafeSymbols
 import SwiftUI
 
 struct AssetAccountScreen: View {
