@@ -7,13 +7,13 @@ extension Candle.Models.CounterpartyQuoteRequest {
         let color: Color
 
         switch self {
-        case .UserCounterpartyQuoteRequest(let userCounterpartyQuoteRequest):
+        case .user(let userCounterpartyQuoteRequest):
             text = userCounterpartyQuoteRequest.kind.description
             color = .brown
-        case .MerchantCounterpartyQuoteRequest(let merchantCounterpartyQuoteRequest):
+        case .merchant(let merchantCounterpartyQuoteRequest):
             text = merchantCounterpartyQuoteRequest.kind.description
             color = .cyan
-        case .ServiceCounterpartyQuoteRequest(let serviceCounterpartyQuoteRequest):
+        case .service(let serviceCounterpartyQuoteRequest):
             text = serviceCounterpartyQuoteRequest.kind.description
             color = .purple
         }

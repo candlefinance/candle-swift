@@ -10,14 +10,14 @@ struct TradeAssetQuoteRequestGroup: View {
 
     var body: some View {
         switch tradeAssetQuoteRequest {
-        case .FiatAssetQuoteRequest(var fiatAssetQuoteRequest):
+        case .fiat(var fiatAssetQuoteRequest):
             // FIXME: Add drop-down menu for currency and format amount using it
             FormChoiceRow(
                 selectedValueID: Binding(
                     get: { fiatAssetQuoteRequest.currencyCode },
                     set: {
                         fiatAssetQuoteRequest.currencyCode = $0
-                        tradeAssetQuoteRequest = .FiatAssetQuoteRequest(fiatAssetQuoteRequest)
+                        tradeAssetQuoteRequest = .fiat(fiatAssetQuoteRequest)
                     }
                 ),
                 allowedValues: Locale.Currency.activeCurrencies.map {
@@ -40,7 +40,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     get: { fiatAssetQuoteRequest.amount },
                     set: {
                         fiatAssetQuoteRequest.amount = $0
-                        tradeAssetQuoteRequest = .FiatAssetQuoteRequest(fiatAssetQuoteRequest)
+                        tradeAssetQuoteRequest = .fiat(fiatAssetQuoteRequest)
                     }
                 ),
                 symbol: .banknote,
@@ -54,11 +54,11 @@ struct TradeAssetQuoteRequestGroup: View {
                     get: { fiatAssetQuoteRequest.serviceAccountID },
                     set: {
                         fiatAssetQuoteRequest.serviceAccountID = $0
-                        tradeAssetQuoteRequest = .FiatAssetQuoteRequest(fiatAssetQuoteRequest)
+                        tradeAssetQuoteRequest = .fiat(fiatAssetQuoteRequest)
                     }
                 ),
                 allowedValues: assetAccounts.compactMap {
-                    guard case .FiatAccount(let fiatAccount) = $0 else { return nil }
+                    guard case .fiat(let fiatAccount) = $0 else { return nil }
                     return .init(
                         id: fiatAccount.serviceAccountID,
                         description: fiatAccount.nickname,
@@ -70,14 +70,14 @@ struct TradeAssetQuoteRequestGroup: View {
                 placeholder: "Automatic",
             )
 
-        case .MarketAssetQuoteRequest(var marketAssetQuoteRequest):
+        case .crypto(var cryptoAssetQuoteRequest):
             // FIXME: Show color + logoURL
             FormTextRow(
                 value: Binding(
-                    get: { marketAssetQuoteRequest.symbol ?? "" },
+                    get: { cryptoAssetQuoteRequest.symbol ?? "" },
                     set: {
-                        marketAssetQuoteRequest.symbol = $0.isEmpty ? nil : $0
-                        tradeAssetQuoteRequest = .MarketAssetQuoteRequest(marketAssetQuoteRequest)
+                        cryptoAssetQuoteRequest.symbol = $0.isEmpty ? nil : $0
+                        tradeAssetQuoteRequest = .crypto(cryptoAssetQuoteRequest)
                     }
                 ),
                 symbol: .chartLineUptrendXyaxis,
@@ -86,10 +86,10 @@ struct TradeAssetQuoteRequestGroup: View {
             )
             FormNumberRow(
                 value: Binding(
-                    get: { marketAssetQuoteRequest.amount },
+                    get: { cryptoAssetQuoteRequest.amount },
                     set: {
-                        marketAssetQuoteRequest.amount = $0
-                        tradeAssetQuoteRequest = .MarketAssetQuoteRequest(marketAssetQuoteRequest)
+                        cryptoAssetQuoteRequest.amount = $0
+                        tradeAssetQuoteRequest = .crypto(cryptoAssetQuoteRequest)
                     }
                 ),
                 symbol: .banknote,
@@ -101,10 +101,10 @@ struct TradeAssetQuoteRequestGroup: View {
             // FIXME: Show drop-down menu of known assets
             FormTextRow(
                 value: Binding(
-                    get: { marketAssetQuoteRequest.serviceAssetID ?? "" },
+                    get: { cryptoAssetQuoteRequest.serviceAssetID ?? "" },
                     set: {
-                        marketAssetQuoteRequest.serviceAssetID = $0.isEmpty ? nil : $0
-                        tradeAssetQuoteRequest = .MarketAssetQuoteRequest(marketAssetQuoteRequest)
+                        cryptoAssetQuoteRequest.serviceAssetID = $0.isEmpty ? nil : $0
+                        tradeAssetQuoteRequest = .crypto(cryptoAssetQuoteRequest)
                     }
                 ),
                 symbol: .diamond,
@@ -114,21 +114,18 @@ struct TradeAssetQuoteRequestGroup: View {
 
             FormChoiceRow(
                 selectedValueID: Binding(
-                    get: { marketAssetQuoteRequest.serviceAccountID },
+                    get: { cryptoAssetQuoteRequest.serviceAccountID },
                     set: {
-                        marketAssetQuoteRequest.serviceAccountID = $0
-                        tradeAssetQuoteRequest = .MarketAssetQuoteRequest(marketAssetQuoteRequest)
+                        cryptoAssetQuoteRequest.serviceAccountID = $0
+                        tradeAssetQuoteRequest = .crypto(cryptoAssetQuoteRequest)
                     }
                 ),
                 allowedValues: assetAccounts.compactMap {
-                    guard case .MarketAccount(let marketAccount) = $0,
-                        marketAccount.assetKind.rawValue
-                            == marketAssetQuoteRequest.assetKind.rawValue
-                    else { return nil }
+                    guard case .crypto(let cryptoAccount) = $0 else { return nil }
                     return .init(
-                        id: marketAccount.serviceAccountID,
-                        description: marketAccount.nickname,
-                        logo: .url(marketAccount.service.logoURL)
+                        id: cryptoAccount.serviceAccountID,
+                        description: cryptoAccount.nickname,
+                        logo: .url(cryptoAccount.service.logoURL)
                     )
                 },
                 symbol: .buildingColumns,
@@ -136,7 +133,70 @@ struct TradeAssetQuoteRequestGroup: View {
                 placeholder: "Automatic",
             )
 
-        case .TransportAssetQuoteRequest(var transportAssetQuoteRequest):
+        case .stock(var stockAssetQuoteRequest):
+            // FIXME: Show color + logoURL
+            FormTextRow(
+                value: Binding(
+                    get: { stockAssetQuoteRequest.symbol ?? "" },
+                    set: {
+                        stockAssetQuoteRequest.symbol = $0.isEmpty ? nil : $0
+                        tradeAssetQuoteRequest = .stock(stockAssetQuoteRequest)
+                    }
+                ),
+                symbol: .chartLineUptrendXyaxis,
+                title: "Symbol",
+                placeholder: "Required",
+            )
+            FormNumberRow(
+                value: Binding(
+                    get: { stockAssetQuoteRequest.amount },
+                    set: {
+                        stockAssetQuoteRequest.amount = $0
+                        tradeAssetQuoteRequest = .stock(stockAssetQuoteRequest)
+                    }
+                ),
+                symbol: .banknote,
+                title: "Amount",
+                placeholder: "Automatic",
+                format: .number
+            )
+
+            // FIXME: Show drop-down menu of known assets
+            FormTextRow(
+                value: Binding(
+                    get: { stockAssetQuoteRequest.serviceAssetID ?? "" },
+                    set: {
+                        stockAssetQuoteRequest.serviceAssetID = $0.isEmpty ? nil : $0
+                        tradeAssetQuoteRequest = .stock(stockAssetQuoteRequest)
+                    }
+                ),
+                symbol: .diamond,
+                title: "Service Asset ID",
+                placeholder: "Automatic",
+            )
+            FormChoiceRow(
+                selectedValueID: Binding(
+                    get: { stockAssetQuoteRequest.serviceAccountID },
+                    set: {
+                        stockAssetQuoteRequest.serviceAccountID = $0
+                        tradeAssetQuoteRequest = .stock(stockAssetQuoteRequest)
+                    }
+                ),
+                allowedValues: assetAccounts.compactMap {
+                    guard case .stock(let stockAccount) = $0 else { return nil }
+                    return .init(
+                        id: stockAccount.serviceAccountID,
+                        description: stockAccount.nickname,
+                        logo: .url(stockAccount.service.logoURL)
+                    )
+                },
+                symbol: .buildingColumns,
+                title: "Service Account",
+                placeholder: "Automatic",
+            )
+
+        case .transport(var transportAssetQuoteRequest):
+            // FIXME: Show color + logoURL
             Section(header: Text("Origin")) {
                 FormCoordinatesRow(
                     value: Binding(
@@ -156,9 +216,7 @@ struct TradeAssetQuoteRequestGroup: View {
                             transportAssetQuoteRequest.originCoordinates =
                                 newCoordinates.latitude == 0 && newCoordinates.longitude == 0
                                 ? nil : newCoordinates
-                            tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                                transportAssetQuoteRequest
-                            )
+                            tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                         }
                     ),
                     symbol: .sunrise,
@@ -173,9 +231,7 @@ struct TradeAssetQuoteRequestGroup: View {
                         set: {
                             transportAssetQuoteRequest.originAddress =
                                 $0.isEmpty ? nil : .init(value: $0)
-                            tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                                transportAssetQuoteRequest
-                            )
+                            tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                         }
                     ),
                     symbol: .sunrise,
@@ -202,9 +258,7 @@ struct TradeAssetQuoteRequestGroup: View {
                             transportAssetQuoteRequest.destinationCoordinates =
                                 newCoordinates.latitude == 0 && newCoordinates.longitude == 0
                                 ? nil : newCoordinates
-                            tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                                transportAssetQuoteRequest
-                            )
+                            tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                         }
                     ),
                     symbol: .sunset,
@@ -219,9 +273,7 @@ struct TradeAssetQuoteRequestGroup: View {
                         set: {
                             transportAssetQuoteRequest.destinationAddress =
                                 $0.isEmpty ? nil : .init(value: $0)
-                            tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                                transportAssetQuoteRequest
-                            )
+                            tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                         }
                     ),
                     symbol: .sunset,
@@ -235,9 +287,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     get: { transportAssetQuoteRequest.seats },
                     set: {
                         transportAssetQuoteRequest.seats = $0
-                        tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                            transportAssetQuoteRequest
-                        )
+                        tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                     }
                 ),
                 symbol: .figureSeatedSeatbelt,
@@ -252,9 +302,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     get: { transportAssetQuoteRequest.serviceAssetID ?? "" },
                     set: {
                         transportAssetQuoteRequest.serviceAssetID = $0.isEmpty ? nil : $0
-                        tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                            transportAssetQuoteRequest
-                        )
+                        tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                     }
                 ),
                 symbol: .diamond,
@@ -267,13 +315,11 @@ struct TradeAssetQuoteRequestGroup: View {
                     get: { transportAssetQuoteRequest.serviceAccountID },
                     set: {
                         transportAssetQuoteRequest.serviceAccountID = $0
-                        tradeAssetQuoteRequest = .TransportAssetQuoteRequest(
-                            transportAssetQuoteRequest
-                        )
+                        tradeAssetQuoteRequest = .transport(transportAssetQuoteRequest)
                     }
                 ),
                 allowedValues: assetAccounts.compactMap {
-                    guard case .TransportAccount(let transportAccount) = $0 else { return nil }
+                    guard case .transport(let transportAccount) = $0 else { return nil }
                     return .init(
                         id: transportAccount.serviceAccountID,
                         description: transportAccount.nickname,
@@ -286,7 +332,7 @@ struct TradeAssetQuoteRequestGroup: View {
             )
 
         // FIXME: Placeholder text label
-        case .OtherAssetQuoteRequest, .NothingAssetQuoteRequest: Spacer()
+        case .other, .nothing: Spacer()
         }
     }
 }

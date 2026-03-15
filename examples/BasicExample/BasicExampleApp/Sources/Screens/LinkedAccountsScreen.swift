@@ -74,7 +74,7 @@ struct LinkedAccountsScreen: View {
                                 )
                             }
                             .swipeActions {
-                                if case .InactiveLinkedAccountDetails = linkedAccount.details {
+                                if case .inactive = linkedAccount.details {
                                     Button("Re-Link") { showLinkSheet = true }.tint(.green)
                                 }
                                 Button("Unlink") { accountToUnlink = linkedAccount }.tint(.red)

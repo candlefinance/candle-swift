@@ -228,9 +228,9 @@ struct TradesScreen: View {
                 TradeQuotesRequestScreen(
                     tradeQuoteToExecute: $tradeQuoteToExecute,
                     gainedAssetQuoteRequest: selectedQuoteTemplate?.gainedAssetQuoteRequest
-                        ?? .OtherAssetQuoteRequest(.init(assetKind: .other)),
+                        ?? .other(.init()),
                     lostAssetQuoteRequest: selectedQuoteTemplate?.lostAssetQuoteRequest
-                        ?? .OtherAssetQuoteRequest(.init(assetKind: .other)),
+                        ?? .other(.init()),
                     counterpartyQuoteRequest: selectedQuoteTemplate?.counterpartyQuoteRequest,
                     linkedAccounts: linkedAccounts,
                     assetAccounts: assetAccounts,

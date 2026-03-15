@@ -8,7 +8,7 @@ struct CounterpartyGroup: View {
     var body: some View {
         DisclosureGroup {
             switch counterparty {
-            case .MerchantCounterparty(let merchantCounterparty):
+            case .merchant(let merchantCounterparty):
                 Section(header: Text("Details").bold()) {
                     if let location = merchantCounterparty.location {
                         InfoRow(
@@ -29,27 +29,27 @@ struct CounterpartyGroup: View {
                     }
                 }
 
-            case .ServiceCounterparty: Spacer()
-            case .UserCounterparty(let userCounterparty):
+            case .service: Spacer()
+            case .user(let userCounterparty):
                 Section(header: Text("Details").bold()) {
                     InfoRow(symbol: .person, title: "Username", value: userCounterparty.username)
                 }
             }
         } label: {
             switch counterparty {
-            case .MerchantCounterparty(let merchantCounterparty):
+            case .merchant(let merchantCounterparty):
                 InfoHeader(
                     logo: .url(URL(string: merchantCounterparty.logoURL)),
                     title: merchantCounterparty.name,
                     badges: [counterparty.badge],
                 )
-            case .ServiceCounterparty(let serviceCounterparty):
+            case .service(let serviceCounterparty):
                 InfoHeader(
                     logo: .url(serviceCounterparty.service.logoURL),
                     title: serviceCounterparty.service.description,
                     badges: [counterparty.badge],
                 )
-            case .UserCounterparty(let userCounterparty):
+            case .user(let userCounterparty):
                 InfoHeader(
                     logo: .url(URL(string: userCounterparty.avatarURL)),
                     title: userCounterparty.legalName,

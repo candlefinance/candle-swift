@@ -5,18 +5,19 @@ extension Candle.Models.TradeQuote {
     // FIXME: Support market -> market trades, etc
     var title: String {
         switch gained {
-        case .MarketTradeAsset(let marketAsset): return marketAsset.name
-        case .TransportAsset(let transportAsset): return transportAsset.name
+        case .crypto(let cryptoAsset): return cryptoAsset.name
+        case .stock(let stockAsset): return stockAsset.name
+        case .transport(let transportAsset): return transportAsset.name
         default:
             switch lost {
-            case .MarketTradeAsset(let marketAsset): return marketAsset.name
-            case .TransportAsset(let transportAsset): return transportAsset.name
+            case .crypto(let cryptoAsset): return cryptoAsset.name
+            case .stock(let stockAsset): return stockAsset.name
+            case .transport(let transportAsset): return transportAsset.name
             default:
                 switch counterparty {
-                case .UserCounterparty(let userCounterparty): return userCounterparty.legalName
-                case .MerchantCounterparty(let merchantCounterparty):
-                    return merchantCounterparty.name
-                case .ServiceCounterparty(let serviceCounterparty):
+                case .user(let userCounterparty): return userCounterparty.legalName
+                case .merchant(let merchantCounterparty): return merchantCounterparty.name
+                case .service(let serviceCounterparty):
                     return serviceCounterparty.service.description
                 }
             }
@@ -25,9 +26,9 @@ extension Candle.Models.TradeQuote {
 
     // FIXME: Support market -> market trades, etc
     var value: String? {
-        if case .FiatAsset(let fiatAsset) = gained {
+        if case .fiat(let fiatAsset) = gained {
             return fiatAsset.amount.formatted(.currency(code: fiatAsset.currencyCode))
-        } else if case .FiatAsset(let fiatAsset) = lost {
+        } else if case .fiat(let fiatAsset) = lost {
             return (-fiatAsset.amount).formatted(.currency(code: fiatAsset.currencyCode))
         } else {
             return nil
@@ -37,18 +38,19 @@ extension Candle.Models.TradeQuote {
     // FIXME: Support market -> market trades, etc
     var logoURL: URL? {
         switch gained {
-        case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
-        case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
-        case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+        case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
+        case .stock(let stockAsset): return stockAsset.service.logoURL
+        case .transport(let transportAsset): return transportAsset.service.logoURL
+        case .fiat(let fiatAsset): return fiatAsset.service.logoURL
         default:
             switch lost {
-            case .MarketTradeAsset(let marketAsset): return marketAsset.service.logoURL
-            case .TransportAsset(let transportAsset): return transportAsset.service.logoURL
-            case .FiatAsset(let fiatAsset): return fiatAsset.service.logoURL
+            case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
+            case .stock(let stockAsset): return stockAsset.service.logoURL
+            case .transport(let transportAsset): return transportAsset.service.logoURL
+            case .fiat(let fiatAsset): return fiatAsset.service.logoURL
             default:
                 switch counterparty {
-                case .ServiceCounterparty(let serviceCounterparty):
-                    return serviceCounterparty.service.logoURL
+                case .service(let serviceCounterparty): return serviceCounterparty.service.logoURL
                 // FIXME: Always expose a service in Trade model
                 default: return nil
                 }
@@ -66,16 +68,17 @@ extension Candle.Models.TradeQuote {
     var _context: Candle.Models.TradeQuoteContext {
         let linkedAccountID: String
         switch gained {
-        case .TransportAsset(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
-        case .MarketTradeAsset(let marketAsset): linkedAccountID = marketAsset.linkedAccountID
+        case .transport(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
+        case .crypto(let cryptoAsset): linkedAccountID = cryptoAsset.linkedAccountID
+        case .stock(let stockAsset): linkedAccountID = stockAsset.linkedAccountID
 
-        case .FiatAsset, .NothingAsset, .OtherAsset:
+        case .fiat, .nothing, .other:
             switch lost {
-            case .TransportAsset(let transportAsset):
-                linkedAccountID = transportAsset.linkedAccountID
-            case .MarketTradeAsset(let marketAsset): linkedAccountID = marketAsset.linkedAccountID
+            case .transport(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
+            case .crypto(let cryptoAsset): linkedAccountID = cryptoAsset.linkedAccountID
+            case .stock(let stockAsset): linkedAccountID = stockAsset.linkedAccountID
             // FIXME: Do something in these cases
-            case .FiatAsset, .NothingAsset, .OtherAsset: linkedAccountID = "FIXME"
+            case .fiat, .nothing, .other: linkedAccountID = "FIXME"
             }
         }
 

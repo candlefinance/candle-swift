@@ -15,7 +15,7 @@ struct AssetAccountScreen: View {
             )
 
             switch assetAccount {
-            case .FiatAccount(let fiatAccount):
+            case .fiat(let fiatAccount):
                 Section(header: Text("Details")) {
                     InfoRow(
                         symbol: .infoCircle,
@@ -85,28 +85,49 @@ struct AssetAccountScreen: View {
                         value: fiatAccount.linkedAccountID
                     )
                 }
-            case .MarketAccount(let marketAccount):
+            case .crypto(let cryptoAccount):
                 Section(header: Text("Details")) {
-                    InfoRow(symbol: .tag, title: "Nickname", value: marketAccount.nickname, )
+                    InfoRow(symbol: .tag, title: "Nickname", value: cryptoAccount.nickname, )
                     InfoRow(
                         symbol: .infoCircle,
                         title: "Account Kind",
-                        value: marketAccount.accountKind.description,
+                        value: cryptoAccount.accountKind.description,
                     )
                 }
                 Section(header: Text("Metadata")) {
                     InfoRow(
                         symbol: .buildingColumns,
                         title: "Service Account ID",
-                        value: marketAccount.serviceAccountID
+                        value: cryptoAccount.serviceAccountID
                     )
                     InfoRow(
                         symbol: .link,
                         title: "Linked Account ID",
-                        value: marketAccount.linkedAccountID
+                        value: cryptoAccount.linkedAccountID
                     )
                 }
-            case .TransportAccount(let transportAccount):
+            case .stock(let stockAccount):
+                Section(header: Text("Details")) {
+                    InfoRow(symbol: .tag, title: "Nickname", value: stockAccount.nickname, )
+                    InfoRow(
+                        symbol: .infoCircle,
+                        title: "Account Kind",
+                        value: stockAccount.accountKind.description,
+                    )
+                }
+                Section(header: Text("Metadata")) {
+                    InfoRow(
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: stockAccount.serviceAccountID
+                    )
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: stockAccount.linkedAccountID
+                    )
+                }
+            case .transport(let transportAccount):
                 Section(header: Text("Details")) {
                     InfoRow(symbol: .tag, title: "Nickname", value: transportAccount.nickname, )
                     InfoRow(

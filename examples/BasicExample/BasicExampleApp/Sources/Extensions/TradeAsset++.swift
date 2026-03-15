@@ -6,22 +6,22 @@ extension Candle.Models.TradeAsset {
         let text: String
         let color: Color
         switch self {
-        case .FiatAsset(let fiatAsset):
+        case .fiat(let fiatAsset):
             text = fiatAsset.assetKind.description
             color = .assetKindFiat
-        case .MarketTradeAsset(let marketAsset):
-            text = marketAsset.assetKind.description
-            switch marketAsset.assetKind {
-            case .crypto: color = .assetKindCrypto
-            case .stock: color = .assetKindStock
-            }
-        case .TransportAsset(let transportAsset):
+        case .crypto(let cryptoAsset):
+            text = cryptoAsset.assetKind.description
+            color = .assetKindCrypto
+        case .stock(let stockAsset):
+            text = stockAsset.assetKind.description
+            color = .assetKindStock
+        case .transport(let transportAsset):
             text = transportAsset.assetKind.description
             color = .assetKindTransport
-        case .OtherAsset(let otherAsset):
+        case .other(let otherAsset):
             text = otherAsset.assetKind.description
             color = .gray
-        case .NothingAsset(let nothingAsset):
+        case .nothing(let nothingAsset):
             text = nothingAsset.assetKind.description
             color = .assetKindNothing
         }

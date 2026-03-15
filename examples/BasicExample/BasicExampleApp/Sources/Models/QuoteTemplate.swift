@@ -16,29 +16,29 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
 
     var lostAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
         switch self {
-        //        case .otherFiatUser: return .OtherAssetQuoteRequest(.init(assetKind: .other))
+        //        case .otherFiatUser: return .other(.init())
         case .fiatTransport, .fiatCrypto, .fiatOtherUser:  //, .fiatStock:
-            return .FiatAssetQuoteRequest(.init(assetKind: .fiat))
-        case .cryptoFiat: return .MarketAssetQuoteRequest(.init(assetKind: .crypto))
-        //        case .stockFiat: return .MarketAssetQuoteRequest(.init(assetKind: .stock))
+            return .fiat(.init())
+        case .cryptoFiat: return .crypto(.init())
+        //        case .stockFiat: return .stock(.init())
         }
     }
 
     var gainedAssetQuoteRequest: Candle.Models.TradeAssetQuoteRequest {
         switch self {
-        case .fiatOtherUser: return .OtherAssetQuoteRequest(.init(assetKind: .other))
-        case .fiatTransport: return .TransportAssetQuoteRequest(.init(assetKind: .transport))
-        case .fiatCrypto: return .MarketAssetQuoteRequest(.init(assetKind: .crypto))
-        //        case .fiatStock: return .MarketAssetQuoteRequest(.init(assetKind: .stock))
+        case .fiatOtherUser: return .other(.init())
+        case .fiatTransport: return .transport(.init())
+        case .fiatCrypto: return .crypto(.init())
+        //        case .fiatStock: return .stock(.init())
         case .cryptoFiat:  //, .stockFiat, .otherFiatUser:
-            return .FiatAssetQuoteRequest(.init(assetKind: .fiat))
+            return .fiat(.init())
         }
     }
 
     var counterpartyQuoteRequest: Candle.Models.CounterpartyQuoteRequest? {
         switch self {
         case .fiatOtherUser:  //, .otherFiatUser:
-            return .UserCounterpartyQuoteRequest(.init(kind: .user))
+            return .user(.init())
         case .fiatTransport, .fiatCrypto, .cryptoFiat:  //, .fiatStock, .stockFiat:
             return nil
         }

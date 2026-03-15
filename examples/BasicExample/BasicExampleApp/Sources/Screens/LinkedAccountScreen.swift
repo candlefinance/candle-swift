@@ -15,7 +15,7 @@ struct LinkedAccountScreen: View {
                 badges: [linkedAccount.badge],
             )
 
-            if case .ActiveLinkedAccountDetails(let activeDetails) = linkedAccount.details {
+            if case .active(let activeDetails) = linkedAccount.details {
                 if activeDetails.emailAddress != nil || activeDetails.accountOpened != nil
                     || activeDetails.username != nil
                 {
@@ -55,7 +55,7 @@ struct LinkedAccountScreen: View {
             }
         }
         .toolbar {
-            if case .InactiveLinkedAccountDetails = linkedAccount.details {
+            if case .inactive = linkedAccount.details {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Re-Link") { showLinkSheet = true }
                 }
@@ -114,9 +114,8 @@ struct LinkedAccountScreen: View {
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
             service: .sandbox,
             serviceUserID: "1234567890",
-            details: .ActiveLinkedAccountDetails(
+            details: .active(
                 .init(
-                    state: .active,
                     accountOpened: "2016-02-01T08:34:20.000+08:00",
                     username: "johnny",
                     emailAddress: "john@apple.com",
@@ -135,7 +134,7 @@ struct LinkedAccountScreen: View {
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
             service: .sandbox,
             serviceUserID: "1234567890",
-            details: .InactiveLinkedAccountDetails(.init(state: .inactive, ))
+            details: .inactive(.init())
         )
     )
 }

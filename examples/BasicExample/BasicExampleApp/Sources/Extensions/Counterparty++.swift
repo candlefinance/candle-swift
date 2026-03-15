@@ -6,13 +6,13 @@ extension Candle.Models.Counterparty {
         let text: String
         let color: Color
         switch self {
-        case .MerchantCounterparty(let merchantCounterparty):
+        case .merchant(let merchantCounterparty):
             text = merchantCounterparty.kind.description
             color = .cyan
-        case .ServiceCounterparty(let serviceCounterparty):
+        case .service(let serviceCounterparty):
             text = serviceCounterparty.kind.description
             color = .purple
-        case .UserCounterparty(let userCounterparty):
+        case .user(let userCounterparty):
             text = userCounterparty.kind.description
             color = .brown
         }

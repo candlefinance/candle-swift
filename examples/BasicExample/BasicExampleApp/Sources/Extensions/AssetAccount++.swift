@@ -7,16 +7,16 @@ extension Candle.Models.AssetAccount {
         let color: Color
 
         switch self {
-        case .FiatAccount(let fiatAccount):
+        case .fiat(let fiatAccount):
             text = fiatAccount.assetKind.description
             color = .assetKindFiat
-        case .MarketAccount(let marketAccount):
-            text = marketAccount.assetKind.description
-            switch marketAccount.assetKind {
-            case .crypto: color = .assetKindCrypto
-            case .stock: color = .assetKindStock
-            }
-        case .TransportAccount(let transportAccount):
+        case .crypto(let cryptoAccount):
+            text = cryptoAccount.assetKind.description
+            color = .assetKindCrypto
+        case .stock(let stockAccount):
+            text = stockAccount.assetKind.description
+            color = .assetKindStock
+        case .transport(let transportAccount):
             text = transportAccount.assetKind.description
             color = .assetKindTransport
         }
@@ -25,7 +25,7 @@ extension Candle.Models.AssetAccount {
     }
 
     var value: String? {
-        if case .FiatAccount(let fiatAccount) = self {
+        if case .fiat(let fiatAccount) = self {
             return fiatAccount.balance?.formatted(.currency(code: fiatAccount.currencyCode))
         } else {
             return nil

@@ -9,7 +9,7 @@ struct TradeAssetGroup: View {
     var body: some View {
         DisclosureGroup {
             switch tradeAsset {
-            case .FiatAsset(let fiatAsset):
+            case .fiat(let fiatAsset):
                 Section(header: Text("Details").bold()) {
                     InfoRow(
                         symbol: .banknote,
@@ -37,14 +37,14 @@ struct TradeAssetGroup: View {
                     )
                 }
 
-            case .MarketTradeAsset(let marketAsset):
+            case .crypto(let cryptoAsset):
                 // FIXME: Show color + logoURL
                 Section(header: Text("Details").bold()) {
-                    InfoRow(symbol: .infoCircle, title: "Symbol", value: marketAsset.symbol, )
+                    InfoRow(symbol: .infoCircle, title: "Symbol", value: cryptoAsset.symbol, )
                     InfoRow(
                         symbol: .banknote,
                         title: "Amount",
-                        value: marketAsset.amount.formatted(),
+                        value: cryptoAsset.amount.formatted(),
                     )
                 }
 
@@ -52,26 +52,59 @@ struct TradeAssetGroup: View {
                     InfoRow(
                         symbol: .arrowLeftArrowRight,
                         title: "Service Trade ID",
-                        value: marketAsset.serviceTradeID
+                        value: cryptoAsset.serviceTradeID
                     )
                     InfoRow(
                         symbol: .diamond,
                         title: "Service Asset ID",
-                        value: marketAsset.serviceAssetID
+                        value: cryptoAsset.serviceAssetID
                     )
                     InfoRow(
                         symbol: .buildingColumns,
                         title: "Service Account ID",
-                        value: marketAsset.serviceAccountID
+                        value: cryptoAsset.serviceAccountID
                     )
                     InfoRow(
                         symbol: .link,
                         title: "Linked Account ID",
-                        value: marketAsset.linkedAccountID
+                        value: cryptoAsset.linkedAccountID
                     )
                 }
 
-            case .TransportAsset(let transportAsset):
+            case .stock(let stockAsset):
+                Section(header: Text("Details").bold()) {
+                    InfoRow(symbol: .infoCircle, title: "Symbol", value: stockAsset.symbol, )
+                    InfoRow(
+                        symbol: .banknote,
+                        title: "Amount",
+                        value: stockAsset.amount.formatted(),
+                    )
+                }
+
+                Section(header: Text("Metadata").bold()) {
+                    InfoRow(
+                        symbol: .arrowLeftArrowRight,
+                        title: "Service Trade ID",
+                        value: stockAsset.serviceTradeID
+                    )
+                    InfoRow(
+                        symbol: .diamond,
+                        title: "Service Asset ID",
+                        value: stockAsset.serviceAssetID
+                    )
+                    InfoRow(
+                        symbol: .buildingColumns,
+                        title: "Service Account ID",
+                        value: stockAsset.serviceAccountID
+                    )
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: stockAsset.linkedAccountID
+                    )
+                }
+
+            case .transport(let transportAsset):
                 // FIXME: Show logoURL and origin/destination coordinates
                 Section(header: Text("Details").bold()) {
                     let arrivalDate = ISO8601DateFormatter.candle.date(
@@ -138,12 +171,12 @@ struct TradeAssetGroup: View {
                     )
                 }
 
-            case .NothingAsset: Spacer()
-            case .OtherAsset: Spacer()
+            case .nothing: Spacer()
+            case .other: Spacer()
             }
         } label: {
             switch tradeAsset {
-            case .FiatAsset(let fiatAsset):
+            case .fiat(let fiatAsset):
                 InfoHeader(
                     logo: .text(
                         Locale.current.localizedSymbol(forCurrencyCode: fiatAsset.currencyCode),
@@ -153,25 +186,31 @@ struct TradeAssetGroup: View {
                         ?? fiatAsset.currencyCode,
                     badges: [tradeAsset.badge],
                 )
-            case .MarketTradeAsset(let marketAsset):
+            case .crypto(let cryptoAsset):
                 InfoHeader(
-                    logo: .url(URL(string: marketAsset.logoURL)),
-                    title: marketAsset.name,
+                    logo: .url(URL(string: cryptoAsset.logoURL)),
+                    title: cryptoAsset.name,
                     badges: [tradeAsset.badge],
                 )
-            case .TransportAsset(let transportAsset):
+            case .stock(let stockAsset):
+                InfoHeader(
+                    logo: .url(URL(string: stockAsset.logoURL)),
+                    title: stockAsset.name,
+                    badges: [tradeAsset.badge],
+                )
+            case .transport(let transportAsset):
                 InfoHeader(
                     logo: .url(URL(string: transportAsset.imageURL)),
                     title: transportAsset.name,
                     badges: [tradeAsset.badge],
                 )
-            case .OtherAsset:
+            case .other:
                 InfoHeader(
                     logo: .symbol(.ellipsis, .gray),
                     title: "—",
                     badges: [tradeAsset.badge],
                 )
-            case .NothingAsset:
+            case .nothing:
                 InfoHeader(
                     logo: .symbol(.gift, .assetKindNothing),
                     title: "—",
