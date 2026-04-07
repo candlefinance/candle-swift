@@ -330,9 +330,106 @@ struct TradeAssetQuoteRequestGroup: View {
                 title: "Service Account",
                 placeholder: "Automatic",
             )
+        case .event(var eventAssetQuoteRequest):
+            HStack {
+                Image(systemSymbol: .calendar).frame(width: 24).foregroundColor(.accentColor)
+                Text("Date/Time").fontWeight(.bold)
 
+                Spacer()
+
+                DatePicker(
+                    "",
+                    selection: Binding(
+                        get: {
+                            eventAssetQuoteRequest.dateTime.flatMap(
+                                ISO8601DateFormatter.candle.date(from:)
+                            ) ?? defaultEventQuoteRequestDate
+                        },
+                        set: { nextDate in
+                            eventAssetQuoteRequest.dateTime = ISO8601DateFormatter.candle.string(
+                                from: mergeEventQuoteDate(
+                                    current: eventAssetQuoteRequest.dateTime,
+                                    nextDate: nextDate
+                                )
+                            )
+                            tradeAssetQuoteRequest = .event(eventAssetQuoteRequest)
+                        }
+                    ),
+                    displayedComponents: [.date]
+                )
+                .labelsHidden().datePickerStyle(.compact)
+
+                DatePicker(
+                    "",
+                    selection: Binding(
+                        get: {
+                            eventAssetQuoteRequest.dateTime.flatMap(
+                                ISO8601DateFormatter.candle.date(from:)
+                            ) ?? defaultEventQuoteRequestDate
+                        },
+                        set: { nextTime in
+                            eventAssetQuoteRequest.dateTime = ISO8601DateFormatter.candle.string(
+                                from: mergeEventQuoteDate(
+                                    current: eventAssetQuoteRequest.dateTime,
+                                    nextTime: nextTime
+                                )
+                            )
+                            tradeAssetQuoteRequest = .event(eventAssetQuoteRequest)
+                        }
+                    ),
+                    displayedComponents: [.hourAndMinute]
+                )
+                .labelsHidden().datePickerStyle(.compact)
+            }
+            FormNumberRow(
+                value: Binding(
+                    get: { eventAssetQuoteRequest.partySize },
+                    set: {
+                        eventAssetQuoteRequest.partySize = $0
+                        tradeAssetQuoteRequest = .event(eventAssetQuoteRequest)
+                    }
+                ),
+                symbol: .person3,
+                title: "Party Size",
+                placeholder: "Required",
+                format: .number
+            )
+            FormTextRow(
+                value: Binding(
+                    get: { eventAssetQuoteRequest.serviceAssetID ?? "" },
+                    set: {
+                        eventAssetQuoteRequest.serviceAssetID = $0.isEmpty ? nil : $0
+                        tradeAssetQuoteRequest = .event(eventAssetQuoteRequest)
+                    }
+                ),
+                symbol: .diamond,
+                title: "Service Asset ID",
+                placeholder: "Automatic"
+            )
         // FIXME: Placeholder text label
         case .other, .nothing: Spacer()
         }
     }
+}
+
+private func mergeEventQuoteDate(current: String?, nextDate: Date? = nil, nextTime: Date? = nil)
+    -> Date
+{
+    let currentDate =
+        current.flatMap(ISO8601DateFormatter.candle.date(from:)) ?? defaultEventQuoteRequestDate
+    let dateValue = nextDate ?? currentDate
+    let timeValue = nextTime ?? currentDate
+    let calendar = Calendar.current
+    let dateComponents = calendar.dateComponents([.year, .month, .day], from: dateValue)
+    let timeComponents = calendar.dateComponents([.hour, .minute], from: timeValue)
+
+    return calendar.date(
+        from: DateComponents(
+            year: dateComponents.year,
+            month: dateComponents.month,
+            day: dateComponents.day,
+            hour: timeComponents.hour,
+            minute: timeComponents.minute
+        )
+    ) ?? currentDate
 }

@@ -48,6 +48,85 @@ struct CounterpartyQuoteRequestGroup: View {
                 ),
                 symbol: .tag,
                 title: "Name",
+                placeholder: "Automatic"
+            )
+            FormTextRow(
+                value: Binding(
+                    get: { merchantCounterpartyQuoteRequest.location?.localityName ?? "" },
+                    set: {
+                        merchantCounterpartyQuoteRequest.location =
+                            ($0.isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?.countryCode ?? "")
+                                    .isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?
+                                    .countrySubdivisionCode ?? "")
+                                    .isEmpty)
+                            ? nil
+                            : .init(
+                                countryCode: merchantCounterpartyQuoteRequest.location?.countryCode
+                                    ?? "",
+                                countrySubdivisionCode: merchantCounterpartyQuoteRequest.location?
+                                    .countrySubdivisionCode ?? "",
+                                localityName: $0
+                            )
+                        counterpartyQuoteRequest = .merchant(merchantCounterpartyQuoteRequest)
+                    }
+                ),
+                symbol: .mappinAndEllipse,
+                title: "Locality",
+                placeholder: "Required"
+            )
+            FormTextRow(
+                value: Binding(
+                    get: {
+                        merchantCounterpartyQuoteRequest.location?.countrySubdivisionCode ?? ""
+                    },
+                    set: {
+                        merchantCounterpartyQuoteRequest.location =
+                            ($0.isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?.countryCode ?? "")
+                                    .isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?.localityName ?? "")
+                                    .isEmpty)
+                            ? nil
+                            : .init(
+                                countryCode: merchantCounterpartyQuoteRequest.location?.countryCode
+                                    ?? "",
+                                countrySubdivisionCode: $0.uppercased(),
+                                localityName: merchantCounterpartyQuoteRequest.location?
+                                    .localityName ?? ""
+                            )
+                        counterpartyQuoteRequest = .merchant(merchantCounterpartyQuoteRequest)
+                    }
+                ),
+                symbol: .map,
+                title: "State/Province Code",
+                placeholder: "Required"
+            )
+            FormTextRow(
+                value: Binding(
+                    get: { merchantCounterpartyQuoteRequest.location?.countryCode ?? "" },
+                    set: {
+                        merchantCounterpartyQuoteRequest.location =
+                            ($0.isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?
+                                    .countrySubdivisionCode ?? "")
+                                    .isEmpty
+                                && (merchantCounterpartyQuoteRequest.location?.localityName ?? "")
+                                    .isEmpty)
+                            ? nil
+                            : .init(
+                                countryCode: $0.uppercased(),
+                                countrySubdivisionCode: merchantCounterpartyQuoteRequest.location?
+                                    .countrySubdivisionCode ?? "",
+                                localityName: merchantCounterpartyQuoteRequest.location?
+                                    .localityName ?? ""
+                            )
+                        counterpartyQuoteRequest = .merchant(merchantCounterpartyQuoteRequest)
+                    }
+                ),
+                symbol: .globe,
+                title: "Country Code",
                 placeholder: "Required"
             )
 

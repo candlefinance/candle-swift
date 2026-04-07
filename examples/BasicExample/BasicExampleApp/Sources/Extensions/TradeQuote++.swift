@@ -8,11 +8,13 @@ extension Candle.Models.TradeQuote {
         case .crypto(let cryptoAsset): return cryptoAsset.name
         case .stock(let stockAsset): return stockAsset.name
         case .transport(let transportAsset): return transportAsset.name
+        case .event(let eventAsset): return eventAsset.name
         default:
             switch lost {
             case .crypto(let cryptoAsset): return cryptoAsset.name
             case .stock(let stockAsset): return stockAsset.name
             case .transport(let transportAsset): return transportAsset.name
+            case .event(let eventAsset): return eventAsset.name
             default:
                 switch counterparty {
                 case .user(let userCounterparty): return userCounterparty.legalName
@@ -41,12 +43,14 @@ extension Candle.Models.TradeQuote {
         case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
         case .stock(let stockAsset): return stockAsset.service.logoURL
         case .transport(let transportAsset): return transportAsset.service.logoURL
+        case .event(let eventAsset): return eventAsset.service.logoURL
         case .fiat(let fiatAsset): return fiatAsset.service.logoURL
         default:
             switch lost {
             case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
             case .stock(let stockAsset): return stockAsset.service.logoURL
             case .transport(let transportAsset): return transportAsset.service.logoURL
+            case .event(let eventAsset): return eventAsset.service.logoURL
             case .fiat(let fiatAsset): return fiatAsset.service.logoURL
             default:
                 switch counterparty {
@@ -69,12 +73,14 @@ extension Candle.Models.TradeQuote {
         let linkedAccountID: String
         switch gained {
         case .transport(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
+        case .event(let eventAsset): linkedAccountID = eventAsset.linkedAccountID
         case .crypto(let cryptoAsset): linkedAccountID = cryptoAsset.linkedAccountID
         case .stock(let stockAsset): linkedAccountID = stockAsset.linkedAccountID
 
         case .fiat, .nothing, .other:
             switch lost {
             case .transport(let transportAsset): linkedAccountID = transportAsset.linkedAccountID
+            case .event(let eventAsset): linkedAccountID = eventAsset.linkedAccountID
             case .crypto(let cryptoAsset): linkedAccountID = cryptoAsset.linkedAccountID
             case .stock(let stockAsset): linkedAccountID = stockAsset.linkedAccountID
             // FIXME: Do something in these cases

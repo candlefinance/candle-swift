@@ -7,6 +7,7 @@ struct TradeScreen: View {
     @Binding var error: (title: String, message: String)?
 
     @State private(set) var trade: Candle.Models.Trade
+    @State private var isCancelling = false
     @State private var selectedSide: Side = .lost
 
     var body: some View {
@@ -28,6 +29,14 @@ struct TradeScreen: View {
             Section(header: Text("Gained Asset")) { TradeAssetGroup(tradeAsset: trade.gained) }
             Section(header: Text("Counterparty")) {
                 CounterpartyGroup(counterparty: trade.counterparty)
+            }
+            if trade.state == .inProgress {
+                Section(header: Text("Actions")) {
+                    Button(isCancelling ? "Cancelling..." : "Cancel Reservation") {
+                        Task { await cancelTrade() }
+                    }
+                    .disabled(isCancelling).tint(.red)
+                }
             }
         }
         .listStyle(.insetGrouped).refreshable { await getTrade() }
@@ -62,6 +71,66 @@ struct TradeScreen: View {
                     self.error = (
                         title: "Bad Linked Account Authorization", message: payload.message
                     )
+                }
+            case .internalServerError(let payload):
+                switch payload.kind {
+                case .unexpected:
+                    self.error = (title: "Internal Server Error", message: payload.message)
+                }
+            case .unexpectedStatusCode(let statusCode):
+                self.error = (
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
+                )
+            case .networkError(let errorDescription):
+                self.error = (title: "Network Error", message: errorDescription)
+            case .gatewayTimeout(let payload):
+                switch payload.kind {
+                case .unavailable_proxy:
+                    self.error = (title: "Proxy Unavailable", message: payload.message)
+                }
+            }
+        }
+    }
+
+    private func cancelTrade() async {
+        isCancelling = true
+        defer { isCancelling = false }
+
+        do { trade = try await Candle.Client.shared.cancelTrade(ref: trade.ref) } catch {
+            switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
+            case .notFound(let payload):
+                switch payload.kind {
+                case .notFound_user:
+                    self.error = (title: "User Not Found", message: payload.message)
+                case .notFound_linkedAccount:
+                    self.error = (title: "Linked Account Not Found", message: payload.message)
+                case .notFound_trade:
+                    self.error = (title: "Trade Not Found", message: payload.message)
+                }
+            case .unprocessableContent(let payload):
+                switch payload.kind {
+                case .schemaInvalid_request:
+                    self.error = (title: "Request Schema Invalid", message: payload.message)
+                }
+            case .unauthorized(let payload):
+                switch payload.kind {
+                case .badAuthorization_user:
+                    self.error = (title: "Bad User Authorization", message: payload.message)
+                case .badAuthorization_linkedAccount:
+                    self.error = (
+                        title: "Bad Linked Account Authorization", message: payload.message
+                    )
+                }
+            case .forbidden(let payload):
+                switch payload.kind {
+                case .disabled_premiumService:
+                    self.error = (title: "Write Disabled", message: payload.message)
+                case .disabled_premiumApi:
+                    self.error = (title: "Consent Required", message: payload.message)
                 }
             case .internalServerError(let payload):
                 switch payload.kind {

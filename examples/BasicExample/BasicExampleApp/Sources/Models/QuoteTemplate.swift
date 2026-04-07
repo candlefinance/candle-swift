@@ -3,6 +3,7 @@ import SFSafeSymbols
 
 enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible {
     case fiatTransport
+    case nothingEventMerchant
     case fiatOtherUser
     // FIXME: Add back when we support requesting money
     //    case otherFiatUser
@@ -19,6 +20,7 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         //        case .otherFiatUser: return .other(.init())
         case .fiatTransport, .fiatCrypto, .fiatOtherUser:  //, .fiatStock:
             return .fiat(.init())
+        case .nothingEventMerchant: return .nothing(.init())
         case .cryptoFiat: return .crypto(.init())
         //        case .stockFiat: return .stock(.init())
         }
@@ -28,6 +30,8 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         switch self {
         case .fiatOtherUser: return .other(.init())
         case .fiatTransport: return .transport(.init())
+        case .nothingEventMerchant:
+            return .event(.init(partySize: 2, dateTime: defaultEventQuoteRequestDateTime))
         case .fiatCrypto: return .crypto(.init())
         //        case .fiatStock: return .stock(.init())
         case .cryptoFiat:  //, .stockFiat, .otherFiatUser:
@@ -39,8 +43,10 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         switch self {
         case .fiatOtherUser:  //, .otherFiatUser:
             return .user(.init())
-        case .fiatTransport, .fiatCrypto, .cryptoFiat:  //, .fiatStock, .stockFiat:
+        case .nothingEventMerchant: return .merchant(.init())
+        case .fiatCrypto, .cryptoFiat:  //, .fiatStock, .stockFiat:
             return nil
+        case .fiatTransport: return nil
         }
     }
 
@@ -49,6 +55,7 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         case .fiatOtherUser: return .paperplane
         //        case .otherFiatUser: return .handRaised
         case .fiatTransport: return .car
+        case .nothingEventMerchant: return .forkKnife
         case .fiatCrypto:  //, .fiatStock:
             return .chartLineUptrendXyaxis
         case .cryptoFiat:  //, .stockFiat:
@@ -61,6 +68,7 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         case .fiatOtherUser: return "Send Money"
         //        case .otherFiatUser: return "Request Money"
         case .fiatTransport: return "Book Ride"
+        case .nothingEventMerchant: return "Book Restaurant"
         case .fiatCrypto: return "Buy Crypto"
         //        case .fiatStock: return "Buy Stock"
         case .cryptoFiat: return "Sell Crypto"

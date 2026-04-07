@@ -63,6 +63,7 @@ struct LinkedAccountsScreen: View {
                                 destination: LinkedAccountScreen(
                                     showLinkSheet: $showLinkSheet,
                                     error: $error,
+                                    linkedAccounts: $linkedAccounts,
                                     linkedAccount: linkedAccount
                                 )
                             ) {
@@ -118,6 +119,7 @@ struct LinkedAccountsScreen: View {
             LinkedAccountScreen(
                 showLinkSheet: $showLinkSheet,
                 error: $error,
+                linkedAccounts: $linkedAccounts,
                 linkedAccount: newLinkedAccount
             )
         }

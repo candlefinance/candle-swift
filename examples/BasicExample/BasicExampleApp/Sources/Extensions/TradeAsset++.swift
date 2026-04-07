@@ -18,6 +18,9 @@ extension Candle.Models.TradeAsset {
         case .transport(let transportAsset):
             text = transportAsset.assetKind.description
             color = .assetKindTransport
+        case .event(let eventAsset):
+            text = eventAsset.assetKind.description
+            color = .cyan
         case .other(let otherAsset):
             text = otherAsset.assetKind.description
             color = .gray

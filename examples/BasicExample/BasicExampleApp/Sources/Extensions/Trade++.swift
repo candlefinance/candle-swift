@@ -17,6 +17,7 @@ extension Candle.Models.Trade {
         // FIXME: Add name
         case .crypto(let cryptoAsset): lostAssetNames = [cryptoAsset.symbol]
         case .stock(let stockAsset): lostAssetNames = [stockAsset.symbol]
+        case .event(let eventAsset): lostAssetNames = [eventAsset.name]
         case .fiat, .transport, .other, .nothing: lostAssetNames = []
         }
 
@@ -25,6 +26,7 @@ extension Candle.Models.Trade {
         // FIXME: Add name
         case .crypto(let cryptoAsset): gainedAssetNames = [cryptoAsset.symbol]
         case .stock(let stockAsset): gainedAssetNames = [stockAsset.symbol]
+        case .event(let eventAsset): gainedAssetNames = [eventAsset.name]
         case .fiat, .transport, .other, .nothing: gainedAssetNames = []
         }
 
@@ -37,11 +39,13 @@ extension Candle.Models.Trade {
         case .crypto(let cryptoAsset): return cryptoAsset.name
         case .stock(let stockAsset): return stockAsset.name
         case .transport(let transportAsset): return transportAsset.name
+        case .event(let eventAsset): return eventAsset.name
         default:
             switch lost {
             case .crypto(let cryptoAsset): return cryptoAsset.name
             case .stock(let stockAsset): return stockAsset.name
             case .transport(let transportAsset): return transportAsset.name
+            case .event(let eventAsset): return eventAsset.name
             default:
                 switch counterparty {
                 case .user(let userCounterparty): return userCounterparty.legalName
@@ -70,12 +74,14 @@ extension Candle.Models.Trade {
         case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
         case .stock(let stockAsset): return stockAsset.service.logoURL
         case .transport(let transportAsset): return transportAsset.service.logoURL
+        case .event(let eventAsset): return eventAsset.service.logoURL
         case .fiat(let fiatAsset): return fiatAsset.service.logoURL
         default:
             switch lost {
             case .crypto(let cryptoAsset): return cryptoAsset.service.logoURL
             case .stock(let stockAsset): return stockAsset.service.logoURL
             case .transport(let transportAsset): return transportAsset.service.logoURL
+            case .event(let eventAsset): return eventAsset.service.logoURL
             case .fiat(let fiatAsset): return fiatAsset.service.logoURL
             default:
                 switch counterparty {

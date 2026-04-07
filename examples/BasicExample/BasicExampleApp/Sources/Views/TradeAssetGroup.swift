@@ -170,7 +170,50 @@ struct TradeAssetGroup: View {
                         value: transportAsset.linkedAccountID
                     )
                 }
+            case .event(let eventAsset):
+                Section(header: Text("Details").bold()) {
+                    let eventDate = ISO8601DateFormatter.candle.date(from: eventAsset.dateTime)
 
+                    InfoRow(
+                        symbol: .infoCircle,
+                        title: "Description",
+                        value: eventAsset.description
+                    )
+                    InfoRow(
+                        symbol: .calendar,
+                        title: "Date/Time",
+                        value: eventDate?.formatted(date: .complete, time: .complete)
+                            ?? eventAsset.dateTime
+                    )
+                    InfoRow(
+                        symbol: .mappinAndEllipse,
+                        title: "Location Address",
+                        value: eventAsset.locationAddress.value
+                    )
+                    InfoRow(
+                        symbol: .person3,
+                        title: "Party Size",
+                        value: String(eventAsset.partySize)
+                    )
+                }
+
+                Section(header: Text("Metadata").bold()) {
+                    InfoRow(
+                        symbol: .arrowLeftArrowRight,
+                        title: "Service Trade ID",
+                        value: eventAsset.serviceTradeID
+                    )
+                    InfoRow(
+                        symbol: .diamond,
+                        title: "Service Asset ID",
+                        value: eventAsset.serviceAssetID
+                    )
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: eventAsset.linkedAccountID
+                    )
+                }
             case .nothing: Spacer()
             case .other: Spacer()
             }
@@ -202,6 +245,12 @@ struct TradeAssetGroup: View {
                 InfoHeader(
                     logo: .url(URL(string: transportAsset.imageURL)),
                     title: transportAsset.name,
+                    badges: [tradeAsset.badge],
+                )
+            case .event(let eventAsset):
+                InfoHeader(
+                    logo: .url(URL(string: eventAsset.imageURL)),
+                    title: eventAsset.name,
                     badges: [tradeAsset.badge],
                 )
             case .other:

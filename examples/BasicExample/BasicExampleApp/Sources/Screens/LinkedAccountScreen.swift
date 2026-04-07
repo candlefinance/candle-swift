@@ -2,10 +2,14 @@ import Candle
 import SwiftUI
 
 struct LinkedAccountScreen: View {
+    @Environment(\.dismiss) private var dismiss
+
     @Binding var showLinkSheet: Bool
     @Binding var error: (title: String, message: String)?
+    @Binding var linkedAccounts: [Candle.Models.LinkedAccount]
 
     @State private(set) var linkedAccount: Candle.Models.LinkedAccount
+    @State private var isUnlinking = false
 
     var body: some View {
         List {
@@ -52,6 +56,13 @@ struct LinkedAccountScreen: View {
                     title: "Linked Account ID",
                     value: linkedAccount.linkedAccountID
                 )
+            }
+
+            Section(header: Text("Actions")) {
+                Button(isUnlinking ? "Unlinking..." : "Unlink Account") {
+                    Task { await unlinkAccount() }
+                }
+                .disabled(isUnlinking).tint(.red)
             }
         }
         .toolbar {
@@ -104,12 +115,73 @@ struct LinkedAccountScreen: View {
             }
         }
     }
+
+    private func unlinkAccount() async {
+        isUnlinking = true
+        defer { isUnlinking = false }
+
+        do {
+            try await Candle.Client.shared.unlinkAccount(
+                ref: .init(linkedAccountID: linkedAccount.id)
+            )
+            linkedAccounts = try await Candle.Client.shared.getLinkedAccounts()
+            dismiss()
+        } catch let error as Candle.Models.UnlinkAccount.Error {
+            switch error {
+            case .noActiveUser:
+                self.error = (title: "No Active User", message: "Go through onboarding again.")
+            case .sessionError:
+                self.error = (title: "Session Error", message: "Check your internet connection.")
+            case .notFound(let payload):
+                switch payload.kind {
+                case .notFound_user:
+                    self.error = (title: "User Not Found", message: payload.message)
+                case .notFound_linkedAccount:
+                    self.error = (title: "Linked Account Not Found", message: payload.message)
+                }
+            case .unprocessableContent(let payload):
+                switch payload.kind {
+                case .schemaInvalid_request:
+                    self.error = (title: "Request Schema Invalid", message: payload.message)
+                }
+            case .unauthorized(let payload):
+                switch payload.kind {
+                case .badAuthorization_user:
+                    self.error = (title: "Bad User Authorization", message: payload.message)
+                }
+            case .conflict(let payload):
+                switch payload.kind {
+                case .alreadyUnlinked_linkedAccount:
+                    self.error = (
+                        title: "Linked Account Already Unlinked", message: payload.message
+                    )
+                }
+            case .internalServerError(let payload):
+                switch payload.kind {
+                case .unexpected:
+                    self.error = (title: "Internal Server Error", message: payload.message)
+                }
+            case .unexpectedStatusCode(let statusCode):
+                self.error = (
+                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
+                )
+            case .networkError(let errorDescription):
+                self.error = (title: "Network Error", message: errorDescription)
+            case .gatewayTimeout(let payload):
+                switch payload.kind {
+                case .unavailable_proxy:
+                    self.error = (title: "Proxy Unavailable", message: payload.message)
+                }
+            }
+        } catch { self.error = (title: "Network Error", message: error.localizedDescription) }
+    }
 }
 
 #Preview {
     LinkedAccountScreen(
         showLinkSheet: .constant(false),
         error: .constant(nil),
+        linkedAccounts: .constant([]),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
             service: .sandbox,
@@ -130,6 +202,7 @@ struct LinkedAccountScreen: View {
     LinkedAccountScreen(
         showLinkSheet: .constant(false),
         error: .constant(nil),
+        linkedAccounts: .constant([]),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
             service: .sandbox,

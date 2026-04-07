@@ -19,6 +19,9 @@ extension Candle.Models.TradeAssetQuoteRequest {
         case .transport(let transportAssetQuoteRequest):
             text = transportAssetQuoteRequest.assetKind.description
             color = .assetKindTransport
+        case .event(let eventAssetQuoteRequest):
+            text = eventAssetQuoteRequest.assetKind.description
+            color = .cyan
         case .other(let otherAssetQuoteRequest):
             text = otherAssetQuoteRequest.assetKind.description
             color = .gray
