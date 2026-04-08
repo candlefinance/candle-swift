@@ -4,7 +4,7 @@ versionSuffix = "-beta"
 
 Pod::Spec.new do |s|
   s.name         = "Candle"
-  s.version      = "19.0.3" + versionSuffix
+  s.version      = "19.0.6" + versionSuffix
   s.summary      = "The Candle Swift SDK is a simple & secure way for developers to connect external services to LLMs, agents, and apps."
   s.homepage     = "https://docs.candle.fi/"
   s.license      = "Private"
