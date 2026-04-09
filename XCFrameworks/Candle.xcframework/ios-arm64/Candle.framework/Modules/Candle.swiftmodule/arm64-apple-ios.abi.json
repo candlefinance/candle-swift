@@ -252784,28 +252784,28 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/UI\/Public\/CandleLinkSheet.swift",
       "kind": "IntegerLiteral",
-      "offset": 3252,
+      "offset": 3261,
       "length": 2,
       "value": "24"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/UI\/Public\/CandleLinkSheet.swift",
       "kind": "BooleanLiteral",
-      "offset": 3348,
+      "offset": 3357,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/UI\/Public\/CandleLinkSheet.swift",
       "kind": "IntegerLiteral",
-      "offset": 6721,
+      "offset": 6730,
       "length": 2,
       "value": "24"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/UI\/Public\/CandleLinkSheet.swift",
       "kind": "BooleanLiteral",
-      "offset": 6764,
+      "offset": 6773,
       "length": 4,
       "value": "true"
     },
@@ -252974,8 +252974,8 @@
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Version.swift",
       "kind": "StringLiteral",
       "offset": 58,
-      "length": 8,
-      "value": "\"19.0.9\""
+      "length": 9,
+      "value": "\"19.0.11\""
     }
   ]
 }
