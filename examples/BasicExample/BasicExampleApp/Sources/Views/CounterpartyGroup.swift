@@ -45,8 +45,8 @@ struct CounterpartyGroup: View {
                 )
             case .service(let serviceCounterparty):
                 InfoHeader(
-                    logo: .url(serviceCounterparty.service.logoURL),
-                    title: serviceCounterparty.service.description,
+                    logo: .url(serviceCounterparty.service.logoURLValue),
+                    title: serviceCounterparty.service.displayName,
                     badges: [counterparty.badge],
                 )
             case .user(let userCounterparty):

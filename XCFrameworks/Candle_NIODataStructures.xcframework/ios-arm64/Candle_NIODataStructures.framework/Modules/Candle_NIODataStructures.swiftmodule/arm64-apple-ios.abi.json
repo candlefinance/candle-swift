@@ -678,6 +678,723 @@
         "printedName": "_TinyArray",
         "children": [
           {
+            "kind": "TypeDecl",
+            "name": "Storage",
+            "printedName": "Storage",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "one",
+                "printedName": "one",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (Candle_NIODataStructures._TinyArray<τ_0_0>.Storage.Type) -> (τ_0_0) -> Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(τ_0_0) -> Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GenericTypeParam",
+                            "printedName": "τ_0_0"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO3oneyAEyx_GxcAGmlF",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO3oneyAEyx_GxcAGmlF",
+                "moduleName": "Candle_NIODataStructures"
+              },
+              {
+                "kind": "Var",
+                "name": "arbitrary",
+                "printedName": "arbitrary",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "GenericFunction",
+                    "printedName": "<τ_0_0> (Candle_NIODataStructures._TinyArray<τ_0_0>.Storage.Type) -> ([τ_0_0]) -> Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "([τ_0_0]) -> Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Array",
+                            "printedName": "[τ_0_0]",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "GenericTypeParam",
+                                "printedName": "τ_0_0"
+                              }
+                            ],
+                            "usr": "s:Sa"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO9arbitraryyAEyx_GSayxGcAGmlF",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO9arbitraryyAEyx_GSayxGcAGmlF",
+                "moduleName": "Candle_NIODataStructures"
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Storage",
+                    "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOAASQRzlE2eeoiySbAEyx_G_AGtFZ",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOAASQRzlE2eeoiySbAEyx_G_AGtFZ",
+                "moduleName": "Candle_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Equatable>",
+                "sugared_genericSig": "<Element where Element : Swift.Equatable>",
+                "static": true,
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE4hash4intoys6HasherVz_tF",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE4hash4intoys6HasherVz_tF",
+                "moduleName": "Candle_NIODataStructures",
+                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Hashable>",
+                "sugared_genericSig": "<Element where Element : Swift.Hashable>",
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivp",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivp",
+                "moduleName": "Candle_NIODataStructures",
+                "implicit": true,
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivg",
+                    "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOAASHRzlE9hashValueSivg",
+                    "moduleName": "Candle_NIODataStructures",
+                    "genericSig": "<τ_0_0 where τ_0_0 : Swift.Hashable>",
+                    "sugared_genericSig": "<Element where Element : Swift.Hashable>",
+                    "implicit": true,
+                    "declAttributes": [
+                      "UsableFromInline"
+                    ],
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Subscript",
+                "name": "subscript",
+                "printedName": "subscript(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Subscript",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOyxSicip",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOyxSicip",
+                "moduleName": "Candle_NIODataStructures",
+                "genericSig": "<τ_0_0>",
+                "sugared_genericSig": "<Element>",
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageOyxSicig",
+                    "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageOyxSicig",
+                    "moduleName": "Candle_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "startIndex",
+                "printedName": "startIndex",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO10startIndexSivp",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO10startIndexSivp",
+                "moduleName": "Candle_NIODataStructures",
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO10startIndexSivg",
+                    "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO10startIndexSivg",
+                    "moduleName": "Candle_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "endIndex",
+                "printedName": "endIndex",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO8endIndexSivp",
+                "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO8endIndexSivp",
+                "moduleName": "Candle_NIODataStructures",
+                "declAttributes": [
+                  "UsableFromInline"
+                ],
+                "isFromExtension": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO8endIndexSivg",
+                    "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO8endIndexSivg",
+                    "moduleName": "Candle_NIODataStructures",
+                    "genericSig": "<τ_0_0>",
+                    "sugared_genericSig": "<Element>",
+                    "isFromExtension": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO",
+            "mangledName": "$s24Candle_NIODataStructures10_TinyArrayV7StorageO",
+            "moduleName": "Candle_NIODataStructures",
+            "genericSig": "<τ_0_0>",
+            "sugared_genericSig": "<Element>",
+            "declAttributes": [
+              "UsableFromInline"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "SendableMetatype",
+                "printedName": "SendableMetatype",
+                "usr": "s:s16SendableMetatypeP",
+                "mangledName": "$ss16SendableMetatypeP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "RandomAccessCollection",
+                "printedName": "RandomAccessCollection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<Candle_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sk",
+                "mangledName": "$sSk"
+              },
+              {
+                "kind": "Conformance",
+                "name": "BidirectionalCollection",
+                "printedName": "BidirectionalCollection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<Candle_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:SK",
+                "mangledName": "$sSK"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Collection",
+                "printedName": "Collection",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Index",
+                    "printedName": "Index",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Iterator",
+                    "printedName": "Iterator",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IndexingIterator",
+                        "printedName": "Swift.IndexingIterator<Candle_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s16IndexingIteratorV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "SubSequence",
+                    "printedName": "SubSequence",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Slice",
+                        "printedName": "Swift.Slice<Candle_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s5SliceV"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Indices",
+                    "printedName": "Indices",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Range",
+                        "printedName": "Swift.Range<Swift.Int>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sn"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sl",
+                "mangledName": "$sSl"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sequence",
+                "printedName": "Sequence",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Element",
+                    "printedName": "Element",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "GenericTypeParam",
+                        "printedName": "τ_0_0"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeWitness",
+                    "name": "Iterator",
+                    "printedName": "Iterator",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "IndexingIterator",
+                        "printedName": "Swift.IndexingIterator<Candle_NIODataStructures._TinyArray<τ_0_0>.Storage>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Storage",
+                            "printedName": "Candle_NIODataStructures._TinyArray<τ_0_0>.Storage",
+                            "usr": "s:24Candle_NIODataStructures10_TinyArrayV7StorageO"
+                          }
+                        ],
+                        "usr": "s:s16IndexingIteratorV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:ST",
+                "mangledName": "$sST"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",

@@ -36,142 +36,152 @@ struct LinkedAccountsScreen: View {
         )
     }
 
-    var body: some View {
-        List {
-            Section(header: Text("Linked Accounts")) {
-                switch state {
-                case .initial:
-                    ContentUnavailableView(
-                        "Network Error",
-                        systemSymbol: .networkSlash,
-                        description: Text("Check your connection and pull to refresh.")
-                    )
-                case .loading:
-                    ProgressView { Text("Loading…") }.frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 12)
-                case .normal:
-                    if linkedAccounts.isEmpty {
-                        ContentUnavailableView(
-                            "No Linked Accounts",
-                            systemSymbol: .exclamationmarkMagnifyingglass,
-                            description: Text("Link a service to get started")
-                        )
-                        .onTapGesture { showLinkSheet = true }
-                    } else {
-                        ForEach(linkedAccounts) { linkedAccount in
-                            NavigationLink(
-                                destination: LinkedAccountScreen(
-                                    showLinkSheet: $showLinkSheet,
-                                    error: $error,
-                                    linkedAccounts: $linkedAccounts,
-                                    linkedAccount: linkedAccount
-                                )
-                            ) {
-                                ItemRow(
-                                    title: linkedAccount.title,
-                                    badges: [linkedAccount.badge],
-                                    value: nil,
-                                    logo: .url(linkedAccount.service.logoURL)
-                                )
-                            }
-                            .swipeActions {
-                                if case .inactive = linkedAccount.details {
-                                    Button("Re-Link") { showLinkSheet = true }.tint(.green)
-                                }
-                                Button("Unlink") { accountToUnlink = linkedAccount }.tint(.red)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .task(id: showOnboarding) {
-            if case .initial = state, !showOnboarding { await getLinkedAccounts() }
-        }
-        .refreshable { await getLinkedAccounts(showLoading: false) }
-        .confirmationDialog(
-            "Are You Sure?",
-            isPresented: .constant(accountToUnlink != nil),
-            titleVisibility: .visible
-        ) {
-            Button("Unlink Account", role: .destructive, action: { Task { await unlinkAccount() } })
-            Button("Cancel", role: .cancel) { accountToUnlink = nil }
-        } message: {
-            Text(
-                "You will no longer be able to view asset accounts or trades, retrieve trade quotes, or execute trades using this account."
+    @ViewBuilder private var linkedAccountsSection: some View {
+        switch state {
+        case .initial:
+            ContentUnavailableView(
+                "Network Error",
+                systemSymbol: .networkSlash,
+                description: Text("Check your connection and pull to refresh.")
             )
-        }
-        .navigationTitle("Services")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                SettingsMenu(
-                    showDeleteConfirmation: $showDeleteConfirmation,
-                    showSDKVersion: $showSDKVersion
+        case .loading:
+            ProgressView { Text("Loading…") }.frame(maxWidth: .infinity, alignment: .center)
+                .padding(.vertical, 12)
+        case .normal:
+            if linkedAccounts.isEmpty {
+                ContentUnavailableView(
+                    "No Linked Accounts",
+                    systemSymbol: .exclamationmarkMagnifyingglass,
+                    description: Text("Link a service to get started")
                 )
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showLinkSheet = true }) {
-                    Label("Link", systemSymbol: .plusCircleFill)
-                }
+                .onTapGesture { showLinkSheet = true }
+            } else {
+                ForEach(linkedAccounts) { linkedAccount in linkedAccountRow(linkedAccount) }
             }
         }
-        .navigationDestination(item: $newLinkedAccount) { newLinkedAccount in
-            LinkedAccountScreen(
+    }
+
+    private func linkedAccountRow(_ linkedAccount: Candle.Models.LinkedAccount) -> some View {
+        NavigationLink(
+            destination: LinkedAccountScreen(
                 showLinkSheet: $showLinkSheet,
                 error: $error,
                 linkedAccounts: $linkedAccounts,
-                linkedAccount: newLinkedAccount
+                linkedAccount: linkedAccount
             )
-        }
-        .confirmationDialog(
-            "Are You Sure?",
-            isPresented: $showDeleteConfirmation,
-            titleVisibility: .visible
         ) {
-            Button("Delete User", role: .destructive, action: { Task { await deleteUser() } })
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("If you delete the user, you will have to re-link your accounts.")
-        }
-        .fullScreenCover(isPresented: $showOnboarding) {
-            OnboardingScreen(
-                photos: [
-                    .init(resource: .link1), .init(resource: .link7), .init(resource: .link2),
-                    .init(resource: .link6), .init(resource: .link3), .init(resource: .link4),
-                    .init(resource: .link5),
-                ],
-                title: "Welcome to",
-                product: "Candle",
-                caption: "Explore the functionality of the Candle SDK",
-                ctaText: "Get Started"
+            ItemRow(
+                title: linkedAccount.title,
+                badges: [linkedAccount.badge],
+                value: nil,
+                logo: .url(linkedAccount.service.logoURLValue)
             )
         }
-        .candleLinkSheet(
-            isPresented: $showLinkSheet,
-            customerName: "Acme Inc",
-            services: .supported + [.sandbox],
-            presentationStyle: .fullScreen,
-            presentationBackground: AnyShapeStyle(.thickMaterial)
-        ) { linkedAccount in
-            newLinkedAccount = linkedAccount
-            Task { await getLinkedAccounts() }
+        .swipeActions {
+            if case .inactive = linkedAccount.details {
+                Button("Re-Link") { showLinkSheet = true }.tint(.green)
+            }
+            Button("Unlink") { accountToUnlink = linkedAccount }.tint(.red)
         }
-        .sensoryFeedback(.selection, trigger: showOnboarding)
-        .alert(isPresented: isShowingAlert) {
-            if showSDKVersion {
-                return Alert(
-                    title: Text("Candle SDK Version"),
-                    message: Text(Candle.Constants.version),
-                    dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
+    }
+
+    @ViewBuilder private var onboardingScreen: some View {
+        OnboardingScreen(
+            photos: [
+                .init(resource: .link1), .init(resource: .link7), .init(resource: .link2),
+                .init(resource: .link6), .init(resource: .link3), .init(resource: .link4),
+                .init(resource: .link5),
+            ],
+            title: "Welcome to",
+            product: "Candle",
+            caption: "Explore the functionality of the Candle SDK",
+        )
+    }
+
+    private var currentAlert: Alert {
+        if showSDKVersion {
+            Alert(
+                title: Text("Candle SDK Version"),
+                message: Text(Candle.Constants.version),
+                dismissButton: .cancel(Text("OK"), action: { showSDKVersion = false })
+            )
+        } else {
+            Alert(
+                title: Text(error!.title),
+                message: Text(error!.message),
+                dismissButton: .cancel(Text("OK"), action: { error = nil })
+            )
+        }
+    }
+
+    var body: some View {
+        List { Section(header: Text("Linked Accounts")) { linkedAccountsSection } }
+            .task(id: showOnboarding) {
+                if case .initial = state, !showOnboarding { await getLinkedAccounts() }
+            }
+            .refreshable { await getLinkedAccounts(showLoading: false) }
+            .confirmationDialog(
+                "Are You Sure?",
+                isPresented: .constant(accountToUnlink != nil),
+                titleVisibility: .visible
+            ) {
+                Button(
+                    "Unlink Account",
+                    role: .destructive,
+                    action: { Task { await unlinkAccount() } }
                 )
-            } else {
-                return Alert(
-                    title: Text(error!.title),
-                    message: Text(error!.message),
-                    dismissButton: .cancel(Text("OK"), action: { error = nil })
+                Button("Cancel", role: .cancel) { accountToUnlink = nil }
+            } message: {
+                Text(
+                    "You will no longer be able to view asset accounts or trades, retrieve trade quotes, or execute trades using this account."
                 )
             }
-        }
+            .navigationTitle("Services")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    SettingsMenu(
+                        showDeleteConfirmation: $showDeleteConfirmation,
+                        showSDKVersion: $showSDKVersion
+                    )
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showLinkSheet = true }) {
+                        Label("Link", systemSymbol: .plusCircleFill)
+                    }
+                }
+            }
+            .navigationDestination(item: $newLinkedAccount) { newLinkedAccount in
+                LinkedAccountScreen(
+                    showLinkSheet: $showLinkSheet,
+                    error: $error,
+                    linkedAccounts: $linkedAccounts,
+                    linkedAccount: newLinkedAccount
+                )
+            }
+            .confirmationDialog(
+                "Are You Sure?",
+                isPresented: $showDeleteConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Sign Out", role: .destructive, action: { Task { await signOut() } })
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("If you sign out, you will have to sign in again before linking accounts.")
+            }
+            .fullScreenCover(isPresented: $showOnboarding) { onboardingScreen }
+            .candleLinkSheet(
+                isPresented: $showLinkSheet,
+                customerName: "Acme Inc",
+                services: [],
+                showSandbox: true,
+                presentationStyle: .fullScreen,
+                presentationBackground: AnyShapeStyle(.thickMaterial)
+            ) { linkedAccount in
+                newLinkedAccount = linkedAccount
+                Task { await getLinkedAccounts() }
+            }
+            .sensoryFeedback(.selection, trigger: showOnboarding)
+            .alert(isPresented: isShowingAlert) { currentAlert }
     }
 
     private func getLinkedAccounts(showLoading: Bool = true) async {
@@ -284,11 +294,11 @@ struct LinkedAccountsScreen: View {
         }
     }
 
-    private func deleteUser() async {
+    private func signOut() async {
         state = .loading
 
         do {
-            try await Candle.Client.shared.deleteUser()
+            try await Candle.Client.shared.signOut()
             state = .initial
             showOnboarding = true
         } catch {

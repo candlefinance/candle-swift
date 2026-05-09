@@ -22,6 +22,12 @@ extension Candle.Models.TradeAssetQuoteRequest {
         case .event(let eventAssetQuoteRequest):
             text = eventAssetQuoteRequest.assetKind.description
             color = .cyan
+        case .messageThread(let messageThreadAssetQuoteRequest):
+            text = messageThreadAssetQuoteRequest.assetKind.description
+            color = .blue
+        case .friendRequest:
+            text = "Friend Request"
+            color = .blue
         case .other(let otherAssetQuoteRequest):
             text = otherAssetQuoteRequest.assetKind.description
             color = .gray

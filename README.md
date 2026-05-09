@@ -16,10 +16,16 @@
   <img alt="ipad" src="Images/ipados-active.svg" height="24">
 </picture>&nbsp;
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="Images/macos.svg">
+  <source media="(prefers-color-scheme: light)" srcset="Images/macos-active.svg">
+  <img alt="macos" src="Images/macos-active.svg" height="24">
+</picture>&nbsp;
+
 ---
 
 </div>
 
 The Candle Swift SDK is a simple & secure way for developers to connect external services to LLMs, agents, and apps. Visit our [quick start](https://docs.candle.fi) guide to get started.
 
-![Candle Agent](Images/sdk-readme.png)
+![Candle](Images/sdk-readme.png)

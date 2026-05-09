@@ -5,10 +5,6 @@ struct OnboardingScreen: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    // FIXME: Collect this value from the user
-    @State private var username: String = ""
-    @State private var error: (title: String, message: String)?
-
     @State private var prVisible: Bool = false
     @State private var ctaVisible: Bool = false
     @State private var scrollOffset: CGFloat = 0
@@ -20,7 +16,6 @@ struct OnboardingScreen: View {
     let title: String
     let product: String
     let caption: String
-    let ctaText: String
 
     private let imageWidth: CGFloat = 219
     private let spacing: CGFloat = 30
@@ -42,13 +37,6 @@ struct OnboardingScreen: View {
             }
             .background(.black.opacity(0.65)).background(.ultraThinMaterial)
             .sensoryFeedback(.selection, trigger: isDragging ? currentIndex : nil)
-            .alert(isPresented: .constant(error != nil)) {
-                Alert(
-                    title: Text(error!.title),
-                    message: Text(error!.message),
-                    dismissButton: .cancel(Text("OK"), action: { error = nil })
-                )
-            }
         }
     }
 
@@ -156,12 +144,10 @@ struct OnboardingScreen: View {
                     captionText
                 }
                 Spacer(minLength: .extraLarge)
-                Button(action: { Task { if await createUser() { dismiss() } } }) {
-                    Text(ctaText).font(.system(size: 15, weight: .semibold, design: .default))
-                        .padding([.vertical], .medium).padding([.horizontal], .large)
+                CandleHostedSignInView(redirectURI: "candle-example://oauth/callback") { result in
+                    if case .success = result { dismiss() }
                 }
-                .buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(.white)
-                .foregroundStyle(.black).padding(.extraLarge)
+                .padding(.extraLarge)
             }
         }
         .foregroundStyle(.white).padding()
@@ -170,58 +156,6 @@ struct OnboardingScreen: View {
                 prVisible = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { ctaVisible = true }
             }
-        }
-    }
-    private func createUser() async -> Bool {
-        do {
-            try await Candle.Client.shared.createUser(appUserID: username)
-            return true
-        } catch {
-            switch error {
-            case .existingActiveUser:
-                self.error = (title: "Existing Active User", message: "Delete user first.")
-                return true
-            case .createSessionError:
-                self.error = (title: "Create Session Error", message: "Contact Candle support.")
-            case .keychainError:
-                self.error = (title: "Keychain Error", message: "Double-check your access group.")
-            case .notFound(let payload):
-                switch payload.kind {
-                case .notFound_app: self.error = (title: "App Not Found", message: payload.message)
-                }
-            case .unprocessableContent(let payload):
-                switch payload.kind {
-                case .schemaInvalid_request:
-                    self.error = (title: "Request Schema Invalid", message: payload.message)
-                }
-            case .unauthorized(let payload):
-                switch payload.kind {
-                case .badAuthorization_app:
-                    self.error = (title: "Bad App Authorization", message: payload.message)
-                }
-            case .forbidden(let payload):
-                switch payload.kind {
-                case .disabledPendingPayment_app:
-                    self.error = (title: "App Disabled Pending Payment", message: payload.message)
-                }
-            case .tooManyRequests(let payload):
-                switch payload.kind {
-                case .overUserLimit_app:
-                    self.error = (title: "App Over User Limit", message: payload.message)
-                }
-            case .internalServerError(let payload):
-                switch payload.kind {
-                case .unexpected:
-                    self.error = (title: "Internal Server Error", message: payload.message)
-                }
-            case .unexpectedStatusCode(let statusCode):
-                self.error = (
-                    title: "Unexpected Status Code", message: "Received \(statusCode) response"
-                )
-            case .networkError(let errorDescription):
-                self.error = (title: "Network Error", message: errorDescription)
-            }
-            return false
         }
     }
 }
@@ -234,7 +168,6 @@ struct OnboardingScreen: View {
         ],
         title: "Welcome to",
         product: "Candle",
-        caption: "This example app lets you explore the SDK functionality.",
-        ctaText: "Create User"
+        caption: "This example app lets you explore the SDK functionality."
     )
 }

@@ -57,7 +57,7 @@ struct AssetAccountsScreen: View {
                                     title: linkedAccountStatusRef.linkedAccountID,
                                     badges: [linkedAccountStatusRef.badge],
                                     value: linkedAccountStatusRef.serviceUserID,
-                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                 )
                             }
                         } label: {
@@ -66,7 +66,7 @@ struct AssetAccountsScreen: View {
                                     linkedAccountStatusRef in
                                     SummaryRow(
                                         badges: [linkedAccountStatusRef.badge],
-                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                        logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                     )
                                 }
                             }
@@ -104,7 +104,7 @@ struct AssetAccountsScreen: View {
                                     title: assetAccount.nickname,
                                     badges: [assetAccount.badge],
                                     value: assetAccount.value,
-                                    logo: .url(assetAccount.service.logoURL)
+                                    logo: .url(assetAccount.service.logoURLValue)
                                 )
                             }
                         }

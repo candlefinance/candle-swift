@@ -55,6 +55,11 @@ extension Candle_NIODataStructures.PriorityQueue : Swift.Sendable where Element 
 extension Candle_NIODataStructures.PriorityQueue.Iterator : Swift.Sendable where Element : Swift.Sendable {
 }
 public struct _TinyArray<Element> {
+  @usableFromInline
+  internal enum Storage {
+    case one(Element)
+    case arbitrary([Element])
+  }
 }
 extension Candle_NIODataStructures._TinyArray : Swift.Equatable where Element : Swift.Equatable {
   public static func == (a: Candle_NIODataStructures._TinyArray<Element>, b: Candle_NIODataStructures._TinyArray<Element>) -> Swift.Bool
@@ -102,4 +107,41 @@ extension Candle_NIODataStructures._TinyArray {
   public mutating func remove(at index: Swift.Int) -> Element
   public mutating func removeAll(where shouldBeRemoved: (Element) throws -> Swift.Bool) rethrows
   public mutating func sort(by areInIncreasingOrder: (Element, Element) throws -> Swift.Bool) rethrows
+}
+extension Candle_NIODataStructures._TinyArray.Storage : Swift.Equatable where Element : Swift.Equatable {
+  @usableFromInline
+  internal static func == (lhs: Candle_NIODataStructures._TinyArray<Element>.Storage, rhs: Candle_NIODataStructures._TinyArray<Element>.Storage) -> Swift.Bool
+}
+extension Candle_NIODataStructures._TinyArray.Storage : Swift.Hashable where Element : Swift.Hashable {
+  @usableFromInline
+  internal func hash(into hasher: inout Swift.Hasher)
+  @usableFromInline
+  internal var hashValue: Swift.Int {
+    @usableFromInline
+    get
+  }
+}
+extension Candle_NIODataStructures._TinyArray.Storage : Swift.Sendable where Element : Swift.Sendable {
+}
+extension Candle_NIODataStructures._TinyArray.Storage : Swift.RandomAccessCollection {
+  @usableFromInline
+  internal subscript(position: Swift.Int) -> Element {
+    get
+  }
+  @usableFromInline
+  internal var startIndex: Swift.Int {
+    get
+  }
+  @usableFromInline
+  internal var endIndex: Swift.Int {
+    get
+  }
+  @usableFromInline
+  internal typealias Index = Swift.Int
+  @usableFromInline
+  internal typealias Indices = Swift.Range<Swift.Int>
+  @usableFromInline
+  internal typealias Iterator = Swift.IndexingIterator<Candle_NIODataStructures._TinyArray<Element>.Storage>
+  @usableFromInline
+  internal typealias SubSequence = Swift.Slice<Candle_NIODataStructures._TinyArray<Element>.Storage>
 }

@@ -100,7 +100,7 @@ struct TradesScreen: View {
                                     title: linkedAccountStatusRef.linkedAccountID,
                                     badges: [linkedAccountStatusRef.badge],
                                     value: linkedAccountStatusRef.serviceUserID,
-                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                 )
                             }
                         } label: {
@@ -108,7 +108,7 @@ struct TradesScreen: View {
                                 ForEach(tradesResponse.linkedAccounts) { linkedAccountStatusRef in
                                     SummaryRow(
                                         badges: [linkedAccountStatusRef.badge],
-                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                        logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                     )
                                 }
                             }

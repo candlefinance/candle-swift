@@ -128,9 +128,11 @@ struct TradeScreen: View {
             case .forbidden(let payload):
                 switch payload.kind {
                 case .disabled_premiumService:
-                    self.error = (title: "Write Disabled", message: payload.message)
+                    self.error = (title: payload.kind.description, message: payload.message)
+                case .disabled_paidApi:
+                    self.error = (title: payload.kind.description, message: payload.message)
                 case .disabled_premiumApi:
-                    self.error = (title: "Consent Required", message: payload.message)
+                    self.error = (title: payload.kind.description, message: payload.message)
                 }
             case .internalServerError(let payload):
                 switch payload.kind {

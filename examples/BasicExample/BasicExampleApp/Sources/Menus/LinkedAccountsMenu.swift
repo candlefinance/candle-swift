@@ -19,7 +19,7 @@ struct LinkedAccountsMenu: View {
                     }
                 }) {
                     Label {
-                        Text("\(linkedAccount.service.description) (\(linkedAccount.title))")
+                        Text("\(linkedAccount.service.displayName) (\(linkedAccount.title))")
                     } icon: {
                         if selectedLinkedAccountIDs.contains(linkedAccount.id) {
                             Image(systemSymbol: .checkmark)

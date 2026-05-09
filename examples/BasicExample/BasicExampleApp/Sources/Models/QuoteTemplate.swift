@@ -4,6 +4,8 @@ import SFSafeSymbols
 enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible {
     case fiatTransport
     case nothingEventMerchant
+    case nothingMessageThreadUser
+    case nothingFriendRequestUser
     case fiatOtherUser
     // FIXME: Add back when we support requesting money
     //    case otherFiatUser
@@ -20,7 +22,8 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         //        case .otherFiatUser: return .other(.init())
         case .fiatTransport, .fiatCrypto, .fiatOtherUser:  //, .fiatStock:
             return .fiat(.init())
-        case .nothingEventMerchant: return .nothing(.init())
+        case .nothingEventMerchant, .nothingMessageThreadUser, .nothingFriendRequestUser:
+            return .nothing(.init())
         case .cryptoFiat: return .crypto(.init())
         //        case .stockFiat: return .stock(.init())
         }
@@ -32,6 +35,10 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
         case .fiatTransport: return .transport(.init())
         case .nothingEventMerchant:
             return .event(.init(partySize: 2, dateTime: defaultEventQuoteRequestDateTime))
+        case .nothingMessageThreadUser:
+            return .messageThread(.init(assetKind: .messageThread, text: ""))
+        case .nothingFriendRequestUser:
+            return .friendRequest(.init(assetKind: .friendRequest, action: .send))
         case .fiatCrypto: return .crypto(.init())
         //        case .fiatStock: return .stock(.init())
         case .cryptoFiat:  //, .stockFiat, .otherFiatUser:
@@ -41,7 +48,8 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
 
     var counterpartyQuoteRequest: Candle.Models.CounterpartyQuoteRequest? {
         switch self {
-        case .fiatOtherUser:  //, .otherFiatUser:
+        case .fiatOtherUser, .nothingMessageThreadUser, .nothingFriendRequestUser:
+            //, .otherFiatUser:
             return .user(.init())
         case .nothingEventMerchant: return .merchant(.init())
         case .fiatCrypto, .cryptoFiat:  //, .fiatStock, .stockFiat:
@@ -53,6 +61,8 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
     var symbol: SFSymbol {
         switch self {
         case .fiatOtherUser: return .paperplane
+        case .nothingMessageThreadUser: return .message
+        case .nothingFriendRequestUser: return .person
         //        case .otherFiatUser: return .handRaised
         case .fiatTransport: return .car
         case .nothingEventMerchant: return .forkKnife
@@ -66,6 +76,8 @@ enum QuoteTemplate: String, CaseIterable, Identifiable, CustomStringConvertible 
     var description: String {
         switch self {
         case .fiatOtherUser: return "Send Money"
+        case .nothingMessageThreadUser: return "Send Message"
+        case .nothingFriendRequestUser: return "Add Friend"
         //        case .otherFiatUser: return "Request Money"
         case .fiatTransport: return "Book Ride"
         case .nothingEventMerchant: return "Book Restaurant"

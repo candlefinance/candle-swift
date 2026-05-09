@@ -62,7 +62,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     return .init(
                         id: fiatAccount.serviceAccountID,
                         description: fiatAccount.nickname,
-                        logo: .url(fiatAccount.service.logoURL)
+                        logo: .url(fiatAccount.service.logoURLValue)
                     )
                 },
                 symbol: .buildingColumns,
@@ -125,7 +125,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     return .init(
                         id: cryptoAccount.serviceAccountID,
                         description: cryptoAccount.nickname,
-                        logo: .url(cryptoAccount.service.logoURL)
+                        logo: .url(cryptoAccount.service.logoURLValue)
                     )
                 },
                 symbol: .buildingColumns,
@@ -187,7 +187,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     return .init(
                         id: stockAccount.serviceAccountID,
                         description: stockAccount.nickname,
-                        logo: .url(stockAccount.service.logoURL)
+                        logo: .url(stockAccount.service.logoURLValue)
                     )
                 },
                 symbol: .buildingColumns,
@@ -323,7 +323,7 @@ struct TradeAssetQuoteRequestGroup: View {
                     return .init(
                         id: transportAccount.serviceAccountID,
                         description: transportAccount.nickname,
-                        logo: .url(transportAccount.service.logoURL)
+                        logo: .url(transportAccount.service.logoURLValue)
                     )
                 },
                 symbol: .buildingColumns,
@@ -405,6 +405,46 @@ struct TradeAssetQuoteRequestGroup: View {
                 symbol: .diamond,
                 title: "Service Asset ID",
                 placeholder: "Automatic"
+            )
+        case .messageThread(var messageThreadAssetQuoteRequest):
+            FormTextRow(
+                value: Binding(
+                    get: { messageThreadAssetQuoteRequest.text },
+                    set: {
+                        messageThreadAssetQuoteRequest.text = $0
+                        tradeAssetQuoteRequest = .messageThread(messageThreadAssetQuoteRequest)
+                    }
+                ),
+                symbol: .message,
+                title: "Message",
+                placeholder: "Required"
+            )
+        case .friendRequest(var friendRequestAssetQuoteRequest):
+            FormChoiceRow(
+                selectedValueID: Binding(
+                    get: { friendRequestAssetQuoteRequest.action.rawValue },
+                    set: { nextAction in
+                        guard let nextAction,
+                            let action = Candle.Models.FriendRequestAssetQuoteRequest.ActionPayload(
+                                rawValue: nextAction
+                            )
+                        else { return }
+                        friendRequestAssetQuoteRequest.action = action
+                        tradeAssetQuoteRequest = .friendRequest(friendRequestAssetQuoteRequest)
+                    }
+                ),
+                allowedValues: [
+                    .init(id: "send", description: "Send request", logo: .symbol(.person, .blue)),
+                    .init(
+                        id: "accept",
+                        description: "Accept request",
+                        logo: .symbol(.checkmark, .green)
+                    ),
+                    .init(id: "reject", description: "Reject request", logo: .symbol(.xmark, .red)),
+                ],
+                symbol: .person,
+                title: "Action",
+                placeholder: "Required"
             )
         // FIXME: Placeholder text label
         case .other, .nothing: Spacer()

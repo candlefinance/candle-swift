@@ -46,7 +46,7 @@ struct TradeQuotesScreen: View {
                                     title: linkedAccountStatusRef.linkedAccountID,
                                     badges: [linkedAccountStatusRef.badge],
                                     value: linkedAccountStatusRef.serviceUserID,
-                                    logo: .url(linkedAccountStatusRef.service.logoURL)
+                                    logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                 )
                             }
                         } label: {
@@ -55,7 +55,7 @@ struct TradeQuotesScreen: View {
                                     linkedAccountStatusRef in
                                     SummaryRow(
                                         badges: [linkedAccountStatusRef.badge],
-                                        logo: .url(linkedAccountStatusRef.service.logoURL)
+                                        logo: .url(linkedAccountStatusRef.service.logoURLValue)
                                     )
                                 }
                             }

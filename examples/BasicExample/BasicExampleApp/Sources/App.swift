@@ -7,11 +7,8 @@ import SwiftUI
 
     init() {
         do throws(Candle.Client.InitializationError) {
-            #warning("Add your Candle app key and secret here (https://platform.candle.fi)")
-            try Candle.Client.initialize(
-                appKey: <#YOUR_APP_KEY#>,
-                appSecret: <#YOUR_APP_SECRET_KEY#>
-            )
+            #warning("Add your Candle client ID here (https://platform.candle.fi)")
+            try Candle.Client.initialize(clientID: <#YOUR_CLIENT_ID#>)
         } catch {
             switch error {
             case .alreadyInitialized: fatalError("Already Initialized")

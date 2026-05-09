@@ -214,6 +214,69 @@ struct TradeAssetGroup: View {
                         value: eventAsset.linkedAccountID
                     )
                 }
+            case .messageThread(let messageThreadAsset):
+                Section(header: Text("Messages").bold()) {
+                    ForEach(Array(messageThreadAsset.messages.enumerated()), id: \.offset) {
+                        _,
+                        message in
+                        InfoRow(
+                            symbol: .message,
+                            title: message.senderProfileURN ?? "Message",
+                            value: message.text
+                        )
+                    }
+                }
+                Section(header: Text("Metadata").bold()) {
+                    if let serviceTradeID = messageThreadAsset.serviceTradeID {
+                        InfoRow(
+                            symbol: .arrowLeftArrowRight,
+                            title: "Service Trade ID",
+                            value: serviceTradeID
+                        )
+                    }
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: messageThreadAsset.linkedAccountID
+                    )
+                }
+            case .friendRequest(let friendRequestAsset):
+                Section(header: Text("Details").bold()) {
+                    InfoRow(
+                        symbol: .person,
+                        title: "Name",
+                        value: friendRequestAsset.user.legalName
+                    )
+                    InfoRow(
+                        symbol: .person,
+                        title: "Username",
+                        value: friendRequestAsset.user.username
+                    )
+                    InfoRow(
+                        symbol: .arrowLeftArrowRight,
+                        title: "Direction",
+                        value: friendRequestAsset.direction.rawValue
+                    )
+                }
+                Section(header: Text("Metadata").bold()) {
+                    if let serviceTradeID = friendRequestAsset.serviceTradeID {
+                        InfoRow(
+                            symbol: .arrowLeftArrowRight,
+                            title: "Service Trade ID",
+                            value: serviceTradeID
+                        )
+                    }
+                    InfoRow(
+                        symbol: .link,
+                        title: "Linked Account ID",
+                        value: friendRequestAsset.linkedAccountID
+                    )
+                    InfoRow(
+                        symbol: .buildingColumns,
+                        title: "Service",
+                        value: friendRequestAsset.service.displayName
+                    )
+                }
             case .nothing: Spacer()
             case .other: Spacer()
             }
@@ -251,6 +314,18 @@ struct TradeAssetGroup: View {
                 InfoHeader(
                     logo: .url(URL(string: eventAsset.imageURL)),
                     title: eventAsset.name,
+                    badges: [tradeAsset.badge],
+                )
+            case .messageThread:
+                InfoHeader(
+                    logo: .symbol(.message, .blue),
+                    title: "Message Thread",
+                    badges: [tradeAsset.badge],
+                )
+            case .friendRequest(let friendRequestAsset):
+                InfoHeader(
+                    logo: .url(URL(string: friendRequestAsset.user.avatarURL)),
+                    title: friendRequestAsset.user.legalName,
                     badges: [tradeAsset.badge],
                 )
             case .other:

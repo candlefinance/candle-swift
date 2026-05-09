@@ -14,7 +14,7 @@ struct LinkedAccountScreen: View {
     var body: some View {
         List {
             InfoHeader(
-                logo: .url(linkedAccount.service.logoURL),
+                logo: .url(linkedAccount.service.logoURLValue),
                 title: linkedAccount.title,
                 badges: [linkedAccount.badge],
             )
@@ -177,6 +177,14 @@ struct LinkedAccountScreen: View {
     }
 }
 
+private let previewSandboxService = Candle.Models.Service(
+    id: .sandbox,
+    displayName: "Sandbox",
+    logoURL: "https://institution-logos.s3.us-east-1.amazonaws.com/sandbox.png",
+    thumbhash: nil,
+    accentColor: "#FF5941",
+)
+
 #Preview {
     LinkedAccountScreen(
         showLinkSheet: .constant(false),
@@ -184,7 +192,7 @@ struct LinkedAccountScreen: View {
         linkedAccounts: .constant([]),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
-            service: .sandbox,
+            service: previewSandboxService,
             serviceUserID: "1234567890",
             details: .active(
                 .init(
@@ -205,7 +213,7 @@ struct LinkedAccountScreen: View {
         linkedAccounts: .constant([]),
         linkedAccount: .init(
             linkedAccountID: "00000000-0000-0000-0000-000000000000",
-            service: .sandbox,
+            service: previewSandboxService,
             serviceUserID: "1234567890",
             details: .inactive(.init())
         )

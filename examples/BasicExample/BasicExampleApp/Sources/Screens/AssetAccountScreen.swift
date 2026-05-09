@@ -9,7 +9,7 @@ struct AssetAccountScreen: View {
     var body: some View {
         List {
             InfoHeader(
-                logo: .url(assetAccount.service.logoURL),
+                logo: .url(assetAccount.service.logoURLValue),
                 title: assetAccount.nickname,
                 badges: [assetAccount.badge],
             )
