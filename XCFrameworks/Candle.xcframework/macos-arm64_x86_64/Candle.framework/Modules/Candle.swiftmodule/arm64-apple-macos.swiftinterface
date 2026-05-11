@@ -123,6 +123,7 @@ extension Candle.Operations.PostLinkedAccounts {
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
     case forbidden(Candle.Components.Schemas.DisabledPremiumServiceErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gone(Candle.Components.Schemas.ExpiredChallengeErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.PostLinkedAccounts.Error, b: Candle.Operations.PostLinkedAccounts.Error) -> Swift.Bool
@@ -141,6 +142,7 @@ extension Candle.Operations.DeleteLinkedAccount {
     case conflict(Candle.Components.Schemas.AlreadyUnlinkedLinkedAccountErrorResponse)
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.DeleteLinkedAccount.Error, b: Candle.Operations.DeleteLinkedAccount.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
@@ -202,6 +204,7 @@ extension Candle.Operations.GetLinkedAccountAssetAccount {
     case notFound(Candle.Components.Schemas.NotFoundUserOrLinkedAccountOrAssetAccountErrorResponse)
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.GetLinkedAccountAssetAccount.Error, b: Candle.Operations.GetLinkedAccountAssetAccount.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
@@ -233,6 +236,7 @@ extension Candle.Operations.PostLinkedAccountsTrade {
     case notFound(Candle.Components.Schemas.NotFoundUserOrLinkedAccountOrTradeErrorResponse)
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.PostLinkedAccountsTrade.Error, b: Candle.Operations.PostLinkedAccountsTrade.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
@@ -246,10 +250,11 @@ extension Candle.Operations.DeleteLinkedAccountsTrade {
     case networkError(Swift.String)
     case unexpectedStatusCode(Swift.Int)
     case unauthorized(Candle.Components.Schemas.BadAuthorizationUserOrLinkedAccountErrorResponse)
-    case forbidden(Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse)
+    case forbidden(Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse)
     case notFound(Candle.Components.Schemas.NotFoundUserOrLinkedAccountOrTradeErrorResponse)
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.DeleteLinkedAccountsTrade.Error, b: Candle.Operations.DeleteLinkedAccountsTrade.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
@@ -282,7 +287,8 @@ extension Candle.Operations.PostLinkedAccountsTrades {
     case unprocessableContent(Candle.Components.Schemas.SchemaInvalidRequestErrorResponse)
     case internalServerError(Candle.Components.Schemas.UnexpectedErrorResponse)
     case gone(Candle.Components.Schemas.ExpiredTradeQuoteErrorResponse)
-    case forbidden(Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse)
+    case forbidden(Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse)
+    case paymentRequired(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
     case gatewayTimeout(Candle.Components.Schemas.UnavailableProxyErrorResponse)
     public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Error, b: Candle.Operations.PostLinkedAccountsTrades.Error) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
@@ -476,7 +482,7 @@ extension Candle.Components.Schemas.ChallengeType : Swift.CustomStringConvertibl
     get
   }
 }
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload : Swift.CustomStringConvertible {
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
@@ -2023,7 +2029,7 @@ public enum Components {
       }
     }
     @frozen public enum IndividualBillingPlan : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
-      case free
+      case basic
       case plus
       case pro
       #if compiler(>=5.3) && $NonescapableTypes
@@ -4603,6 +4609,62 @@ public enum Components {
         get
       }
     }
+    public struct InsufficientCreditsBillingErrorResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
+      @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
+        case insufficientCredits_customer
+        case insufficientCredits_user
+        #if compiler(>=5.3) && $NonescapableTypes
+        public init?(rawValue: Swift.String)
+        #endif
+        public typealias AllCases = [Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload]
+        public typealias RawValue = Swift.String
+        nonisolated public static var allCases: [Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload] {
+          get
+        }
+        public var rawValue: Swift.String {
+          get
+        }
+      }
+      public var kind: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload
+      public var message: Swift.String
+      public var details: Swift.String?
+      #if compiler(>=5.3) && $NonescapableTypes
+      public init(kind: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload, message: Swift.String, details: Swift.String? = nil)
+      #endif
+      public enum CodingKeys : Swift.String, Swift.CodingKey {
+        case kind
+        case message
+        case details
+        #if compiler(>=5.3) && $NonescapableTypes
+        public init?(rawValue: Swift.String)
+        #endif
+        #if compiler(>=5.3) && $NonescapableTypes
+        public init?(stringValue: Swift.String)
+        #endif
+        #if compiler(>=5.3) && $NonescapableTypes
+        public init?(intValue: Swift.Int)
+        #endif
+        public typealias RawValue = Swift.String
+        #if compiler(>=5.3) && $NonescapableTypes
+        public var intValue: Swift.Int? {
+          get
+        }
+        #endif
+        public var rawValue: Swift.String {
+          get
+        }
+        public var stringValue: Swift.String {
+          get
+        }
+      }
+      public init(from decoder: any Swift.Decoder) throws
+      public static func == (a: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse, b: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public func hash(into hasher: inout Swift.Hasher)
+      public var hashValue: Swift.Int {
+        get
+      }
+    }
     public struct UnavailableProxyErrorResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
       @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
         case unavailable_proxy
@@ -6468,28 +6530,27 @@ public enum Components {
         get
       }
     }
-    public struct DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
+    public struct DisabledPremiumServiceOrPremiumAPIErrorResponse : Swift.Codable, Swift.Hashable, Swift.Sendable {
       @frozen public enum KindPayload : Swift.String, Swift.Codable, Swift.Hashable, Swift.Sendable, Swift.CaseIterable {
         case disabled_premiumService
-        case disabled_paidApi
         case disabled_premiumApi
         #if compiler(>=5.3) && $NonescapableTypes
         public init?(rawValue: Swift.String)
         #endif
-        public typealias AllCases = [Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload]
+        public typealias AllCases = [Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload]
         public typealias RawValue = Swift.String
-        nonisolated public static var allCases: [Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload] {
+        nonisolated public static var allCases: [Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload] {
           get
         }
         public var rawValue: Swift.String {
           get
         }
       }
-      public var kind: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload
+      public var kind: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload
       public var message: Swift.String
       public var details: Swift.String?
       #if compiler(>=5.3) && $NonescapableTypes
-      public init(kind: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload, message: Swift.String, details: Swift.String? = nil)
+      public init(kind: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload, message: Swift.String, details: Swift.String? = nil)
       #endif
       public enum CodingKeys : Swift.String, Swift.CodingKey {
         case kind
@@ -6518,7 +6579,7 @@ public enum Components {
         }
       }
       public init(from decoder: any Swift.Decoder) throws
-      public static func == (a: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse, b: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse) -> Swift.Bool
+      public static func == (a: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse, b: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse) -> Swift.Bool
       public func encode(to encoder: any Swift.Encoder) throws
       public func hash(into hasher: inout Swift.Hasher)
       public var hashValue: Swift.Int {
@@ -9845,6 +9906,30 @@ public enum Operations {
       public var unauthorized: Candle.Operations.PostUserBillingDelegationConsent.Output.Unauthorized {
         get throws
       }
+      public struct Forbidden : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.MissingDelegationConsentBillingErrorResponse)
+          public var json: Candle.Components.Schemas.MissingDelegationConsentBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden.Body, b: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden.Body
+        public init(body: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden.Body)
+        public static func == (a: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden, b: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case forbidden(Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden)
+      public var forbidden: Candle.Operations.PostUserBillingDelegationConsent.Output.Forbidden {
+        get throws
+      }
       public struct NotFound : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
           case json(Candle.Components.Schemas.NotFoundUserOrAppErrorResponse)
@@ -10576,6 +10661,30 @@ public enum Operations {
       public var unauthorized: Candle.Operations.PostLinkedAccounts.Output.Unauthorized {
         get throws
       }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Code402.Body, b: Candle.Operations.PostLinkedAccounts.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostLinkedAccounts.Output.Code402.Body
+        public init(body: Candle.Operations.PostLinkedAccounts.Output.Code402.Body)
+        public static func == (a: Candle.Operations.PostLinkedAccounts.Output.Code402, b: Candle.Operations.PostLinkedAccounts.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.PostLinkedAccounts.Output.Code402)
+      public var code402: Candle.Operations.PostLinkedAccounts.Output.Code402 {
+        get throws
+      }
       public struct Forbidden : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
           case json(Candle.Components.Schemas.DisabledPremiumServiceErrorResponse)
@@ -11039,6 +11148,30 @@ public enum Operations {
       public var unauthorized: Candle.Operations.DeleteLinkedAccount.Output.Unauthorized {
         get throws
       }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.DeleteLinkedAccount.Output.Code402.Body, b: Candle.Operations.DeleteLinkedAccount.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.DeleteLinkedAccount.Output.Code402.Body
+        public init(body: Candle.Operations.DeleteLinkedAccount.Output.Code402.Body)
+        public static func == (a: Candle.Operations.DeleteLinkedAccount.Output.Code402, b: Candle.Operations.DeleteLinkedAccount.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.DeleteLinkedAccount.Output.Code402)
+      public var code402: Candle.Operations.DeleteLinkedAccount.Output.Code402 {
+        get throws
+      }
       public struct NotFound : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
           case json(Candle.Components.Schemas.NotFoundUserOrLinkedAccountErrorResponse)
@@ -11476,6 +11609,30 @@ public enum Operations {
       }
       case unauthorized(Candle.Operations.GetLinkedAccountAssetAccount.Output.Unauthorized)
       public var unauthorized: Candle.Operations.GetLinkedAccountAssetAccount.Output.Unauthorized {
+        get throws
+      }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402.Body, b: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402.Body
+        public init(body: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402.Body)
+        public static func == (a: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402, b: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402)
+      public var code402: Candle.Operations.GetLinkedAccountAssetAccount.Output.Code402 {
         get throws
       }
       public struct NotFound : Swift.Sendable, Swift.Hashable {
@@ -11922,10 +12079,34 @@ public enum Operations {
       public var unauthorized: Candle.Operations.PostLinkedAccountsTrades.Output.Unauthorized {
         get throws
       }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Code402.Body, b: Candle.Operations.PostLinkedAccountsTrades.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostLinkedAccountsTrades.Output.Code402.Body
+        public init(body: Candle.Operations.PostLinkedAccountsTrades.Output.Code402.Body)
+        public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Code402, b: Candle.Operations.PostLinkedAccountsTrades.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.PostLinkedAccountsTrades.Output.Code402)
+      public var code402: Candle.Operations.PostLinkedAccountsTrades.Output.Code402 {
+        get throws
+      }
       public struct Forbidden : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-          case json(Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse)
-          public var json: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse {
+          case json(Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse)
+          public var json: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse {
             get throws
           }
           public static func == (a: Candle.Operations.PostLinkedAccountsTrades.Output.Forbidden.Body, b: Candle.Operations.PostLinkedAccountsTrades.Output.Forbidden.Body) -> Swift.Bool
@@ -12169,6 +12350,30 @@ public enum Operations {
       public var unauthorized: Candle.Operations.PostLinkedAccountsTrade.Output.Unauthorized {
         get throws
       }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.PostLinkedAccountsTrade.Output.Code402.Body, b: Candle.Operations.PostLinkedAccountsTrade.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.PostLinkedAccountsTrade.Output.Code402.Body
+        public init(body: Candle.Operations.PostLinkedAccountsTrade.Output.Code402.Body)
+        public static func == (a: Candle.Operations.PostLinkedAccountsTrade.Output.Code402, b: Candle.Operations.PostLinkedAccountsTrade.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.PostLinkedAccountsTrade.Output.Code402)
+      public var code402: Candle.Operations.PostLinkedAccountsTrade.Output.Code402 {
+        get throws
+      }
       public struct NotFound : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
           case json(Candle.Components.Schemas.NotFoundUserOrLinkedAccountOrTradeErrorResponse)
@@ -12371,10 +12576,34 @@ public enum Operations {
       public var unauthorized: Candle.Operations.DeleteLinkedAccountsTrade.Output.Unauthorized {
         get throws
       }
+      public struct Code402 : Swift.Sendable, Swift.Hashable {
+        @frozen public enum Body : Swift.Sendable, Swift.Hashable {
+          case json(Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse)
+          public var json: Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse {
+            get throws
+          }
+          public static func == (a: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402.Body, b: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402.Body) -> Swift.Bool
+          public func hash(into hasher: inout Swift.Hasher)
+          public var hashValue: Swift.Int {
+            get
+          }
+        }
+        public var body: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402.Body
+        public init(body: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402.Body)
+        public static func == (a: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402, b: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int {
+          get
+        }
+      }
+      case code402(Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402)
+      public var code402: Candle.Operations.DeleteLinkedAccountsTrade.Output.Code402 {
+        get throws
+      }
       public struct Forbidden : Swift.Sendable, Swift.Hashable {
         @frozen public enum Body : Swift.Sendable, Swift.Hashable {
-          case json(Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse)
-          public var json: Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse {
+          case json(Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse)
+          public var json: Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse {
             get throws
           }
           public static func == (a: Candle.Operations.DeleteLinkedAccountsTrade.Output.Forbidden.Body, b: Candle.Operations.DeleteLinkedAccountsTrade.Output.Forbidden.Body) -> Swift.Bool
@@ -12986,8 +13215,8 @@ extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.
 extension Candle.Components.Schemas.LinkedAccountStatusRef.StatePayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ChallengeType : Swift.BitwiseCopyable {}
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.KindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.KindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.FinancialAccountKind : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.FinancialAccountKind : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.TransportAccountKind : Swift.RawRepresentable {}
@@ -13369,6 +13598,11 @@ extension Candle.Components.Schemas.NotFoundUserOrServiceAccountOrChallengeError
 extension Candle.Components.Schemas.NotFoundUserOrServiceAccountOrChallengeErrorResponse.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.NotFoundUserOrServiceAccountOrChallengeErrorResponse.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.NotFoundUserOrServiceAccountOrChallengeErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.KindPayload : Swift.BitwiseCopyable {}
+extension Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.InsufficientCreditsBillingErrorResponse.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.UnavailableProxyErrorResponse.KindPayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.UnavailableProxyErrorResponse.KindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.UnavailableProxyErrorResponse.CodingKeys : Swift.Equatable {}
@@ -13483,9 +13717,9 @@ extension Candle.Components.Schemas.MerchantLocation.CodingKeys : Swift.RawRepre
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.Equatable {}
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.Hashable {}
 extension Candle.Components.Schemas.ServiceCounterparty.CodingKeys : Swift.RawRepresentable {}
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.CodingKeys : Swift.Equatable {}
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.CodingKeys : Swift.Hashable {}
-extension Candle.Components.Schemas.DisabledPremiumServiceOrPaidAPIOrPremiumAPIErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.CodingKeys : Swift.Equatable {}
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.CodingKeys : Swift.Hashable {}
+extension Candle.Components.Schemas.DisabledPremiumServiceOrPremiumAPIErrorResponse.CodingKeys : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ExpiredTradeQuoteErrorResponse.KindPayload : Swift.RawRepresentable {}
 extension Candle.Components.Schemas.ExpiredTradeQuoteErrorResponse.KindPayload : Swift.BitwiseCopyable {}
 extension Candle.Components.Schemas.ExpiredTradeQuoteErrorResponse.CodingKeys : Swift.Equatable {}
