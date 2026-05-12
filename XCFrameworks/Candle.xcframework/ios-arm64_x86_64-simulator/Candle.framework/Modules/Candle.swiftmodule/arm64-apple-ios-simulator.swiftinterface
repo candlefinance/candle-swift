@@ -2346,6 +2346,7 @@ public enum Components {
       case x
       case facebook
       case instagram
+      case tiktok
       case signal
       case whatsapp
       case messenger

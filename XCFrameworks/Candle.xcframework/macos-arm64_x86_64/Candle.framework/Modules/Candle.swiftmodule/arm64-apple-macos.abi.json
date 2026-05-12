@@ -37447,6 +37447,44 @@
                   },
                   {
                     "kind": "Var",
+                    "name": "tiktok",
+                    "printedName": "tiktok",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Candle.Components.Schemas.ServiceID.Type) -> Candle.Components.Schemas.ServiceID",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ServiceID",
+                            "printedName": "Candle.Components.Schemas.ServiceID",
+                            "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Metatype",
+                            "printedName": "Candle.Components.Schemas.ServiceID.Type",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ServiceID",
+                                "printedName": "Candle.Components.Schemas.ServiceID",
+                                "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "declKind": "EnumElement",
+                    "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6tiktokyA2GmF",
+                    "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6tiktokyA2GmF",
+                    "moduleName": "Candle",
+                    "fixedbinaryorder": 64
+                  },
+                  {
+                    "kind": "Var",
                     "name": "signal",
                     "printedName": "signal",
                     "children": [
@@ -37481,7 +37519,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6signalyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6signalyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 64
+                    "fixedbinaryorder": 65
                   },
                   {
                     "kind": "Var",
@@ -37519,7 +37557,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO8whatsappyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO8whatsappyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 65
+                    "fixedbinaryorder": 66
                   },
                   {
                     "kind": "Var",
@@ -37557,7 +37595,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO9messengeryA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO9messengeryA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 66
+                    "fixedbinaryorder": 67
                   },
                   {
                     "kind": "Var",
@@ -37595,7 +37633,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO8linkedinyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO8linkedinyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 67
+                    "fixedbinaryorder": 68
                   },
                   {
                     "kind": "Var",
@@ -37633,7 +37671,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO7discordyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO7discordyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 68
+                    "fixedbinaryorder": 69
                   },
                   {
                     "kind": "Var",
@@ -37671,7 +37709,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO8messagesyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO8messagesyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 69
+                    "fixedbinaryorder": 70
                   },
                   {
                     "kind": "Var",
@@ -37709,7 +37747,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO8telegramyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO8telegramyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 70
+                    "fixedbinaryorder": 71
                   },
                   {
                     "kind": "Var",
@@ -37747,7 +37785,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6reddityA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6reddityA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 71
+                    "fixedbinaryorder": 72
                   },
                   {
                     "kind": "Var",
@@ -37785,7 +37823,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO9pinterestyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO9pinterestyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 72
+                    "fixedbinaryorder": 73
                   },
                   {
                     "kind": "Var",
@@ -37823,7 +37861,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO12newYorkTimesyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO12newYorkTimesyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 73
+                    "fixedbinaryorder": 74
                   },
                   {
                     "kind": "Var",
@@ -37861,7 +37899,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO14washingtonPostyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO14washingtonPostyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 74
+                    "fixedbinaryorder": 75
                   },
                   {
                     "kind": "Var",
@@ -37899,7 +37937,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO17wallStreetJournalyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO17wallStreetJournalyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 75
+                    "fixedbinaryorder": 76
                   },
                   {
                     "kind": "Var",
@@ -37937,7 +37975,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO3cnnyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO3cnnyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 76
+                    "fixedbinaryorder": 77
                   },
                   {
                     "kind": "Var",
@@ -37975,7 +38013,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO5yahooyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO5yahooyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 77
+                    "fixedbinaryorder": 78
                   },
                   {
                     "kind": "Var",
@@ -38013,7 +38051,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO3foxyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO3foxyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 78
+                    "fixedbinaryorder": 79
                   },
                   {
                     "kind": "Var",
@@ -38051,7 +38089,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO10perplexityyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO10perplexityyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 79
+                    "fixedbinaryorder": 80
                   },
                   {
                     "kind": "Var",
@@ -38089,7 +38127,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6openaiyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6openaiyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 80
+                    "fixedbinaryorder": 81
                   },
                   {
                     "kind": "Var",
@@ -38127,7 +38165,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6claudeyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6claudeyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 81
+                    "fixedbinaryorder": 82
                   },
                   {
                     "kind": "Var",
@@ -38165,7 +38203,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO10polymarketyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO10polymarketyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 82
+                    "fixedbinaryorder": 83
                   },
                   {
                     "kind": "Var",
@@ -38203,7 +38241,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO4espnyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO4espnyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 83
+                    "fixedbinaryorder": 84
                   },
                   {
                     "kind": "Var",
@@ -38241,7 +38279,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO7youtubeyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO7youtubeyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 84
+                    "fixedbinaryorder": 85
                   },
                   {
                     "kind": "Var",
@@ -38279,7 +38317,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO6hboMaxyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO6hboMaxyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 85
+                    "fixedbinaryorder": 86
                   },
                   {
                     "kind": "Var",
@@ -38317,7 +38355,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO7netflixyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO7netflixyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 86
+                    "fixedbinaryorder": 87
                   },
                   {
                     "kind": "Var",
@@ -38355,7 +38393,7 @@
                     "usr": "s:6Candle10ComponentsO7SchemasO9ServiceIDO7spotifyyA2GmF",
                     "mangledName": "$s6Candle10ComponentsO7SchemasO9ServiceIDO7spotifyyA2GmF",
                     "moduleName": "Candle",
-                    "fixedbinaryorder": 87
+                    "fixedbinaryorder": 88
                   },
                   {
                     "kind": "Constructor",
@@ -335018,21 +335056,21 @@
       "kind": "StringLiteral",
       "offset": 68,
       "length": 7,
-      "value": "\"v40-0\""
+      "value": "\"v41-0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/APIConstants.swift",
       "kind": "StringLiteral",
       "offset": 142,
       "length": 29,
-      "value": "\"https:\/\/v40-0.api.candle.fi\""
+      "value": "\"https:\/\/v41-0.api.candle.fi\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/APIConstants.swift",
       "kind": "StringLiteral",
       "offset": 200,
       "length": 21,
-      "value": "\"v40-0.api.candle.fi\""
+      "value": "\"v41-0.api.candle.fi\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/APIConstants.swift",
@@ -335053,7 +335091,7 @@
       "kind": "StringLiteral",
       "offset": 394,
       "length": 20,
-      "value": "\"v40-0.ws.candle.fi\""
+      "value": "\"v41-0.ws.candle.fi\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/APIConstants.swift",
@@ -336292,1475 +336330,1482 @@
       "kind": "StringLiteral",
       "offset": 91748,
       "length": 8,
+      "value": "\"tiktok\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 91783,
+      "length": 8,
       "value": "\"signal\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91785,
+      "offset": 91820,
       "length": 10,
       "value": "\"whatsapp\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91825,
+      "offset": 91860,
       "length": 11,
       "value": "\"messenger\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91865,
+      "offset": 91900,
       "length": 10,
       "value": "\"linkedin\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91903,
+      "offset": 91938,
       "length": 9,
       "value": "\"discord\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91941,
+      "offset": 91976,
       "length": 10,
       "value": "\"messages\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 91980,
+      "offset": 92015,
       "length": 10,
       "value": "\"telegram\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92017,
+      "offset": 92052,
       "length": 8,
       "value": "\"reddit\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92055,
+      "offset": 92090,
       "length": 11,
       "value": "\"pinterest\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92099,
+      "offset": 92134,
       "length": 16,
       "value": "\"new_york_times\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92150,
+      "offset": 92185,
       "length": 17,
       "value": "\"washington_post\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92205,
+      "offset": 92240,
       "length": 21,
       "value": "\"wall_street_journal\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92250,
+      "offset": 92285,
       "length": 5,
       "value": "\"cnn\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92281,
+      "offset": 92316,
       "length": 7,
       "value": "\"yahoo\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92312,
+      "offset": 92347,
       "length": 5,
       "value": "\"fox\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92348,
+      "offset": 92383,
       "length": 12,
       "value": "\"perplexity\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92387,
+      "offset": 92422,
       "length": 8,
       "value": "\"openai\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92422,
+      "offset": 92457,
       "length": 8,
       "value": "\"claude\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92461,
+      "offset": 92496,
       "length": 12,
       "value": "\"polymarket\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92498,
+      "offset": 92533,
       "length": 6,
       "value": "\"espn\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92532,
+      "offset": 92567,
       "length": 9,
       "value": "\"youtube\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92568,
+      "offset": 92603,
       "length": 9,
       "value": "\"hbo_max\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92605,
+      "offset": 92640,
       "length": 9,
       "value": "\"netflix\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 92642,
+      "offset": 92677,
       "length": 9,
       "value": "\"spotify\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 98793,
+      "offset": 98828,
       "length": 10,
       "value": "\"inactive\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 100271,
+      "offset": 100306,
       "length": 13,
       "value": "\"unavailable\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 101747,
+      "offset": 101782,
       "length": 8,
       "value": "\"active\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 105217,
+      "offset": 105252,
       "length": 7,
       "value": "\"start\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 107129,
+      "offset": 107164,
       "length": 20,
       "value": "\"challenge_response\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 116119,
+      "offset": 116154,
       "length": 10,
       "value": "\"password\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 118242,
+      "offset": 118277,
       "length": 10,
       "value": "\"passcode\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 120573,
+      "offset": 120608,
       "length": 30,
       "value": "\"card_number_second_last_four\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 122781,
+      "offset": 122816,
       "length": 10,
       "value": "\"code_app\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 124855,
+      "offset": 124890,
       "length": 11,
       "value": "\"code_call\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 126940,
+      "offset": 126975,
       "length": 12,
       "value": "\"code_email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 129024,
+      "offset": 129059,
       "length": 10,
       "value": "\"code_sms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 131094,
+      "offset": 131129,
       "length": 10,
       "value": "\"push_app\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 132635,
+      "offset": 132670,
       "length": 6,
       "value": "\"link\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 134812,
+      "offset": 134847,
       "length": 9,
       "value": "\"captcha\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 136955,
+      "offset": 136990,
       "length": 10,
       "value": "\"username\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 139094,
+      "offset": 139129,
       "length": 15,
       "value": "\"email_address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 141522,
+      "offset": 141557,
       "length": 14,
       "value": "\"phone_number\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 143877,
+      "offset": 143912,
       "length": 7,
       "value": "\"terms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 145413,
+      "offset": 145448,
       "length": 21,
       "value": "\"challenge_selection\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 146644,
+      "offset": 146679,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 147719,
+      "offset": 147754,
       "length": 10,
       "value": "\"code_sms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 147758,
+      "offset": 147793,
       "length": 11,
       "value": "\"code_call\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 147799,
+      "offset": 147834,
       "length": 12,
       "value": "\"code_email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 147839,
+      "offset": 147874,
       "length": 10,
       "value": "\"code_app\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 147877,
-      "length": 10,
-      "value": "\"push_app\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
       "offset": 147912,
-      "length": 6,
-      "value": "\"link\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 147946,
-      "length": 9,
-      "value": "\"captcha\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 147984,
-      "length": 10,
-      "value": "\"password\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148023,
-      "length": 10,
-      "value": "\"passcode\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148062,
-      "length": 10,
-      "value": "\"username\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148105,
-      "length": 15,
-      "value": "\"email_address\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148152,
-      "length": 14,
-      "value": "\"phone_number\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148211,
-      "length": 30,
-      "value": "\"card_number_second_last_four\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 148267,
-      "length": 7,
-      "value": "\"terms\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 154957,
-      "length": 10,
-      "value": "\"password\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 156511,
-      "length": 10,
-      "value": "\"passcode\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 158862,
-      "length": 30,
-      "value": "\"card_number_second_last_four\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 160941,
-      "length": 10,
-      "value": "\"code_app\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 163056,
       "length": 10,
       "value": "\"push_app\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 165322,
-      "length": 12,
-      "value": "\"code_email\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 168023,
-      "length": 11,
-      "value": "\"code_call\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 170702,
-      "length": 10,
-      "value": "\"code_sms\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
-      "kind": "StringLiteral",
-      "offset": 173361,
+      "offset": 147947,
       "length": 6,
       "value": "\"link\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 175410,
+      "offset": 147981,
       "length": 9,
       "value": "\"captcha\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 178170,
+      "offset": 148019,
+      "length": 10,
+      "value": "\"password\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 148058,
+      "length": 10,
+      "value": "\"passcode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 148097,
       "length": 10,
       "value": "\"username\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 179740,
+      "offset": 148140,
       "length": 15,
       "value": "\"email_address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 181331,
+      "offset": 148187,
       "length": 14,
       "value": "\"phone_number\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 182892,
+      "offset": 148246,
+      "length": 30,
+      "value": "\"card_number_second_last_four\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 148302,
       "length": 7,
       "value": "\"terms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 185002,
+      "offset": 154992,
+      "length": 10,
+      "value": "\"password\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 156546,
+      "length": 10,
+      "value": "\"passcode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 158897,
+      "length": 30,
+      "value": "\"card_number_second_last_four\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 160976,
+      "length": 10,
+      "value": "\"code_app\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 163091,
+      "length": 10,
+      "value": "\"push_app\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 165357,
+      "length": 12,
+      "value": "\"code_email\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 168058,
+      "length": 11,
+      "value": "\"code_call\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 170737,
+      "length": 10,
+      "value": "\"code_sms\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 173396,
+      "length": 6,
+      "value": "\"link\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 175445,
+      "length": 9,
+      "value": "\"captcha\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 178205,
+      "length": 10,
+      "value": "\"username\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 179775,
+      "length": 15,
+      "value": "\"email_address\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 181366,
+      "length": 14,
+      "value": "\"phone_number\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 182927,
+      "length": 7,
+      "value": "\"terms\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
+      "kind": "StringLiteral",
+      "offset": 185037,
       "length": 32,
       "value": "\"already_linked.service_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 187760,
+      "offset": 187795,
       "length": 34,
       "value": "\"bad_authorization.account_locked\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 187856,
+      "offset": 187891,
       "length": 41,
       "value": "\"bad_authorization.challenge_unsupported\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 187965,
+      "offset": 188000,
       "length": 48,
       "value": "\"bad_authorization.challenge_response_incorrect\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 188059,
+      "offset": 188094,
       "length": 24,
       "value": "\"bad_authorization.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 190995,
+      "offset": 191030,
       "length": 19,
       "value": "\"expired.challenge\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 193467,
+      "offset": 193502,
       "length": 26,
       "value": "\"disabled.premium_service\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 196029,
+      "offset": 196064,
       "length": 16,
       "value": "\"not_found.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 196093,
+      "offset": 196128,
       "length": 27,
       "value": "\"not_found.service_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 196163,
+      "offset": 196198,
       "length": 21,
       "value": "\"not_found.challenge\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 198815,
+      "offset": 198850,
       "length": 31,
       "value": "\"insufficient_credits.customer\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 198895,
+      "offset": 198930,
       "length": 27,
       "value": "\"insufficient_credits.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 201421,
+      "offset": 201456,
       "length": 19,
       "value": "\"unavailable.proxy\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 203898,
+      "offset": 203933,
       "length": 16,
       "value": "\"not_found.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 203961,
+      "offset": 203996,
       "length": 26,
       "value": "\"not_found.linked_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 206541,
+      "offset": 206576,
       "length": 33,
       "value": "\"already_unlinked.linked_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 211393,
+      "offset": 211428,
       "length": 8,
       "value": "\"active\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 211434,
+      "offset": 211469,
       "length": 10,
       "value": "\"inactive\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 211480,
+      "offset": 211515,
       "length": 13,
       "value": "\"unavailable\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 216447,
+      "offset": 216482,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 222577,
+      "offset": 222612,
       "length": 12,
       "value": "\"individual\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 222615,
+      "offset": 222650,
       "length": 7,
       "value": "\"joint\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 222657,
+      "offset": 222692,
       "length": 17,
       "value": "\"traditional_ira\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 222702,
+      "offset": 222737,
       "length": 10,
       "value": "\"roth_ira\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 222741,
+      "offset": 222776,
       "length": 10,
       "value": "\"business\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 225116,
+      "offset": 225151,
       "length": 10,
       "value": "\"checking\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 225154,
+      "offset": 225189,
       "length": 9,
       "value": "\"savings\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 227150,
+      "offset": 227185,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 231286,
+      "offset": 231321,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 235427,
+      "offset": 235462,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 239451,
+      "offset": 239486,
       "length": 12,
       "value": "\"individual\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 239489,
+      "offset": 239524,
       "length": 7,
       "value": "\"joint\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 239525,
+      "offset": 239560,
       "length": 10,
       "value": "\"business\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 240019,
+      "offset": 240054,
       "length": 24,
       "value": "\"bad_authorization.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 240098,
+      "offset": 240133,
       "length": 34,
       "value": "\"bad_authorization.linked_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 242765,
+      "offset": 242800,
       "length": 16,
       "value": "\"not_found.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 242828,
+      "offset": 242863,
       "length": 26,
       "value": "\"not_found.linked_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 242900,
+      "offset": 242935,
       "length": 25,
       "value": "\"not_found.asset_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 247244,
+      "offset": 247279,
       "length": 9,
       "value": "\"success\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 247288,
+      "offset": 247323,
       "length": 13,
       "value": "\"in_progress\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 247333,
+      "offset": 247368,
       "length": 9,
       "value": "\"failure\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 254531,
+      "offset": 254566,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 259369,
+      "offset": 259404,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 266023,
+      "offset": 266058,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 272546,
+      "offset": 272581,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 285061,
+      "offset": 285096,
       "length": 7,
       "value": "\"event\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 292202,
+      "offset": 292237,
       "length": 16,
       "value": "\"message_thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 299736,
+      "offset": 299771,
       "length": 16,
       "value": "\"friend_request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 300351,
+      "offset": 300386,
       "length": 10,
       "value": "\"received\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 300390,
+      "offset": 300425,
       "length": 6,
       "value": "\"sent\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 304264,
+      "offset": 304299,
       "length": 6,
       "value": "\"user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 307061,
+      "offset": 307096,
       "length": 7,
       "value": "\"other\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 308445,
+      "offset": 308480,
       "length": 9,
       "value": "\"nothing\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 311923,
+      "offset": 311958,
       "length": 10,
       "value": "\"merchant\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 317236,
+      "offset": 317271,
       "length": 9,
       "value": "\"service\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 319237,
+      "offset": 319272,
       "length": 26,
       "value": "\"disabled.premium_service\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 319307,
+      "offset": 319342,
       "length": 22,
       "value": "\"disabled.premium_api\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 321888,
+      "offset": 321923,
       "length": 21,
       "value": "\"expired.trade_quote\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 331693,
+      "offset": 331728,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 334307,
+      "offset": 334342,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 336916,
+      "offset": 336951,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 339533,
+      "offset": 339568,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 342166,
+      "offset": 342201,
       "length": 7,
       "value": "\"event\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 344799,
+      "offset": 344834,
       "length": 16,
       "value": "\"message_thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 347514,
+      "offset": 347549,
       "length": 16,
       "value": "\"friend_request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 350297,
+      "offset": 350332,
       "length": 16,
       "value": "\"not_found.user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 350360,
+      "offset": 350395,
       "length": 26,
       "value": "\"not_found.linked_account\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 350425,
+      "offset": 350460,
       "length": 17,
       "value": "\"not_found.trade\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 360303,
+      "offset": 360338,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 363529,
+      "offset": 363564,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 367201,
+      "offset": 367236,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 370879,
+      "offset": 370914,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 377197,
+      "offset": 377232,
       "length": 7,
       "value": "\"event\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 380310,
+      "offset": 380345,
       "length": 16,
       "value": "\"message_thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 382389,
+      "offset": 382424,
       "length": 16,
       "value": "\"friend_request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 382859,
+      "offset": 382894,
       "length": 8,
       "value": "\"accept\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 382898,
+      "offset": 382933,
       "length": 8,
       "value": "\"reject\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 382935,
+      "offset": 382970,
       "length": 6,
       "value": "\"send\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 382974,
+      "offset": 383009,
       "length": 10,
       "value": "\"withdraw\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 384926,
+      "offset": 384961,
       "length": 9,
       "value": "\"nothing\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 386410,
+      "offset": 386445,
       "length": 7,
       "value": "\"other\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 390104,
+      "offset": 390139,
       "length": 10,
       "value": "\"merchant\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 392614,
+      "offset": 392649,
       "length": 6,
       "value": "\"user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 395085,
+      "offset": 395120,
       "length": 9,
       "value": "\"service\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 401435,
+      "offset": 401470,
       "length": 15,
       "value": "\"different.app\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 408731,
+      "offset": 408766,
       "length": 20,
       "value": "\"postOauthAuthorize\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 427060,
+      "offset": 427095,
       "length": 16,
       "value": "\"postOauthToken\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 445123,
+      "offset": 445158,
       "length": 13,
       "value": "\"deleteUsers\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 461669,
+      "offset": 461704,
       "length": 20,
       "value": "\"getUserKeyEnvelope\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 479154,
+      "offset": 479189,
       "length": 21,
       "value": "\"postUserKeyEnvelope\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 495110,
+      "offset": 495145,
       "length": 28,
       "value": "\"postUserEncryptedSyncReset\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 510784,
+      "offset": 510819,
       "length": 16,
       "value": "\"getUserBilling\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 528437,
+      "offset": 528472,
       "length": 25,
       "value": "\"postUserBillingCheckout\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 544606,
+      "offset": 544641,
       "length": 23,
       "value": "\"postUserBillingPortal\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 560134,
+      "offset": 560169,
       "length": 34,
       "value": "\"postUserBillingDelegationConsent\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 579403,
+      "offset": 579438,
       "length": 13,
       "value": "\"getServices\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 597085,
+      "offset": 597120,
       "length": 12,
       "value": "\"getService\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 615672,
+      "offset": 615707,
       "length": 19,
       "value": "\"getLinkedAccounts\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 631293,
+      "offset": 631328,
       "length": 20,
       "value": "\"postLinkedAccounts\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 662850,
+      "offset": 662885,
       "length": 18,
       "value": "\"getLinkedAccount\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 679697,
+      "offset": 679732,
       "length": 21,
       "value": "\"deleteLinkedAccount\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 703536,
+      "offset": 703571,
       "length": 32,
       "value": "\"getLinkedAccountsAssetAccounts\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 704252,
+      "offset": 704287,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 704292,
+      "offset": 704327,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 704334,
+      "offset": 704369,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 704380,
+      "offset": 704415,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 721836,
+      "offset": 721871,
       "length": 30,
       "value": "\"getLinkedAccountAssetAccount\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 722644,
+      "offset": 722679,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 722685,
+      "offset": 722720,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 722727,
+      "offset": 722762,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 722772,
+      "offset": 722807,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 746897,
+      "offset": 746932,
       "length": 25,
       "value": "\"getLinkedAccountsTrades\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747751,
+      "offset": 747786,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747791,
+      "offset": 747826,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747833,
+      "offset": 747868,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747879,
+      "offset": 747914,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747924,
+      "offset": 747959,
       "length": 7,
       "value": "\"event\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 747973,
+      "offset": 748008,
       "length": 16,
       "value": "\"message_thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748031,
+      "offset": 748066,
       "length": 16,
       "value": "\"friend_request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748081,
+      "offset": 748116,
       "length": 7,
       "value": "\"other\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748124,
+      "offset": 748159,
       "length": 9,
       "value": "\"nothing\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748617,
+      "offset": 748652,
       "length": 6,
       "value": "\"fiat\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748657,
+      "offset": 748692,
       "length": 7,
       "value": "\"stock\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748699,
+      "offset": 748734,
       "length": 8,
       "value": "\"crypto\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748745,
+      "offset": 748780,
       "length": 11,
       "value": "\"transport\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748790,
+      "offset": 748825,
       "length": 7,
       "value": "\"event\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748839,
+      "offset": 748874,
       "length": 16,
       "value": "\"message_thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748897,
+      "offset": 748932,
       "length": 16,
       "value": "\"friend_request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748947,
+      "offset": 748982,
       "length": 7,
       "value": "\"other\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 748990,
+      "offset": 749025,
       "length": 9,
       "value": "\"nothing\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 749487,
+      "offset": 749522,
       "length": 10,
       "value": "\"merchant\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 749530,
+      "offset": 749565,
       "length": 6,
       "value": "\"user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 749572,
+      "offset": 749607,
       "length": 9,
       "value": "\"service\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 767124,
+      "offset": 767159,
       "length": 26,
       "value": "\"postLinkedAccountsTrades\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 794247,
+      "offset": 794282,
       "length": 25,
       "value": "\"postLinkedAccountsTrade\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 815939,
+      "offset": 815974,
       "length": 27,
       "value": "\"deleteLinkedAccountsTrade\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 840725,
+      "offset": 840760,
       "length": 32,
       "value": "\"postLinkedAccountsTradesQuotes\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Generated\/Types.swift",
       "kind": "StringLiteral",
-      "offset": 857628,
+      "offset": 857663,
       "length": 14,
       "value": "\"post_session\""
     },
@@ -338720,8 +338765,8 @@
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Version.swift",
       "kind": "StringLiteral",
       "offset": 58,
-      "length": 9,
-      "value": "\"40.0.19\""
+      "length": 8,
+      "value": "\"41.0.1\""
     }
   ]
 }
