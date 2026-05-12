@@ -334805,21 +334805,21 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Client\/Client.swift",
       "kind": "IntegerLiteral",
-      "offset": 8598,
+      "offset": 8586,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Client\/Client.swift",
       "kind": "IntegerLiteral",
-      "offset": 8603,
+      "offset": 8591,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Client\/Client.swift",
       "kind": "Array",
-      "offset": 40886,
+      "offset": 40874,
       "length": 179,
       "value": "[0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00]"
     },
@@ -338874,7 +338874,7 @@
       "kind": "StringLiteral",
       "offset": 58,
       "length": 9,
-      "value": "\"40.0.17\""
+      "value": "\"40.0.19\""
     }
   ]
 }
