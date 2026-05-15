@@ -33,6 +33,16 @@
       },
       {
         "kind": "Import",
+        "name": "CandleTracing",
+        "printedName": "CandleTracing",
+        "declKind": "Import",
+        "moduleName": "Candle",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -333788,6 +333798,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SpanAttributeConvertible",
+            "printedName": "SpanAttributeConvertible",
+            "usr": "s:13CandleTracing24SpanAttributeConvertibleP",
+            "mangledName": "$s13CandleTracing24SpanAttributeConvertibleP"
+          },
+          {
+            "kind": "Conformance",
             "name": "AtomicRepresentable",
             "printedName": "AtomicRepresentable",
             "children": [
@@ -333807,13 +333824,6 @@
             ],
             "usr": "s:15Synchronization19AtomicRepresentableP",
             "mangledName": "$s15Synchronization19AtomicRepresentableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "SpanAttributeConvertible",
-            "printedName": "SpanAttributeConvertible",
-            "usr": "s:13CandleTracing24SpanAttributeConvertibleP",
-            "mangledName": "$s13CandleTracing24SpanAttributeConvertibleP"
           },
           {
             "kind": "Conformance",
@@ -337853,28 +337863,28 @@
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Session\/Session.swift",
       "kind": "StringLiteral",
-      "offset": 32774,
+      "offset": 32947,
       "length": 26,
       "value": "\"Socket Validation Failed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Session\/Session.swift",
       "kind": "StringLiteral",
-      "offset": 32912,
+      "offset": 33085,
       "length": 18,
       "value": "\"errorDescription\""
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Session\/Session.swift",
       "kind": "BooleanLiteral",
-      "offset": 34334,
+      "offset": 34507,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Session\/Session.swift",
       "kind": "BooleanLiteral",
-      "offset": 34424,
+      "offset": 34597,
       "length": 4,
       "value": "true"
     },
@@ -338919,7 +338929,7 @@
       "kind": "StringLiteral",
       "offset": 58,
       "length": 8,
-      "value": "\"41.0.1\""
+      "value": "\"41.0.3\""
     }
   ]
 }
