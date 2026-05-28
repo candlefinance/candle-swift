@@ -279,6 +279,8 @@ struct LinkedAccountsScreen: View {
                 case .unexpected:
                     self.error = (title: "Internal Server Error", message: payload.message)
                 }
+            case .paymentRequired(let payload):
+                self.error = (title: "Insufficient Credits", message: payload.message)
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"

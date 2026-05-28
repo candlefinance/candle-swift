@@ -44,6 +44,7 @@
 		AD6EDAFF22C8E9DF8A67D194 /* TradesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352617F5CB23ACDA48782EF2 /* TradesScreen.swift */; };
 		ADB01E17AE8E1DB18BF3BAD2 /* CounterpartyQuoteRequestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83638A20B72FDA36BF122CD0 /* CounterpartyQuoteRequestGroup.swift */; };
 		B00E96B5F17538908FB8CFF6 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86220273371613FAC4A361A /* ItemRow.swift */; };
+		B030C40E1FA3F1D9B75CA449 /* TradeQuoteLinkedAccountResult++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB95C894A0B927772D633BA /* TradeQuoteLinkedAccountResult++.swift */; };
 		BB283C59EAA4AF0F9660A44C /* ISO8601DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3970017998CBB47650063B /* ISO8601DateFormatter.swift */; };
 		BD6585DC0DEFF71D09398756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6DDD7BE742269E96E7FB410 /* LaunchScreen.storyboard */; };
 		C05CAFEA4050E7AB1AC8687D /* TradeAsset++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437F107E378DC66FFCFF754 /* TradeAsset++.swift */; };
@@ -143,6 +144,7 @@
 		9120D4F2AB338FD10DC5D6D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9A8FE5008920CA2D67984B36 /* TradeQuoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeQuoteScreen.swift; sourceTree = "<group>"; };
 		9AFFFC8E8EAEB8EA156E4669 /* BasicExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB95C894A0B927772D633BA /* TradeQuoteLinkedAccountResult++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TradeQuoteLinkedAccountResult++.swift"; sourceTree = "<group>"; };
 		A117A3D1C4911E5B7F614ACA /* AssetAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAccountScreen.swift; sourceTree = "<group>"; };
 		A12D8E04C9ACF65B84443DDC /* CounterpartyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterpartyGroup.swift; sourceTree = "<group>"; };
 		A1390504399B7CB51CB8874D /* CounterpartyQuoteRequest++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CounterpartyQuoteRequest++.swift"; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				8437F107E378DC66FFCFF754 /* TradeAsset++.swift */,
 				3F993E944E4A7065A8DA7CAC /* TradeAssetQuoteRequest++.swift */,
 				D681576345754C54603ACFA4 /* TradeQuote++.swift */,
+				9DB95C894A0B927772D633BA /* TradeQuoteLinkedAccountResult++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				C05CAFEA4050E7AB1AC8687D /* TradeAsset++.swift in Sources */,
 				E9EE50DDA70ECAB084EA9BF3 /* TradeAssetQuoteRequest++.swift in Sources */,
 				3BE562294B5E010A2FA0628A /* TradeQuote++.swift in Sources */,
+				B030C40E1FA3F1D9B75CA449 /* TradeQuoteLinkedAccountResult++.swift in Sources */,
 				93D8F76D9DF5A24B70FC4597 /* EnumMenu.swift in Sources */,
 				D9CDBB75A60C65044A236E18 /* LinkedAccountsMenu.swift in Sources */,
 				D2C607B61A9674138F1178D8 /* SettingsMenu.swift in Sources */,

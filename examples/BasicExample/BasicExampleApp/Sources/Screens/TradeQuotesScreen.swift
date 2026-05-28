@@ -33,7 +33,7 @@ struct TradeQuotesScreen: View {
                         .frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 12)
 
                 case .normal(let tradeQuotesResponse):
-                    if tradeQuotesResponse.linkedAccounts.isEmpty {
+                    if tradeQuotesResponse.linkedAccountResults.isEmpty {
                         ContentUnavailableView(
                             "No Linked Accounts",
                             systemSymbol: .exclamationmarkMagnifyingglass,
@@ -41,21 +41,26 @@ struct TradeQuotesScreen: View {
                         )
                     } else {
                         DisclosureGroup {
-                            ForEach(tradeQuotesResponse.linkedAccounts) { linkedAccountStatusRef in
+                            ForEach(
+                                Array(tradeQuotesResponse.linkedAccountResults.enumerated()),
+                                id: \.offset
+                            ) { _, linkedAccountResult in
                                 ItemRow(
-                                    title: linkedAccountStatusRef.linkedAccountID,
-                                    badges: [linkedAccountStatusRef.badge],
-                                    value: linkedAccountStatusRef.serviceUserID,
-                                    logo: .url(linkedAccountStatusRef.service.logoURLValue)
+                                    title: linkedAccountResult.linkedAccountID,
+                                    badges: linkedAccountResult.badges,
+                                    value: linkedAccountResult.serviceUserID,
+                                    logo: .url(linkedAccountResult.service.logoURLValue)
                                 )
                             }
                         } label: {
                             VStack {
-                                ForEach(tradeQuotesResponse.linkedAccounts) {
-                                    linkedAccountStatusRef in
+                                ForEach(
+                                    Array(tradeQuotesResponse.linkedAccountResults.enumerated()),
+                                    id: \.offset
+                                ) { _, linkedAccountResult in
                                     SummaryRow(
-                                        badges: [linkedAccountStatusRef.badge],
-                                        logo: .url(linkedAccountStatusRef.service.logoURLValue)
+                                        badges: linkedAccountResult.badges,
+                                        logo: .url(linkedAccountResult.service.logoURLValue)
                                     )
                                 }
                             }

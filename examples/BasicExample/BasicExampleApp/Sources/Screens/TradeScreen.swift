@@ -77,6 +77,8 @@ struct TradeScreen: View {
                 case .unexpected:
                     self.error = (title: "Internal Server Error", message: payload.message)
                 }
+            case .paymentRequired(let payload):
+                self.error = (title: "Insufficient Credits", message: payload.message)
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
@@ -129,8 +131,6 @@ struct TradeScreen: View {
                 switch payload.kind {
                 case .disabled_premiumService:
                     self.error = (title: payload.kind.description, message: payload.message)
-                case .disabled_paidApi:
-                    self.error = (title: payload.kind.description, message: payload.message)
                 case .disabled_premiumApi:
                     self.error = (title: payload.kind.description, message: payload.message)
                 }
@@ -139,6 +139,8 @@ struct TradeScreen: View {
                 case .unexpected:
                     self.error = (title: "Internal Server Error", message: payload.message)
                 }
+            case .paymentRequired(let payload):
+                self.error = (title: "Insufficient Credits", message: payload.message)
             case .unexpectedStatusCode(let statusCode):
                 self.error = (
                     title: "Unexpected Status Code", message: "Received \(statusCode) response"
