@@ -352933,8 +352933,8 @@
       "filePath": "\/Users\/runner\/work\/candle\/candle\/sdk-swift\/Sources\/Candle\/Version.swift",
       "kind": "StringLiteral",
       "offset": 58,
-      "length": 8,
-      "value": "\"43.0.9\""
+      "length": 9,
+      "value": "\"43.0.10\""
     }
   ]
 }
